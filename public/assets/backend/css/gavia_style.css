@@ -1,0 +1,190 @@
+/* On this page, the features that are valid in the template(style.bundle.css) are broken. */
+
+
+.tagify {
+    --tag-bg : #73bea6;
+    --tag-hover : #73bea6;
+    --tag-text-color: #ffffff;
+    --tag-remove-bg: #b00e0e80;
+    --tag-inset-shadow-size: none;
+}
+
+
+.tagify .tagify__tag .tagify__tag__removeBtn,.tagify .tagify__tag .tagify__tag__removeBtn:hover {
+    background-color: #3f4254;
+}
+
+.badge-primary {
+    color: #fff;
+    background-color: #73bea6;
+}
+
+.text-primary {
+    color: #73bea6 !important;
+}
+
+.nav-line-tabs.nav-line-tabs-2x .nav-item .nav-link.active, .nav-line-tabs.nav-line-tabs-2x .nav-item.show .nav-link, .nav-line-tabs.nav-line-tabs-2x .nav-item .nav-link:hover:not(.disabled){
+    color:#73bea6;
+    padding: 0.5rem 1rem;
+    border: 1px solid transparent;
+    border-color: #dee2e6 #dee2e6 #fff #ebeef6;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.btn-check:checked + .btn.btn-outline.btn-outline-success, .btn-check:active + .btn.btn-outline.btn-outline-success, .btn.btn-outline.btn-outline-success:focus:not(.btn-active), .btn.btn-outline.btn-outline-success:hover:not(.btn-active), .btn.btn-outline.btn-outline-success:active:not(.btn-active), .btn.btn-outline.btn-outline-success.active, .btn.btn-outline.btn-outline-success.show, .show > .btn.btn-outline.btn-outline-success,.btn.btn-outline.btn-outline-success:hover:not(.btn-active) .svg-icon,.btn.btn-outline.btn-outline-success:hover:not(.btn-active) i,.btn-check:checked + .btn.btn-outline.btn-outline-success i, .btn-check:checked + .btn.btn-outline.btn-outline-success .svg-icon, .btn-check:active + .btn.btn-outline.btn-outline-success i, .btn-check:active + .btn.btn-outline.btn-outline-success .svg-icon, .btn.btn-outline.btn-outline-success:focus:not(.btn-active) i, .btn.btn-outline.btn-outline-success:focus:not(.btn-active) .svg-icon, .btn.btn-outline.btn-outline-success:hover:not(.btn-active) i, .btn.btn-outline.btn-outline-success:hover:not(.btn-active) .svg-icon, .btn.btn-outline.btn-outline-success:active:not(.btn-active) i, .btn.btn-outline.btn-outline-success:active:not(.btn-active) .svg-icon, .btn.btn-outline.btn-outline-success.active i, .btn.btn-outline.btn-outline-success.active .svg-icon, .btn.btn-outline.btn-outline-success.show i, .btn.btn-outline.btn-outline-success.show .svg-icon, .show > .btn.btn-outline.btn-outline-success i, .show > .btn.btn-outline.btn-outline-success .svg-icon {
+    color: #ffffff;
+    border-color: var(--bs-success);
+    background-color: #73bea6 !important;
+}
+
+.tempus-dominus-widget.light .date-container-decades div:not(.no-highlight).active, .tempus-dominus-widget.light .date-container-years div:not(.no-highlight).active, .tempus-dominus-widget.light .date-container-months div:not(.no-highlight).active, .tempus-dominus-widget.light .date-container-days div:not(.no-highlight).active, .tempus-dominus-widget.light .time-container-clock div:not(.no-highlight).active, .tempus-dominus-widget.light .time-container-hour div:not(.no-highlight).active, .tempus-dominus-widget.light .time-container-minute div:not(.no-highlight).active, .tempus-dominus-widget.light .time-container-second div:not(.no-highlight).active, .tempus-dominus-widget.dark .date-container-decades div:not(.no-highlight).active, .tempus-dominus-widget.dark .date-container-years div:not(.no-highlight).active, .tempus-dominus-widget.dark .date-container-months div:not(.no-highlight).active, .tempus-dominus-widget.dark .date-container-days div:not(.no-highlight).active, .tempus-dominus-widget.dark .time-container-clock div:not(.no-highlight).active, .tempus-dominus-widget.dark .time-container-hour div:not(.no-highlight).active, .tempus-dominus-widget.dark .time-container-minute div:not(.no-highlight).active, .tempus-dominus-widget.dark .time-container-second div:not(.no-highlight).active {
+    background-color: #73bea6 !important;
+}
+
+.tempus-dominus-widget.light .date-container-decades div:not(.no-highlight).today:before, .tempus-dominus-widget.light .date-container-years div:not(.no-highlight).today:before, .tempus-dominus-widget.light .date-container-months div:not(.no-highlight).today:before, .tempus-dominus-widget.light .date-container-days div:not(.no-highlight).today:before, .tempus-dominus-widget.light .time-container-clock div:not(.no-highlight).today:before, .tempus-dominus-widget.light .time-container-hour div:not(.no-highlight).today:before, .tempus-dominus-widget.light .time-container-minute div:not(.no-highlight).today:before, .tempus-dominus-widget.light .time-container-second div:not(.no-highlight).today:before, .tempus-dominus-widget.dark .date-container-decades div:not(.no-highlight).today:before, .tempus-dominus-widget.dark .date-container-years div:not(.no-highlight).today:before, .tempus-dominus-widget.dark .date-container-months div:not(.no-highlight).today:before, .tempus-dominus-widget.dark .date-container-days div:not(.no-highlight).today:before, .tempus-dominus-widget.dark .time-container-clock div:not(.no-highlight).today:before, .tempus-dominus-widget.dark .time-container-hour div:not(.no-highlight).today:before, .tempus-dominus-widget.dark .time-container-minute div:not(.no-highlight).today:before, .tempus-dominus-widget.dark .time-container-second div:not(.no-highlight).today:before {
+    border-bottom-color: #73bea6;
+}
+
+
+.btn-check:checked + .btn.btn-outline.btn-outline-danger, .btn-check:active + .btn.btn-outline.btn-outline-danger, .btn.btn-outline.btn-outline-danger:focus:not(.btn-active), .btn.btn-outline.btn-outline-danger:hover:not(.btn-active), .btn.btn-outline.btn-outline-danger:active:not(.btn-active), .btn.btn-outline.btn-outline-danger.active, .btn.btn-outline.btn-outline-danger.show, .show > .btn.btn-outline.btn-outline-danger,.btn.btn-outline.btn-outline-danger:hover:not(.btn-active) i,.btn.btn-outline.btn-outline-danger:active:not(.btn-active) i,.btn.btn-outline.btn-outline-danger:hover:not(.btn-active) .svg-icon {
+    color: #ffffff !important;
+    background-color: #d9537b !important;
+}
+
+.btn-check:checked + .btn.btn-outline.btn-outline-primary, .btn-check:active + .btn.btn-outline.btn-outline-primary, .btn.btn-outline.btn-outline-primary:focus:not(.btn-active), .btn.btn-outline.btn-outline-primary:hover:not(.btn-active), .btn.btn-outline.btn-outline-primary:active:not(.btn-active), .btn.btn-outline.btn-outline-primary.active, .btn.btn-outline.btn-outline-primary.show, .show > .btn.btn-outline.btn-outline-primary,.btn.btn-outline.btn-outline-primary:hover:not(.btn-active) .svg-icon {
+    color: #ffffff !important;
+    background-color: #73bea6 !important;
+}
+
+/* for datatable first columns */
+.no-sort .sorting,
+.no-sort .sorting_asc,
+.no-sort .sorting_desc {
+  display: none;
+}
+
+table.dataTable thead > tr > th.sorting:before, table.dataTable thead > tr > th.sorting:after, table.dataTable thead > tr > th.sorting_asc:before, table.dataTable thead > tr > th.sorting_asc:after, table.dataTable thead > tr > th.sorting_desc:before, table.dataTable thead > tr > th.sorting_desc:after, table.dataTable thead > tr > th.sorting_asc_disabled:before, table.dataTable thead > tr > th.sorting_asc_disabled:after, table.dataTable thead > tr > th.sorting_desc_disabled:before, table.dataTable thead > tr > th.sorting_desc_disabled:after, table.dataTable thead > tr > td.sorting:before, table.dataTable thead > tr > td.sorting:after, table.dataTable thead > tr > td.sorting_asc:before, table.dataTable thead > tr > td.sorting_asc:after, table.dataTable thead > tr > td.sorting_desc:before, table.dataTable thead > tr > td.sorting_desc:after, table.dataTable thead > tr > td.sorting_asc_disabled:before, table.dataTable thead > tr > td.sorting_asc_disabled:after, table.dataTable thead > tr > td.sorting_desc_disabled:before, table.dataTable thead > tr > td.sorting_desc_disabled:after{
+    display: none !important;
+}
+
+.dt-buttons .btn {
+    border: 1px solid #73bea6 !important;
+    padding: 0.5rem 1rem !important;
+    color: #73bea6;
+    background: #fff;
+    border-radius: 0.475rem !important;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    position: relative !important;
+    top: 3.7rem !important;
+    min-width: 125px !important;
+    
+}
+
+.dt-buttons .btn:not(:first-child) {
+    margin-right: 0rem !important;
+    margin-left: 1.25rem !important;
+}
+
+.dt-buttons .btn.datatable_btn_with_other_button{
+    top: 3.7rem !important;
+    left: 9rem !important;
+    min-height: 38px;
+}
+
+.dt-buttons .btn.btn-secondary:hover:not(.btn-active),.dt-buttons .btn.btn-secondary:active:not(.btn-active),.dt-buttons .btn.btn-secondary:focus:not(.btn-active) {
+    color: #fff;
+    border-color: #73bea6;
+    background-color: #73bea6 !important
+}
+
+.dt-buttons .btn span i {
+    color: #73bea6 !important;
+}
+
+.dt-buttons .btn.btn-secondary:hover:not(.btn-active) i,.dt-buttons .btn.btn-secondary:active i,.dt-buttons .btn.btn-secondary:focus i {
+    color: #fff !important;
+}
+
+.card-header .btn,.card-title .btn  {
+    --bs-btn-padding-x: 1rem !important;
+    --bs-btn-padding-y: 0.5rem !important;
+    --bs-btn-font-size: 1rem !important;
+}
+
+[data-bs-theme="light"] [data-kt-app-layout=dark-sidebar] .app-sidebar {
+    background-color: #141432 ;
+    border-right: 0 !important;
+}
+
+.select2-container--bootstrap5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice {
+    background-color: #73bea6;
+    color:#fff;
+}
+
+.tox .tox-tbtn svg {
+    fill: #9D9DA6 !important;
+}
+
+.tox .tox-statusbar__text-container {
+    visibility: hidden;
+}
+
+.tox-dialog__footer-end .tox-button {
+    color: #73bea6 !important;
+    border-color: #73bea6 !important;
+    background-color: #fff !important;
+}
+
+.nav-line-tabs .nav-item:first-child .nav-link {
+    padding: 0.5rem 1rem;
+    border: 1px solid transparent;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
+@media (min-width: 992px) {
+    .with_search_table {
+        position: relative;
+        top: -4.1rem;
+    }
+    
+    .with_search_table_with_other_button{
+        position: relative;
+        top: -6.9rem;
+    }
+
+    a {
+        z-index: 99;
+    }
+
+    .table_search_without_buttons {
+        position: absolute;
+        top: -67px;
+        left: 5px;
+    }
+
+}
+
+.w-lg-213px {
+    width: 213px !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
