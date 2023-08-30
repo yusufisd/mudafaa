@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\CurrentNewsCategoryController;
 use App\Http\Controllers\Backend\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,14 @@ Route::get('/', function () {
 });
 
 Route::get('/admin',[HomeController::class,'index'])->name('admin.index');
+
+Route::prefix('admin')->name('admin.')->group(function(){
+    Route::controller(CurrentNewsCategoryController::class)->prefix('guncel-haber-kategori')->name('currentNewsCategory.')->group(function(){
+        Route::get('ekle','create')->name('add');
+        Route::post('ekle','store')->name('store');
+        Route::get('liste','index')->name('list');
+        Route::get('duzenle/{id?}','edit')->name('edit');
+        Route::post('guncelle/{id?}','update')->name('update');
+        Route::get('sil/{id?}','destroy')->name('destroy');
+    });
+});

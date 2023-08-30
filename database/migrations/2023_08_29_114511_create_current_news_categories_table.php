@@ -14,6 +14,14 @@ return new class extends Migration
         Schema::create('current_news_categories', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('link');
+            $table->integer('queue');
+            $table->string('image');
+            $table->integer('status')->default(1);
+            $table->string('seo_title');
+            $table->string('seo_description');
+            $table->longText('seo_key');
+            $table->integer('seo_statu')->default(1);
             $table->softDeletes();
             $table->timestamps();
         });

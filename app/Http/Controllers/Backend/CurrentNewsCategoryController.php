@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\CurrentNewsCategory;
+use App\Models\EnCurrentNewsCategory;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+use Intervention\Image\Facades\Image;
 
 class CurrentNewsCategoryController extends Controller
 {
@@ -12,7 +16,8 @@ class CurrentNewsCategoryController extends Controller
      */
     public function index()
     {
-        return view('backend.currentNewsCategory.list');
+        $data = CurrentNewsCategory::orderBy('queue', 'asc')->get();
+        return view('backend.currentNewsCategory.list', compact('data'));
     }
 
     /**
@@ -20,8 +25,14 @@ class CurrentNewsCategoryController extends Controller
      */
     public function create()
     {
-        return view('backend.currentNewsCategory.add');
-        
+        if(CurrentNewsCategory::latest()->first() == null){
+            $no = 1;
+        }
+        else{
+            $no = CurrentNewsCategory::orderBy('queue','desc')->first();
+            $no = $no->queue + 1;
+        }
+        return view('backend.currentNewsCategory.add',compact('no'));
     }
 
     /**
@@ -29,38 +40,136 @@ class CurrentNewsCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+
+        $category = new CurrentNewsCategory();
+        $category->queue = $request->queue;
+        $category->title = $request->title_tr;
+        $category->link = $request->link_tr;
+        $category->seo_title = $request->seo_title_tr;
+        $category->seo_description = $request->seo_description_tr;
+        $category->seo_key = $request->seo_key_tr;
+        if (!isset($request->status_tr)) {
+            $category->status = 0;
+        }
+        if (!isset($request->seo_statu_tr)) {
+            $category->seo_statu = 0;
+        }
+        if ($request->file('image') != null) {
+            $image = $request->file('image');
+            $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $save_url = 'assets/uploads/currentNewsCategory/' . $image_name;
+            Image::make($image)->resize(300, 300)->save($save_url);
+            $category->image = $save_url;
+        }
+        $category->save();
+
+        $category_en = new EnCurrentNewsCategory();
+        $category_en->title = $request->title_en;
+        $category_en->link = $request->link_en;
+        $category_en->category_id = $category->id;
+        $category_en->seo_title = $request->seo_title_en;
+        $category_en->seo_description = $request->seo_descriptipn_en;
+        $category_en->seo_key = $request->seo_key_en;
+        if (!isset($request->status_en)) {
+            $category_en->status = 0;
+        }
+        if (!isset($request->seo_statu_en)) {
+            $category_en->seo_statu = 0;
+        }
+        $category_en->save();
+
+        Alert::success('Güncel Haber Kategorisi Eklendi');
+        return redirect()->route('admin.currentNewsCategory.list');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $data_tr = CurrentNewsCategory::findOrFail($id);
+        $data_en = EnCurrentNewsCategory::where('category_id', $id)->first();
+        return view('backend.currentNewsCategory.edit', compact('data_tr', 'data_en'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $category = CurrentNewsCategory::findOrFail($id);
+
+        if ($request->queue > $category->queue) {
+            for ($i = $category->queue; $i <= $request->queue; $i++) {
+                $data = CurrentNewsCategory::where('queue', $i)->first();
+                $data->queue = $data->queue - 1;
+                $data->save();
+            }
+            $category->queue = $request->queue;
+        }
+        if ($request->queue < $category->queue) {
+            for ($i = $category->queue; $i >= $request->queue; $i--) {
+                $data = CurrentNewsCategory::where('queue', $i)->first();
+                $data->queue = $data->queue + 1;
+                $data->save();
+            }
+            $category->queue = $request->queue;
+        }
+
+
+        $category->queue = $request->queue;
+        $category->title = $request->title_tr;
+        $category->link = $request->link_tr;
+        $category->seo_title = $request->seo_title_tr;
+        $category->seo_description = $request->seo_description_tr;
+        $category->seo_key = $request->seo_key_tr;
+        if (!isset($request->status_tr)) {
+            $category->status = 0;
+        }
+        if (!isset($request->seo_statu_tr)) {
+            $category->seo_statu = 0;
+        }
+        if ($request->file('image') != null) {
+            $image = $request->file('image');
+            $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $save_url = 'assets/uploads/currentNewsCategory/' . $image_name;
+            Image::make($image)->resize(300, 300)->save($save_url);
+            $category->image = $save_url;
+        }
+        $category->save();
+
+        $category_en = EnCurrentNewsCategory::where('category_id', $id)->first();
+        $category_en->title = $request->title_en;
+        $category_en->link = $request->link_en;
+        $category_en->category_id = $category->id;
+        $category_en->seo_title = $request->seo_title_en;
+        $category_en->seo_description = $request->seo_descriptipn_en;
+        $category_en->seo_key = $request->seo_key_en;
+        if (!isset($request->status_en)) {
+            $category_en->status = 0;
+        }
+        if (!isset($request->seo_statu_en)) {
+            $category_en->seo_statu = 0;
+        }
+        $category_en->save();
+
+        Alert::success('Güncel Haber Kategorisi Güncellendi');
+        return redirect()->route('admin.currentNewsCategory.list');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $data = CurrentNewsCategory::findOrFail($id);
+        $son_id = CurrentNewsCategory::orderBy('queue', 'desc')->first()->queue;
+        for ($i = $data->queue + 1; $i <= $son_id; $i++) {
+            $item = CurrentNewsCategory::where('queue', $i)->first();
+            $item->queue = $item->queue - 1;
+            $item->save();
+        }
+        EnCurrentNewsCategory::where('category_id', $id)->delete();
+        $data->delete();
+        Alert::success('Güncel Haber Kategorisi Silindi');
+        return redirect()->route('admin.currentNewsCategory.list');
     }
 }
