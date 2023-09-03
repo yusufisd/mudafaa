@@ -99,9 +99,8 @@
                                                         <img src="/{{ $item->image }}" class="w-75px ms-n1"
                                                             alt="">
                                                     </td>
-
-                                                    <td> {{ $item->title }} </td>
                                                     <td> {{ $item->Author->name }} {{ $item->Author->name }} </td>
+                                                    <td> {{ $item->title }} </td>
                                                     <td>
                                                         @foreach ($item->Category() as $cat)
                                                             {{ $cat->title }},

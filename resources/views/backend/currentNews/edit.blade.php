@@ -71,8 +71,13 @@
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10">
+                                                        <div class="row">
+                                                            <img src="/{{$data_tr->image}}" style="width: 30%" alt="">
+                                                        </div>
+                                                        <div class="row">
                                                         <input type="file" class="form-control" name="image"
                                                             id="">
+                                                        </div>
                                                     </div>
                                                     <!--end::Col-->
                                                 </div>
