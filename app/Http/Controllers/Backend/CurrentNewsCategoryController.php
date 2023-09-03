@@ -8,6 +8,10 @@ use App\Models\EnCurrentNewsCategory;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\DB;
+use Throwable;
+use Illuminate\Validation\ValidationException;
+
 
 class CurrentNewsCategoryController extends Controller
 {
@@ -25,14 +29,13 @@ class CurrentNewsCategoryController extends Controller
      */
     public function create()
     {
-        if(CurrentNewsCategory::latest()->first() == null){
+        if (CurrentNewsCategory::latest()->first() == null) {
             $no = 1;
-        }
-        else{
-            $no = CurrentNewsCategory::orderBy('queue','desc')->first();
+        } else {
+            $no = CurrentNewsCategory::orderBy('queue', 'desc')->first();
             $no = $no->queue + 1;
         }
-        return view('backend.currentNewsCategory.add',compact('no'));
+        return view('backend.currentNewsCategory.add', compact('no'));
     }
 
     /**
@@ -41,44 +44,75 @@ class CurrentNewsCategoryController extends Controller
     public function store(Request $request)
     {
 
-        $category = new CurrentNewsCategory();
-        $category->queue = $request->queue;
-        $category->title = $request->title_tr;
-        $category->link = $request->link_tr;
-        $category->seo_title = $request->seo_title_tr;
-        $category->seo_description = $request->seo_description_tr;
-        $category->seo_key = $request->seo_key_tr;
-        if (!isset($request->status_tr)) {
-            $category->status = 0;
-        }
-        if (!isset($request->seo_statu_tr)) {
-            $category->seo_statu = 0;
-        }
-        if ($request->file('image') != null) {
-            $image = $request->file('image');
-            $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-            $save_url = 'assets/uploads/currentNewsCategory/' . $image_name;
-            Image::make($image)->resize(300, 300)->save($save_url);
-            $category->image = $save_url;
-        }
-        $category->save();
+        try {
+            DB::beginTransaction();
 
-        $category_en = new EnCurrentNewsCategory();
-        $category_en->title = $request->title_en;
-        $category_en->link = $request->link_en;
-        $category_en->category_id = $category->id;
-        $category_en->seo_title = $request->seo_title_en;
-        $category_en->seo_description = $request->seo_descriptipn_en;
-        $category_en->seo_key = $request->seo_key_en;
-        if (!isset($request->status_en)) {
-            $category_en->status = 0;
-        }
-        if (!isset($request->seo_statu_en)) {
-            $category_en->seo_statu = 0;
-        }
-        $category_en->save();
+            $request->validate([
 
-        Alert::success('Güncel Haber Kategorisi Eklendi');
+                "queue" => "required",
+                "title_tr" => "required",
+                "link_tr" => "required",
+                "seo_title_tr" => "required",
+                "seo_description_tr" => "required",
+                "seo_key_tr" => "required",
+                "image" => "required",
+
+                "title_en"  => "required",
+                "link_en"  => "required",
+                "seo_title_en"  => "required",
+                "seo_descriptipn_en"  => "required",
+                "seo_key_en"  => "required",
+            ]);
+
+            $category = new CurrentNewsCategory();
+            $category->queue = $request->queue;
+            $category->title = $request->title_tr;
+            $category->link = $request->link_tr;
+            $category->seo_title = $request->seo_title_tr;
+            $category->seo_description = $request->seo_description_tr;
+            $category->seo_key = $request->seo_key_tr;
+            if (!isset($request->status_tr)) {
+                $category->status = 0;
+            }
+            if (!isset($request->seo_statu_tr)) {
+                $category->seo_statu = 0;
+            }
+            if ($request->file('image') != null) {
+                $image = $request->file('image');
+                $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+                $save_url = 'assets/uploads/currentNewsCategory/' . $image_name;
+                Image::make($image)->resize(311, 75)->save($save_url);
+                $category->image = $save_url;
+            }
+            $category->save();
+
+            $category_en = new EnCurrentNewsCategory();
+            $category_en->title = $request->title_en;
+            $category_en->link = $request->link_en;
+            $category_en->category_id = $category->id;
+            $category_en->seo_title = $request->seo_title_en;
+            $category_en->seo_description = $request->seo_descriptipn_en;
+            $category_en->seo_key = $request->seo_key_en;
+            if (!isset($request->status_en)) {
+                $category_en->status = 0;
+            }
+            if (!isset($request->seo_statu_en)) {
+                $category_en->seo_statu = 0;
+            }
+            $category_en->save();
+
+            logKayit(['Güncel Haber Kategori', 'Haber kategorisi eklendi']);
+            Alert::success('Güncel Haber Kategorisi Eklendi');
+            DB::commit();
+        } catch (Throwable $e) {
+            DB::rollBack();
+
+            logKayit(['Güncel Haber Kategori', 'Kategori eklemede hata', 0]);
+            Alert::error('Kategori Eklemede Hata');
+            throw ValidationException::withMessages([
+                'error' => 'Tüm alanların doldurulması zorunludur.'
+            ]);
+        }
         return redirect()->route('admin.currentNewsCategory.list');
     }
 
@@ -95,63 +129,91 @@ class CurrentNewsCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = CurrentNewsCategory::findOrFail($id);
+        try {
+            DB::beginTransaction();
 
-        if ($request->queue > $category->queue) {
-            for ($i = $category->queue; $i <= $request->queue; $i++) {
-                $data = CurrentNewsCategory::where('queue', $i)->first();
-                $data->queue = $data->queue - 1;
-                $data->save();
+            $request->validate([
+
+                "queue" => "required",
+                "title_tr" => "required",
+                "link_tr" => "required",
+                "seo_title_tr" => "required",
+                "seo_description_tr" => "required",
+                "seo_key_tr" => "required",
+
+                "title_en"  => "required",
+                "link_en"  => "required",
+                "seo_title_en"  => "required",
+                "seo_descriptipn_en"  => "required",
+                "seo_key_en"  => "required",
+            ]);
+            $category = CurrentNewsCategory::findOrFail($id);
+
+            if ($request->queue > $category->queue) {
+                for ($i = $category->queue; $i <= $request->queue; $i++) {
+                    $data = CurrentNewsCategory::where('queue', $i)->first();
+                    $data->queue = $data->queue - 1;
+                    $data->save();
+                }
+                $category->queue = $request->queue;
             }
-            $category->queue = $request->queue;
-        }
-        if ($request->queue < $category->queue) {
-            for ($i = $category->queue; $i >= $request->queue; $i--) {
-                $data = CurrentNewsCategory::where('queue', $i)->first();
-                $data->queue = $data->queue + 1;
-                $data->save();
+            if ($request->queue < $category->queue) {
+                for ($i = $category->queue; $i >= $request->queue; $i--) {
+                    $data = CurrentNewsCategory::where('queue', $i)->first();
+                    $data->queue = $data->queue + 1;
+                    $data->save();
+                }
+                $category->queue = $request->queue;
             }
+
+
             $category->queue = $request->queue;
-        }
+            $category->title = $request->title_tr;
+            $category->link = $request->link_tr;
+            $category->seo_title = $request->seo_title_tr;
+            $category->seo_description = $request->seo_description_tr;
+            $category->seo_key = $request->seo_key_tr;
+            if (!isset($request->status_tr)) {
+                $category->status = 0;
+            }
+            if (!isset($request->seo_statu_tr)) {
+                $category->seo_statu = 0;
+            }
+            if ($request->file('image') != null) {
+                $image = $request->file('image');
+                $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+                $save_url = 'assets/uploads/currentNewsCategory/' . $image_name;
+                Image::make($image)->resize(311, 75)->save($save_url);
+                $category->image = $save_url;
+            }
+            $category->save();
 
+            $category_en = EnCurrentNewsCategory::where('category_id', $id)->first();
+            $category_en->title = $request->title_en;
+            $category_en->link = $request->link_en;
+            $category_en->category_id = $category->id;
+            $category_en->seo_title = $request->seo_title_en;
+            $category_en->seo_description = $request->seo_descriptipn_en;
+            $category_en->seo_key = $request->seo_key_en;
+            if (!isset($request->status_en)) {
+                $category_en->status = 0;
+            }
+            if (!isset($request->seo_statu_en)) {
+                $category_en->seo_statu = 0;
+            }
+            $category_en->save();
 
-        $category->queue = $request->queue;
-        $category->title = $request->title_tr;
-        $category->link = $request->link_tr;
-        $category->seo_title = $request->seo_title_tr;
-        $category->seo_description = $request->seo_description_tr;
-        $category->seo_key = $request->seo_key_tr;
-        if (!isset($request->status_tr)) {
-            $category->status = 0;
+            logKayit(['Güncel Haber Kategori', 'Haber kategorisi düzenlendi']);
+            Alert::success('Güncel Haber Kategorisi Düzenlendi');
+            DB::commit();
+        } catch (Throwable $e) {
+            DB::rollBack();
+            logKayit(['Güncel Haber Kategori', 'Kategori düzenlemede hata', 0]);
+            Alert::error('Kategori Düzenlemede Hata');
+            throw ValidationException::withMessages([
+                'error' => 'Tüm alanların doldurulması zorunludur.'
+            ]);
         }
-        if (!isset($request->seo_statu_tr)) {
-            $category->seo_statu = 0;
-        }
-        if ($request->file('image') != null) {
-            $image = $request->file('image');
-            $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-            $save_url = 'assets/uploads/currentNewsCategory/' . $image_name;
-            Image::make($image)->resize(300, 300)->save($save_url);
-            $category->image = $save_url;
-        }
-        $category->save();
-
-        $category_en = EnCurrentNewsCategory::where('category_id', $id)->first();
-        $category_en->title = $request->title_en;
-        $category_en->link = $request->link_en;
-        $category_en->category_id = $category->id;
-        $category_en->seo_title = $request->seo_title_en;
-        $category_en->seo_description = $request->seo_descriptipn_en;
-        $category_en->seo_key = $request->seo_key_en;
-        if (!isset($request->status_en)) {
-            $category_en->status = 0;
-        }
-        if (!isset($request->seo_statu_en)) {
-            $category_en->seo_statu = 0;
-        }
-        $category_en->save();
-
-        Alert::success('Güncel Haber Kategorisi Güncellendi');
         return redirect()->route('admin.currentNewsCategory.list');
     }
 
@@ -160,16 +222,55 @@ class CurrentNewsCategoryController extends Controller
      */
     public function destroy($id)
     {
-        $data = CurrentNewsCategory::findOrFail($id);
-        $son_id = CurrentNewsCategory::orderBy('queue', 'desc')->first()->queue;
-        for ($i = $data->queue + 1; $i <= $son_id; $i++) {
-            $item = CurrentNewsCategory::where('queue', $i)->first();
-            $item->queue = $item->queue - 1;
-            $item->save();
+        try {
+            DB::beginTransaction();
+            $data = CurrentNewsCategory::findOrFail($id);
+            $son_id = CurrentNewsCategory::orderBy('queue', 'desc')->first()->queue;
+            for ($i = $data->queue + 1; $i <= $son_id; $i++) {
+                $item = CurrentNewsCategory::where('queue', $i)->first();
+                $item->queue = $item->queue - 1;
+                $item->save();
+            }
+            EnCurrentNewsCategory::where('category_id', $id)->delete();
+            $data->delete();
+
+            logKayit(['Güncel Haber Kategori', 'Haber kategorisi silindi']);
+            Alert::success('Güncel Haber Kategorisi Silindi');
+            DB::commit();
+        } catch (Throwable $e) {
+            DB::rollBack();
+
+            logKayit(['Güncel Haber Kategori', 'Kategori silmede hata', 0]);
+            Alert::error('Kategori Silmede Hata');
+            throw ValidationException::withMessages([
+                'error' => 'Tüm alanların doldurulması zorunludur.'
+            ]);
         }
-        EnCurrentNewsCategory::where('category_id', $id)->delete();
-        $data->delete();
-        Alert::success('Güncel Haber Kategorisi Silindi');
+        return redirect()->route('admin.currentNewsCategory.list');
+    }
+
+    public function change_status($id)
+    {
+        try {
+            DB::beginTransaction();
+            $data = CurrentNewsCategory::findOrFail($id);
+            $data_en = EnCurrentNewsCategory::where('category_id', $id)->first();
+            $data_en->status = !$data->status;
+            $data_en->save();
+            $data->status = !$data->status;
+            $data->save();
+            logKayit(['Güncel Haber Kategori', 'Haber kategori durumu değiştirildi']);
+            Alert::success('Durum Başarıyla Değiştirildi');
+            DB::commit();
+        } catch (Throwable $e) {
+            DB::rollBack();
+
+            logKayit(['Güncel Haber Kategori', 'Kategori durumu değiştirmede hata', 0]);
+            Alert::error('Durum Değiştirmede Hata');
+            throw ValidationException::withMessages([
+                'error' => 'Tüm alanların doldurulması zorunludur.'
+            ]);
+        }
         return redirect()->route('admin.currentNewsCategory.list');
     }
 }

@@ -23,6 +23,15 @@ return [
     "status" => "Durum",
     "düzenle" => "Düzenle",
     "geri dön" => "Geri Dön",
+    "kayıtları" => "Kayıtları",
+    "konum" => "Konum",
+    "açıklama" => "Açıklama",
+    "tarih" => "Tarih",
+    "kişi" => "Kişi",
+    "login log records" => "Son Yapılan Girişler",
+    "kategorisi" => "Kategorisi",
+    "yazar" => "Yazar",
+    "manşet" => "Manşet",
 
 
 ];

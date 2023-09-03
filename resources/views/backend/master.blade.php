@@ -559,7 +559,7 @@
                                     <!--end::Menu item-->
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-5">
-                                        <a href="sign_in.html" class="menu-link px-5">Çıkış</a>
+                                        <a href="{{route('admin.logout')}}" class="menu-link px-5">Çıkış</a>
                                     </div>
                                     <!--end::Menu item-->
                                 </div>
@@ -642,12 +642,25 @@
                                 <!--begin:Menu item-->
                                 <div class="menu-item">
                                     <!--begin:Menu link-->
-                                    <a class="menu-link" href="{{ route('admin.currentNewsCategory.list') }}">
+                                    <a class="menu-link" href="{{ route('admin.currentNews.list') }}">
                                         <span class="menu-icon">
                                             <i class="fa fa-newspaper" aria-hidden="true"></i>
                                         </span>
                                         <span class="menu-title"> {{ __('message.güncel') }} {{ __('message.haber') }}
                                         </span>
+                                    </a>
+                                    <!--end:Menu link-->
+                                </div>
+                                <!--end:Menu item-->
+
+                                 <!--begin:Menu item-->
+                                 <div class="menu-item">
+                                    <!--begin:Menu link-->
+                                    <a class="menu-link" href="{{route('admin.user.list')}}">
+                                        <span class="menu-icon">
+                                            <i class="fa fa-user" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="menu-title">Kullanıcı Yönetimi</span>
                                     </a>
                                     <!--end:Menu link-->
                                 </div>
@@ -854,18 +867,7 @@
                                 </div>
                                 <!--end:Menu item-->
 
-                                <!--begin:Menu item-->
-                                <div class="menu-item">
-                                    <!--begin:Menu link-->
-                                    <a class="menu-link" href="user/user_list.html">
-                                        <span class="menu-icon">
-                                            <i class="fa fa-user" aria-hidden="true"></i>
-                                        </span>
-                                        <span class="menu-title">Kullanıcı Yönetimi</span>
-                                    </a>
-                                    <!--end:Menu link-->
-                                </div>
-                                <!--end:Menu item-->
+                               
 
                                 <!--begin:Menu item-->
                                 <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
@@ -1105,6 +1107,8 @@
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
     <!--begin:: extra js-->
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+
     <script>
         // begin: DataTable Scripts
         $("#datatable_new_orders").DataTable({

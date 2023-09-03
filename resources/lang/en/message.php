@@ -23,6 +23,17 @@ return [
     "status" => "Statu",
     "düzenle" => "Edit",
     "geri dön" => "Turn Back",
+    "işlem" => "Log",
+    "kayıtları" => "Records",
+    "konum" => "Location",
+    "açıklama" => "Description",
+    "tarih" => "Date",
+    "kişi" => "User",
+    "login log records" => "Login Log Records",
+    "kategorisi" => "Category",
+    "yazar" => "Author",
+    "manşet" => "Headline",
+
 
 ];
 ?>

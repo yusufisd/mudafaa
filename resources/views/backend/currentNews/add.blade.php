@@ -9,7 +9,8 @@
                 <!--begin::Page title-->
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <!--begin::Title-->
-                    <h1 class="page-heading d-flex text-primary fw-bold fs-3 flex-column justify-content-center my-0"> {{__('message.güncel')}} {{__('message.haber')}} {{__('message.kategorisi')}} {{__('message.ekle')}}</h1>
+                    <h1 class="page-heading d-flex text-primary fw-bold fs-3 flex-column justify-content-center my-0">
+                        {{ __('message.güncel') }} {{ __('message.haber') }} {{ __('message.ekle') }} </h1>
                     <!--end::Title-->
                 </div>
                 <!--end::Page title-->
@@ -19,7 +20,7 @@
                     <a href="javascript:history.back()"
                         class="page-heading d-flex text-dark fw-bold fs-3 justify-content-center my-0 text-hover-success">
                         <i class="fa fa-arrow-left my-auto mx-2"></i>
-                        Geri Dön
+                        {{ __('message.geri dön') }}
                     </a>
                     <!--end::Title-->
                 </div>
@@ -29,22 +30,14 @@
         </div>
         <!--end::Toolbar-->
         <!--begin::Content-->
-        <form action="{{ route('admin.currentNewsCategory.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
 
+
+        <form action="{{ route('admin.currentNews.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
             <div id="kt_app_content" class="app-content flex-column-fluid">
                 <!--begin::Content container-->
                 <div id="kt_app_content_container" class="app-container container-fluid">
                     <!--begin::Row-->
-
-                    @if ($errors->any())
-                        @foreach ($errors->all() as $e)
-                            <div class="alert alert-danger">
-                                {{ $e }}
-                            </div>
-                        @endforeach
-                    @endif
-
                     <div class="row g-5 g-xl-8">
                         <!--begin::Col-->
                         <div class="col-xl-12 mb-5 mb-xl-8">
@@ -58,70 +51,128 @@
                                     <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
                                         <li class="nav-item">
                                             <a class="nav-link active" data-bs-toggle="tab"
-                                                href="#tab_blog_category_detay">Detay</a>
+                                                href="#tab_activity_detay">Detay</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" data-bs-toggle="tab" href="#tab_blog_category_seo">Seo
+                                            <a class="nav-link" data-bs-toggle="tab" href="#tab_activity_seo">Seo
                                                 Bilgileri</a>
                                         </li>
                                     </ul>
 
                                     <div class="tab-content" id="TabContent_1">
-                                        <div class="tab-pane fade show active" id="tab_blog_category_detay" role="tabpanel">
+                                        <div class="tab-pane fade show active" id="tab_activity_detay" role="tabpanel">
                                             <!--begin::Form-->
                                             <!--begin::Card body-->
                                             <div class="card-body px-3 py-9">
                                                 <!--begin::Input group-->
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
-                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
-                                                        {{ __('message.sıralama') }} </label>
+                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Görsel</label>
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10">
-                                                        <!--begin::Row-->
-                                                        <div class="row">
-                                                            <!--begin::Col-->
-                                                            <div class="col-lg-12 fv-row">
-                                                                <input type="number" name="queue"
-                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                    value="{{ $no }}" />
-                                                            </div>
-                                                            <!--end::Col-->
-                                                        </div>
-                                                        <!--end::Row-->
+                                                        <input type="file" class="form-control" name="image"
+                                                            id="">
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+                                                <!--end::Input group-->
+                                                <!--begin::Input group-->
+                                                <div class="row mb-6">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
+                                                        <span class="required">Kategori</span>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-10 fv-row">
+                                                        <select name="category[]" aria-label="Seçiniz"
+                                                            data-control="select2" data-placeholder="Seçiniz..."
+                                                            class="form-select form-select-solid form-select-lg fw-semibold"
+                                                            multiple>
+                                                            <option value="">Seçiniz...</option>
+                                                            @foreach ($categories as $cat)
+                                                                <option value="{{ $cat->id }}"> {{ $cat->title }}
+                                                                </option>
+                                                            @endforeach
+
+
+                                                        </select>
                                                     </div>
                                                     <!--end::Col-->
                                                 </div>
 
+                                                <!--begin::Input group-->
                                                 <div class="row mb-6">
-                                                    <!--begin::Label-->
-                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
-                                                        {{ __('message.görsel') }} </label>
-                                                    <!--end::Label-->
-                                                    <!--begin::Col-->
-                                                    <div class="col-lg-10">
-                                                        <!--begin::Row-->
+
+                                                    <div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">
                                                         <div class="row">
+                                                            <!--begin::Label-->
+                                                            <label
+                                                                class="col-lg-4 col-form-label fw-bold fs-6">Yazar</label>
+                                                            <!--end::Label-->
                                                             <!--begin::Col-->
-                                                            <div class="col-lg-12 fv-row">
-                                                                <input type="file" name="image"
-                                                                    class="form-control form-control-lg  mb-3 mb-lg-0"
-                                                                    value="" />
+                                                            <div class="col-lg-8">
+                                                                <!--begin::Row-->
+                                                                <div class="row">
+                                                                    <!--begin::Col-->
+                                                                    <div class="col-lg-12 fv-row">
+                                                                        <select name="author" aria-label="Seçiniz"
+                                                                            data-control="select2"
+                                                                            data-placeholder="Seçiniz..."
+                                                                            class="form-select form-select-solid form-select-lg fw-semibold">
+                                                                            <option value="">Seçiniz...</option>
+
+                                                                            @foreach ($users as $user)
+                                                                            @endforeach
+                                                                            <option value="{{ $user->id }}">
+                                                                                {{ $user->name ?? '' }} {{ $user->surname ?? ''}}
+                                                                            </option>
+
+                                                                        </select>
+                                                                    </div>
+                                                                    <!--end::Col-->
+                                                                </div>
+                                                                <!--end::Row-->
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
-                                                        <!--end::Row-->
+
                                                     </div>
-                                                    <!--end::Col-->
+
+                                                    <div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">
+                                                        <div class="row ms-10">
+                                                            <!--begin::Label-->
+                                                            <label class="col-lg-4 col-form-label fw-bold fs-6">Yayın
+                                                                Tarihi</label>
+                                                            <!--end::Label-->
+                                                            <!--begin::Col-->
+                                                            <div class="col-lg-8">
+                                                                <!--begin::Row-->
+                                                                <div class="row">
+                                                                    <!--begin::Col-->
+                                                                    <div class="col-lg-12 fv-row">
+                                                                        <input type="date"
+                                                                            name="activity_on_location_tr"
+                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                            value="{{ substr($now,0,10) }}" />
+                                                                    </div>
+                                                                    <!--end::Col-->
+                                                                </div>
+                                                                <!--end::Row-->
+                                                            </div>
+                                                            <!--end::Col-->
+                                                        </div>
+                                                    </div>
                                                 </div>
+                                                <!--end::Input group-->
                                                 <!--end::Input group-->
                                                 <div class="row mb-6">
                                                     <!--begin::Tab-->
                                                     <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
                                                         <li class="nav-item">
                                                             <a class="nav-link active" data-bs-toggle="tab"
-                                                                href="#tab_blog_category_detail_tr">
+                                                                href="#tab_activity_tr">
                                                                 <span>
                                                                     <img src="https://gaviapanel.gaviaworks.org/assets/images/svg/turkey.svg"
                                                                         width="28" height="28" alt="TR"
@@ -132,7 +183,7 @@
                                                         </li>
                                                         <li class="nav-item">
                                                             <a class="nav-link" data-bs-toggle="tab"
-                                                                href="#tab_blog_category_detail_en">
+                                                                href="#tab_activity_en">
                                                                 <span>
                                                                     <img src="https://gaviapanel.gaviaworks.org/assets/images/svg/england.svg"
                                                                         width="28" height="28" alt="EN"
@@ -142,102 +193,7 @@
                                                         </li>
                                                     </ul>
                                                     <div class="tab-content" id="TabContent_2">
-                                                        <div class="tab-pane fade show active"
-                                                            id="tab_blog_category_detail_tr" role="tabpanel">
-                                                            <!--begin::Form-->
-                                                            <!--begin::Card body-->
-                                                            <div class="card-body px-0 py-9">
-                                                                <!--begin::Input group-->
-                                                                <div class="row mb-6">
-                                                                    <!--begin::Label-->
-                                                                    <label
-                                                                        class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">
-                                                                        {{ __('message.başlık') }} </label>
-                                                                    <!--end::Label-->
-                                                                    <!--begin::Col-->
-                                                                    <div class="col-lg-10">
-                                                                        <!--begin::Row-->
-                                                                        <div class="row">
-                                                                            <!--begin::Col-->
-                                                                            <div class="col-lg-12 fv-row">
-                                                                                <input type="text" name="title_tr"
-                                                                                    id="title_tr" id="title_tr" onchange="create_slug_tr()"
-                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="" />
-                                                                            </div>
-                                                                            <!--end::Col-->
-                                                                        </div>
-                                                                        <!--end::Row-->
-                                                                    </div>
-                                                                    <!--end::Col-->
-                                                                </div>
-                                                                <!--end::Input group-->
-                                                                <!--begin::Input group-->
-                                                                <div class="row mb-6">
-                                                                    <!--begin::Label-->
-                                                                    <label
-                                                                        class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Url</label>
-                                                                    <!--end::Label-->
-                                                                    <!--begin::Col-->
-                                                                    <div class="col-lg-10">
-                                                                        <!--begin::Row-->
-                                                                        <div class="row">
-                                                                            <!--begin::Col-->
-                                                                            <div class="col-lg-12 fv-row">
-                                                                                <div class="row">
-                                                                                    <div class="col-lg-10">
-                                                                                        <input type="text"
-                                                                                            name="link_tr" id="link_tr" id="link_tr"
-                                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                            value="" />
-                                                                                    </div>
-                                                                                    <div class="col-lg-2">
-                                                                                        <button type="submit"
-                                                                                            class="btn btn-outline btn-outline-success w-100"
-                                                                                            id="blog_category_detail_url_btn_tr">URL
-                                                                                            ÜRET</button>
-                                                                                    </div>
-
-                                                                                </div>
-                                                                            </div>
-                                                                            <!--end::Col-->
-                                                                        </div>
-                                                                        <!--end::Row-->
-                                                                    </div>
-                                                                    <!--end::Col-->
-                                                                </div>
-                                                                <!--end::Input group-->
-
-                                                            </div>
-                                                            <!--end::Card body-->
-                                                            <!--begin::Actions-->
-                                                            <div
-                                                                class="card-footer d-flex justify-content-between py-6 px-0">
-
-                                                                <!--begin::Input group-->
-                                                                <div class="row mb-0">
-                                                                    <label
-                                                                        class="col-lg-8 col-form-label fw-bold fs-6 ps-5 ">
-                                                                        {{ __('message.status') }} </label>
-                                                                    <div class="col-lg-4 d-flex align-items-center">
-                                                                        <div
-                                                                            class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                            <input class="form-check-input w-50px h-25px"
-                                                                                type="checkbox" name="status_tr"
-                                                                                id="allowblog_category_detail_tr"
-                                                                                checked="checked" />
-                                                                            <label class="form-check-label"
-                                                                                for="allowblog_category_detail_tr"></label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!--end::Input group-->
-
-                                                            </div>
-                                                            <!--end::Actions-->
-                                                            <!--end::Form-->
-                                                        </div>
-                                                        <div class="tab-pane fade" id="tab_blog_category_detail_en"
+                                                        <div class="tab-pane fade show active" id="tab_activity_tr"
                                                             role="tabpanel">
                                                             <!--begin::Form-->
                                                             <!--begin::Card body-->
@@ -254,8 +210,10 @@
                                                                         <div class="row">
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
-                                                                                <input type="text" name="title_en"
-                                                                                    id="title_en" onchange="create_slug_en()"
+                                                                                <input type="text"
+                                                                                    name="activity_name_tr"
+                                                                                    onchange="create_slug_tr()"
+                                                                                    id="activity_name_tr"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                     value="" />
                                                                             </div>
@@ -266,6 +224,71 @@
                                                                     <!--end::Col-->
                                                                 </div>
                                                                 <!--end::Input group-->
+                                                                <!--begin::Input group-->
+                                                                <div class="row mb-6">
+                                                                    <!--begin::Label-->
+                                                                    <label
+                                                                        class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Özet</label>
+                                                                    <!--end::Label-->
+                                                                    <!--begin::Col-->
+                                                                    <div class="col-lg-10 fv-row">
+                                                                        <textarea name="activity_summary_tr" id="ozet_tr" onchange="create_ozet_tr()"
+                                                                            class="form-control form-control-lg form-control-solid" value=""></textarea>
+                                                                    </div>
+                                                                    <!--end::Col-->
+                                                                </div>
+                                                                <!--end::Input group-->
+                                                                <!--begin::Input group-->
+                                                                <div class="row mb-6">
+                                                                    <!--begin::Label-->
+                                                                    <label
+                                                                        class="col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5">
+                                                                        <span>İçerik</span>
+                                                                    </label>
+                                                                    <!--end::Label-->
+                                                                    <!--begin::Col-->
+                                                                    <div class="col-lg-12 fv-row mb-5 ps-5">
+
+                                                                        <textarea id="editor" name="tinymce_activity_detail_tr" class="tox-target ckeditor">
+                                                                        </textarea>
+
+
+
+
+
+                                                                    </div>
+                                                                    <!--end::Col-->
+                                                                </div>
+                                                                <!--end::Input group-->
+                                                                <!--begin::Input group-->
+                                                                <div class="row mb-6">
+                                                                    <!--begin::Label-->
+                                                                    <label
+                                                                        class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Etiket</label>
+                                                                    <!--end::Label-->
+                                                                    <!--begin::Col-->
+                                                                    <div class="col-lg-10">
+                                                                        <!--begin::Row-->
+                                                                        <div class="row">
+                                                                            <!--begin::Col-->
+                                                                            <div class="col-lg-12 fv-row">
+                                                                                <input type="text"
+                                                                                    id="etiket_tr"
+                                                                                    name="etiket_tr[]"
+                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                    value="" />
+                                                                            </div>
+                                                                            <!--end::Col-->
+                                                                        </div>
+                                                                        <!--end::Row-->
+                                                                    </div>
+                                                                    <!--end::Col-->
+                                                                </div>
+                                                                <!--end::Input group-->
+
+
+
+
                                                                 <!--begin::Input group-->
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
@@ -281,14 +304,15 @@
                                                                                 <div class="row">
                                                                                     <div class="col-lg-10">
                                                                                         <input type="text"
-                                                                                            id="link_en" name="link_en"
+                                                                                            name="activity_url_tr"
+                                                                                            id="activity_url_tr"
                                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                             value="" />
                                                                                     </div>
                                                                                     <div class="col-lg-2">
                                                                                         <button type="submit"
                                                                                             class="btn btn-outline btn-outline-success w-100"
-                                                                                            id="blog_category_detail_url_btn_en">URL
+                                                                                            id="activity_detail_url_btn_tr">URL
                                                                                             ÜRET</button>
                                                                                     </div>
 
@@ -311,23 +335,217 @@
                                                                 <!--begin::Input group-->
                                                                 <div class="row mb-0">
                                                                     <label
-                                                                        class="col-lg-8 col-form-label fw-bold fs-6 ps-5 ">
-                                                                        {{ __('message.status') }} </label>
+                                                                        class="col-lg-8 col-form-label fw-bold fs-6 ps-5">Manşet</label>
                                                                     <div class="col-lg-4 d-flex align-items-center">
                                                                         <div
                                                                             class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                            <input name="status_en"
-                                                                                class="form-check-input w-50px h-25px"
-                                                                                type="checkbox"
-                                                                                id="allowblog_category_detail_en"
+                                                                            <input class="form-check-input w-50px h-25px"
+                                                                                type="checkbox" name="manset_tr"
+                                                                                id="allowactivity_detail_tr"
                                                                                 checked="checked" />
                                                                             <label class="form-check-label"
-                                                                                for="allowblog_category_detail_en"></label>
+                                                                                for="allowactivity_detail_tr"></label>
                                                                         </div>
                                                                     </div>
                                                                 </div>
+
+                                                            </div>
+
+                                                            <div
+                                                                class="card-footer d-flex justify-content-between py-6 px-0">
+
+                                                                <!--begin::Input group-->
+                                                                <div class="row mb-0">
+                                                                    <label
+                                                                        class="col-lg-8 col-form-label fw-bold fs-6 ps-5">Durum</label>
+                                                                    <div class="col-lg-4 d-flex align-items-center">
+                                                                        <div
+                                                                            class="form-check form-check-solid form-switch form-check-custom fv-row">
+                                                                            <input class="form-check-input w-50px h-25px"
+                                                                                type="checkbox" name="status_tr"
+                                                                                id="allowactivity_detail_tr"
+                                                                                checked="checked" />
+                                                                            <label class="form-check-label"
+                                                                                for="allowactivity_detail_tr"></label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <!--end::Actions-->
+                                                            <!--end::Form-->
+                                                        </div>
+                                                        <div class="tab-pane fade" id="tab_activity_en" role="tabpanel">
+                                                            <!--begin::Form-->
+                                                            <!--begin::Card body-->
+                                                            <div class="card-body px-0 py-9">
+                                                                <!--begin::Input group-->
+                                                                <div class="row mb-6">
+                                                                    <!--begin::Label-->
+                                                                    <label
+                                                                        class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Başlık</label>
+                                                                    <!--end::Label-->
+                                                                    <!--begin::Col-->
+                                                                    <div class="col-lg-10">
+                                                                        <!--begin::Row-->
+                                                                        <div class="row">
+                                                                            <!--begin::Col-->
+                                                                            <div class="col-lg-12 fv-row">
+                                                                                <input type="text"
+                                                                                    name="activity_name_en"
+                                                                                    id="activity_name_en"
+                                                                                    onchange="create_slug_en()"
+                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                    value="" />
+                                                                            </div>
+                                                                            <!--end::Col-->
+                                                                        </div>
+                                                                        <!--end::Row-->
+                                                                    </div>
+                                                                    <!--end::Col-->
+                                                                </div>
+                                                                <!--end::Input group-->
+                                                                <!--begin::Input group-->
+                                                                <div class="row mb-6">
+                                                                    <!--begin::Label-->
+                                                                    <label
+                                                                        class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Özet</label>
+                                                                    <!--end::Label-->
+                                                                    <!--begin::Col-->
+                                                                    <div class="col-lg-10 fv-row">
+                                                                        <textarea name="activity_summary_en" id="ozet_en" onchange="create_ozet_en()"
+                                                                            class="form-control form-control-lg form-control-solid" value=""></textarea>
+                                                                    </div>
+                                                                    <!--end::Col-->
+                                                                </div>
+                                                                <!--end::Input group-->
+                                                                <!--begin::Input group-->
+                                                                <div class="row mb-6">
+                                                                    <!--begin::Label-->
+                                                                    <label
+                                                                        class="col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5">
+                                                                        <span>İçerik</span>
+                                                                    </label>
+                                                                    <!--end::Label-->
+                                                                    <!--begin::Col-->
+                                                                    <div class="col-lg-12 fv-row mb-5 ps-5">
+
+                                                                        <textarea id="editor2" name="tinymce_activity_detail_en" class="tox-target ckeditor">
+                                                                        </textarea>
+                                                                    </div>
+                                                                    <!--end::Col-->
+                                                                </div>
+                                                                <!--end::Input group-->
+                                                                <!--begin::Input group-->
+                                                                <div class="row mb-6">
+                                                                    <!--begin::Label-->
+                                                                    <label
+                                                                        class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Etiket</label>
+                                                                    <!--end::Label-->
+                                                                    <!--begin::Col-->
+                                                                    <div class="col-lg-10">
+                                                                        <!--begin::Row-->
+                                                                        <div class="row">
+                                                                            <!--begin::Col-->
+                                                                            <div class="col-lg-12 fv-row">
+                                                                                <input type="text"
+                                                                                    id="etiket_en"
+                                                                                    name="etiket_en[]"
+                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                    value="" />
+                                                                            </div>
+                                                                            <!--end::Col-->
+                                                                        </div>
+                                                                        <!--end::Row-->
+                                                                    </div>
+                                                                    <!--end::Col-->
+                                                                </div>
                                                                 <!--end::Input group-->
 
+
+
+
+                                                                <!--begin::Input group-->
+                                                                <div class="row mb-6">
+                                                                    <!--begin::Label-->
+                                                                    <label
+                                                                        class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Url</label>
+                                                                    <!--end::Label-->
+                                                                    <!--begin::Col-->
+                                                                    <div class="col-lg-10">
+                                                                        <!--begin::Row-->
+                                                                        <div class="row">
+                                                                            <!--begin::Col-->
+                                                                            <div class="col-lg-12 fv-row">
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-10">
+                                                                                        <input type="text"
+                                                                                            name="activity_url_en"
+                                                                                            id="activity_url_en"
+                                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                            value="" />
+                                                                                    </div>
+                                                                                    <div class="col-lg-2">
+                                                                                        <button type="submit"
+                                                                                            class="btn btn-outline btn-outline-success w-100"
+                                                                                            id="activity_detail_url_btn_tr">URL
+                                                                                            ÜRET</button>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <!--end::Col-->
+                                                                        </div>
+                                                                        <!--end::Row-->
+                                                                    </div>
+                                                                    <!--end::Col-->
+                                                                </div>
+                                                                <!--end::Input group-->
+
+                                                            </div>
+                                                            <!--end::Card body-->
+                                                            <!--begin::Actions-->
+                                                            <div
+                                                                class="card-footer d-flex justify-content-between py-6 px-0">
+
+                                                                <!--begin::Input group-->
+                                                                <div class="row mb-0">
+                                                                    <label
+                                                                        class="col-lg-8 col-form-label fw-bold fs-6 ps-5">Manşet</label>
+                                                                    <div class="col-lg-4 d-flex align-items-center">
+                                                                        <div
+                                                                            class="form-check form-check-solid form-switch form-check-custom fv-row">
+                                                                            <input class="form-check-input w-50px h-25px"
+                                                                                type="checkbox" name="manset_en"
+                                                                                id="allowactivity_detail_tr"
+                                                                                checked="checked" />
+                                                                            <label class="form-check-label"
+                                                                                for="allowactivity_detail_tr"></label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div
+                                                                class="card-footer d-flex justify-content-between py-6 px-0">
+
+                                                                <!--begin::Input group-->
+                                                                <div class="row mb-0">
+                                                                    <label
+                                                                        class="col-lg-8 col-form-label fw-bold fs-6 ps-5">Durum</label>
+                                                                    <div class="col-lg-4 d-flex align-items-center">
+                                                                        <div
+                                                                            class="form-check form-check-solid form-switch form-check-custom fv-row">
+                                                                            <input class="form-check-input w-50px h-25px"
+                                                                                type="checkbox" name="status_en"
+                                                                                id="allowactivity_detail_tr"
+                                                                                checked="checked" />
+                                                                            <label class="form-check-label"
+                                                                                for="allowactivity_detail_tr"></label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
 
                                                             </div>
                                                             <!--end::Actions-->
@@ -339,12 +557,11 @@
                                             <!--end::Card body-->
                                             <!--end::Form-->
                                         </div>
-                                        <div class="tab-pane fade" id="tab_blog_category_seo" role="tabpanel">
+                                        <div class="tab-pane fade" id="tab_activity_seo" role="tabpanel">
                                             <!--begin::Tab-->
                                             <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
                                                 <li class="nav-item">
-                                                    <a class="nav-link active" data-bs-toggle="tab"
-                                                        href="#tab_blog_category_seo_tr">
+                                                    <a class="nav-link active" data-bs-toggle="tab" href="#tab_seo_tr">
                                                         <span>
                                                             <img src="https://gaviapanel.gaviaworks.org/assets/images/svg/turkey.svg"
                                                                 width="28" height="28" alt="TR"
@@ -354,8 +571,7 @@
                                                     </a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" data-bs-toggle="tab"
-                                                        href="#tab_blog_category_seo_en">
+                                                    <a class="nav-link" data-bs-toggle="tab" href="#tab_seo_en">
                                                         <span>
                                                             <img src="https://gaviapanel.gaviaworks.org/assets/images/svg/england.svg"
                                                                 width="28" height="28" alt="EN"
@@ -365,16 +581,15 @@
                                                 </li>
                                             </ul>
                                             <div class="tab-content" id="TabContent_3">
-                                                <div class="tab-pane fade show active" id="tab_blog_category_seo_tr"
-                                                    role="tabpanel">
+                                                <div class="tab-pane fade show active" id="tab_seo_tr" role="tabpanel">
                                                     <!--begin::Form-->
                                                     <!--begin::Card body-->
                                                     <div class="card-body px-3 py-9">
                                                         <!--begin::Input group-->
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
-                                                            <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
-                                                                {{ __('message.seo başlık') }} </label>
+                                                            <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Site
+                                                                Başlığı</label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
                                                             <div class="col-lg-10">
@@ -382,8 +597,8 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input type="text" id="seo_title_tr"
-                                                                            name="seo_title_tr"
+                                                                        <input type="text" name="activity_seo_title_tr"
+                                                                            id="activity_seo_title_tr"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                             value="" />
                                                                     </div>
@@ -397,13 +612,13 @@
                                                         <!--begin::Input group-->
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
-                                                            <label
-                                                                class="col-lg-2 col-form-label ps-5 fw-bold fs-6">{{ __('message.seo açıklama') }}</label>
+                                                            <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Site
+                                                                Açıklaması</label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
                                                             <div class="col-lg-10 fv-row">
-                                                                <textarea name="seo_description_tr" id="seo_description_tr" class="form-control form-control-lg form-control-solid"
-                                                                    value=""></textarea>
+                                                                <textarea name="activity_seo_description_tr" id="seo_description_tr"
+                                                                    class="form-control form-control-lg form-control-solid" value=""></textarea>
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -412,8 +627,8 @@
                                                         <!--begin::Input group-->
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
-                                                            <label
-                                                                class="col-lg-2 col-form-label ps-5 fw-bold fs-6">{{ __('message.seo anahtar') }}</label>
+                                                            <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Site
+                                                                Anahtar Kelimeleri</label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
                                                             <div class="col-lg-10">
@@ -421,8 +636,9 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input type="text" name="seo_key_tr[]"
-                                                                            id="seo_key_tr"
+                                                                        <input type="text"
+                                                                            id="activity_seo_keywords_tr"
+                                                                            name="activity_seo_keywords_tr"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                             value="" />
                                                                     </div>
@@ -438,39 +654,36 @@
                                                     <!--end::Card body-->
                                                     <!--begin::Actions-->
                                                     <div class="card-footer d-flex justify-content-between py-6 px-0">
-
                                                         <!--begin::Input group-->
                                                         <div class="row mb-0">
-                                                            <label class="col-lg-8 col-form-label fw-bold fs-6 ">
-                                                                {{ __('message.status') }} </label>
+                                                            <label
+                                                                class="col-lg-8 col-form-label fw-bold fs-6 ">Durum</label>
                                                             <div class="col-lg-4 d-flex align-items-center">
                                                                 <div
                                                                     class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                    <input name="seo_statu_tr"
-                                                                        class="form-check-input w-50px h-25px"
-                                                                        type="checkbox" id="allowblog_caetgory_seo_tr"
-                                                                        checked="checked" />
+                                                                    <input class="form-check-input w-50px h-25px"
+                                                                        type="checkbox" id="allowactivity_seo_tr"
+                                                                        checked="checked" name="seo_statu_tr" />
                                                                     <label class="form-check-label"
-                                                                        for="allowblog_caetgory_seo_tr"></label>
+                                                                        for="allowactivity_seo_tr"></label>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <!--end::Input group-->
-
 
                                                     </div>
                                                     <!--end::Actions-->
                                                     <!--end::Form-->
                                                 </div>
-                                                <div class="tab-pane fade" id="tab_blog_category_seo_en" role="tabpanel">
+                                                <div class="tab-pane fade" id="tab_seo_en" role="tabpanel">
                                                     <!--begin::Form-->
                                                     <!--begin::Card body-->
                                                     <div class="card-body px-3 py-9">
                                                         <!--begin::Input group-->
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
-                                                            <label
-                                                                class="col-lg-2 col-form-label ps-5 fw-bold fs-6">{{ __('message.seo başlık') }}</label>
+                                                            <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Site
+                                                                Başlığı</label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
                                                             <div class="col-lg-10">
@@ -478,8 +691,8 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input type="text" name="seo_title_en"
-                                                                            id="seo_title_en"
+                                                                        <input type="text" name="activity_seo_title_en"
+                                                                            id="activity_seo_title_en"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                             value="" />
                                                                     </div>
@@ -493,13 +706,13 @@
                                                         <!--begin::Input group-->
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
-                                                            <label
-                                                                class="col-lg-2 col-form-label ps-5 fw-bold fs-6">{{ __('message.seo açıklama') }}</label>
+                                                            <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Site
+                                                                Açıklaması</label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
                                                             <div class="col-lg-10 fv-row">
-                                                                <textarea name="seo_descriptipn_en" id="seo_description_en" class="form-control form-control-lg form-control-solid"
-                                                                    value=""></textarea>
+                                                                <textarea name="activity_seo_description_en" id="seo_description_en"
+                                                                    class="form-control form-control-lg form-control-solid" value=""></textarea>
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -508,8 +721,8 @@
                                                         <!--begin::Input group-->
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
-                                                            <label
-                                                                class="col-lg-2 col-form-label ps-5 fw-bold fs-6">{{ __('message.seo anahtar') }}</label>
+                                                            <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Site
+                                                                Anahtar Kelimeleri</label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
                                                             <div class="col-lg-10">
@@ -517,8 +730,9 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input type="text" name="seo_key_en[]"
-                                                                            id="seo_key_en"
+                                                                        <input type="text"
+                                                                            id="activity_seo_keywords_en"
+                                                                            name="activity_seo_keywords_en"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                             value="" />
                                                                     </div>
@@ -537,22 +751,20 @@
 
                                                         <!--begin::Input group-->
                                                         <div class="row mb-0">
-                                                            <label class="col-lg-8 col-form-label fw-bold fs-6 ">
-                                                                {{ __('message.status') }} </label>
+                                                            <label
+                                                                class="col-lg-8 col-form-label fw-bold fs-6 ">Durum</label>
                                                             <div class="col-lg-4 d-flex align-items-center">
                                                                 <div
                                                                     class="form-check form-check-solid form-switch form-check-custom fv-row">
                                                                     <input class="form-check-input w-50px h-25px"
-                                                                        name="seo_statu_en" type="checkbox"
-                                                                        id="allowblog_category_seo_en"
-                                                                        checked="checked" />
+                                                                        type="checkbox" id="allowactivity_seo_en"
+                                                                        checked="checked" name="seo_statu_en" />
                                                                     <label class="form-check-label"
-                                                                        for="allowblog_category_seo_en"></label>
+                                                                        for="allowactivity_seo_en"></label>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <!--end::Input group-->
-
 
                                                     </div>
                                                     <!--end::Actions-->
@@ -571,42 +783,66 @@
                     </div>
                     <!--end::Row-->
 
-                    <div class="right" style="text-align: right">
+                    <div class="right " style="text-align: right">
                         <button type="submit" class="btn btn-primary"> {{ __('message.kaydet') }} </button>
                     </div>
 
                 </div>
                 <!--end::Content container-->
             </div>
-
         </form>
+
         <!--end::Content-->
     </div>
+    <!--end::Content wrapper-->
 @endsection
 @section('script')
     <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#editor2'))
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+    <!--begin:: extra js-->
+    <script src="../assets/plugins/global/plugins.bundle.js"></script>
+    <script src="../assets/plugins/custom/tinymce/tinymce.bundle.js"></script>
+    <script src="../assets/plugins/custom/tinymce/langs/tr.js"></script>
+
+    <script>
         function create_slug_tr() {
-            var Text = $("#title_tr").val();
+            var Text = $("#activity_name_tr").val();
             Text2 = (slug(Text));
-            $("#link_tr").val(Text2);
-            $("#seo_title_tr").val(Text);
+            $("#activity_url_tr").val(Text2);
+            $("#activity_seo_title_tr").val(Text);
         }
 
         function create_slug_en() {
-            var Text = $("#title_en").val();
+            var Text = $("#activity_name_en").val();
             Text2 = (slug(Text));
-            $("#link_en").val(Text2);
-            $("#seo_title_en").val(Text);
+            $("#activity_url_en").val(Text2);
+            $("#activity_seo_title_en").val(Text);
         }
 
-        function create_ozet() {
-            var Text = $("#add_activity_text_tr").val();
-            $("#add_activity_category_seo_description_tr").val(Text);
+        function create_ozet_tr() {
+            var Text = $("#ozet_tr").val();
+            $("#seo_description_tr").val(Text);
         }
 
         function create_ozet_en() {
-            var Text = $("#add_activity_text_en").val();
-            $("#add_activity_category_seo_description_en").val(Text);
+            var Text = $("#ozet_en").val();
+            $("#seo_description_en").val(Text);
         }
 
 
@@ -629,12 +865,44 @@
 
             return str;
         };
-    </script>
-    <script>
-        var input1 = document.querySelector("#seo_key_tr");
+        var input1 = document.querySelector("#activity_seo_keywords_tr");
         new Tagify(input1);
 
-        var input2 = document.querySelector("#seo_key_en");
+        var input2 = document.querySelector("#activity_seo_keywords_en");
         new Tagify(input2);
+
+        var input3 = document.querySelector("#etiket_tr");
+        new Tagify(input3);
+
+        var input4 = document.querySelector("#etiket_en");
+        new Tagify(input4);
+
+        $(document).ready(function() {
+            tinymce.init({
+                selector: "#tinymce_activity_detail_tr",
+                height: "480",
+                language: 'tr',
+                menubar: false,
+                toolbar: ["styleselect fontselect fontsizeselect",
+                    "undo redo | cut copy paste | bold italic | link image | alignleft aligncenter alignright alignjustify",
+                    "bullist numlist | outdent indent | blockquote subscript superscript | advlist | autolink | lists charmap | print preview |  code"
+                ],
+                plugins: "advlist autolink link image lists charmap print preview code"
+            });
+
+            tinymce.init({
+                selector: "#tinymce_activity_detail_en",
+                height: "480",
+                language: 'tr',
+                menubar: false,
+                toolbar: ["styleselect fontselect fontsizeselect",
+                    "undo redo | cut copy paste | bold italic | link image | alignleft aligncenter alignright alignjustify",
+                    "bullist numlist | outdent indent | blockquote subscript superscript | advlist | autolink | lists charmap | print preview |  code"
+                ],
+                plugins: "advlist autolink link image lists charmap print preview code"
+            });
+
+        });
     </script>
+    <!--end:: extra js-->
 @endsection

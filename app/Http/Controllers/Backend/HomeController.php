@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\LoginLog;
+use App\Models\LogModel;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -12,7 +14,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('backend.index');
+        $loginLogs = LoginLog::latest()->take(5)->get();
+        $logs = LogModel::orderBy('id','desc')->get();
+        return view('backend.index',compact('loginLogs','logs'));
     }
 
     /**
