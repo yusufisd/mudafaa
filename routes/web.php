@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Backend\ActivityCategoryController;
+use App\Http\Controllers\Backend\ActivityController;
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\CompanyController;
 use App\Http\Controllers\Backend\CountryController;
@@ -27,94 +29,146 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::get('/login', [AuthController::class, 'login'])->name('admin.login');
 Route::post('/login', [AuthController::class, 'login_post'])->name('admin.login_post');
 
-Route::prefix('admin')->middleware('auth:admin')->name('admin.')->group(function () {
-    Route::get('/', [HomeController::class, 'index'])->name('index');
-    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::prefix('admin')
+    ->middleware('auth:admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/', [HomeController::class, 'index'])->name('index');
+        Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    // CURRENT NEWS CATEGORY CONTROLLER 
-    Route::controller(CurrentNewsCategoryController::class)->prefix('guncel-haber-kategori')->name('currentNewsCategory.')->group(function () {
-        Route::get('ekle', 'create')->name('add');
-        Route::post('ekle', 'store')->name('store');
-        Route::get('liste', 'index')->name('list');
-        Route::get('duzenle/{id?}', 'edit')->name('edit');
-        Route::post('guncelle/{id?}', 'update')->name('update');
-        Route::get('sil/{id?}', 'destroy')->name('destroy');
-        Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
-    });
+        // CURRENT NEWS CATEGORY CONTROLLER
+        Route::controller(CurrentNewsCategoryController::class)
+            ->prefix('guncel-haber-kategori')
+            ->name('currentNewsCategory.')
+            ->group(function () {
+                Route::get('ekle', 'create')->name('add');
+                Route::post('ekle', 'store')->name('store');
+                Route::get('liste', 'index')->name('list');
+                Route::get('duzenle/{id?}', 'edit')->name('edit');
+                Route::post('guncelle/{id?}', 'update')->name('update');
+                Route::get('sil/{id?}', 'destroy')->name('destroy');
+                Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
+            });
 
-    // CURRENT NEWS CONTROLLER
-    Route::controller(CurrentNewsController::class)->prefix('guncel-haber')->name('currentNews.')->group(function () {
-        Route::get('ekle', 'create')->name('add');
-        Route::post('ekle', 'store')->name('store');
-        Route::get('liste', 'index')->name('list');
-        Route::get('duzenle/{id?}', 'edit')->name('edit');
-        Route::post('guncelle/{id?}', 'update')->name('update');
-        Route::get('sil/{id?}', 'destroy')->name('destroy');
-        Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
-        Route::get('manset-degistir/{id?}', 'change_headline')->name('change_headline');
-    });
+        // CURRENT NEWS CONTROLLER
+        Route::controller(CurrentNewsController::class)
+            ->prefix('guncel-haber')
+            ->name('currentNews.')
+            ->group(function () {
+                Route::get('ekle', 'create')->name('add');
+                Route::post('ekle', 'store')->name('store');
+                Route::get('liste', 'index')->name('list');
+                Route::get('duzenle/{id?}', 'edit')->name('edit');
+                Route::post('guncelle/{id?}', 'update')->name('update');
+                Route::get('sil/{id?}', 'destroy')->name('destroy');
+                Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
+                Route::get('manset-degistir/{id?}', 'change_headline')->name('change_headline');
+            });
 
-    // USER CONTROLLER
-    Route::controller(UserController::class)->prefix('kullanici')->name('user.')->group(function () {
-        Route::get('ekle', 'create')->name('add');
-        Route::post('ekle', 'store')->name('store');
-        Route::get('liste', 'index')->name('list');
-        Route::get('duzenle/{id?}', 'edit')->name('edit');
-        Route::post('guncelle/{id?}', 'update')->name('update');
-        Route::get('sil/{id?}', 'destroy')->name('destroy');
-    });
+        // USER CONTROLLER
+        Route::controller(UserController::class)
+            ->prefix('kullanici')
+            ->name('user.')
+            ->group(function () {
+                Route::get('ekle', 'create')->name('add');
+                Route::post('ekle', 'store')->name('store');
+                Route::get('liste', 'index')->name('list');
+                Route::get('duzenle/{id?}', 'edit')->name('edit');
+                Route::post('guncelle/{id?}', 'update')->name('update');
+                Route::get('sil/{id?}', 'destroy')->name('destroy');
+            });
 
-    // SAVUNMA SANAYİ İÇERİK CONTROLLER
-    Route::controller(DefenseIndustryContentController::class)->prefix('savunma-sanayi-icerik')->name('defenseIndustryContent.')->group(function () {
-        Route::get('ekle', 'create')->name('add');
-        Route::post('ekle', 'store')->name('store');
-        Route::get('liste', 'index')->name('list');
-        Route::get('duzenle/{id?}', 'edit')->name('edit');
-        Route::post('guncelle/{id?}', 'update')->name('update');
-        Route::get('sil/{id?}', 'destroy')->name('destroy');
-    });
+        // SAVUNMA SANAYİ İÇERİK CONTROLLER
+        Route::controller(DefenseIndustryContentController::class)
+            ->prefix('savunma-sanayi-icerik')
+            ->name('defenseIndustryContent.')
+            ->group(function () {
+                Route::get('ekle', 'create')->name('add');
+                Route::post('ekle', 'store')->name('store');
+                Route::get('liste', 'index')->name('list');
+                Route::get('duzenle/{id?}', 'edit')->name('edit');
+                Route::post('guncelle/{id?}', 'update')->name('update');
+                Route::get('sil/{id?}', 'destroy')->name('destroy');
+            });
 
-    // SAVUNMA SANAYİ  CONTROLLER
-    Route::controller(DefenseIndustryController::class)->prefix('savunma-sanayi')->name('defenseIndustry.')->group(function () {
-        Route::get('ekle', 'create')->name('add');
-        Route::post('ekle', 'store')->name('store');
-        Route::get('liste', 'index')->name('list');
-        Route::get('duzenle/{id?}', 'edit')->name('edit');
-        Route::post('guncelle/{id?}', 'update')->name('update');
-        Route::get('sil/{id?}', 'destroy')->name('destroy');
-    });
+        // SAVUNMA SANAYİ  CONTROLLER
+        Route::controller(DefenseIndustryController::class)
+            ->prefix('savunma-sanayi')
+            ->name('defenseIndustry.')
+            ->group(function () {
+                Route::get('ekle', 'create')->name('add');
+                Route::post('ekle', 'store')->name('store');
+                Route::get('liste', 'index')->name('list');
+                Route::get('duzenle/{id?}', 'edit')->name('edit');
+                Route::post('guncelle/{id?}', 'update')->name('update');
+                Route::get('sil/{id?}', 'destroy')->name('destroy');
+            });
 
-    // SAVUNMA SANAYİ KATEGORİ CONTROLLER
-    Route::controller(DefenseIndustryCategoryController::class)->prefix('savunma-sanayi-kategori')->name('defenseIndustryCategory.')->group(function () {
-        Route::get('ekle', 'create')->name('add');
-        Route::post('ekle', 'store')->name('store');
-        Route::get('liste', 'index')->name('list');
-        Route::get('duzenle/{id?}', 'edit')->name('edit');
-        Route::post('guncelle/{id?}', 'update')->name('update');
-        Route::get('sil/{id?}', 'destroy')->name('destroy');
-    });
+        // SAVUNMA SANAYİ KATEGORİ CONTROLLER
+        Route::controller(DefenseIndustryCategoryController::class)
+            ->prefix('savunma-sanayi-kategori')
+            ->name('defenseIndustryCategory.')
+            ->group(function () {
+                Route::get('ekle', 'create')->name('add');
+                Route::post('ekle', 'store')->name('store');
+                Route::get('liste', 'index')->name('list');
+                Route::get('duzenle/{id?}', 'edit')->name('edit');
+                Route::post('guncelle/{id?}', 'update')->name('update');
+                Route::get('sil/{id?}', 'destroy')->name('destroy');
+            });
 
-    // ÜLKE CONTROLLER
-    Route::controller(CountryController::class)->prefix('ulke')->name('country.')->group(function () {
-        Route::get('ekle', 'create')->name('add');
-        Route::post('ekle', 'store')->name('store');
-        Route::get('liste', 'index')->name('list');
-        Route::get('duzenle/{id?}', 'edit')->name('edit');
-        Route::post('guncelle/{id?}', 'update')->name('update');
-        Route::get('sil/{id?}', 'destroy')->name('destroy');
-    });
+        // ÜLKE CONTROLLER
+        Route::controller(CountryController::class)
+            ->prefix('ulke')
+            ->name('country.')
+            ->group(function () {
+                Route::get('ekle', 'create')->name('add');
+                Route::post('ekle', 'store')->name('store');
+                Route::get('liste', 'index')->name('list');
+                Route::get('duzenle/{id?}', 'edit')->name('edit');
+                Route::post('guncelle/{id?}', 'update')->name('update');
+                Route::get('sil/{id?}', 'destroy')->name('destroy');
+            });
 
-    // ŞİRKET CONTROLLER
-    Route::controller(CompanyController::class)->prefix('firma')->name('company.')->group(function () {
-        Route::get('ekle', 'create')->name('add');
-        Route::post('ekle', 'store')->name('store');
-        Route::get('liste', 'index')->name('list');
-        Route::get('duzenle/{id?}', 'edit')->name('edit');
-        Route::post('guncelle/{id?}', 'update')->name('update');
-        Route::get('sil/{id?}', 'destroy')->name('destroy');
+        // ŞİRKET CONTROLLER
+        Route::controller(CompanyController::class)
+            ->prefix('firma')
+            ->name('company.')
+            ->group(function () {
+                Route::get('ekle', 'create')->name('add');
+                Route::post('ekle', 'store')->name('store');
+                Route::get('liste', 'index')->name('list');
+                Route::get('duzenle/{id?}', 'edit')->name('edit');
+                Route::post('guncelle/{id?}', 'update')->name('update');
+                Route::get('sil/{id?}', 'destroy')->name('destroy');
+            });
+
+        // ETKİNLİK KATEGORİSİ CONTROLLER
+        Route::controller(ActivityCategoryController::class)
+            ->prefix('etkinlik-kategorisi')
+            ->name('activityCategory.')
+            ->group(function () {
+                Route::get('ekle', 'create')->name('add');
+                Route::post('ekle', 'store')->name('store');
+                Route::get('liste', 'index')->name('list');
+                Route::get('duzenle/{id?}', 'edit')->name('edit');
+                Route::post('guncelle/{id?}', 'update')->name('update');
+                Route::get('sil/{id?}', 'destroy')->name('destroy');
+            });
+
+        // ETKİNLİK  CONTROLLER
+        Route::controller(ActivityController::class)
+            ->prefix('etkinlik')
+            ->name('activity.')
+            ->group(function () {
+                Route::get('ekle', 'create')->name('add');
+                Route::post('ekle', 'store')->name('store');
+                Route::get('liste', 'index')->name('list');
+                Route::get('duzenle/{id?}', 'edit')->name('edit');
+                Route::post('guncelle/{id?}', 'update')->name('update');
+                Route::get('sil/{id?}', 'destroy')->name('destroy');
+            });
     });
-});

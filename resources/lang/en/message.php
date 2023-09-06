@@ -49,6 +49,8 @@ return [
     "üretici" => "Producer",
     "firmalar" => "Companies",
     "içeriği" => "Content",
+    "etkinlik" => "Activity",
+    "renk kodu" => "Color Code",
 
 
 ];

@@ -48,5 +48,8 @@ return [
     "üretici" => "Üretici",
     "firmalar" => "Firmalar",
     "içeriği" => "İçeriği",
+    "renk kodu" => "Renk Kodu",
+    "etkinlik" => "Etkinlik",
+
 ];
 ?>
