@@ -33,6 +33,22 @@ return [
     "kategorisi" => "Category",
     "yazar" => "Author",
     "manşet" => "Headline",
+    "savunma" => "Defense",
+    "sanayi" => "Industry",
+    "ülke" => "Country",
+    "menşei" => "Origin",
+    "listesi" => "List",
+    "firma" => "Company",
+    "içerik" => "Content",
+    "alt" => "Sub",
+    "isim" => "Name",
+    "ülkeler" => "Countries",
+    "yerli" => "National",
+    "üretim" => "Production",
+    "kapak" => "Cover",
+    "üretici" => "Producer",
+    "firmalar" => "Companies",
+    "içeriği" => "Content",
 
 
 ];

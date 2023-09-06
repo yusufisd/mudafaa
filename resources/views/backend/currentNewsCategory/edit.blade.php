@@ -71,6 +71,31 @@
                                             <!--begin::Form-->
                                             <!--begin::Card body-->
                                             <div class="card-body px-3 py-9">
+
+
+                                                <div class="row mb-6">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
+                                                        {{ __('message.görsel') }} </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-10">
+
+                                                        <img src="/{{$data_tr->image}}" style="border-radius: 5%" alt="">
+                                                        <!--begin::Row-->
+                                                        <div class="row">
+                                                            <!--begin::Col-->
+                                                            <div class="col-lg-12 fv-row">
+                                                                <input type="file" name="image"
+                                                                    class="form-control form-control-lg  mb-3 mb-lg-0"
+                                                                    value="" />
+                                                            </div>
+                                                            <!--end::Col-->
+                                                        </div>
+                                                        <!--end::Row-->
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
                                                 <!--begin::Input group-->
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
@@ -94,27 +119,7 @@
                                                     <!--end::Col-->
                                                 </div>
 
-                                                <div class="row mb-6">
-                                                    <!--begin::Label-->
-                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
-                                                        {{ __('message.görsel') }} </label>
-                                                    <!--end::Label-->
-                                                    <!--begin::Col-->
-                                                    <div class="col-lg-10">
-                                                        <!--begin::Row-->
-                                                        <div class="row">
-                                                            <!--begin::Col-->
-                                                            <div class="col-lg-12 fv-row">
-                                                                <input type="file" name="image"
-                                                                    class="form-control form-control-lg  mb-3 mb-lg-0"
-                                                                    value="" />
-                                                            </div>
-                                                            <!--end::Col-->
-                                                        </div>
-                                                        <!--end::Row-->
-                                                    </div>
-                                                    <!--end::Col-->
-                                                </div>
+                                                
                                                 <!--end::Input group-->
                                                 <div class="row mb-6">
                                                     <!--begin::Tab-->

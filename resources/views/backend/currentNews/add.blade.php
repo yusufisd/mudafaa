@@ -67,7 +67,7 @@
                                                 <!--begin::Input group-->
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
-                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Görsel</label>
+                                                    <label class="col-lg-2 col-form-label required ps-5 fw-bold fs-6">Görsel <span style="font-weight:normal">( 960px - 520px)</span></label> 
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10">

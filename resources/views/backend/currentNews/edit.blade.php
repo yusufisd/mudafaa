@@ -32,7 +32,7 @@
         <!--begin::Content-->
 
 
-        <form action="{{ route('admin.currentNews.update',$data_tr->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.currentNews.update', $data_tr->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div id="kt_app_content" class="app-content flex-column-fluid">
                 <!--begin::Content container-->
@@ -67,16 +67,18 @@
                                                 <!--begin::Input group-->
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
-                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Görsel</label>
+                                                    <label class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Görsel <span
+                                                            style="font-weight:normal">( 960px - 520px)</span></label>
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10">
                                                         <div class="row">
-                                                            <img src="/{{$data_tr->image}}" style="width: 30%" alt="">
-                                                        </div>
+                                                            <img src="/{{ $data_tr->image }}"
+                                                                style="width: 30%; border-radius:5%" alt="">
+                                                        </div><br>
                                                         <div class="row">
-                                                        <input type="file" class="form-control" name="image"
-                                                            id="">
+                                                            <input type="file" class="form-control" name="image"
+                                                                id="">
                                                         </div>
                                                     </div>
                                                     <!--end::Col-->
@@ -97,7 +99,9 @@
                                                             multiple>
                                                             <option value="">Seçiniz...</option>
                                                             @foreach ($categories as $cat)
-                                                                <option  {{ in_array($cat->id, $data_tr->category_id) != false ? 'selected' : '' }} value="{{ $cat->id }}"> {{ $cat->title }}
+                                                                <option
+                                                                    {{ in_array($cat->id, $data_tr->category_id) != false ? 'selected' : '' }}
+                                                                    value="{{ $cat->id }}"> {{ $cat->title }}
                                                                 </option>
                                                             @endforeach
 
@@ -130,7 +134,9 @@
 
                                                                             @foreach ($users as $user)
                                                                             @endforeach
-                                                                            <option {{$data_tr->author_id == $user->id ? 'selected' : ''}} value="{{ $user->id }}">
+                                                                            <option
+                                                                                {{ $data_tr->author_id == $user->id ? 'selected' : '' }}
+                                                                                value="{{ $user->id }}">
                                                                                 {{ $user->name }} {{ $user->surname }}
                                                                             </option>
 
@@ -157,8 +163,7 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input type="date"
-                                                                            name="activity_on_location_tr"
+                                                                        <input type="date" name="activity_on_location_tr"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                             value="{{ $data_tr->live_time }}" />
                                                                     </div>
@@ -220,7 +225,7 @@
                                                                                     onchange="create_slug_tr()"
                                                                                     id="activity_name_tr"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="{{$data_tr->title}}" />
+                                                                                    value="{{ $data_tr->title }}" />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -238,7 +243,7 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10 fv-row">
                                                                         <textarea name="activity_summary_tr" id="ozet_tr" onchange="create_ozet_tr()"
-                                                                            class="form-control form-control-lg form-control-solid" >{{$data_tr->short_description}}</textarea>
+                                                                            class="form-control form-control-lg form-control-solid">{{ $data_tr->short_description }}</textarea>
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -255,7 +260,7 @@
                                                                     <div class="col-lg-12 fv-row mb-5 ps-5">
 
                                                                         <textarea id="editor" name="tinymce_activity_detail_tr" class="tox-target ckeditor">
-                                                                            {{$data_tr->description}}
+                                                                            {{ $data_tr->description }}
                                                                         </textarea>
 
                                                                     </div>
@@ -274,11 +279,13 @@
                                                                         <div class="row">
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
-                                                                                <input type="text"
-                                                                                    id="etiket_tr"
+                                                                                <input type="text" id="etiket_tr"
                                                                                     name="etiket_tr[]"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="" />
+                                                                                    value="
+                                                                                    @foreach ($data_tr->tags as $key => $value)
+                                                                                    {{ $value }} @endforeach
+                                                                                    " />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -309,7 +316,7 @@
                                                                                             name="activity_url_tr"
                                                                                             id="activity_url_tr"
                                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                            value="{{$data_tr->link}}" />
+                                                                                            value="{{ $data_tr->link }}" />
                                                                                     </div>
                                                                                     <div class="col-lg-2">
                                                                                         <button type="submit"
@@ -344,7 +351,7 @@
                                                                             <input class="form-check-input w-50px h-25px"
                                                                                 type="checkbox" name="manset_tr"
                                                                                 id="allowactivity_detail_tr"
-                                                                                {{$data_tr->headline == 1 ? 'checked' : ''}} />
+                                                                                {{ $data_tr->headline == 1 ? 'checked' : '' }} />
                                                                             <label class="form-check-label"
                                                                                 for="allowactivity_detail_tr"></label>
                                                                         </div>
@@ -366,7 +373,7 @@
                                                                             <input class="form-check-input w-50px h-25px"
                                                                                 type="checkbox" name="status_tr"
                                                                                 id="allowactivity_detail_tr"
-                                                                                {{$data_tr->status == 1 ? 'checked' : ''}} />
+                                                                                {{ $data_tr->status == 1 ? 'checked' : '' }} />
                                                                             <label class="form-check-label"
                                                                                 for="allowactivity_detail_tr"></label>
                                                                         </div>
@@ -398,7 +405,7 @@
                                                                                     id="activity_name_en"
                                                                                     onchange="create_slug_en()"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="{{$data_en->title ?? ''}}" />
+                                                                                    value="{{ $data_en->title ?? '' }}" />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -416,7 +423,7 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10 fv-row">
                                                                         <textarea name="activity_summary_en" id="ozet_en" onchange="create_ozet_en()"
-                                                                            class="form-control form-control-lg form-control-solid" >{{$data_en->short_description}}</textarea>
+                                                                            class="form-control form-control-lg form-control-solid">{{ $data_en->short_description }}</textarea>
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -433,7 +440,7 @@
                                                                     <div class="col-lg-12 fv-row mb-5 ps-5">
 
                                                                         <textarea id="editor2" name="tinymce_activity_detail_en" class="tox-target ckeditor">
-                                                                            {{$data_en->description}}
+                                                                            {{ $data_en->description }}
                                                                         </textarea>
                                                                     </div>
                                                                     <!--end::Col-->
@@ -451,11 +458,13 @@
                                                                         <div class="row">
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
-                                                                                <input type="text"
-                                                                                    id="etiket_en"
+                                                                                <input type="text" id="etiket_en"
                                                                                     name="etiket_en[]"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="" />
+                                                                                    value="
+                                                                                    @foreach ($data_en->tags as $key => $value)
+                                                                                    {{ $value }} @endforeach
+                                                                                    " />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -486,7 +495,7 @@
                                                                                             name="activity_url_en"
                                                                                             id="activity_url_en"
                                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                            value="{{$data_en->link}}" />
+                                                                                            value="{{ $data_en->link }}" />
                                                                                     </div>
                                                                                     <div class="col-lg-2">
                                                                                         <button type="submit"
@@ -521,7 +530,7 @@
                                                                             <input class="form-check-input w-50px h-25px"
                                                                                 type="checkbox" name="manset_en"
                                                                                 id="allowactivity_detail_tr"
-                                                                                {{$data_en->headline == 1 ? 'checked' : ''}} />
+                                                                                {{ $data_en->headline == 1 ? 'checked' : '' }} />
                                                                             <label class="form-check-label"
                                                                                 for="allowactivity_detail_tr"></label>
                                                                         </div>
@@ -543,7 +552,7 @@
                                                                             <input class="form-check-input w-50px h-25px"
                                                                                 type="checkbox" name="status_en"
                                                                                 id="allowactivity_detail_tr"
-                                                                                {{$data_en->status == 1 ? 'checked' : ''}} />
+                                                                                {{ $data_en->status == 1 ? 'checked' : '' }} />
                                                                             <label class="form-check-label"
                                                                                 for="allowactivity_detail_tr"></label>
                                                                         </div>
@@ -603,7 +612,7 @@
                                                                         <input type="text" name="activity_seo_title_tr"
                                                                             id="activity_seo_title_tr"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                            value="{{$data_tr->seo_title}}" />
+                                                                            value="{{ $data_tr->seo_title }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -622,7 +631,7 @@
                                                             <div class="col-lg-10 fv-row">
                                                                 <textarea name="activity_seo_description_tr" id="seo_description_tr"
                                                                     class="form-control form-control-lg form-control-solid" value="">
-                                                                    {{$data_tr->seo_description}}</textarea>
+                                                                    {!! $data_tr->seo_description !!}</textarea>
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -644,7 +653,7 @@
                                                                             id="activity_seo_keywords_tr"
                                                                             name="activity_seo_keywords_tr[]"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                            value="{{$data_tr->seo_key}}" />
+                                                                            value="{{ $data_tr->seo_key }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -667,7 +676,8 @@
                                                                     class="form-check form-check-solid form-switch form-check-custom fv-row">
                                                                     <input class="form-check-input w-50px h-25px"
                                                                         type="checkbox" id="allowactivity_seo_tr"
-                                                                        {{$data_tr->seo_statu == 1 ? 'checked' : ''}} name="seo_statu_tr" />
+                                                                        {{ $data_tr->seo_statu == 1 ? 'checked' : '' }}
+                                                                        name="seo_statu_tr" />
                                                                     <label class="form-check-label"
                                                                         for="allowactivity_seo_tr"></label>
                                                                 </div>
@@ -698,7 +708,7 @@
                                                                         <input type="text" name="activity_seo_title_en"
                                                                             id="activity_seo_title_en"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                            value="{{$data_en->seo_title}}" />
+                                                                            value="{{ $data_en->seo_title }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -717,7 +727,7 @@
                                                             <div class="col-lg-10 fv-row">
                                                                 <textarea name="activity_seo_description_en" id="seo_description_en"
                                                                     class="form-control form-control-lg form-control-solid" value="">
-                                                                    {{$data_en->seo_description}}</textarea>
+                                                                    {!! $data_en->seo_description !!}</textarea>
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -739,7 +749,7 @@
                                                                             id="activity_seo_keywords_en"
                                                                             name="activity_seo_keywords_en[]"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                            value="{{$data_en->seo_key}}" />
+                                                                            value="{{ $data_en->seo_key }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -763,7 +773,8 @@
                                                                     class="form-check form-check-solid form-switch form-check-custom fv-row">
                                                                     <input class="form-check-input w-50px h-25px"
                                                                         type="checkbox" id="allowactivity_seo_en"
-                                                                        {{$data_en->seo_statu == 1 ? 'checked' : ''}} name="seo_statu_en" />
+                                                                        {{ $data_en->seo_statu == 1 ? 'checked' : '' }}
+                                                                        name="seo_statu_en" />
                                                                     <label class="form-check-label"
                                                                         for="allowactivity_seo_en"></label>
                                                                 </div>

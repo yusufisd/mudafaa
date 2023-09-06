@@ -1,5 +1,11 @@
 @extends('backend.master')
 @section('content')
+
+<style>
+    #headline,#status{
+        cursor: pointer;
+    }
+</style>
     <!--begin::Content wrapper-->
     <div class="d-flex flex-column flex-column-fluid">
         <!--begin::Toolbar-->
@@ -42,9 +48,9 @@
                                         </a>
 
                                         <a type="button" class="btn btn-outline btn-outline-success ms-5"
-                                            href="{{ route('admin.currentNewsCategory.add') }}">
+                                            href="{{ route('admin.currentNewsCategory.list') }}">
                                             <i class="fa fa-newspaper" aria-hidden="true"></i> {{ __('message.haber') }}
-                                            {{ __('message.kategorisi') }} {{ __('message.ekle') }}
+                                            {{ __('message.kategorisi') }} 
                                         </a>
 
 
@@ -109,7 +115,7 @@
                                                     <td>
                                                         <div
                                                             class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
-                                                            <input class="form-check-input w-50px h-25px"
+                                                            <input class="form-check-input w-50px h-25px" onchange="change_headline({{$item->id}})"
                                                                 {{ $item->headline == 1 ? 'checked' : '' }} type="checkbox"
                                                                 id="headline">
                                                             <label class="form-check-label" for="headline"></label>
@@ -119,19 +125,20 @@
                                                         <div
                                                             class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
                                                             <input class="form-check-input w-50px h-25px" type="checkbox"
-                                                                id="blog_status_1" {{$item->status== 1 ? 'checked' : ''}}>
+                                                                id="status" onchange="change_status({{$item->id}})"
+                                                                {{ $item->status == 1 ? 'checked' : '' }}>
                                                             <label class="form-check-label" for="blog_status_1"></label>
                                                         </div>
                                                     </td>
                                                     <td class="text-center">
-                                        
 
-                                                        <a href="{{route('admin.currentNews.edit',$item->id)}}"
+
+                                                        <a href="{{ route('admin.currentNews.edit', $item->id) }}"
                                                             class="px-2 btn btn-icon btn-bg-light btn-active-color-secondary btn-sm me-1"
                                                             title="Düzenle">
                                                             <i class="fa-regular fa-pen-to-square fs-3"></i>
                                                         </a>
-                                                        <a href=""
+                                                        <a onclick="destroy({{$item->id}})"
                                                             class="px-2 btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1"
                                                             data-bs-toggle="modal" data-bs-target="#delete_modal"
                                                             title="Sil">
@@ -162,6 +169,31 @@
     <!--end::Content wrapper-->
 @endsection
 @section('script')
+    <script>
+        function destroy(d) {
+            Swal.fire({
+                title: 'Emin misiniz?',
+                text: "Seçtiğiniz içerik silinecek!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Evet, sil!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "{{ route('admin.currentNews.destroy') }}/" + d;
+                }
+            })
+        }
+
+        function change_headline(d){
+            window.location.href = "{{route('admin.currentNews.change_headline')}}/" + d;
+        }
+
+        function change_status(d){
+            window.location.href = "{{route('admin.currentNews.change_status')}}/" + d;
+        }
+    </script>
     <!--begin:: extra js-->
     <script>
         // begin: DataTable Scripts

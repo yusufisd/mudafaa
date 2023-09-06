@@ -32,7 +32,21 @@ return [
     "kategorisi" => "Kategorisi",
     "yazar" => "Yazar",
     "manşet" => "Manşet",
-
-
+    "savunma" => "Savunma",
+    "sanayi" => "Sanayi",
+    "ülke" => "Ülke",
+    "menşei" => "Menşei",
+    "listesi" => "Listesi",
+    "firma" => "Firma",
+    "içerik" => "İçerik",
+    "alt" => "Alt",
+    "isim" => "İsim",
+    "ülkeler" => "Ülkeler",
+    "yerli" => "Yerli",
+    "üretim" => "Üretim",
+    "kapak" => "Kapak",
+    "üretici" => "Üretici",
+    "firmalar" => "Firmalar",
+    "içeriği" => "İçeriği",
 ];
 ?>

@@ -9,7 +9,9 @@
                 <!--begin::Page title-->
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <!--begin::Title-->
-                    <h1 class="page-heading d-flex text-primary fw-bold fs-3 flex-column justify-content-center my-0"> {{__('message.güncel')}} {{__('message.haber')}} {{__('message.kategorisi')}} {{__('message.ekle')}}</h1>
+                    <h1 class="page-heading d-flex text-primary fw-bold fs-3 flex-column justify-content-center my-0">
+                        {{ __('message.güncel') }} {{ __('message.haber') }} {{ __('message.kategorisi') }}
+                        {{ __('message.ekle') }}</h1>
                     <!--end::Title-->
                 </div>
                 <!--end::Page title-->
@@ -19,7 +21,7 @@
                     <a href="javascript:history.back()"
                         class="page-heading d-flex text-dark fw-bold fs-3 justify-content-center my-0 text-hover-success">
                         <i class="fa fa-arrow-left my-auto mx-2"></i>
-                        Geri Dön
+                        {{ __('message.geri dön') }}
                     </a>
                     <!--end::Title-->
                 </div>
@@ -71,10 +73,34 @@
                                             <!--begin::Form-->
                                             <!--begin::Card body-->
                                             <div class="card-body px-3 py-9">
+
+
+                                                <div class="row mb-6">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-2 col-form-label required ps-5 fw-bold fs-6">
+                                                        {{ __('message.görsel') }} <span style="font-weight: normal">( 310px
+                                                            - 75px)</span></label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-10">
+                                                        <!--begin::Row-->
+                                                        <div class="row">
+                                                            <!--begin::Col-->
+                                                            <div class="col-lg-12 fv-row">
+                                                                <input type="file" name="image"
+                                                                    class="form-control form-control-lg  mb-3 mb-lg-0"
+                                                                    value="" />
+                                                            </div>
+                                                            <!--end::Col-->
+                                                        </div>
+                                                        <!--end::Row-->
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
                                                 <!--begin::Input group-->
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
-                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
+                                                    <label class="col-lg-2 required col-form-label ps-5 fw-bold fs-6">
                                                         {{ __('message.sıralama') }} </label>
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
@@ -94,27 +120,7 @@
                                                     <!--end::Col-->
                                                 </div>
 
-                                                <div class="row mb-6">
-                                                    <!--begin::Label-->
-                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
-                                                        {{ __('message.görsel') }} </label>
-                                                    <!--end::Label-->
-                                                    <!--begin::Col-->
-                                                    <div class="col-lg-10">
-                                                        <!--begin::Row-->
-                                                        <div class="row">
-                                                            <!--begin::Col-->
-                                                            <div class="col-lg-12 fv-row">
-                                                                <input type="file" name="image"
-                                                                    class="form-control form-control-lg  mb-3 mb-lg-0"
-                                                                    value="" />
-                                                            </div>
-                                                            <!--end::Col-->
-                                                        </div>
-                                                        <!--end::Row-->
-                                                    </div>
-                                                    <!--end::Col-->
-                                                </div>
+
                                                 <!--end::Input group-->
                                                 <div class="row mb-6">
                                                     <!--begin::Tab-->
@@ -161,7 +167,8 @@
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <input type="text" name="title_tr"
-                                                                                    id="title_tr" id="title_tr" onchange="create_slug_tr()"
+                                                                                    id="title_tr" id="title_tr"
+                                                                                    onchange="create_slug_tr()"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                     value="" />
                                                                             </div>
@@ -187,7 +194,8 @@
                                                                                 <div class="row">
                                                                                     <div class="col-lg-10">
                                                                                         <input type="text"
-                                                                                            name="link_tr" id="link_tr" id="link_tr"
+                                                                                            name="link_tr" id="link_tr"
+                                                                                            id="link_tr"
                                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                             value="" />
                                                                                     </div>
@@ -255,7 +263,8 @@
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <input type="text" name="title_en"
-                                                                                    id="title_en" onchange="create_slug_en()"
+                                                                                    id="title_en"
+                                                                                    onchange="create_slug_en()"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                     value="" />
                                                                             </div>

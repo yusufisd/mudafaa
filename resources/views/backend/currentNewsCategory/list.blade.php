@@ -53,7 +53,7 @@
                                                         rx="1" fill="currentColor" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon--> {{ __('message.ekle') }} </a>
+                                            <!--end::Svg Icon--> {{ __('message.kategori') }} {{ __('message.ekle') }} </a>
                                         <!--end::Add user-->
                                     </div>
                                     <!--end::Toolbar-->
@@ -97,7 +97,7 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <img src="/{{ $item->image }}" width="100px" alt="">
+                                                        <img src="/{{ $item->image }}" style="width:150px; border-radius:5%" alt="">
                                                     </td>
                                                     <td> {{ $item->title }} </td>
                                                     <td> {{ $item->queue }} </td>
