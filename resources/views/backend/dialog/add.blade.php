@@ -10,7 +10,7 @@
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-primary fw-bold fs-3 flex-column justify-content-center my-0">
-                        {{ __('message.savunma') }} {{ __('message.sanayi') }} {{ __('message.içeriği') }}
+                        Röportaj 
                         {{ __('message.ekle') }}</h1>
                     <!--end::Title-->
                 </div>
@@ -32,7 +32,7 @@
         <!--end::Toolbar-->
         <!--begin::Content-->
 
-        <form action="{{ route('admin.defenseIndustryContent.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.activity.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div id="kt_app_content" class="app-content flex-column-fluid">
                 <!--begin::Content container-->
@@ -62,6 +62,9 @@
                                             <a class="nav-link active" data-bs-toggle="tab" href="#tab_blog_detay">Detay</a>
                                         </li>
                                         <li class="nav-item">
+                                            <a class="nav-link " data-bs-toggle="tab" href="#rop">Röportaj</a>
+                                        </li>
+                                        <li class="nav-item">
                                             <a class="nav-link" data-bs-toggle="tab" href="#tab_blog_seo">Seo Bilgileri</a>
                                         </li>
                                     </ul>
@@ -79,8 +82,8 @@
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
                                                     <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
-                                                        {{ __('message.kapak') }} {{ __('message.görsel') }} <br><span>
-                                                            (1920px - 2880px) </span></label>
+                                                        {{ __('message.görsel') }} (1920px -
+                                                        2880px) </label>
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10">
@@ -92,98 +95,9 @@
                                                     <!--end::Col-->
                                                 </div>
                                                 <!--end::Input group-->
-                                                <!--begin::Input group-->
-                                                <div class="row mb-6">
-                                                    <!--begin::Label-->
-                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
-                                                        <span class="required"> {{ __('message.kategori') }} </span>
-                                                    </label>
-                                                    <!--end::Label-->
-                                                    <!--begin::Col-->
-                                                    <div class="col-lg-10 fv-row">
-                                                        <select name="category[]" aria-label="Seçiniz"
-                                                            data-control="select2" data-placeholder="Seçiniz..."
-                                                            class="form-select form-select-solid form-select-lg fw-semibold">
-                                                            <option value="">Seçiniz...</option>
-
-                                                            @foreach ($categories as $item)
-                                                                <option value="{{ $item->id }}"> {{ $item->title }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                    <!--end::Col-->
-                                                </div>
-
-                                                <div class="row mb-6">
-                                                    <!--begin::Label-->
-                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
-                                                        <span class="required"> {{ __('message.ülkeler') }} </span>
-                                                    </label>
-                                                    <!--end::Label-->
-                                                    <!--begin::Col-->
-                                                    <div class="col-lg-10 fv-row">
-                                                        <select name="countries[]" aria-label="Seçiniz"
-                                                            data-control="select2" data-placeholder="Seçiniz..."
-                                                            class="form-select form-select-solid form-select-lg fw-semibold"
-                                                            multiple>
-                                                            <option value="">Seçiniz...</option>
-                                                            @foreach ($countries as $item)
-                                                                <option value="{{ $item->id }}">{{ $item->name }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                    <!--end::Col-->
-                                                </div>
-
-                                                <div class="row mb-6">
-                                                    <!--begin::Label-->
-                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
-                                                        <span class="required"> {{ __('message.üretici') }}
-                                                            {{ __('message.firmalar') }} </span>
-                                                    </label>
-                                                    <!--end::Label-->
-                                                    <!--begin::Col-->
-                                                    <div class="col-lg-10 fv-row">
-                                                        <select name="company[]" aria-label="Seçiniz" data-control="select2"
-                                                            data-placeholder="Seçiniz..."
-                                                            class="form-select form-select-solid form-select-lg fw-semibold"
-                                                            multiple>
-                                                            <option value="">Seçiniz...</option>
-                                                            @foreach ($companies as $item)
-                                                                <option value="{{ $item->id }}"> {{ $item->name }}
-                                                                </option>
-                                                            @endforeach
-
-                                                        </select>
-                                                    </div>
-                                                    <!--end::Col-->
-                                                </div>
+                                           
 
 
-                                                <div class="row mb-6">
-                                                    <!--begin::Label-->
-                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
-                                                        <span class="required"> {{ __('message.menşei') }} </span>
-                                                    </label>
-                                                    <!--end::Label-->
-                                                    <!--begin::Col-->
-                                                    <div class="col-lg-10 fv-row">
-                                                        <select name="origin[]" aria-label="Seçiniz" data-control="select2"
-                                                            data-placeholder="Seçiniz..."
-                                                            class="form-select form-select-solid form-select-lg fw-semibold"
-                                                            multiple>
-                                                            <option value="">Seçiniz...</option>
-
-                                                            @foreach ($countries as $item)
-                                                                <option value="{{ $item->id }}"> {{ $item->name }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                    <!--end::Col-->
-                                                </div>
 
 
                                                 <div class="row mb-6">
@@ -209,248 +123,306 @@
                                                     <!--end::Col-->
                                                 </div>
 
-                                                <div class="card-footer d-flex justify-content-between py-6 px-0">
-                                                    <!--begin::Input group-->
-                                                    <div class="row mb-0">
-                                                        <label class="col-lg-8 col-form-label fw-bold fs-6 ps-5">
-                                                            {{ __('message.yerli') }} {{ __('message.üretim') }} </label>
-                                                        <div class="col-lg-4 d-flex align-items-center">
-                                                            <div
-                                                                class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                <input class="form-check-input w-50px h-25px"
-                                                                    type="checkbox" id="allowblog_detail_tr"
-                                                                    name="national" checked="checked">
-                                                                <label class="form-check-label"
-                                                                    for="allowblog_detail_tr"></label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!--end::Input group-->
-
-
-                                                </div>
-                                                <!--end::Input group-->
                                                 <div class="row mb-6">
-                                                    <!--begin::Tab-->
-                                                    <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
-                                                        <li class="nav-item">
-                                                            <a class="nav-link active" data-bs-toggle="tab"
-                                                                href="#tab_blog_tr">
-                                                                <span>
-                                                                    <img src="https://gaviapanel.gaviaworks.org/assets/images/svg/turkey.svg"
-                                                                        width="28" height="28" alt="TR"
-                                                                        title="TR">
-                                                                </span>
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
+                                                        <span class="required"> Yayın Tarihi</span>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-10 fv-row">
+                                                        <input type="date"
+                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                            name="" id="">
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
 
-                                                            </a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link" data-bs-toggle="tab" href="#tab_blog_en">
-                                                                <span>
-                                                                    <img src="https://gaviapanel.gaviaworks.org/assets/images/svg/england.svg"
-                                                                        width="28" height="28" alt="EN"
-                                                                        title="EN">
-                                                                </span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="tab-content" id="TabContent_2">
-                                                        <div class="tab-pane fade show active" id="tab_blog_tr"
-                                                            role="tabpanel">
-                                                            <!--begin::Form-->
-                                                            <!--begin::Card body-->
-                                                            <div class="card-body px-0 py-9">
-                                                                <!--begin::Input group-->
-                                                                <div class="row mb-6">
-                                                                    <!--begin::Label-->
-                                                                    <label
-                                                                        class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Başlık</label>
-                                                                    <!--end::Label-->
-                                                                    <!--begin::Col-->
-                                                                    <div class="col-lg-10">
-                                                                        <!--begin::Row-->
-                                                                        <div class="row">
-                                                                            <!--begin::Col-->
-                                                                            <div class="col-lg-12 fv-row">
-                                                                                <input type="text" name="name_tr"
-                                                                                    id="name_tr"
-                                                                                    onchange="create_slug_tr()"
-                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="" />
-                                                                            </div>
-                                                                            <!--end::Col-->
+                                                
+                                                <div class="row mb-6">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
+                                                        <span class="required"> Youtube</span>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-10 fv-row">
+                                                        <input type="text"
+                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                            name="" id="">
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+
+
+
+                                                
+
+
+                                            </div>
+                                            <!--end::Input group-->
+                                            <div class="row mb-6">
+                                                <!--begin::Tab-->
+                                                <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link active" data-bs-toggle="tab"
+                                                            href="#tab_blog_tr">
+                                                            <span>
+                                                                <img src="https://gaviapanel.gaviaworks.org/assets/images/svg/turkey.svg"
+                                                                    width="28" height="28" alt="TR"
+                                                                    title="TR">
+                                                            </span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" data-bs-toggle="tab" href="#tab_blog_en">
+                                                            <span>
+                                                                <img src="https://gaviapanel.gaviaworks.org/assets/images/svg/england.svg"
+                                                                    width="28" height="28" alt="EN"
+                                                                    title="EN">
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <div class="tab-content" id="TabContent_2">
+                                                    <div class="tab-pane fade show active" id="tab_blog_tr"
+                                                        role="tabpanel">
+                                                        <!--begin::Form-->
+                                                        <!--begin::Card body-->
+                                                        <div class="card-body px-0 py-9">
+                                                            <!--begin::Input group-->
+                                                            <div class="row mb-6">
+                                                                <!--begin::Label-->
+                                                                <label
+                                                                    class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Başlık</label>
+                                                                <!--end::Label-->
+                                                                <!--begin::Col-->
+                                                                <div class="col-lg-10">
+                                                                    <!--begin::Row-->
+                                                                    <div class="row">
+                                                                        <!--begin::Col-->
+                                                                        <div class="col-lg-12 fv-row">
+                                                                            <input type="text" name="name_tr"
+                                                                                id="name_tr" onchange="create_slug_tr()"
+                                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                value="" />
                                                                         </div>
-                                                                        <!--end::Row-->
+                                                                        <!--end::Col-->
                                                                     </div>
-                                                                    <!--end::Col-->
+                                                                    <!--end::Row-->
                                                                 </div>
-                                                                <!--end::Input group-->
-                                                                <!--begin::Input group-->
-                                                                <div class="row mb-6">
-                                                                    <!--begin::Label-->
-                                                                    <label
-                                                                        class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Özet</label>
-                                                                    <!--end::Label-->
-                                                                    <!--begin::Col-->
-                                                                    <div class="col-lg-10 fv-row">
-                                                                        <textarea name="short_description_tr" id="short_description_tr" onchange="create_ozet_tr()"
-                                                                            class="form-control form-control-lg form-control-solid" value=""></textarea>
-                                                                    </div>
-                                                                    <!--end::Col-->
-                                                                </div>
-                                                                <!--end::Input group-->
-                                                                <!--begin::Input group-->
-                                                                <div class="row mb-6">
-                                                                    <!--begin::Label-->
-                                                                    <label
-                                                                        class="col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5">
-                                                                        <span>İçerik</span>
-                                                                    </label>
-                                                                    <!--end::Label-->
-                                                                    <!--begin::Col-->
-                                                                    <div class="col-lg-12 fv-row mb-5 ps-5">
+                                                                <!--end::Col-->
+                                                            </div>
 
-                                                                        <textarea id="editor" name="description_tr" class="tox-target ckeditor">
+                                                            <div class="row mb-6">
+                                                                <!--begin::Label-->
+                                                                <label
+                                                                    class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Link</label>
+                                                                <!--end::Label-->
+                                                                <!--begin::Col-->
+                                                                <div class="col-lg-10">
+                                                                    <!--begin::Row-->
+                                                                    <div class="row">
+                                                                        <!--begin::Col-->
+                                                                        <div class="col-lg-12 fv-row">
+                                                                            <input type="text" name="link_tr"
+                                                                                id="link_tr" onchange="create_slug_tr()"
+                                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                value="" />
+                                                                        </div>
+                                                                        <!--end::Col-->
+                                                                    </div>
+                                                                    <!--end::Row-->
+                                                                </div>
+                                                                <!--end::Col-->
+                                                            </div>
+                                                            <!--end::Input group-->
+                                                            <!--begin::Input group-->
+                                                            <div class="row mb-6">
+                                                                <!--begin::Label-->
+                                                                <label
+                                                                    class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Özet</label>
+                                                                <!--end::Label-->
+                                                                <!--begin::Col-->
+                                                                <div class="col-lg-10 fv-row">
+                                                                    <textarea name="short_description_tr" id="short_description_tr" onchange="create_ozet_tr()"
+                                                                        class="form-control form-control-lg form-control-solid" value=""></textarea>
+                                                                </div>
+                                                                <!--end::Col-->
+                                                            </div>
+                                                            <!--end::Input group-->
+                                                            <!--begin::Input group-->
+                                                            <div class="row mb-6">
+                                                                <!--begin::Label-->
+                                                                <label
+                                                                    class="col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5">
+                                                                    <span>İçerik</span>
+                                                                </label>
+                                                                <!--end::Label-->
+                                                                <!--begin::Col-->
+                                                                <div class="col-lg-12 fv-row mb-5 ps-5">
+
+                                                                    <textarea id="editor" name="description_tr" class="tox-target ckeditor">
                                                                                     
                                                                                 </textarea>
 
 
-                                                                    </div>
-                                                                    <!--end::Col-->
                                                                 </div>
-
-
-
+                                                                <!--end::Col-->
                                                             </div>
-                                                            <!--end::Card body-->
-                                                            <!--begin::Actions-->
-                                                            <div
-                                                                class="card-footer d-flex justify-content-between py-6 px-0">
-                                                                <!--begin::Input group-->
-                                                                <div class="row mb-0">
-                                                                    <label
-                                                                        class="col-lg-8 col-form-label fw-bold fs-6 ps-5">Durum</label>
-                                                                    <div class="col-lg-4 d-flex align-items-center">
-                                                                        <div
-                                                                            class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                            <input class="form-check-input w-50px h-25px"
-                                                                                type="checkbox" name="status_tr"
-                                                                                checked="checked" />
-                                                                            <label class="form-check-label"
-                                                                                for="allowblog_detail_tr"></label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!--end::Input group-->
 
 
-                                                            </div>
-                                                            <!--end::Actions-->
-                                                            <!--end::Form-->
+
                                                         </div>
-                                                        <div class="tab-pane fade" id="tab_blog_en" role="tabpanel">
-                                                            <!--begin::Form-->
-                                                            <!--begin::Card body-->
-                                                            <div class="card-body px-0 py-9">
-                                                                <!--begin::Input group-->
-                                                                <div class="row mb-6">
-                                                                    <!--begin::Label-->
-                                                                    <label
-                                                                        class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Başlık</label>
-                                                                    <!--end::Label-->
-                                                                    <!--begin::Col-->
-                                                                    <div class="col-lg-10">
-                                                                        <!--begin::Row-->
-                                                                        <div class="row">
-                                                                            <!--begin::Col-->
-                                                                            <div class="col-lg-12 fv-row">
-                                                                                <input type="text" name="name_en"
-                                                                                    id="name_en"
-                                                                                    onchange="create_slug_en()"
-                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="" />
-                                                                            </div>
-                                                                            <!--end::Col-->
-                                                                        </div>
-                                                                        <!--end::Row-->
+                                                        <!--end::Card body-->
+                                                        <!--begin::Actions-->
+                                                        <div class="card-footer d-flex justify-content-between py-6 px-0">
+                                                            <!--begin::Input group-->
+                                                            <div class="row mb-0">
+                                                                <label
+                                                                    class="col-lg-8 col-form-label fw-bold fs-6 ps-5">Durum</label>
+                                                                <div class="col-lg-4 d-flex align-items-center">
+                                                                    <div
+                                                                        class="form-check form-check-solid form-switch form-check-custom fv-row">
+                                                                        <input class="form-check-input w-50px h-25px"
+                                                                            type="checkbox" name="status_tr"
+                                                                            checked="checked" />
+                                                                        <label class="form-check-label"
+                                                                            for="allowblog_detail_tr"></label>
                                                                     </div>
-                                                                    <!--end::Col-->
                                                                 </div>
-                                                                <!--end::Input group-->
-                                                                <!--begin::Input group-->
-                                                                <div class="row mb-6">
-                                                                    <!--begin::Label-->
-                                                                    <label
-                                                                        class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Özet</label>
-                                                                    <!--end::Label-->
-                                                                    <!--begin::Col-->
-                                                                    <div class="col-lg-10 fv-row">
-                                                                        <textarea name="short_description_en" id="short_description_en" onchange="create_ozet_en()"
-                                                                            class="form-control form-control-lg form-control-solid" value=""></textarea>
-                                                                    </div>
-                                                                    <!--end::Col-->
-                                                                </div>
-                                                                <!--end::Input group-->
-                                                                <!--begin::Input group-->
-                                                                <div class="row mb-6">
-                                                                    <!--begin::Label-->
-                                                                    <label
-                                                                        class="col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5">
-                                                                        <span>İçerik</span>
-                                                                    </label>
-                                                                    <!--end::Label-->
-                                                                    <!--begin::Col-->
-                                                                    <div class="col-lg-12 fv-row mb-5 ps-5">
+                                                            </div>
+                                                            <!--end::Input group-->
 
-                                                                        <textarea id="editor2" name="description_en" class="tox-target ckeditor">
+
+                                                        </div>
+                                                        <!--end::Actions-->
+                                                        <!--end::Form-->
+                                                    </div>
+                                                    <div class="tab-pane fade" id="tab_blog_en" role="tabpanel">
+                                                        <!--begin::Form-->
+                                                        <!--begin::Card body-->
+                                                        <div class="card-body px-0 py-9">
+                                                            <!--begin::Input group-->
+                                                            <div class="row mb-6">
+                                                                <!--begin::Label-->
+                                                                <label
+                                                                    class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Başlık</label>
+                                                                <!--end::Label-->
+                                                                <!--begin::Col-->
+                                                                <div class="col-lg-10">
+                                                                    <!--begin::Row-->
+                                                                    <div class="row">
+                                                                        <!--begin::Col-->
+                                                                        <div class="col-lg-12 fv-row">
+                                                                            <input type="text" name="name_en"
+                                                                                id="name_en" onchange="create_slug_en()"
+                                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                value="" />
+                                                                        </div>
+                                                                        <!--end::Col-->
+                                                                    </div>
+                                                                    <!--end::Row-->
+                                                                </div>
+                                                                <!--end::Col-->
+                                                            </div>
+
+                                                            <div class="row mb-6">
+                                                                <!--begin::Label-->
+                                                                <label
+                                                                    class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Link</label>
+                                                                <!--end::Label-->
+                                                                <!--begin::Col-->
+                                                                <div class="col-lg-10">
+                                                                    <!--begin::Row-->
+                                                                    <div class="row">
+                                                                        <!--begin::Col-->
+                                                                        <div class="col-lg-12 fv-row">
+                                                                            <input type="text" name="link_en"
+                                                                                id="link_en" onchange="create_slug_en()"
+                                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                value="" />
+                                                                        </div>
+                                                                        <!--end::Col-->
+                                                                    </div>
+                                                                    <!--end::Row-->
+                                                                </div>
+                                                                <!--end::Col-->
+                                                            </div>
+                                                            <!--end::Input group-->
+                                                            <!--begin::Input group-->
+                                                            <div class="row mb-6">
+                                                                <!--begin::Label-->
+                                                                <label
+                                                                    class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Özet</label>
+                                                                <!--end::Label-->
+                                                                <!--begin::Col-->
+                                                                <div class="col-lg-10 fv-row">
+                                                                    <textarea name="short_description_en" id="short_description_en" onchange="create_ozet_en()"
+                                                                        class="form-control form-control-lg form-control-solid" value=""></textarea>
+                                                                </div>
+                                                                <!--end::Col-->
+                                                            </div>
+                                                            <!--end::Input group-->
+                                                            <!--begin::Input group-->
+                                                            <div class="row mb-6">
+                                                                <!--begin::Label-->
+                                                                <label
+                                                                    class="col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5">
+                                                                    <span>İçerik</span>
+                                                                </label>
+                                                                <!--end::Label-->
+                                                                <!--begin::Col-->
+                                                                <div class="col-lg-12 fv-row mb-5 ps-5">
+
+                                                                    <textarea id="editor2" name="description_en" class="tox-target ckeditor">
                                                                                     
                                                                                 </textarea>
 
 
-                                                                    </div>
-                                                                    <!--end::Col-->
                                                                 </div>
-                                                                <!--end::Input group-->
-                                                                <!--begin::Input group-->
-                                                                <!--end::Input group-->
-
-                                                                <!--begin::Input group-->
-
-
-
+                                                                <!--end::Col-->
                                                             </div>
-                                                            <!--end::Card body-->
-                                                            <!--begin::Actions-->
-                                                            <div
-                                                                class="card-footer d-flex justify-content-between py-6 px-0">
-                                                                <!--begin::Input group-->
-                                                                <div class="row mb-0">
-                                                                    <label
-                                                                        class="col-lg-8 col-form-label fw-bold fs-6 ps-5">Durum</label>
-                                                                    <div class="col-lg-4 d-flex align-items-center">
-                                                                        <div
-                                                                            class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                            <input class="form-check-input w-50px h-25px"
-                                                                                type="checkbox" id="allowblog_detail_en"
-                                                                                name="status_en" checked="checked" />
-                                                                            <label class="form-check-label"
-                                                                                for="allowblog_detail_en"></label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!--end::Input group-->
+                                                            <!--end::Input group-->
+                                                            <!--begin::Input group-->
+                                                            <!--end::Input group-->
+
+                                                            <!--begin::Input group-->
 
 
-                                                            </div>
-                                                            <!--end::Actions-->
-                                                            <!--end::Form-->
+
                                                         </div>
+                                                        <!--end::Card body-->
+                                                        <!--begin::Actions-->
+                                                        <div class="card-footer d-flex justify-content-between py-6 px-0">
+                                                            <!--begin::Input group-->
+                                                            <div class="row mb-0">
+                                                                <label
+                                                                    class="col-lg-8 col-form-label fw-bold fs-6 ps-5">Durum</label>
+                                                                <div class="col-lg-4 d-flex align-items-center">
+                                                                    <div
+                                                                        class="form-check form-check-solid form-switch form-check-custom fv-row">
+                                                                        <input class="form-check-input w-50px h-25px"
+                                                                            type="checkbox" id="allowblog_detail_en"
+                                                                            name="status_en" checked="checked" />
+                                                                        <label class="form-check-label"
+                                                                            for="allowblog_detail_en"></label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!--end::Input group-->
+
+
+                                                        </div>
+                                                        <!--end::Actions-->
+                                                        <!--end::Form-->
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!--end::Card body-->
-                                            <!--end::Form-->
                                         </div>
+                                        <!--end::Card body-->
+                                        <!--end::Form-->
                                         <div class="tab-pane fade" id="tab_blog_seo" role="tabpanel">
                                             <!--begin::Tab-->
                                             <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
@@ -668,24 +640,26 @@
 
                                         </div>
                                     </div>
-                                    <!--end::Tab-->
+
                                 </div>
-                                <!--begin::Body-->
+                                <!--end::Tab-->
                             </div>
+                            <!--begin::Body-->
                         </div>
-                        <!--end::Col-->
                     </div>
-                    <!--end::Row-->
-
-                    <div class="right" style="text-align: right">
-                        <button class="btn btn-primary"> {{ __('message.kaydet') }} </button>
-                    </div>
-
+                    <!--end::Col-->
                 </div>
-                <!--end::Content container-->
+                <!--end::Row-->
+
+                <div class="right" style="text-align: right">
+                    <button class="btn btn-primary"> {{ __('message.kaydet') }} </button>
+                </div>
+
             </div>
-            <!--end::Content-->
-        </form>
+            <!--end::Content container-->
+    </div>
+    <!--end::Content-->
+    </form>
 
     </div>
     <!--end::Content wrapper-->

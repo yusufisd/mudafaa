@@ -672,7 +672,7 @@
                                     <!--begin:Menu link-->
                                     <a class="menu-link" href="{{ route('admin.activity.list') }}">
                                         <span class="menu-icon">
-                                            <i class="fa fa-text-width" aria-hidden="true"></i>
+                                            <i class="fa fa-bars" aria-hidden="true"></i>
                                         </span>
                                         <span class="menu-title"> {{ __('message.etkinlik') }} {{ __('message.yönetimi') }}
                                         </span>
@@ -680,6 +680,18 @@
                                     <!--end:Menu link-->
                                 </div>
                                 <!--end:Menu item-->
+
+                                <div class="menu-item">
+                                    <!--begin:Menu link-->
+                                    <a class="menu-link" href="{{ route('admin.interview.list') }}">
+                                        <span class="menu-icon">
+                                            <i class="fa fa-text-width" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="menu-title"> Röportaj {{ __('message.yönetimi') }}
+                                        </span>
+                                    </a>
+                                    <!--end:Menu link-->
+                                </div>
 
                                  <!--begin:Menu item-->
                                  <div class="menu-item">
@@ -693,6 +705,8 @@
                                     <!--end:Menu link-->
                                 </div>
                                 <!--end:Menu item-->
+
+                                <hr>
 
                                 <!--begin:Menu item-->
                                 <div class="menu-item">

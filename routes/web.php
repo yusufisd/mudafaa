@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\DefenseIndustryCategoryController;
 use App\Http\Controllers\Backend\DefenseIndustryContentController;
 use App\Http\Controllers\Backend\DefenseIndustryController;
 use App\Http\Controllers\Backend\HomeController;
+use App\Http\Controllers\Backend\InterviewController;
 use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -171,4 +172,17 @@ Route::prefix('admin')
                 Route::post('guncelle/{id?}', 'update')->name('update');
                 Route::get('sil/{id?}', 'destroy')->name('destroy');
             });
+
+            // ETKİNLİK  CONTROLLER
+        Route::controller(InterviewController::class)
+        ->prefix('roportaj')
+        ->name('interview.')
+        ->group(function () {
+            Route::get('ekle', 'create')->name('add');
+            Route::post('ekle', 'store')->name('store');
+            Route::get('liste', 'index')->name('list');
+            Route::get('duzenle/{id?}', 'edit')->name('edit');
+            Route::post('guncelle/{id?}', 'update')->name('update');
+            Route::get('sil/{id?}', 'destroy')->name('destroy');
+        });
     });
