@@ -10,9 +10,12 @@ use App\Http\Controllers\Backend\CurrentNewsController;
 use App\Http\Controllers\Backend\DefenseIndustryCategoryController;
 use App\Http\Controllers\Backend\DefenseIndustryContentController;
 use App\Http\Controllers\Backend\DefenseIndustryController;
+use App\Http\Controllers\Backend\DictionaryController;
 use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\InterviewController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Backend\VideoCategoryController;
+use App\Http\Controllers\Backend\VideoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -173,16 +176,55 @@ Route::prefix('admin')
                 Route::get('sil/{id?}', 'destroy')->name('destroy');
             });
 
-            // ETKİNLİK  CONTROLLER
+        // ETKİNLİK  CONTROLLER
         Route::controller(InterviewController::class)
-        ->prefix('roportaj')
-        ->name('interview.')
-        ->group(function () {
-            Route::get('ekle', 'create')->name('add');
-            Route::post('ekle', 'store')->name('store');
-            Route::get('liste', 'index')->name('list');
-            Route::get('duzenle/{id?}', 'edit')->name('edit');
-            Route::post('guncelle/{id?}', 'update')->name('update');
-            Route::get('sil/{id?}', 'destroy')->name('destroy');
-        });
+            ->prefix('roportaj')
+            ->name('interview.')
+            ->group(function () {
+                Route::get('ekle', 'create')->name('add');
+                Route::post('ekle', 'store')->name('store');
+                Route::get('liste', 'index')->name('list');
+                Route::get('duzenle/{id?}', 'edit')->name('edit');
+                Route::post('guncelle/{id?}', 'update')->name('update');
+                Route::get('sil/{id?}', 'destroy')->name('destroy');
+            });
+
+        // SÖZLÜK  CONTROLLER
+        Route::controller(DictionaryController::class)
+            ->prefix('sozluk')
+            ->name('dictionary.')
+            ->group(function () {
+                Route::get('ekle', 'create')->name('add');
+                Route::post('ekle', 'store')->name('store');
+                Route::get('liste', 'index')->name('list');
+                Route::get('duzenle/{id?}', 'edit')->name('edit');
+                Route::post('guncelle/{id?}', 'update')->name('update');
+                Route::get('sil/{id?}', 'destroy')->name('destroy');
+            });
+
+        // VİDEO KATEGORİ  CONTROLLER
+        Route::controller(VideoCategoryController::class)
+            ->prefix('video-kategori')
+            ->name('videoCategory.')
+            ->group(function () {
+                Route::get('ekle', 'create')->name('add');
+                Route::post('ekle', 'store')->name('store');
+                Route::get('liste', 'index')->name('list');
+                Route::get('duzenle/{id?}', 'edit')->name('edit');
+                Route::post('guncelle/{id?}', 'update')->name('update');
+                Route::get('sil/{id?}', 'destroy')->name('destroy');
+            });
+
+        // VİDEO  CONTROLLER
+        Route::controller(VideoController::class)
+            ->prefix('video')
+            ->name('video.')
+            ->group(function () {
+                Route::get('ekle', 'create')->name('add');
+                Route::post('ekle', 'store')->name('store');
+                Route::get('liste', 'index')->name('list');
+                Route::get('duzenle/{id?}', 'edit')->name('edit');
+                Route::post('guncelle/{id?}', 'update')->name('update');
+                Route::get('sil/{id?}', 'destroy')->name('destroy');
+            });
     });

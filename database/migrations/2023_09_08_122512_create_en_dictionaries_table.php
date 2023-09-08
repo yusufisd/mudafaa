@@ -11,24 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('defense_industry_contents', function (Blueprint $table) {
+        Schema::create('en_dictionaries', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('image');
-            $table->string('category');
-            $table->string('countries');
-            $table->string('companies');
-            $table->string('origin');
+            $table->string('description');
             $table->string('link');
-            $table->integer('national')->default(1);
-            $table->integer('author');
-            $table->integer('status')->default(1);
-            $table->string('short_description');
-            $table->longText('description');
             $table->string('seo_title');
             $table->string('seo_description');
             $table->string('seo_key');
             $table->integer('seo_statu')->default(1);
+            $table->integer('dictionary_id');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -39,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('defense_industry_contents');
+        Schema::dropIfExists('en_dictionaries');
     }
 };
