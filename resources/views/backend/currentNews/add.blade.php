@@ -302,19 +302,14 @@
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <div class="row">
-                                                                                    <div class="col-lg-10">
+                                                                                    <div class="col-lg-12">
                                                                                         <input type="text"
                                                                                             name="activity_url_tr"
                                                                                             id="activity_url_tr"
                                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                             value="" />
                                                                                     </div>
-                                                                                    <div class="col-lg-2">
-                                                                                        <button type="submit"
-                                                                                            class="btn btn-outline btn-outline-success w-100"
-                                                                                            id="activity_detail_url_btn_tr">URL
-                                                                                            ÜRET</button>
-                                                                                    </div>
+                                                                                    
 
                                                                                 </div>
                                                                             </div>
@@ -478,19 +473,14 @@
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <div class="row">
-                                                                                    <div class="col-lg-10">
+                                                                                    <div class="col-lg-12">
                                                                                         <input type="text"
                                                                                             name="activity_url_en"
                                                                                             id="activity_url_en"
                                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                             value="" />
                                                                                     </div>
-                                                                                    <div class="col-lg-2">
-                                                                                        <button type="submit"
-                                                                                            class="btn btn-outline btn-outline-success w-100"
-                                                                                            id="activity_detail_url_btn_tr">URL
-                                                                                            ÜRET</button>
-                                                                                    </div>
+                                                                                    
 
                                                                                 </div>
                                                                             </div>
@@ -638,7 +628,7 @@
                                                                     <div class="col-lg-12 fv-row">
                                                                         <input type="text"
                                                                             id="activity_seo_keywords_tr"
-                                                                            name="activity_seo_keywords_tr"
+                                                                            name="activity_seo_keywords_tr[]"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                             value="" />
                                                                     </div>
@@ -653,25 +643,7 @@
                                                     </div>
                                                     <!--end::Card body-->
                                                     <!--begin::Actions-->
-                                                    <div class="card-footer d-flex justify-content-between py-6 px-0">
-                                                        <!--begin::Input group-->
-                                                        <div class="row mb-0">
-                                                            <label
-                                                                class="col-lg-8 col-form-label fw-bold fs-6 ">Durum</label>
-                                                            <div class="col-lg-4 d-flex align-items-center">
-                                                                <div
-                                                                    class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                    <input class="form-check-input w-50px h-25px"
-                                                                        type="checkbox" id="allowactivity_seo_tr"
-                                                                        checked="checked" name="seo_statu_tr" />
-                                                                    <label class="form-check-label"
-                                                                        for="allowactivity_seo_tr"></label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!--end::Input group-->
-
-                                                    </div>
+                                                    
                                                     <!--end::Actions-->
                                                     <!--end::Form-->
                                                 </div>
@@ -732,7 +704,7 @@
                                                                     <div class="col-lg-12 fv-row">
                                                                         <input type="text"
                                                                             id="activity_seo_keywords_en"
-                                                                            name="activity_seo_keywords_en"
+                                                                            name="activity_seo_keywords_en[]"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                             value="" />
                                                                     </div>
@@ -747,26 +719,7 @@
                                                     </div>
                                                     <!--end::Card body-->
                                                     <!--begin::Actions-->
-                                                    <div class="card-footer d-flex justify-content-between py-6 px-0">
-
-                                                        <!--begin::Input group-->
-                                                        <div class="row mb-0">
-                                                            <label
-                                                                class="col-lg-8 col-form-label fw-bold fs-6 ">Durum</label>
-                                                            <div class="col-lg-4 d-flex align-items-center">
-                                                                <div
-                                                                    class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                    <input class="form-check-input w-50px h-25px"
-                                                                        type="checkbox" id="allowactivity_seo_en"
-                                                                        checked="checked" name="seo_statu_en" />
-                                                                    <label class="form-check-label"
-                                                                        for="allowactivity_seo_en"></label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!--end::Input group-->
-
-                                                    </div>
+                                                    
                                                     <!--end::Actions-->
                                                     <!--end::Form-->
                                                 </div>

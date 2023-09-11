@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Company;
 use App\Models\Country;
+use App\Models\CountryList;
 use App\Models\DefenseIndustry;
 use App\Models\DefenseIndustryCategory;
 use App\Models\DefenseIndustryContent;
@@ -46,8 +47,6 @@ class DefenseIndustryContentController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            DB::beginTransaction();
 
             $new = new DefenseIndustryContent();
 
@@ -58,6 +57,7 @@ class DefenseIndustryContentController extends Controller
             $new->seo_title = $request->seo_title_tr;
             $new->countries = $request->countries;
             $new->companies = $request->company;
+            $new->link = $request->link_tr;
             $new->origin = $request->origin;
             $new->author = $request->author;
             $new->seo_description = $request->seo_description_tr;
@@ -89,6 +89,7 @@ class DefenseIndustryContentController extends Controller
             $new_en->short_description = $request->short_description_en;
             $new_en->description = $request->description_en;
             $new_en->content_id = $new->id;
+            $new_en->link = $request->link_en;
             $new_en->seo_title = $request->seo_title_en;
             $new_en->seo_description = $request->seo_description_en;
             $new_en->seo_key = $request->seo_key_en;
@@ -104,15 +105,7 @@ class DefenseIndustryContentController extends Controller
             logKayit(['Savunma Sanayi ', 'Savunma sanayi içeriği eklendi']);
             Alert::success('İçerik Başarıyla Eklendi');
             DB::commit();
-        } catch (Throwable $e) {
-            DB::rollBack();
-
-            logKayit(['Savunma Sanayi ', 'Savunma sanayi içeriği eklemede hata', 0]);
-            Alert::error('Firma Eklemede Hata');
-            throw ValidationException::withMessages([
-                'error' => 'Tüm alanların doldurulması zorunludur.'
-            ]);
-        }
+        
         return redirect()->route('admin.defenseIndustryContent.list');
     }
 

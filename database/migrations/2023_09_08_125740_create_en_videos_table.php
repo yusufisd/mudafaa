@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('seo_title');
             $table->string('seo_description');
             $table->string('seo_key');
-            $table->integer('seo_statu')->default(1);
+            $table->integer('status')->default(1);
             $table->integer('video_id');
             $table->softDeletes();
             $table->timestamps();

@@ -80,8 +80,8 @@
                                                 </th>
                                                 <th> {{ __('message.görsel') }} <i class="fa fa-sort ms-3"></i></th>
                                                 <th> {{ __('message.başlık') }} <i class="fa fa-sort ms-3"></i></th>
-                                                <th> {{ __('message.sıralama') }} <i class="fa fa-sort ms-3"></i></th>
-                                                <th> {{ __('message.durum') }} <i class="fa fa-sort ms-3"></i></th>
+                                                <th> {{ __('message.yazar') }} <i class="fa fa-sort ms-3"></i></th>
+                                                <th> Yayın Tarihi <i class="fa fa-sort ms-3"></i></th>
                                                 <th> {{ __('message.işlem') }} <i class="fa fa-sort ms-3"></i></th>
                                             </tr>
                                         </thead>
@@ -100,18 +100,8 @@
                                                         <img src="/{{ $item->image }}" style="width:150px; border-radius:5%" alt="">
                                                     </td>
                                                     <td> {{ $item->title }} </td>
-                                                    <td> {{ $item->queue }} </td>
-                                                    <td>
-                                                        <div
-                                                            class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
-                                                            <input class="form-check-input w-50px h-25px" type="checkbox"
-                                                                id="blog_status_1"
-                                                                onchange="change_status({{ $item->id }})"
-                                                                {{ $item->status == 1 ? 'checked' : '' }}>
-                                                            <label class="form-check-label" for="blog_status_1"></label>
-                                                        </div>
-
-                                                    </td>
+                                                    <td> {{ $item->Author->name }} {{ $item->Author->surname }} </td>
+                                                    <td> {{ $item->live_date }} </td>
                                                     <td>
                                                         <a href="#"
                                                             class="px-2 btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"

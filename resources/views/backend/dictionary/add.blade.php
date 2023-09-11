@@ -32,7 +32,7 @@
         <!--end::Toolbar-->
         <!--begin::Content-->
 
-        <form action="{{ route('admin.activity.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.dictionary.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div id="kt_app_content" class="app-content flex-column-fluid">
                 <!--begin::Content container-->
@@ -145,7 +145,7 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input type="date" name="activity_on_location_tr"
+                                                                        <input type="date" name="live_date"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                             value="{{ substr($now, 0, 10) }}" />
                                                                     </div>
@@ -219,14 +219,17 @@
                                                             <div class="row mb-6">
                                                                 <!--begin::Label-->
                                                                 <label
-                                                                    class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Özet</label>
+                                                                    class="col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5">
+                                                                    <span>İçerik</span>
+                                                                </label>
                                                                 <!--end::Label-->
                                                                 <!--begin::Col-->
-                                                                <div class="col-lg-10 fv-row">
-                                                                    <textarea name="short_description_tr" id="short_description_tr" onchange="create_ozet_tr()"
-                                                                        class="form-control form-control-lg form-control-solid" value=""></textarea>
+                                                                <div class="col-lg-12 fv-row mb-5 ps-5">
+
+                                                                    <textarea id="editor" name="short_description_tr" class="tox-target ckeditor">
+                                                                        </textarea>
+
                                                                 </div>
-                                                                <!--end::Col-->
                                                             </div>
 
 
@@ -243,7 +246,7 @@
                                                                         <!--begin::Col-->
                                                                         <div class="col-lg-12 fv-row">
                                                                             <input type="text" name="link_tr"
-                                                                                id="link_tr" onchange="create_slug_tr()"
+                                                                                id="link_tr"
                                                                                 class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                 value="" />
                                                                         </div>
@@ -255,6 +258,28 @@
                                                             </div>
 
 
+                                                            <div
+                                                                class="card-footer d-flex justify-content-between py-6 px-0">
+
+                                                                <!--begin::Input group-->
+                                                                <div class="row mb-0">
+                                                                    <label
+                                                                        class="col-lg-8 col-form-label fw-bold fs-6 ">Durum</label>
+                                                                    <div class="col-lg-4 d-flex align-items-center">
+                                                                        <div
+                                                                            class="form-check form-check-solid form-switch form-check-custom fv-row">
+                                                                            <input class="form-check-input w-50px h-25px"
+                                                                                name="status_tr" type="checkbox"
+                                                                                id="allowblog_seo_tr" checked="checked" />
+                                                                            <label class="form-check-label"
+                                                                                for="allowblog_seo_tr"></label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!--end::Input group-->
+
+
+                                                            </div>
 
                                                         </div>
                                                     </div>
@@ -292,14 +317,17 @@
                                                             <div class="row mb-6">
                                                                 <!--begin::Label-->
                                                                 <label
-                                                                    class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Özet</label>
+                                                                    class="col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5">
+                                                                    <span>İçerik</span>
+                                                                </label>
                                                                 <!--end::Label-->
                                                                 <!--begin::Col-->
-                                                                <div class="col-lg-10 fv-row">
-                                                                    <textarea name="short_description_en" id="short_description_en" onchange="create_ozet_en()"
-                                                                        class="form-control form-control-lg form-control-solid" value=""></textarea>
+                                                                <div class="col-lg-12 fv-row mb-5 ps-5">
+
+                                                                    <textarea id="editor2" name="short_description_en" class="tox-target ckeditor">
+                                                                        </textarea>
+
                                                                 </div>
-                                                                <!--end::Col-->
                                                             </div>
                                                             <!--end::Input group-->
                                                             <!--begin::Input group-->
@@ -315,7 +343,7 @@
                                                                         <!--begin::Col-->
                                                                         <div class="col-lg-12 fv-row">
                                                                             <input type="text" name="link_en"
-                                                                                id="link_en" onchange="create_slug_en()"
+                                                                                id="link_en"
                                                                                 class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                 value="" />
                                                                         </div>
@@ -330,8 +358,28 @@
                                                             <!--end::Input group-->
 
                                                             <!--begin::Input group-->
+                                                            <div
+                                                                class="card-footer d-flex justify-content-between py-6 px-0">
+
+                                                                <!--begin::Input group-->
+                                                                <div class="row mb-0">
+                                                                    <label
+                                                                        class="col-lg-8 col-form-label fw-bold fs-6 ">Durum</label>
+                                                                    <div class="col-lg-4 d-flex align-items-center">
+                                                                        <div
+                                                                            class="form-check form-check-solid form-switch form-check-custom fv-row">
+                                                                            <input class="form-check-input w-50px h-25px"
+                                                                                name="status_tr" type="checkbox"
+                                                                                id="allowblog_seo_tr" checked="checked" />
+                                                                            <label class="form-check-label"
+                                                                                for="allowblog_seo_tr"></label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!--end::Input group-->
 
 
+                                                            </div>
 
                                                         </div>
                                                         <!--end::Card body-->
@@ -424,7 +472,8 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input type="text" id="blog_seo_keywords_tr"
+                                                                        <input type="text"
+                                                                            id="activity_seo_keywords_tr"
                                                                             name="seo_key_tr[]"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                             value="" />
@@ -440,27 +489,7 @@
                                                     </div>
                                                     <!--end::Card body-->
                                                     <!--begin::Actions-->
-                                                    <div class="card-footer d-flex justify-content-between py-6 px-0">
-
-                                                        <!--begin::Input group-->
-                                                        <div class="row mb-0">
-                                                            <label
-                                                                class="col-lg-8 col-form-label fw-bold fs-6 ">Durum</label>
-                                                            <div class="col-lg-4 d-flex align-items-center">
-                                                                <div
-                                                                    class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                    <input class="form-check-input w-50px h-25px"
-                                                                        name="seo_statu_tr" type="checkbox"
-                                                                        id="allowblog_seo_tr" checked="checked" />
-                                                                    <label class="form-check-label"
-                                                                        for="allowblog_seo_tr"></label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!--end::Input group-->
-
-
-                                                    </div>
+                                                   
                                                     <!--end::Actions-->
                                                     <!--end::Form-->
                                                 </div>
@@ -535,26 +564,7 @@
                                                     </div>
                                                     <!--end::Card body-->
                                                     <!--begin::Actions-->
-                                                    <div class="card-footer d-flex justify-content-between py-6 px-0">
-
-                                                        <!--begin::Input group-->
-                                                        <div class="row mb-0">
-                                                            <label
-                                                                class="col-lg-8 col-form-label fw-bold fs-6 ">Durum</label>
-                                                            <div class="col-lg-4 d-flex align-items-center">
-                                                                <div
-                                                                    class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                    <input class="form-check-input w-50px h-25px"
-                                                                        type="checkbox" id="allowblog_seo_en"
-                                                                        checked="checked" name="seo_statu_en" />
-                                                                    <label class="form-check-label"
-                                                                        for="allowblog_seo_en"></label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!--end::Input group-->
-
-                                                    </div>
+                                                   
                                                     <!--end::Actions-->
                                                     <!--end::Form-->
                                                 </div>
@@ -572,11 +582,11 @@
                         </div>
                     </div>
                     <!--end::Col-->
-                </div>
-                <!--end::Row-->
+                    <!--end::Row-->
 
-                <div class="right" style="text-align: right">
-                    <button class="btn btn-primary"> {{ __('message.kaydet') }} </button>
+                    <div class="right" style="text-align: right">
+                        <button class="btn btn-primary"> {{ __('message.kaydet') }} </button>
+                    </div>
                 </div>
 
             </div>
@@ -615,11 +625,15 @@
     <script>
         function create_slug_tr() {
             var Text = $("#name_tr").val();
+            Text2 = (slug(Text));
+            $("#link_tr").val(Text2);
             $("#seo_title_tr").val(Text);
         }
 
         function create_slug_en() {
             var Text = $("#name_en").val();
+            Text2 = (slug(Text));
+            $("#link_en").val(Text2);
             $("#seo_title_en").val(Text);
         }
 
@@ -633,7 +647,25 @@
             $("#seo_description_en").val(Text);
         }
 
+        var slug = function(str) {
+            str = str.replace(/^\s+|\s+$/g, ''); // trim
+            str = str.toLowerCase();
 
+            // remove accents, swap ñ for n, etc
+            var from =
+                "ÁÄÂÀÃÅČÇĆĎÉĚËÈÊẼĔȆĞÍÌÎÏİŇÑÓÖÒÔÕØŘŔŠŞŤÚŮÜÙÛÝŸŽáäâàãåčçćďéěëèêẽĕȇğíìîïıňñóöòôõøðřŕšşťúůüùûýÿžþÞĐđßÆa·/_,:;";
+            var to =
+                "AAAAAACCCDEEEEEEEEGIIIIINNOOOOOORRSSTUUUUUYYZaaaaaacccdeeeeeeeegiiiiinnooooooorrsstuuuuuyyzbBDdBAa------";
+            for (var i = 0, l = from.length; i < l; i++) {
+                str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+            }
+
+            str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+                .replace(/\s+/g, '-') // collapse whitespace and replace by -
+                .replace(/-+/g, '-'); // collapse dashes
+
+            return str;
+        };
 
         var input1 = document.querySelector("#activity_seo_keywords_tr");
         new Tagify(input1);

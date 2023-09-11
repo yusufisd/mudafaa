@@ -13,4 +13,12 @@ class Activity extends Model
     protected $casts = [
         "seo_key" => "array",
     ];
+
+    public function Category(){
+        return $this->hasOne(ActivityCategory::class,'id','category');
+    }
+
+    public function Country(){
+        return $this->hasOne(CountryList::class,'id','country_id');
+    }
 }

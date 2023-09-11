@@ -149,17 +149,12 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
                                                                         <div class="row">
-                                                                            <div class="col-lg-10">
+                                                                            <div class="col-lg-12">
                                                                                 <input type="text" name="link_tr" id="link_tr"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                     value="">
                                                                             </div>
-                                                                            <div class="col-lg-2">
-                                                                                <button type="submit"
-                                                                                    class="btn btn-outline btn-outline-success w-100"
-                                                                                    id="blog_category_detail_url_btn_tr">URL
-                                                                                    ÜRET</button>
-                                                                            </div>
+                                                                            
 
                                                                         </div>
                                                                     </div>
@@ -215,17 +210,12 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
                                                                         <div class="row">
-                                                                            <div class="col-lg-10">
+                                                                            <div class="col-lg-12">
                                                                                 <input type="text" name="link_en" id="link_en"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                     value="">
                                                                             </div>
-                                                                            <div class="col-lg-2">
-                                                                                <button type="submit"
-                                                                                    class="btn btn-outline btn-outline-success w-100"
-                                                                                    id="blog_category_detail_url_btn_en">URL
-                                                                                    ÜRET</button>
-                                                                            </div>
+                                                                            
 
                                                                         </div>
                                                                     </div>

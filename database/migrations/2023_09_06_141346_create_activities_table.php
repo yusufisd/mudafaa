@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('title');
             $table->string('category');
             $table->integer('author');
+            $table->string('short_description');
             $table->longText('description');
             $table->string('link');
             $table->string('ticket_link')->nullable();
@@ -23,10 +24,11 @@ return new class extends Migration {
             $table->timestamp('start_time')->useCurrent();
             $table->timestamp('finish_time')->useCurrent();
             $table->integer('country_id');
-            $table->integer('city_id');
+            $table->string('city');
             $table->string('address');
             $table->string('phone');
             $table->string('email');
+            $table->integer('status')->default(1);
             $table->string('website')->nullable();
             $table->string('map')->nullable();
             $table->string('seo_title');

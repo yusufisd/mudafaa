@@ -223,19 +223,14 @@
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <div class="row">
-                                                                                    <div class="col-lg-10">
+                                                                                    <div class="col-lg-12">
                                                                                         <input type="text"
                                                                                             name="link_tr" id="link_tr"
                                                                                             id="link_tr"
                                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                             value="" />
                                                                                     </div>
-                                                                                    <div class="col-lg-2">
-                                                                                        <button type="submit"
-                                                                                            class="btn btn-outline btn-outline-success w-100"
-                                                                                            id="blog_category_detail_url_btn_tr">URL
-                                                                                            ÜRET</button>
-                                                                                    </div>
+                                                                                    
 
                                                                                 </div>
                                                                             </div>
@@ -319,18 +314,13 @@
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <div class="row">
-                                                                                    <div class="col-lg-10">
+                                                                                    <div class="col-lg-12">
                                                                                         <input type="text"
                                                                                             id="link_en" name="link_en"
                                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                             value="" />
                                                                                     </div>
-                                                                                    <div class="col-lg-2">
-                                                                                        <button type="submit"
-                                                                                            class="btn btn-outline btn-outline-success w-100"
-                                                                                            id="blog_category_detail_url_btn_en">URL
-                                                                                            ÜRET</button>
-                                                                                    </div>
+                                                                                    
 
                                                                                 </div>
                                                                             </div>
@@ -480,21 +470,7 @@
                                                     <div class="card-footer d-flex justify-content-between py-6 px-0">
 
                                                         <!--begin::Input group-->
-                                                        <div class="row mb-0">
-                                                            <label class="col-lg-8 col-form-label fw-bold fs-6 ">
-                                                                {{ __('message.status') }} </label>
-                                                            <div class="col-lg-4 d-flex align-items-center">
-                                                                <div
-                                                                    class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                    <input name="seo_statu_tr"
-                                                                        class="form-check-input w-50px h-25px"
-                                                                        type="checkbox" id="allowblog_caetgory_seo_tr"
-                                                                        checked="checked" />
-                                                                    <label class="form-check-label"
-                                                                        for="allowblog_caetgory_seo_tr"></label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                      
                                                         <!--end::Input group-->
 
 
@@ -576,21 +552,7 @@
                                                     <div class="card-footer d-flex justify-content-between py-6 px-0">
 
                                                         <!--begin::Input group-->
-                                                        <div class="row mb-0">
-                                                            <label class="col-lg-8 col-form-label fw-bold fs-6 ">
-                                                                {{ __('message.status') }} </label>
-                                                            <div class="col-lg-4 d-flex align-items-center">
-                                                                <div
-                                                                    class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                    <input class="form-check-input w-50px h-25px"
-                                                                        name="seo_statu_en" type="checkbox"
-                                                                        id="allowblog_category_seo_en"
-                                                                        checked="checked" />
-                                                                    <label class="form-check-label"
-                                                                        for="allowblog_category_seo_en"></label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                       
                                                         <!--end::Input group-->
 
 

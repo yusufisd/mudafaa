@@ -666,26 +666,7 @@
                                                     </div>
                                                     <!--end::Card body-->
                                                     <!--begin::Actions-->
-                                                    <div class="card-footer d-flex justify-content-between py-6 px-0">
-                                                        <!--begin::Input group-->
-                                                        <div class="row mb-0">
-                                                            <label
-                                                                class="col-lg-8 col-form-label fw-bold fs-6 ">Durum</label>
-                                                            <div class="col-lg-4 d-flex align-items-center">
-                                                                <div
-                                                                    class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                    <input class="form-check-input w-50px h-25px"
-                                                                        type="checkbox" id="allowactivity_seo_tr"
-                                                                        {{ $data_tr->seo_statu == 1 ? 'checked' : '' }}
-                                                                        name="seo_statu_tr" />
-                                                                    <label class="form-check-label"
-                                                                        for="allowactivity_seo_tr"></label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!--end::Input group-->
-
-                                                    </div>
+                                                    
                                                     <!--end::Actions-->
                                                     <!--end::Form-->
                                                 </div>
@@ -762,27 +743,7 @@
                                                     </div>
                                                     <!--end::Card body-->
                                                     <!--begin::Actions-->
-                                                    <div class="card-footer d-flex justify-content-between py-6 px-0">
-
-                                                        <!--begin::Input group-->
-                                                        <div class="row mb-0">
-                                                            <label
-                                                                class="col-lg-8 col-form-label fw-bold fs-6 ">Durum</label>
-                                                            <div class="col-lg-4 d-flex align-items-center">
-                                                                <div
-                                                                    class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                    <input class="form-check-input w-50px h-25px"
-                                                                        type="checkbox" id="allowactivity_seo_en"
-                                                                        {{ $data_en->seo_statu == 1 ? 'checked' : '' }}
-                                                                        name="seo_statu_en" />
-                                                                    <label class="form-check-label"
-                                                                        for="allowactivity_seo_en"></label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!--end::Input group-->
-
-                                                    </div>
+                                                    
                                                     <!--end::Actions-->
                                                     <!--end::Form-->
                                                 </div>

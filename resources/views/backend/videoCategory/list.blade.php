@@ -78,11 +78,10 @@
                                                             value="1" />
                                                     </div>
                                                 </th>
-                                                <th> {{ __('message.görsel') }} <i class="fa fa-sort ms-3"></i></th>
-                                                <th> {{ __('message.başlık') }} <i class="fa fa-sort ms-3"></i></th>
-                                                <th> {{ __('message.sıralama') }} <i class="fa fa-sort ms-3"></i></th>
-                                                <th> {{ __('message.durum') }} <i class="fa fa-sort ms-3"></i></th>
-                                                <th> {{ __('message.işlem') }} <i class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center"> {{ __('message.başlık') }} <i class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center"> {{ __('message.sıralama') }} <i class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center"> {{ __('message.durum') }} <i class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center"> {{ __('message.işlem') }} <i class="fa fa-sort ms-3"></i></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -96,12 +95,10 @@
                                                                 value="1" />
                                                         </div>
                                                     </td>
-                                                    <td>
-                                                        <img src="/{{ $item->image }}" style="width:150px; border-radius:5%" alt="">
-                                                    </td>
-                                                    <td> {{ $item->title }} </td>
-                                                    <td> {{ $item->queue }} </td>
-                                                    <td>
+
+                                                    <td style="text-align: center"> {{ $item->title }} </td>
+                                                    <td style="text-align: center"> {{ $item->queue }} </td>
+                                                    <td style="text-align: center">
                                                         <div
                                                             class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
                                                             <input class="form-check-input w-50px h-25px" type="checkbox"
@@ -112,7 +109,7 @@
                                                         </div>
 
                                                     </td>
-                                                    <td>
+                                                    <td style="text-align: center">
                                                         <a href="#"
                                                             class="px-2 btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
                                                             title="Görüntüle">

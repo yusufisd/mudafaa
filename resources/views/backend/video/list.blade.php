@@ -81,10 +81,7 @@
                                                 <th>{{ __('message.yazar') }}<i class="fa fa-sort ms-3"></i></th>
                                                 <th>{{ __('message.başlık') }}<i class="fa fa-sort ms-3"></i></th>
                                                 <th>{{ __('message.kategori') }}<i class="fa fa-sort ms-3"></i></th>
-                                                <th class="text-center">{{ __('message.manşet') }}<i
-                                                        class="fa fa-sort ms-3"></i></th>
-                                                <th class="text-center pe-7">{{ __('message.durum') }}<i
-                                                        class="fa fa-sort ms-3"></i></th>
+                                                <th>{{ __('message.durum') }}<i class="fa fa-sort ms-3"></i></th>
                                                 <th class="text-center">{{ __('message.işlem') }}<i
                                                         class="fa fa-sort ms-3"></i></th>
                                             </tr>
@@ -112,28 +109,21 @@
                                                             {{ $cat->title }},
                                                         @endforeach
                                                     </td>
-                                                    <td>
-                                                        <div
-                                                            class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
-                                                            <input class="form-check-input w-50px h-25px" onchange="change_headline({{$item->id}})"
-                                                                {{ $item->headline == 1 ? 'checked' : '' }} type="checkbox"
-                                                                id="headline">
-                                                            <label class="form-check-label" for="headline"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
+                                                    <td style="text-align: center">
                                                         <div
                                                             class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
                                                             <input class="form-check-input w-50px h-25px" type="checkbox"
-                                                                id="status" onchange="change_status({{$item->id}})"
+                                                                id="blog_status_1"
+                                                                onchange="change_status({{ $item->id }})"
                                                                 {{ $item->status == 1 ? 'checked' : '' }}>
                                                             <label class="form-check-label" for="blog_status_1"></label>
                                                         </div>
                                                     </td>
+                                                    
                                                     <td class="text-center">
 
 
-                                                        <a href="{{ route('admin.currentNews.edit', $item->id) }}"
+                                                        <a href="{{ route('admin.video.edit', $item->id) }}"
                                                             class="px-2 btn btn-icon btn-bg-light btn-active-color-secondary btn-sm me-1"
                                                             title="Düzenle">
                                                             <i class="fa-regular fa-pen-to-square fs-3"></i>
@@ -181,18 +171,11 @@
                 confirmButtonText: 'Evet, sil!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "{{ route('admin.currentNews.destroy') }}/" + d;
+                    window.location.href = "{{ route('admin.video.destroy') }}/" + d;
                 }
             })
         }
 
-        function change_headline(d){
-            window.location.href = "{{route('admin.currentNews.change_headline')}}/" + d;
-        }
-
-        function change_status(d){
-            window.location.href = "{{route('admin.currentNews.change_status')}}/" + d;
-        }
     </script>
     <!--begin:: extra js-->
     <script>

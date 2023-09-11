@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Activity;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Intervention\Image\Facades\Image;
@@ -10,15 +11,17 @@ use Illuminate\Support\Facades\DB;
 use Throwable;
 use Illuminate\Validation\ValidationException;
 use App\Models\ActivityCategory;
+use App\Models\CountryList;
+use App\Models\EnActivity;
 use App\Models\EnActivityCategory;
 use App\Models\UserModel;
-
 
 class ActivityController extends Controller
 {
     public function index()
     {
-        return view('backend.activity.list');
+        $data = Activity::latest()->get();
+        return view('backend.activity.list',compact('data'));
     }
 
     /**
@@ -26,6 +29,7 @@ class ActivityController extends Controller
      */
     public function create()
     {
+        $countrylist = CountryList::orderBy('id', 'asc')->get();
         $users = UserModel::latest()->get();
         $categories = ActivityCategory::latest()->get();
         if (ActivityCategory::latest()->first() == null) {
@@ -34,7 +38,7 @@ class ActivityController extends Controller
             $no = ActivityCategory::orderBy('queue', 'desc')->first();
             $no = $no->queue + 1;
         }
-        return view('backend.activity.add', compact('no','users','categories'));
+        return view('backend.activity.add', compact('no', 'users', 'categories', 'countrylist'));
     }
 
     /**
@@ -46,65 +50,97 @@ class ActivityController extends Controller
             DB::beginTransaction();
 
             $request->validate([
-                'queue' => 'required',
-                'title_tr' => 'required',
+                'category' => 'required',
+                'author' => 'required',
+                'website' => 'required',
+                'ticket' => 'required',
+                'user_form' => 'required',
+                'start_date' => 'required',
+                'finish_date' => 'required',
+                'adres' => 'required',
+                'map' => 'required',
+                'email' => 'required',
+                'phone' => 'required',
+                'name_tr' => 'required',
+                'short_description_tr' => 'required',
+                'description_tr' => 'required',
                 'link_tr' => 'required',
-                'color_code' => 'required',
+                'name_en' => 'required',
+                'country' => 'required',
+                'city' => 'required',
+                'short_description_en' => 'required',
+                'description_en' => 'required',
+                'link_en' => 'required',
                 'seo_title_tr' => 'required',
                 'seo_description_tr' => 'required',
                 'seo_key_tr' => 'required',
-
-                'title_en' => 'required',
-                'link_en' => 'required',
                 'seo_title_en' => 'required',
-                'seo_descriptipn_en' => 'required',
+                'seo_description_en' => 'required',
                 'seo_key_en' => 'required',
+                'image' => 'required',
             ]);
 
-            $category = new ActivityCategory();
-            $category->queue = $request->queue;
-            $category->title = $request->title_tr;
-            $category->link = $request->link_tr;
-            $category->seo_title = $request->seo_title_tr;
-            $category->seo_description = $request->seo_description_tr;
-            $category->seo_key = $request->seo_key_tr;
+            $new = new Activity();
+            $new->category = $request->category;
+            $new->author = $request->author;
+            $new->website = $request->website;
+            $new->ticket_link = $request->ticket;
+            $new->subscribe_form = $request->user_form;
+            $new->start_time = $request->start_date;
+            $new->finish_time = $request->finish_date;
+            $new->country_id = $request->country;
+            $new->city = $request->city;
+            $new->address = $request->adres;
+            $new->phone = $request->phone;
+            $new->email = $request->email;
+            $new->map = $request->map;
+            $new->website = $request->website;
+            $new->title = $request->name_tr;
+            $new->short_description = $request->short_description_tr;
+            $new->description = $request->description_tr;
+            $new->link = $request->link_tr;
+            $new->seo_title = $request->seo_title_tr;
+            $new->seo_description = $request->seo_description_tr;
+            $new->seo_key = $request->seo_key_tr;
+            if ($request->file('image') != null) {
+                $image = $request->file('image');
+                $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+                $save_url = 'assets/uploads/activity/' . $image_name;
+                Image::make($image)
+                    ->resize(960, 520)
+                    ->save($save_url);
+                $new->image = $save_url;
+            }
             if (!isset($request->status_tr)) {
-                $category->status = 0;
+                $new->status = 0;
             }
-            if (!isset($request->seo_statu_tr)) {
-                $category->seo_statu = 0;
-            }
+            $new->save();
 
-            $category->save();
-
-            $category_en = new EnActivityCategory();
-            $category_en->title = $request->title_en;
-            $category_en->link = $request->link_en;
-            $category_en->category_id = $category->id;
-            $category_en->seo_title = $request->seo_title_en;
-            $category_en->seo_description = $request->seo_descriptipn_en;
-            $category_en->seo_key = $request->seo_key_en;
+            $new_en = new EnActivity();
+            $new_en->title = $request->name_en;
+            $new_en->short_description = $request->short_description_en;
+            $new_en->description = $request->description_en;
+            $new_en->link = $request->link_en;
+            $new_en->seo_title = $request->seo_title_en;
+            $new_en->seo_description = $request->seo_description_en;
+            $new_en->seo_key = $request->seo_key_en;
             if (!isset($request->status_en)) {
-                $category_en->status = 0;
+                $new->status = 0;
             }
-            if (!isset($request->seo_statu_en)) {
-                $category_en->seo_statu = 0;
-            }
-            $category_en->save();
+            $new_en->save();
 
-            logKayit(['Etkinlik Kategori', 'Etkinlik kategorisi eklendi']);
-            Alert::success('Güncel Etkinlik Kategorisi Eklendi');
+            logKayit(['Etkinlik Yönetimi', 'Etkinlik başarıyla eklendi']);
+            Alert::success('Etkinlik Eklendi');
             DB::commit();
         } catch (Throwable $e) {
             DB::rollBack();
-
-            logKayit(['Etkinlik Kategori', 'Etkinlik kategori eklemede hata', 0]);
-            Alert::error('Etkinlik kategori Eklemede Hata');
+            logKayit(['Etkinlik Yönetimi', 'Etkinlik eklemede hata', 0]);
+            Alert::error('Etkinlik Düzenlemede Hata');
             throw ValidationException::withMessages([
                 'error' => 'Tüm alanların doldurulması zorunludur.',
             ]);
         }
-        return redirect()->route('admin.activityCategory.list');
+        return redirect()->route('admin.activity.list');
     }
 
     public function edit($id)

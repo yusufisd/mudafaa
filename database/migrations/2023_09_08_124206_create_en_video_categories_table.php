@@ -14,12 +14,11 @@ return new class extends Migration
         Schema::create('en_video_categories', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('description');
             $table->string('link');
             $table->string('seo_title');
             $table->string('seo_description');
             $table->string('seo_key');
-            $table->integer('seo_statu')->default(1);
+            $table->integer('status')->default(1);
             $table->integer('category_id');
             $table->softDeletes();
             $table->timestamps();

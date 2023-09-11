@@ -72,7 +72,8 @@
                                                         rx="1" fill="currentColor" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon--> {{ __('message.etkinlik') }} {{ __('message.kategorisi') }} </a>
+                                            <!--end::Svg Icon--> {{ __('message.etkinlik') }} {{ __('message.kategorisi') }}
+                                        </a>
                                         <!--end::Add user-->
                                     </div>
                                     <!--end::Toolbar-->
@@ -97,15 +98,24 @@
                                                             value="1" />
                                                     </div>
                                                 </th>
-                                                <th style="text-align: center"> {{ __('message.görsel') }} <i class="fa fa-sort ms-3"></i></th>
-                                                <th style="text-align: center"> {{ __('message.başlık') }} <i class="fa fa-sort ms-3"></i></th>
-                                                <th style="text-align: center"> {{ __('message.işlem') }} <i class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center"> {{ __('message.görsel') }} <i
+                                                        class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center"> {{ __('message.başlık') }} <i
+                                                        class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center"> {{ __('message.kategori') }} <i
+                                                        class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center"> Ülke <i class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center"> Şehir <i class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center"> Durum <i class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center"> {{ __('message.işlem') }} <i
+                                                        class="fa fa-sort ms-3"></i></th>
                                             </tr>
                                         </thead>
                                         <tbody>
 
+                                            @foreach ($data as $item)
                                                 <tr class="align-middle">
-                                                
+
                                                     <td style="text-align: center">
                                                         <div
                                                             class="form-check form-check-sm form-check-custom form-check-solid">
@@ -115,10 +125,24 @@
                                                     </td>
 
                                                     <td style="text-align: center">
-                                                        <img src="" style="width:100px; border-radius:5%" alt="">
+                                                        <img src="/{{ $item->image }}"
+                                                            style="width:100px; border-radius:5%" alt="">
                                                     </td>
 
-                                                    <td style="text-align: center"> asd </td>
+                                                    <td style="text-align: center"> {{ $item->title }} </td>
+                                                    <td style="text-align: center"> {{ $item->Category->title ?? '-' }}
+                                                    </td>
+                                                    <td style="text-align: center"> {{ $item->Country->name }} </td>
+                                                    <td style="text-align: center"> {{ $item->city }} </td>
+                                                    <td style="text-align: center">
+                                                        <div
+                                                            class="form-check  form-check-solid form-switch form-check-custom fv-row">
+                                                            <input class="form-check-input w-50px h-25px" type="checkbox"
+                                                                name="status_tr" {{$item->status == 1 ? 'checked' : ''}} />
+                                                            <label class="form-check-label"
+                                                                for="allowblog_detail_tr"></label>
+                                                        </div>
+                                                    </td>
 
                                                     <td style="text-align: center">
                                                         <a href="#"
@@ -139,6 +163,8 @@
                                                         </a>
                                                     </td>
                                                 </tr>
+                                            @endforeach
+
 
                                         </tbody>
                                     </table>
@@ -161,8 +187,6 @@
 @endsection
 @section('script')
     <script>
-
-
         function destroy(d) {
             Swal.fire({
                 title: 'Emin misiniz?',

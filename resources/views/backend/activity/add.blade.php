@@ -101,7 +101,7 @@
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10 fv-row">
-                                                        <select name="category[]" aria-label="Seçiniz"
+                                                        <select name="category" aria-label="Seçiniz"
                                                             data-control="select2" data-placeholder="Seçiniz..."
                                                             class="form-select form-select-solid form-select-lg fw-semibold">
                                                             <option value="">Seçiniz...</option>
@@ -151,7 +151,7 @@
                                                     <div class="col-lg-10 fv-row">
                                                         <input type="text"
                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                            name="" id="">
+                                                            name="website" id="">
                                                     </div>
                                                     <!--end::Col-->
                                                 </div>
@@ -168,7 +168,7 @@
                                                             <div class="col-lg-8 fv-row">
                                                                 <input type="text"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                    name="" id="">
+                                                                    name="ticket" id="">
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -185,7 +185,7 @@
                                                             <div class="col-lg-8 fv-row">
                                                                 <input type="text"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                    name="" id="">
+                                                                    name="user_form" id="">
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -205,7 +205,7 @@
                                                             <div class="col-lg-8 fv-row">
                                                                 <input type="datetime-local"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                    name="" id="">
+                                                                    name="start_date" id="">
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -222,7 +222,7 @@
                                                             <div class="col-lg-8 fv-row">
                                                                 <input type="datetime-local"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                    name="" id="">
+                                                                    name="finish_date" id="">
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -240,12 +240,12 @@
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
                                                             <div class="col-lg-8 fv-row">
-                                                                <select name="author" aria-label="Seçiniz"
+                                                                <select name="country" aria-label="Seçiniz"
                                                                     data-control="select2" data-placeholder="Seçiniz..."
                                                                     class="form-select form-select-solid form-select-lg fw-semibold">
                                                                     <option value="">Seçiniz...</option>
 
-                                                                    @foreach ($users as $item)
+                                                                    @foreach ($countrylist as $item)
                                                                         <option value="{{ $item->id }}">
                                                                             {{ $item->name }}
                                                                         </option>
@@ -266,15 +266,9 @@
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
                                                             <div class="col-lg-8 fv-row">
-                                                                <select name="author" aria-label="Seçiniz" disabled
-                                                                    data-control="select2"
-                                                                    data-placeholder="Önce şehir seçiniz..."
-                                                                    class="form-select form-select-solid form-select-lg fw-semibold">
-                                                                    <option value="">Seçiniz...</option>
-
-
-
-                                                                </select>
+                                                                <input type="text"
+                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                    name="city" id="">
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -294,7 +288,7 @@
                                                             <div class="col-lg-8 fv-row">
                                                                 <input type="text"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                    name="" id="">
+                                                                    name="adres" id="">
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -311,7 +305,7 @@
                                                             <div class="col-lg-8 fv-row">
                                                                 <input type="text"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                    name="" id="">
+                                                                    name="map" id="">
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -330,7 +324,7 @@
                                                             <div class="col-lg-8 fv-row">
                                                                 <input type="text"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                    name="" id="">
+                                                                    name="email" id="">
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -347,7 +341,7 @@
                                                             <div class="col-lg-8 fv-row">
                                                                 <input type="text"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                    name="" id="">
+                                                                    name="phone" id="">
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -411,28 +405,7 @@
                                                                 <!--end::Col-->
                                                             </div>
 
-                                                            <div class="row mb-6">
-                                                                <!--begin::Label-->
-                                                                <label
-                                                                    class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Link</label>
-                                                                <!--end::Label-->
-                                                                <!--begin::Col-->
-                                                                <div class="col-lg-10">
-                                                                    <!--begin::Row-->
-                                                                    <div class="row">
-                                                                        <!--begin::Col-->
-                                                                        <div class="col-lg-12 fv-row">
-                                                                            <input type="text" name="link_tr"
-                                                                                id="link_tr" onchange="create_slug_tr()"
-                                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                value="" />
-                                                                        </div>
-                                                                        <!--end::Col-->
-                                                                    </div>
-                                                                    <!--end::Row-->
-                                                                </div>
-                                                                <!--end::Col-->
-                                                            </div>
+
                                                             <!--end::Input group-->
                                                             <!--begin::Input group-->
                                                             <div class="row mb-6">
@@ -468,7 +441,28 @@
                                                                 <!--end::Col-->
                                                             </div>
 
-
+                                                            <div class="row mb-6">
+                                                                <!--begin::Label-->
+                                                                <label
+                                                                    class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Link</label>
+                                                                <!--end::Label-->
+                                                                <!--begin::Col-->
+                                                                <div class="col-lg-10">
+                                                                    <!--begin::Row-->
+                                                                    <div class="row">
+                                                                        <!--begin::Col-->
+                                                                        <div class="col-lg-12 fv-row">
+                                                                            <input type="text" name="link_tr"
+                                                                                id="link_tr" onchange="create_slug_tr()"
+                                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                value="" />
+                                                                        </div>
+                                                                        <!--end::Col-->
+                                                                    </div>
+                                                                    <!--end::Row-->
+                                                                </div>
+                                                                <!--end::Col-->
+                                                            </div>
 
                                                         </div>
                                                         <!--end::Card body-->
@@ -524,28 +518,7 @@
                                                                 <!--end::Col-->
                                                             </div>
 
-                                                            <div class="row mb-6">
-                                                                <!--begin::Label-->
-                                                                <label
-                                                                    class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Link</label>
-                                                                <!--end::Label-->
-                                                                <!--begin::Col-->
-                                                                <div class="col-lg-10">
-                                                                    <!--begin::Row-->
-                                                                    <div class="row">
-                                                                        <!--begin::Col-->
-                                                                        <div class="col-lg-12 fv-row">
-                                                                            <input type="text" name="link_en"
-                                                                                id="link_en" onchange="create_slug_en()"
-                                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                value="" />
-                                                                        </div>
-                                                                        <!--end::Col-->
-                                                                    </div>
-                                                                    <!--end::Row-->
-                                                                </div>
-                                                                <!--end::Col-->
-                                                            </div>
+
                                                             <!--end::Input group-->
                                                             <!--begin::Input group-->
                                                             <div class="row mb-6">
@@ -580,12 +553,29 @@
                                                                 </div>
                                                                 <!--end::Col-->
                                                             </div>
-                                                            <!--end::Input group-->
-                                                            <!--begin::Input group-->
-                                                            <!--end::Input group-->
 
-                                                            <!--begin::Input group-->
-
+                                                            <div class="row mb-6">
+                                                                <!--begin::Label-->
+                                                                <label
+                                                                    class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Link</label>
+                                                                <!--end::Label-->
+                                                                <!--begin::Col-->
+                                                                <div class="col-lg-10">
+                                                                    <!--begin::Row-->
+                                                                    <div class="row">
+                                                                        <!--begin::Col-->
+                                                                        <div class="col-lg-12 fv-row">
+                                                                            <input type="text" name="link_en"
+                                                                                id="link_en" onchange="create_slug_en()"
+                                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                value="" />
+                                                                        </div>
+                                                                        <!--end::Col-->
+                                                                    </div>
+                                                                    <!--end::Row-->
+                                                                </div>
+                                                                <!--end::Col-->
+                                                            </div>
 
 
                                                         </div>
@@ -714,27 +704,7 @@
                                                     </div>
                                                     <!--end::Card body-->
                                                     <!--begin::Actions-->
-                                                    <div class="card-footer d-flex justify-content-between py-6 px-0">
 
-                                                        <!--begin::Input group-->
-                                                        <div class="row mb-0">
-                                                            <label
-                                                                class="col-lg-8 col-form-label fw-bold fs-6 ">Durum</label>
-                                                            <div class="col-lg-4 d-flex align-items-center">
-                                                                <div
-                                                                    class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                    <input class="form-check-input w-50px h-25px"
-                                                                        name="seo_statu_tr" type="checkbox"
-                                                                        id="allowblog_seo_tr" checked="checked" />
-                                                                    <label class="form-check-label"
-                                                                        for="allowblog_seo_tr"></label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!--end::Input group-->
-
-
-                                                    </div>
                                                     <!--end::Actions-->
                                                     <!--end::Form-->
                                                 </div>
@@ -809,26 +779,7 @@
                                                     </div>
                                                     <!--end::Card body-->
                                                     <!--begin::Actions-->
-                                                    <div class="card-footer d-flex justify-content-between py-6 px-0">
 
-                                                        <!--begin::Input group-->
-                                                        <div class="row mb-0">
-                                                            <label
-                                                                class="col-lg-8 col-form-label fw-bold fs-6 ">Durum</label>
-                                                            <div class="col-lg-4 d-flex align-items-center">
-                                                                <div
-                                                                    class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                    <input class="form-check-input w-50px h-25px"
-                                                                        type="checkbox" id="allowblog_seo_en"
-                                                                        checked="checked" name="seo_statu_en" />
-                                                                    <label class="form-check-label"
-                                                                        for="allowblog_seo_en"></label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!--end::Input group-->
-
-                                                    </div>
                                                     <!--end::Actions-->
                                                     <!--end::Form-->
                                                 </div>
@@ -907,17 +858,12 @@
 
 
 
-        var input1 = document.querySelector("#activity_seo_keywords_tr");
+        var input1 = document.querySelector("#blog_seo_keywords_tr");
         new Tagify(input1);
 
-        var input2 = document.querySelector("#activity_seo_keywords_en");
+        var input2 = document.querySelector("#blog_seo_keywords_en");
         new Tagify(input2);
 
-        var input3 = document.querySelector("#etiket_tr");
-        new Tagify(input3);
-
-        var input4 = document.querySelector("#etiket_en");
-        new Tagify(input4);
 
         $(document).ready(function() {
             tinymce.init({

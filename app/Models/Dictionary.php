@@ -13,4 +13,8 @@ class Dictionary extends Model
     protected $casts = [
         "seo_key" => "array"
     ];
+
+    public function Author(){
+        return $this->hasOne(UserModel::class,'id','author');
+    }
 }

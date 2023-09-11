@@ -11,6 +11,17 @@ class Video extends Model
     use HasFactory,SoftDeletes;
     protected $guarded = [];
     protected $casts = [
-        "seo_key" => "array"
+        "seo_key" => "array",
+        "category" => "array",
     ];
+
+    public function Author(){
+        return $this->hasOne(UserModel::class,'id','author');
+    }
+
+    public function Category()
+    {
+        $data = VideoCategory::whereIn('id',$this->category)->get();
+        return $data;
+    }
 }
