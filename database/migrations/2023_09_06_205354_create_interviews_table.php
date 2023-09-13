@@ -24,7 +24,8 @@ return new class extends Migration
             $table->string('seo_title');
             $table->string('seo_description');
             $table->string('seo_key');
-            $table->string('seo_statu');
+            $table->integer('status')->default(1);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

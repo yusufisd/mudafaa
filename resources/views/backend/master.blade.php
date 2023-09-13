@@ -717,6 +717,18 @@
                                     <!--end:Menu link-->
                                 </div>
 
+                                <div class="menu-item">
+                                    <!--begin:Menu link-->
+                                    <a class="menu-link" href="{{ route('admin.companyModel.list') }}">
+                                        <span class="menu-icon">
+                                            <i class="fa fa-text-width" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="menu-title"> Firma {{ __('message.yönetimi') }}
+                                        </span>
+                                    </a>
+                                    <!--end:Menu link-->
+                                </div>
+
                                  <!--begin:Menu item-->
                                  <div class="menu-item">
                                     <!--begin:Menu link-->

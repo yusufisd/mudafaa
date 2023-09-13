@@ -3,9 +3,17 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Dialog;
+use App\Models\EnDialog;
 use App\Models\Interview;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
+use App\Models\EnInterview;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
+use Throwable;
+use Illuminate\Validation\ValidationException;
+use Intervention\Image\Facades\Image;
 
 class InterviewController extends Controller
 {
@@ -15,7 +23,7 @@ class InterviewController extends Controller
     public function index()
     {
         $data = Interview::latest()->get();
-        return view('backend.interview.list',compact('data'));
+        return view('backend.interview.list', compact('data'));
     }
 
     /**
@@ -24,8 +32,7 @@ class InterviewController extends Controller
     public function create()
     {
         $users = UserModel::latest()->get();
-        return view('backend.interview.add',compact('users'));
-        
+        return view('backend.interview.add', compact('users'));
     }
 
     /**
@@ -33,7 +40,80 @@ class InterviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+          
+            'soran_tr' => 'required',
+            'cevaplayan_tr' => 'required',
+            'soru_tr' => 'required',
+            'cevap_tr' => 'required',
+            'soran_en' => 'required',
+            'cevaplayan_en' => 'required',
+            'soru_en' => 'required',
+            'cevap_en' => 'required',
+        ]);
+
+        $new_interview = new Interview();
+        $new_interview->title = $request->name_tr;
+        $new_interview->link = $request->link_tr;
+        $new_interview->live_time = $request->live_time;
+        $new_interview->youtube = $request->youtube;
+        $new_interview->author = $request->author;
+        $new_interview->short_description = $request->short_description_tr;
+        $new_interview->description = $request->description_tr;
+        $new_interview->seo_title = $request->seo_title_tr;
+        $new_interview->seo_description = $request->seo_description_tr;
+        $new_interview->seo_key = $request->seo_key_tr;
+        if ($request->file('image') != null) {
+            $image = $request->file('image');
+            $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $save_url = 'assets/uploads/interview/' . $image_name;
+            Image::make($image)
+                ->resize(960, 520)
+                ->save($save_url);
+            $new_interview->image = $save_url;
+        }
+        if (!isset($request->status_tr)) {
+            $new_interview->status = 0;
+        }
+        $new_interview->save();
+
+
+        for($i = 0; $i < count($request->soran_tr); $i++){
+            $new_dialog = new Dialog();
+            $new_dialog->soran = $request->soran_tr[$i];
+            $new_dialog->cevaplayan = $request->cevaplayan_tr[$i];
+            $new_dialog->soru = $request->soru_tr[$i];
+            $new_dialog->cevap = $request->cevap_tr[$i];
+            $new_dialog->interview_id = $new_interview->id;
+            $new_dialog->save();
+        }
+        for($i = 0; $i < count($request->soran_tr); $i++){
+            $new_dialog_en = new EnDialog();
+            $new_dialog_en->soran = $request->soran_tr[$i];
+            $new_dialog_en->cevaplayan = $request->cevaplayan_tr[$i];
+            $new_dialog_en->soru = $request->soru_tr[$i];
+            $new_dialog_en->cevap = $request->cevap_tr[$i];
+            $new_dialog_en->interview_id = $new_interview->id;
+            $new_dialog_en->dialog_id = $new_dialog->id;
+            $new_dialog_en->save();
+        }
+
+        $interview_en = new EnInterview();
+        $interview_en->title = $request->name_en;
+        $interview_en->link = $request->link_en;
+        $interview_en->short_description = $request->short_description_en;
+        $interview_en->description = $request->description_en;
+        $interview_en->interview_id = $new_interview->id;
+        $interview_en->seo_title = $request->seo_title_en;
+        $interview_en->seo_description = $request->seo_description_en;
+        $interview_en->seo_key = $request->seo_key_en;
+        if (!isset($request->status_en)) {
+            $interview_en->status = 0;
+        }
+        $interview_en->save();
+
+        Alert::success('Röportaj eklendi');
+        return redirect()->route('admin.interview.list');
     }
 
     /**
@@ -66,5 +146,28 @@ class InterviewController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function change_status($id)
+    {
+        try {
+            DB::beginTransaction();
+            $data = Interview::findOrFail($id);
+            $data->status = !$data->status;
+            $data->save();
+
+            logKayit(['Haber Yönetimi ', 'Haber durumu değiştirildi']);
+            Alert::success('Haber Durumu Değiştirildi');
+            DB::commit();
+        } catch (Throwable $e) {
+            DB::rollBack();
+
+            logKayit(['Haber Yönetimi ', 'Haber durumu değiştirilemedi', 0]);
+            Alert::error('Haber durum değiştirmede Hata');
+            throw ValidationException::withMessages([
+                'error' => 'Bir hatayla karşılaşıldı.'
+            ]);
+        }
+        return redirect()->route('admin.currentNews.list');
     }
 }

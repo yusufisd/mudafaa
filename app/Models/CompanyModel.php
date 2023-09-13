@@ -4,8 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CompanyModel extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
+    protected $guarded = [];
+    protected $casts = [
+        "seo_key" => "array",
+    ];
+
+    public function Category(){
+        return $this->hasOne(CompanyCategory::class,'id','category');
+    }
 }

@@ -11,17 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('en_interviews', function (Blueprint $table) {
+        Schema::create('company_addresses', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('short_description');
-            $table->longText('description');
-            $table->string('link');
-            $table->integer('interview_id');
-            $table->string('seo_title');
-            $table->string('seo_description');
-            $table->string('seo_key');
-            $table->integer('status')->default(1);
+            $table->string('address');
+            $table->string('phone');
+            $table->string('email');
+            $table->string('map');
+            $table->string('website');
+            $table->integer('company_id');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('en_interviews');
+        Schema::dropIfExists('company_addresses');
     }
 };

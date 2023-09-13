@@ -151,7 +151,7 @@
 @section('script')
     <script>
         function change_status(d) {
-            window.location.href = "{{ route('admin.currentNewsCategory.change_status') }}/" + d
+            window.location.href = "{{ route('admin.activityCategory.change_status') }}/" + d
         }
 
         function destroy(d) {

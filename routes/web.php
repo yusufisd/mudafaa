@@ -3,7 +3,9 @@
 use App\Http\Controllers\Backend\ActivityCategoryController;
 use App\Http\Controllers\Backend\ActivityController;
 use App\Http\Controllers\Backend\AuthController;
+use App\Http\Controllers\Backend\CompanyCategoryController;
 use App\Http\Controllers\Backend\CompanyController;
+use App\Http\Controllers\Backend\CompanyModelController;
 use App\Http\Controllers\Backend\CountryController;
 use App\Http\Controllers\Backend\CurrentNewsCategoryController;
 use App\Http\Controllers\Backend\CurrentNewsController;
@@ -161,6 +163,8 @@ Route::prefix('admin')
                 Route::get('duzenle/{id?}', 'edit')->name('edit');
                 Route::post('guncelle/{id?}', 'update')->name('update');
                 Route::get('sil/{id?}', 'destroy')->name('destroy');
+                Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
+
             });
 
         // ETKİNLİK  CONTROLLER
@@ -176,7 +180,7 @@ Route::prefix('admin')
                 Route::get('sil/{id?}', 'destroy')->name('destroy');
             });
 
-        // ETKİNLİK  CONTROLLER
+        // RÖPORTAJ  CONTROLLER
         Route::controller(InterviewController::class)
             ->prefix('roportaj')
             ->name('interview.')
@@ -187,6 +191,8 @@ Route::prefix('admin')
                 Route::get('duzenle/{id?}', 'edit')->name('edit');
                 Route::post('guncelle/{id?}', 'update')->name('update');
                 Route::get('sil/{id?}', 'destroy')->name('destroy');
+                Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
+
             });
 
         // SÖZLÜK  CONTROLLER
@@ -227,4 +233,30 @@ Route::prefix('admin')
                 Route::post('guncelle/{id?}', 'update')->name('update');
                 Route::get('sil/{id?}', 'destroy')->name('destroy');
             });
+
+            // FİRMA  CONTROLLER
+        Route::controller(CompanyModelController::class)
+        ->prefix('yeni-firma')
+        ->name('companyModel.')
+        ->group(function () {
+            Route::get('ekle', 'create')->name('add');
+            Route::post('ekle', 'store')->name('store');
+            Route::get('liste', 'index')->name('list');
+            Route::get('duzenle/{id?}', 'edit')->name('edit');
+            Route::post('guncelle/{id?}', 'update')->name('update');
+            Route::get('sil/{id?}', 'destroy')->name('destroy');
+        });
+
+           // FİRMA KATEGORİ CONTROLLER
+           Route::controller(CompanyCategoryController::class)
+           ->prefix('firma-kategori')
+           ->name('companyCategory.')
+           ->group(function () {
+               Route::get('ekle', 'create')->name('add');
+               Route::post('ekle', 'store')->name('store');
+               Route::get('liste', 'index')->name('list');
+               Route::get('duzenle/{id?}', 'edit')->name('edit');
+               Route::post('guncelle/{id?}', 'update')->name('update');
+               Route::get('sil/{id?}', 'destroy')->name('destroy');
+           });
     });

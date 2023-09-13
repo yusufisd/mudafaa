@@ -32,7 +32,7 @@
         <!--end::Toolbar-->
         <!--begin::Content-->
 
-        <form action="{{ route('admin.activity.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.interview.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div id="kt_app_content" class="app-content flex-column-fluid">
                 <!--begin::Content container-->
@@ -133,7 +133,7 @@
                                                     <div class="col-lg-10 fv-row">
                                                         <input type="date"
                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                            name="" id="">
+                                                            name="live_time" id="">
                                                     </div>
                                                     <!--end::Col-->
                                                 </div>
@@ -149,7 +149,7 @@
                                                     <div class="col-lg-10 fv-row">
                                                         <input type="text"
                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                            name="" id="">
+                                                            name="youtube" id="">
                                                     </div>
                                                     <!--end::Col-->
                                                 </div>
@@ -517,27 +517,7 @@
                                                     </div>
                                                     <!--end::Card body-->
                                                     <!--begin::Actions-->
-                                                    <div class="card-footer d-flex justify-content-between py-6 px-0">
-
-                                                        <!--begin::Input group-->
-                                                        <div class="row mb-0">
-                                                            <label
-                                                                class="col-lg-8 col-form-label fw-bold fs-6 ">Durum</label>
-                                                            <div class="col-lg-4 d-flex align-items-center">
-                                                                <div
-                                                                    class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                    <input class="form-check-input w-50px h-25px"
-                                                                        name="seo_statu_tr" type="checkbox"
-                                                                        id="allowblog_seo_tr" checked="checked" />
-                                                                    <label class="form-check-label"
-                                                                        for="allowblog_seo_tr"></label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!--end::Input group-->
-
-
-                                                    </div>
+                                                    
                                                     <!--end::Actions-->
                                                     <!--end::Form-->
                                                 </div>
@@ -612,26 +592,7 @@
                                                     </div>
                                                     <!--end::Card body-->
                                                     <!--begin::Actions-->
-                                                    <div class="card-footer d-flex justify-content-between py-6 px-0">
-
-                                                        <!--begin::Input group-->
-                                                        <div class="row mb-0">
-                                                            <label
-                                                                class="col-lg-8 col-form-label fw-bold fs-6 ">Durum</label>
-                                                            <div class="col-lg-4 d-flex align-items-center">
-                                                                <div
-                                                                    class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                    <input class="form-check-input w-50px h-25px"
-                                                                        type="checkbox" id="allowblog_seo_en"
-                                                                        checked="checked" name="seo_statu_en" />
-                                                                    <label class="form-check-label"
-                                                                        for="allowblog_seo_en"></label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!--end::Input group-->
-
-                                                    </div>
+                                                    
                                                     <!--end::Actions-->
                                                     <!--end::Form-->
                                                 </div>
@@ -662,146 +623,127 @@
                                                 </li>
                                             </ul>
 
-                                            <div class="tab-content" id="TabContent_3">
-                                                <div class="tab-pane fade show active container" id="asd"
-                                                    role="tabpanel">
-                                                    <div class="row mb-6">
-                                                        <div class="col-md-6">
+                                            <div class="tab-content">
+                                                <div id="asd" class="tab-pane fade show active">
+                                                    <div id="show_item" >
+                                                        <div class=" container"
+                                                            style="border:solid; padding:2%; border-radius:15px; border-color:lightgray"
+                                                            role="tabpanel">
                                                             <div class="row mb-6">
-                                                                <!--begin::Label-->
-                                                                <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">
-                                                                    <span class="required"> Soran Kişi</span>
+                                                                <div class="col-md-6">
+                                                                    <div class="row mb-6">
+                                                                        <label
+                                                                            class="col-lg-4 col-form-label ps-5 fw-bold fs-6">
+                                                                            <span class="required"> Soran Kişi</span>
+                                                                        </label>
+                                                                        <div class="col-lg-8 fv-row">
+                                                                            <input type="text"
+                                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                name="soran_tr[]" id="">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="row mb-6">
+                                                                        <label
+                                                                            class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">
+                                                                            <span class="required"> Cevaplayan Kişi</span>
+                                                                        </label>
+                                                                        <div class="col-lg-8 fv-row">
+                                                                            <input type="text"
+                                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                name="cevaplayan_tr[]" id="">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-6">
+                                                                <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
+                                                                    <span class="required"> Soru</span>
                                                                 </label>
-                                                                <!--end::Label-->
-                                                                <!--begin::Col-->
-                                                                <div class="col-lg-8 fv-row">
+                                                                <div class="col-lg-10 fv-row">
                                                                     <input type="text"
                                                                         class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                        name="" id="">
+                                                                        name="soru_tr[]" id="">
                                                                 </div>
-                                                                <!--end::Col-->
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-6">
                                                             <div class="row mb-6">
-                                                                <!--begin::Label-->
-                                                                <label
-                                                                    class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">
-                                                                    <span class="required"> Cevaplayan Kişi</span>
+                                                                <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
+                                                                    <span class="required"> Cevap</span>
                                                                 </label>
-                                                                <!--end::Label-->
-                                                                <!--begin::Col-->
-                                                                <div class="col-lg-8 fv-row">
+                                                                <div class="col-lg-10 fv-row">
                                                                     <input type="text"
                                                                         class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                        name="" id="">
+                                                                        name="cevap_tr[]" id="">
                                                                 </div>
-                                                                <!--end::Col-->
                                                             </div>
                                                         </div>
+                                                    </div><br>
+                                                    <div class="ekle" style="text-align:center">
+                                                        <button type="button"
+                                                            class="btn btn-primary add_item_buton">EKLE</button>
                                                     </div>
-
-                                                    <div class="row mb-6">
-                                                        <!--begin::Label-->
-                                                        <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
-                                                            <span class="required"> Soru</span>
-                                                        </label>
-                                                        <!--end::Label-->
-                                                        <!--begin::Col-->
-                                                        <div class="col-lg-10 fv-row">
-                                                            <input type="text"
-                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                name="" id="">
-                                                        </div>
-                                                        <!--end::Col-->
-                                                    </div>
-
-                                                    <div class="row mb-6">
-                                                        <!--begin::Label-->
-                                                        <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
-                                                            <span class="required"> Cevap</span>
-                                                        </label>
-                                                        <!--end::Label-->
-                                                        <!--begin::Col-->
-                                                        <div class="col-lg-10 fv-row">
-                                                            <input type="text"
-                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                name="" id="">
-                                                        </div>
-                                                        <!--end::Col-->
-                                                    </div>
-
                                                 </div>
-                                                <div class="tab-pane fade container" id="dsa" role="tabpanel">
-
-                                                    <div class="row mb-6">
-                                                        <div class="col-md-6">
+                                                <div id="dsa" class="tab-pane fade">
+                                                    <div id="show_item2">
+                                                        <div class=" container" role="tabpanel"
+                                                            style="border:solid; padding:2%; border-radius:15px; border-color:lightgray">
                                                             <div class="row mb-6">
-                                                                <!--begin::Label-->
-                                                                <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">
-                                                                    <span class="required"> Soran Kişi</span>
+                                                                <div class="col-md-6">
+                                                                    <div class="row mb-6">
+                                                                        <label
+                                                                            class="col-lg-4 col-form-label ps-5 fw-bold fs-6">
+                                                                            <span class="required"> Soran Kişi</span>
+                                                                        </label>
+                                                                        <div class="col-lg-8 fv-row">
+                                                                            <input type="text"
+                                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                name="soran_en[]" id="">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="row mb-6">
+                                                                        <label
+                                                                            class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">
+                                                                            <span class="required"> Cevaplayan Kişi</span>
+                                                                        </label>
+                                                                        <div class="col-lg-8 fv-row">
+                                                                            <input type="text"
+                                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                name="cevaplayan_en[]" id="">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-6">
+                                                                <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
+                                                                    <span class="required"> Soru</span>
                                                                 </label>
-                                                                <!--end::Label-->
-                                                                <!--begin::Col-->
-                                                                <div class="col-lg-8 fv-row">
+                                                                <div class="col-lg-10 fv-row">
                                                                     <input type="text"
                                                                         class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                        name="" id="">
+                                                                        name="soru_en[]" id="">
                                                                 </div>
-                                                                <!--end::Col-->
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-6">
                                                             <div class="row mb-6">
-                                                                <!--begin::Label-->
-                                                                <label
-                                                                    class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">
-                                                                    <span class="required"> Cevaplayan Kişi</span>
+                                                                <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
+                                                                    <span class="required"> Cevap</span>
                                                                 </label>
-                                                                <!--end::Label-->
-                                                                <!--begin::Col-->
-                                                                <div class="col-lg-8 fv-row">
+                                                                <div class="col-lg-10 fv-row">
                                                                     <input type="text"
                                                                         class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                        name="" id="">
+                                                                        name="cevap_en[]" id="">
                                                                 </div>
-                                                                <!--end::Col-->
                                                             </div>
                                                         </div>
+                                                    </div><br>
+                                                    <div class="ekle" style="text-align:center">
+                                                        <button type="button"
+                                                            class="btn btn-primary add_item_buton2">EKLE</button>
                                                     </div>
-
-                                                    <div class="row mb-6">
-                                                        <!--begin::Label-->
-                                                        <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
-                                                            <span class="required"> Soru</span>
-                                                        </label>
-                                                        <!--end::Label-->
-                                                        <!--begin::Col-->
-                                                        <div class="col-lg-10 fv-row">
-                                                            <input type="text"
-                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                name="" id="">
-                                                        </div>
-                                                        <!--end::Col-->
-                                                    </div>
-
-                                                    <div class="row mb-6">
-                                                        <!--begin::Label-->
-                                                        <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
-                                                            <span class="required"> Cevap</span>
-                                                        </label>
-                                                        <!--end::Label-->
-                                                        <!--begin::Col-->
-                                                        <div class="col-lg-10 fv-row">
-                                                            <input type="text"
-                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                name="" id="">
-                                                        </div>
-                                                        <!--end::Col-->
-                                                    </div>
-
                                                 </div>
-                                            </div>
+                                            </div><br>
 
                                         </div>
                                     </div>
@@ -876,10 +818,10 @@
 
 
 
-        var input1 = document.querySelector("#activity_seo_keywords_tr");
+        var input1 = document.querySelector("#blog_seo_keywords_tr");
         new Tagify(input1);
 
-        var input2 = document.querySelector("#activity_seo_keywords_en");
+        var input2 = document.querySelector("#blog_seo_keywords_en");
         new Tagify(input2);
 
         var input3 = document.querySelector("#etiket_tr");
@@ -911,6 +853,145 @@
                     "bullist numlist | outdent indent | blockquote subscript superscript | advlist | autolink | lists charmap | print preview |  code"
                 ],
                 plugins: "advlist autolink link image lists charmap print preview code"
+            });
+
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $(".add_item_buton").click(function(e) {
+                e.preventDefault();
+                $("#show_item").prepend(' <div id="show_item" class="py-12">\
+                    <div class=" container" style="border:solid; padding:2%; border-radius:15px; border-color:lightgray"\
+                        role="tabpanel">\
+                        <div class="row mb-6">\
+                            <div class="col-md-6">\
+                                <div class="row mb-6">\
+                                    <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">\
+                                        <span class="required"> Soran Kişi</span>\
+                                    </label>\
+                                    <div class="col-lg-8 fv-row">\
+                                        <input type="text"\
+                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                            name="soran_tr[]" id="">\
+                                    </div>\
+                                </div>\
+                            </div>\
+                            <div class="col-md-6">\
+                                <div class="row mb-6">\
+                                    <label\
+                                        class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">\
+                                        <span class="required"> Cevaplayan Kişi</span>\
+                                    </label>\
+                                    <div class="col-lg-8 fv-row">\
+                                        <input type="text"\
+                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                            name="cevaplayan_tr[]" id="">\
+                                    </div>\
+                                </div>\
+                            </div>\
+                        </div>\
+                        <div class="row mb-6">\
+                            <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
+                                <span class="required"> Soru</span>\
+                            </label>\
+                            <div class="col-lg-10 fv-row">\
+                                <input type="text"\
+                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                    name="soru_tr[]" id="">\
+                            </div>\
+                        </div>\
+                        <div class="row mb-6">\
+                            <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
+                                <span class="required"> Cevap</span>\
+                            </label>\
+                            <div class="col-lg-10 fv-row">\
+                                <input type="text"\
+                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                    name="cevap_tr[]" id="">\
+                            </div>\
+                        </div>\
+                        <div class="ekle" style="text-align:center">\
+                    <button type="button"\
+                        class="btn btn-danger delete_item_buton">SİL</button>\
+                </div>\
+            </div>');
+            });
+
+            $(document).on('click', '.delete_item_buton', function(e) {
+                e.preventDefault();
+                let row_item = $(this).parent().parent();
+                $(row_item).remove();
+            });
+
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $(".add_item_buton2").click(function(e) {
+                e.preventDefault();
+                $("#show_item2").prepend('<div id="show_item2" class="py-12">\
+                    <div  role="tabpanel" style="border:solid; padding:2%; border-radius:15px; border-color:lightgray">\
+                        <div class="row mb-6">\
+                            <div class="col-md-6">\
+                                <div class="row mb-6">\
+                                    <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">\
+                                        <span class="required"> Soran Kişi</span>\
+                                    </label>\
+                                    <div class="col-lg-8 fv-row">\
+                                        <input type="text"\
+                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                            name="soran_en[]" id="">\
+                                    </div>\
+                                </div>\
+                            </div>\
+                            <div class="col-md-6">\
+                                <div class="row mb-6">\
+                                    <label\
+                                        class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">\
+                                        <span class="required"> Cevaplayan Kişi</span>\
+                                    </label>\
+                                    <div class="col-lg-8 fv-row">\
+                                        <input type="text"\
+                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                            name="cevaplayan_en[]" id="">\
+                                    </div>\
+                                </div>\
+                            </div>\
+                        </div>\
+                        <div class="row mb-6">\
+                            <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
+                                <span class="required"> Soru</span>\
+                            </label>\
+                            <div class="col-lg-10 fv-row">\
+                                <input type="text"\
+                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                    name="soru_en[]" id="">\
+                            </div>\
+                        </div>\
+                        <div class="row mb-6">\
+                            <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
+                                <span class="required"> Cevap</span>\
+                            </label>\
+                            <div class="col-lg-10 fv-row">\
+                                <input type="text"\
+                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                    name="cevap_en[]" id="">\
+                            </div>\
+                        </div>\
+                    <div class="ekle" style="text-align:center">\
+                    <button type="button"\
+                        class="btn btn-danger delete_item_buton2">SİL</button>\
+                    </div>\
+                </div>\
+                    </div>\
+                </div><br>');
+            });
+
+            $(document).on('click', '.delete_item_buton2', function(e) {
+                e.preventDefault();
+                let row_item = $(this).parent().parent();
+                $(row_item).remove();
             });
 
         });

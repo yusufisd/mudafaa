@@ -165,29 +165,27 @@ class ActivityCategoryController extends Controller
             $category->seo_key = $request->seo_key_tr;
             if (!isset($request->status_tr)) {
                 $category->status = 0;
+            }else{
+                $category->status = 1;
             }
-            if (!isset($request->seo_statu_tr)) {
-                $category->seo_statu = 0;
-            }
+   
             $category->save();
 
-            $category_en = EnActivityCategory::where('category_id', $id)->first();
+            $category_en = EnActivityCategory::where('activity_id', $id)->first();
             $category_en->title = $request->title_en;
             $category_en->link = $request->link_en;
-            $category_en->category_id = $category->id;
             $category_en->seo_title = $request->seo_title_en;
             $category_en->seo_description = $request->seo_descriptipn_en;
             $category_en->seo_key = $request->seo_key_en;
             if (!isset($request->status_en)) {
                 $category_en->status = 0;
-            }
-            if (!isset($request->seo_statu_en)) {
-                $category_en->seo_statu = 0;
+            }else{
+                $category_en->status = 1;
             }
             $category_en->save();
 
             logKayit(['Etkinlik Kategori', 'Haber kategorisi düzenlendi']);
-            Alert::success('Güncel Haber Kategorisi Düzenlendi');
+            Alert::success('Etkinlik Kategorisi Düzenlendi');
             DB::commit();
         } catch (Throwable $e) {
             DB::rollBack();
@@ -237,18 +235,18 @@ class ActivityCategoryController extends Controller
         try {
             DB::beginTransaction();
             $data = ActivityCategory::findOrFail($id);
-            $data_en = EnActivityCategory::where('category_id', $id)->first();
+            $data_en = EnActivityCategory::where('activity_id', $id)->first();
             $data_en->status = !$data->status;
             $data_en->save();
             $data->status = !$data->status;
             $data->save();
-            logKayit(['Etkinlik Kategori', 'Haber kategori durumu değiştirildi']);
+            logKayit(['Etkinlik Kategori', 'Etkinlik kategori durumu değiştirildi']);
             Alert::success('Durum Başarıyla Değiştirildi');
             DB::commit();
         } catch (Throwable $e) {
             DB::rollBack();
 
-            logKayit(['Etkinlik Kategori', 'Kategori durumu değiştirmede hata', 0]);
+            logKayit(['Etkinlik Kategori', 'Etkinlik kategori durumu değiştirmede hata', 0]);
             Alert::error('Durum Değiştirmede Hata');
             throw ValidationException::withMessages([
                 'error' => 'Tüm alanların doldurulması zorunludur.',
