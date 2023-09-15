@@ -68,38 +68,36 @@
 
                                     <div class="tab-content" id="TabContent_1">
                                         <div class="tab-pane fade show active" id="tab_blog_detay" role="tabpanel">
-                                            <!--begin::Form-->
-                                            <!--begin::Card body-->
                                             <div class="card-body px-3 py-9">
                                                 <div id="form_alert_blog_detail_tr" tabindex="0">
                                                 </div>
                                                 <div id="form_alert_blog_detail_en" tabindex="0">
                                                 </div>
-                                                <!--begin::Input group-->
+
                                                 <div class="row mb-6">
-                                                    <!--begin::Label-->
                                                     <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
                                                         {{ __('message.kapak') }} {{ __('message.görsel') }} <br><span>
                                                             (1920px - 2880px) </span></label>
-                                                    <!--end::Label-->
-                                                    <!--begin::Col-->
                                                     <div class="col-lg-10">
-
                                                         <input type="file" class="form-control" name="image"
                                                             accept=".png, .jpg, .jpeg" />
-
                                                     </div>
-                                                    <!--end::Col-->
                                                 </div>
-                                                <!--end::Input group-->
-                                                <!--begin::Input group-->
+
                                                 <div class="row mb-6">
-                                                    <!--begin::Label-->
+                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
+                                                        Çoklu {{ __('message.görsel') }} <br><span>
+                                                            (1920px - 2880px) </span></label>
+                                                    <div class="col-lg-10">
+                                                        <input type="file" class="form-control" name="multiple_image[]" multiple
+                                                            accept=".png, .jpg, .jpeg" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mb-6">
                                                     <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
                                                         <span class="required"> {{ __('message.kategori') }} </span>
                                                     </label>
-                                                    <!--end::Label-->
-                                                    <!--begin::Col-->
                                                     <div class="col-lg-10 fv-row">
                                                         <select name="category[]" aria-label="Seçiniz"
                                                             data-control="select2" data-placeholder="Seçiniz..."

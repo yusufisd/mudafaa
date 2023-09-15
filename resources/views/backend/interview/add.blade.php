@@ -627,7 +627,7 @@
                                                 <div id="asd" class="tab-pane fade show active">
                                                     <div id="show_item" >
                                                         <div class=" container"
-                                                            style="border:solid; padding:2%; border-radius:15px; border-color:lightgray"
+                                                            style=" padding:2%;"
                                                             role="tabpanel">
                                                             <div class="row mb-6">
                                                                 <div class="col-md-6">
@@ -687,7 +687,7 @@
                                                 <div id="dsa" class="tab-pane fade">
                                                     <div id="show_item2">
                                                         <div class=" container" role="tabpanel"
-                                                            style="border:solid; padding:2%; border-radius:15px; border-color:lightgray">
+                                                            style=" padding:2%; ">
                                                             <div class="row mb-6">
                                                                 <div class="col-md-6">
                                                                     <div class="row mb-6">
@@ -862,7 +862,7 @@
             $(".add_item_buton").click(function(e) {
                 e.preventDefault();
                 $("#show_item").prepend(' <div id="show_item" class="py-12">\
-                    <div class=" container" style="border:solid; padding:2%; border-radius:15px; border-color:lightgray"\
+                    <div class=" container" style=" padding:2%;"\
                         role="tabpanel">\
                         <div class="row mb-6">\
                             <div class="col-md-6">\
@@ -915,7 +915,7 @@
                     <button type="button"\
                         class="btn btn-danger delete_item_buton">SİL</button>\
                 </div>\
-            </div>');
+            </div><hr>');
             });
 
             $(document).on('click', '.delete_item_buton', function(e) {
@@ -931,7 +931,7 @@
             $(".add_item_buton2").click(function(e) {
                 e.preventDefault();
                 $("#show_item2").prepend('<div id="show_item2" class="py-12">\
-                    <div  role="tabpanel" style="border:solid; padding:2%; border-radius:15px; border-color:lightgray">\
+                    <div  role="tabpanel" style=" padding:2%;">\
                         <div class="row mb-6">\
                             <div class="col-md-6">\
                                 <div class="row mb-6">\
@@ -985,7 +985,7 @@
                     </div>\
                 </div>\
                     </div>\
-                </div><br>');
+                </div><hr>');
             });
 
             $(document).on('click', '.delete_item_buton2', function(e) {

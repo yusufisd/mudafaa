@@ -10,7 +10,7 @@
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-primary fw-bold fs-3 flex-column justify-content-center my-0">
-                        {{ __('message.güncel') }} {{ __('message.haber') }} {{ __('message.ekle') }} </h1>
+                        Hakkımızda {{ __('message.düzenle') }} </h1>
                     <!--end::Title-->
                 </div>
                 <!--end::Page title-->
@@ -32,7 +32,7 @@
         <!--begin::Content-->
 
 
-        <form action="{{ route('admin.currentNews.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="#" method="POST" enctype="multipart/form-data">
             @csrf
             <div id="kt_app_content" class="app-content flex-column-fluid">
                 <!--begin::Content container-->
@@ -62,113 +62,32 @@
                                     <div class="tab-content" id="TabContent_1">
                                         <div class="tab-pane fade show active" id="tab_activity_detay" role="tabpanel">
                                             <div class="card-body px-3 py-9">
-
-
                                                 <div class="row mb-6">
-                                                    <label class="col-lg-2 col-form-label required ps-5 fw-bold fs-6">Görsel <br><span style="font-weight:normal">( 960px - 520px)</span></label> 
+                                                    <label class="col-lg-2 col-form-label required ps-5 fw-bold fs-6">Görsel 1 <br><span style="font-weight:normal">( 960px - 520px)</span></label> 
                                                     <div class="col-lg-10">
-                                                        <input type="file" class="form-control" name="image"
+                                                        <input type="file" class="form-control" name="image1"
                                                             id="">
                                                     </div>
                                                 </div>
 
                                                 <div class="row mb-6">
-                                                    <label class="col-lg-2 col-form-label required ps-5 fw-bold fs-6">Hikaye Görseli <br><span style="font-weight:normal">( 311px - 75px)</span></label> 
+                                                    <label class="col-lg-2 col-form-label required ps-5 fw-bold fs-6">Görsel 2 <br><span style="font-weight:normal">( 960px - 520px)</span></label> 
                                                     <div class="col-lg-10">
-                                                        <input type="file" class="form-control" name="mobil_image"
+                                                        <input type="file" class="form-control" name="image2"
                                                             id="">
                                                     </div>
                                                 </div>
 
-
                                                 <div class="row mb-6">
-                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
-                                                        <span class="required">Kategori</span>
-                                                    </label>
-                                                    <div class="col-lg-10 fv-row">
-                                                        <select name="category[]" aria-label="Seçiniz"
-                                                            data-control="select2" data-placeholder="Seçiniz..."
-                                                            class="form-select form-select-solid form-select-lg fw-semibold"
-                                                            multiple>
-                                                            <option value="">Seçiniz...</option>
-                                                            @foreach ($categories as $cat)
-                                                                <option value="{{ $cat->id }}"> {{ $cat->title }}
-                                                                </option>
-                                                            @endforeach
-
-
-                                                        </select>
-                                                    </div>
-                                                    <!--end::Col-->
-                                                </div>
-
-                                                <!--begin::Input group-->
-                                                <div class="row mb-6">
-
-                                                    <div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">
-                                                        <div class="row">
-                                                            <!--begin::Label-->
-                                                            <label
-                                                                class="col-lg-4 col-form-label fw-bold fs-6">Yazar</label>
-                                                            <!--end::Label-->
-                                                            <!--begin::Col-->
-                                                            <div class="col-lg-8">
-                                                                <!--begin::Row-->
-                                                                <div class="row">
-                                                                    <!--begin::Col-->
-                                                                    <div class="col-lg-12 fv-row">
-                                                                        <select name="author" aria-label="Seçiniz"
-                                                                            data-control="select2"
-                                                                            data-placeholder="Seçiniz..."
-                                                                            class="form-select form-select-solid form-select-lg fw-semibold">
-                                                                            <option value="">Seçiniz...</option>
-
-                                                                            @foreach ($users as $user)
-                                                                            @endforeach
-                                                                            <option value="{{ $user->id }}">
-                                                                                {{ $user->name ?? '' }} {{ $user->surname ?? ''}}
-                                                                            </option>
-
-                                                                        </select>
-                                                                    </div>
-                                                                    <!--end::Col-->
-                                                                </div>
-                                                                <!--end::Row-->
-                                                            </div>
-                                                            <!--end::Col-->
-                                                        </div>
-
-                                                    </div>
-
-                                                    <div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">
-                                                        <div class="row ms-10">
-                                                            <!--begin::Label-->
-                                                            <label class="col-lg-4 col-form-label fw-bold fs-6">Yayın
-                                                                Tarihi</label>
-                                                            <!--end::Label-->
-                                                            <!--begin::Col-->
-                                                            <div class="col-lg-8">
-                                                                <!--begin::Row-->
-                                                                <div class="row">
-                                                                    <!--begin::Col-->
-                                                                    <div class="col-lg-12 fv-row">
-                                                                        <input type="date"
-                                                                            name="activity_on_location_tr"
-                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                            value="{{ substr($now,0,10) }}" />
-                                                                    </div>
-                                                                    <!--end::Col-->
-                                                                </div>
-                                                                <!--end::Row-->
-                                                            </div>
-                                                            <!--end::Col-->
-                                                        </div>
+                                                    <label class="col-lg-2 col-form-label required ps-5 fw-bold fs-6">Görsel 3 <br><span style="font-weight:normal">( 960px - 520px)</span></label> 
+                                                    <div class="col-lg-10">
+                                                        <input type="file" class="form-control" name="image3"
+                                                            id="">
                                                     </div>
                                                 </div>
-                                                <!--end::Input group-->
-                                                <!--end::Input group-->
+                                               
+                                                
                                                 <div class="row mb-6">
-                                                    <!--begin::Tab-->
                                                     <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
                                                         <li class="nav-item">
                                                             <a class="nav-link active" data-bs-toggle="tab"
@@ -225,18 +144,7 @@
                                                                 </div>
                                                                 <!--end::Input group-->
                                                                 <!--begin::Input group-->
-                                                                <div class="row mb-6">
-                                                                    <!--begin::Label-->
-                                                                    <label
-                                                                        class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Özet</label>
-                                                                    <!--end::Label-->
-                                                                    <!--begin::Col-->
-                                                                    <div class="col-lg-10 fv-row">
-                                                                        <textarea name="activity_summary_tr" id="ozet_tr" onchange="create_ozet_tr()"
-                                                                            class="form-control form-control-lg form-control-solid" value=""></textarea>
-                                                                    </div>
-                                                                    <!--end::Col-->
-                                                                </div>
+                                                                
                                                                 <!--end::Input group-->
                                                                 <!--begin::Input group-->
                                                                 <div class="row mb-6">
@@ -261,29 +169,7 @@
                                                                 </div>
                                                                 <!--end::Input group-->
                                                                 <!--begin::Input group-->
-                                                                <div class="row mb-6">
-                                                                    <!--begin::Label-->
-                                                                    <label
-                                                                        class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Etiket</label>
-                                                                    <!--end::Label-->
-                                                                    <!--begin::Col-->
-                                                                    <div class="col-lg-10">
-                                                                        <!--begin::Row-->
-                                                                        <div class="row">
-                                                                            <!--begin::Col-->
-                                                                            <div class="col-lg-12 fv-row">
-                                                                                <input type="text"
-                                                                                    id="etiket_tr"
-                                                                                    name="etiket_tr[]"
-                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="" />
-                                                                            </div>
-                                                                            <!--end::Col-->
-                                                                        </div>
-                                                                        <!--end::Row-->
-                                                                    </div>
-                                                                    <!--end::Col-->
-                                                                </div>
+                                                                
                                                                 <!--end::Input group-->
 
 
@@ -293,7 +179,7 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Url</label>
+                                                                        class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Link</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10">
@@ -324,51 +210,9 @@
                                                             </div>
                                                             <!--end::Card body-->
                                                             <!--begin::Actions-->
-                                                            <div
-                                                                class="card-footer d-flex justify-content-between py-6 px-0">
+                                                            
 
-                                                                <!--begin::Input group-->
-                                                                <div class="row mb-0">
-                                                                    <label
-                                                                        class="col-lg-8 col-form-label fw-bold fs-6 ps-5">Manşet</label>
-                                                                    <div class="col-lg-4 d-flex align-items-center">
-                                                                        <div
-                                                                            class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                            <input class="form-check-input w-50px h-25px"
-                                                                                type="checkbox" name="manset_tr"
-                                                                                id="allowactivity_detail_tr"
-                                                                                checked="checked" />
-                                                                            <label class="form-check-label"
-                                                                                for="allowactivity_detail_tr"></label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-
-                                                            <div
-                                                                class="card-footer d-flex justify-content-between py-6 px-0">
-
-                                                                <!--begin::Input group-->
-                                                                <div class="row mb-0">
-                                                                    <label
-                                                                        class="col-lg-8 col-form-label fw-bold fs-6 ps-5">Durum</label>
-                                                                    <div class="col-lg-4 d-flex align-items-center">
-                                                                        <div
-                                                                            class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                            <input class="form-check-input w-50px h-25px"
-                                                                                type="checkbox" name="status_tr"
-                                                                                id="allowactivity_detail_tr"
-                                                                                checked="checked" />
-                                                                            <label class="form-check-label"
-                                                                                for="allowactivity_detail_tr"></label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                            <!--end::Actions-->
-                                                            <!--end::Form-->
+                                                            
                                                         </div>
                                                         <div class="tab-pane fade" id="tab_activity_en" role="tabpanel">
                                                             <!--begin::Form-->
@@ -401,18 +245,7 @@
                                                                 </div>
                                                                 <!--end::Input group-->
                                                                 <!--begin::Input group-->
-                                                                <div class="row mb-6">
-                                                                    <!--begin::Label-->
-                                                                    <label
-                                                                        class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Özet</label>
-                                                                    <!--end::Label-->
-                                                                    <!--begin::Col-->
-                                                                    <div class="col-lg-10 fv-row">
-                                                                        <textarea name="activity_summary_en" id="ozet_en" onchange="create_ozet_en()"
-                                                                            class="form-control form-control-lg form-control-solid" value=""></textarea>
-                                                                    </div>
-                                                                    <!--end::Col-->
-                                                                </div>
+                                                               
                                                                 <!--end::Input group-->
                                                                 <!--begin::Input group-->
                                                                 <div class="row mb-6">
@@ -432,29 +265,7 @@
                                                                 </div>
                                                                 <!--end::Input group-->
                                                                 <!--begin::Input group-->
-                                                                <div class="row mb-6">
-                                                                    <!--begin::Label-->
-                                                                    <label
-                                                                        class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Etiket</label>
-                                                                    <!--end::Label-->
-                                                                    <!--begin::Col-->
-                                                                    <div class="col-lg-10">
-                                                                        <!--begin::Row-->
-                                                                        <div class="row">
-                                                                            <!--begin::Col-->
-                                                                            <div class="col-lg-12 fv-row">
-                                                                                <input type="text"
-                                                                                    id="etiket_en"
-                                                                                    name="etiket_en[]"
-                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="" />
-                                                                            </div>
-                                                                            <!--end::Col-->
-                                                                        </div>
-                                                                        <!--end::Row-->
-                                                                    </div>
-                                                                    <!--end::Col-->
-                                                                </div>
+                                                                 
                                                                 <!--end::Input group-->
 
 
@@ -464,7 +275,7 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Url</label>
+                                                                        class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Link</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10">
@@ -495,51 +306,9 @@
                                                             </div>
                                                             <!--end::Card body-->
                                                             <!--begin::Actions-->
-                                                            <div
-                                                                class="card-footer d-flex justify-content-between py-6 px-0">
+                                                            
 
-                                                                <!--begin::Input group-->
-                                                                <div class="row mb-0">
-                                                                    <label
-                                                                        class="col-lg-8 col-form-label fw-bold fs-6 ps-5">Manşet</label>
-                                                                    <div class="col-lg-4 d-flex align-items-center">
-                                                                        <div
-                                                                            class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                            <input class="form-check-input w-50px h-25px"
-                                                                                type="checkbox" name="manset_en"
-                                                                                id="allowactivity_detail_tr"
-                                                                                checked="checked" />
-                                                                            <label class="form-check-label"
-                                                                                for="allowactivity_detail_tr"></label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-
-                                                            <div
-                                                                class="card-footer d-flex justify-content-between py-6 px-0">
-
-                                                                <!--begin::Input group-->
-                                                                <div class="row mb-0">
-                                                                    <label
-                                                                        class="col-lg-8 col-form-label fw-bold fs-6 ps-5">Durum</label>
-                                                                    <div class="col-lg-4 d-flex align-items-center">
-                                                                        <div
-                                                                            class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                            <input class="form-check-input w-50px h-25px"
-                                                                                type="checkbox" name="status_en"
-                                                                                id="allowactivity_detail_tr"
-                                                                                checked="checked" />
-                                                                            <label class="form-check-label"
-                                                                                for="allowactivity_detail_tr"></label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                            <!--end::Actions-->
-                                                            <!--end::Form-->
+                                                            
                                                         </div>
                                                     </div>
                                                 </div>

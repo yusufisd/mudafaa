@@ -16,6 +16,8 @@ class DefenseIndustryContent extends Model
         "seo_key" => "array",
         "category" => "array",
         "companies" => "array",
+        "multiple_image" => "array",
+        
     ];
 
     public function Author(){

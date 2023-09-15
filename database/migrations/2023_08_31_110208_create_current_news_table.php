@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('live_time');
             $table->string('image');
+            $table->string('mobil_image');
             $table->integer('author_id');
             $table->string('category_id');
             $table->string('title');

@@ -89,6 +89,13 @@ class CurrentNewsController extends Controller
                 Image::make($image)->resize(960, 520)->save($save_url);
                 $news->image = $save_url;
             }
+            if ($request->file('mobil_image') != null) {
+                $image = $request->file('mobil_image');
+                $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+                $save_url = 'assets/uploads/currentNews/' . $image_name;
+                Image::make($image)->resize(960, 520)->save($save_url);
+                $news->mobil_image = $save_url;
+            }
             if (!isset($request->manset_tr)) {
                 $news->headline = 0;
             }
@@ -191,6 +198,13 @@ class CurrentNewsController extends Controller
                 $save_url = 'assets/uploads/currentNews/' . $image_name;
                 Image::make($image)->resize(960, 520)->save($save_url);
                 $news->image = $save_url;
+            }
+            if ($request->file('mobil_image') != null) {
+                $image = $request->file('mobil_image');
+                $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+                $save_url = 'assets/uploads/currentNews/' . $image_name;
+                Image::make($image)->resize(960, 520)->save($save_url);
+                $news->mobil_image = $save_url;
             }
             if (!isset($request->manset_tr)) {
                 $news->headline = 0;

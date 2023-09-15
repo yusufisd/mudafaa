@@ -642,6 +642,18 @@
                                 <!--begin:Menu item-->
                                 <div class="menu-item">
                                     <!--begin:Menu link-->
+                                    <a class="menu-link" href="{{ route('admin.about.add') }}">
+                                        <span class="menu-icon">
+                                            <i class="fa fa-newspaper" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="menu-title"> Hakkımızda {{ __('message.yönetimi') }}
+                                        </span>
+                                    </a>
+                                    <!--end:Menu link-->
+                                </div>
+
+                                <div class="menu-item">
+                                    <!--begin:Menu link-->
                                     <a class="menu-link" href="{{ route('admin.currentNews.list') }}">
                                         <span class="menu-icon">
                                             <i class="fa fa-newspaper" aria-hidden="true"></i>
