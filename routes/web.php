@@ -19,6 +19,11 @@ use App\Http\Controllers\Backend\InterviewController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\VideoCategoryController;
 use App\Http\Controllers\Backend\VideoController;
+use App\Http\Controllers\Frontend\ActivityController as FrontendActivityController;
+use App\Http\Controllers\Frontend\CurrentNewsCategoryController as FrontendCurrentNewsCategoryController;
+use App\Http\Controllers\Frontend\DefenseIndustryCategoryController as FrontendDefenseIndustryCategoryController;
+use App\Http\Controllers\Frontend\DefenseIndustryContentController as FrontendDefenseIndustryContentController;
+use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -259,11 +264,49 @@ Route::prefix('admin')
                 Route::get('sil/{id?}', 'destroy')->name('destroy');
             });
 
-            // HAKKIMIZDA CONTROLLER
+        // HAKKIMIZDA CONTROLLER
         Route::controller(AboutController::class)
-        ->prefix('hakkimizda')
-        ->name('about.')
-        ->group(function () {
-            Route::get('ekle', 'add')->name('add');
-        });
+            ->prefix('hakkimizda')
+            ->name('about.')
+            ->group(function () {
+                Route::get('ekle', 'add')->name('add');
+            });
+    });
+
+Route::prefix('/')
+    ->name('front.')
+    ->group(function () {
+        Route::get('/', [FrontendHomeController::class, 'index'])->name('home');
+
+        // CURRENT NEWS CATEGORY CONTROLLER
+        Route::controller(FrontendCurrentNewsCategoryController::class)
+            ->prefix('guncel-haber-kategorisi')
+            ->name('currentNewsCategory.')
+            ->group(function () {
+                Route::get('liste/{id?}', 'index')->name('list');
+            });
+
+        // DEFENSE INDUSTRY CATEGORY CONTROLLER
+        Route::controller(FrontendDefenseIndustryCategoryController::class)
+            ->prefix('savunma-sanayi-kategorisi')
+            ->name('defenseIndustryCategory.')
+            ->group(function () {
+                Route::get('liste/{id?}', 'index')->name('list');
+            });
+
+        // DEFENSE INDUSTRY CONTENT CONTROLLER
+        Route::controller(FrontendDefenseIndustryContentController::class)
+            ->prefix('savunma-sanayi')
+            ->name('defenseIndustryContent.')
+            ->group(function () {
+                Route::get('detay/{id?}', 'detail')->name('detail');
+            });
+
+        // ACTİVİYY CONTROLLER
+        Route::controller(FrontendActivityController::class)
+            ->prefix('etkinlik')
+            ->name('activity.')
+            ->group(function () {
+                Route::get('liste', 'index')->name('list');
+            });
     });

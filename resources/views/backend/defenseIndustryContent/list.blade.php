@@ -117,10 +117,10 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <img src="/{{ $item->image }}" class="w-75px ms-n1"
+                                                        <img src="/{{ $item->image }}" style="width: 150px; border-radius:15px" class=" ms-n1"
                                                             alt="">
                                                     </td>
-                                                    <td> {{ $item->Author->name ?? '-'}} </td>
+                                                    <td> {{ strtoupper($item->Author->name ?? '-') }} {{ strtoupper($item->Author->surname ?? '-') }} </td>
 
                                                     <td> {{ $item->title }} </td>
 

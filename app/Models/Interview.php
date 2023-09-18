@@ -17,4 +17,5 @@ class Interview extends Model
     public function Author(){
         return $this->hasOne(UserModel::class,'id','author');
     }
+
 }

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('read_time')->default(5);
             $table->longText('short_description');
             $table->longText('description');
+            $table->integer('category_id');
             $table->string('tags');
             $table->integer('status')->default(1);
             $table->string('link');

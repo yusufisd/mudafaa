@@ -13,4 +13,8 @@ class CurrentNewsCategory extends Model
     protected $casts = [
         "seo_key" => "array"
     ];
+
+    public function adet(){
+        return CurrentNews::where('category_id',$this->id)->count();
+    }
 }

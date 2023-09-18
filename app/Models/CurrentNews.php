@@ -11,14 +11,12 @@ class CurrentNews extends Model
     protected $guarded = [];
     protected $casts = [
         "seo_key" => "array",
-        "category_id" => "array",
         "tags" => "array",
     ];
 
     public function Category()
     {
-        $data = CurrentNewsCategory::whereIn('id',$this->category_id)->get();
-        return $data;
+        return $this->hasOne(CurrentNewsCategory::class,'id','category_id');
     }
 
     public function Author()

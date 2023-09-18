@@ -27,6 +27,9 @@
     <link href="/assets/backend/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
     <link href="/assets/backend/css/style.bundle.css" rel="stylesheet" type="text/css" />
     <link href="/assets/backend/css/gavia_style.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.11.0/css/flag-icons.min.css" />
+
     <!--end::Global Stylesheets Bundle-->
     <!-- begin:: Extra Style -->
     <style>

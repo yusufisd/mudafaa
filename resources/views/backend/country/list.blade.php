@@ -95,7 +95,7 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <img src="/{{ $item->image }}" style="border-radius: 5%; width:150px"  alt="">
+                                                        <span class="fi fi-{{$item->code}} fa-6x" style="border-radius:15px"></span>
                                                     </td>
                                                     <td> {{ $item->name }} </td>
 

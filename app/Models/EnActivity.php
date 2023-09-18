@@ -13,4 +13,8 @@ class EnActivity extends Model
     protected $casts = [
         "seo_key" => "array",
     ];
+
+    public function getCategoryAttribute(){
+        return $this->hasOne(ActivityCategory::class);
+    }
 }

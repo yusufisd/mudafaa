@@ -99,7 +99,7 @@
                                                         <span class="required"> {{ __('message.kategori') }} </span>
                                                     </label>
                                                     <div class="col-lg-10 fv-row">
-                                                        <select name="category[]" aria-label="Seçiniz"
+                                                        <select name="category" aria-label="Seçiniz"
                                                             data-control="select2" data-placeholder="Seçiniz..."
                                                             class="form-select form-select-solid form-select-lg fw-semibold">
                                                             <option value="">Seçiniz...</option>

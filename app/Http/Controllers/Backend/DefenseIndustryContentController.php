@@ -36,7 +36,7 @@ class DefenseIndustryContentController extends Controller
     {
         $users = UserModel::latest()->get();
         $categories = DefenseIndustryCategory::latest()->get();
-        $countries = Country::orderBy('name', 'asc')->get();
+        $countries = CountryList::orderBy('name', 'asc')->get();
         $companies = Company::orderBy('name', 'asc')->get();
         $no = 1;
         return view('backend.defenseIndustryContent.add', compact('users', 'categories', 'companies', 'countries'));
@@ -47,9 +47,11 @@ class DefenseIndustryContentController extends Controller
      */
     public function store(Request $request)
     {
+        $genel_id = DefenseIndustryCategory::where('id',$request->category)->first();
         $new = new DefenseIndustryContent();
 
-        $new->category = $request->category;
+        $new->category_id = $request->category;
+        $new->defense_id = $genel_id->defense_id;
         $new->title = $request->name_tr;
         $new->short_description = $request->short_description_tr;
         $new->description = $request->description_tr;
@@ -78,7 +80,7 @@ class DefenseIndustryContentController extends Controller
                 $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
                 $save_url = 'assets/uploads/defenceIndustryContent/' . $image_name;
                 Image::make($image)
-                    ->resize(960, 520)
+                    ->resize(170, 170)
                     ->save($save_url);
                 array_push($datas,$save_url);
             }
@@ -140,9 +142,10 @@ class DefenseIndustryContentController extends Controller
     {
         try {
             DB::beginTransaction();
+            $genel_id = DefenseIndustryCategory::where('id',$request->category)->first();
 
             $new = DefenseIndustryContent::findOrFail($id);
-
+            $new->defense_id = $genel_id->defense_id;
             $new->category = $request->category;
             $new->title = $request->name_tr;
             $new->short_description = $request->short_description_tr;
@@ -171,7 +174,7 @@ class DefenseIndustryContentController extends Controller
                     $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
                     $save_url = 'assets/uploads/defenceIndustryContent/' . $image_name;
                     Image::make($image)
-                        ->resize(960, 520)
+                        ->resize(170, 170)
                         ->save($save_url);
                     array_push($datas,$save_url);
                 }

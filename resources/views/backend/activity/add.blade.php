@@ -101,8 +101,8 @@
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10 fv-row">
-                                                        <select name="category" aria-label="Seçiniz"
-                                                            data-control="select2" data-placeholder="Seçiniz..."
+                                                        <select name="category" aria-label="Seçiniz" data-control="select2"
+                                                            data-placeholder="Seçiniz..."
                                                             class="form-select form-select-solid form-select-lg fw-semibold">
                                                             <option value="">Seçiniz...</option>
 
@@ -795,11 +795,11 @@
                         </div>
                     </div>
                     <!--end::Col-->
-                </div>
-                <!--end::Row-->
+                    <!--end::Row-->
 
-                <div class="right" style="text-align: right">
-                    <button class="btn btn-primary"> {{ __('message.kaydet') }} </button>
+                    <div class="right" style="text-align: right">
+                        <button class="btn btn-primary"> {{ __('message.kaydet') }} </button>
+                    </div>
                 </div>
 
             </div>

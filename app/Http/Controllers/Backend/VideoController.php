@@ -67,7 +67,7 @@ class VideoController extends Controller
             ]);
 
             $news = new Video();
-            $news->category = $request->category;
+            $news->category_id = $request->category;
             $news->author = $request->author;
             $news->live_date = $request->live_date;
             $news->title = $request->name_tr;
@@ -90,6 +90,7 @@ class VideoController extends Controller
             $news->save();
 
             $news_en = new EnVideo();
+            $news_en->category_id = $request->category;
             $news_en->title = $request->name_en;
             $news_en->description = $request->description_en;
             $news_en->youtube = $request->youtube_en;

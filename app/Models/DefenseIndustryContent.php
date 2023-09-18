@@ -14,7 +14,6 @@ class DefenseIndustryContent extends Model
         "countries" => "array",
         "origin" => "array",
         "seo_key" => "array",
-        "category" => "array",
         "companies" => "array",
         "multiple_image" => "array",
         
@@ -26,7 +25,19 @@ class DefenseIndustryContent extends Model
 
     public function Category()
     {
-        $data = DefenseIndustryCategory::whereIn('id',$this->category)->get();
+        $data = DefenseIndustryCategory::where('id',$this->category_id)->first();
         return $data;
+    }
+
+    public function Mensei(){
+        return CountryList::whereIn('id',$this->origin)->get();
+    }
+
+    public function Countries(){
+        return CountryList::whereIn('id',$this->countries)->get();
+    }
+
+    public function GeneralCategory(){
+        return $this->hasOne(DefenseIndustry::class,'id','defense_id');
     }
 }

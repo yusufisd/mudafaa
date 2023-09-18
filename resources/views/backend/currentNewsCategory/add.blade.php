@@ -78,7 +78,7 @@
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
                                                     <label class="col-lg-2 col-form-label required ps-5 fw-bold fs-6">
-                                                        {{ __('message.görsel') }} <span style="font-weight: normal">( 310px
+                                                        {{ __('message.görsel') }} <br> <span style="font-weight: normal">( 310px
                                                             - 75px)</span></label>
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
@@ -195,7 +195,7 @@
                                                                                     <div class="col-lg-12">
                                                                                         <input type="text"
                                                                                             name="link_tr" id="link_tr"
-                                                                                            id="link_tr"
+                                                                                          
                                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                             value="" />
                                                                                     </div>

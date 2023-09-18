@@ -93,7 +93,7 @@ class CurrentNewsController extends Controller
                 $image = $request->file('mobil_image');
                 $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
                 $save_url = 'assets/uploads/currentNews/' . $image_name;
-                Image::make($image)->resize(960, 520)->save($save_url);
+                Image::make($image)->resize(97, 123)->save($save_url);
                 $news->mobil_image = $save_url;
             }
             if (!isset($request->manset_tr)) {
@@ -113,7 +113,7 @@ class CurrentNewsController extends Controller
             $news_en->short_description = $request->activity_summary_en;
             $news_en->description = $request->tinymce_activity_detail_en;
             $news_en->tags = $request->etiket_en;
-            $news_en->tags = $request->etiket_en;
+            $news_en->category_id = $request->category;
             $news_en->currentNews_id = $news->id;
             $news_en->link = $request->activity_url_en;
             $news_en->seo_title = $request->activity_seo_title_en;
@@ -203,7 +203,7 @@ class CurrentNewsController extends Controller
                 $image = $request->file('mobil_image');
                 $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
                 $save_url = 'assets/uploads/currentNews/' . $image_name;
-                Image::make($image)->resize(960, 520)->save($save_url);
+                Image::make($image)->resize(97, 123)->save($save_url);
                 $news->mobil_image = $save_url;
             }
             if (!isset($request->manset_tr)) {

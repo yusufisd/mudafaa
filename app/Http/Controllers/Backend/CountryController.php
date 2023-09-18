@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Country;
+use App\Models\CountryList;
 use App\Models\EnCountry;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -16,7 +17,7 @@ class CountryController extends Controller
 {
     public function index()
     {
-        $data = Country::orderBy('name', 'asc')->get();
+        $data = CountryList::orderBy('name', 'asc')->get();
         return view('backend.country.list', compact('data'));
     }
 

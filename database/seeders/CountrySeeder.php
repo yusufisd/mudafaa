@@ -265,7 +265,7 @@ class CountrySeeder extends Seeder
         ];
 
         foreach($countries as $key => $value){
-            CountryList::create(['name' => $value]);
+            CountryList::create(['name' => $value,'code' => strtolower($key)]);
         }
     }
 }

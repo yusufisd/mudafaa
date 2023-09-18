@@ -16,10 +16,11 @@ return new class extends Migration
             $table->string('title');
             $table->string('image');
             $table->string('multiple_image');
-            $table->string('category');
-            $table->string('countries');
-            $table->string('companies');
-            $table->string('origin');
+            $table->integer('category_id');
+            $table->integer('defense_id');
+            $table->longText('countries');
+            $table->longText('companies');
+            $table->longText('origin');
             $table->string('link');
             $table->integer('national')->default(1);
             $table->integer('author');

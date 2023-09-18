@@ -12,16 +12,13 @@ class Video extends Model
     protected $guarded = [];
     protected $casts = [
         "seo_key" => "array",
-        "category" => "array",
     ];
 
     public function Author(){
         return $this->hasOne(UserModel::class,'id','author');
     }
 
-    public function Category()
-    {
-        $data = VideoCategory::whereIn('id',$this->category)->get();
-        return $data;
+    public function Category(){
+        return $this->hasOne(VideoCategory::class,'id','category_id');
     }
 }

@@ -102,12 +102,10 @@
                                                         <img src="/{{ $item->image }}" class="w-75px ms-n1"
                                                             alt="">
                                                     </td>
-                                                    <td> {{ $item->Author->name }} {{ $item->Author->name }} </td>
+                                                    <td> {{ strtoupper($item->Author->name) }} {{ strtoupper($item->Author->surname)}} </td>
                                                     <td> {{ $item->title }} </td>
                                                     <td>
-                                                        @foreach ($item->Category() as $cat)
-                                                            {{ $cat->title }},
-                                                        @endforeach
+                                                        {{ $item->category->title}}
                                                     </td>
                                                     <td style="text-align: center">
                                                         <div

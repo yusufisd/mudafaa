@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('link');
             $table->string('image');
             $table->date('live_date');
-            $table->string('category');
+            $table->integer('category_id');
             $table->integer('author');
             $table->string('youtube');
             $table->string('seo_title');

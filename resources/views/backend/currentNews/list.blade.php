@@ -107,11 +107,7 @@
                                                     </td>
                                                     <td> {{ $item->Author->name }} {{ $item->Author->name }} </td>
                                                     <td> {{ $item->title }} </td>
-                                                    <td>
-                                                        @foreach ($item->Category() as $cat)
-                                                            {{ $cat->title }},
-                                                        @endforeach
-                                                    </td>
+                                                    <td> {{ $item->Category->title }} </td>
                                                     <td>
                                                         <div
                                                             class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">

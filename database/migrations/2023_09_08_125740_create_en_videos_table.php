@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('link');
             $table->string('youtube');
             $table->string('seo_title');
+            $table->integer('category_id');
             $table->string('seo_description');
             $table->string('seo_key');
             $table->integer('status')->default(1);
