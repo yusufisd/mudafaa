@@ -29,20 +29,19 @@
             <div class="swiper-container">
                 <div class="swiper-wrapper">
 
-                @foreach ($cats as $variable)
-                        
-                    <div class="swiper-slide">
-                        <a href="black_news.html">
-                            <img style="height: 100%" src="{{ $variable->mobil_image }}" alt="slide-1">
-                        </a>
-                        <div class="swiper-content">
-                            <a href="black_news.html" class="rt-cat-primary restricted_story_title">{{ $variable->Category->title }}</a>
+                    @foreach ($cats as $variable)
+                        <div class="swiper-slide">
+                            <a href="black_news.html">
+                                <img style="height: 100%" src="{{ $variable->mobil_image }}" alt="slide-1">
+                            </a>
+                            <div class="swiper-content">
+                                <a href="black_news.html"
+                                    class="rt-cat-primary restricted_story_title">{{ $variable->Category->title }}</a>
+                            </div>
                         </div>
-                    </div>
-
                     @endforeach
 
-                    
+
                 </div>
             </div>
             <div class="swiper-button-prev" style="position: absolute; top:14vh;left:1vh;color: #749f43;"></div>
@@ -160,8 +159,7 @@
                                 <div class="rt-post-overlay rt-post-overlay-md layout-3">
                                     <div class="post-img">
                                         <a href="single-post1.html" class="img-link">
-                                            <img src="{{ $item->image }}" alt="travel-xl_2" width="900"
-                                                height="600">
+                                            <img src="{{ $item->image }}" alt="travel-xl_2" width="900" height="600">
                                         </a>
                                     </div>
                                     <div class="post-content">
@@ -177,8 +175,7 @@
                                                     <ul>
                                                         <li>
                                                             <span class="rt-meta">
-                                                                <i class="fa fa-user"></i> <a href=""
-                                                                    class="name">
+                                                                <i class="fa fa-user"></i> <a href="" class="name">
                                                                     {{ $item->Author->name }} {{ $item->Author->surname }}
                                                                 </a>
                                                             </span>
@@ -438,7 +435,7 @@
 
                                         <div class="post-grid-md-list gutter-24">
 
-                                            @foreach ($cat1_news1 as $item)
+                                            @foreach ($cat2_news1 as $item)
                                                 <div class="item">
                                                     <div class="rt-post post-md style-8">
                                                         <div class="post-img">
@@ -476,7 +473,7 @@
                                     <div class="col-xl-4 col-lg-6">
                                         <div class="post-grid-md-list gutter-24">
 
-                                            @foreach ($cat1_news1 as $item)
+                                            @foreach ($cat2_news2 as $item)
                                                 <div class="item">
                                                     <div class="rt-post post-md style-8">
                                                         <div class="post-img">
@@ -528,16 +525,16 @@
                                         <div class="rt-post-overlay rt-post-overlay-md">
                                             <div class="post-img">
                                                 <a href="single-post1.html" class="img-link">
-                                                    <img src="assets/frontend/media/gallery/post-xl_3.jpg" alt="post-xl-3"
+                                                    <img src="/{{$ucuncu_kategori_icerigi->image}}" alt="post-xl-3"
                                                         width="900" height="600">
                                                 </a>
                                             </div>
                                             <div class="post-content">
                                                 <a href="life-style.html"
-                                                    class="music restricted_category_title">Music</a>
+                                                    class="music restricted_category_title"> {{$ucuncu_kategori_icerigi->Category->title}} </a>
                                                 <h3 class="post-title">
                                                     <a href="single-post1.html" class="section_4_title_style_2">
-                                                        African ations Are Singing To Save Their Wildlife
+                                                        {{$ucuncu_kategori_icerigi->title}}
                                                     </a>
                                                 </h3>
 
@@ -546,13 +543,13 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="fa fa-user"></i> <a href=""
-                                                                    class="name">Alİ Yılmaz</a>
+                                                                    class="name">{{$ucuncu_kategori_icerigi->Author->name}}</a>
                                                             </span>
                                                         </li>
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                25.12.2022
+                                                                {{substr($ucuncu_kategori_icerigi->created_at,0,10)}}
                                                             </span>
                                                         </li>
                                                     </ul>
@@ -566,93 +563,38 @@
                                     <div class="col-xl-4 col-lg-6">
 
                                         <div class="post-grid-md-list gutter-24">
-                                            <div class="item">
-                                                <div class="rt-post post-md style-8">
-                                                    <div class="post-img">
-                                                        <a href="single-post1.html">
-                                                            <img src="assets/frontend/media/gallery/post-grid-md_7.jpg"
-                                                                alt="post" width="343" height="250">
-                                                        </a>
-                                                    </div>
-                                                    <div class="post-content">
 
-                                                        <a href="technology.html"
-                                                            class="rt-cat-primary restricted_category_title">Technology</a>
-                                                        <h4 class="post-title">
-                                                            <a href="single-post1.html" class="section_4_title_style_2">
-                                                                After Moon They Land CloseSpace Really?
+                                            @foreach ($cat3_news1 as $item)
+                                                <div class="item">
+                                                    <div class="rt-post post-md style-8">
+                                                        <div class="post-img">
+                                                            <a href="single-post1.html">
+                                                                <img src="{{ $item->image }}" alt="post"
+                                                                    width="343" height="250">
                                                             </a>
-                                                        </h4>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-calendar-alt icon"></i>
-                                                            25.12.2022
-                                                        </span>
-                                                        <span class="rt-meta ms-2">
-                                                            <i class="far fa-eye icon"></i>
-                                                            1050
-                                                        </span>
+                                                        </div>
+                                                        <div class="post-content">
+                                                            <a href="technology.html"
+                                                                class="rt-cat-primary restricted_category_title">
+                                                                {{ $item->Category->title }} </a>
+                                                            <h4 class="post-title">
+                                                                <a href="single-post1.html"
+                                                                    class="section_4_title_style_2">
+                                                                    {{ $item->title }}
+                                                                </a>
+                                                            </h4>
+                                                            <span class="rt-meta">
+                                                                <i class="far fa-calendar-alt icon"></i>
+                                                                {{ substr($item->created_at, 0, 10) }}
+                                                            </span>
+                                                            <span class="rt-meta ms-2">
+                                                                <i class="far fa-eye icon"></i>
+                                                                1050
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <!-- end rt-post post-md item -->
-
-                                            <div class="item">
-                                                <div class="rt-post post-md style-8">
-                                                    <div class="post-img">
-                                                        <a href="single-post1.html">
-                                                            <img src="assets/frontend/media/gallery/post-grid-md_7.jpg"
-                                                                alt="post" width="343" height="250">
-                                                        </a>
-                                                    </div>
-                                                    <div class="post-content">
-                                                        <a href="life-style.html"
-                                                            class="rt-cat-primary restricted_category_title">Travel</a>
-                                                        <h4 class="post-title">
-                                                            <a href="single-post1.html" class="section_4_title_style_2">
-                                                                After Moon They Land CloseSpace Really?
-                                                            </a>
-                                                        </h4>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-calendar-alt icon"></i>
-                                                            25.12.2022
-                                                        </span>
-                                                        <span class="rt-meta ms-2">
-                                                            <i class="far fa-eye icon"></i>
-                                                            1050
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- end rt-post post-md item -->
-
-                                            <div class="item">
-                                                <div class="rt-post post-md style-8">
-                                                    <div class="post-img">
-                                                        <a href="single-post1.html">
-                                                            <img src="assets/frontend/media/gallery/post-grid-md_8.jpg"
-                                                                alt="post" width="343" height="250">
-                                                        </a>
-                                                    </div>
-                                                    <div class="post-content">
-                                                        <a href="life-style.html"
-                                                            class="rt-cat-primary restricted_category_title">Food</a>
-                                                        <h4 class="post-title">
-                                                            <a href="single-post1.html" class="section_4_title_style_2">
-                                                                After Moon They Land CloseSpace Really?
-                                                            </a>
-                                                        </h4>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-calendar-alt icon"></i>
-                                                            25.12.2022
-                                                        </span>
-                                                        <span class="rt-meta ms-2">
-                                                            <i class="far fa-eye icon"></i>
-                                                            1050
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- end rt-post post-md item -->
+                                            @endforeach
 
                                         </div>
                                         <!-- end post grid md list -->
@@ -663,92 +605,38 @@
                                     <div class="col-xl-4 col-lg-6">
 
                                         <div class="post-grid-md-list gutter-24">
-                                            <div class="item">
-                                                <div class="rt-post post-md style-8">
-                                                    <div class="post-img">
-                                                        <a href="single-post1.html">
-                                                            <img src="assets/frontend/media/gallery/post-grid-md_9.jpg"
-                                                                alt="post" width="343" height="250">
-                                                        </a>
-                                                    </div>
-                                                    <div class="post-content">
-                                                        <a href="life-style.html"
-                                                            class="rt-cat-primary restricted_category_title">Travel</a>
-                                                        <h4 class="post-title">
-                                                            <a href="single-post1.html" class="section_4_title_style_2">
-                                                                After Moon They Land CloseSpace Really?
-                                                            </a>
-                                                        </h4>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-calendar-alt icon"></i>
-                                                            25.12.2022
-                                                        </span>
-                                                        <span class="rt-meta ms-2">
-                                                            <i class="far fa-eye icon"></i>
-                                                            1050
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- end rt-post post-md item -->
 
-                                            <div class="item">
-                                                <div class="rt-post post-md style-8">
-                                                    <div class="post-img">
-                                                        <a href="single-post1.html">
-                                                            <img src="assets/frontend/media/gallery/post-grid-md_10.jpg"
-                                                                alt="post" width="343" height="250">
-                                                        </a>
-                                                    </div>
-                                                    <div class="post-content">
-                                                        <a href="technology.html"
-                                                            class="rt-cat-primary restricted_category_title">Technology</a>
-                                                        <h4 class="post-title">
-                                                            <a href="single-post1.html" class="section_4_title_style_2">
-                                                                After Moon They Land CloseSpace Really?
+                                            @foreach ($cat3_news2 as $item)
+                                                <div class="item">
+                                                    <div class="rt-post post-md style-8">
+                                                        <div class="post-img">
+                                                            <a href="single-post1.html">
+                                                                <img src="{{ $item->image }}" alt="post"
+                                                                    width="343" height="250">
                                                             </a>
-                                                        </h4>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-calendar-alt icon"></i>
-                                                            25.12.2022
-                                                        </span>
-                                                        <span class="rt-meta ms-2">
-                                                            <i class="far fa-eye icon"></i>
-                                                            1050
-                                                        </span>
+                                                        </div>
+                                                        <div class="post-content">
+                                                            <a href="technology.html"
+                                                                class="rt-cat-primary restricted_category_title">
+                                                                {{ $item->Category->title }} </a>
+                                                            <h4 class="post-title">
+                                                                <a href="single-post1.html"
+                                                                    class="section_4_title_style_2">
+                                                                    {{ $item->title }}
+                                                                </a>
+                                                            </h4>
+                                                            <span class="rt-meta">
+                                                                <i class="far fa-calendar-alt icon"></i>
+                                                                {{ substr($item->created_at, 0, 10) }}
+                                                            </span>
+                                                            <span class="rt-meta ms-2">
+                                                                <i class="far fa-eye icon"></i>
+                                                                1050
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <!-- end rt-post post-md item -->
-
-                                            <div class="item">
-                                                <div class="rt-post post-md style-8">
-                                                    <div class="post-img">
-                                                        <a href="single-post1.html">
-                                                            <img src="assets/frontend/media/gallery/post-grid-md_11.jpg"
-                                                                alt="post" width="343" height="250">
-                                                        </a>
-                                                    </div>
-                                                    <div class="post-content">
-                                                        <a href="life-style.html"
-                                                            class="rt-cat-primary restricted_category_title">World</a>
-                                                        <h4 class="post-title">
-                                                            <a href="single-post1.html" class="section_4_title_style_2">
-                                                                After Moon They Land CloseSpace Really?
-                                                            </a>
-                                                        </h4>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-calendar-alt icon"></i>
-                                                            25.12.2022
-                                                        </span>
-                                                        <span class="rt-meta ms-2">
-                                                            <i class="far fa-eye icon"></i>
-                                                            1050
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- end rt-post post-md item -->
+                                            @endforeach
 
                                         </div>
                                         <!-- end post grid md list -->
@@ -798,18 +686,17 @@
             <div class="row gutter-24">
 
                 @foreach ($activity as $item)
-
                     <div class="col-xl-3 col-md-6 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="800ms">
                         <div class="rt-post-grid grid-meta">
                             <div class="post-img">
                                 <a href="fair_detail.html">
-                                    <img src="{{$item->image}}" alt="post" width="551"
-                                        height="431">
+                                    <img src="{{ $item->image }}" alt="post" width="551" height="431">
                                 </a>
                             </div>
                             <div class="post-content">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <a href="graphics.html" class="rt-cat-primary restricted_category_title"> {{$item->Category->title}} </a>
+                                    <a href="graphics.html" class="rt-cat-primary restricted_category_title">
+                                        {{ substr($item->Category->title,0,10) }} ...</a>
                                     <h6 class="rt-news-cat-normal mx-2 text-danger">
                                         <i class="far fa-clock icon"></i>
                                         1 gün, 20 saat , 15 dk.
@@ -818,7 +705,7 @@
 
                                 <h4 class="post-title">
                                     <a href="fair_detail.html" class="title_style_2">
-                                        {{$item->title}}
+                                        {{ $item->title }}
                                     </a>
                                 </h4>
                                 <div class="post-meta">
@@ -826,13 +713,13 @@
                                         <li>
                                             <span class="rt-meta">
                                                 <i class="far fa-calendar-alt icon"></i>
-                                                {{substr($item->start_time,0,10)}}
+                                                {{ substr($item->start_time, 0, 10) }}
                                             </span>
                                         </li>
                                         <li>
                                             <span class="rt-meta">
                                                 <i class="fas fa-map-marker-alt icon"></i>
-                                                {{substr($item->city,0,10)}}...
+                                                {{ substr($item->city, 0, 10) }}...
                                             </span>
                                         </li>
                                         <li>
@@ -847,7 +734,6 @@
                             </div>
                         </div>
                     </div>
-
                 @endforeach
 
 
@@ -877,19 +763,19 @@
                             <div class="rt-post post-md style-7 grid-meta bold-underline mb--20">
                                 <div class="post-img">
                                     <a href="single-post1.html">
-                                        <img src="{{$populer_haber_first->image}}" alt="post"
-                                            width="696" height="491">
+                                        <img src="{{ $populer_haber_first->image }}" alt="post" width="696"
+                                            height="491">
                                     </a>
                                 </div>
                                 <div class="post-content">
                                     <a href="life-style.html" class="world">World</a>
                                     <h3 class="post-title">
                                         <a href="single-post1.html" class="restricted_title">
-                                            {{$populer_haber_first->title}}
+                                            {{ $populer_haber_first->title }}
                                         </a>
                                     </h3>
                                     <p class="restricted_text">
-                                        {{substr($populer_haber_first->short_description,0,100)}}
+                                        {{ substr($populer_haber_first->short_description, 0, 100) }}
 
                                     </p>
                                     <div class="post-meta">
@@ -897,14 +783,15 @@
                                             <li>
                                                 <span class="rt-meta">
                                                     <i class="fa fa-user"></i> <a href="" class="name">
-                                                        {{$populer_haber_first->Author->name}} {{$populer_haber_first->Author->surname}}
+                                                        {{ $populer_haber_first->Author->name }}
+                                                        {{ $populer_haber_first->Author->surname }}
                                                     </a>
                                                 </span>
                                             </li>
                                             <li>
                                                 <span class="rt-meta">
                                                     <i class="far fa-calendar-alt icon"></i>
-                                                    {{substr($populer_haber_first->created_at,0,10)}}
+                                                    {{ substr($populer_haber_first->created_at, 0, 10) }}
                                                 </span>
                                             </li>
                                             <li>
@@ -942,47 +829,44 @@
 
 
                                 @foreach ($populer_haber_three as $item)
-                                    
-
-                                <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-delay="200ms"
-                                    data-wow-duration="800ms">
-                                    <div class="rt-post-grid grid-meta">
-                                        <div class="post-img">
-                                            <a href="single-post1.html">
-                                                <img src="{{$item->image}}" alt="post"
-                                                    width="551" height="431">
-                                            </a>
-                                        </div>
-                                        <div class="post-content">
-                                            <a href="life-style.html"
-                                                class="tr-america restricted_category_title">{{$item->Category->title}}</a>
-                                            <h3 class="post-title">
-                                                <a href="single-post1.html" class="title_style_2">
-                                                    {{$item->title}}
+                                    <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-delay="200ms"
+                                        data-wow-duration="800ms">
+                                        <div class="rt-post-grid grid-meta">
+                                            <div class="post-img">
+                                                <a href="single-post1.html">
+                                                    <img src="{{ $item->image }}" alt="post" width="551"
+                                                        height="431">
                                                 </a>
-                                            </h3>
-                                            <span class="rt-meta me-2">
-                                                <i class="fa fa-user"></i> <a href="" class="name">
-                                                    {{$item->Author->name}}  {{$item->Author->surname}}
-                                                </a>
-                                            </span>
-                                            <span class="rt-meta me-2">
-                                                <i class="far fa-calendar-alt icon"></i>
-                                                {{substr($item->created_at,0,10)}}
-                                            </span>
-                                            <span class="rt-meta">
-                                                <i class="far fa-eye icon"></i>
-                                                1050
-                                            </span>
+                                            </div>
+                                            <div class="post-content">
+                                                <a href="life-style.html"
+                                                    class="tr-america restricted_category_title">{{ $item->Category->title }}</a>
+                                                <h3 class="post-title">
+                                                    <a href="single-post1.html" class="title_style_2">
+                                                        {{ $item->title }}
+                                                    </a>
+                                                </h3>
+                                                <span class="rt-meta me-2">
+                                                    <i class="fa fa-user"></i> <a href="" class="name">
+                                                        {{ $item->Author->name }} {{ $item->Author->surname }}
+                                                    </a>
+                                                </span>
+                                                <span class="rt-meta me-2">
+                                                    <i class="far fa-calendar-alt icon"></i>
+                                                    {{ substr($item->created_at, 0, 10) }}
+                                                </span>
+                                                <span class="rt-meta">
+                                                    <i class="far fa-eye icon"></i>
+                                                    1050
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- end col -->
-
+                                    <!-- end col -->
                                 @endforeach
-                               
 
-                           
+
+
 
                             </div>
                             <!-- end inner row -->
@@ -1106,12 +990,12 @@
     <!-- start top-games-section-style-1 -->
     <section class="top-video-section-style-2 section-padding motion-effects-wrap">
         <div class="video-text d-none d-xl-block">
-            <img class="motion-effects1" src="assets/frontend/media/elements/element_11.png" alt="game-text" width="181"
-                height="753">
+            <img class="motion-effects1" src="assets/frontend/media/elements/element_11.png" alt="game-text"
+                width="181" height="753">
         </div>
         <div class="circle-shape d-none d-xl-block">
-            <img class="motion-effects6" src="assets/frontend/media/elements/element_12.png" alt="circle" width="528"
-                height="378">
+            <img class="motion-effects6" src="assets/frontend/media/elements/element_12.png" alt="circle"
+                width="528" height="378">
         </div>
         <div class="container">
             <div class="row">
@@ -1143,44 +1027,39 @@
             <div class="row gutter-24 justify-content-center">
 
                 @foreach ($videos as $item)
-                    
+                    <div class="col-xl-3 col-md-6 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="800ms">
 
-                <div class="col-xl-3 col-md-6 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="800ms">
-
-                    <div class="rt-post-overlay rt-post-overlay-lg layout-6">
-                        <div class="post-img">
-                            <a href="single-post1.html" class="img-link">
-                                <img src="{{$item->image}}" alt="post-xl_31" width="900"
-                                    height="600">
-                            </a>
-                            <a href="{{$item->youtube}}"
-                                class="play-btn play-btn-transparent right-top">
-                                <i class="fas fa-play"></i>
-                            </a>
-                        </div>
-                        <div class="post-content">
-                            <a href="gaming.html" class="mission restricted_category_title"> {{$item->category->title}} </a>
-                            <h3 class="post-title">
-                                <a href="single-post1.html" class="section_6_restricted_title">
-                                    {{$item->title}}
+                        <div class="rt-post-overlay rt-post-overlay-lg layout-6">
+                            <div class="post-img">
+                                <a href="single-post1.html" class="img-link">
+                                    <img src="{{ $item->image }}" alt="post-xl_31" width="900" height="600">
                                 </a>
-                            </h3>
-                            <div class="post-meta">
-                                <ul>
-                                    <li>
-                                        <span class="rt-meta">
-                                            <i class="far fa-calendar-alt icon"></i>
-                                            {{substr($item->created_at,0,10)}}
-                                        </span>
-                                    </li>
-                                </ul>
+                                <a href="{{ $item->youtube }}" class="play-btn play-btn-transparent right-top">
+                                    <i class="fas fa-play"></i>
+                                </a>
+                            </div>
+                            <div class="post-content">
+                                <a href="gaming.html" class="mission restricted_category_title">
+                                    {{ $item->category->title }} </a>
+                                <h3 class="post-title">
+                                    <a href="single-post1.html" class="section_6_restricted_title">
+                                        {{ $item->title }}
+                                    </a>
+                                </h3>
+                                <div class="post-meta">
+                                    <ul>
+                                        <li>
+                                            <span class="rt-meta">
+                                                <i class="far fa-calendar-alt icon"></i>
+                                                {{ substr($item->created_at, 0, 10) }}
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
+
                     </div>
-
-                </div>
-
-
                 @endforeach
 
 
@@ -1214,44 +1093,40 @@
             <div class="row gutter-24">
 
                 @foreach ($interview as $item)
-                    
-
-                <div class="col-xl-3 col-md-6 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="800ms">
-                    <div class="rt-post-grid grid-meta">
-                        <div class="post-img">
-                            <a href="single-post1.html">
-                                <img src="{{$item->image}}" alt="post" width="551"
-                                    height="431">
-                            </a>
-                        </div>
-                        <div class="post-content">
-                            <h3 class="post-title">
-                                <a href="single-post1.html" class="title_style_2">
-                                    {{$item->title}}
+                    <div class="col-xl-3 col-md-6 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="800ms">
+                        <div class="rt-post-grid grid-meta">
+                            <div class="post-img">
+                                <a href="single-post1.html">
+                                    <img src="{{ $item->image }}" alt="post" width="551" height="431">
                                 </a>
-                            </h3>
-                            <div class="post-meta">
-                                <ul>
+                            </div>
+                            <div class="post-content">
+                                <h3 class="post-title">
+                                    <a href="single-post1.html" class="title_style_2">
+                                        {{ $item->title }}
+                                    </a>
+                                </h3>
+                                <div class="post-meta">
+                                    <ul>
 
-                                    <li>
-                                        <span class="rt-meta">
-                                            <i class="fa fa-user"></i> <a href="" class="name">
-                                                {{$item->Author->name}} {{$item->Author->surname}}
-                                            </a>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="rt-meta">
-                                            <i class="far fa-calendar-alt icon"></i>
-                                            {{substr($item->created_at,0,10)}}
-                                        </span>
-                                    </li>
-                                </ul>
+                                        <li>
+                                            <span class="rt-meta">
+                                                <i class="fa fa-user"></i> <a href="" class="name">
+                                                    {{ $item->Author->name }} {{ $item->Author->surname }}
+                                                </a>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="rt-meta">
+                                                <i class="far fa-calendar-alt icon"></i>
+                                                {{ substr($item->created_at, 0, 10) }}
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-          
                 @endforeach
 
 
@@ -1308,8 +1183,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                                   // limit by device width
-                                   -------------------------------*/
+                                       // limit by device width
+                                       -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
 

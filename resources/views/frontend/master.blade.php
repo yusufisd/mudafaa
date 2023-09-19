@@ -172,12 +172,12 @@
                                 <!-- start logo here -->
                                 <div class="site-branding">
                                     <a class="dark-logo" href="index.html">
-                                        <img src="assets/frontend/media/logo/mm-beyaz.svg" width="250"
+                                        <img src="/assets/frontend/media/logo/logo-light.png" width="250"
                                             height="52" src="" alt="neeon">
 
                                     </a>
                                     <a class="light-logo" href="index.html">
-                                        <img src="assets/frontend/media/logo/mm-beyaz.svg" width="250"
+                                        <img src="/assets/frontend/media/logo/logo-light.png" width="250"
                                             height="52" alt="neeon">
                                     </a>
                                 </div>
@@ -231,7 +231,7 @@
                                                 <a class="animation" href="ss.html">SS Sözlüğü</a>
                                             </li>
                                             <li>
-                                                <a class="animation" href="videos.html">Videolar</a>
+                                                <a class="animation" href="{{route('front.video.list')}}">Videolar</a>
                                             </li>
                                         </ul>
                                     </nav>

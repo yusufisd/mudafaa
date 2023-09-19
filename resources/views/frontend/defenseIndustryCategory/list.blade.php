@@ -60,11 +60,14 @@
 
                             <div class="row gutter-24">
 
+                                @foreach ($contents_first as $item)
+                                    
+
                                 <div class="col-md-6 wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
                                     <div class="rt-post-overlay rt-post-overlay-md layout-6">
                                         <div class="post-img">
                                             <a href="" class="img-link">
-                                                <img src="/assets/frontend/media/gallery/post-xl_37.jpg" alt="post-xl_37" width="900"
+                                                <img src="/{{$item->image}}" alt="post-xl_37" width="900"
                                                     height="600">
                                             </a>
                                         </div>
@@ -102,215 +105,9 @@
                                 </div>
                                 <!-- end inner col -->
 
-                                <div class="col-md-6 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="800ms">
-                                    <div class="rt-post-overlay rt-post-overlay-md layout-6">
-                                        <div class="post-img">
-                                            <a href="" class="img-link">
-                                                <img src="/assets/frontend/media/gallery/post-xl_36.jpg" alt="post-xl_36" width="900"
-                                                    height="600">
-                                            </a>
-                                        </div>
-                                        <div class="post-content">
-                                            <a href="life-style.html" class="life-style">Fashion</a>
-                                            <h3 class="post-title">
-                                                <a href="">
-                                                    Turboprop AT225
-                                                </a>
-                                            </h3>
-                                            <div class="post-meta">
-                                                <ul>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="fa fa-user"></i>
-                                                            <a href="author.html" class="name">Alİ YILMAZ</a>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-calendar-alt icon"></i>
-                                                            18.07.2023
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-comments icon"></i>
-                                                            <a href="#"> 3,250</a>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end inner col -->
+                                @endforeach
 
-                                <div class="col-md-6 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="800ms">
-                                    <div class="rt-post-overlay rt-post-overlay-md layout-6">
-                                        <div class="post-img">
-                                            <a href="" class="img-link">
-                                                <img src="/assets/frontend/media/gallery/post-xl_31.jpg" alt="post-xl_31" width="900"
-                                                    height="600">
-                                            </a>
-                                        </div>
-                                        <div class="post-content">
-                                            <a href="life-style.html" class="life-style">Fashion</a>
-                                            <h3 class="post-title">
-                                                <a href="">
-                                                    Turboprop AT225
-                                                </a>
-                                            </h3>
-                                            <div class="post-meta">
-                                                <ul>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="fa fa-user"></i>
-                                                            <a href="author.html" class="name">Alİ YILMAZ</a>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-calendar-alt icon"></i>
-                                                            18.07.2023
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-comments icon"></i>
-                                                            <a href="#"> 3,250</a>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end inner col -->
 
-                                <div class="col-md-6 wow fadeInUp" data-wow-delay="400ms" data-wow-duration="800ms">
-                                    <div class="rt-post-overlay rt-post-overlay-md layout-6">
-                                        <div class="post-img">
-                                            <a href="" class="img-link">
-                                                <img src="/assets/frontend/media/gallery/post-xl_39.jpg" alt="post-xl_39" width="900"
-                                                    height="600">
-                                            </a>
-                                        </div>
-                                        <div class="post-content">
-                                            <a href="life-style.html" class="life-style">Fashion</a>
-                                            <h3 class="post-title">
-                                                <a href="">
-                                                    Turboprop AT225
-                                                </a>
-                                            </h3>
-                                            <div class="post-meta">
-                                                <ul>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="fa fa-user"></i>
-                                                            <a href="author.html" class="name">Alİ YILMAZ</a>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-calendar-alt icon"></i>
-                                                            18.07.2023
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-comments icon"></i>
-                                                            <a href="#"> 3,250</a>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end inner col -->
-
-                                <div class="col-md-6 wow fadeInUp" data-wow-delay="500ms" data-wow-duration="800ms">
-                                    <div class="rt-post-overlay rt-post-overlay-md layout-6">
-                                        <div class="post-img">
-                                            <a href="" class="img-link">
-                                                <img src="/assets/frontend/media/gallery/post-xl_35.jpg" alt="post-xl_35" width="900"
-                                                    height="600">
-                                            </a>
-                                        </div>
-                                        <div class="post-content">
-                                            <a href="life-style.html" class="life-style">Fashion</a>
-                                            <h3 class="post-title">
-                                                <a href="">
-                                                    Turboprop AT225
-                                                </a>
-                                            </h3>
-                                            <div class="post-meta">
-                                                <ul>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="fa fa-user"></i>
-                                                            <a href="author.html" class="name">Alİ YILMAZ</a>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-calendar-alt icon"></i>
-                                                            18.07.2023
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-comments icon"></i>
-                                                            <a href="#"> 3,250</a>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end inner col -->
-
-                                <div class="col-md-6 wow fadeInUp" data-wow-delay="600ms" data-wow-duration="800ms">
-                                    <div class="rt-post-overlay rt-post-overlay-md layout-6">
-                                        <div class="post-img">
-                                            <a href="" class="img-link">
-                                                <img src="/assets/frontend/media/gallery/post-xl_34.jpg" alt="post-xl_34" width="900"
-                                                    height="600">
-                                            </a>
-                                        </div>
-                                        <div class="post-content">
-                                            <a href="life-style.html" class="life-style">Fashion</a>
-                                            <h3 class="post-title">
-                                                <a href="">
-                                                    Turboprop AT225
-                                                </a>
-                                            </h3>
-                                            <div class="post-meta">
-                                                <ul>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="fa fa-user"></i>
-                                                            <a href="author.html" class="name">Alİ YILMAZ</a>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-calendar-alt icon"></i>
-                                                            18.07.2023
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-comments icon"></i>
-                                                            <a href="#"> 3,250</a>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end inner col -->
 
                                 <div class="ad-banner-img mt--45 mb--40  wow fadeInUp" data-wow-delay="600ms"
                                     data-wow-duration="800ms">
@@ -320,11 +117,14 @@
                                     </a>
                                 </div>
 
+                                @foreach ($contents_reverse as $item)
+                                    
+
                                 <div class="col-md-6 wow fadeInUp" data-wow-delay="700ms" data-wow-duration="800ms">
                                     <div class="rt-post-overlay rt-post-overlay-md layout-6">
                                         <div class="post-img">
                                             <a href="" class="img-link">
-                                                <img src="/assets/frontend/media/gallery/post-xl_41.jpg" alt="post-xl_41" width="900"
+                                                <img src="/{{$item->image}}" alt="post-xl_41" width="900"
                                                     height="600">
                                             </a>
                                         </div>
@@ -360,217 +160,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- end inner col -->
 
-                                <div class="col-md-6 wow fadeInUp" data-wow-delay="800ms" data-wow-duration="800ms">
-                                    <div class="rt-post-overlay rt-post-overlay-md layout-6">
-                                        <div class="post-img">
-                                            <a href="" class="img-link">
-                                                <img src="/assets/frontend/media/gallery/post-xl_1.jpg" alt="post-xl_1" width="900"
-                                                    height="600">
-                                            </a>
-                                        </div>
-                                        <div class="post-content">
-                                            <a href="life-style.html" class="life-style">Fashion</a>
-                                            <h3 class="post-title">
-                                                <a href="">
-                                                    Turboprop AT225
-                                                </a>
-                                            </h3>
-                                            <div class="post-meta">
-                                                <ul>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="fa fa-user"></i>
-                                                            <a href="author.html" class="name">Alİ YILMAZ</a>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-calendar-alt icon"></i>
-                                                            18.07.2023
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-comments icon"></i>
-                                                            <a href="#"> 3,250</a>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end inner col -->
 
-                                <div class="col-md-6 wow fadeInUp" data-wow-delay="900ms" data-wow-duration="800ms">
-                                    <div class="rt-post-overlay rt-post-overlay-md layout-6">
-                                        <div class="post-img">
-                                            <a href="" class="img-link">
-                                                <img src="/assets/frontend/media/gallery/post-xl_40.jpg" alt="post-xl_40" width="900"
-                                                    height="600">
-                                            </a>
-                                        </div>
-                                        <div class="post-content">
-                                            <a href="life-style.html" class="life-style">Fashion</a>
-                                            <h3 class="post-title">
-                                                <a href="">
-                                                    Turboprop AT225
-                                                </a>
-                                            </h3>
-                                            <div class="post-meta">
-                                                <ul>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="fa fa-user"></i>
-                                                            <a href="author.html" class="name">Alİ YILMAZ</a>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-calendar-alt icon"></i>
-                                                            18.07.2023
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-comments icon"></i>
-                                                            <a href="#"> 3,250</a>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end inner col -->
+                                @endforeach
 
-                                <div class="col-md-6 wow fadeInUp" data-wow-delay="1000ms" data-wow-duration="800ms">
-                                    <div class="rt-post-overlay rt-post-overlay-md layout-6">
-                                        <div class="post-img">
-                                            <a href="" class="img-link">
-                                                <img src="/assets/frontend/media/gallery/post-xl_38.jpg" alt="post-xl_38" width="900"
-                                                    height="600">
-                                            </a>
-                                        </div>
-                                        <div class="post-content">
-                                            <a href="life-style.html" class="life-style">Fashion</a>
-                                            <h3 class="post-title">
-                                                <a href="">
-                                                    Turboprop AT225
-                                                </a>
-                                            </h3>
-                                            <div class="post-meta">
-                                                <ul>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="fa fa-user"></i>
-                                                            <a href="author.html" class="name">Alİ YILMAZ</a>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-calendar-alt icon"></i>
-                                                            18.07.2023
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-comments icon"></i>
-                                                            <a href="#"> 3,250</a>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end inner col -->
-
-                                <div class="col-md-6 wow fadeInUp" data-wow-delay="1100ms" data-wow-duration="800ms">
-                                    <div class="rt-post-overlay rt-post-overlay-md layout-6">
-                                        <div class="post-img">
-                                            <a href="" class="img-link">
-                                                <img src="/assets/frontend/media/gallery/post-xl_40.jpg" alt="post-xl_40" width="900"
-                                                    height="600">
-                                            </a>
-                                        </div>
-                                        <div class="post-content">
-                                            <a href="life-style.html" class="life-style">Fashion</a>
-                                            <h3 class="post-title">
-                                                <a href="">
-                                                    Turboprop AT225
-                                                </a>
-                                            </h3>
-                                            <div class="post-meta">
-                                                <ul>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="fa fa-user"></i>
-                                                            <a href="author.html" class="name">Alİ YILMAZ</a>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-calendar-alt icon"></i>
-                                                            18.07.2023
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-comments icon"></i>
-                                                            <a href="#"> 3,250</a>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end inner col -->
-
-                                <div class="col-md-6 wow fadeInUp" data-wow-delay="1200ms" data-wow-duration="800ms">
-                                    <div class="rt-post-overlay rt-post-overlay-md layout-6">
-                                        <div class="post-img">
-                                            <a href="" class="img-link">
-                                                <img src="/assets/frontend/media/gallery/post-xl_38.jpg" alt="post-xl_38" width="900"
-                                                    height="600">
-                                            </a>
-                                        </div>
-                                        <div class="post-content">
-                                            <a href="life-style.html" class="life-style">Fashion</a>
-                                            <h3 class="post-title">
-                                                <a href="">
-                                                    Turboprop AT225
-                                                </a>
-                                            </h3>
-                                            <div class="post-meta">
-                                                <ul>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="fa fa-user"></i>
-                                                            <a href="author.html" class="name">Alİ YILMAZ</a>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-calendar-alt icon"></i>
-                                                            18.07.2023
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-comments icon"></i>
-                                                            <a href="#"> 3,250</a>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end inner col -->
 
                             </div>
                             <!-- end inner row -->

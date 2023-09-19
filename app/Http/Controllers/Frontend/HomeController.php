@@ -34,10 +34,13 @@ class HomeController extends Controller
             $ilk_kategori_icerikleri = CurrentNews::where('category_id',1)->whereNot('id',1)->get();
             $ilk_kategori_icerigi = CurrentNews::where('category_id',1)->latest()->first();
             $ikinci_kategori_icerigi = CurrentNews::where('category_id',2)->latest()->first();
+            $ucuncu_kategori_icerigi = CurrentNews::where('category_id',3)->latest()->first();
             $cat1_news1 = CurrentNews::where('category_id',1)->orderBy('id','asc')->take(3)->get();
             $cat1_news2 = CurrentNews::where('category_id',1)->orderBy('id','desc')->take(3)->get();
             $cat2_news1 = CurrentNews::where('category_id',2)->orderBy('id','asc')->take(3)->get();
             $cat2_news2 = CurrentNews::where('category_id',2)->orderBy('id','desc')->take(3)->get();
+            $cat3_news1 = CurrentNews::where('category_id',3)->orderBy('id','asc')->take(3)->get();
+            $cat3_news2 = CurrentNews::where('category_id',3)->orderBy('id','desc')->take(3)->get();
 
             $activity = Activity::latest()->take(4)->get();
 
@@ -61,10 +64,13 @@ class HomeController extends Controller
             $ilk_kategori_icerikleri = EnCurrentNews::where('category_id',1)->whereNot('id',1)->get();
             $ilk_kategori_icerigi = EnCurrentNews::where('category_id',1)->latest()->first();
             $ikinci_kategori_icerigi = EnCurrentNews::where('category_id',2)->latest()->first();
+            $ucuncu_kategori_icerigi = EnCurrentNews::where('category_id',3)->latest()->first();
             $cat1_news1 = EnCurrentNews::where('category_id',1)->orderBy('id','asc')->take(3)->get();
             $cat1_news2 = EnCurrentNews::where('category_id',1)->orderBy('id','desc')->take(3)->get();
             $cat2_news1 = EnCurrentNews::where('category_id',2)->orderBy('id','asc')->take(3)->get();
             $cat2_news2 = EnCurrentNews::where('category_id',2)->orderBy('id','desc')->take(3)->get();
+            $cat3_news1 = EnCurrentNews::where('category_id',3)->orderBy('id','asc')->take(3)->get();
+            $cat3_news2 = EnCurrentNews::where('category_id',3)->orderBy('id','desc')->take(3)->get();
 
             $activity = EnActivity::latest()->take(4)->get();
 
@@ -78,7 +84,7 @@ class HomeController extends Controller
 
 
         }
-        return view('frontend.index', compact('cats','iki_haber','tek_haber','uc_kategori','ilk_kategori_icerikleri','ilk_kategori_icerigi','cat1_news1','cat1_news2','cat2_news1','cat2_news2','ikinci_kategori_icerigi','activity','populer_haber_first','populer_haber_three','videos','interview'));
+        return view('frontend.index', compact('cats','iki_haber','tek_haber','uc_kategori','ilk_kategori_icerikleri','ilk_kategori_icerigi','ucuncu_kategori_icerigi','cat1_news1','cat1_news2','cat2_news1','cat2_news2','cat3_news1','cat3_news2','ikinci_kategori_icerigi','activity','populer_haber_first','populer_haber_three','videos','interview'));
 
     }
 }

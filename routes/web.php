@@ -24,6 +24,7 @@ use App\Http\Controllers\Frontend\CurrentNewsCategoryController as FrontendCurre
 use App\Http\Controllers\Frontend\DefenseIndustryCategoryController as FrontendDefenseIndustryCategoryController;
 use App\Http\Controllers\Frontend\DefenseIndustryContentController as FrontendDefenseIndustryContentController;
 use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
+use App\Http\Controllers\Frontend\VideoController as FrontendVideoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -306,6 +307,14 @@ Route::prefix('/')
         Route::controller(FrontendActivityController::class)
             ->prefix('etkinlik')
             ->name('activity.')
+            ->group(function () {
+                Route::get('liste', 'index')->name('list');
+            });
+
+        // VİDEO CONTROLLER
+        Route::controller(FrontendVideoController::class)
+            ->prefix('video')
+            ->name('video.')
             ->group(function () {
                 Route::get('liste', 'index')->name('list');
             });

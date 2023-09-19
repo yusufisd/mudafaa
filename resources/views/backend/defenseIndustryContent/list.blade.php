@@ -137,9 +137,7 @@
 
                                                     </td>
                                                     <td>
-                                                        @foreach ($item->Category() as $cat)
-                                                            {{ $cat->title }},
-                                                        @endforeach
+                                                        asd
                                                     </td>
 
                                                     <td class="text-center">
