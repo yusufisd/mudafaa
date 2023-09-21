@@ -1,0 +1,163 @@
+@extends('frontend.master')
+@section('content')
+    <!-- Start Main -->
+    <main>
+        <!-- theme-switch-box -->
+        <div class="theme-switch-box-mobile-wrap">
+            <div class="theme-switch-box-mobile">
+                <span class="theme-switch-box-mobile__theme-status"><i class="fas fa-cog"></i></span>
+                <label class="theme-switch-box-mobile__label" for="themeSwitchCheckboxMobile">
+                    <input class="theme-switch-box-mobile__input" type="checkbox" name="themeSwitchCheckboxMobile"
+                        id="themeSwitchCheckboxMobile">
+                    <span class="theme-switch-box-mobile__main"></span>
+                </label>
+                <span class="theme-switch-box-mobile__theme-status"><i class="fas fa-moon"></i></span>
+            </div>
+        </div>
+        <!-- end theme-switch-box-mobile -->
+
+        <!-- Start inner page Banner -->
+        <div class="banner inner-banner">
+            <div class="container">
+                <nav class="rt-breadcrumb-wrap" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="index.html">
+                                <i class="fas fa-home"></i>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Firmalar
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <!-- End inner page Banner -->
+
+        <!-- start rt-sidebar-section-layout-2 -->
+        <section class="rt-sidebar-section-layout-2">
+            <div class="container sticky-coloum-wrap">
+                <div class="row gutter-40 sticky-coloum-wrap">
+                    <div class="col-xl-9 sticky-coloum-item">
+                        <div class="rt-left-sidebar-sapcer-5">
+
+                            <div class="ad-banner-img mb--40 wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
+                                <a href="#">
+                                    <img src="/assets/frontend/media/gallery/ad-banner_5.jpg" alt="ad-banner" width="960" height="150">
+                                </a>
+                            </div>
+
+                            <div class="row gutter-24">
+
+                                @foreach ($data as $item)
+                                    
+
+                                <div class="col-md-2 wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
+                                    <div class="cat-item">
+                                        <div class="rt-cart-item">
+                                            <a href="{{route('front.company.detail',$item->id)}}">
+                                                <div class="item-img">
+                                                    <img src="/{{$item->image}}"  alt="cat-slider"
+                                                        width="696" height="491">
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!-- end cat item -->
+                                </div>
+                                <!-- end inner col -->
+
+                                @endforeach
+                               
+
+                            </div>
+                            <!-- end inner row -->
+
+                            <div class="ad-banner-img mt--40 mb--40 wow fadeInUp" data-wow-delay="100ms"
+                                data-wow-duration="800ms">
+                                <a href="#">
+                                    <img src="/assets/frontend/media/gallery/ad-banner_5.jpg" alt="ad-banner" width="960"
+                                        height="150">
+                                </a>
+                            </div>
+
+                            <nav class="rt-pagination-area gap-top-90">
+                                <ul class="pagination rt-pagination justify-content-center">
+                                    <li class="page-item prev">
+                                        <a class="page-link" href="#"><i class="fas fa-angle-double-left"></i></a>
+                                    </li>
+                                    <li class="page-item active" aria-current="page">
+                                        <span class="page-link">1</span>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                    <li class="page-item next">
+                                        <a class="page-link" href="#"><i class="fas fa-angle-double-right"></i></a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <!-- end rt-pagination-area -->
+
+                        </div>
+                        <!-- end rt-left-sidebar-sapcer-5 -->
+                    </div>
+                    <!-- end col-->
+
+                    <div class="col-xl-3 col-lg-8 mx-auto sticky-coloum-item">
+                        <div class="rt-sidebar sticky-wrap">
+
+                            <div class="sidebar-wrap mb--40">
+                                <h2 class="rt-section-heading style-2 mb--30">
+                                    <span class="rt-section-text">KATEGORİLER </span>
+                                    <span class="rt-section-dot"></span>
+                                    <span class="rt-section-line"></span>
+                                </h2>
+                                <ul class="rt-categories">
+
+                                    @foreach ($categories as $item)
+                                        
+                                    <li>
+                                        <a href="gaming.html" data-bg-image="/{{$item->image}}">
+                                            <span class="cat-name">
+                                                <i class="fas fa-list"
+                                                    style="border-right: 2px solid;width: 27px;padding-right: 4px;padding-left: 0px;height: 16px;"></i>
+                                                 {{$item->name}}
+                                            </span>
+                                            <span class="count"> {{$item->companyCount()}} </span>
+                                        </a>
+                                    </li>
+
+                                    @endforeach
+
+                                 
+                                </ul>
+                            </div>
+                            <!-- end slidebar wrap  -->
+
+                            <div class="sidebar-wrap mb--40">
+                                <div class="ad-banner-img">
+                                    <a href="#">
+                                        <img src="/assets/frontend/media/gallery/sports-ad_3.jpg" alt="ad-banner" width="310"
+                                            height="425">
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- end slidebar wrap  -->
+
+                        </div>
+                        <!-- end rt-sidebar -->
+                    </div>
+                    <!-- end col -->
+
+                </div>
+                <!-- end row  -->
+            </div>
+            <!-- end container -->
+        </section>
+        <!-- end rt-sidebar-section-layout-2 -->
+
+    </main>
+    <!-- End Main -->
+@endsection

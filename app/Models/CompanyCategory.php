@@ -13,4 +13,8 @@ class CompanyCategory extends Model
         'seo_key' => 'array',
     ];
     protected $guarded = [];
+
+    public function companyCount(){
+        return CompanyModel::where('category',$this->id)->count();
+    }
 }

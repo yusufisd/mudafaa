@@ -207,13 +207,13 @@
                                                     href="{{ route('front.activity.list') }}">Etkinlikler</a>
                                             </li>
                                             <li>
-                                                <a class="animation" href="reports_list.html">Röportajlar</a>
+                                                <a class="animation" href="{{route('front.interview.list')}}">Röportajlar</a>
                                             </li>
                                             <li>
-                                                <a class="animation" href="companies.html">Firmalar</a>
+                                                <a class="animation" href="{{route('front.company.list')}}">Firmalar</a>
                                             </li>
                                             <li>
-                                                <a class="animation" href="ss.html">SS Sözlüğü</a>
+                                                <a class="animation" href="{{route('front.dictionary.list')}}">SS Sözlüğü</a>
                                             </li>
                                             <li>
                                                 <a class="animation"
@@ -585,9 +585,9 @@
 
     
     @yield('script')
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @include('sweetalert::alert')
-
-
 
 
 

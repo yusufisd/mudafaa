@@ -16,7 +16,7 @@ class CommentController extends Controller
         $new->comment = $request->comment;
         $new->post_id = $id;
         $new->save();
-        Alert::success('Yorumunuz onaylandıktan sonra görünecektir.');
+        Alert::success('Başarılı','Yorumunuz onaylandıktan sonra görünecektir.');
         return redirect()->back();
 
     }

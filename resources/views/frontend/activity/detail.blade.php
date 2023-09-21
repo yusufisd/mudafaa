@@ -146,24 +146,9 @@
                                 </div>
                             </div>
                             <!-- strat post body -->
-                            <div class="post-body mb--40">
-                                <p class="rt-dropcap-style-2">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem vel quam temporibus
-                                    ducimus rem facilis totam molestias praesentium deleniti sint itaque, perspiciatis
-                                    consequatur adipisci aliquid iste nulla neque quia voluptatem?Lorem ipsum dolor sit amet
-                                    consectetur adipisicing elit. Est, error cupiditate.
-                                </p>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit sunt rem sed magni nam.
-                                    Vel dolorum commodi optio mollitia saepe consequuntur natus velit neque laborum
-                                    voluptate! Est neque necessitatibus repudiandae?Lorem ipsum dolor sit amet consectetur.
-                                </p>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, nostrum, quos
-                                    cumque corrupti possimus, adipisci doloremque fuga esse dolorem iusto consequatur totam!
-                                    Laborum, libero! Ipsa ut aut repudiandae sequi aspernatur!
-                                </p>
-                            </div>
+                            <div class="post-body mb--40 ">
+                                {!!$data->description!!}
+                            </div><br><br><br><br>
                             <!-- end post body -->
                             <!-- start social-share-box-2 -->
                             <div class="social-share-box-2 mb--40">
@@ -226,40 +211,35 @@
                                                 <h6>Adres</h6>
                                                 <p class="rt-teta">
                                                     <i class="fas fa-home icon"></i>
-                                                    Organize Sanayi Bölgesi 8. Cadde No:29/ 1-2 26110 İSTANBUL
+                                                    {{$data->address}} / {{$data->city}}
                                                 </p>
                                             </li>
                                             <li>
                                                 <h6>E-Posta</h6>
                                                 <p class="rt-teta">
                                                     <i class="fas fa-envelope icon"></i>
-                                                    alphavacilik@alp.com.tr
+                                                    {{$data->email}}
                                                 </p>
                                             </li>
                                             <li>
                                                 <h6>Telefon</h6>
                                                 <p class="rt-teta">
                                                     <i class="fas fa-phone icon"></i>
-                                                    +90 222 236 13 00
+                                                    {{$data->phone}}
                                                 </p>
-                                                <p class="rt-teta">
-                                                    <i class="fas fa-phone icon"></i>
-                                                    +90 222 236 13 00
-                                                </p>
+                                                
                                             </li>
                                             <li>
                                                 <h6>Web Site</h6>
                                                 <p class="rt-teta">
                                                     <i class="fas fa-globe icon"></i>
-                                                    alphavacilik.com.tr
+                                                   {{$data->website}}
                                                 </p>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="col-lg-6 grid-adress">
-                                        <iframe
-                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3057.811030038286!2d32.76457571578375!3d39.96797747942001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d34bc3fbee31f3%3A0x7dabfd5babe0f38e!2zQXNlbHNhbiBHZW5lbCBNw7xkw7xybMO8aw!5e0!3m2!1str!2str!4v1645201234609!5m2!1str!2str"
-                                            class="iframe-map" allowfullscreen=""></iframe>
+                                        {{$data->map}}
                                     </div>
 
                                 </div>

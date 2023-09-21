@@ -21,11 +21,14 @@ use App\Http\Controllers\Backend\VideoCategoryController;
 use App\Http\Controllers\Backend\VideoController;
 use App\Http\Controllers\Frontend\ActivityController as FrontendActivityController;
 use App\Http\Controllers\Frontend\CommentController;
+use App\Http\Controllers\Frontend\CompanyController as FrontendCompanyController;
 use App\Http\Controllers\Frontend\CurrentNewsCategoryController as FrontendCurrentNewsCategoryController;
 use App\Http\Controllers\Frontend\CurrentNewsController as FrontendCurrentNewsController;
 use App\Http\Controllers\Frontend\DefenseIndustryCategoryController as FrontendDefenseIndustryCategoryController;
 use App\Http\Controllers\Frontend\DefenseIndustryContentController as FrontendDefenseIndustryContentController;
+use App\Http\Controllers\Frontend\DictionaryController as FrontendDictionaryController;
 use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
+use App\Http\Controllers\Frontend\InterviewController as FrontendInterviewController;
 use App\Http\Controllers\Frontend\VideoController as FrontendVideoController;
 use Illuminate\Support\Facades\Route;
 
@@ -336,5 +339,32 @@ Route::prefix('/')
             ->name('comment.')
             ->group(function () {
                 Route::post('ekle/{id?}', 'store')->name('store');
+            });
+
+        // ROPÖRTAJ CONTROLLER
+        Route::controller(FrontendInterviewController::class)
+            ->prefix('roportaj')
+            ->name('interview.')
+            ->group(function () {
+                Route::get('liste', 'index')->name('list');
+                Route::get('detay/{id?}', 'detail')->name('detail');
+                Route::post('yorum-ekle/{id?}', 'addComment')->name('addComment');
+            });
+
+        // dictionary CONTROLLER
+        Route::controller(FrontendDictionaryController::class)
+            ->prefix('sozluk')
+            ->name('dictionary.')
+            ->group(function () {
+                Route::get('liste', 'index')->name('list');
+            });
+
+        // COMPANY CONTROLLER
+        Route::controller(FrontendCompanyController::class)
+            ->prefix('firma')
+            ->name('company.')
+            ->group(function () {
+                Route::get('liste', 'index')->name('list');
+                Route::get('detay/{id?}', 'detail')->name('detail');
             });
     });
