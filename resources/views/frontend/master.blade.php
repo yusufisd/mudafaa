@@ -79,22 +79,7 @@
                                             @endforeach
 
 
-                                            <div class="swiper-slide">
-                                                <div class="item">
-                                                    <p class="trending-slide-title">
-                                                        Fransa'ya elektromanyetik uçak fırlatma sistemlerinin satışının
-                                                        onayı
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="item">
-                                                    <p class="trending-slide-title">
-                                                        Kalekalıp, Endonezya'da KNG-C5 PDW'yi piyasaya sürmeyi
-                                                        planlıyor.
-                                                    </p>
-                                                </div>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -106,8 +91,8 @@
                                     <div class="meta-wrap">
                                         <span class="rt-meta">
                                             <i class="far fa-calendar-alt icon"></i>
-                                            <span class="currentDate">
-                                                25.12.2022
+                                            <span class="">
+                                                {{ currentDate()->translatedFormat('d M Y') }}
                                             </span>
                                         </span>
                                     </div>
@@ -231,7 +216,8 @@
                                                 <a class="animation" href="ss.html">SS Sözlüğü</a>
                                             </li>
                                             <li>
-                                                <a class="animation" href="{{route('front.video.list')}}">Videolar</a>
+                                                <a class="animation"
+                                                    href="{{ route('front.video.list') }}">Videolar</a>
                                             </li>
                                         </ul>
                                     </nav>
@@ -597,7 +583,13 @@
     <!-- custom -->
     <script src="{{ asset('assets/frontend/js/app.js') }}"></script>
 
+    
     @yield('script')
+    @include('sweetalert::alert')
+
+
+
+
 
 </body>
 

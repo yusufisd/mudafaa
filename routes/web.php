@@ -20,7 +20,9 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\VideoCategoryController;
 use App\Http\Controllers\Backend\VideoController;
 use App\Http\Controllers\Frontend\ActivityController as FrontendActivityController;
+use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\CurrentNewsCategoryController as FrontendCurrentNewsCategoryController;
+use App\Http\Controllers\Frontend\CurrentNewsController as FrontendCurrentNewsController;
 use App\Http\Controllers\Frontend\DefenseIndustryCategoryController as FrontendDefenseIndustryCategoryController;
 use App\Http\Controllers\Frontend\DefenseIndustryContentController as FrontendDefenseIndustryContentController;
 use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
@@ -287,6 +289,14 @@ Route::prefix('/')
                 Route::get('liste/{id?}', 'index')->name('list');
             });
 
+        // CURRENT NEWS  CONTROLLER
+        Route::controller(FrontendCurrentNewsController::class)
+            ->prefix('guncel-haber')
+            ->name('currentNews.')
+            ->group(function () {
+                Route::get('detail/{id?}', 'detail')->name('detail');
+            });
+
         // DEFENSE INDUSTRY CATEGORY CONTROLLER
         Route::controller(FrontendDefenseIndustryCategoryController::class)
             ->prefix('savunma-sanayi-kategorisi')
@@ -309,6 +319,7 @@ Route::prefix('/')
             ->name('activity.')
             ->group(function () {
                 Route::get('liste', 'index')->name('list');
+                Route::get('detay/{id?}', 'detail')->name('detail');
             });
 
         // VİDEO CONTROLLER
@@ -317,5 +328,13 @@ Route::prefix('/')
             ->name('video.')
             ->group(function () {
                 Route::get('liste', 'index')->name('list');
+            });
+
+        // YORUM CONTROLLER
+        Route::controller(CommentController::class)
+            ->prefix('yorum')
+            ->name('comment.')
+            ->group(function () {
+                Route::post('ekle/{id?}', 'store')->name('store');
             });
     });

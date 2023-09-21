@@ -31,7 +31,7 @@
 
                     @foreach ($cats as $variable)
                         <div class="swiper-slide">
-                            <a href="black_news.html">
+                            <a href="{{route('front.currentNews.detail',$variable->id)}}">
                                 <img style="height: 100%" src="{{ $variable->mobil_image }}" alt="slide-1">
                             </a>
                             <div class="swiper-content">
@@ -59,7 +59,7 @@
                     <div class="col-xl-3 col-md-6 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="800ms">
                         <div class="rt-post post-sm style-1">
                             <div class="post-img">
-                                <a href="single-post1.html">
+                                <a href="{{route('front.currentNews.detail',$variable->id)}}">
                                     <img src="{{ $variable->mobil_image }}" alt="post" width="100" height="100">
                                 </a>
                             </div>
@@ -68,13 +68,13 @@
                                     {{ $variable->Category->title }}
                                 </a>
                                 <h3 class="post-title">
-                                    <a href="single-post1.html" class="top_restricted_title">
+                                    <a href="{{route('front.currentNews.detail',$variable->id)}}" class="top_restricted_title">
                                         {{ $variable->title }}
                                     </a>
                                 </h3>
                                 <span class="rt-meta">
                                     <i class="far fa-calendar-alt icon"></i>
-                                    {{ substr($variable->created_at, 0, 10) }}
+                                    {{ $variable->created_at->translatedFormat('d M Y') }}
                                 </span>
                             </div>
                         </div>
@@ -103,7 +103,7 @@
 
                     <div class="rt-post-overlay rt-post-overlay-xl layout-2">
                         <div class="post-img">
-                            <a href="single-post1.html" class="img-link">
+                            <a href="{{route('front.currentNews.detail',$tek_haber->id)}}" class="img-link">
                                 <img src="{{ $tek_haber->image }}" alt="travel-xl_1" width="900" height="600">
                             </a>
                         </div>
@@ -113,7 +113,7 @@
 
                             </a>
                             <h3 class="post-title">
-                                <a href="single-post1.html" class="section_2_title_style_1">
+                                <a href="{{route('front.currentNews.detail',$tek_haber->id)}}" class="section_2_title_style_1">
                                     {{ $tek_haber->title }}
                                 </a>
                             </h3>
@@ -129,7 +129,7 @@
                                     <li>
                                         <span class="rt-meta">
                                             <i class="far fa-calendar-alt icon"></i>
-                                            {{ substr($tek_haber->created_at, 0, 10) }}
+                                            {{ ($tek_haber->created_at->translatedFormat('d M Y')) }}
                                         </span>
                                     </li>
                                     <li>
@@ -158,7 +158,7 @@
                             <div class="col-12">
                                 <div class="rt-post-overlay rt-post-overlay-md layout-3">
                                     <div class="post-img">
-                                        <a href="single-post1.html" class="img-link">
+                                        <a href="{{route('front.currentNews.detail',$item->id)}}" class="img-link">
                                             <img src="{{ $item->image }}" alt="travel-xl_2" width="900" height="600">
                                         </a>
                                     </div>
@@ -167,7 +167,7 @@
                                             {{ $item->Category->title }}
                                             <a>
                                                 <h4 class="post-title">
-                                                    <a href="single-post1.html" class="section_2_title_style_2">
+                                                    <a href="{{route('front.currentNews.detail',$item->id)}}" class="section_2_title_style_2">
                                                         {{ $item->title }}
                                                     </a>
                                                 </h4>
@@ -183,7 +183,7 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ substr($item->created_at, 0, 10) }}
+                                                                {{ ($item->created_at->translatedFormat('d M Y')) }}
                                                             </span>
                                                         </li>
                                                         <li>
@@ -250,7 +250,7 @@
                                     <div class="col-xl-4 col-lg-6">
                                         <div class="rt-post-overlay rt-post-overlay-md">
                                             <div class="post-img">
-                                                <a href="single-post1.html" class="img-link">
+                                                <a href="{{route('front.currentNews.detail',$ilk_kategori_icerigi->id)}}" class="img-link">
                                                     <img src="{{ $ilk_kategori_icerigi->image }}" alt="post-xl-3"
                                                         width="900" height="600">
                                                 </a>
@@ -259,7 +259,7 @@
                                                 <a href="life-style.html" class="music restricted_category_title">
                                                     {{ $ilk_kategori_icerigi->Category->title }} </a>
                                                 <h3 class="post-title">
-                                                    <a href="single-post1.html" class="section_4_title_style_1">
+                                                    <a href="{{route('front.currentNews.detail',$ilk_kategori_icerigi->id)}}" class="section_4_title_style_1">
                                                         {{ $ilk_kategori_icerigi->title }}
                                                     </a>
                                                 </h3>
@@ -278,7 +278,7 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ substr($item->created_at, 0, 10) }}
+                                                                {{ ($item->created_at->translatedFormat('d M Y')) }}
                                                             </span>
                                                         </li>
                                                         <li>
@@ -309,7 +309,7 @@
                                                 <div class="item">
                                                     <div class="rt-post post-md style-8">
                                                         <div class="post-img">
-                                                            <a href="single-post1.html">
+                                                            <a href="{{route('front.currentNews.detail',$item->id)}}">
                                                                 <img src="{{ $item->image }}" alt="post"
                                                                     width="343" height="250">
                                                             </a>
@@ -319,14 +319,14 @@
                                                                 class="rt-cat-primary restricted_category_title">
                                                                 {{ $item->Category->title }} </a>
                                                             <h4 class="post-title">
-                                                                <a href="single-post1.html"
+                                                                <a href="{{route('front.currentNews.detail',$item->id)}}"
                                                                     class="section_4_title_style_2">
                                                                     {{ $item->title }}
                                                                 </a>
                                                             </h4>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ substr($item->created_at, 0, 10) }}
+                                                                {{ ($item->created_at->translatedFormat('d M Y')) }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
                                                                 <i class="far fa-eye icon"></i>
@@ -352,7 +352,7 @@
                                                 <div class="item">
                                                     <div class="rt-post post-md style-8">
                                                         <div class="post-img">
-                                                            <a href="single-post1.html">
+                                                            <a href="{{route('front.currentNews.detail',$item->id)}}">
                                                                 <img src="{{ $item->image }}" alt="post"
                                                                     width="343" height="250">
                                                             </a>
@@ -361,14 +361,14 @@
                                                             <a href="life-style.html"
                                                                 class="rt-cat-primary restricted_category_title">Travel</a>
                                                             <h4 class="post-title">
-                                                                <a href="single-post1.html"
+                                                                <a href="{{route('front.currentNews.detail',$item->id)}}"
                                                                     class="section_4_title_style_2">
                                                                     {{ $item->title }}
                                                                 </a>
                                                             </h4>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ substr($item->created_at, 0, 10) }}
+                                                                {{ ($item->created_at->translatedFormat('d M Y')) }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
                                                                 <i class="far fa-eye icon"></i>
@@ -394,14 +394,14 @@
                                     <div class="col-xl-4 col-lg-6">
                                         <div class="rt-post-overlay rt-post-overlay-md">
                                             <div class="post-img">
-                                                <a href="single-post1.html" class="img-link">
+                                                <a href="{{route('front.currentNews.detail',$ikinci_kategori_icerigi->id)}}" class="img-link">
                                                     <img src="{{ $ikinci_kategori_icerigi->image }}" alt="post-xl-3"
                                                         width="900" height="600">
                                                 </a>
                                             </div>
                                             <div class="post-content">
                                                 <h3 class="post-title">
-                                                    <a href="single-post1.html" class="section_4_title_style_2">
+                                                    <a href="{{route('front.currentNews.detail',$ikinci_kategori_icerigi->id)}}" class="section_4_title_style_2">
                                                         {{ $ikinci_kategori_icerigi->title }}
                                                     </a>
                                                 </h3>
@@ -420,7 +420,7 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ substr($ikinci_kategori_icerigi->created_at, 0, 10) }}
+                                                                {{ ($ikinci_kategori_icerigi->created_at->translatedFormat('d M Y')) }}
                                                             </span>
                                                         </li>
                                                     </ul>
@@ -439,7 +439,7 @@
                                                 <div class="item">
                                                     <div class="rt-post post-md style-8">
                                                         <div class="post-img">
-                                                            <a href="single-post1.html">
+                                                            <a href="{{route('front.currentNews.detail',$item->id)}}">
                                                                 <img src="{{ $item->image }}" alt="post"
                                                                     width="343" height="250">
                                                             </a>
@@ -448,14 +448,14 @@
                                                             <a href="technology.html"
                                                                 class="rt-cat-primary restricted_category_title">{{ $item->Category->title }}</a>
                                                             <h4 class="post-title">
-                                                                <a href="single-post1.html"
+                                                                <a href="{{route('front.currentNews.detail',$item->id)}}"
                                                                     class="section_4_title_style_2">
                                                                     {{ $item->title }}
                                                                 </a>
                                                             </h4>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ substr($item->created_at, 0, 10) }}
+                                                                {{ ($item->created_at->translatedFormat('d M Y')) }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
                                                                 <i class="far fa-eye icon"></i>
@@ -477,7 +477,7 @@
                                                 <div class="item">
                                                     <div class="rt-post post-md style-8">
                                                         <div class="post-img">
-                                                            <a href="single-post1.html">
+                                                            <a href="{{route('front.currentNews.detail',$item->id)}}">
                                                                 <img src="{{ $item->image }}" alt="post"
                                                                     width="343" height="250">
                                                             </a>
@@ -486,14 +486,14 @@
                                                             <a href="life-style.html"
                                                                 class="rt-cat-primary restricted_category_title">{{ $item->Category->title }}</a>
                                                             <h4 class="post-title">
-                                                                <a href="single-post1.html"
+                                                                <a href="{{route('front.currentNews.detail',$item->id)}}"
                                                                     class="section_4_title_style_2">
                                                                     {{ $item->title }}
                                                                 </a>
                                                             </h4>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ substr($item->created_at, 0, 10) }}
+                                                                {{ ($item->created_at->translatedFormat('d M Y')) }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
                                                                 <i class="far fa-eye icon"></i>
@@ -524,7 +524,7 @@
                                     <div class="col-xl-4 col-lg-6">
                                         <div class="rt-post-overlay rt-post-overlay-md">
                                             <div class="post-img">
-                                                <a href="single-post1.html" class="img-link">
+                                                <a href="{{route('front.currentNews.detail',$ucuncu_kategori_icerigi->id)}}" class="img-link">
                                                     <img src="/{{$ucuncu_kategori_icerigi->image}}" alt="post-xl-3"
                                                         width="900" height="600">
                                                 </a>
@@ -533,7 +533,7 @@
                                                 <a href="life-style.html"
                                                     class="music restricted_category_title"> {{$ucuncu_kategori_icerigi->Category->title}} </a>
                                                 <h3 class="post-title">
-                                                    <a href="single-post1.html" class="section_4_title_style_2">
+                                                    <a href="{{route('front.currentNews.detail',$ucuncu_kategori_icerigi->id)}}" class="section_4_title_style_2">
                                                         {{$ucuncu_kategori_icerigi->title}}
                                                     </a>
                                                 </h3>
@@ -568,7 +568,7 @@
                                                 <div class="item">
                                                     <div class="rt-post post-md style-8">
                                                         <div class="post-img">
-                                                            <a href="single-post1.html">
+                                                            <a href="{{route('front.currentNews.detail',$item->id)}}">
                                                                 <img src="{{ $item->image }}" alt="post"
                                                                     width="343" height="250">
                                                             </a>
@@ -578,14 +578,14 @@
                                                                 class="rt-cat-primary restricted_category_title">
                                                                 {{ $item->Category->title }} </a>
                                                             <h4 class="post-title">
-                                                                <a href="single-post1.html"
+                                                                <a href="{{route('front.currentNews.detail',$item->id)}}"
                                                                     class="section_4_title_style_2">
                                                                     {{ $item->title }}
                                                                 </a>
                                                             </h4>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ substr($item->created_at, 0, 10) }}
+                                                                {{ ($item->created_at->translatedFormat('d M Y')) }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
                                                                 <i class="far fa-eye icon"></i>
@@ -610,7 +610,7 @@
                                                 <div class="item">
                                                     <div class="rt-post post-md style-8">
                                                         <div class="post-img">
-                                                            <a href="single-post1.html">
+                                                            <a href="{{route('front.currentNews.detail',$item->id)}}">
                                                                 <img src="{{ $item->image }}" alt="post"
                                                                     width="343" height="250">
                                                             </a>
@@ -620,14 +620,14 @@
                                                                 class="rt-cat-primary restricted_category_title">
                                                                 {{ $item->Category->title }} </a>
                                                             <h4 class="post-title">
-                                                                <a href="single-post1.html"
+                                                                <a href="{{route('front.currentNews.detail',$item->id)}}"
                                                                     class="section_4_title_style_2">
                                                                     {{ $item->title }}
                                                                 </a>
                                                             </h4>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ substr($item->created_at, 0, 10) }}
+                                                                {{ ($item->created_at->translatedFormat('d M Y')) }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
                                                                 <i class="far fa-eye icon"></i>
@@ -762,7 +762,7 @@
 
                             <div class="rt-post post-md style-7 grid-meta bold-underline mb--20">
                                 <div class="post-img">
-                                    <a href="single-post1.html">
+                                    <a href="{{route('front.currentNews.detail',$populer_haber_first->id)}}">
                                         <img src="{{ $populer_haber_first->image }}" alt="post" width="696"
                                             height="491">
                                     </a>
@@ -770,7 +770,7 @@
                                 <div class="post-content">
                                     <a href="life-style.html" class="world">World</a>
                                     <h3 class="post-title">
-                                        <a href="single-post1.html" class="restricted_title">
+                                        <a href="{{route('front.currentNews.detail',$populer_haber_first->id)}}" class="restricted_title">
                                             {{ $populer_haber_first->title }}
                                         </a>
                                     </h3>
@@ -791,7 +791,7 @@
                                             <li>
                                                 <span class="rt-meta">
                                                     <i class="far fa-calendar-alt icon"></i>
-                                                    {{ substr($populer_haber_first->created_at, 0, 10) }}
+                                                    {{ ($populer_haber_first->created_at->translatedFormat('d M Y')) }}
                                                 </span>
                                             </li>
                                             <li>
@@ -833,7 +833,7 @@
                                         data-wow-duration="800ms">
                                         <div class="rt-post-grid grid-meta">
                                             <div class="post-img">
-                                                <a href="single-post1.html">
+                                                <a href="{{route('front.currentNews.detail',$item->id)}}">
                                                     <img src="{{ $item->image }}" alt="post" width="551"
                                                         height="431">
                                                 </a>
@@ -842,7 +842,7 @@
                                                 <a href="life-style.html"
                                                     class="tr-america restricted_category_title">{{ $item->Category->title }}</a>
                                                 <h3 class="post-title">
-                                                    <a href="single-post1.html" class="title_style_2">
+                                                    <a href="{{route('front.currentNews.detail',$item->id)}}" class="title_style_2">
                                                         {{ $item->title }}
                                                     </a>
                                                 </h3>
@@ -853,7 +853,7 @@
                                                 </span>
                                                 <span class="rt-meta me-2">
                                                     <i class="far fa-calendar-alt icon"></i>
-                                                    {{ substr($item->created_at, 0, 10) }}
+                                                    {{ ($item->created_at->translatedFormat('d M Y')) }}
                                                 </span>
                                                 <span class="rt-meta">
                                                     <i class="far fa-eye icon"></i>
@@ -1051,7 +1051,7 @@
                                         <li>
                                             <span class="rt-meta">
                                                 <i class="far fa-calendar-alt icon"></i>
-                                                {{ substr($item->created_at, 0, 10) }}
+                                                {{ ($item->created_at->translatedFormat('d M Y')) }}
                                             </span>
                                         </li>
                                     </ul>
@@ -1119,7 +1119,7 @@
                                         <li>
                                             <span class="rt-meta">
                                                 <i class="far fa-calendar-alt icon"></i>
-                                                {{ substr($item->created_at, 0, 10) }}
+                                                {{ ($item->created_at->translatedFormat('d M Y')) }}
                                             </span>
                                         </li>
                                     </ul>

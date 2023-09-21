@@ -28,7 +28,7 @@ class HomeController extends Controller
                 ->take(4)
                 ->get();
 
-            $iki_haber = CurrentNews::inRandomOrder()->take(3)->get();
+            $iki_haber = CurrentNews::inRandomOrder()->take(2)->get();
             $tek_haber = CurrentNews::inRandomOrder()->first();
             $uc_kategori = CurrentNewsCategory::orderBy('id','asc')->take(3)->get();
             $ilk_kategori_icerikleri = CurrentNews::where('category_id',1)->whereNot('id',1)->get();
@@ -58,7 +58,7 @@ class HomeController extends Controller
                 ->take(4)
                 ->get();
 
-            $iki_haber = EnCurrentNews::inRandomOrder()->take(3)->get();
+            $iki_haber = EnCurrentNews::inRandomOrder()->take(2)->get();
             $tek_haber = CurrentNews::inRandomOrder()->first();
             $uc_kategori = EnCurrentNewsCategory::orderBy('id','asc')->take(3)->get();
             $ilk_kategori_icerikleri = EnCurrentNews::where('category_id',1)->whereNot('id',1)->get();

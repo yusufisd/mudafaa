@@ -1,11 +1,10 @@
 @extends('backend.master')
 @section('content')
-
-<style>
-    #headline,#status{
-        cursor: pointer;
-    }
-</style>
+    <style>
+        #blog_status_1:hover {
+            cursor: pointer;
+        }
+    </style>
     <!--begin::Content wrapper-->
     <div class="d-flex flex-column flex-column-fluid">
         <!--begin::Toolbar-->
@@ -16,7 +15,7 @@
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-primary fw-bold fs-3 flex-column justify-content-center my-0">
-                        {{ __('message.güncel') }} {{ __('message.haber') }} {{ __('message.yönetimi') }}</h1>
+                        {{ __('message.güncel') }} {{ __('message.haber') }} Yorumları </h1>
                     <!--end::Title-->
                 </div>
                 <!--end::Page title-->
@@ -36,29 +35,31 @@
                         <div class="card card-flush h-xl-100 mb-5 mb-xl-8">
                             <!--begin::Card header-->
                             <div class="card-header border-0 pt-6">
-
                                 <!--begin::Card toolbar-->
                                 <div class="card-toolbar">
                                     <!--begin::Toolbar-->
                                     <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
+                                        <!--begin::Add user-->
                                         <a type="button" class="btn btn-outline btn-outline-success"
-                                            href="{{ route('admin.currentNews.add') }}">
-                                            <i class="fa-solid fa-plus"></i> {{ __('message.haber') }}
-                                            {{ __('message.ekle') }}
-                                        </a>
-
-                                        <a type="button" class="btn btn-outline btn-outline-success ms-5"
-                                            href="{{ route('admin.currentNewsCategory.list') }}">
-                                            <i class="fa fa-newspaper" aria-hidden="true"></i> {{ __('message.haber') }}
-                                            {{ __('message.kategorisi') }} 
-                                        </a>
-
-
-
+                                            href="{{ route('admin.currentNewsCategory.add') }}">
+                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
+                                            <span class="svg-icon svg-icon-2">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <rect opacity="0.5" x="11.364" y="20.364" width="16"
+                                                        height="2" rx="1" transform="rotate(-90 11.364 20.364)"
+                                                        fill="currentColor" />
+                                                    <rect x="4.36396" y="11.364" width="16" height="2"
+                                                        rx="1" fill="currentColor" />
+                                                </svg>
+                                            </span>
+                                            <!--end::Svg Icon--> {{ __('message.kategori') }} {{ __('message.ekle') }} </a>
+                                        <!--end::Add user-->
                                     </div>
                                     <!--end::Toolbar-->
                                 </div>
                                 <!--end::Card toolbar-->
+
 
                             </div>
                             <!--end::Card header-->
@@ -66,31 +67,27 @@
                             <div class="card-body pt-0 pb-5">
                                 <!--begin::Table container-->
                                 <div class="table-responsive with_search_table">
-                                    <table id="blog_management_table" class="table gy-7 gx-7">
+                                    <table id="blog_categories_table" class="table gy-7 gx-7">
                                         <thead>
                                             <tr class="fw-bold fs-6 text-gray-800">
                                                 <th class="w-10px">
                                                     <div
                                                         class="form-check form-check-sm form-check-custom form-check-solid me-3">
                                                         <input class="form-check-input" type="checkbox" data-kt-check="true"
-                                                            data-kt-check-target="#blog_management_table .my-input "
+                                                            data-kt-check-target="#blog_categories_table .my-input "
                                                             value="1" />
                                                     </div>
                                                 </th>
-                                                <th>{{ __('message.görsel') }}<i class="fa fa-sort ms-3"></i></th>
-                                                <th>{{ __('message.yazar') }}<i class="fa fa-sort ms-3"></i></th>
-                                                <th>{{ __('message.başlık') }}<i class="fa fa-sort ms-3"></i></th>
-                                                <th>{{ __('message.kategori') }}<i class="fa fa-sort ms-3"></i></th>
-                                                <th class="text-center">{{ __('message.manşet') }}<i
-                                                        class="fa fa-sort ms-3"></i></th>
-                                                <th class="text-center pe-7">{{ __('message.durum') }}<i
-                                                        class="fa fa-sort ms-3"></i></th>
-                                                <th class="text-center">{{ __('message.işlem') }}<i
-                                                        class="fa fa-sort ms-3"></i></th>
+                                                <th> Ad Soyad <i class="fa fa-sort ms-3"></i></th>
+                                                <th> Email <i class="fa fa-sort ms-3"></i></th>
+                                                <th> Yorum <i class="fa fa-sort ms-3"></i></th>
+                                                <th> İçerik <i class="fa fa-sort ms-3"></i></th>
+                                                <th> Durum <i class="fa fa-sort ms-3"></i></th>
+                                                <th> Ayar <i class="fa fa-sort ms-3"></i></th>
+                                                <th> {{ __('message.işlem') }} <i class="fa fa-sort ms-3"></i></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-
 
                                             @foreach ($data as $item)
                                                 <tr class="align-middle">
@@ -101,41 +98,35 @@
                                                                 value="1" />
                                                         </div>
                                                     </td>
-                                                    <td>
-                                                        <img src="/{{ $item->image }}" class="w-75px ms-n1"
-                                                            alt="">
-                                                    </td>
-                                                    <td> {{ $item->Author->name }} {{ $item->Author->name }} </td>
-                                                    <td> {{ $item->title }} </td>
-                                                    <td> {{ $item->Category->title }} </td>
-                                                    <td>
-                                                        <div
-                                                            class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
-                                                            <input class="form-check-input w-50px h-25px" onchange="change_headline({{$item->id}})"
-                                                                {{ $item->headline == 1 ? 'checked' : '' }} type="checkbox"
-                                                                id="headline">
-                                                            <label class="form-check-label" for="headline"></label>
-                                                        </div>
-                                                    </td>
+                                                    <td> test</td>
+                                                    <td> test</td>
+                                                    <td> test</td>
+                                                    <td> test</td>
+                                                    <td> Bekliyor</td>
+                                                   
                                                     <td>
                                                         <div
                                                             class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
                                                             <input class="form-check-input w-50px h-25px" type="checkbox"
-                                                                id="status" onchange="change_status({{$item->id}})"
+                                                                id="blog_status_1"
+                                                                onchange="change_status({{ $item->id }})"
                                                                 {{ $item->status == 1 ? 'checked' : '' }}>
                                                             <label class="form-check-label" for="blog_status_1"></label>
                                                         </div>
+
                                                     </td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-primary">
-                                                            Yorumlar
-                                                        </button>
-                                                        <a href="{{ route('admin.currentNews.edit', $item->id) }}"
+                                                    <td>
+                                                        <a href="#"
+                                                            class="px-2 btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                                                            title="Görüntüle">
+                                                            <i class="fa-solid fa-eye fs-3"></i>
+                                                        </a>
+                                                        <a href="{{ route('admin.currentNewsCategory.edit', $item->id) }}"
                                                             class="px-2 btn btn-icon btn-bg-light btn-active-color-secondary btn-sm me-1"
                                                             title="Düzenle">
                                                             <i class="fa-regular fa-pen-to-square fs-3"></i>
                                                         </a>
-                                                        <a onclick="destroy({{$item->id}})"
+                                                        <a onclick="destroy({{ $item->id }})"
                                                             class="px-2 btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1"
                                                             data-bs-toggle="modal" data-bs-target="#delete_modal"
                                                             title="Sil">
@@ -144,7 +135,6 @@
                                                     </td>
                                                 </tr>
                                             @endforeach
-
 
                                         </tbody>
                                     </table>
@@ -167,6 +157,10 @@
 @endsection
 @section('script')
     <script>
+        function change_status(d) {
+            window.location.href = "{{ route('admin.currentNewsCategory.change_status') }}/" + d
+        }
+
         function destroy(d) {
             Swal.fire({
                 title: 'Emin misiniz?',
@@ -178,29 +172,21 @@
                 confirmButtonText: 'Evet, sil!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "{{ route('admin.currentNews.destroy') }}/" + d;
+                    window.location.href = "{{ route('admin.currentNewsCategory.destroy') }}/" + d;
                 }
             })
-        }
-
-        function change_headline(d){
-            window.location.href = "{{route('admin.currentNews.change_headline')}}/" + d;
-        }
-
-        function change_status(d){
-            window.location.href = "{{route('admin.currentNews.change_status')}}/" + d;
         }
     </script>
     <!--begin:: extra js-->
     <script>
         // begin: DataTable Scripts
-        $("#blog_management_table").DataTable({
+        $("#blog_categories_table").DataTable({
             "ordering": true,
             "order": [
                 [0, "asc"]
             ],
             "language": {
-                "sEmptyTable": "Tabloda herhangi bir veri mevcut değil",
+                "sEmptyTable": "{{ __('message.Tabloda herhangi bir veri mevcut değil') }}",
                 "sInfo": "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor",
                 "sInfoEmpty": "Kayıt yok",
                 "sInfoFiltered": "(_MAX_ kayıt içerisinden bulunan)",
@@ -209,13 +195,13 @@
                 "sLengthMenu": "Sayfada _MENU_ kayıt göster",
                 "sLoadingRecords": "Yükleniyor...",
                 "sProcessing": "İşleniyor...",
-                "sSearch": "Ara:",
+                "sSearch": "{{ __('message.Ara') }}:",
                 "sZeroRecords": "Eşleşen kayıt bulunamadı",
                 "oPaginate": {
                     "sFirst": "İlk",
                     "sLast": "Son",
-                    "sNext": "Sonraki",
-                    "sPrevious": "Önceki"
+                    "sNext": "{{ __('message.Sonraki') }}",
+                    "sPrevious": "{{ __('message.Önceki') }}"
                 },
                 "oAria": {
                     "sSortAscending": ": artan sütun sıralamasını aktifleştir",

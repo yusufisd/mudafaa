@@ -23,4 +23,10 @@ class ActivityController extends Controller
         $cat2_activites = Activity::where('category',2)->take(4)->get();
         return view('frontend.activity.list',compact('coming_activity','cat1_activites','cat2_activites','cat3_activites','cat1_name','cat2_name','cat3_name'));
     }
+
+    public function detail($id){
+        $data = Activity::findOrFail($id);
+        $other_activity = Activity::inRandomOrder()->get();
+        return view('frontend.activity.detail',compact('data','other_activity'));
+    }
 }

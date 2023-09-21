@@ -51,7 +51,7 @@
                 <div class="row">
                     <div class="col-xl-9 col-lg-10 mx-auto">
                         <div class="single-post-content">
-                            <span class="fashion">{{ $data->Category()->title }}</span>
+                            <span class="fashion">{{ $data->Category->title }}</span>
                             <h2 class="post-title">
                                 {{ $data->title }}
                             </h2>
@@ -60,7 +60,7 @@
                                     <li>
                                         <span class="rt-meta">
                                             <i class="far fa-calendar-alt icon"></i>
-                                            {{ substr($data->created_at, 0, 10) }}
+                                            {{ ($data->created_at->translatedFormat('d M Y')) }}
                                         </span>
                                     </li>
                                     <li>
@@ -291,7 +291,7 @@
                                                     </h4>
                                                     <span class="rt-meta">
                                                         <i class="far fa-calendar-alt icon"></i>
-                                                        {{substr($previous_product->created_at,0,10)}}
+                                                        {{($previous_product->created_at->translatedFormat('d M Y'))}}
                                                         
                                                     </span>
                                                 </div>
@@ -372,8 +372,8 @@
                             <div class="slide-item">
                                 <div class="rt-post-grid grid-meta">
                                     <div class="post-img">
-                                        <a href="single-post1.html">
-                                            <img src="/{{$item->image}}" alt="post"
+                                        <a href="{{route('front.defenseIndustryContent.detail',$item->id)}}">
+                                            <img src="/{{$item->image}}" style="object-fit:contain!important" alt="post"
                                                 width="551" height="431">
                                         </a>
                                     </div>
@@ -381,7 +381,7 @@
                                         <a href="graphics.html"
                                             class="rt-cat-primary sidebar_restricted_category_title">{{$item->GeneralCategory->title}}</a>
                                         <h3 class="post-title">
-                                            <a href="single-post1.html">
+                                            <a href="{{route('front.defenseIndustryContent.detail',$item->id)}}">
                                                 {{$item->title}}
                                             </a>
                                         </h3>

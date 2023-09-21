@@ -25,8 +25,7 @@ class DefenseIndustryContent extends Model
 
     public function Category()
     {
-        $data = DefenseIndustryCategory::where('id',$this->category_id)->first();
-        return $data;
+        return $this->hasOne(DefenseIndustryCategory::class,'id','category_id');
     }
 
     public function Mensei(){

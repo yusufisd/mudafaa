@@ -182,7 +182,7 @@
                                                 </h6>
                                             </div>
                                             <h4 class="post-title">
-                                                <a href="fair_detail.html">
+                                                <a href="{{route('front.activity.detail',$item->id)}}">
                                                     {{$item->title}}
                                                 </a>
                                             </h4>

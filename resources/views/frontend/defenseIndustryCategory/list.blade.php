@@ -72,10 +72,10 @@
                                             </a>
                                         </div>
                                         <div class="post-content">
-                                            <a href="life-style.html" class="life-style">Fashion</a>
+                                            <a href="life-style.html" class="life-style">{{$item->Category->title}}</a>
                                             <h3 class="post-title">
-                                                <a href="defense_industry_detail.html">
-                                                    Turboprop AT225
+                                                <a href="{{route('front.defenseIndustryContent.detail',$item->id)}}">
+                                                    {{$item->title}}
                                                 </a>
                                             </h3>
                                             <div class="post-meta">
@@ -83,13 +83,13 @@
                                                     <li>
                                                         <span class="rt-meta">
                                                             <i class="fa fa-user"></i>
-                                                            <a href="author.html" class="name">Alİ YILMAZ</a>
+                                                            <a href="author.html" class="name">{{$item->Author->name}} {{$item->Author->surname}}</a>
                                                         </span>
                                                     </li>
                                                     <li>
                                                         <span class="rt-meta">
                                                             <i class="far fa-calendar-alt icon"></i>
-                                                            18.07.2023
+                                                            {{$item->created_at->translatedFormat('d M Y')}}
                                                         </span>
                                                     </li>
                                                     <li>

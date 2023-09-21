@@ -64,7 +64,7 @@
                                             <div class="post-content">
                                                 <a href="technology.html" class="rt-cat-primary">{{$item->Category->title}}</a>
                                                 <h3 class="post-title">
-                                                    <a href="news_detail.html" class="restricted_title">
+                                                    <a href="{{route('front.currentNews.detail',$item->id)}}" class="restricted_title">
                                                         {{ $item->title }}
                                                     </a>
                                                 </h3>
@@ -102,7 +102,7 @@
                                                     </ul>
                                                 </div>
                                                 <div class="btn-wrap mt--25">
-                                                    <a href="news_detail.html"
+                                                    <a href="{{route('front.currentNews.detail',$item->id)}}"
                                                         class="rt-read-more qodef-button-animation-out">
                                                         Daha Fazla Oku
                                                         <svg width="34px" height="16px" viewBox="0 0 34.53 16"

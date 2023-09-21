@@ -7,6 +7,7 @@ use App\Models\EnCurrentNews;
 use App\Models\EnCurrentNewsCategory;
 use App\Models\EnDefenseIndustry;
 use App\Models\LogModel;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 function logKayit($id)
@@ -65,6 +66,11 @@ function headline()
         $cats = EnCurrentNews::where('headline',1)->get();
     }
     return $cats;
+}
+
+
+function currentDate(){
+    return Carbon::now();
 }
 
 
