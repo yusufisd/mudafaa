@@ -214,7 +214,8 @@
                                                         <div class="row">
                                                             <!--begin::Col-->
                                                             <div class="col-lg-12 fv-row">
-                                                                <input id="user_password" name="user_password" type="password"
+                                                                <input id="user_password" name="user_password"
+                                                                    type="password"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                     value="" />
                                                             </div>
@@ -254,12 +255,90 @@
                                         </div>
                                         <!--end::Input group-->
 
+                                        <div class="separator my-10"></div>
+
+
+                                        <div class="row mb-6">
+                                            <div class="col-lg-4 fv-row fv-plugins-icon-container ps-5">
+                                                <div class="row">
+                                                    <label class="col-lg-4 col-form-label fw-bold fs-6 ">Instagram</label>
+                                                    <div class="col-lg-8">
+                                                        <div class="row">
+                                                            <div class="col-lg-12 fv-row">
+                                                                <input id="user_name" name="user_name"
+                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                    value="" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 fv-row fv-plugins-icon-container ps-5">
+                                                <div class="row">
+                                                    <label class="col-lg-4 col-form-label fw-bold fs-6 ">Twitter</label>
+                                                    <div class="col-lg-8">
+                                                        <div class="row">
+                                                            <div class="col-lg-12 fv-row">
+                                                                <input id="user_name" name="user_name"
+                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                    value="" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 fv-row fv-plugins-icon-container ps-5">
+                                                <div class="row">
+                                                    <label class="col-lg-4 col-form-label fw-bold fs-6 ">Facebook</label>
+                                                    <div class="col-lg-8">
+                                                        <div class="row">
+                                                            <div class="col-lg-12 fv-row">
+                                                                <input id="user_name" name="user_name"
+                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                    value="" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            
+
+                                            
+                                        </div>
+                                        <!--end::Input group-->
+
 
 
 
                                     </div>
                                     <!--end::Card body-->
                                     <!--begin::Actions-->
+
+                                    <div class="separator my-10"></div>
+
+                                    <div class="row mb-6">
+                                        <!--begin::Label-->
+                                        <label class="col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5">
+                                            <span>Biyografi</span>
+                                        </label>
+                                        <!--end::Label-->
+                                        <!--begin::Col-->
+                                        <div class="col-lg-12 fv-row mb-5 ps-5">
+
+                                            <textarea id="editor" name="description" class="tox-target ckeditor">
+                                            </textarea>
+
+
+
+
+
+                                        </div>
+                                        <!--end::Col-->
+                                    </div>
+
                                     <div class="card-footer d-flex justify-content-between py-6 px-0">
 
                                         <!--begin::Input group-->
@@ -296,4 +375,16 @@
         </form>
     </div>
     <!--end::Content wrapper-->
+@endsection
+@section('script')
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 @endsection

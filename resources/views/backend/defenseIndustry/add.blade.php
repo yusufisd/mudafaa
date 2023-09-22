@@ -89,7 +89,7 @@
                                                         href="#tab_blog_category_detail_tr" aria-selected="true"
                                                         role="tab">
                                                         <span>
-                                                            <img src="https://gaviapanel.gaviaworks.org/assets/images/svg/turkey.svg"
+                                                            <img src="{{asset('/assets/tr.png')}}"
                                                                 width="28" height="28" alt="TR" title="TR">
                                                         </span>
 
@@ -100,7 +100,7 @@
                                                         href="#tab_blog_category_detail_en" aria-selected="false"
                                                         tabindex="-1" role="tab">
                                                         <span>
-                                                            <img src="https://gaviapanel.gaviaworks.org/assets/images/svg/england.svg"
+                                                            <img src="{{asset('/assets/en.png')}}"
                                                                 width="28" height="28" alt="EN" title="EN">
                                                         </span>
                                                     </a>

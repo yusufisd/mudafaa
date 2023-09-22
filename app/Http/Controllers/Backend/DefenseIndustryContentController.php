@@ -59,6 +59,7 @@ class DefenseIndustryContentController extends Controller
         $new->countries = $request->countries;
         $new->companies = $request->company;
         $new->link = $request->link_tr;
+        $new->tags = $request->etiket_tr;
         $new->origin = $request->origin;
         $new->author = $request->author;
         $new->seo_description = $request->seo_description_tr;
@@ -104,6 +105,7 @@ class DefenseIndustryContentController extends Controller
         $new_en->short_description = $request->short_description_en;
         $new_en->description = $request->description_en;
         $new_en->content_id = $new->id;
+        $new_en->tags = $request->etiket_en;
         $new_en->link = $request->link_en;
         $new_en->seo_title = $request->seo_title_en;
         $new_en->seo_description = $request->seo_description_en;
@@ -153,6 +155,7 @@ class DefenseIndustryContentController extends Controller
             $new->seo_title = $request->seo_title_tr;
             $new->countries = $request->countries;
             $new->companies = $request->company;
+            $new->tags = $request->etiket_tr;
             $new->origin = $request->origin;
             $new->author = $request->author;
             $new->seo_description = $request->seo_description_tr;
@@ -203,6 +206,7 @@ class DefenseIndustryContentController extends Controller
             $new_en->short_description = $request->short_description_en;
             $new_en->description = $request->description_en;
             $new_en->content_id = $new->id;
+            $new_en->tags = $request->etiket_en;
             $new_en->seo_title = $request->seo_title_en;
             $new_en->seo_description = $request->seo_description_en;
             $new_en->seo_key = $request->seo_key_en;

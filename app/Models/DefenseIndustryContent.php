@@ -13,6 +13,7 @@ class DefenseIndustryContent extends Model
     protected $casts = [
         "countries" => "array",
         "origin" => "array",
+        "tags" => "array",
         "seo_key" => "array",
         "companies" => "array",
         "multiple_image" => "array",
@@ -38,5 +39,10 @@ class DefenseIndustryContent extends Model
 
     public function GeneralCategory(){
         return $this->hasOne(DefenseIndustry::class,'id','defense_id');
+    }
+
+    public function Tags(){
+        
+        return json_decode($this->tags);
     }
 }

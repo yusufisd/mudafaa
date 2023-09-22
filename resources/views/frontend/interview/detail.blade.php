@@ -395,8 +395,11 @@
 
                                     </div>
                                     <div class="row mb--20">
-                                        <h5>Yorumlar (83) </h5>
+                                        <h5>Yorumlar ({{$data->commentCount()}}) </h5>
                                     </div>
+
+                                    @foreach ($data->comments() as $item)
+                                        
 
                                     <div class="comment_container">
                                         <div class="row">
@@ -408,12 +411,9 @@
                                             </div>
                                             <div class="col-md-9">
                                                 <div class="commentator-content">
-                                                    <h3 class="commentator-name">Mehmet Doğan</h3>
+                                                    <h3 class="commentator-name"> {{$item->full_name }} </h3>
                                                     <p class="user-desc">
-                                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias
-                                                        error itaque quas adipisci beatae possimus, quaerat temporibus
-                                                        mollitia non ex consectetur facere sed nobis sunt illum eos
-                                                        reiciendis! Obcaecati, praesentium?
+                                                        {{$item->comment}}
                                                     </p>
                                                 </div>
                                             </div>
@@ -433,126 +433,10 @@
 
                                     <hr class="dropdown-divider my-5">
 
-                                    <div class="comment_container">
-                                        <div class="row">
-                                            <div class="d-none d-md-block col-md-3 mb-3">
-                                                <div class="commentator-img">
-                                                    <img src="/assets/frontend/media/gallery/post-sm_1.jpg"
-                                                        alt="commentator-img_1" width="170" height="170">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <div class="commentator-content">
-                                                    <h3 class="commentator-name">Mehmet Doğan</h3>
-                                                    <p class="user-desc">
-                                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias
-                                                        error itaque quas adipisci beatae possimus, quaerat temporibus
-                                                        mollitia non ex consectetur facere sed nobis sunt illum eos
-                                                        reiciendis! Obcaecati, praesentium?
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row justify-content-end">
-                                            <div class="col-md-4">
-                                                <span class="mx-2 comment_span"><i class="fas fa-pencil-alt"></i> Cevap
-                                                    Yaz </span>
-                                                <span class="mx-2 comment_span"><i class="far fa-thumbs-up icon"></i>
-                                                    0</span>
-                                                <span class="mx-2 comment_span"><i class="far fa-thumbs-down icon"></i>
-                                                    0</span>
-                                            </div>
+                                    @endforeach
 
-                                        </div>
-                                    </div>
-                                    <hr class="dropdown-divider my-5">
 
-                                    <div class="comment_container">
-                                        <div class="row">
-                                            <div class="d-none d-md-block col-md-3 mb-3">
-                                                <div class="commentator-img">
-                                                    <img src="/assets/frontend/media/gallery/post-sm_1.jpg"
-                                                        alt="commentator-img_1" width="170" height="170">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <div class="commentator-content">
-                                                    <h3 class="commentator-name">Mehmet Doğan</h3>
-                                                    <p class="user-desc">
-                                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias
-                                                        error itaque quas adipisci beatae possimus, quaerat temporibus
-                                                        mollitia non ex consectetur facere sed nobis sunt illum eos
-                                                        reiciendis! Obcaecati, praesentium?
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row justify-content-end">
-                                            <div class="col-md-4">
-                                                <span class="mx-2 comment_span"><i class="fas fa-pencil-alt"></i> Cevap
-                                                    Yaz </span>
-                                                <span class="mx-2 comment_span"><i class="far fa-thumbs-up icon"></i>
-                                                    0</span>
-                                                <span class="mx-2 comment_span"><i class="far fa-thumbs-down icon"></i>
-                                                    0</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <hr class="dropdown-divider my-5">
-
-                                    <div class="comment_container">
-                                        <div class="row">
-                                            <div class="d-none d-md-block col-md-3 mb-3">
-                                                <div class="commentator-img">
-                                                    <img src="/assets/frontend/media/gallery/post-sm_1.jpg"
-                                                        alt="commentator-img_1" width="170" height="170">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <div class="commentator-content">
-                                                    <h3 class="commentator-name">Mehmet Doğan</h3>
-                                                    <p class="user-desc">
-                                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias
-                                                        error itaque quas adipisci beatae possimus, quaerat temporibus
-                                                        mollitia non ex consectetur facere sed nobis sunt illum eos
-                                                        reiciendis! Obcaecati, praesentium?
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row justify-content-end">
-                                            <div class="col-md-4">
-                                                <span class="mx-2 comment_span"><i class="fas fa-pencil-alt"></i> Cevap
-                                                    Yaz </span>
-                                                <span class="mx-2 comment_span"><i class="far fa-thumbs-up icon"></i>
-                                                    0</span>
-                                                <span class="mx-2 comment_span"><i class="far fa-thumbs-down icon"></i>
-                                                    0</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <nav class="rt-pagination-area gap-top-90">
-                                        <ul class="pagination rt-pagination justify-content-center">
-                                            <li class="page-item prev">
-                                                <a class="page-link" href="#"><i
-                                                        class="fas fa-angle-double-left"></i></a>
-                                            </li>
-                                            <li class="page-item active" aria-current="page">
-                                                <span class="page-link">1</span>
-                                            </li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                            <li class="page-item next">
-                                                <a class="page-link" href="#"><i
-                                                        class="fas fa-angle-double-right"></i></a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                    <!-- end rt-pagination-area -->
+              
 
 
                                 </div>

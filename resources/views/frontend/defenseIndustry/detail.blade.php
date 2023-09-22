@@ -256,10 +256,9 @@
                                         <div class="conent-block">
                                             <h4 class="block-tile mb--20">Popüler Etiketler:</h4>
                                             <div class="tag-list">
-                                                <a href="#" class="tag-link">Güzel</a>
-                                                <a href="#" class="tag-link">Seyahat</a>
-                                                <a href="#" class="tag-link">Teknoloji</a>
-                                                <a href="#" class="tag-link">Siyaset</a>
+                                                @foreach($data->Tags() as $value)
+                                                            <a href="#" class="tag-link">{{$value->value}}</a>
+                                                        @endforeach
                                             </div>
                                         </div>
                                     </div>

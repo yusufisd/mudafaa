@@ -18,4 +18,12 @@ class Interview extends Model
         return $this->hasOne(UserModel::class,'id','author');
     }
 
+    public function commentCount(){
+        return InterviewComment::where('post_id',$this->id)->where('status',1)->count();
+    }
+
+    public function comments(){
+        return InterviewComment::where('post_id',$this->id)->where('status',1)->get();
+    }
+
 }

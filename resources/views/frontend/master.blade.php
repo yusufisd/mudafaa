@@ -99,15 +99,19 @@
                                     <div class="social-wrap d-none d-xl-block">
                                         <ul class="rt-top-social">
                                             <li>
+                                                <a href="https://twitter.com/millimudafaacom" target="_blank">
+                                                    <div style="text-align:right">
+                                                        <img src="{{ asset('/assets/twitter.png') }}"
+                                                            style="width: 40%;" alt="">
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
                                                 <a href="https://www.facebook.com/millimudafaacom" target="_blank">
                                                     <i class="fab fa-facebook-f"></i>
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a href="https://twitter.com/millimudafaacom" target="_blank">
-                                                    <i class="fab fa-twitter"></i>
-                                                </a>
-                                            </li>
+
                                             <li>
                                                 <a href="https://www.instagram.com/millimudafaacom" target="_blank">
                                                     <i class="fab fa-instagram"></i>
@@ -131,8 +135,7 @@
                                     <div class="ms-2 meta-wrap">
                                         <span class="rt-meta">
                                             <a href="">
-                                                <img alt="image" width="30"
-                                                    src="https://gaviapanel.gaviaworks.org/assets/images/svg/englandx.svg">
+                                                <img alt="image" width="30" src="{{ asset('/assets/en.png') }}">
                                             </a>
                                         </span>
                                     </div>
@@ -156,12 +159,12 @@
 
                                 <!-- start logo here -->
                                 <div class="site-branding">
-                                    <a class="dark-logo" href="index.html">
+                                    <a class="dark-logo" href="{{ route('front.home') }}">
                                         <img src="/assets/frontend/media/logo/logo-light.png" width="250"
                                             height="52" src="" alt="neeon">
 
                                     </a>
-                                    <a class="light-logo" href="index.html">
+                                    <a class="light-logo" href="{{ route('front.home') }}">
                                         <img src="/assets/frontend/media/logo/logo-light.png" width="250"
                                             height="52" alt="neeon">
                                     </a>
@@ -173,7 +176,7 @@
                                     <nav class="main-menu__nav">
                                         <ul>
                                             <li class="active">
-                                                <a class="animation" href="index.html"><i
+                                                <a class="animation" href="{{ route('front.home') }}"><i
                                                         class="fa fa-home fa-md"></i></a>
                                             </li>
                                             <li class="main-menu__nav_sub list">
@@ -207,13 +210,16 @@
                                                     href="{{ route('front.activity.list') }}">Etkinlikler</a>
                                             </li>
                                             <li>
-                                                <a class="animation" href="{{route('front.interview.list')}}">Röportajlar</a>
+                                                <a class="animation"
+                                                    href="{{ route('front.interview.list') }}">Röportajlar</a>
                                             </li>
                                             <li>
-                                                <a class="animation" href="{{route('front.company.list')}}">Firmalar</a>
+                                                <a class="animation"
+                                                    href="{{ route('front.company.list') }}">Firmalar</a>
                                             </li>
                                             <li>
-                                                <a class="animation" href="{{route('front.dictionary.list')}}">SS Sözlüğü</a>
+                                                <a class="animation" href="{{ route('front.dictionary.list') }}">SS
+                                                    Sözlüğü</a>
                                             </li>
                                             <li>
                                                 <a class="animation"
@@ -253,7 +259,7 @@
                 <div class="mobile-menu-bar-wrap" id="mobile-menu-bar-wrap">
                     <div class="mobile-menu-bar">
                         <div class="logo">
-                            <a href="index.html">
+                            <a href="{{ route('front.home') }}">
                                 <img src="/assets/frontend/media/logo/mm.svg" alt="neeon" width="162"
                                     height="52">
                             </a>
@@ -270,7 +276,7 @@
                             <nav class="menu-main-primary-container">
                                 <ul class="menu">
                                     <li>
-                                        <a class="animation" href="index.html">Ana Sayfa</a>
+                                        <a class="animation" href="{{ route('front.home') }}">Ana Sayfa</a>
                                     </li>
                                     <li class="list menu-item-has-children">
                                         <a class="animation" href="javascript:void(0)">Güncel Haberler</a>
@@ -287,16 +293,22 @@
                                         <a class="animation" href="javascript:void(0)">Savunma Sanayi</a>
                                         <ul class="main-menu__dropdown sub-menu">
                                             @foreach (defenseIndustryCat() as $item)
-                                                <li><a href="aerial_platforms.html"> {{ $item->title }} </a>
+                                                <li><a
+                                                        href="{{ route('front.defenseIndustryCategory.list', $item->id) }}">
+                                                        {{ $item->title }} </a>
                                                 </li>
                                             @endforeach
                                         </ul>
                                     </li>
-                                    <li><a class="animation" href="activity.html">Etkinlikler</a></li>
-                                    <li><a class="animation" href="reports_list.html">Röportajlar</a></li>
-                                    <li><a class="animation" href="companies.html">Firmalar</a></li>
-                                    <li><a class="animation" href="ss.html">SS Sözlüğü</a></li>
-                                    <li><a class="animation" href="videos.html">Videolar</a></li>
+                                    <li><a class="animation"
+                                            href="{{ route('front.activity.list') }}">Etkinlikler</a></li>
+                                    <li><a class="animation"
+                                            href="{{ route('front.interview.list') }}">Röportajlar</a></li>
+                                    <li><a class="animation" href="{{ route('front.company.list') }}">Firmalar</a>
+                                    </li>
+                                    <li><a class="animation" href="{{ route('front.dictionary.list') }}">SS
+                                            Sözlüğü</a></li>
+                                    <li><a class="animation" href="{{ route('front.video.list') }}">Videolar</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -318,7 +330,7 @@
                                 data-wow-duration="800ms">
                                 <div class="footer-widget">
                                     <div class="logo footer-logo">
-                                        <a class="dark-logo" href="index.html">
+                                        <a class="dark-logo" href="{{ route('front.home') }}">
                                             <img width="250" height="52"
                                                 src="/assets/frontend/media/logo/mm-beyaz.svg" alt="neeon">
                                         </a>
@@ -338,7 +350,7 @@
                                         <li class="social-item">
                                             <a href="https://twitter.com/millimudafaacom" class="social-link"
                                                 target="_blank">
-                                                <i class="fab fa-twitter"></i>
+                                                <i class="fab fa-x-twitter"></i>
                                             </a>
                                         </li>
                                         <li class="social-item">
@@ -583,7 +595,7 @@
     <!-- custom -->
     <script src="{{ asset('assets/frontend/js/app.js') }}"></script>
 
-    
+
     @yield('script')
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

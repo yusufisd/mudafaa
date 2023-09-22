@@ -29,10 +29,10 @@ class DefenseIndustryCategoryController extends Controller
      */
     public function create()
     {
-        if (DefenseIndustry::latest()->first() == null) {
+        if (DefenseIndustryCategory::latest()->first() == null) {
             $no = 1;
         } else {
-            $no = DefenseIndustry::orderBy('queue', 'desc')->first();
+            $no = DefenseIndustryCategory::orderBy('queue', 'desc')->first();
             $no = $no->queue + 1;
         }
         $cats = DefenseIndustry::latest()->get();

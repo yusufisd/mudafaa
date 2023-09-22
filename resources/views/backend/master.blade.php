@@ -520,7 +520,7 @@
                                         <a href="#" class="menu-link px-3 py-2 active" data-kt-element="mode"
                                             data-kt-value="light">
                                             <span class="menu-icon" data-kt-element="icon">
-                                                <img src="https://gaviapanel.gaviaworks.org/assets/backend/images/svg/turkey.svg"
+                                                <img src="{{asset('/assets/tr.png')}}"
                                                     width="28" height="28" alt="TR" title="TR">
                                             </span>
                                             <span class="menu-title">Türkçe</span>
@@ -532,7 +532,7 @@
                                         <a href="#" class="menu-link px-3 py-2" data-kt-element="mode"
                                             data-kt-value="dark">
                                             <span class="menu-icon" data-kt-element="icon">
-                                                <img src="https://gaviapanel.gaviaworks.org/assets/backend/images/svg/england.svg"
+                                                <img src="{{asset('/assets/en.png')}}"
                                                     width="28" height="28" alt="EN" title="EN">
                                             </span>
                                             <span class="menu-title">İngilizce</span>

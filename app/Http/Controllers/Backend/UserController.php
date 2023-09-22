@@ -45,6 +45,7 @@ class UserController extends Controller
                 "user_email" => "required|email",
                 "user_category" => "required",
                 "user_password" => "required",
+                "description" => "description",
                 "user_password_again" => "required|same:user_password",
             ]);
 
@@ -53,6 +54,7 @@ class UserController extends Controller
             $user->surname = $request->user_surname;
             $user->phone = $request->user_no;
             $user->email = $request->user_email;
+            $user->description = $request->description;
             $user->password = Hash::make($request->user_password);
             $user->save();
 

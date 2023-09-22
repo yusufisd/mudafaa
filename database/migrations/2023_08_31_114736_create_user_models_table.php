@@ -18,6 +18,10 @@ return new class extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('phone');
+            $table->string('instagram')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('facebook')->nullable();
+            $table->longText('description');
             $table->softDeletes();
             $table->timestamps();
         });

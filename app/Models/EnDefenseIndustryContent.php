@@ -12,5 +12,6 @@ class EnDefenseIndustryContent extends Model
     protected $guarded = [];
     protected $casts = [
         "seo_key" => "array",
+        "tags" => "array",
     ];
 }

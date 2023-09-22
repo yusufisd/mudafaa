@@ -64,7 +64,7 @@
                                                 <span class="rt-meta">
                                                     <i class="fa fa-user"></i>
                                                     <a href="" class="name">{{ $data->Author->name }}
-                                                        {{ $data->Author->name }}</a>
+                                                        {{ $data->Author->surname }}</a>
                                                 </span>
                                             </li>
                                             <li>
@@ -78,7 +78,7 @@
                                             <li>
                                                 <span class="rt-meta">
                                                     <i class="far fa-comments icon"></i>
-                                                    250
+                                                    {{ $data->CommentCount() }}
                                                 </span>
                                             </li>
                                             <li>
@@ -187,10 +187,10 @@
                                             <div class="conent-block">
                                                 <h4 class="block-tile mb--20">Popüler Etiketler:</h4>
                                                 <div class="tag-list">
-                                                    <a href="#" class="tag-link">Güzel</a>
-                                                    <a href="#" class="tag-link">Seyahat</a>
-                                                    <a href="#" class="tag-link">Teknoloji</a>
-                                                    <a href="#" class="tag-link">Siyaset</a>
+                                                    @foreach ($data->Tags() as $value)
+                                                        <a href="#" class="tag-link">{{ $value->value }}</a>
+                                                    @endforeach
+
                                                 </div>
                                             </div>
                                         </div>
@@ -247,34 +247,35 @@
                                             width="170" height="170">
                                     </div>
                                     <div class="author-content">
-                                        <h3 class="author-name">Ayşe Yılmaz</h3>
+                                        <h3 class="author-name"> {{$data->Author->name}} {{$data->Author->surname}} </h3>
                                         <p class="user-desc">
-                                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias error itaque
-                                            quas adipisci beatae possimus, quaerat temporibus mollitia non ex consectetur
-                                            facere sed nobis sunt illum eos reiciendis! Obcaecati, praesentium?
+                                            {{$data->Author->description}}
                                         </p>
                                         <ul class="social-style-5">
 
+                                            @if($data->Author->facebook != null)
                                             <li>
-                                                <a target="_blank" href="https://www.facebook.com/">
+                                                <a target="_blank" href="https://www.facebook.com/{{$data->Author->facebook}}">
                                                     <i class="social-icon fab fa-facebook-f"></i>
                                                 </a>
                                             </li>
+                                            @endif
+
+                                            @if($data->Author->twitter != null)
                                             <li>
-                                                <a target="_blank" href="https://twitter.com/">
+                                                <a target="_blank" href="https://twitter.com/{{$data->Author->twitter}}">
                                                     <i class="social-icon fab fa-twitter"></i>
                                                 </a>
                                             </li>
+                                            @endif
+                                            
+                                            @if($data->Author->instagram != null)
                                             <li>
-                                                <a target="_blank" href="https://www.pinterest.com/">
-                                                    <i class="fab fa-pinterest-p"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a target="_blank" href="https://www.instagram.com/">
+                                                <a target="_blank" href="https://www.instagram.com/{{$data->Author->instagram}}">
                                                     <i class="fab fa-instagram"></i>
                                                 </a>
                                             </li>
+                                            @endif
 
                                         </ul>
                                     </div>
@@ -448,164 +449,45 @@
 
                                     </div>
                                     <div class="row mb--20">
-                                        <h5>Yorumlar (83) </h5>
+                                        <h5>Yorumlar ({{ $data->CommentCount() }}) </h5>
                                     </div>
 
-                                    <div class="comment_container">
-                                        <div class="row">
-                                            <div class="d-none d-md-block col-md-3 mb-3">
-                                                <div class="commentator-img">
-                                                    <img src="/assets/frontend/media/gallery/post-sm_1.jpg"
-                                                        alt="commentator-img_1" width="170" height="170">
+                                    @foreach ($data->comments() as $item)
+                                        <div class="comment_container">
+                                            <div class="row">
+                                                <div class="d-none d-md-block col-md-3 mb-3">
+                                                    <div class="commentator-img">
+                                                        <img src="/assets/frontend/media/gallery/post-sm_1.jpg"
+                                                            alt="commentator-img_1" width="170" height="170">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <div class="commentator-content">
+                                                        <h3 class="commentator-name"> {{$item->full_name}} </h3>
+                                                        <p class="user-desc">
+                                                            {{$item->comment}}
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-9">
-                                                <div class="commentator-content">
-                                                    <h3 class="commentator-name">Mehmet Doğan</h3>
-                                                    <p class="user-desc">
-                                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias
-                                                        error itaque quas adipisci beatae possimus, quaerat temporibus
-                                                        mollitia non ex consectetur facere sed nobis sunt illum eos
-                                                        reiciendis! Obcaecati, praesentium?
-                                                    </p>
+                                            <div class="row justify-content-end">
+                                                <div class="col-md-4">
+                                                    <span class="mx-2 comment_span"><i class="fas fa-pencil-alt"></i>
+                                                        Cevap
+                                                        Yaz </span>
+                                                    <span class="mx-2 comment_span"><i class="far fa-thumbs-up icon"></i>
+                                                        0</span>
+                                                    <span class="mx-2 comment_span"><i
+                                                            class="far fa-thumbs-down icon"></i>
+                                                        0</span>
                                                 </div>
+
                                             </div>
                                         </div>
-                                        <div class="row justify-content-end">
-                                            <div class="col-md-4">
-                                                <span class="mx-2 comment_span"><i class="fas fa-pencil-alt"></i> Cevap
-                                                    Yaz </span>
-                                                <span class="mx-2 comment_span"><i class="far fa-thumbs-up icon"></i>
-                                                    0</span>
-                                                <span class="mx-2 comment_span"><i class="far fa-thumbs-down icon"></i>
-                                                    0</span>
-                                            </div>
 
-                                        </div>
-                                    </div>
+                                        <hr class="dropdown-divider my-5">
+                                    @endforeach
 
-                                    <hr class="dropdown-divider my-5">
-
-                                    <div class="comment_container">
-                                        <div class="row">
-                                            <div class="d-none d-md-block col-md-3 mb-3">
-                                                <div class="commentator-img">
-                                                    <img src="/assets/frontend/media/gallery/post-sm_1.jpg"
-                                                        alt="commentator-img_1" width="170" height="170">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <div class="commentator-content">
-                                                    <h3 class="commentator-name">Mehmet Doğan</h3>
-                                                    <p class="user-desc">
-                                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias
-                                                        error itaque quas adipisci beatae possimus, quaerat temporibus
-                                                        mollitia non ex consectetur facere sed nobis sunt illum eos
-                                                        reiciendis! Obcaecati, praesentium?
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row justify-content-end">
-                                            <div class="col-md-4">
-                                                <span class="mx-2 comment_span"><i class="fas fa-pencil-alt"></i> Cevap
-                                                    Yaz </span>
-                                                <span class="mx-2 comment_span"><i class="far fa-thumbs-up icon"></i>
-                                                    0</span>
-                                                <span class="mx-2 comment_span"><i class="far fa-thumbs-down icon"></i>
-                                                    0</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <hr class="dropdown-divider my-5">
-
-                                    <div class="comment_container">
-                                        <div class="row">
-                                            <div class="d-none d-md-block col-md-3 mb-3">
-                                                <div class="commentator-img">
-                                                    <img src="/assets/frontend/media/gallery/post-sm_1.jpg"
-                                                        alt="commentator-img_1" width="170" height="170">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <div class="commentator-content">
-                                                    <h3 class="commentator-name">Mehmet Doğan</h3>
-                                                    <p class="user-desc">
-                                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias
-                                                        error itaque quas adipisci beatae possimus, quaerat temporibus
-                                                        mollitia non ex consectetur facere sed nobis sunt illum eos
-                                                        reiciendis! Obcaecati, praesentium?
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row justify-content-end">
-                                            <div class="col-md-4">
-                                                <span class="mx-2 comment_span"><i class="fas fa-pencil-alt"></i> Cevap
-                                                    Yaz </span>
-                                                <span class="mx-2 comment_span"><i class="far fa-thumbs-up icon"></i>
-                                                    0</span>
-                                                <span class="mx-2 comment_span"><i class="far fa-thumbs-down icon"></i>
-                                                    0</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <hr class="dropdown-divider my-5">
-
-                                    <div class="comment_container">
-                                        <div class="row">
-                                            <div class="d-none d-md-block col-md-3 mb-3">
-                                                <div class="commentator-img">
-                                                    <img src="/assets/frontend/media/gallery/post-sm_1.jpg"
-                                                        alt="commentator-img_1" width="170" height="170">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <div class="commentator-content">
-                                                    <h3 class="commentator-name">Mehmet Doğan</h3>
-                                                    <p class="user-desc">
-                                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias
-                                                        error itaque quas adipisci beatae possimus, quaerat temporibus
-                                                        mollitia non ex consectetur facere sed nobis sunt illum eos
-                                                        reiciendis! Obcaecati, praesentium?
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row justify-content-end">
-                                            <div class="col-md-4">
-                                                <span class="mx-2 comment_span"><i class="fas fa-pencil-alt"></i> Cevap
-                                                    Yaz </span>
-                                                <span class="mx-2 comment_span"><i class="far fa-thumbs-up icon"></i>
-                                                    0</span>
-                                                <span class="mx-2 comment_span"><i class="far fa-thumbs-down icon"></i>
-                                                    0</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <nav class="rt-pagination-area gap-top-90">
-                                        <ul class="pagination rt-pagination justify-content-center">
-                                            <li class="page-item prev">
-                                                <a class="page-link" href="#"><i
-                                                        class="fas fa-angle-double-left"></i></a>
-                                            </li>
-                                            <li class="page-item active" aria-current="page">
-                                                <span class="page-link">1</span>
-                                            </li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                            <li class="page-item next">
-                                                <a class="page-link" href="#"><i
-                                                        class="fas fa-angle-double-right"></i></a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                    <!-- end rt-pagination-area -->
 
 
                                 </div>
@@ -614,7 +496,8 @@
                                 <!-- start blog-post-comment -->
                                 <div class="blog-post-comment mb--40">
 
-                                    <form action="{{route('front.comment.store',$data->id)}}" method="POST" class=" comments-form-style-1">
+                                    <form action="{{ route('front.comment.store', $data->id) }}" method="POST"
+                                        class=" comments-form-style-1">
                                         @csrf
                                         <div class="row">
                                             <div class="col-xl-6">
@@ -687,18 +570,19 @@
                                                     <div class="slide-item">
                                                         <div class="rt-post-grid grid-meta">
                                                             <div class="post-img">
-                                                                <a href="single-post1.html">
-                                                                    <img src="/{{$single->image}}"
-                                                                        alt="post" width="551" height="431">
+                                                                <a href="{{route('front.currentNews.detail',$single->id)}}">
+                                                                    <img src="/{{ $single->image }}" alt="post"
+                                                                        width="551" height="431">
                                                                 </a>
                                                             </div>
                                                             <div class="post-content">
                                                                 <a href="graphics.html"
-                                                                    class="rt-cat-primary sidebar_restricted_category_title"> {{$single->Category->title}} </a>
+                                                                    class="rt-cat-primary sidebar_restricted_category_title">
+                                                                    {{ $single->Category->title }} </a>
                                                                 <h4 class="post-title">
-                                                                    <a href="single-post1.html"
+                                                                    <a href="{{route('front.currentNews.detail',$single->id)}}"
                                                                         class="restricted_title_2">
-                                                                        {{$single->title}}
+                                                                        {{ $single->title }}
                                                                     </a>
                                                                 </h4>
 
@@ -707,7 +591,7 @@
                                                                         <li>
                                                                             <span class="rt-meta">
                                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                                {{$single->created_at->translatedFormat('d M Y')}}
+                                                                                {{ $single->created_at->translatedFormat('d M Y') }}
                                                                             </span>
                                                                         </li>
                                                                     </ul>
@@ -814,34 +698,32 @@
                                 <div class="post-list">
 
                                     @foreach ($four_news as $item)
-                                        
-                                    <div class="item">
-                                        <div class="rt-post post-sm style-1">
-                                            <div class="post-img">
-                                                <a href="single-post1.html">
-                                                    <img src="/{{$item->image}}" alt="post"
-                                                        width="100" height="100">
-                                                </a>
-                                            </div>
-                                            <div class="ms-4 post-content">
-                                                <a href=""
-                                                    class="rt-cat-primary sidebar_restricted_category_title">Sports</a>
-                                                <h4 class="post-title">
-                                                    <a href="single-post1.html" class="sidebar_restricted_title">
-                                                        {{$item->title}}
+                                        <div class="item">
+                                            <div class="rt-post post-sm style-1">
+                                                <div class="post-img">
+                                                    <a href="single-post1.html">
+                                                        <img src="/{{ $item->image }}" alt="post" width="100"
+                                                            height="100">
                                                     </a>
-                                                </h4>
-                                                <span class="rt-meta">
-                                                    <i class="far fa-calendar-alt icon"></i>
-                                                    {{$item->created_at->translatedFormat('d M Y')}}
-                                                </span>
+                                                </div>
+                                                <div class="ms-4 post-content">
+                                                    <a href=""
+                                                        class="rt-cat-primary sidebar_restricted_category_title">Sports</a>
+                                                    <h4 class="post-title">
+                                                        <a href="single-post1.html" class="sidebar_restricted_title">
+                                                            {{ $item->title }}
+                                                        </a>
+                                                    </h4>
+                                                    <span class="rt-meta">
+                                                        <i class="far fa-calendar-alt icon"></i>
+                                                        {{ $item->created_at->translatedFormat('d M Y') }}
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-
                                     @endforeach
 
-                                    
+
                                 </div>
                             </div>
                             <!-- end slidebar wrap  -->
@@ -878,8 +760,8 @@
                                 </h2>
                                 <div class="tag-list">
 
-                                    @foreach ($data->tags as $key)
-                                        <a href="#" class="tag-link"> {{ $key }} </a>
+                                    @foreach ($data->Tags() as $value)
+                                        <a href="#" class="tag-link"> {{ $value->value }} </a>
                                     @endforeach
 
                                 </div>
@@ -905,8 +787,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                // limit by device width
-                -------------------------------*/
+                        // limit by device width
+                        -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
 
@@ -970,7 +852,7 @@
             e.preventDefault();
             // Create reply field
             var replyField = $(
-                '<form action="{{route("front.comment.store")}}" method="POST" class="rt-contact-form comments-form-style-1">' +
+                '<form action="{{ route('front.comment.store') }}" method="POST" class="rt-contact-form comments-form-style-1">' +
                 '@csrf' +
                 '<div class="row">' +
                 '<div class="col-xl-6">' +

@@ -235,7 +235,7 @@
                                                             <a class="nav-link active" data-bs-toggle="tab"
                                                                 href="#tab_blog_tr">
                                                                 <span>
-                                                                    <img src="https://gaviapanel.gaviaworks.org/assets/images/svg/turkey.svg"
+                                                                    <img src="{{asset('/assets/tr.png')}}"
                                                                         width="28" height="28" alt="TR"
                                                                         title="TR">
                                                                 </span>
@@ -245,7 +245,7 @@
                                                         <li class="nav-item">
                                                             <a class="nav-link" data-bs-toggle="tab" href="#tab_blog_en">
                                                                 <span>
-                                                                    <img src="https://gaviapanel.gaviaworks.org/assets/images/svg/england.svg"
+                                                                    <img src="{{asset('/assets/en.png')}}"
                                                                         width="28" height="28" alt="EN"
                                                                         title="EN">
                                                                 </span>
@@ -313,6 +313,30 @@
                                                                                 </textarea>
 
 
+                                                                    </div>
+                                                                    <!--end::Col-->
+                                                                </div>
+
+                                                                <div class="row mb-6">
+                                                                    <!--begin::Label-->
+                                                                    <label
+                                                                        class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Etiket</label>
+                                                                    <!--end::Label-->
+                                                                    <!--begin::Col-->
+                                                                    <div class="col-lg-10">
+                                                                        <!--begin::Row-->
+                                                                        <div class="row">
+                                                                            <!--begin::Col-->
+                                                                            <div class="col-lg-12 fv-row">
+                                                                                <input type="text"
+                                                                                    id="etiket_tr"
+                                                                                    name="etiket_tr"
+                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                    multiple value="" />
+                                                                            </div>
+                                                                            <!--end::Col-->
+                                                                        </div>
+                                                                        <!--end::Row-->
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -426,6 +450,30 @@
                                                                                 </textarea>
 
 
+                                                                    </div>
+                                                                    <!--end::Col-->
+                                                                </div>
+
+                                                                <div class="row mb-6">
+                                                                    <!--begin::Label-->
+                                                                    <label
+                                                                        class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Etiket</label>
+                                                                    <!--end::Label-->
+                                                                    <!--begin::Col-->
+                                                                    <div class="col-lg-10">
+                                                                        <!--begin::Row-->
+                                                                        <div class="row">
+                                                                            <!--begin::Col-->
+                                                                            <div class="col-lg-12 fv-row">
+                                                                                <input type="text"
+                                                                                    id="etiket_en"
+                                                                                    name="etiket_en"
+                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                    multiple value="" />
+                                                                            </div>
+                                                                            <!--end::Col-->
+                                                                        </div>
+                                                                        <!--end::Row-->
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -763,6 +811,13 @@
 
         var input2 = document.querySelector("#blog_seo_keywords_en");
         new Tagify(input2);
+
+
+        var input3 = document.querySelector("#etiket_tr");
+        new Tagify(input3);
+
+        var input4 = document.querySelector("#etiket_en");
+        new Tagify(input4);
 
 
         $(document).ready(function() {

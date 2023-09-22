@@ -105,8 +105,8 @@
                                                         <img src="/{{ $item->image }}" class="w-75px ms-n1"
                                                             alt="">
                                                     </td>
-                                                    <td> {{ $item->Author->name }} {{ $item->Author->name }} </td>
-                                                    <td> {{ $item->title }} </td>
+                                                    <td> {{ $item->Author->name }} {{ $item->Author->surname }} </td>
+                                                    <td> {{ substr($item->title,0,30) }}... </td>
                                                     <td> {{ $item->Category->title }} </td>
                                                     <td>
                                                         <div

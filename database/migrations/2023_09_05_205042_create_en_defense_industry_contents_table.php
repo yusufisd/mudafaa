@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('content_id');
             $table->integer('status')->default(1);
             $table->string('seo_title');
+            $table->string('tags');
             $table->string('link');
             $table->string('seo_description');
             $table->string('seo_key');
