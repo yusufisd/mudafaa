@@ -341,6 +341,7 @@ Route::middleware('lang')->group(function(){
                     Route::get('detay/{id?}', 'detail')->name('detail');
                     Route::get('kategori-detay/{id?}', 'categoryDetail')->name('categoryDetail');
                     Route::post('etkinlik-ara', 'searchActivity')->name('searchActivity');
+                    Route::get('etkinlik-takvimi', 'calendar')->name('calendar');
                     
                 });
 

@@ -211,4 +211,9 @@ class ActivityController extends Controller
             return view('frontend.activity.category.detail', compact('data', 'cat'));
         }
     }
+
+    public function calendar(){
+        $data = Activity::latest()->get();
+        return view('frontend.activity.calendar',compact('data'));
+    }
 }

@@ -292,4 +292,5 @@ class ActivityController extends Controller
         }
         return redirect()->route('admin.activityCategory.list');
     }
+
 }

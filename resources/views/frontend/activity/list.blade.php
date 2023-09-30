@@ -111,20 +111,21 @@
                                         <div class="input-group input-group-md">
                                             <input type="text" class="form-control" name="search" value=""
                                                 placeholder="Fuar adı/Anahtar kelime">
-                                            <button class="btn btn-outline-secondary" type="button">
+                                            <button class="btn btn-outline-secondary" type="submit">
                                                 <i class="fas fa-search" style="color: #fff;"></i>
                                             </button>
 
                                         </div>
                                     </div>
+                                </form>
+
                                     <div class="row">
                                         <div class="col-12 col-md-6 col-lg-2 mx-auto">
-                                            <button type="submit" class="rt-submit-btn" style="float: right;">
+                                            <a href="{{route('front.activity.calendar')}}" type="button" class="rt-submit-btn" style="float: right;">
                                                 Etkinlik Takvimi
-                                            </button>
+                                            </a>
                                         </div>
                                     </div>
-                                </form>
 
                             </div>
                         </div>
