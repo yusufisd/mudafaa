@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('soran');
             $table->string('cevaplayan');
-            $table->string('soru');
-            $table->string('cevap');
+            $table->longText('soru');
+            $table->longText('cevap');
             $table->string('interview_id');
             $table->softDeletes();
             $table->timestamps();

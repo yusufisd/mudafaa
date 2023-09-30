@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('en_interviews', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('image');
             $table->string('short_description');
             $table->longText('description');
+            $table->integer('author');
             $table->string('link');
             $table->integer('interview_id');
             $table->string('seo_title');

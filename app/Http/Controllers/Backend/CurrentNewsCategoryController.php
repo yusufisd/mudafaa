@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Imports\CurrentNewsCategoryImport;
 use App\Models\CurrentNewsCategory;
 use App\Models\EnCurrentNewsCategory;
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 use Illuminate\Validation\ValidationException;
-
+use Maatwebsite\Excel\Facades\Excel;
 
 class CurrentNewsCategoryController extends Controller
 {
@@ -74,9 +75,7 @@ class CurrentNewsCategoryController extends Controller
             if (!isset($request->status_tr)) {
                 $category->status = 0;
             }
-            if (!isset($request->seo_statu_tr)) {
-                $category->seo_statu = 0;
-            }
+
             if ($request->file('image') != null) {
                 $image = $request->file('image');
                 $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
@@ -89,16 +88,18 @@ class CurrentNewsCategoryController extends Controller
             $category_en = new EnCurrentNewsCategory();
             $category_en->title = $request->title_en;
             $category_en->link = $request->link_en;
+            $category->queue = $request->queue;
             $category_en->category_id = $category->id;
             $category_en->seo_title = $request->seo_title_en;
             $category_en->seo_description = $request->seo_descriptipn_en;
             $category_en->seo_key = $request->seo_key_en;
+            if ($request->file('image') != null) {
+                $category_en->image = $save_url;
+            }
             if (!isset($request->status_en)) {
                 $category_en->status = 0;
             }
-            if (!isset($request->seo_statu_en)) {
-                $category_en->seo_statu = 0;
-            }
+
             $category_en->save();
 
             logKayit(['Güncel Haber Kategori', 'Haber kategorisi eklendi']);
@@ -272,5 +273,12 @@ class CurrentNewsCategoryController extends Controller
             ]);
         }
         return redirect()->route('admin.currentNewsCategory.list');
+    }
+
+    public function ice_aktar(Request $request){
+        Excel::import(new CurrentNewsCategoryImport, $request->file('ice_aktar')->store('temp'));
+
+        Alert::success('Başarılı');
+        return back();
     }
 }

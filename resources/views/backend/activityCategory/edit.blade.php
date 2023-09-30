@@ -131,8 +131,8 @@
                                                             <a class="nav-link active" data-bs-toggle="tab"
                                                                 href="#tab_blog_category_detail_tr">
                                                                 <span>
-                                                                    <img src="https://gaviapanel.gaviaworks.org/assets/images/svg/turkey.svg"
-                                                                        width="28" height="28" alt="TR"
+                                                                    <img src="{{asset('/assets/tr.png')}}"
+                                                                        width="28" height="20" alt="TR"
                                                                         title="TR">
                                                                 </span>
 
@@ -142,8 +142,8 @@
                                                             <a class="nav-link" data-bs-toggle="tab"
                                                                 href="#tab_blog_category_detail_en">
                                                                 <span>
-                                                                    <img src="https://gaviapanel.gaviaworks.org/assets/images/svg/england.svg"
-                                                                        width="28" height="28" alt="EN"
+                                                                    <img src="{{asset('/assets/en.png')}}"
+                                                                        width="28" height="20" alt="EN"
                                                                         title="EN">
                                                                 </span>
                                                             </a>
@@ -357,8 +357,8 @@
                                                     <a class="nav-link active" data-bs-toggle="tab"
                                                         href="#tab_blog_category_seo_tr">
                                                         <span>
-                                                            <img src="https://gaviapanel.gaviaworks.org/assets/images/svg/turkey.svg"
-                                                                width="28" height="28" alt="TR"
+                                                            <img src="{{asset('/assets/tr.png')}}"
+                                                                width="28" height="20" alt="TR"
                                                                 title="TR">
                                                         </span>
 
@@ -368,8 +368,8 @@
                                                     <a class="nav-link" data-bs-toggle="tab"
                                                         href="#tab_blog_category_seo_en">
                                                         <span>
-                                                            <img src="https://gaviapanel.gaviaworks.org/assets/images/svg/england.svg"
-                                                                width="28" height="28" alt="EN"
+                                                            <img src="{{asset('/assets/en.png')}}"
+                                                                width="28" height="20" alt="EN"
                                                                 title="EN">
                                                         </span>
                                                     </a>

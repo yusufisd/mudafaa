@@ -60,7 +60,7 @@
                         <div class="rt-post post-sm style-1">
                             <div class="post-img">
                                 <a href="{{route('front.currentNews.detail',$variable->id)}}">
-                                    <img src="{{ $variable->mobil_image }}" alt="post" width="100" height="100">
+                                    <img src="{{ $variable->mobil_image != null ? $variable->mobil_image : '/media/gallery/post-sm_1.jpg'}}"  alt="post" width="100" height="100">
                                 </a>
                             </div>
                             <div class="ms-4 post-content">
@@ -104,13 +104,12 @@
                     <div class="rt-post-overlay rt-post-overlay-xl layout-2">
                         <div class="post-img">
                             <a href="{{route('front.currentNews.detail',$tek_haber->id)}}" class="img-link">
-                                <img src="{{ $tek_haber->image }}" alt="travel-xl_1" width="900" height="600">
+                                <img src="/{{ $tek_haber->image }}" alt="travel-xl_1" width="900" height="600">
                             </a>
                         </div>
                         <div class="post-content">
                             <a href="gaming.html" class="tr-america restricted_category_title">
                                 {{ $tek_haber->Category->title }}
-
                             </a>
                             <h3 class="post-title">
                                 <a href="{{route('front.currentNews.detail',$tek_haber->id)}}" class="section_2_title_style_1">
@@ -153,7 +152,6 @@
                 <!-- end col -->
                 <div class="col-xl-4 col-lg-6 wow fadeInUp" data-wow-delay="600ms" data-wow-duration="800ms">
                     <div class="row rt-gutter-5">
-
                         @foreach ($iki_haber as $item)
                             <div class="col-12">
                                 <div class="rt-post-overlay rt-post-overlay-md layout-3">
@@ -223,7 +221,7 @@
                     <div class="wrap">
                         <div class="featured-tab-title">
                             <h2 class="rt-section-heading">
-                                <span class="rt-section-text">Güncel Haberler </span>
+                                <span class="rt-section-text"> {{__('message.güncel haberler')}} </span>
                                 <span class="rt-section-dot"></span>
                                 <span class="rt-section-line"></span>
                             </h2>
@@ -671,13 +669,13 @@
                 <div class="col-12">
                     <div class="titile-wrapper mb--40">
                         <h2 class="rt-section-heading mb-0 flex-grow-1 me-3">
-                            <span class="rt-section-text restricted_section_title">Yaklaşan Etkinlikler </span>
+                            <span class="rt-section-text restricted_section_title"> {{__('message.yaklaşan etkinlikler')}} </span>
                             <span class="rt-section-dot"></span>
                             <span class="rt-section-line"></span>
                         </h2>
 
                         <div>
-                            <h6><a href="fair_list.html">Tümünü Gör</a></h6>
+                            <h6><a href="fair_list.html"> {{__('message.tümünü gör')}} </a></h6>
                         </div>
                     </div>
                     <!-- end titile-wrapper -->
@@ -754,7 +752,7 @@
                     <div class="featured-area-style-5 mx-auto">
                         <div class="wrap">
                             <h2 class="rt-section-heading mb--30">
-                                <span class="rt-section-text restricted_section_title">Popüler Haberler </span>
+                                <span class="rt-section-text restricted_section_title"> {{__('message.popüler haberler')}} </span>
                                 <span class="rt-section-dot"></span>
                                 <span class="rt-section-line"></span>
                             </h2>
@@ -768,14 +766,14 @@
                                     </a>
                                 </div>
                                 <div class="post-content">
-                                    <a href="life-style.html" class="world">World</a>
+                                    <a href="life-style.html" class="world"> {{$populer_haber_first->Category->title}} </a>
                                     <h3 class="post-title">
                                         <a href="{{route('front.currentNews.detail',$populer_haber_first->id)}}" class="restricted_title">
                                             {{ $populer_haber_first->title }}
                                         </a>
                                     </h3>
                                     <p class="restricted_text">
-                                        {{ substr($populer_haber_first->short_description, 0, 100) }}
+                                        {{ ($populer_haber_first->short_description) }}
 
                                     </p>
                                     <div class="post-meta">
@@ -810,7 +808,7 @@
                                     </div>
                                     <div class="btn-wrap mt--25">
                                         <a href="single-post1.html" class="rt-read-more rt-button-animation-out">
-                                            Daha Fazla Oku
+                                            {{__('message.daha fazla oku')}}
                                             <svg width="34px" height="16px" viewBox="0 0 34.53 16"
                                                 xml:space="preserve">
                                                 <rect class="rt-button-line" y="7.6" width="34"
@@ -1003,14 +1001,14 @@
 
                     <div class="mb--30  d-flex align-items-center justify-content-between flex-wrap">
                         <h2 class="rt-section-heading mb-2 me-3 flex-grow-1 white-style">
-                            <span class="rt-section-text restricted_section_title">Popüler Videolar</span>
+                            <span class="rt-section-text restricted_section_title"> {{__('message.popüler videolar')}} </span>
                             <span class="d-none d-md-block rt-section-dot"></span>
                             <span class="d-none d-md-block rt-section-line"></span>
                         </h2>
 
                         <div class="mb-2">
                             <a href="videos.html" class="rt-read-more-white rt-button-animation-out">
-                                Tümünü Gör
+                                 {{__('message.tümünü gör')}} 
                                 <svg width="34px" height="16px" viewBox="0 0 34.53 16" xml:space="preserve">
                                     <rect class="rt-button-line" y="7.6" width="34" height=".4">
                                     </rect>
@@ -1078,13 +1076,13 @@
                 <div class="col-12">
                     <div class="titile-wrapper mb--40">
                         <h2 class="rt-section-heading mb-0 flex-grow-1 me-3">
-                            <span class="rt-section-text restricted_section_title">Röportajlar </span>
+                            <span class="rt-section-text restricted_section_title"> {{__('message.röportajlar')}} </span>
                             <span class="rt-section-dot"></span>
                             <span class="rt-section-line"></span>
                         </h2>
 
                         <div>
-                            <h6><a href="reports_list.html">Tümünü Gör</a></h6>
+                            <h6><a href="reports_list.html"> {{__('message.tümünü gör')}} </a></h6>
                         </div>
                     </div>
                     <!-- end titile-wrapper -->

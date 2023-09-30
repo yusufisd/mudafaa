@@ -231,7 +231,7 @@
                                                         <a href="life-style.html"> {{$item->title}} </a>
                                                     </h4>
                                                     <p class="count">
-                                                        <span class="anim-overflow"> (29) </span>
+                                                        <span class="anim-overflow"> ({{$item->adet()}}) </span>
                                                     </p>
                                                 </div>
                                             </div>

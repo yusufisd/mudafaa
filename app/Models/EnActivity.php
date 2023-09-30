@@ -14,7 +14,10 @@ class EnActivity extends Model
         "seo_key" => "array",
     ];
 
-    public function getCategoryAttribute(){
-        return $this->hasOne(ActivityCategory::class);
+    public function Category()
+    {
+        return $this->hasOne(ActivityCategory::class, 'id', 'category');
     }
+
+
 }

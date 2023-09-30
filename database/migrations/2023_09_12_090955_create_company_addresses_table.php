@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('company_addresses', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('address');
+            $table->longText('address');
             $table->string('phone');
             $table->string('email');
-            $table->string('map');
+            $table->longText('map');
             $table->string('website');
             $table->integer('company_id');
             $table->softDeletes();

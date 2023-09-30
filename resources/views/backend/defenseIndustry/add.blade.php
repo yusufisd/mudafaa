@@ -90,7 +90,7 @@
                                                         role="tab">
                                                         <span>
                                                             <img src="{{asset('/assets/tr.png')}}"
-                                                                width="28" height="28" alt="TR" title="TR">
+                                                                width="28" height="20" alt="TR" title="TR">
                                                         </span>
 
                                                     </a>
@@ -101,7 +101,7 @@
                                                         tabindex="-1" role="tab">
                                                         <span>
                                                             <img src="{{asset('/assets/en.png')}}"
-                                                                width="28" height="28" alt="EN" title="EN">
+                                                                width="28" height="20" alt="EN" title="EN">
                                                         </span>
                                                     </a>
                                                 </li>

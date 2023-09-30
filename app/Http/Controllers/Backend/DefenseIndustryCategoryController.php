@@ -75,12 +75,16 @@ class DefenseIndustryCategoryController extends Controller
 
 
             $news_en = new EnDefenseIndustryCategory();
+            $news_en->defense_id = $request->category;
             $news_en->title = $request->title_en;
             $news_en->link = $request->link_en;
             $news_en->category_tr = $news->id;
             $news_en->seo_title = $request->seo_title_en;
             $news_en->seo_description = $request->seo_descriptipn_en;
             $news_en->seo_key = $request->seo_key_en;
+            if ($request->file('image') != null) {
+                $news_en->image = $save_url;
+            }
             if (!isset($request->status_tr)) {
                 $news_en->status = 0;
             }

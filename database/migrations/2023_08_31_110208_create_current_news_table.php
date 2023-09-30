@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('live_time');
             $table->string('image');
-            $table->string('mobil_image');
+            $table->string('mobil_image')->nullable();
             $table->integer('author_id');
             $table->integer('category_id');
             $table->string('title');
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->integer('status')->default(1);
             $table->string('link');
             $table->string('seo_title');
-            $table->string('seo_description');
+            $table->longText('seo_description');
             $table->string('seo_key');
             $table->integer('seo_statu')->default(1);
             $table->timestamps();

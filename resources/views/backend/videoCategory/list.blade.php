@@ -8,15 +8,34 @@
     <!--begin::Content wrapper-->
     <div class="d-flex flex-column flex-column-fluid">
         <!--begin::Toolbar-->
-        <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-10">
+        <div id="kt_app_toolbar" class="app-toolbar py-lg-10 py-3">
             <!--begin::Toolbar container-->
             <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
                 <!--begin::Page title-->
-                <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                <div class="page-title d-flex flex-column justify-content-center me-3 flex-wrap">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-primary fw-bold fs-3 flex-column justify-content-center my-0">
                         Video {{ __('message.kategori') }} </h1>
                     <!--end::Title-->
+                </div>
+
+                <div class="" style="display: flex" >
+                    <div id="goster" class="col-md-8" style="display:none">
+                        <form action="{{route('admin.videoCategory.ice_aktar')}}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <input type="file" class="form-control" name="ice_aktar" id="">
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="submit" class="btn btn-primary" id="">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div  id="gizle">
+                        <button class="btn btn-primary" onclick="iceri_aktar()" type="button"> Aktar</button>
+                    </div>
                 </div>
                 <!--end::Page title-->
             </div>
@@ -31,8 +50,8 @@
                 <!--begin::Row-->
                 <div class="row g-5 g-xl-8">
                     <!--begin::Col-->
-                    <div class="col-xl-12 mb-5 mb-xl-8">
-                        <div class="card card-flush h-xl-100 mb-5 mb-xl-8">
+                    <div class="col-xl-12 mb-xl-8 mb-5">
+                        <div class="card card-flush h-xl-100 mb-xl-8 mb-5">
                             <!--begin::Card header-->
                             <div class="card-header border-0 pt-6">
                                 <!--begin::Card toolbar-->
@@ -55,6 +74,9 @@
                                             </span>
                                             <!--end::Svg Icon--> Yeni {{ __('message.ekle') }} </a>
                                         <!--end::Add user-->
+                                        &nbsp;&nbsp;&nbsp;
+
+
                                     </div>
                                     <!--end::Toolbar-->
                                 </div>
@@ -64,10 +86,10 @@
                             </div>
                             <!--end::Card header-->
                             <!--begin::Body-->
-                            <div class="card-body pt-0 pb-5">
+                            <div class="card-body pb-5 pt-0">
                                 <!--begin::Table container-->
                                 <div class="table-responsive with_search_table">
-                                    <table id="blog_categories_table" class="table gy-7 gx-7">
+                                    <table id="blog_categories_table" class="gy-7 gx-7 table">
                                         <thead>
                                             <tr class="fw-bold fs-6 text-gray-800">
                                                 <th class="w-10px">
@@ -78,10 +100,14 @@
                                                             value="1" />
                                                     </div>
                                                 </th>
-                                                <th style="text-align: center"> {{ __('message.başlık') }} <i class="fa fa-sort ms-3"></i></th>
-                                                <th style="text-align: center"> {{ __('message.sıralama') }} <i class="fa fa-sort ms-3"></i></th>
-                                                <th style="text-align: center"> {{ __('message.durum') }} <i class="fa fa-sort ms-3"></i></th>
-                                                <th style="text-align: center"> {{ __('message.işlem') }} <i class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center"> {{ __('message.başlık') }} <i
+                                                        class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center"> {{ __('message.sıralama') }} <i
+                                                        class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center"> {{ __('message.durum') }} <i
+                                                        class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center"> {{ __('message.işlem') }} <i
+                                                        class="fa fa-sort ms-3"></i></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -111,17 +137,17 @@
                                                     </td>
                                                     <td style="text-align: center">
                                                         <a href="#"
-                                                            class="px-2 btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 px-2"
                                                             title="Görüntüle">
                                                             <i class="fa-solid fa-eye fs-3"></i>
                                                         </a>
                                                         <a href="{{ route('admin.currentNewsCategory.edit', $item->id) }}"
-                                                            class="px-2 btn btn-icon btn-bg-light btn-active-color-secondary btn-sm me-1"
+                                                            class="btn btn-icon btn-bg-light btn-active-color-secondary btn-sm me-1 px-2"
                                                             title="Düzenle">
                                                             <i class="fa-regular fa-pen-to-square fs-3"></i>
                                                         </a>
                                                         <a onclick="destroy({{ $item->id }})"
-                                                            class="px-2 btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1"
+                                                            class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1 px-2"
                                                             data-bs-toggle="modal" data-bs-target="#delete_modal"
                                                             title="Sil">
                                                             <i class="fa-regular fa-trash-can fs-4"></i>
@@ -148,8 +174,34 @@
         <!--end::Content-->
     </div>
     <!--end::Content wrapper-->
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('script')
+    <script>
+        function iceri_aktar() {
+            $('#goster').toggle('fast');
+        }
+    </script>
     <script>
         function change_status(d) {
             window.location.href = "{{ route('admin.currentNewsCategory.change_status') }}/" + d

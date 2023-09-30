@@ -16,18 +16,26 @@
         </div>
         <!-- end theme-switch-box-mobile -->
 
+        @if ($errors->any())
+            @foreach ($errors->all() as $item)
+                <div class="alert alert-danger">
+                    {{ $item }}
+                </div>
+            @endforeach
+        @endif
+
         <!-- Start inner page Banner -->
         <div class="banner inner-banner">
             <div class="container">
                 <nav class="rt-breadcrumb-wrap" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">
+                            <a href="{{ route('front.home') }}">
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="black_news.html">
+                            <a href="{{ route('admin.currentNewsCategory.list', $data->Category->id) }}">
                                 {{ $data->Category->title }}
                             </a>
                         </li>
@@ -70,9 +78,11 @@
                                             <li>
                                                 <span class="rt-meta">
                                                     <i class="far fa-calendar-alt icon"></i>
-                                                    {{ $data->created_at->translatedFormat('d M Y H:i') }} | <b>Son
-                                                        Güncelleme:</b>
-                                                    {{ $data->updated_at->translatedFormat('d M Y H:i') }}
+                                                    {{ $data->created_at->translatedFormat('d M Y H:i') }}
+                                                    @if ($data->created_at != $data->updated_at)
+                                                        | <b> {{__('message.son güncelleme')}} :</b>
+                                                        {{ $data->updated_at->translatedFormat('d M Y H:i') }}
+                                                    @endif
                                                 </span>
                                             </li>
                                             <li>
@@ -165,7 +175,8 @@
                                 <!-- end post-img -->
 
                                 <!-- strat psot body -->
-                                <div class="post-body">
+                                <div class="post-body" style="text-align: justify">
+
 
                                     {!! $data->description !!}
 
@@ -185,19 +196,17 @@
                                     <div class="row gutter-30">
                                         <div class="col-xl-7 col-lg-6">
                                             <div class="conent-block">
-                                                <h4 class="block-tile mb--20">Popüler Etiketler:</h4>
+                                                <h4 class="block-tile mb--20"> {{__('message.popüler etiketler')}} :  </h4>
                                                 <div class="tag-list">
-                                                    @foreach ($data->Tags() as $value)
-                                                        <a href="#" class="tag-link">{{ $value->value }}</a>
-                                                    @endforeach
+                                                    
 
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-xl-5 col-lg-6 d-flex justify-content-start justify-content-lg-end">
                                             <div class="conent-block">
-                                                <h4 class="block-tile mb--20">Bu Haberi Paylaş:</h4>
-                                                <ul class="social-share-style-1 ">
+                                                <h4 class="block-tile mb--20"> {{__('message.paylaş')}} :</h4>
+                                                <ul class="social-share-style-1">
                                                     <li>
                                                         <a class="fb" target="_blank"
                                                             href="https://www.facebook.com/">
@@ -247,34 +256,38 @@
                                             width="170" height="170">
                                     </div>
                                     <div class="author-content">
-                                        <h3 class="author-name"> {{$data->Author->name}} {{$data->Author->surname}} </h3>
+                                        <h3 class="author-name"> {{ $data->Author->name }} {{ $data->Author->surname }}
+                                        </h3>
                                         <p class="user-desc">
-                                            {{$data->Author->description}}
+                                            {{ substr($data->Author->description, 0, 270) }}
                                         </p>
                                         <ul class="social-style-5">
 
-                                            @if($data->Author->facebook != null)
-                                            <li>
-                                                <a target="_blank" href="https://www.facebook.com/{{$data->Author->facebook}}">
-                                                    <i class="social-icon fab fa-facebook-f"></i>
-                                                </a>
-                                            </li>
+                                            @if ($data->Author->facebook != null)
+                                                <li>
+                                                    <a target="_blank"
+                                                        href="https://www.facebook.com/{{ $data->Author->facebook }}">
+                                                        <i class="social-icon fab fa-facebook-f"></i>
+                                                    </a>
+                                                </li>
                                             @endif
 
-                                            @if($data->Author->twitter != null)
-                                            <li>
-                                                <a target="_blank" href="https://twitter.com/{{$data->Author->twitter}}">
-                                                    <i class="social-icon fab fa-twitter"></i>
-                                                </a>
-                                            </li>
+                                            @if ($data->Author->twitter != null)
+                                                <li>
+                                                    <a target="_blank"
+                                                        href="https://twitter.com/{{ $data->Author->twitter }}">
+                                                        <i class="social-icon fab fa-twitter"></i>
+                                                    </a>
+                                                </li>
                                             @endif
-                                            
-                                            @if($data->Author->instagram != null)
-                                            <li>
-                                                <a target="_blank" href="https://www.instagram.com/{{$data->Author->instagram}}">
-                                                    <i class="fab fa-instagram"></i>
-                                                </a>
-                                            </li>
+
+                                            @if ($data->Author->instagram != null)
+                                                <li>
+                                                    <a target="_blank"
+                                                        href="https://www.instagram.com/{{ $data->Author->instagram }}">
+                                                        <i class="fab fa-instagram"></i>
+                                                    </a>
+                                                </li>
                                             @endif
 
                                         </ul>
@@ -291,21 +304,22 @@
                                             @if ($previous_data != null)
                                                 <div class="next-prev-wrap">
                                                     <div class="item-icon">
-                                                        <a href="#">
+                                                        <a
+                                                            href="{{ route('front.currentNews.detail', $previous_data->id) }}">
                                                             <i class="fas fa-chevron-left"></i>
-                                                            Öncekİ Haber
+                                                            {{__('message.önceki haber')}}
                                                         </a>
                                                     </div>
                                                     <div class="content">
                                                         <h4 class="title">
-                                                            <a href="#">
-                                                                Japon Donanmasının Yeni Nesil 30FFM Çok Amaçlı Fırkateyni
-                                                                Görüldü
+                                                            <a
+                                                                href="{{ route('front.currentNews.detail', $previous_data->id) }}">
+                                                                {{ $previous_data->title }}
                                                             </a>
                                                         </h4>
                                                         <span class="rt-meta">
                                                             <i class="far fa-calendar-alt icon"></i>
-                                                            17.07.2023
+                                                            {{ $previous_data->created_at->translatedFormat('d M Y') }}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -318,22 +332,22 @@
                                             @if ($next_data != null)
                                                 <div class="next-prev-wrap next-wrap">
                                                     <div class="item-icon">
-                                                        <a href="#">
-                                                            Sonrakİ Haber
+                                                        <a href="{{ route('front.currentNews.detail', $next_data->id) }}">
+                                                            {{__('message.sonraki haber')}}
                                                             <i class="fas fa-chevron-right"></i>
                                                         </a>
                                                     </div>
                                                     <div class="content">
                                                         <h4 class="title">
-                                                            <a href="#">
-                                                                Katar Emiri Donanmasına Ait İlk Açık Deniz Karakol Gemisi
-                                                                Denize
-                                                                İndirildi
+                                                            <a
+                                                                href="{{ route('front.currentNews.detail', $next_data->id) }}">
+                                                                {{ $next_data->title }}
                                                             </a>
                                                         </h4>
                                                         <span class="rt-meta">
                                                             <i class="far fa-calendar-alt icon"></i>
-                                                            18.07.2023
+                                                            {{ $next_data->created_at->translatedFormat('d M Y') }}
+
                                                         </span>
                                                     </div>
                                                 </div>
@@ -449,7 +463,7 @@
 
                                     </div>
                                     <div class="row mb--20">
-                                        <h5>Yorumlar ({{ $data->CommentCount() }}) </h5>
+                                        <h5> {{__('message.yorumlar')}} ({{ $data->CommentCount() }}) </h5>
                                     </div>
 
                                     @foreach ($data->comments() as $item)
@@ -463,21 +477,20 @@
                                                 </div>
                                                 <div class="col-md-9">
                                                     <div class="commentator-content">
-                                                        <h3 class="commentator-name"> {{$item->full_name}} </h3>
+                                                        <h3 class="commentator-name"> {{ $item->full_name }} </h3>
                                                         <p class="user-desc">
-                                                            {{$item->comment}}
+                                                            {{ $item->comment }}
                                                         </p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row justify-content-end">
                                                 <div class="col-md-4">
-                                                    <span class="mx-2 comment_span"><i class="fas fa-pencil-alt"></i>
-                                                        Cevap
-                                                        Yaz </span>
-                                                    <span class="mx-2 comment_span"><i class="far fa-thumbs-up icon"></i>
+                                                    <span class="comment_span mx-2"><i class="fas fa-pencil-alt"></i>
+                                                        {{__('message.cevap yaz')}} </span>
+                                                    <span class="comment_span mx-2"><i class="far fa-thumbs-up icon"></i>
                                                         0</span>
-                                                    <span class="mx-2 comment_span"><i
+                                                    <span class="comment_span mx-2"><i
                                                             class="far fa-thumbs-down icon"></i>
                                                         0</span>
                                                 </div>
@@ -497,12 +510,12 @@
                                 <div class="blog-post-comment mb--40">
 
                                     <form action="{{ route('front.comment.store', $data->id) }}" method="POST"
-                                        class=" comments-form-style-1">
+                                        class="comments-form-style-1">
                                         @csrf
                                         <div class="row">
                                             <div class="col-xl-6">
                                                 <div class="rt-form-group">
-                                                    <label for="name">İsim - Soyisim *</label>
+                                                    <label for="name"> {{__('message.ad soyad')}} *</label>
                                                     <input type="text" name="full_name" id="name"
                                                         class="form-control" data-error="Bu alan zorunludur" required>
                                                     <div class="help-block with-errors"></div>
@@ -510,7 +523,7 @@
                                             </div>
                                             <div class="col-xl-6">
                                                 <div class="rt-form-group">
-                                                    <label for="email">E-posta *</label>
+                                                    <label for="email">Email *</label>
                                                     <input type="text" name="email" id="email"
                                                         class="form-control" data-error="Bu alan zorunludur" required>
                                                     <div class="help-block with-errors"></div>
@@ -518,7 +531,7 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="rt-form-group">
-                                                    <label for="comment">Yorum *</label>
+                                                    <label for="comment"> {{__('message.yorum')}} *</label>
                                                     <textarea name="comment" id="comment" class="form-control text-area" data-error="Bu alan zorunludur" required></textarea>
                                                     <div class="help-block with-errors"></div>
                                                 </div>
@@ -529,8 +542,7 @@
                                                         <input class="form-check-input" type="checkbox" value=""
                                                             id="comment-form-check1">
                                                         <label class="form-check-label" for="comment-form-check1">
-                                                            <a href="empty.html">Kişisel Verilerin Korunması</a> Hakkında
-                                                            Aydınlatma Metni'ni okudum, onay veriyorum.
+                                                            <a href="empty.html">{{__('message.Kişisel Verilerin Korunması')}}</a> {{__('message.Hakkında Aydınlatma Metnini okudum, onay veriyorum.')}}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -549,8 +561,8 @@
                                 <!-- start related-post-box -->
                                 <div class="related-post-box">
                                     <div class="titile-wrapper mb--40">
-                                        <h2 class="rt-section-heading mb-0 flex-grow-1 me-3">
-                                            <span class="rt-section-text">İlgili Haberler </span>
+                                        <h2 class="rt-section-heading flex-grow-1 mb-0 me-3">
+                                            <span class="rt-section-text"> {{__('message.ilgili haberler')}} </span>
                                             <span class="rt-section-dot"></span>
                                             <span class="rt-section-line"></span>
                                         </h2>
@@ -570,17 +582,18 @@
                                                     <div class="slide-item">
                                                         <div class="rt-post-grid grid-meta">
                                                             <div class="post-img">
-                                                                <a href="{{route('front.currentNews.detail',$single->id)}}">
+                                                                <a
+                                                                    href="{{ route('front.currentNews.detail', $single->id) }}">
                                                                     <img src="/{{ $single->image }}" alt="post"
                                                                         width="551" height="431">
                                                                 </a>
                                                             </div>
                                                             <div class="post-content">
-                                                                <a href="graphics.html"
+                                                                <a href="{{ route('front.currentNewsCategory.list', $single->Category->id) }}"
                                                                     class="rt-cat-primary sidebar_restricted_category_title">
                                                                     {{ $single->Category->title }} </a>
                                                                 <h4 class="post-title">
-                                                                    <a href="{{route('front.currentNews.detail',$single->id)}}"
+                                                                    <a href="{{ route('front.currentNews.detail', $single->id) }}"
                                                                         class="restricted_title_2">
                                                                         {{ $single->title }}
                                                                     </a>
@@ -619,7 +632,7 @@
                     </div>
                     <!-- end col-->
 
-                    <div class="col-xl-3 col-lg-8 mx-auto sticky-coloum-item">
+                    <div class="col-xl-3 col-lg-8 sticky-coloum-item mx-auto">
                         <div class="rt-sidebar sticky-wrap">
 
                             <div class="d-none d-md-block sidebar-wrap mb--40">
@@ -647,9 +660,9 @@
                             </div>
                             <!-- end slidebar wrap  -->
 
-                            <div class="d-none d-md-block  sidebar-wrap mb--40">
+                            <div class="d-none d-md-block sidebar-wrap mb--40">
                                 <h2 class="rt-section-heading style-2 mb--30">
-                                    <span class="rt-section-text">Bİzİ Takİp Edİn</span>
+                                    <span class="rt-section-text"> {{__('message.bizi takip edin')}} </span>
                                     <span class="rt-section-dot"></span>
                                     <span class="rt-section-line"></span>
                                 </h2>
@@ -689,9 +702,9 @@
                             </div>
                             <!-- end slidebar wrap  -->
 
-                            <div class="d-none d-md-block  sidebar-wrap mb--40">
+                            <div class="d-none d-md-block sidebar-wrap mb--40">
                                 <h2 class="rt-section-heading style-2 mb--30">
-                                    <span class="rt-section-text">PopÜler Haberler </span>
+                                    <span class="rt-section-text"> {{__('message.popüler haberler')}} </span>
                                     <span class="rt-section-dot"></span>
                                     <span class="rt-section-line"></span>
                                 </h2>
@@ -701,16 +714,16 @@
                                         <div class="item">
                                             <div class="rt-post post-sm style-1">
                                                 <div class="post-img">
-                                                    <a href="single-post1.html">
+                                                    <a href="{{route('front.currentNews.detail',$item->id)}}">
                                                         <img src="/{{ $item->image }}" alt="post" width="100"
                                                             height="100">
                                                     </a>
                                                 </div>
-                                                <div class="ms-4 post-content">
-                                                    <a href=""
-                                                        class="rt-cat-primary sidebar_restricted_category_title">Sports</a>
+                                                <div class="post-content ms-4">
+                                                    <a href="{{route('front.currentNewsCategory.list',$item->Category->id)}}"
+                                                        class="rt-cat-primary sidebar_restricted_category_title"> {{$item->Category->title}} </a>
                                                     <h4 class="post-title">
-                                                        <a href="single-post1.html" class="sidebar_restricted_title">
+                                                        <a href="{{route('front.currentNews.detail',$item->id)}}" class="sidebar_restricted_title">
                                                             {{ $item->title }}
                                                         </a>
                                                     </h4>
@@ -728,15 +741,14 @@
                             </div>
                             <!-- end slidebar wrap  -->
 
-                            <div class="d-none d-md-block  sidebar-wrap mb--40">
+                            <div class="d-none d-md-block sidebar-wrap mb--40">
                                 <div class="subscribe-box-style-1" data-bg-image="media/elements/elm_3.png">
                                     <div class="subscribe-content">
                                         <h3 class="title">
-                                            Haber Bültenimize Abone Ol
+                                            {{__('message.Haber Bültenimize Abone Ol')}}
                                         </h3>
                                         <p>
-                                            Ulusal ve global savunma ile ilgili gündemden daha hızlı haberdar olmak
-                                            istiyorsanız, Milli Müdafaa e-posta listesine kayıt olun!
+                                            {{__('message.Ulusal ve küresel savunma gündeminden daha hızlı haberdar olmak istiyorsanız Milli Müdafaa mail listesine kaydolun!')}}
                                         </p>
                                         <form action="#" class="rt-contact-form subscribe-form rt-form">
                                             <div class="rt-form-group">
@@ -744,7 +756,7 @@
                                                     placeholder="E-posta *" name="email" id="email_1"
                                                     data-error="E-posta alanı zorunludur" required>
                                             </div>
-                                            <button type="submit" class="rt-submit-btn">Şimdi Abone Ol</button>
+                                            <button type="submit" class="rt-submit-btn"> {{__('message.şimdi abone ol')}} </button>
                                             <div class="form-response"></div>
                                         </form>
                                     </div>
@@ -752,17 +764,15 @@
                             </div>
                             <!-- end sidebar wrap -->
 
-                            <div class="d-none d-md-block  sidebar-wrap">
+                            <div class="d-none d-md-block sidebar-wrap">
                                 <h2 class="rt-section-heading style-2 mb--30">
-                                    <span class="rt-section-text">Etİketler </span>
+                                    <span class="rt-section-text"> {{__('message.etiketler')}}  </span>
                                     <span class="rt-section-dot"></span>
                                     <span class="rt-section-line"></span>
                                 </h2>
                                 <div class="tag-list">
 
-                                    @foreach ($data->Tags() as $value)
-                                        <a href="#" class="tag-link"> {{ $value->value }} </a>
-                                    @endforeach
+                                    
 
                                 </div>
                             </div>
@@ -787,8 +797,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                        // limit by device width
-                        -------------------------------*/
+                            // limit by device width
+                            -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
 
@@ -852,12 +862,12 @@
             e.preventDefault();
             // Create reply field
             var replyField = $(
-                '<form action="{{ route('front.comment.store') }}" method="POST" class="rt-contact-form comments-form-style-1">' +
+                '<form action="{{ route('front.comment.storeComment', $item->id) }}" method="POST" class="rt-contact-form comments-form-style-1">' +
                 '@csrf' +
                 '<div class="row">' +
                 '<div class="col-xl-6">' +
                 '<div class="rt-form-group">' +
-                '<label for="name">İsim - Soyisim *</label>' +
+                '<label for="name"> {{__("message.ad soyad")}} *</label>' +
                 '<input type="text" name="name" id="name" class="form-control" data-error="Bu alan zorunludur" required>' +
                 '<div class="help-block with-errors"></div>' +
                 '</div>' +
@@ -871,7 +881,7 @@
                 '</div>' +
                 '<div class="col-12">' +
                 '<div class="rt-form-group">' +
-                '<label for="comment">Yorum *</label>' +
+                '<label for="comment">{{__("message.yorum")}} *</label>' +
                 '<textarea name="comment" id="comment" class="form-control text-area" data-error="Bu alan zorunludur" required></textarea>' +
                 '<div class="help-block with-errors"></div>' +
                 '</div>' +

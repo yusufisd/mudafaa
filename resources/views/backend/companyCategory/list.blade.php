@@ -20,6 +20,24 @@
                     <!--end::Title-->
                 </div>
                 <!--end::Page title-->
+                <div class="" style="display: flex" >
+                    <div id="goster" class="col-md-8" style="display:none">
+                        <form action="{{route('admin.companyCategory.ice_aktar')}}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <input type="file" class="form-control" name="ice_aktar" id="">
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="submit" class="btn btn-primary" id="">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div  id="gizle">
+                        <button class="btn btn-primary" onclick="iceri_aktar()" type="button"> Aktar</button>
+                    </div>
+                </div>
             </div>
             <!--end::Toolbar container-->
         </div>
@@ -71,8 +89,8 @@
                                                             value="1" />
                                                     </div>
                                                 </th>
-                                                <th style="text-align: center">{{ __('message.görsel') }}<i class="fa fa-sort ms-3"></i></th>
-                                                <th style="text-align: center">{{ __('message.başlık') }}<i class="fa fa-sort ms-3"></i></th>
+                                                <th >{{ __('message.görsel') }}<i class="fa fa-sort ms-3"></i></th>
+                                                <th >{{ __('message.başlık') }}<i class="fa fa-sort ms-3"></i></th>
                                                 <th style="text-align: center">{{ __('message.durum') }}<i class="fa fa-sort ms-3"></i></th>
                                                 <th class="text-center">{{ __('message.işlem') }}<i
                                                         class="fa fa-sort ms-3"></i></th>
@@ -90,11 +108,11 @@
                                                                 value="1" />
                                                         </div>
                                                     </td>
-                                                    <td style="text-align: center">
+                                                    <td >
                                                         <img src="/{{ $item->image }}" class="w-75px ms-n1"
                                                             alt="">
                                                     </td>
-                                                    <td style="text-align: center"> {{ $item->name }} </td>
+                                                    <td > {{ $item->name }} </td>
                                                     
                                                     <td style="text-align: center">
                                                         <div
@@ -146,6 +164,11 @@
     <!--end::Content wrapper-->
 @endsection
 @section('script')
+<script>
+    function iceri_aktar() {
+        $('#goster').toggle('fast');
+    }
+</script>
     <script>
         function destroy(d) {
             Swal.fire({

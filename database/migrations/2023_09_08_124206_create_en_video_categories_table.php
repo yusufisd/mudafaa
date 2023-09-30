@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('link');
+            $table->integer('queue');
             $table->string('seo_title');
             $table->string('seo_description');
             $table->string('seo_key');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Imports\VideoCategoryImport;
 use App\Models\CurrentNews;
 use App\Models\CurrentNewsCategory;
 use App\Models\EnCurrentNews;
@@ -16,6 +17,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 use Illuminate\Validation\ValidationException;
+use Maatwebsite\Excel\Facades\Excel;
 
 class VideoCategoryController extends Controller
 {
@@ -80,6 +82,7 @@ class VideoCategoryController extends Controller
             $news_en = new EnVideoCategory();
             $news_en->title = $request->name_en;
             $news_en->link = $request->link_en;
+            $news_en->queue = $request->queue;
             $news_en->category_id = $new->id;
             $news_en->seo_title = $request->seo_title_en;
             $news_en->seo_description = $request->seo_description_en;
@@ -205,7 +208,11 @@ class VideoCategoryController extends Controller
         return redirect()->route('admin.videoCategory.list');
     }
 
+    public function ice_aktar(Request $request){
+        Excel::import(new VideoCategoryImport, $request->file('ice_aktar')->store('temp'));
 
-
+        Alert::success('Başarılı');
+        return back();
+    }
 
 }

@@ -105,7 +105,7 @@
                                                     <td> {{ strtoupper($item->Author->name) }} {{ strtoupper($item->Author->surname)}} </td>
                                                     <td> {{ $item->title }} </td>
                                                     <td>
-                                                        {{ $item->category->title}}
+                                                        {{ $item->category->title ?? '-'}}
                                                     </td>
                                                     <td style="text-align: center">
                                                         <div

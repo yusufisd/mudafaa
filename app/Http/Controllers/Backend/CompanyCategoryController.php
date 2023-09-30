@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Imports\CompanyCategoryImport;
 use App\Models\CompanyCategory;
-use App\Models\EnCompany;
 use App\Models\EnCompanyCategory;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 use Illuminate\Validation\ValidationException;
+use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -192,5 +193,12 @@ class CompanyCategoryController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function ice_aktar(Request $request){
+        Excel::import(new CompanyCategoryImport, $request->file('ice_aktar')->store('temp'));
+
+        Alert::success('Başarılı');
+        return back();
     }
 }

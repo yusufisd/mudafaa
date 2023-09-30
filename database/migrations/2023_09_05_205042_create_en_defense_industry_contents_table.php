@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('en_defense_industry_contents', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('image');
+            $table->string('multiple_image');
+            $table->integer('category_id');
+            $table->integer('defense_id');
             $table->string('short_description');
             $table->longText('description');
             $table->integer('content_id');

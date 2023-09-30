@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('en_dictionaries', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('description');
+            $table->longText('description');
             $table->string('link');
             $table->string('seo_title');
             $table->string('seo_description');

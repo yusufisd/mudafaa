@@ -120,7 +120,7 @@
                             <div class="rt-main-post-single grid-meta">
 
                                 <!-- strat psot body -->
-                                <div class="post-body">
+                                <div class="post-body" style="text-align: justify">
                                     {!! $data->description !!}
 
 

@@ -359,7 +359,7 @@
                                                             href="#tab_blog_tr">
                                                             <span>
                                                                 <img src="{{asset('/assets/tr.png')}}"
-                                                                    width="28" height="28" alt="TR"
+                                                                    width="28" height="20" alt="TR"
                                                                     title="TR">
                                                             </span>
 
@@ -369,7 +369,7 @@
                                                         <a class="nav-link" data-bs-toggle="tab" href="#tab_blog_en">
                                                             <span>
                                                                 <img src="{{asset('/assets/en.png')}}"
-                                                                    width="28" height="28" alt="EN"
+                                                                    width="28" height="20" alt="EN"
                                                                     title="EN">
                                                             </span>
                                                         </a>
@@ -615,8 +615,8 @@
                                                 <li class="nav-item">
                                                     <a class="nav-link active" data-bs-toggle="tab" href="#tab_seo_tr">
                                                         <span>
-                                                            <img src="https://gaviapanel.gaviaworks.org/assets/images/svg/turkey.svg"
-                                                                width="28" height="28" alt="TR"
+                                                            <img src="{{asset('/assets/tr.png')}}"
+                                                                width="28" height="20" alt="TR"
                                                                 title="TR">
                                                         </span>
 
@@ -625,8 +625,8 @@
                                                 <li class="nav-item">
                                                     <a class="nav-link" data-bs-toggle="tab" href="#tab_seo_en">
                                                         <span>
-                                                            <img src="https://gaviapanel.gaviaworks.org/assets/images/svg/england.svg"
-                                                                width="28" height="28" alt="EN"
+                                                            <img src="{{asset('/assets/en.png')}}"
+                                                                width="28" height="20" alt="EN"
                                                                 title="EN">
                                                         </span>
                                                     </a>

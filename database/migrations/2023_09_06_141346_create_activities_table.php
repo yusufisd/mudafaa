@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('image');
             $table->string('title');
-            $table->string('category');
+            $table->integer('category');
             $table->integer('author');
             $table->string('short_description');
             $table->longText('description');

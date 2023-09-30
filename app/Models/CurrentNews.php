@@ -37,6 +37,13 @@ class CurrentNews extends Model
             ->count();
     }
 
+    public function AdminCommentCount()
+    {
+        return Comment::where('is_post', 1)
+            ->where('post_id', $this->id)
+            ->count();
+    }
+
     public function comments()
     {
         return Comment::where('is_post', 1)

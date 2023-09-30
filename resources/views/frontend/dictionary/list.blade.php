@@ -22,7 +22,7 @@
                 <nav class="rt-breadcrumb-wrap" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">
+                            <a href="{{ route('front.dictionary.list', ['id' => 2]) }}">
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
@@ -37,7 +37,7 @@
 
         <!-- start rt-sidebar-section-layout-2 -->
         <section class="rt-sidebar-section-layout-2">
-            <div class="container sticky-coloum-wrap">
+            <div class="sticky-coloum-wrap container">
                 <div class="row gutter-40 sticky-coloum-wrap">
                     <div class="col-xl-12 sticky-coloum-item">
                         <div class="rt-left-sidebar-sapcer-5">
@@ -45,9 +45,10 @@
 
                             <div id="ss_container" class="row gutter-24">
                                 <div class="search-box">
-                                    <form action="#" class="form search-form-box">
+                                    <form action="{{route('front.dictionary.searchPost')}}" method="GET" class="form search-form-box">
+                                        @csrf
                                         <div class="form-group">
-                                            <input type="text" name="sarch" id="search" placeholder="Ara..."
+                                            <input type="text" name="search" value="{{request()->search ?? ''}}" id="search" placeholder="Ara..." required
                                                 class="form-control rt-search-control">
                                             <button type="submit" class="search-submit">
                                                 <i class="fas fa-search"></i>
@@ -59,525 +60,166 @@
                                 <div class="post_meta">
                                     <ul class="nav nav-pills" id="pills-tab" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="a.html">A</a>
+                                            <a class="nav-link"
+                                                href="{{ route('front.dictionary.list', ['id' => 0]) }}">A</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="b.html">B</a>
+                                            <a class="nav-link"
+                                                href="{{ route('front.dictionary.list', ['id' => 1]) }}">B</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="c.html">C-Ç</a>
+                                            <a class="nav-link"
+                                                href="{{ route('front.dictionary.list', ['id' => 2]) }}">C-Ç</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="d.html">D</a>
+                                            <a class="nav-link"
+                                                href="{{ route('front.dictionary.list', ['id' => 3]) }}">D</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="e.html">E</a>
+                                            <a class="nav-link"
+                                                href="{{ route('front.dictionary.list', ['id' => 4]) }}">E</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="f.html">F</a>
+                                            <a class="nav-link"
+                                                href="{{ route('front.dictionary.list', ['id' => 5]) }}">F</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="g.html">G - Ğ</a>
+                                            <a class="nav-link" href="{{ route('front.dictionary.list', ['id' => 6]) }}">G -
+                                                Ğ</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="h.html">H</a>
+                                            <a class="nav-link"
+                                                href="{{ route('front.dictionary.list', ['id' => 7]) }}">H</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="i.html">I - İ</a>
+                                            <a class="nav-link" href="{{ route('front.dictionary.list', ['id' => 8]) }}">I -
+                                                İ</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="j.html">J</a>
+                                            <a class="nav-link"
+                                                href="{{ route('front.dictionary.list', ['id' => 9]) }}">J</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="k.html">K</a>
+                                            <a class="nav-link"
+                                                href="{{ route('front.dictionary.list', ['id' => 10]) }}">K</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="l.html">L</a>
+                                            <a class="nav-link"
+                                                href="{{ route('front.dictionary.list', ['id' => 11]) }}">L</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="m.html">M</a>
+                                            <a class="nav-link"
+                                                href="{{ route('front.dictionary.list', ['id' => 12]) }}">M</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="n.html">N</a>
+                                            <a class="nav-link"
+                                                href="{{ route('front.dictionary.list', ['id' => 13]) }}">N</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="o.html">O-Ö</a>
+                                            <a class="nav-link"
+                                                href="{{ route('front.dictionary.list', ['id' => 14]) }}">O-Ö</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="p.html">P</a>
+                                            <a class="nav-link"
+                                                href="{{ route('front.dictionary.list', ['id' => 15]) }}">P</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="r.html">R</a>
+                                            <a class="nav-link"
+                                                href="{{ route('front.dictionary.list', ['id' => 16]) }}">R</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="s.html">S-Ş</a>
+                                            <a class="nav-link"
+                                                href="{{ route('front.dictionary.list', ['id' => 17]) }}">S-Ş</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="t.html">T</a>
+                                            <a class="nav-link"
+                                                href="{{ route('front.dictionary.list', ['id' => 18]) }}">T</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="u.html">U-Ü</a>
+                                            <a class="nav-link"
+                                                href="{{ route('front.dictionary.list', ['id' => 19]) }}">U-Ü</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="v.html">V</a>
+                                            <a class="nav-link"
+                                                href="{{ route('front.dictionary.list', ['id' => 20]) }}">V</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="y.html">Y</a>
+                                            <a class="nav-link"
+                                                href="{{ route('front.dictionary.list', ['id' => 21]) }}">Y</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="z.html">Z</a>
+                                            <a class="nav-link"
+                                                href="{{ route('front.dictionary.list', ['id' => 22]) }}">Z</a>
                                         </li>
                                     </ul>
                                     <ul class="nav nav-pills" id="pills-tab-mobile" role="tablist">
                                     </ul>
                                 </div>
-                                <div class="col-md-4 wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
-                                    <div class="rt-post-overlay rt-post-overlay-md layout-6">
-                                        <div class="post-img">
-                                            <a href="" class="img-link">
-                                                <img src="/assets/frontend/media/gallery/post-xl_37.jpg" alt="post-xl_37" width="900"
-                                                    height="600">
-                                            </a>
-                                        </div>
-                                        <div class="post-content">
 
-                                            <h3 class="post-title">
-                                                <a href="ss_detail.html">
-                                                    A400M Nedir?
+
+                                @foreach ($data as $item)
+                                    <div class="col-md-4 wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
+                                        <div class="rt-post-overlay rt-post-overlay-md layout-6">
+                                            <div class="post-img">
+                                                <a href="" class="img-link">
+                                                    <img src="/{{ $item->image }}" alt="post-xl_37" width="900"
+                                                        height="600">
                                                 </a>
-                                            </h3>
-                                            <div class="post-meta">
-                                                <ul>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="fa fa-user"></i>
-                                                            <a href="author.html" class="name">Alİ YILMAZ</a>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-clock icon"></i>
-                                                            2 Dk.
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-comments icon"></i>
-                                                            <a href="#"> 3,250</a>
-                                                        </span>
-                                                    </li>
-                                                </ul>
+                                            </div>
+                                            <div class="post-content">
+
+                                                <h3 class="post-title">
+                                                    <a href="{{ route('front.dictionary.detail', $item->id) }}">
+                                                        {{ $item->title }}
+                                                    </a>
+                                                </h3>
+                                                <div class="post-meta">
+                                                    <ul>
+                                                        <li>
+                                                            <span class="rt-meta">
+                                                                <i class="fa fa-user"></i>
+                                                                <a href="author.html" class="name">
+                                                                    {{ $item->Author->name }} {{ $item->Author->surname }}
+                                                                </a>
+                                                            </span>
+                                                        </li>
+                                                        <li>
+                                                            <span class="rt-meta">
+                                                                <i class="far fa-clock icon"></i>
+                                                                2 Dk.
+                                                            </span>
+                                                        </li>
+                                                        <li>
+                                                            <span class="rt-meta">
+                                                                <i class="far fa-comments icon"></i>
+                                                                <a href="#"> 3,250</a>
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- end inner col -->
+                                @endforeach
 
-                                <div class="col-md-4 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="800ms">
-                                    <div class="rt-post-overlay rt-post-overlay-md layout-6">
-                                        <div class="post-img">
-                                            <a href="" class="img-link">
-                                                <img src="/assets/frontend/media/gallery/post-xl_36.jpg" alt="post-xl_36" width="900"
-                                                    height="600">
-                                            </a>
-                                        </div>
-                                        <div class="post-content">
 
-                                            <h3 class="post-title">
-                                                <a href="ss_detail.html">
-                                                    A400M Nedir?
-                                                </a>
-                                            </h3>
-                                            <div class="post-meta">
-                                                <ul>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="fa fa-user"></i>
-                                                            <a href="author.html" class="name">Alİ YILMAZ</a>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-clock icon"></i>
-                                                            2 Dk.
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-comments icon"></i>
-                                                            <a href="#"> 3,250</a>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end inner col -->
-
-                                <div class="col-md-4 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="800ms">
-                                    <div class="rt-post-overlay rt-post-overlay-md layout-6">
-                                        <div class="post-img">
-                                            <a href="" class="img-link">
-                                                <img src="/assets/frontend/media/gallery/post-xl_31.jpg" alt="post-xl_31" width="900"
-                                                    height="600">
-                                            </a>
-                                        </div>
-                                        <div class="post-content">
-
-                                            <h3 class="post-title">
-                                                <a href="ss_detail.html">
-                                                    A400M Nedir?
-                                                </a>
-                                            </h3>
-                                            <div class="post-meta">
-                                                <ul>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="fa fa-user"></i>
-                                                            <a href="author.html" class="name">Alİ YILMAZ</a>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-clock icon"></i>
-                                                            2 Dk.
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-comments icon"></i>
-                                                            <a href="#"> 3,250</a>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end inner col -->
-
-                                <div class="col-md-4 wow fadeInUp" data-wow-delay="400ms" data-wow-duration="800ms">
-                                    <div class="rt-post-overlay rt-post-overlay-md layout-6">
-                                        <div class="post-img">
-                                            <a href="" class="img-link">
-                                                <img src="/assets/frontend/media/gallery/post-xl_39.jpg" alt="post-xl_39" width="900"
-                                                    height="600">
-                                            </a>
-                                        </div>
-                                        <div class="post-content">
-
-                                            <h3 class="post-title">
-                                                <a href="ss_detail.html">
-                                                    A400M Nedir?
-                                                </a>
-                                            </h3>
-                                            <div class="post-meta">
-                                                <ul>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="fa fa-user"></i>
-                                                            <a href="author.html" class="name">Alİ YILMAZ</a>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-clock icon"></i>
-                                                            2 Dk.
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-comments icon"></i>
-                                                            <a href="#"> 3,250</a>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end inner col -->
-
-                                <div class="col-md-4 wow fadeInUp" data-wow-delay="500ms" data-wow-duration="800ms">
-                                    <div class="rt-post-overlay rt-post-overlay-md layout-6">
-                                        <div class="post-img">
-                                            <a href="" class="img-link">
-                                                <img src="/assets/frontend/media/gallery/post-xl_35.jpg" alt="post-xl_35" width="900"
-                                                    height="600">
-                                            </a>
-                                        </div>
-                                        <div class="post-content">
-
-                                            <h3 class="post-title">
-                                                <a href="ss_detail.html">
-                                                    A400M Nedir?
-                                                </a>
-                                            </h3>
-                                            <div class="post-meta">
-                                                <ul>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="fa fa-user"></i>
-                                                            <a href="author.html" class="name">Alİ YILMAZ</a>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-clock icon"></i>
-                                                            2 Dk.
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-comments icon"></i>
-                                                            <a href="#"> 3,250</a>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end inner col -->
-
-                                <div class="col-md-4 wow fadeInUp" data-wow-delay="600ms" data-wow-duration="800ms">
-                                    <div class="rt-post-overlay rt-post-overlay-md layout-6">
-                                        <div class="post-img">
-                                            <a href="" class="img-link">
-                                                <img src="/assets/frontend/media/gallery/post-xl_34.jpg" alt="post-xl_34" width="900"
-                                                    height="600">
-                                            </a>
-                                        </div>
-                                        <div class="post-content">
-
-                                            <h3 class="post-title">
-                                                <a href="ss_detail.html">
-                                                    A400M Nedir?
-                                                </a>
-                                            </h3>
-                                            <div class="post-meta">
-                                                <ul>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="fa fa-user"></i>
-                                                            <a href="author.html" class="name">Alİ YILMAZ</a>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-clock icon"></i>
-                                                            2 Dk.
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-comments icon"></i>
-                                                            <a href="#"> 3,250</a>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end inner col -->
-
-                                <div class="col-12 ad-banner-img mt--40 mb--40 wow fadeInUp" data-wow-delay="600ms"
+                                <div class="col-12 ad-banner-img wow fadeInUp mb--40 mt--40" data-wow-delay="600ms"
                                     data-wow-duration="800ms">
                                     <a href="#">
-                                        <img src="/assets/frontend/media/gallery/ad-banner_5.jpg" alt="ad-banner" width="960"
-                                            height="150">
+                                        <img src="/assets/frontend/media/gallery/ad-banner_5.jpg" alt="ad-banner"
+                                            width="960" height="150">
                                     </a>
                                 </div>
 
-                                <div class="col-md-4 wow fadeInUp" data-wow-delay="700ms" data-wow-duration="800ms">
-                                    <div class="rt-post-overlay rt-post-overlay-md layout-6">
-                                        <div class="post-img">
-                                            <a href="" class="img-link">
-                                                <img src="/assets/frontend/media/gallery/post-xl_41.jpg" alt="post-xl_41" width="900"
-                                                    height="600">
-                                            </a>
-                                        </div>
-                                        <div class="post-content">
-
-                                            <h3 class="post-title">
-                                                <a href="ss_detail.html">
-                                                    A400M Nedir?
-                                                </a>
-                                            </h3>
-                                            <div class="post-meta">
-                                                <ul>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="fa fa-user"></i>
-                                                            <a href="author.html" class="name">Alİ YILMAZ</a>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-clock icon"></i>
-                                                            2 Dk.
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-comments icon"></i>
-                                                            <a href="#"> 3,250</a>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end inner col -->
-
-                                <div class="col-md-4 wow fadeInUp" data-wow-delay="800ms" data-wow-duration="800ms">
-                                    <div class="rt-post-overlay rt-post-overlay-md layout-6">
-                                        <div class="post-img">
-                                            <a href="" class="img-link">
-                                                <img src="/assets/frontend/media/gallery/post-xl_1.jpg" alt="post-xl_1" width="900"
-                                                    height="600">
-                                            </a>
-                                        </div>
-                                        <div class="post-content">
-
-                                            <h3 class="post-title">
-                                                <a href="ss_detail.html">
-                                                    A400M Nedir?
-                                                </a>
-                                            </h3>
-                                            <div class="post-meta">
-                                                <ul>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="fa fa-user"></i>
-                                                            <a href="author.html" class="name">Alİ YILMAZ</a>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-clock icon"></i>
-                                                            2 Dk.
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-comments icon"></i>
-                                                            <a href="#"> 3,250</a>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end inner col -->
-
-                                <div class="col-md-4 wow fadeInUp" data-wow-delay="900ms" data-wow-duration="800ms">
-                                    <div class="rt-post-overlay rt-post-overlay-md layout-6">
-                                        <div class="post-img">
-                                            <a href="" class="img-link">
-                                                <img src="/assets/frontend/media/gallery/post-xl_40.jpg" alt="post-xl_40" width="900"
-                                                    height="600">
-                                            </a>
-                                        </div>
-                                        <div class="post-content">
-
-                                            <h3 class="post-title">
-                                                <a href="ss_detail.html">
-                                                    A400M Nedir?
-                                                </a>
-                                            </h3>
-                                            <div class="post-meta">
-                                                <ul>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="fa fa-user"></i>
-                                                            <a href="author.html" class="name">Alİ YILMAZ</a>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-clock icon"></i>
-                                                            2 Dk.
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-comments icon"></i>
-                                                            <a href="#"> 3,250</a>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end inner col -->
-
-                                <div class="col-md-4 wow fadeInUp" data-wow-delay="1000ms" data-wow-duration="800ms">
-                                    <div class="rt-post-overlay rt-post-overlay-md layout-6">
-                                        <div class="post-img">
-                                            <a href="" class="img-link">
-                                                <img src="/assets/frontend/media/gallery/post-xl_38.jpg" alt="post-xl_38" width="900"
-                                                    height="600">
-                                            </a>
-                                        </div>
-                                        <div class="post-content">
-
-                                            <h3 class="post-title">
-                                                <a href="ss_detail.html">
-                                                    A400M Nedir?
-                                                </a>
-                                            </h3>
-                                            <div class="post-meta">
-                                                <ul>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="fa fa-user"></i>
-                                                            <a href="author.html" class="name">Alİ YILMAZ</a>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-clock icon"></i>
-                                                            2 Dk.
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-eye icon"></i>
-                                                            <a href="#"> 3,250</a>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end inner col -->
 
                             </div>
+
                             <!-- end inner row -->
 
-                            <nav class="rt-pagination-area gap-top-90">
-                                <ul class="pagination rt-pagination justify-content-center">
-                                    <li class="page-item prev">
-                                        <a class="page-link" href="#"><i class="fas fa-angle-double-left"></i></a>
-                                    </li>
-                                    <li class="page-item active" aria-current="page">
-                                        <span class="page-link">1</span>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                    <li class="page-item next">
-                                        <a class="page-link" href="#"><i class="fas fa-angle-double-right"></i></a>
-                                    </li>
-                                </ul>
-                            </nav>
+                            <div style="margin-left: 45%">
+                                {{ $data->links() }}
+                            </div>
+
                             <!-- end rt-pagination-area -->
 
                         </div>

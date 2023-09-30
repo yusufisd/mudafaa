@@ -11,7 +11,12 @@ class EnDefenseIndustryContent extends Model
     use HasFactory,SoftDeletes;
     protected $guarded = [];
     protected $casts = [
-        "seo_key" => "array",
+        "countries" => "array",
+        "origin" => "array",
         "tags" => "array",
+        "seo_key" => "array",
+        "companies" => "array",
+        "multiple_image" => "array",
+        
     ];
 }

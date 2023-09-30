@@ -9,6 +9,7 @@ use App\Models\Interview;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
 use App\Models\EnInterview;
+use Carbon\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use Throwable;
@@ -32,7 +33,8 @@ class InterviewController extends Controller
     public function create()
     {
         $users = UserModel::latest()->get();
-        return view('backend.interview.add', compact('users'));
+        $now = Carbon::now();
+        return view('backend.interview.add', compact('users','now'));
     }
 
     /**
@@ -100,6 +102,7 @@ class InterviewController extends Controller
 
         $interview_en = new EnInterview();
         $interview_en->title = $request->name_en;
+        $interview_en->author = $request->author;
         $interview_en->link = $request->link_en;
         $interview_en->short_description = $request->short_description_en;
         $interview_en->description = $request->description_en;
@@ -107,6 +110,9 @@ class InterviewController extends Controller
         $interview_en->seo_title = $request->seo_title_en;
         $interview_en->seo_description = $request->seo_description_en;
         $interview_en->seo_key = $request->seo_key_en;
+        if ($request->file('image') != null) {
+            $interview_en->image = $save_url;
+        }
         if (!isset($request->status_en)) {
             $interview_en->status = 0;
         }
@@ -143,9 +149,13 @@ class InterviewController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy( $id)
     {
-        //
+        $data = Interview::findOrFail($id);
+        Dialog::where('interview_id',$id)->delete();
+        $data->delete();
+        Alert::success('Röportaj Silindi');
+        return redirect()->route('admin.interview.list');
     }
 
     public function change_status($id)

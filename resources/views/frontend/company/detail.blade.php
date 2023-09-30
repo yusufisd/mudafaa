@@ -1,4 +1,7 @@
 @extends('frontend.master')
+@section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+@endsection
 @section('content')
     <!-- Start Main -->
     <main>
@@ -33,7 +36,7 @@
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
                             <span class="rt-text-truncate">
-                                Alp Havacılık
+                                {{ $data->title }}
                             </span>
                         </li>
                     </ol>
@@ -41,89 +44,43 @@
             </div>
         </div>
         <!-- End inner page Banner -->
-
         <!-- start rt-sidebar-section-layout-2 -->
         <section class="rt-sidebar-section-layout-2">
-            <div class="container sticky-coloum-wrap">
+            <div class="sticky-coloum-wrap container">
                 <div class="row gutter-40 sticky-coloum-wrap">
                     <div class="col-xl-9 sticky-coloum-item">
                         <div class="rt-left-sidebar-sapcer-5">
                             <div class="author-big-box-style-1 mb--30">
                                 <div class="author-img">
-                                    <img src="/assets/frontend/qmedia/gallery/author-img_1.jpg" alt="author-img_1" width="170"
-                                        height="170">
+                                    <img src="/{{ $data->image }}" alt="author-img_1" width="170" height="170">
                                 </div>
                                 <div class="w-100">
-                                    <h2 class="responsive-title" style="color: #3b4022;">Alp Havacılık</h2>
+                                    <h2 class="responsive-title" style="color: #3b4022;"> {{ $data->title }} </h2>
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <ul class="mt-3">
-                                                <li class="mb-3">
-                                                    <b>
-                                                        <i class="far fa-calendar-alt me-2" style="color: #3b4022;"></i>
-                                                        <span style="color: #749f43">Kuruluş Tarihi :</span>
-                                                    </b>
-                                                    &nbsp;1998
-                                                </li>
-                                                <li class="mb-3">
-                                                    <b>
-                                                        <i class="fas fa-building me-2" style="color: #3b4022"></i>
-                                                        <span style="color: #749f43">Genel Merkezi :</span>
-                                                    </b>
-                                                    &nbsp;Eskişehir/Türkiye
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <ul class="mt-md-3">
-                                                <li class="mb-3">
-                                                    <b>
-                                                        <i class="fas fa-users fa-xs me-2" style="color: #3b4022"></i>
-                                                        <span style="color: #749f43">Çalışan Sayısı :</span>
-                                                    </b>
-                                                    &nbsp;1300
-                                                </li>
-                                                <li class="mb-3">
-                                                    <b>
-                                                        <i class="fas fa-user-tie me-2" style="color: #3b4022"></i>
-                                                        <span style="color: #749f43">Genel Müdür :</span>
-                                                    </b>
-                                                    &nbsp;Senay İdil
-                                                </li>
-                                            </ul>
-                                        </div>
+
+                                        @foreach ($ekstra as $item)
+                                            <div class="col-md-6">
+                                                <ul class="mt-3">
+                                                    <li class="mb-3">
+                                                        {!! $item->icon !!}
+                                                        <b>
+                                                            <span style="color: #749f43"> {{ $item->title }} : </span>
+                                                        </b>
+                                                        &nbsp;{{ $item->description }}
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        @endforeach
+
+
                                     </div>
 
                                 </div>
                             </div>
 
-                            <div class="mb--30">
-                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur repudiandae maiores
-                                    soluta id, nam expedita, deleniti ex aspernatur minima iure similique, est repellat
-                                    accusantium ipsa eos voluptates rem ducimus beatae?</p>
-                                <p>
-                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam ad impedit debitis, facere
-                                    nulla cupiditate magni voluptatibus praesentium tempore! Enim, illum cum. Ullam dolore
-                                    ea eos maiores voluptatum, laborum non?Lorem, ipsum dolor sit amet consectetur
-                                    adipisicing elit. Nam ad impedit debitis, facere nulla cupiditate magni voluptatibus
-                                    praesentium tempore! Enim, illum cum. Ullam dolore ea eos maiores voluptatum, laborum
-                                    non?
-                                </p>
-                                <p>
-                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam ad impedit debitis, facere
-                                    nulla cupiditate magni voluptatibus praesentium tempore! Enim, illum cum. Ullam dolore
-                                    ea eos maiores voluptatum, laborum non?
-                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam ad impedit debitis, facere
-                                    nulla cupiditate.
-                                </p>
-                                <p>
-                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam ad impedit debitis, facere
-                                    nulla cupiditate magni voluptatibus praesentium tempore! Enim, illum cum. Ullam dolore
-                                    ea eos maiores voluptatum, laborum non?
-                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam ad impedit debitis, facere
-                                    nulla cupiditate magni voluptatibus praesentium tempore! Enim, illum cum. Ullam dolore
-                                    ea eos maiores voluptatum, laborum non?
-                                </p>
+                            <div class="mb--30" style="text-align: justify">
+                                {!! $data->description !!}
                             </div>
 
                             <!-- end inner row -->
@@ -137,42 +94,14 @@
 
                                 <!-- Galeri Resimleri -->
                                 <div class="gallery">
-                                    <a data-fancybox="gallery" href="media/gallery/author-img_1.jpg">
-                                        <img src="/assets/frontend/qmedia/gallery/author-img_1.jpg" alt="Resim 1">
-                                    </a>
-                                    <a data-fancybox="gallery" href="media/gallery/author-img_1.jpg">
-                                        <img src="/assets/frontend/qmedia/gallery/author-img_1.jpg" alt="Resim 2">
-                                    </a>
-                                    <a data-fancybox="gallery" href="media/gallery/author-img_1.jpg">
-                                        <img src="/assets/frontend/qmedia/gallery/author-img_1.jpg" alt="Resim 3">
-                                    </a>
-                                    <a data-fancybox="gallery" href="media/gallery/author-img_1.jpg">
-                                        <img src="/assets/frontend/qmedia/gallery/author-img_1.jpg" alt="Resim 3">
-                                    </a>
-                                    <a data-fancybox="gallery" href="media/gallery/author-img_1.jpg">
-                                        <img src="/assets/frontend/qmedia/gallery/author-img_1.jpg" alt="Resim 3">
-                                    </a>
-                                    <a data-fancybox="gallery" href="media/gallery/author-img_1.jpg">
-                                        <img src="/assets/frontend/qmedia/gallery/author-img_1.jpg" alt="Resim 3">
-                                    </a>
-                                    <a data-fancybox="gallery" href="media/gallery/author-img_1.jpg">
-                                        <img src="/assets/frontend/qmedia/gallery/author-img_1.jpg" alt="Resim 3">
-                                    </a>
-                                    <a data-fancybox="gallery" href="media/gallery/author-img_1.jpg">
-                                        <img src="/assets/frontend/qmedia/gallery/author-img_1.jpg" alt="Resim 3">
-                                    </a>
-                                    <a data-fancybox="gallery" href="media/gallery/author-img_1.jpg">
-                                        <img src="/assets/frontend/qmedia/gallery/author-img_1.jpg" alt="Resim 3">
-                                    </a>
-                                    <a data-fancybox="gallery" href="media/gallery/author-img_1.jpg">
-                                        <img src="/assets/frontend/qmedia/gallery/author-img_1.jpg" alt="Resim 3">
-                                    </a>
-                                    <a data-fancybox="gallery" href="media/gallery/author-img_1.jpg">
-                                        <img src="/assets/frontend/qmedia/gallery/author-img_1.jpg" alt="Resim 3">
-                                    </a>
-                                    <a data-fancybox="gallery" href="media/gallery/author-img_1.jpg">
-                                        <img src="/assets/frontend/qmedia/gallery/author-img_1.jpg" alt="Resim 3">
-                                    </a>
+
+                                    @foreach ($images as $item)
+                                        <a data-fancybox="gallery" href="/{{ $item->image }}">
+                                            <img src="/{{ $item->image }}" style="width: 170px; height:170px"
+                                                alt="Resim 3">
+                                        </a>
+                                    @endforeach
+
                                 </div>
 
 
@@ -188,221 +117,72 @@
                                     </h2>
 
                                     <ul class="nav rt-tab-menu" id="myTab" role="tablist">
-                                        <li class="menu-item" role="presentation">
-                                            <a class="menu-link active" id="menu-1-tab" data-bs-toggle="tab"
-                                                href="#menu-1" role="tab" aria-controls="menu-1"
-                                                aria-selected="true"> Merkez </a>
-                                        </li>
-                                        <li class="menu-item" role="presentation">
-                                            <a class="menu-link" id="menu-2-tab" data-bs-toggle="tab" href="#menu-2"
-                                                role="tab" aria-controls="menu-2" aria-selected="false"> Ankara </a>
-                                        </li>
-                                        <li class="menu-item" role="presentation">
-                                            <a class="menu-link" id="menu-3-tab" data-bs-toggle="tab" href="#menu-3"
-                                                role="tab" aria-controls="menu-3" aria-selected="false"> Eşkişehir
-                                            </a>
-                                        </li>
-                                        <li class="menu-item" role="presentation">
-                                            <a class="menu-link" id="menu-4-tab" data-bs-toggle="tab" href="#menu-4"
-                                                role="tab" aria-controls="menu-4" aria-selected="false"> Almanya </a>
-                                        </li>
+                                        @foreach ($address as $item)
+                                            <li class="menu-item" role="presentation">
+                                                <a class="menu-link {{ $item->id == 1 ? 'active' : '' }}" id="menu-1-tab"
+                                                    data-bs-toggle="tab" href="#menu-{{ $item->id }}" role="tab"
+                                                    aria-controls="menu-1" aria-selected="true"> {{ $item->title }} </a>
+                                            </li>
+                                        @endforeach
+
+
+
                                     </ul><!-- end nav tab -->
                                 </div>
                                 <!-- end featured-tab-title -->
 
                                 <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane tab-item animated fadeInUp show active" id="menu-1"
-                                        role="tabpanel" aria-labelledby="menu-1-tab">
-                                        <div class="row gutter-30">
-                                            <div class="col-lg-6 grid-adress">
-                                                <ul class="contact_info">
-                                                    <li>
-                                                        <h6>Adres</h6>
-                                                        <p class="rt-teta">
-                                                            <i class="fas fa-home icon"></i>
-                                                            Organize Sanayi Bölgesi 8. Cadde No:29/ 1-2 26110 İSTANBUL
-                                                        </p>
-                                                    </li>
-                                                    <li>
-                                                        <h6>E-Posta</h6>
-                                                        <p class="rt-teta">
-                                                            <i class="fas fa-envelope icon"></i>
-                                                            alphavacilik@alp.com.tr
-                                                        </p>
-                                                    </li>
-                                                    <li>
-                                                        <h6>Telefon</h6>
-                                                        <p class="rt-teta">
-                                                            <i class="fas fa-phone icon"></i>
-                                                            +90 222 236 13 00
-                                                        </p>
-                                                        <p class="rt-teta">
-                                                            <i class="fas fa-phone icon"></i>
-                                                            +90 222 236 13 00
-                                                        </p>
-                                                    </li>
-                                                    <li>
-                                                        <h6>Web Site</h6>
-                                                        <p class="rt-teta">
-                                                            <i class="fas fa-globe icon"></i>
-                                                            alphavacilik.com.tr
-                                                        </p>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg-6 grid-adress">
-                                                <iframe
-                                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3057.811030038286!2d32.76457571578375!3d39.96797747942001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d34bc3fbee31f3%3A0x7dabfd5babe0f38e!2zQXNlbHNhbiBHZW5lbCBNw7xkw7xybMO8aw!5e0!3m2!1str!2str!4v1645201234609!5m2!1str!2str"
-                                                    class="iframe-map" allowfullscreen=""></iframe>
-                                            </div>
 
+
+                                    @foreach ($address as $item)
+                                        <div class="tab-pane tab-item animated fadeInUp {{ $item->id == 1 ? 'show active' : '' }}"
+                                            id="menu-{{ $item->id }}" role="tabpanel"
+                                            aria-labelledby="menu-{{ $item->id }}-tab">
+                                            <div class="row gutter-30">
+                                                <div class="col-lg-6 grid-adress">
+                                                    <ul class="contact_info">
+                                                        <li>
+                                                            <h6>Adres</h6>
+                                                            <p class="rt-teta">
+                                                                <i class="fas fa-home icon"></i>
+                                                                {{$item->address}}
+                                                            </p>
+                                                        </li>
+                                                        <li>
+                                                            <h6>E-Posta</h6>
+                                                            <p class="rt-teta">
+                                                                <i class="fas fa-envelope icon"></i>
+                                                                {{$item->email}}
+                                                            </p>
+                                                        </li>
+                                                        <li>
+                                                            <h6>Telefon</h6>
+                                                            <p class="rt-teta">
+                                                                <i class="fas fa-phone icon"></i>
+                                                                {{$item->phone}}
+                                                            </p>
+                                                           
+                                                        </li>
+                                                        <li>
+                                                            <h6>Web Site</h6>
+                                                            <p class="rt-teta">
+                                                                <i class="fas fa-globe icon"></i>
+                                                                {{$item->website}}
+                                                            </p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-lg-6 grid-adress">
+                                                    <iframe
+                                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3057.811030038286!2d32.76457571578375!3d39.96797747942001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d34bc3fbee31f3%3A0x7dabfd5babe0f38e!2zQXNlbHNhbiBHZW5lbCBNw7xkw7xybMO8aw!5e0!3m2!1str!2str!4v1645201234609!5m2!1str!2str"
+                                                        class="iframe-map" allowfullscreen=""></iframe>
+                                                </div>
+
+                                            </div>
                                         </div>
-                                    </div><!-- end ./tab item -->
+                                    @endforeach
 
-                                    <div class="tab-pane tab-item animated fadeInUp" id="menu-2" role="tabpanel"
-                                        aria-labelledby="menu-2-tab">
-                                        <div class="row gutter-30">
-                                            <div class="col-lg-6 grid-adress">
-                                                <ul class="contact_info">
-                                                    <li>
-                                                        <h6>Adres</h6>
-                                                        <p class="rt-teta">
-                                                            <i class="fas fa-home icon"></i>
-                                                            Organize Sanayi Bölgesi 8. Cadde No:29/ 1-2 26110 İSTANBUL
-                                                        </p>
-                                                    </li>
-                                                    <li>
-                                                        <h6>E-Posta</h6>
-                                                        <p class="rt-teta">
-                                                            <i class="fas fa-envelope icon"></i>
-                                                            alphavacilik@alp.com.tr
-                                                        </p>
-                                                    </li>
-                                                    <li>
-                                                        <h6>Telefon</h6>
-                                                        <p class="rt-teta">
-                                                            <i class="fas fa-phone icon"></i>
-                                                            +90 222 236 13 00
-                                                        </p>
-                                                        <p class="rt-teta">
-                                                            <i class="fas fa-phone icon"></i>
-                                                            +90 222 236 13 00
-                                                        </p>
-                                                    </li>
-                                                    <li>
-                                                        <h6>Web Site</h6>
-                                                        <p class="rt-teta">
-                                                            <i class="fas fa-globe icon"></i>
-                                                            alphavacilik.com.tr
-                                                        </p>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg-6 grid-adress">
-                                                <iframe
-                                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3057.811030038286!2d32.76457571578375!3d39.96797747942001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d34bc3fbee31f3%3A0x7dabfd5babe0f38e!2zQXNlbHNhbiBHZW5lbCBNw7xkw7xybMO8aw!5e0!3m2!1str!2str!4v1645201234609!5m2!1str!2str"
-                                                    class="iframe-map" allowfullscreen=""></iframe>
-                                            </div>
-
-                                        </div>
-                                    </div><!-- end ./tab item -->
-
-                                    <div class="tab-pane tab-item animated fadeInUp" id="menu-3" role="tabpanel"
-                                        aria-labelledby="menu-3-tab">
-                                        <div class="row gutter-30">
-                                            <div class="col-lg-6 grid-adress">
-                                                <ul class="contact_info">
-                                                    <li>
-                                                        <h6>Adres</h6>
-                                                        <p class="rt-teta">
-                                                            <i class="fas fa-home icon"></i>
-                                                            Organize Sanayi Bölgesi 8. Cadde No:29/ 1-2 26110 İSTANBUL
-                                                        </p>
-                                                    </li>
-                                                    <li>
-                                                        <h6>E-Posta</h6>
-                                                        <p class="rt-teta">
-                                                            <i class="fas fa-envelope icon"></i>
-                                                            alphavacilik@alp.com.tr
-                                                        </p>
-                                                    </li>
-                                                    <li>
-                                                        <h6>Telefon</h6>
-                                                        <p class="rt-teta">
-                                                            <i class="fas fa-phone icon"></i>
-                                                            +90 222 236 13 00
-                                                        </p>
-                                                        <p class="rt-teta">
-                                                            <i class="fas fa-phone icon"></i>
-                                                            +90 222 236 13 00
-                                                        </p>
-                                                    </li>
-                                                    <li>
-                                                        <h6>Web Site</h6>
-                                                        <p class="rt-teta">
-                                                            <i class="fas fa-globe icon"></i>
-                                                            alphavacilik.com.tr
-                                                        </p>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg-6 grid-adress">
-                                                <iframe
-                                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3057.811030038286!2d32.76457571578375!3d39.96797747942001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d34bc3fbee31f3%3A0x7dabfd5babe0f38e!2zQXNlbHNhbiBHZW5lbCBNw7xkw7xybMO8aw!5e0!3m2!1str!2str!4v1645201234609!5m2!1str!2str"
-                                                    class="iframe-map" allowfullscreen=""></iframe>
-                                            </div>
-
-                                        </div>
-                                    </div><!-- end ./tab item -->
-
-                                    <div class="tab-pane tab-item animated fadeInUp" id="menu-4" role="tabpanel"
-                                        aria-labelledby="menu-4-tab">
-                                        <div class="row gutter-30">
-                                            <div class="col-lg-6 grid-adress">
-                                                <ul class="contact_info">
-                                                    <li>
-                                                        <h6>Adres</h6>
-                                                        <p class="rt-teta">
-                                                            <i class="fas fa-home icon"></i>
-                                                            Organize Sanayi Bölgesi 8. Cadde No:29/ 1-2 26110 İSTANBUL
-                                                        </p>
-                                                    </li>
-                                                    <li>
-                                                        <h6>E-Posta</h6>
-                                                        <p class="rt-teta">
-                                                            <i class="fas fa-envelope icon"></i>
-                                                            alphavacilik@alp.com.tr
-                                                        </p>
-                                                    </li>
-                                                    <li>
-                                                        <h6>Telefon</h6>
-                                                        <p class="rt-teta">
-                                                            <i class="fas fa-phone icon"></i>
-                                                            +90 222 236 13 00
-                                                        </p>
-                                                        <p class="rt-teta">
-                                                            <i class="fas fa-phone icon"></i>
-                                                            +90 222 236 13 00
-                                                        </p>
-                                                    </li>
-                                                    <li>
-                                                        <h6>Web Site</h6>
-                                                        <p class="rt-teta">
-                                                            <i class="fas fa-globe icon"></i>
-                                                            alphavacilik.com.tr
-                                                        </p>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg-6 grid-adress">
-                                                <iframe
-                                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3057.811030038286!2d32.76457571578375!3d39.96797747942001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d34bc3fbee31f3%3A0x7dabfd5babe0f38e!2zQXNlbHNhbiBHZW5lbCBNw7xkw7xybMO8aw!5e0!3m2!1str!2str!4v1645201234609!5m2!1str!2str"
-                                                    class="iframe-map" allowfullscreen=""></iframe>
-                                            </div>
-
-                                        </div>
-                                    </div><!-- end ./tab item -->
-                                </div> <!-- end /.tab-content -->
+                                </div>
                             </div>
 
 
@@ -411,14 +191,14 @@
                     </div>
                     <!-- end col-->
 
-                    <div class="col-xl-3 col-lg-8 mx-auto sticky-coloum-item">
+                    <div class="col-xl-3 col-lg-8 sticky-coloum-item mx-auto">
                         <div class="rt-sidebar sticky-wrap">
 
                             <div class="sidebar-wrap mb--40">
                                 <div class="ad-banner-img">
                                     <a href="#">
-                                        <img src="/assets/frontend/qmedia/gallery/sports-ad_3.jpg" alt="ad-banner" width="310"
-                                            height="425">
+                                        <img src="/assets/frontend/media/gallery/sports-ad_3.jpg" alt="ad-banner"
+                                            width="310" height="425">
                                     </a>
                                 </div>
                             </div>
@@ -506,6 +286,20 @@
     <!-- End Main -->
 @endsection
 @section('script')
+
+<!-- Fancybox CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+<script>
+    // Open slider on clicking pictures
+    var galleryImages = document.querySelectorAll('.gallery a');
+    galleryImages.forEach(function(image, index) {
+        image.addEventListener('click', function() {
+            image.setAttribute('data-fancybox',
+                'gallery'); // This line makes the gallery share the same group
+            image.click();
+        });
+    });
+</script>
     <!-- Fancybox CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
     <script>
@@ -514,7 +308,7 @@
         galleryImages.forEach(function(image, index) {
             image.addEventListener('click', function() {
                 image.setAttribute('data-fancybox',
-                'gallery'); // This line makes the gallery share the same group
+                    'gallery'); // This line makes the gallery share the same group
                 image.click();
             });
         });

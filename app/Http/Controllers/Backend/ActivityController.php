@@ -118,6 +118,8 @@ class ActivityController extends Controller
 
             $new_en = new EnActivity();
             $new_en->title = $request->name_en;
+            $new_en->category = $request->category;
+            $new_en->author = $request->author;
             $new_en->short_description = $request->short_description_en;
             $new_en->description = $request->description_en;
             $new_en->link = $request->link_en;

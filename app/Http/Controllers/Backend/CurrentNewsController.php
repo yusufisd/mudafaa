@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Imports\CurrentNewsImport;
+use App\Models\Comment;
 use App\Models\CurrentNews;
 use App\Models\CurrentNewsCategory;
 use App\Models\EnCurrentNews;
@@ -14,6 +16,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 use Illuminate\Validation\ValidationException;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CurrentNewsController extends Controller
 {
@@ -32,7 +35,7 @@ class CurrentNewsController extends Controller
     public function create()
     {
         $now = Carbon::now();
-        $categories = CurrentNewsCategory::latest()->get();
+        $categories = CurrentNewsCategory::orderBy('queue','asc')->get();
         $users = UserModel::latest()->get();
         return view('backend.currentNews.add', compact('now', 'categories', 'users'));
     }
@@ -74,7 +77,6 @@ class CurrentNewsController extends Controller
             $news->author_id = $request->author;
             $news->live_time = $request->activity_on_location_tr;
             $news->title = $request->activity_name_tr;
-            $news->tags = $request->etiket_tr;
             $news->short_description = $request->activity_summary_tr;
             $news->description = $request->tinymce_activity_detail_tr;
             $news->tags = $request->etiket_tr;
@@ -109,16 +111,31 @@ class CurrentNewsController extends Controller
             $news->save();
 
             $news_en = new EnCurrentNews();
+            $news_en->author_id = $request->author;
+            $news_en->category_id = $request->category;
             $news_en->title = $request->activity_name_en;
             $news_en->short_description = $request->activity_summary_en;
             $news_en->description = $request->tinymce_activity_detail_en;
             $news_en->tags = $request->etiket_en;
-            $news_en->category_id = $request->category;
             $news_en->currentNews_id = $news->id;
             $news_en->link = $request->activity_url_en;
             $news_en->seo_title = $request->activity_seo_title_en;
             $news_en->seo_description = $request->activity_seo_description_en;
             $news_en->seo_key = $request->activity_seo_keywords_en;
+            if ($request->file('image') != null) {
+                $image = $request->file('image');
+                $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+                $save_url = 'assets/uploads/currentNews/' . $image_name;
+                Image::make($image)->resize(960, 520)->save($save_url);
+                $news_en->image = $save_url;
+            }
+            if ($request->file('mobil_image') != null) {
+                $image = $request->file('mobil_image');
+                $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+                $save_url = 'assets/uploads/currentNews/' . $image_name;
+                Image::make($image)->resize(97, 123)->save($save_url);
+                $news_en->mobil_image = $save_url;
+            }
             if (!isset($request->seo_statu_en)) {
                 $news_en->seo_statu = 0;
             }
@@ -323,5 +340,33 @@ class CurrentNewsController extends Controller
             ]);
         }
         return redirect()->route('admin.currentNews.list');
+    }
+
+    public function commentList($id){
+        $data = Comment::where('post_id',$id)->get();
+        return view('backend.currentNews.comments.list',compact('data'));
+    }
+
+    public function changeCommentStatus($id){
+        $data = Comment::findOrFail($id);
+        $data->update([
+            "status" => !($data->status)
+        ]);
+        Alert::success('Yorum Statüsü Değiştirildi');
+        return redirect()->back();
+    }
+
+    public function commentDestroy($id){
+        $data = Comment::findOrFail($id);
+        $data->delete();
+        Alert::success('Yorum Silindi');
+        return redirect()->back();
+    }
+
+    public function ice_aktar(Request $request){
+        Excel::import(new CurrentNewsImport, $request->file('ice_aktar')->store('temp'));
+
+        Alert::success('Başarılı');
+        return back();
     }
 }

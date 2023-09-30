@@ -29,6 +29,14 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.11.0/css/flag-icons.min.css" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"
+        integrity="sha512-WW8/jxkELe2CAiE4LvQfwm1rajOS8PHasCCx+knHG0gBHt8EXxS6T6tJRTGuDQVnluuAvMxWF4j8SNFDKceLFg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     @yield('css')
 
 
@@ -59,11 +67,11 @@
                     <div class="container">
                         <div class="row align-items-center">
 
-                            <div class="col-lg-7">
+                            <div class="col-lg-8">
                                 <div class="rt-trending rt-trending-style-1">
                                     <p class="trending-title">
                                         <i class="fas fa-bullhorn icon"></i>
-                                        SON DAKİKA
+                                        {{ __('message.son dakika') }}
                                     </p>
                                     <div class="rt-treding-slider1 swiper-container">
                                         <div class="swiper-wrapper">
@@ -72,7 +80,7 @@
                                                 <div class="swiper-slide">
                                                     <div class="item">
                                                         <p class="trending-slide-title">
-                                                            {{ $item->title }}
+                                                            {{ substr($item->title, 0, 60) }} ...
                                                         </p>
                                                     </div>
                                                 </div>
@@ -86,7 +94,7 @@
                             </div>
                             <!-- end col -->
 
-                            <div class="col-lg-5">
+                            <div class="col-lg-4">
                                 <div class="rt-topbar-right">
                                     <div class="meta-wrap">
                                         <span class="rt-meta">
@@ -99,6 +107,11 @@
                                     <div class="social-wrap d-none d-xl-block">
                                         <ul class="rt-top-social">
                                             <li>
+                                                <a href="https://www.facebook.com/millimudafaacom" target="_blank">
+                                                    <i class="fab fa-facebook-f"></i>
+                                                </a>
+                                            </li>
+                                            <li>
                                                 <a href="https://twitter.com/millimudafaacom" target="_blank">
                                                     <div style="text-align:right">
                                                         <img src="{{ asset('/assets/twitter.png') }}"
@@ -107,36 +120,39 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="https://www.facebook.com/millimudafaacom" target="_blank">
-                                                    <i class="fab fa-facebook-f"></i>
-                                                </a>
-                                            </li>
-
-                                            <li>
                                                 <a href="https://www.instagram.com/millimudafaacom" target="_blank">
-                                                    <i class="fab fa-instagram"></i>
+                                                    <i class="fab fa-instagram px-2"></i>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="https://www.youtube.com/channel/UC6uGHKEHHGh08sTWjhBrG9A"
                                                     target="_blank">
-                                                    <i class="fab fa-youtube"></i>
+                                                    <i class="fab fa-youtube px-2"></i>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="https://www.linkedin.com/company/milli-m%C3%BCdafaa/"
                                                     target="_blank">
-                                                    <i class="fab fa-linkedin-in"></i>
+                                                    <i class="fab fa-linkedin-in px-2"></i>
                                                 </a>
                                             </li>
 
                                         </ul>
                                     </div>
-                                    <div class="ms-2 meta-wrap">
+                                    <div class="meta-wrap ms-2">
                                         <span class="rt-meta">
-                                            <a href="">
-                                                <img alt="image" width="30" src="{{ asset('/assets/en.png') }}">
+                                            @if(langua() == "tr")
+                                            <a href="{{ route('chaange.lang',['en']) }}">
+                                                <img alt="image" width="30"
+                                                    src="{{ asset('/assets/en.png') }}">
                                             </a>
+                                            @endif
+                                            @if(langua() == "en")
+                                            <a href="{{ route('chaange.lang','tr') }}">
+                                                <img alt="image" width="30"
+                                                    src="{{ asset('/assets/tr.png') }}">
+                                            </a>
+                                            @endif
                                         </span>
                                     </div>
 
@@ -180,7 +196,8 @@
                                                         class="fa fa-home fa-md"></i></a>
                                             </li>
                                             <li class="main-menu__nav_sub list">
-                                                <a class="animation" href="javascript:void(0)">Güncel Haberler</a>
+                                                <a class="animation" href="javascript:void(0)">
+                                                    {{ __('message.güncel haberler') }} </a>
                                                 <ul class="main-menu__dropdown">
 
                                                     @foreach (currentCats() as $item)
@@ -193,7 +210,8 @@
                                                 </ul>
                                             </li>
                                             <li class="main-menu__nav_sub list">
-                                                <a class="animation" href="javascript:void(0)">Savunma Sanayi </a>
+                                                <a class="animation" href="javascript:void(0)">
+                                                    {{ __('message.savunma sanayi') }} </a>
                                                 <ul class="main-menu__dropdown">
 
                                                     @foreach (defenseIndustryCat() as $item)
@@ -206,24 +224,25 @@
                                                 </ul>
                                             </li>
                                             <li>
-                                                <a class="animation"
-                                                    href="{{ route('front.activity.list') }}">Etkinlikler</a>
+                                                <a class="animation" href="{{ route('front.activity.list') }}">
+                                                    {{ __('message.etkinlikler') }} </a>
                                             </li>
                                             <li>
-                                                <a class="animation"
-                                                    href="{{ route('front.interview.list') }}">Röportajlar</a>
+                                                <a class="animation" href="{{ route('front.interview.list') }}">
+                                                    {{ __('message.röportajlar') }} </a>
                                             </li>
                                             <li>
-                                                <a class="animation"
-                                                    href="{{ route('front.company.list') }}">Firmalar</a>
+                                                <a class="animation" href="{{ route('front.company.list') }}">
+                                                    {{ __('message.firmalar') }} </a>
                                             </li>
                                             <li>
-                                                <a class="animation" href="{{ route('front.dictionary.list') }}">SS
-                                                    Sözlüğü</a>
+                                                <a class="animation" href="{{ route('front.dictionary.list') }}">
+                                                    {{ __('message.ss sözlüğü') }}
+                                                </a>
                                             </li>
                                             <li>
-                                                <a class="animation"
-                                                    href="{{ route('front.video.list') }}">Videolar</a>
+                                                <a class="animation" href="{{ route('front.video.list') }}">
+                                                    {{ __('message.videolar') }} </a>
                                             </li>
                                         </ul>
                                     </nav>
@@ -276,10 +295,12 @@
                             <nav class="menu-main-primary-container">
                                 <ul class="menu">
                                     <li>
-                                        <a class="animation" href="{{ route('front.home') }}">Ana Sayfa</a>
+                                        <a class="animation" href="{{ route('front.home') }}">
+                                            {{ __('message.anasayfa') }} </a>
                                     </li>
                                     <li class="list menu-item-has-children">
-                                        <a class="animation" href="javascript:void(0)">Güncel Haberler</a>
+                                        <a class="animation"
+                                            href="javascript:void(0)">{{ __('message.güncel haberler') }}</a>
                                         <ul class="main-menu__dropdown sub-menu">
                                             @foreach (currentCats() as $item)
                                                 <li><a
@@ -290,7 +311,8 @@
 
                                     </li>
                                     <li class="list menu-item-has-children">
-                                        <a class="animation" href="javascript:void(0)">Savunma Sanayi</a>
+                                        <a class="animation" href="javascript:void(0)">
+                                            {{ __('message.savunma sanayi') }} </a>
                                         <ul class="main-menu__dropdown sub-menu">
                                             @foreach (defenseIndustryCat() as $item)
                                                 <li><a
@@ -300,15 +322,17 @@
                                             @endforeach
                                         </ul>
                                     </li>
-                                    <li><a class="animation"
-                                            href="{{ route('front.activity.list') }}">Etkinlikler</a></li>
-                                    <li><a class="animation"
-                                            href="{{ route('front.interview.list') }}">Röportajlar</a></li>
-                                    <li><a class="animation" href="{{ route('front.company.list') }}">Firmalar</a>
+                                    <li><a class="animation" href="{{ route('front.activity.list') }}">
+                                            {{ __('message.etkinlikler') }} </a></li>
+                                    <li><a class="animation" href="{{ route('front.interview.list') }}">
+                                            {{ __('message.röportajlar') }} </a></li>
+                                    <li><a class="animation" href="{{ route('front.company.list') }}">
+                                            {{ __('message.firmalar') }} </a>
                                     </li>
-                                    <li><a class="animation" href="{{ route('front.dictionary.list') }}">SS
-                                            Sözlüğü</a></li>
-                                    <li><a class="animation" href="{{ route('front.video.list') }}">Videolar</a></li>
+                                    <li><a class="animation" href="{{ route('front.dictionary.list') }}">
+                                            {{ __('message.ss sözlüğü') }} </a></li>
+                                    <li><a class="animation" href="{{ route('front.video.list') }}">
+                                            {{ __('message.videolar') }} </a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -336,9 +360,8 @@
                                         </a>
                                     </div>
                                     <p class="text footer-text">
-                                        <span style="color: #fff;font-size:1.2rem">www.millimudafaa.com</span> internet
-                                        sitesinde yayınlanan yazı, haber, video ve fotoğrafların her türlü hakkı Dada
-                                        İst Ajans’a aittir. İzin alınmadan, kaynak gösterilerek dahi iktibas edilemez.
+                                        <span style="color: #fff;font-size:1.2rem">www.millimudafaa.com</span>
+                                        {{ __('message.Sitede yayınlanan yazı, haber, video ve fotoğrafların tüm hakları Dada İst Ajans a aittir. Kaynak gösterilerek dahi olsa izin alınmadan alıntı yapılamaz') }}
                                     </p>
                                     <ul class="footer-social gutter-15">
                                         <li class="social-item">
@@ -524,7 +547,7 @@
                 <div class="footer-bottom">
                     <div class="container">
                         <div class="footer-bottom-area d-flex align-items-center justify-content-center">
-                            <p class="copyright-text mb-0 wow fadeInUp" data-wow-delay="200ms"
+                            <p class="copyright-text wow fadeInUp mb-0" data-wow-delay="200ms"
                                 data-wow-duration="800ms">
                                 <span class="currentYear"></span> © Copyright 2022 | Milli Müdafaa | Tüm Hakları
                                 Saklıdır.

@@ -45,34 +45,30 @@ function defenseIndustryCat()
     }
     if ($local == 'tr') {
         $cats = DefenseIndustry::orderBy('queue', 'asc')->get();
-        
     } elseif ($local == 'en') {
         $cats = EnDefenseIndustry::orderBy('id', 'asc')->get();
     }
     return $cats;
 }
 
-
 function headline()
 {
-    $local = \Session::get('applocale');
-    if ($local == null) {
-        $local = config('app.fallback_locale');
-    }
+    $local = \Session::get('applocale') ?? config('app.fallback_locale');
+
     if ($local == 'tr') {
-        $cats = CurrentNews::where('headline',1)->get();
-        
+        $cats = CurrentNews::where('headline', 1)->get();
     } elseif ($local == 'en') {
-        $cats = EnCurrentNews::where('headline',1)->get();
+        $cats = EnCurrentNews::where('headline', 1)->get();
     }
     return $cats;
 }
 
-
-function currentDate(){
+function currentDate()
+{
     return Carbon::now();
 }
 
-
-
-
+function langua()
+{
+    return $local = \Session::get('applocale') ?? config('app.fallback_locale');
+}

@@ -15,12 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('link');
+            $table->integer('queue');
+            $table->string('color_code');
             $table->integer('status')->default(1);
             $table->integer('activity_id');
             $table->string('seo_title');
             $table->string('seo_description');
             $table->string('seo_key');
-            $table->integer('seo_statu');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('link');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->integer('queue');
             $table->integer('status')->default(1);
             $table->string('seo_title');

@@ -114,7 +114,7 @@
                                                             <option value="">Seçiniz...</option>
 
                                                             @foreach ($users as $item)
-                                                                <option value="{{ $item->id }}"> {{ $item->name }}
+                                                                <option value="{{ $item->id }}"> {{ $item->name }} {{ $item->surname }}
                                                                 </option>
                                                             @endforeach
 
@@ -133,7 +133,7 @@
                                                     <div class="col-lg-10 fv-row">
                                                         <input type="date"
                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                            name="live_time" id="">
+                                                            name="live_time" value="{{ substr($now,0,10) }}" id="">
                                                     </div>
                                                     <!--end::Col-->
                                                 </div>
@@ -168,7 +168,7 @@
                                                         <a class="nav-link active" data-bs-toggle="tab" href="#tab_blog_tr">
                                                             <span>
                                                                 <img src="{{asset('/assets/tr.png')}}"
-                                                                    width="28" height="28" alt="TR"
+                                                                    width="28" height="20" alt="TR"
                                                                     title="TR">
                                                             </span>
 
@@ -178,7 +178,7 @@
                                                         <a class="nav-link" data-bs-toggle="tab" href="#tab_blog_en">
                                                             <span>
                                                                 <img src="{{asset('/assets/en.png')}}"
-                                                                    width="28" height="28" alt="EN"
+                                                                    width="28" height="20" alt="EN"
                                                                     title="EN">
                                                             </span>
                                                         </a>
@@ -428,8 +428,8 @@
                                                 <li class="nav-item">
                                                     <a class="nav-link active" data-bs-toggle="tab" href="#tab_seo_tr">
                                                         <span>
-                                                            <img src="https://gaviapanel.gaviaworks.org/assets/images/svg/turkey.svg"
-                                                                width="28" height="28" alt="TR"
+                                                            <img src="{{asset('/assets/tr.png')}}"
+                                                                width="28" height="20" alt="TR"
                                                                 title="TR">
                                                         </span>
 
@@ -438,8 +438,8 @@
                                                 <li class="nav-item">
                                                     <a class="nav-link" data-bs-toggle="tab" href="#tab_seo_en">
                                                         <span>
-                                                            <img src="https://gaviapanel.gaviaworks.org/assets/images/svg/england.svg"
-                                                                width="28" height="28" alt="EN"
+                                                            <img src="{{asset('/assets/en.png')}}"
+                                                                width="28" height="20" alt="EN"
                                                                 title="EN">
                                                         </span>
                                                     </a>
@@ -605,8 +605,8 @@
                                                 <li class="nav-item">
                                                     <a class="nav-link active" data-bs-toggle="tab" href="#asd">
                                                         <span>
-                                                            <img src="https://gaviapanel.gaviaworks.org/assets/images/svg/turkey.svg"
-                                                                width="28" height="28" alt="TR"
+                                                            <img src="{{asset('/assets/tr.png')}}"
+                                                                width="28" height="20" alt="TR"
                                                                 title="TR">
                                                         </span>
 
@@ -615,8 +615,8 @@
                                                 <li class="nav-item">
                                                     <a class="nav-link" data-bs-toggle="tab" href="#dsa">
                                                         <span>
-                                                            <img src="https://gaviapanel.gaviaworks.org/assets/images/svg/england.svg"
-                                                                width="28" height="28" alt="EN"
+                                                            <img src="{{asset('/assets/en.png')}}"
+                                                                width="28" height="20" alt="EN"
                                                                 title="EN">
                                                         </span>
                                                     </a>
@@ -755,12 +755,13 @@
                         </div>
                     </div>
                     <!--end::Col-->
+                    <div class="right" style="text-align: right">
+                        <button class="btn btn-primary"> {{ __('message.kaydet') }} </button>
+                    </div>
                 </div>
                 <!--end::Row-->
 
-                <div class="right" style="text-align: right">
-                    <button class="btn btn-primary"> {{ __('message.kaydet') }} </button>
-                </div>
+               
 
             </div>
             <!--end::Content container-->
@@ -796,13 +797,36 @@
     <script src="../assets/plugins/custom/tinymce/langs/tr.js"></script>
 
     <script>
+        var slug = function(str) {
+            str = str.replace(/^\s+|\s+$/g, ''); // trim
+            str = str.toLowerCase();
+
+            // remove accents, swap ñ for n, etc
+            var from =
+                "ÁÄÂÀÃÅČÇĆĎÉĚËÈÊẼĔȆĞÍÌÎÏİŇÑÓÖÒÔÕØŘŔŠŞŤÚŮÜÙÛÝŸŽáäâàãåčçćďéěëèêẽĕȇğíìîïıňñóöòôõøðřŕšşťúůüùûýÿžþÞĐđßÆa·/_,:;";
+            var to =
+                "AAAAAACCCDEEEEEEEEGIIIIINNOOOOOORRSSTUUUUUYYZaaaaaacccdeeeeeeeegiiiiinnooooooorrsstuuuuuyyzbBDdBAa------";
+            for (var i = 0, l = from.length; i < l; i++) {
+                str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+            }
+
+            str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+                .replace(/\s+/g, '-') // collapse whitespace and replace by -
+                .replace(/-+/g, '-'); // collapse dashes
+
+            return str;
+        };
         function create_slug_tr() {
             var Text = $("#name_tr").val();
+            Text2 = (slug(Text));
+            $("#link_tr").val(Text2);
             $("#seo_title_tr").val(Text);
         }
 
         function create_slug_en() {
             var Text = $("#name_en").val();
+            Text2 = (slug(Text));
+            $("#link_en").val(Text2);
             $("#seo_title_en").val(Text);
         }
 

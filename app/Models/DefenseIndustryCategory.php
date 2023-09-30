@@ -13,4 +13,8 @@ class DefenseIndustryCategory extends Model
     protected $casts = [
         "seo_key" => "array"
     ];
+
+    public function adet(){
+        return DefenseIndustryContent::where('category_id',$this->id)->count();
+    }
 }

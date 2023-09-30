@@ -90,7 +90,7 @@
                                     <li>
                                         <span class="rt-meta">
                                             <i class="fas fa-handshake icon"></i>
-                                            Tüyap Tüm Fuarcılık Yapım A.Ş.
+                                            {{$data->address}}
                                         </span>
                                     </li>
                                 </ul>
@@ -146,7 +146,7 @@
                                 </div>
                             </div>
                             <!-- strat post body -->
-                            <div class="post-body mb--40 ">
+                            <div class="post-body mb--40 " style="text-align: justify">
                                 {!!$data->description!!}
                             </div><br><br><br><br>
                             <!-- end post body -->
@@ -296,17 +296,17 @@
                             <div class="slide-item">
                                 <div class="rt-post-grid grid-meta">
                                     <div class="post-img">
-                                        <a href="ss_detail.html">
+                                        <a href="{{ route('front.activity.detail', $item->id) }}">
                                             <img src="/{{$item->image}}" alt="post" width="551"
                                                 height="431">
                                         </a>
                                     </div>
                                     <div class="post-content">
-                                        <a href="graphics.html"
-                                            class="rt-cat-primary sidebar_restricted_category_title">Design</a>
+                                        <a href="{{route('front.activity.categoryDetail',$item->Category->id)}}"
+                                            class="rt-cat-primary sidebar_restricted_category_title">{{ $item->Category->title }}</a>
                                         <h3 class="post-title">
-                                            <a href="ss_detail.html">
-                                                Eskişehir Endüstri Fuarı
+                                            <a href="{{ route('front.activity.detail', $item->id) }}">
+                                                {{$item->title}}
                                             </a>
                                         </h3>
                                         <div class="post-meta">
@@ -314,13 +314,14 @@
                                                 <li>
                                                     <span class="rt-meta">
                                                         <i class="far fa-calendar-alt icon"></i>
-                                                        17.07.2023
+                                                        {{ substr($item->start_time, 8, 2) }}-{{ substr($item->start_time, 5, 2) }}-{{ substr($item->start_time, 0, 4) }}
+                                                                
                                                     </span>
                                                 </li>
                                                 <li>
                                                     <span class="rt-meta">
                                                         <i class="fas fa-map-marker-alt icon"></i>
-                                                        Ankara
+                                                        {{ $item->Country->name }}
                                                     </span>
                                                 </li>
                                                 <li>

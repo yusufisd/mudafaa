@@ -104,7 +104,7 @@
                                                 <div class="btn-wrap mt--25">
                                                     <a href="{{route('front.currentNews.detail',$item->id)}}"
                                                         class="rt-read-more qodef-button-animation-out">
-                                                        Daha Fazla Oku
+                                                        {{__('message.daha fazla oku')}}
                                                         <svg width="34px" height="16px" viewBox="0 0 34.53 16"
                                                             xml:space="preserve">
                                                             <rect class="qodef-button-line" y="7.6" width="34"
@@ -188,7 +188,7 @@
 
                             <div class="d-none d-md-block sidebar-wrap mb--40">
                                 <h2 class="rt-section-heading style-2 mb--30">
-                                    <span class="rt-section-text">Popüler Haberler </span>
+                                    <span class="rt-section-text"> {{__('message.popüler haberler')}} </span>
                                     <span class="rt-section-dot"></span>
                                     <span class="rt-section-line"></span>
                                 </h2>
@@ -243,7 +243,7 @@
 
                             <div class="d-none d-md-block sidebar-wrap mb--40">
                                 <h2 class="rt-section-heading style-2 mb--30">
-                                    <span class="rt-section-text">KATEGORİLER </span>
+                                    <span class="rt-section-text">  {{__('message.kategoriler')}} </span>
                                     <span class="rt-section-dot"></span>
                                     <span class="rt-section-line"></span>
                                 </h2>
@@ -268,11 +268,11 @@
                                 <div class="subscribe-box-style-1" data-bg-image="media/elements/elm_3.png">
                                     <div class="subscribe-content">
                                         <h3 class="title">
-                                            Haber Bültenimize Abone Ol
+                                            {{__('message.Haber Bültenimize Abone Ol')}}
                                         </h3>
                                         <p>
-                                            Ulusal ve global savunma ile ilgili gündemden daha hızlı haberdar olmak
-                                            istiyorsanız, Milli Müdafaa e-posta listesine kayıt olun!
+                                            {{__('message.Ulusal ve global savunma ile ilgili gündemden daha hızlı haberdar olmak
+                                            istiyorsanız, Milli Müdafaa e-posta listesine kayıt olun!')}}
                                         </p>
                                         <form action="#" class="rt-contact-form subscribe-form rt-form">
                                             <div class="rt-form-group">
@@ -280,7 +280,7 @@
                                                     placeholder="E-posta *" name="email" id="email_1"
                                                     data-error="E-posta alanı zorunludur" required>
                                             </div>
-                                            <button type="submit" class="rt-submit-btn">Şimdi Abone Ol</button>
+                                            <button type="submit" class="rt-submit-btn"> {{__('message.şimdi abone ol')}} </button>
                                             <div class="form-response"></div>
                                         </form>
                                     </div>
@@ -290,7 +290,7 @@
 
                             <div class="sidebar-wrap">
                                 <h2 class="rt-section-heading style-2 mb--30">
-                                    <span class="rt-section-text">Etİketler </span>
+                                    <span class="rt-section-text"> {{__('message.etiketler')}} </span>
                                     <span class="rt-section-dot"></span>
                                     <span class="rt-section-line"></span>
                                 </h2>

@@ -134,7 +134,7 @@
                                                             title="Düzenle">
                                                             <i class="fa-regular fa-pen-to-square fs-3"></i>
                                                         </a>
-                                                        <a onclick=""
+                                                        <a onclick="destroy({{$item->id}})"
                                                             class="px-2 btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1"
                                                             data-bs-toggle="modal" data-bs-target="#delete_modal"
                                                             title="Sil">
@@ -181,10 +181,12 @@
                 confirmButtonText: 'Evet, sil!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "{{ route('admin.company.destroy') }}/" + d;
+                    window.location.href = "{{ route('admin.interview.destroy') }}/" + d;
                 }
             })
         }
+
+        
     </script>
     <!--begin:: extra js-->
     <script>

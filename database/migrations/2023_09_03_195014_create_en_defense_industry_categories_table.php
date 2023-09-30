@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('link');
+            $table->integer('defense_id');
+            $table->string('image');
             $table->integer('category_tr');
             $table->integer('status')->default(1);
             $table->string('seo_title');

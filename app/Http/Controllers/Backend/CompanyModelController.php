@@ -68,6 +68,7 @@ class CompanyModelController extends Controller
         $new_company_en->seo_title = $request->seo_title_en;
         $new_company_en->seo_description = $request->seo_descriptipn_en;
         $new_company_en->seo_key = $request->seo_key_en;
+        
         if (!isset($request->status_en)) {
             $new_company_en->status = 0;
         }

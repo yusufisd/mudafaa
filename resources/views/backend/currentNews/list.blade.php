@@ -1,23 +1,42 @@
 @extends('backend.master')
 @section('content')
-
-<style>
-    #headline,#status{
-        cursor: pointer;
-    }
-</style>
+    <style>
+        #headline,
+        #status {
+            cursor: pointer;
+        }
+    </style>
     <!--begin::Content wrapper-->
     <div class="d-flex flex-column flex-column-fluid">
         <!--begin::Toolbar-->
-        <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-10">
+        <div id="kt_app_toolbar" class="app-toolbar py-lg-10 py-3">
             <!--begin::Toolbar container-->
             <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
                 <!--begin::Page title-->
-                <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                <div class="page-title d-flex flex-column justify-content-center me-3 flex-wrap">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-primary fw-bold fs-3 flex-column justify-content-center my-0">
                         {{ __('message.güncel') }} {{ __('message.haber') }} {{ __('message.yönetimi') }}</h1>
                     <!--end::Title-->
+                </div>
+                <div class="" style="display: flex">
+                    <div id="goster" class="col-md-8" style="display:none">
+                        <form action="{{ route('admin.currentNews.ice_aktar') }}" method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <input type="file" class="form-control" name="ice_aktar" id="">
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="submit" class="btn btn-primary" id="">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="gizle">
+                        <button class="btn btn-primary" onclick="iceri_aktar()" type="button"> Aktar</button>
+                    </div>
                 </div>
                 <!--end::Page title-->
             </div>
@@ -32,8 +51,8 @@
                 <!--begin::Row-->
                 <div class="row g-5 g-xl-8">
                     <!--begin::Col-->
-                    <div class="col-xl-12 mb-5 mb-xl-8">
-                        <div class="card card-flush h-xl-100 mb-5 mb-xl-8">
+                    <div class="col-xl-12 mb-xl-8 mb-5">
+                        <div class="card card-flush h-xl-100 mb-xl-8 mb-5">
                             <!--begin::Card header-->
                             <div class="card-header border-0 pt-6">
 
@@ -50,7 +69,7 @@
                                         <a type="button" class="btn btn-outline btn-outline-success ms-5"
                                             href="{{ route('admin.currentNewsCategory.list') }}">
                                             <i class="fa fa-newspaper" aria-hidden="true"></i> {{ __('message.haber') }}
-                                            {{ __('message.kategorisi') }} 
+                                            {{ __('message.kategorisi') }}
                                         </a>
 
 
@@ -63,10 +82,10 @@
                             </div>
                             <!--end::Card header-->
                             <!--begin::Body-->
-                            <div class="card-body pt-0 pb-5">
+                            <div class="card-body pb-5 pt-0">
                                 <!--begin::Table container-->
                                 <div class="table-responsive with_search_table">
-                                    <table id="blog_management_table" class="table gy-7 gx-7">
+                                    <table id="blog_management_table" class="gy-7 gx-7 table">
                                         <thead>
                                             <tr class="fw-bold fs-6 text-gray-800">
                                                 <th class="w-10px">
@@ -83,7 +102,7 @@
                                                 <th>{{ __('message.kategori') }}<i class="fa fa-sort ms-3"></i></th>
                                                 <th class="text-center">{{ __('message.manşet') }}<i
                                                         class="fa fa-sort ms-3"></i></th>
-                                                <th class="text-center pe-7">{{ __('message.durum') }}<i
+                                                <th class="pe-7 text-center">{{ __('message.durum') }}<i
                                                         class="fa fa-sort ms-3"></i></th>
                                                 <th class="text-center">{{ __('message.işlem') }}<i
                                                         class="fa fa-sort ms-3"></i></th>
@@ -106,12 +125,13 @@
                                                             alt="">
                                                     </td>
                                                     <td> {{ $item->Author->name }} {{ $item->Author->surname }} </td>
-                                                    <td> {{ substr($item->title,0,30) }}... </td>
+                                                    <td> {{ substr($item->title, 0, 30) }}... </td>
                                                     <td> {{ $item->Category->title }} </td>
                                                     <td>
                                                         <div
                                                             class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
-                                                            <input class="form-check-input w-50px h-25px" onchange="change_headline({{$item->id}})"
+                                                            <input class="form-check-input w-50px h-25px"
+                                                                onchange="change_headline({{ $item->id }})"
                                                                 {{ $item->headline == 1 ? 'checked' : '' }} type="checkbox"
                                                                 id="headline">
                                                             <label class="form-check-label" for="headline"></label>
@@ -121,22 +141,25 @@
                                                         <div
                                                             class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
                                                             <input class="form-check-input w-50px h-25px" type="checkbox"
-                                                                id="status" onchange="change_status({{$item->id}})"
+                                                                id="status"
+                                                                onchange="change_status({{ $item->id }})"
                                                                 {{ $item->status == 1 ? 'checked' : '' }}>
                                                             <label class="form-check-label" for="blog_status_1"></label>
                                                         </div>
                                                     </td>
                                                     <td class="text-center">
-                                                        <button type="button" class="btn btn-primary">
-                                                            Yorumlar
-                                                        </button>
+                                                        <a href="{{ route('admin.currentNews.commentList', $item->id) }}">
+                                                            <button type="button" class="btn btn-primary px-4 py-2">
+                                                                Yorumlar ({{ $item->AdminCommentCount() }})
+                                                            </button>
+                                                        </a>
                                                         <a href="{{ route('admin.currentNews.edit', $item->id) }}"
-                                                            class="px-2 btn btn-icon btn-bg-light btn-active-color-secondary btn-sm me-1"
+                                                            class="btn btn-icon btn-bg-light btn-active-color-secondary btn-sm me-1 px-2"
                                                             title="Düzenle">
                                                             <i class="fa-regular fa-pen-to-square fs-3"></i>
                                                         </a>
-                                                        <a onclick="destroy({{$item->id}})"
-                                                            class="px-2 btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1"
+                                                        <a onclick="destroy({{ $item->id }})"
+                                                            class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1 px-2"
                                                             data-bs-toggle="modal" data-bs-target="#delete_modal"
                                                             title="Sil">
                                                             <i class="fa-regular fa-trash-can fs-4"></i>
@@ -167,6 +190,11 @@
 @endsection
 @section('script')
     <script>
+        function iceri_aktar() {
+            $('#goster').toggle('fast');
+        }
+    </script>
+    <script>
         function destroy(d) {
             Swal.fire({
                 title: 'Emin misiniz?',
@@ -183,12 +211,12 @@
             })
         }
 
-        function change_headline(d){
-            window.location.href = "{{route('admin.currentNews.change_headline')}}/" + d;
+        function change_headline(d) {
+            window.location.href = "{{ route('admin.currentNews.change_headline') }}/" + d;
         }
 
-        function change_status(d){
-            window.location.href = "{{route('admin.currentNews.change_status')}}/" + d;
+        function change_status(d) {
+            window.location.href = "{{ route('admin.currentNews.change_status') }}/" + d;
         }
     </script>
     <!--begin:: extra js-->

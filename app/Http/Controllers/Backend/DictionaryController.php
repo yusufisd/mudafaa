@@ -60,6 +60,22 @@ class DictionaryController extends Controller
                 'seo_title_en' => 'required',
                 'seo_description_en' => 'required',
                 'seo_key_en' => 'required',
+            ],[
+                'image.required' => 'image',
+                'author.required' => 'author',
+                'live_date.required' => 'live_date',
+                'name_tr.required' => 'name_tr',
+                'short_description_tr.required' => 'short_description_tr',
+                'link_tr.required' => 'link_tr',
+                'name_en.required' => 'name_en',
+                'short_description_en.required' => 'short_description_en',
+                'link_en.required' => 'link_en',
+                'seo_title_tr.required' => 'seo_title_tr',
+                'seo_description_tr.required' => 'seo_description_tr',
+                'seo_key_tr.required' => 'seo_key_tr',
+                'seo_title_en.required' => 'seo_title_en',
+                'seo_description_en.required' => 'seo_description_en',
+                'seo_key_en.required' => 'seo_key_en',
             ]);
 
             $new = new Dictionary();

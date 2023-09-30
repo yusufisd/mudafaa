@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('defense_industry_categories', function (Blueprint $table) {
             $table->id();
             $table->integer('defense_id');
-            $table->string('title');
             $table->string('image');
+            $table->string('title');
             $table->string('link');
             $table->integer('queue');
             $table->integer('status')->default(1);

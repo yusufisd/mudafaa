@@ -9,5 +9,9 @@ class Comment extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function Product(){
+        return $this->hasOne(CurrentNews::class,'id','post_id');
+    }
 }
  

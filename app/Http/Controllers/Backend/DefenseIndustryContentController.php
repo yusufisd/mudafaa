@@ -47,7 +47,7 @@ class DefenseIndustryContentController extends Controller
      */
     public function store(Request $request)
     {
-        $genel_id = DefenseIndustryCategory::where('id',$request->category)->first();
+        $genel_id = DefenseIndustryCategory::where('id', $request->category)->first();
         $new = new DefenseIndustryContent();
 
         $new->category_id = $request->category;
@@ -83,7 +83,7 @@ class DefenseIndustryContentController extends Controller
                 Image::make($image)
                     ->resize(170, 170)
                     ->save($save_url);
-                array_push($datas,$save_url);
+                array_push($datas, $save_url);
             }
             $new->multiple_image = $datas;
         }
@@ -101,6 +101,8 @@ class DefenseIndustryContentController extends Controller
         $new->save();
 
         $new_en = new EnDefenseIndustryContent();
+        $new_en->defense_id = $genel_id->defense_id;
+        $new_en->category_id = $request->category;
         $new_en->title = $request->name_en;
         $new_en->short_description = $request->short_description_en;
         $new_en->description = $request->description_en;
@@ -110,6 +112,19 @@ class DefenseIndustryContentController extends Controller
         $new_en->seo_title = $request->seo_title_en;
         $new_en->seo_description = $request->seo_description_en;
         $new_en->seo_key = $request->seo_key_en;
+        if ($request->file('image') != null) {
+            $new_en->image = $save_url;
+        }
+        if ($request->file('multiple_image') != null) {
+            $datas = [];
+            foreach ($request->file('multiple_image') as $key) {
+                $image = $key;
+                $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+                $save_url = 'assets/uploads/defenceIndustryContent/' . $image_name;
+                array_push($datas, $save_url);
+            }
+            $new_en->multiple_image = $datas;
+        }
         if (!isset($request->status_en)) {
             $new->status = 0;
         }
@@ -144,10 +159,11 @@ class DefenseIndustryContentController extends Controller
     {
         try {
             DB::beginTransaction();
-            $genel_id = DefenseIndustryCategory::where('id',$request->category)->first();
+            $genel_id = DefenseIndustryCategory::where('id', $request->category)->first();
 
             $new = DefenseIndustryContent::findOrFail($id);
             $new->defense_id = $genel_id->defense_id;
+            $new->category_id = $request->category;
             $new->category = $request->category;
             $new->title = $request->name_tr;
             $new->short_description = $request->short_description_tr;
@@ -179,7 +195,7 @@ class DefenseIndustryContentController extends Controller
                     Image::make($image)
                         ->resize(170, 170)
                         ->save($save_url);
-                    array_push($datas,$save_url);
+                    array_push($datas, $save_url);
                 }
                 $new->multiple_image = $datas;
             }
@@ -202,6 +218,8 @@ class DefenseIndustryContentController extends Controller
             $new->save();
 
             $new_en = EnDefenseIndustryContent::where('content_id', $id)->first();
+            $new_en->defense_id = $genel_id->defense_id;
+            $new_en->category_id = $request->category;
             $new_en->title = $request->name_en;
             $new_en->short_description = $request->short_description_en;
             $new_en->description = $request->description_en;
@@ -210,6 +228,19 @@ class DefenseIndustryContentController extends Controller
             $new_en->seo_title = $request->seo_title_en;
             $new_en->seo_description = $request->seo_description_en;
             $new_en->seo_key = $request->seo_key_en;
+            if ($request->file('image') != null) {
+                $new_en->image = $save_url;
+            }
+            if ($request->file('multiple_image') != null) {
+                $datas = [];
+                foreach ($request->file('multiple_image') as $key) {
+                    $image = $key;
+                    $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+                    $save_url = 'assets/uploads/defenceIndustryContent/' . $image_name;
+                    array_push($datas, $save_url);
+                }
+                $new_en->multiple_image = $datas;
+            }
             if (!isset($request->status_en)) {
                 $new->status = 0;
             }

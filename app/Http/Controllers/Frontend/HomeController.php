@@ -59,7 +59,7 @@ class HomeController extends Controller
                 ->get();
 
             $iki_haber = EnCurrentNews::inRandomOrder()->take(2)->get();
-            $tek_haber = CurrentNews::inRandomOrder()->first();
+            $tek_haber = EnCurrentNews::inRandomOrder()->first();
             $uc_kategori = EnCurrentNewsCategory::orderBy('id','asc')->take(3)->get();
             $ilk_kategori_icerikleri = EnCurrentNews::where('category_id',1)->whereNot('id',1)->get();
             $ilk_kategori_icerigi = EnCurrentNews::where('category_id',1)->latest()->first();

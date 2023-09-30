@@ -16,12 +16,11 @@ return new class extends Migration
             $table->string('title');
             $table->string('link');
             $table->integer('queue');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->integer('status')->default(1);
             $table->string('seo_title');
             $table->string('seo_description');
             $table->longText('seo_key');
-            $table->integer('seo_statu')->default(1);
             $table->softDeletes();
             $table->timestamps();
         });

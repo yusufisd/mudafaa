@@ -89,7 +89,11 @@ class VideoController extends Controller
             }
             $news->save();
 
+
             $news_en = new EnVideo();
+            
+            $news_en->live_date = $request->live_date;
+            $news_en->author = $request->author;
             $news_en->category_id = $request->category;
             $news_en->title = $request->name_en;
             $news_en->description = $request->description_en;
@@ -99,6 +103,9 @@ class VideoController extends Controller
             $news_en->seo_description = $request->seo_description_en;
             $news_en->seo_key = $request->seo_key_en;
             $news_en->video_id = $news->id;
+            if ($request->file('image') != null) {
+                $news_en->image = $save_url;
+            }
             if (!isset($request->status_en)) {
                 $news_en->status = 0;
             }
