@@ -85,6 +85,7 @@ return [
     "Hakkında Aydınlatma Metnini okudum, onay veriyorum." => "I have read the Clarification Text and I give my consent.",
     "ilgili haberler" => "Related News",
     "bizi takip edin" => "Follow Us",
+    "röportaj" => "Interview",
 
 
 ];

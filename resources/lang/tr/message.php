@@ -83,6 +83,7 @@ return [
     "Hakkında Aydınlatma Metnini okudum, onay veriyorum." => "Hakkında Aydınlatma Metnini okudum, onay veriyorum.",
     "ilgili haberler" => "İlgili Haberler",
     "bizi takip edin" => "Bizi Takip Edin",
+    "röportaj" => "Röportaj",
 
 
 ];

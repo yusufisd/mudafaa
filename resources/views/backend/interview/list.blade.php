@@ -15,7 +15,7 @@
                 <div class="page-title d-flex flex-column justify-content-center me-3 flex-wrap">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-primary fw-bold fs-3 flex-column justify-content-center my-0">
-                        Röportaj {{ __('message.listesi') }} </h1>
+                        {{__('message.röportaj')}} {{ __('message.listesi') }} </h1>
                     <!--end::Title-->
                 </div>
                 <div class="" style="display: flex">
