@@ -23,6 +23,7 @@ return new class extends Migration
             $table->longText('origin');
             $table->string('tags');
             $table->string('link');
+            $table->integer('read_time')->default(3);
             $table->integer('national')->default(1);
             $table->integer('author');
             $table->integer('status')->default(1);

@@ -50,11 +50,15 @@ class DefenseIndustryContentController extends Controller
         $genel_id = DefenseIndustryCategory::where('id', $request->category)->first();
         $new = new DefenseIndustryContent();
 
+        $read_time_tr = (int)(round((str_word_count($request->description_tr))/200));
+        $read_time_en = (int)(round((str_word_count($request->description_en))/200));
+
         $new->category_id = $request->category;
         $new->defense_id = $genel_id->defense_id;
         $new->title = $request->name_tr;
         $new->short_description = $request->short_description_tr;
         $new->description = $request->description_tr;
+        $new->read_time = $read_time_tr;
         $new->seo_title = $request->seo_title_tr;
         $new->countries = $request->countries;
         $new->companies = $request->company;
@@ -104,6 +108,7 @@ class DefenseIndustryContentController extends Controller
         $new_en->defense_id = $genel_id->defense_id;
         $new_en->category_id = $request->category;
         $new_en->title = $request->name_en;
+        $new->read_time = $read_time_en;
         $new_en->short_description = $request->short_description_en;
         $new_en->description = $request->description_en;
         $new_en->content_id = $new->id;

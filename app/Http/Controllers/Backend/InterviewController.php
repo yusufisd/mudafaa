@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Imports\InterviewImport;
 use App\Models\Dialog;
 use App\Models\EnDialog;
 use App\Models\Interview;
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Throwable;
 use Illuminate\Validation\ValidationException;
 use Intervention\Image\Facades\Image;
+use Maatwebsite\Excel\Facades\Excel;
 
 class InterviewController extends Controller
 {
@@ -54,12 +56,17 @@ class InterviewController extends Controller
             'cevap_en' => 'required',
         ]);
 
+        $read_time_tr = (int)(round((str_word_count($request->description_tr))/200));
+        $read_time_en = (int)(round((str_word_count($request->description_en))/200));
+
+
         $new_interview = new Interview();
         $new_interview->title = $request->name_tr;
         $new_interview->link = $request->link_tr;
         $new_interview->live_time = $request->live_time;
         $new_interview->youtube = $request->youtube;
         $new_interview->author = $request->author;
+        $new_interview->read_time = $read_time_tr;
         $new_interview->short_description = $request->short_description_tr;
         $new_interview->description = $request->description_tr;
         $new_interview->seo_title = $request->seo_title_tr;
@@ -104,6 +111,7 @@ class InterviewController extends Controller
         $interview_en->title = $request->name_en;
         $interview_en->author = $request->author;
         $interview_en->link = $request->link_en;
+        $interview_en->read_time = $read_time_en;
         $interview_en->short_description = $request->short_description_en;
         $interview_en->description = $request->description_en;
         $interview_en->interview_id = $new_interview->id;
@@ -179,5 +187,12 @@ class InterviewController extends Controller
             ]);
         }
         return redirect()->route('admin.currentNews.list');
+    }
+
+    public function ice_aktar(Request $request){
+        Excel::import(new InterviewImport, $request->file('ice_aktar')->store('temp'));
+
+        Alert::success('Başarılı');
+        return back();
     }
 }

@@ -71,6 +71,8 @@ class CurrentNewsController extends Controller
                 'activity_seo_keywords_tr' => 'required',
             ]);
 
+            $read_time_tr = (int)(round((str_word_count($request->tinymce_activity_detail_tr))/200));
+            $read_time_en = (int)(round((str_word_count($request->tinymce_activity_detail_en))/200));
 
             $news = new CurrentNews();
             $news->category_id = $request->category;
@@ -80,6 +82,7 @@ class CurrentNewsController extends Controller
             $news->short_description = $request->activity_summary_tr;
             $news->description = $request->tinymce_activity_detail_tr;
             $news->tags = $request->etiket_tr;
+            $news->read_time = $read_time_tr;
             $news->link = $request->activity_url_tr;
             $news->seo_title = $request->activity_seo_title_tr;
             $news->seo_description = $request->activity_seo_description_tr;
@@ -117,6 +120,7 @@ class CurrentNewsController extends Controller
             $news_en->short_description = $request->activity_summary_en;
             $news_en->description = $request->tinymce_activity_detail_en;
             $news_en->tags = $request->etiket_en;
+            $news->read_time = $read_time_en;
             $news_en->currentNews_id = $news->id;
             $news_en->link = $request->activity_url_en;
             $news_en->seo_title = $request->activity_seo_title_en;
@@ -195,6 +199,9 @@ class CurrentNewsController extends Controller
                 "activity_seo_keywords_tr" => "required",
             ]);
 
+            $read_time_tr = (int)(round((str_word_count($request->tinymce_activity_detail_tr))/200));
+            $read_time_en = (int)(round((str_word_count($request->tinymce_activity_detail_en))/200));
+
             $news = CurrentNews::findOrFail($id);
 
             $news->category_id = $request->category;
@@ -204,7 +211,7 @@ class CurrentNewsController extends Controller
             $news->tags = $request->etiket_tr;
             $news->short_description = $request->activity_summary_tr;
             $news->description = $request->tinymce_activity_detail_tr;
-            $news->tags = $request->etiket_tr;
+            $news->read_time = $read_time_tr;
             $news->link = $request->activity_url_tr;
             $news->seo_title = $request->activity_seo_title_tr;
             $news->seo_description = $request->activity_seo_description_tr;
@@ -240,6 +247,7 @@ class CurrentNewsController extends Controller
             $news_en->short_description = $request->activity_summary_en;
             $news_en->description = $request->tinymce_activity_detail_en;
             $news_en->tags = $request->etiket_en;
+            $news_en->read_time = $request->read_time_en;
             $news_en->currentNews_id = $news->id;
             $news_en->link = $request->activity_url_en;
             $news_en->seo_title = $request->activity_seo_title_en;

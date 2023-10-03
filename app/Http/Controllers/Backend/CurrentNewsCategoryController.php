@@ -22,6 +22,7 @@ class CurrentNewsCategoryController extends Controller
     public function index()
     {
         $data = CurrentNewsCategory::orderBy('queue', 'asc')->get();
+
         return view('backend.currentNewsCategory.list', compact('data'));
     }
 

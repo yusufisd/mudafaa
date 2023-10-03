@@ -8,11 +8,13 @@ use App\Models\CurrentNewsCategory;
 use App\Models\EnCurrentNews;
 use App\Models\EnCurrentNewsCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CurrentNewsCategoryController extends Controller
 {
     public function index($id)
     {
+
         $local = \Session::get('applocale');
         if ($local == null) {
             $local = config('app.fallback_locale');

@@ -18,11 +18,12 @@ return new class extends Migration
             $table->integer('author');
             $table->date('live_time');
             $table->string('youtube')->nullable();
-            $table->string('short_description');
+            $table->longText('short_description');
+            $table->integer('read_time')->default(3);
             $table->longText('description');
             $table->string('link');
             $table->string('seo_title');
-            $table->string('seo_description');
+            $table->longText('seo_description');
             $table->string('seo_key');
             $table->integer('status')->default(1);
             $table->softDeletes();

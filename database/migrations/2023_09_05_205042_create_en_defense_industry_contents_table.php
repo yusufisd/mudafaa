@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('short_description');
             $table->longText('description');
             $table->integer('content_id');
+            $table->integer('read_time')->default(3);
             $table->integer('status')->default(1);
             $table->string('seo_title');
             $table->string('tags');

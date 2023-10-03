@@ -15,13 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('image');
-            $table->string('short_description');
+            $table->longText('short_description');
             $table->longText('description');
             $table->integer('author');
             $table->string('link');
+            $table->date('live_time');
+            $table->integer('read_time')->default(3);
             $table->integer('interview_id');
             $table->string('seo_title');
-            $table->string('seo_description');
+            $table->longText('seo_description');
             $table->string('seo_key');
             $table->integer('status')->default(1);
             $table->softDeletes();

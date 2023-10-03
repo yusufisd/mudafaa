@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('category_id');
             $table->string('title');
             $table->integer('headline')->default(1);
-            $table->integer('read_time')->default(5);
+            $table->integer('read_time')->default(3);
             $table->longText('short_description');
             $table->longText('description');
             $table->string('tags');
