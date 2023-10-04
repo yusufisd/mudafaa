@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('image');
-            $table->string('multiple_image');
+            $table->longText('multiple_image');
             $table->integer('category_id');
             $table->integer('defense_id');
             $table->longText('countries');

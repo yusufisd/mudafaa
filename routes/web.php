@@ -231,6 +231,8 @@ Route::middleware('lang')->group(function(){
                     Route::get('duzenle/{id?}', 'edit')->name('edit');
                     Route::post('guncelle/{id?}', 'update')->name('update');
                     Route::get('sil/{id?}', 'destroy')->name('destroy');
+                    Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
+
                 });
 
             // VİDEO KATEGORİ  CONTROLLER
@@ -353,6 +355,7 @@ Route::middleware('lang')->group(function(){
                 ->name('video.')
                 ->group(function () {
                     Route::get('liste', 'index')->name('list');
+                    Route::get('detay/{id?}', 'detail')->name('detail');
                 });
 
             // YORUM CONTROLLER

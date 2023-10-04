@@ -21,7 +21,7 @@ class ActivityController extends Controller
     public function index()
     {
         $data = Activity::latest()->get();
-        return view('backend.activity.list',compact('data'));
+        return view('backend.activity.list', compact('data'));
     }
 
     /**
@@ -46,39 +46,67 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'category' => 'required',
+            'author' => 'required',
+            'website' => 'required',
+            'ticket' => 'required',
+            'user_form' => 'required',
+            'start_date' => 'required',
+            'finish_date' => 'required',
+            'adres' => 'required',
+            'map' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'name_tr' => 'required',
+            'short_description_tr' => 'required',
+            'description_tr' => 'required',
+            'link_tr' => 'required',
+            'name_en' => 'required',
+            'country' => 'required',
+            'city' => 'required',
+            'short_description_en' => 'required',
+            'description_en' => 'required',
+            'link_en' => 'required',
+            'seo_title_tr' => 'required',
+            'seo_description_tr' => 'required',
+            'seo_key_tr' => 'required',
+            'seo_title_en' => 'required',
+            'seo_description_en' => 'required',
+            'seo_key_en' => 'required',
+            'image' => 'required',
+        ],[
+            'category.required' => 'category required',
+            'author.required' => 'author required',
+            'website.required' => 'website required',
+            'ticket.required' => 'ticket required',
+            'user_form.required' => 'user_form required',
+            'start_date.required' => 'start_date required',
+            'finish_date.required' => 'finish_date required',
+            'adres.required' => 'adres required',
+            'map.required' => 'map required',
+            'email.required' => 'email required',
+            'phone.required' => 'phone required',
+            'name_tr.required' => 'name_tr required',
+            'short_description_tr.required' => 'short_description_tr required',
+            'description_tr.required' => 'description_tr required',
+            'link_tr.required' => 'link_tr required',
+            'name_en.required' => 'name_en required',
+            'country.required' => 'country required',
+            'city.required' => 'city required',
+            'short_description_en.required' => 'short_description_en required',
+            'description_en.required' => 'description_en required',
+            'link_en.required' => 'link_en required',
+            'seo_title_tr.required' => 'seo_title_tr required',
+            'seo_description_tr.required' => 'seo_description_tr required',
+            'seo_key_tr.required' => 'seo_key_tr required',
+            'seo_title_en.required' => 'seo_title_en required',
+            'seo_description_en.required' => 'seo_description_en required',
+            'seo_key_en.required' => 'seo_key_en required',
+            'image.required' => 'image required',
+        ]);
         try {
             DB::beginTransaction();
-
-            $request->validate([
-                'category' => 'required',
-                'author' => 'required',
-                'website' => 'required',
-                'ticket' => 'required',
-                'user_form' => 'required',
-                'start_date' => 'required',
-                'finish_date' => 'required',
-                'adres' => 'required',
-                'map' => 'required',
-                'email' => 'required',
-                'phone' => 'required',
-                'name_tr' => 'required',
-                'short_description_tr' => 'required',
-                'description_tr' => 'required',
-                'link_tr' => 'required',
-                'name_en' => 'required',
-                'country' => 'required',
-                'city' => 'required',
-                'short_description_en' => 'required',
-                'description_en' => 'required',
-                'link_en' => 'required',
-                'seo_title_tr' => 'required',
-                'seo_description_tr' => 'required',
-                'seo_key_tr' => 'required',
-                'seo_title_en' => 'required',
-                'seo_description_en' => 'required',
-                'seo_key_en' => 'required',
-                'image' => 'required',
-            ]);
 
             $new = new Activity();
             $new->category = $request->category;
@@ -292,5 +320,4 @@ class ActivityController extends Controller
         }
         return redirect()->route('admin.activityCategory.list');
     }
-
 }

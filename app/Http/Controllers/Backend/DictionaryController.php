@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Imports\DictionaryImport;
 use App\Models\CurrentNews;
 use App\Models\CurrentNewsCategory;
 use App\Models\Dictionary;
@@ -16,6 +17,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 use Illuminate\Validation\ValidationException;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DictionaryController extends Controller
 {
@@ -300,5 +302,12 @@ class DictionaryController extends Controller
             ]);
         }
         return redirect()->route('admin.currentNews.list');
+    }
+
+    public function ice_aktar(Request $request){
+        Excel::import(new DictionaryImport, $request->file('ice_aktar')->store('temp'));
+
+        Alert::success('Başarılı');
+        return back();
     }
 }

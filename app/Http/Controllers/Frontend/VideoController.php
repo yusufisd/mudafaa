@@ -20,4 +20,9 @@ class VideoController extends Controller
 
         return view('frontend.video.list',compact('data','cat_first','cat_second','cat_third','cat_first_name','cat_second_name','cat_third_name'));
     }
+
+    public function detail($id){
+        $data = Video::findOrFail($id);
+        return view('frontend.video.detail',compact('data'));
+    }
 }

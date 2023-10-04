@@ -813,6 +813,26 @@
 @endsection
 @section('script')
     <script>
+        var slug = function(str) {
+            str = str.replace(/^\s+|\s+$/g, ''); // trim
+            str = str.toLowerCase();
+
+            // remove accents, swap ñ for n, etc
+            var from =
+                "ÁÄÂÀÃÅČÇĆĎÉĚËÈÊẼĔȆĞÍÌÎÏİŇÑÓÖÒÔÕØŘŔŠŞŤÚŮÜÙÛÝŸŽáäâàãåčçćďéěëèêẽĕȇğíìîïıňñóöòôõøðřŕšşťúůüùûýÿžþÞĐđßÆa·/_,:;";
+            var to =
+                "AAAAAACCCDEEEEEEEEGIIIIINNOOOOOORRSSTUUUUUYYZaaaaaacccdeeeeeeeegiiiiinnooooooorrsstuuuuuyyzbBDdBAa------";
+            for (var i = 0, l = from.length; i < l; i++) {
+                str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+            }
+
+            str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+                .replace(/\s+/g, '-') // collapse whitespace and replace by -
+                .replace(/-+/g, '-'); // collapse dashes
+
+            return str;
+        };
+
         ClassicEditor
             .create(document.querySelector('#editor'))
             .then(editor => {
@@ -838,11 +858,15 @@
     <script>
         function create_slug_tr() {
             var Text = $("#name_tr").val();
+            Text2 = (slug(Text));
+            $("#link_tr").val(Text2);
             $("#seo_title_tr").val(Text);
         }
 
         function create_slug_en() {
             var Text = $("#name_en").val();
+            Text2 = (slug(Text));
+            $("#link_en").val(Text2);
             $("#seo_title_en").val(Text);
         }
 

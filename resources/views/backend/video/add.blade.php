@@ -561,7 +561,7 @@
                                                                     <div class="col-lg-12 fv-row">
                                                                         <input type="text"
                                                                             id="activity_seo_keywords_tr"
-                                                                            name="seo_key_tr[]"
+                                                                            name="seo_key_tr[]"  
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                             value="" />
                                                                     </div>

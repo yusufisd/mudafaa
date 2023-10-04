@@ -212,8 +212,13 @@ class ActivityController extends Controller
         }
     }
 
-    public function calendar(){
-        $data = Activity::latest()->get();
-        return view('frontend.activity.calendar',compact('data'));
+    public function calendar(Request $request){
+        if (isset($request->category)){
+            $events = Activity::where('category', $request->category)->latest()->get();
+        }else{
+            $events = Activity::latest()->get();
+        }
+        $categories = ActivityCategory::all();
+        return view('frontend.activity.calendar',compact('events', 'categories'));
     }
 }

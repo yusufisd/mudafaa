@@ -94,16 +94,14 @@
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10 fv-row">
-                                                        <select name="category[]" aria-label="Seçiniz"
+                                                        <select name="category" aria-label="Seçiniz"
                                                             data-control="select2" data-placeholder="Seçiniz..."
-                                                            class="form-select form-select-solid form-select-lg fw-semibold"
-                                                            multiple>
-                                                            <option value="">Seçiniz...</option>
+                                                            class="form-select form-select-solid form-select-lg fw-semibold">
+
+                                                            <option >Seçiniz...</option>
+
                                                             @foreach ($categories as $cat)
-                                                                <option
-                                                                    {{ in_array($cat->id, $data_tr->category) != false ? 'selected' : '' }}>
-                                                                    {{ $cat->title }}
-                                                                </option>
+                                                                <option {{$cat->id == $data_tr->category_id ? 'selected' : ''}}>{{ $cat->title }}</option>
                                                             @endforeach
 
 
@@ -241,8 +239,8 @@
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10 fv-row">
-                                                                        <textarea name="description_tr" id="ozet_tr" onchange="create_ozet_tr()"
-                                                                            class="form-control form-control-lg form-control-solid" value="">{{$data_tr->description}}</textarea>
+                                                                        <textarea name="description_tr" id="editor" onchange="create_ozet_tr()"
+                                                                            class="form-control form-control-lg form-control-solid" >{{$data_tr->description}}</textarea>
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -361,7 +359,7 @@
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10 fv-row">
-                                                                        <textarea name="description_en" id="ozet_en" onchange="create_ozet_en()"
+                                                                        <textarea name="description_en" id="editor2" onchange="create_ozet_en()"
                                                                             class="form-control form-control-lg form-control-solid" value="">{{$data_en->description}}</textarea>
                                                                     </div>
                                                                     <!--end::Col-->
@@ -517,6 +515,7 @@
                                                         </div>
                                                         <!--end::Input group-->
 
+                                                        @dd($data_tr->seo_key)
                                                         <!--begin::Input group-->
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
@@ -533,9 +532,7 @@
                                                                             id="activity_seo_keywords_tr"
                                                                             name="seo_key_tr[]"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                            @foreach($data_tr->seo_key as $key)
-                                                                                value="{{$key}}"
-                                                                            @endforeach />
+                                                                            value="{{json_encode($data_tr->seo_key)}}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -546,29 +543,7 @@
                                                         <!--end::Input group-->
 
                                                     </div>
-                                                    <!--end::Card body-->
-                                                    <!--begin::Actions-->
-                                                    <div class="card-footer d-flex justify-content-between py-6 px-0">
-                                                        <!--begin::Input group-->
-                                                        <div class="row mb-0">
-                                                            <label
-                                                                class="col-lg-8 col-form-label fw-bold fs-6 ">Durum</label>
-                                                            <div class="col-lg-4 d-flex align-items-center">
-                                                                <div
-                                                                    class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                    <input class="form-check-input w-50px h-25px"
-                                                                        type="checkbox" id="allowactivity_seo_tr"
-                                                                        {{$data_tr->seo_statu == 1 ? 'checked' : ''}} name="seo_statu_tr" />
-                                                                    <label class="form-check-label"
-                                                                        for="allowactivity_seo_tr"></label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!--end::Input group-->
-
-                                                    </div>
-                                                    <!--end::Actions-->
-                                                    <!--end::Form-->
+                                                    
                                                 </div>
                                                 <div class="tab-pane fade" id="tab_seo_en" role="tabpanel">
                                                     <!--begin::Form-->
@@ -629,9 +604,7 @@
                                                                             id="activity_seo_keywords_en"
                                                                             name="seo_key_en[]"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                            @foreach($data_en->seo_key as $key)
-                                                                                value="{{$key}}"
-                                                                            @endforeach /> 
+                                                                            value="" /> 
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -642,30 +615,7 @@
                                                         <!--end::Input group-->
 
                                                     </div>
-                                                    <!--end::Card body-->
-                                                    <!--begin::Actions-->
-                                                    <div class="card-footer d-flex justify-content-between py-6 px-0">
-
-                                                        <!--begin::Input group-->
-                                                        <div class="row mb-0">
-                                                            <label
-                                                                class="col-lg-8 col-form-label fw-bold fs-6 ">Durum</label>
-                                                            <div class="col-lg-4 d-flex align-items-center">
-                                                                <div
-                                                                    class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                    <input class="form-check-input w-50px h-25px"
-                                                                        type="checkbox" id="allowactivity_seo_en"
-                                                                        {{$data_en->seo_statu == 1 ? 'checked' : ''}} name="seo_statu_en" />
-                                                                    <label class="form-check-label"
-                                                                        for="allowactivity_seo_en"></label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!--end::Input group-->
-
-                                                    </div>
-                                                    <!--end::Actions-->
-                                                    <!--end::Form-->
+                                                    
                                                 </div>
                                             </div>
 
@@ -733,12 +683,12 @@
         }
 
         function create_ozet_tr() {
-            var Text = $("#ozet_tr").val();
+            var Text = $("#editor").val();
             $("#seo_description_tr").val(Text);
         }
 
         function create_ozet_en() {
-            var Text = $("#ozet_en").val();
+            var Text = $("#editor2").val();
             $("#seo_description_en").val(Text);
         }
 

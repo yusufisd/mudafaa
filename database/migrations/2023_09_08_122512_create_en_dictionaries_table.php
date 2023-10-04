@@ -14,12 +14,15 @@ return new class extends Migration
         Schema::create('en_dictionaries', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('image')->nullable();
             $table->longText('description');
             $table->string('link');
+            $table->string('author');
+            $table->date('live_date');
             $table->string('seo_title');
             $table->string('seo_description');
             $table->string('seo_key');
-            $table->integer('seo_statu')->default(1);
+            $table->integer('status')->default(1);
             $table->integer('dictionary_id');
             $table->softDeletes();
             $table->timestamps();

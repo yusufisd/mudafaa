@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('dictionaries', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('title');
             $table->longText('description');
             $table->string('link');
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('seo_title');
             $table->string('seo_description');
             $table->string('seo_key');
-            $table->integer('seo_statu')->default(1);
+            $table->integer('status')->default(1);
             $table->softDeletes();
             $table->timestamps();
         });

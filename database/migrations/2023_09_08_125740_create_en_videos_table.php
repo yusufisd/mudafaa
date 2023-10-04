@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('en_videos', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('description');
+            $table->longText('description');
             $table->string('link');
             $table->string('youtube');
             $table->string('seo_title');
