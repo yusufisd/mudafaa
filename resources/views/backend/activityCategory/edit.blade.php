@@ -194,19 +194,14 @@
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <div class="row">
-                                                                                    <div class="col-lg-10">
+                                                                                    <div class="col-lg-12">
                                                                                         <input type="text"
                                                                                             name="link_tr" id="link_tr"
                                                                                             id="link_tr"
                                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                             value="{{$data_tr->link}}" />
                                                                                     </div>
-                                                                                    <div class="col-lg-2">
-                                                                                        <button type="submit"
-                                                                                            class="btn btn-outline btn-outline-success w-100"
-                                                                                            id="blog_category_detail_url_btn_tr">URL
-                                                                                            ÜRET</button>
-                                                                                    </div>
+                                                                                    
 
                                                                                 </div>
                                                                             </div>
@@ -290,19 +285,13 @@
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <div class="row">
-                                                                                    <div class="col-lg-10">
+                                                                                    <div class="col-lg-12">
                                                                                         <input type="text"
                                                                                             id="link_en" name="link_en"
                                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                             value="{{$data_en->link}}" />
                                                                                     </div>
-                                                                                    <div class="col-lg-2">
-                                                                                        <button type="submit"
-                                                                                            class="btn btn-outline btn-outline-success w-100"
-                                                                                            id="blog_category_detail_url_btn_en">URL
-                                                                                            ÜRET</button>
-                                                                                    </div>
-
+                                                                                   
                                                                                 </div>
                                                                             </div>
                                                                             <!--end::Col-->
@@ -435,7 +424,7 @@
                                                                         <input type="text" name="seo_key_tr[]"
                                                                             id="seo_key_tr"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                            value="{{$data_tr->seo_key[0]}}" />
+                                                                            value="{{json_encode($data_tr->seo_key)}}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -509,7 +498,7 @@
                                                                         <input type="text" name="seo_key_en[]"
                                                                             id="seo_key_en"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                            value="{{$data_en->seo_key[0]}}" />
+                                                                            value="{{json_encode($data_en->seo_key)}}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>

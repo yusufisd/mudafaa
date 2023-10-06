@@ -141,7 +141,7 @@
                                                             title="Görüntüle">
                                                             <i class="fa-solid fa-eye fs-3"></i>
                                                         </a>
-                                                        <a href="{{ route('admin.currentNewsCategory.edit', $item->id) }}"
+                                                        <a href="{{ route('admin.videoCategory.edit', $item->id) }}"
                                                             class="btn btn-icon btn-bg-light btn-active-color-secondary btn-sm me-1 px-2"
                                                             title="Düzenle">
                                                             <i class="fa-regular fa-pen-to-square fs-3"></i>

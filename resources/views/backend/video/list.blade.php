@@ -81,7 +81,7 @@
                                                 <th>{{ __('message.yazar') }}<i class="fa fa-sort ms-3"></i></th>
                                                 <th>{{ __('message.başlık') }}<i class="fa fa-sort ms-3"></i></th>
                                                 <th>{{ __('message.kategori') }}<i class="fa fa-sort ms-3"></i></th>
-                                                <th>{{ __('message.durum') }}<i class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center">{{ __('message.durum') }}<i class="fa fa-sort ms-3"></i></th>
                                                 <th class="text-center">{{ __('message.işlem') }}<i
                                                         class="fa fa-sort ms-3"></i></th>
                                             </tr>

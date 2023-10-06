@@ -202,6 +202,8 @@ Route::middleware('lang')->group(function(){
                     Route::get('duzenle/{id?}', 'edit')->name('edit');
                     Route::post('guncelle/{id?}', 'update')->name('update');
                     Route::get('sil/{id?}', 'destroy')->name('destroy');
+                    Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
+
                 });
 
             // RÖPORTAJ  CONTROLLER
@@ -232,6 +234,7 @@ Route::middleware('lang')->group(function(){
                     Route::post('guncelle/{id?}', 'update')->name('update');
                     Route::get('sil/{id?}', 'destroy')->name('destroy');
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
+                    Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
 
                 });
 
@@ -273,6 +276,8 @@ Route::middleware('lang')->group(function(){
                     Route::get('duzenle/{id?}', 'edit')->name('edit');
                     Route::post('guncelle/{id?}', 'update')->name('update');
                     Route::get('sil/{id?}', 'destroy')->name('destroy');
+                    Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
+
                 });
 
             // FİRMA KATEGORİ CONTROLLER
@@ -287,6 +292,8 @@ Route::middleware('lang')->group(function(){
                     Route::post('guncelle/{id?}', 'update')->name('update');
                     Route::get('sil/{id?}', 'destroy')->name('destroy');
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
+                    Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
+
 
                 });
 

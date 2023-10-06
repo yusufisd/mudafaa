@@ -1038,7 +1038,7 @@
                             </div>
                             <div class="post-content">
                                 <a href="gaming.html" class="mission restricted_category_title">
-                                    {{ $item->category->title }} </a>
+                                    {{ $item->Category->title  }} </a>
                                 <h3 class="post-title">
                                     <a href="single-post1.html" class="section_6_restricted_title">
                                         {{ $item->title }}

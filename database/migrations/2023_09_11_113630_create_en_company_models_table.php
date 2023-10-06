@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->integer('company_id');
+            $table->string('image');
+            $table->integer('category');
             $table->longText('description');
             $table->string('seo_title');
             $table->string('seo_description');

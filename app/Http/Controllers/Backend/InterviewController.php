@@ -141,9 +141,11 @@ class InterviewController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit( $id)
     {
-        //
+        $users = UserModel::latest()->get();
+        $now = Carbon::now();
+        return view('bcakend.interview.edit',compact('data_tr','data_en','users','now'));
     }
 
     /**
@@ -174,19 +176,19 @@ class InterviewController extends Controller
             $data->status = !$data->status;
             $data->save();
 
-            logKayit(['Haber Yönetimi ', 'Haber durumu değiştirildi']);
-            Alert::success('Haber Durumu Değiştirildi');
+            logKayit(['Röportaj Yönetimi ', 'Röportaj durumu değiştirildi']);
+            Alert::success('Röportaj Durumu Değiştirildi');
             DB::commit();
         } catch (Throwable $e) {
             DB::rollBack();
 
-            logKayit(['Haber Yönetimi ', 'Haber durumu değiştirilemedi', 0]);
-            Alert::error('Haber durum değiştirmede Hata');
+            logKayit(['Röportaj Yönetimi ', 'Röportaj durumu değiştirilemedi', 0]);
+            Alert::error('Röportaj durum değiştirmede Hata');
             throw ValidationException::withMessages([
                 'error' => 'Bir hatayla karşılaşıldı.'
             ]);
         }
-        return redirect()->route('admin.currentNews.list');
+        return redirect()->route('admin.interview.list');
     }
 
     public function ice_aktar(Request $request){

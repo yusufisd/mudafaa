@@ -35,20 +35,20 @@ class CurrentNewsController extends Controller
     public function create()
     {
         $now = Carbon::now();
-        $categories = CurrentNewsCategory::orderBy('queue','asc')->get();
+        $categories = CurrentNewsCategory::orderBy('queue', 'asc')->get();
         $users = UserModel::latest()->get();
         return view('backend.currentNews.add', compact('now', 'categories', 'users'));
     }
 
     /**
-     * Store a newly created resource in storage.   
+     * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        try {
-            DB::beginTransaction();
-
-            $request->validate([
+        $request->validate(
+            [
+                'image' => 'required',
+                'mobil_image' => 'required',
                 'activity_name_en' => 'required',
                 'activity_summary_en' => 'required',
                 'tinymce_activity_detail_en' => 'required',
@@ -64,15 +64,64 @@ class CurrentNewsController extends Controller
                 'etiket_tr' => 'required',
                 'activity_summary_tr' => 'required',
                 'tinymce_activity_detail_tr' => 'required',
-                'etiket_tr' => 'required',
                 'activity_url_tr' => 'required',
                 'activity_seo_title_tr' => 'required',
                 'activity_seo_description_tr' => 'required',
                 'activity_seo_keywords_tr' => 'required',
-            ]);
+            ],
+            [
+                'image.required' => 'Görsel boş bırakılamaz',
+                'mobil_image.required' => 'Hikaye görseli boş bırakılamaz',
+                'activity_name_en' => 'Başlık (İNGİLİZCE) boş bırakılamaz',
+                'activity_summary_en' => 'Kısa açıklama (İNGİLİZCE) boş bırakılamaz',
+                'tinymce_activity_detail_en' => 'İçerik (İNGİLİZCE) boş bırakılamaz',
+                'etiket_en' => 'Etiket (İNGİLİZCE) boş bırakılamaz',
+                'activity_url_en' => 'Link (İNGİLİZCE) boş bırakılamaz',
+                'activity_seo_title_en' => 'Seo başlığı (İNGİLİZCE) boş bırakılamaz',
+                'activity_seo_description_en' => 'Seo açıklaması (İNGİLİZCE) boş bırakılamaz',
+                'activity_seo_keywords_en' => 'Seo anahtarı (İNGİLİZCE) boş bırakılamaz',
+                'category' => 'Kategori boş bırakılamaz',
+                'author' => 'Yazar boş bırakılamaz',
+                'activity_on_location_tr' => 'Yayın tarihi boş bırakılamaz',
+                'activity_name_tr' => 'Başlık (TÜRKÇE) boş bırakılamaz',
+                'etiket_tr' => 'Etiket (TÜRKÇE) boş bırakılamaz',
+                'activity_summary_tr' => 'Kısa açıklama (TÜRKÇE) boş bırakılamaz',
+                'tinymce_activity_detail_tr' => 'İçerik (TÜRKÇE) boş bırakılamaz',
+                'activity_url_tr' => 'Link (TÜRKÇE) boş bırakılamaz',
+                'activity_seo_title_tr' => 'Seo başlığı (TÜRKÇE) boş bırakılamaz',
+                'activity_seo_description_tr' => 'Seo açıklaması (TÜRKÇE) boş bırakılamaz',
+                'activity_seo_keywords_tr' => 'Seo anahtarı (TÜRKÇE) boş bırakılamaz',
+            ],
+        );
 
-            $read_time_tr = (int)(round((str_word_count($request->tinymce_activity_detail_tr))/200));
-            $read_time_en = (int)(round((str_word_count($request->tinymce_activity_detail_en))/200));
+
+            $veri = json_decode(json_decode(json_encode($request->activity_seo_keywords_tr[0])));
+            $merge = [];
+            foreach ($veri as $v) {
+                $merge[] = $v->value;
+            }
+
+            $tags_tr = json_decode(json_decode(json_encode(($request->etiket_tr[0]))));
+            $tag_tr = [];
+            foreach($tags_tr as $v){
+                $tag_tr[] = $v->value;
+            }
+
+
+            $veri_en = json_decode(json_decode(json_encode($request->activity_seo_keywords_en[0])));
+            $merge_en = [];
+            foreach ($veri_en as $v) {
+                $merge_en[] = $v->value;
+            }
+
+            $tags_en = json_decode(json_decode(json_encode(($request->etiket_en[0]))));
+            $tag_en = [];
+            foreach($tags_en as $v){
+                $tag_en[] = $v->value;
+            }
+
+            $read_time_tr = (int) round(str_word_count($request->tinymce_activity_detail_tr) / 200);
+            $read_time_en = (int) round(str_word_count($request->tinymce_activity_detail_en) / 200);
 
             $news = new CurrentNews();
             $news->category_id = $request->category;
@@ -81,24 +130,28 @@ class CurrentNewsController extends Controller
             $news->title = $request->activity_name_tr;
             $news->short_description = $request->activity_summary_tr;
             $news->description = $request->tinymce_activity_detail_tr;
-            $news->tags = $request->etiket_tr;
+            $news->tags = $tag_tr;
             $news->read_time = $read_time_tr;
             $news->link = $request->activity_url_tr;
             $news->seo_title = $request->activity_seo_title_tr;
             $news->seo_description = $request->activity_seo_description_tr;
-            $news->seo_key = $request->activity_seo_keywords_tr;
+            $news->seo_key = $merge;
             if ($request->file('image') != null) {
                 $image = $request->file('image');
                 $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
                 $save_url = 'assets/uploads/currentNews/' . $image_name;
-                Image::make($image)->resize(960, 520)->save($save_url);
+                Image::make($image)
+                    ->resize(960, 520)
+                    ->save($save_url);
                 $news->image = $save_url;
             }
             if ($request->file('mobil_image') != null) {
                 $image = $request->file('mobil_image');
                 $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
                 $save_url = 'assets/uploads/currentNews/' . $image_name;
-                Image::make($image)->resize(97, 123)->save($save_url);
+                Image::make($image)
+                    ->resize(97, 123)
+                    ->save($save_url);
                 $news->mobil_image = $save_url;
             }
             if (!isset($request->manset_tr)) {
@@ -119,29 +172,30 @@ class CurrentNewsController extends Controller
             $news_en->title = $request->activity_name_en;
             $news_en->short_description = $request->activity_summary_en;
             $news_en->description = $request->tinymce_activity_detail_en;
-            $news_en->tags = $request->etiket_en;
-            $news->read_time = $read_time_en;
+            $news_en->tags = $tag_en;
+            $news_en->read_time = $read_time_en;
             $news_en->currentNews_id = $news->id;
             $news_en->link = $request->activity_url_en;
             $news_en->seo_title = $request->activity_seo_title_en;
             $news_en->seo_description = $request->activity_seo_description_en;
-            $news_en->seo_key = $request->activity_seo_keywords_en;
+            $news_en->seo_key = $merge_en;
             if ($request->file('image') != null) {
                 $image = $request->file('image');
                 $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
                 $save_url = 'assets/uploads/currentNews/' . $image_name;
-                Image::make($image)->resize(960, 520)->save($save_url);
+                Image::make($image)
+                    ->resize(960, 520)
+                    ->save($save_url);
                 $news_en->image = $save_url;
             }
             if ($request->file('mobil_image') != null) {
                 $image = $request->file('mobil_image');
                 $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
                 $save_url = 'assets/uploads/currentNews/' . $image_name;
-                Image::make($image)->resize(97, 123)->save($save_url);
+                Image::make($image)
+                    ->resize(97, 123)
+                    ->save($save_url);
                 $news_en->mobil_image = $save_url;
-            }
-            if (!isset($request->seo_statu_en)) {
-                $news_en->seo_statu = 0;
             }
             if (!isset($request->manset_en)) {
                 $news_en->headline = 0;
@@ -154,18 +208,9 @@ class CurrentNewsController extends Controller
             logKayit(['Haber Yönetimi ', 'Haber eklendi']);
             Alert::success('Haber Başarıyla Eklendi');
             DB::commit();
-        } catch (Throwable $e) {
-            DB::rollBack();
-
-            logKayit(['Haber Yönetimi ', 'Haber eklemede hata', 0]);
-            Alert::error('Haber Eklemede Hata');
-            throw ValidationException::withMessages([
-                'error' => 'Tüm alanların doldurulması zorunludur.'
-            ]);
-        }
+        
         return redirect()->route('admin.currentNews.list');
     }
-
 
     public function edit($id)
     {
@@ -181,26 +226,82 @@ class CurrentNewsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate(
+            [
+                'activity_name_en' => 'required',
+                'activity_summary_en' => 'required',
+                'tinymce_activity_detail_en' => 'required',
+                'etiket_en' => 'required',
+                'activity_url_en' => 'required',
+                'activity_seo_title_en' => 'required',
+                'activity_seo_description_en' => 'required',
+                'activity_seo_keywords_en' => 'required',
+                'category' => 'required',
+                'author' => 'required',
+                'activity_on_location_tr' => 'required',
+                'activity_name_tr' => 'required',
+                'etiket_tr' => 'required',
+                'activity_summary_tr' => 'required',
+                'tinymce_activity_detail_tr' => 'required',
+                'activity_url_tr' => 'required',
+                'activity_seo_title_tr' => 'required',
+                'activity_seo_description_tr' => 'required',
+                'activity_seo_keywords_tr' => 'required',
+            ],
+            [
+                'activity_name_en' => 'Başlık (İNGİLİZCE) boş bırakılamaz',
+                'activity_summary_en' => 'Kısa açıklama (İNGİLİZCE) boş bırakılamaz',
+                'tinymce_activity_detail_en' => 'İçerik (İNGİLİZCE) boş bırakılamaz',
+                'etiket_en' => 'Etiket (İNGİLİZCE) boş bırakılamaz',
+                'activity_url_en' => 'Link (İNGİLİZCE) boş bırakılamaz',
+                'activity_seo_title_en' => 'Seo başlığı (İNGİLİZCE) boş bırakılamaz',
+                'activity_seo_description_en' => 'Seo açıklaması (İNGİLİZCE) boş bırakılamaz',
+                'activity_seo_keywords_en' => 'Seo anahtarı (İNGİLİZCE) boş bırakılamaz',
+                'category' => 'Kategori boş bırakılamaz',
+                'author' => 'Yazar boş bırakılamaz',
+                'activity_on_location_tr' => 'Yayın tarihi boş bırakılamaz',
+                'activity_name_tr' => 'Başlık (TÜRKÇE) boş bırakılamaz',
+                'etiket_tr' => 'Etiket (TÜRKÇE) boş bırakılamaz',
+                'activity_summary_tr' => 'Kısa açıklama (TÜRKÇE) boş bırakılamaz',
+                'tinymce_activity_detail_tr' => 'İçerik (TÜRKÇE) boş bırakılamaz',
+                'activity_url_tr' => 'Link (TÜRKÇE) boş bırakılamaz',
+                'activity_seo_title_tr' => 'Seo başlığı (TÜRKÇE) boş bırakılamaz',
+                'activity_seo_description_tr' => 'Seo açıklaması (TÜRKÇE) boş bırakılamaz',
+                'activity_seo_keywords_tr' => 'Seo anahtarı (TÜRKÇE) boş bırakılamaz',
+            ],
+        );
         try {
             DB::beginTransaction();
 
-            $request->validate([
-                "category" => "required",
-                "author" => "required",
-                "activity_on_location_tr" => "required",
-                "activity_name_tr" => "required",
-                "etiket_tr" => "required",
-                "activity_summary_tr" => "required",
-                "tinymce_activity_detail_tr" => "required",
-                "etiket_tr" => "required",
-                "activity_url_tr" => "required",
-                "activity_seo_title_tr" => "required",
-                "activity_seo_description_tr" => "required",
-                "activity_seo_keywords_tr" => "required",
-            ]);
+            $veri = json_decode(json_decode(json_encode($request->activity_seo_keywords_tr[0])));
+            $merge = [];
+            foreach ($veri as $v) {
+                $merge[] = $v->value;
+            }
 
-            $read_time_tr = (int)(round((str_word_count($request->tinymce_activity_detail_tr))/200));
-            $read_time_en = (int)(round((str_word_count($request->tinymce_activity_detail_en))/200));
+            $tags_tr = json_decode(json_decode(json_encode(($request->etiket_tr[0]))));
+            $tag_tr = [];
+            foreach($tags_tr as $v){
+                $tag_tr[] = $v->value;
+            }
+
+
+            $veri_en = json_decode(json_decode(json_encode($request->activity_seo_keywords_en[0])));
+            $merge_en = [];
+            foreach ($veri_en as $v) {
+                $merge_en[] = $v->value;
+            }
+
+            $tags_en = json_decode(json_decode(json_encode(($request->etiket_en[0]))));
+            $tag_en = [];
+            foreach($tags_en as $v){
+                $tag_en[] = $v->value;
+            }
+
+            $read_time_tr = (int) round(str_word_count($request->tinymce_activity_detail_tr) / 200);
+            $read_time_en = (int) round(str_word_count($request->tinymce_activity_detail_en) / 200);
+
+           
 
             $news = CurrentNews::findOrFail($id);
 
@@ -208,26 +309,30 @@ class CurrentNewsController extends Controller
             $news->author_id = $request->author;
             $news->live_time = $request->activity_on_location_tr;
             $news->title = $request->activity_name_tr;
-            $news->tags = $request->etiket_tr;
             $news->short_description = $request->activity_summary_tr;
             $news->description = $request->tinymce_activity_detail_tr;
+            $news->tags = $tag_tr;
             $news->read_time = $read_time_tr;
             $news->link = $request->activity_url_tr;
             $news->seo_title = $request->activity_seo_title_tr;
             $news->seo_description = $request->activity_seo_description_tr;
-            $news->seo_key = $request->activity_seo_keywords_tr;
+            $news->seo_key = $merge;
             if ($request->file('image') != null) {
                 $image = $request->file('image');
                 $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
                 $save_url = 'assets/uploads/currentNews/' . $image_name;
-                Image::make($image)->resize(960, 520)->save($save_url);
+                Image::make($image)
+                    ->resize(960, 520)
+                    ->save($save_url);
                 $news->image = $save_url;
             }
             if ($request->file('mobil_image') != null) {
                 $image = $request->file('mobil_image');
                 $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
                 $save_url = 'assets/uploads/currentNews/' . $image_name;
-                Image::make($image)->resize(97, 123)->save($save_url);
+                Image::make($image)
+                    ->resize(97, 123)
+                    ->save($save_url);
                 $news->mobil_image = $save_url;
             }
             if (!isset($request->manset_tr)) {
@@ -243,16 +348,36 @@ class CurrentNewsController extends Controller
             $news->save();
 
             $news_en = EnCurrentNews::where('currentNews_id', $id)->first();
+            $news_en->author_id = $request->author;
+            $news_en->category_id = $request->category;
             $news_en->title = $request->activity_name_en;
             $news_en->short_description = $request->activity_summary_en;
             $news_en->description = $request->tinymce_activity_detail_en;
-            $news_en->tags = $request->etiket_en;
-            $news_en->read_time = $request->read_time_en;
+            $news_en->tags = $tag_en;
+            $news_en->read_time = $read_time_en;
             $news_en->currentNews_id = $news->id;
             $news_en->link = $request->activity_url_en;
             $news_en->seo_title = $request->activity_seo_title_en;
             $news_en->seo_description = $request->activity_seo_description_en;
-            $news_en->seo_key = $request->activity_seo_keywords_en;
+            $news_en->seo_key = $merge_en;
+            if ($request->file('image') != null) {
+                $image = $request->file('image');
+                $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+                $save_url = 'assets/uploads/currentNews/' . $image_name;
+                Image::make($image)
+                    ->resize(960, 520)
+                    ->save($save_url);
+                $news_en->image = $save_url;
+            }
+            if ($request->file('mobil_image') != null) {
+                $image = $request->file('mobil_image');
+                $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+                $save_url = 'assets/uploads/currentNews/' . $image_name;
+                Image::make($image)
+                    ->resize(97, 123)
+                    ->save($save_url);
+                $news_en->mobil_image = $save_url;
+            }
             if (!isset($request->seo_statu_en)) {
                 $news_en->seo_statu = 0;
             }
@@ -264,6 +389,8 @@ class CurrentNewsController extends Controller
             }
             $news_en->save();
 
+            
+
             logKayit(['Haber Yönetimi ', 'Haber düzenlendi']);
             Alert::success('Haber Başarıyla Düzenlendi');
             DB::commit();
@@ -273,12 +400,11 @@ class CurrentNewsController extends Controller
             logKayit(['Haber Yönetimi ', 'Haber düzenlemede hata', 0]);
             Alert::error('Haber Düzenlemede Hata');
             throw ValidationException::withMessages([
-                'error' => 'Tüm alanların doldurulması zorunludur.'
+                'error' => 'Tüm alanların doldurulması zorunludur.',
             ]);
         }
         return redirect()->route('admin.currentNews.list');
     }
-
 
     public function destroy($id)
     {
@@ -297,7 +423,7 @@ class CurrentNewsController extends Controller
             logKayit(['Haber Yönetimi ', 'Haber silmede hata', 0]);
             Alert::error('Haber Silmede Hata');
             throw ValidationException::withMessages([
-                'error' => 'Bir hatayla karşılaşıldı.'
+                'error' => 'Bir hatayla karşılaşıldı.',
             ]);
         }
         return redirect()->route('admin.currentNews.list');
@@ -320,12 +446,11 @@ class CurrentNewsController extends Controller
             logKayit(['Haber Yönetimi ', 'Manşet durumu değiştirilemedi', 0]);
             Alert::error('Manşet değiştirmede Hata');
             throw ValidationException::withMessages([
-                'error' => 'Bir hatayla karşılaşıldı.'
+                'error' => 'Bir hatayla karşılaşıldı.',
             ]);
         }
         return redirect()->route('admin.currentNews.list');
     }
-
 
     public function change_status($id)
     {
@@ -344,35 +469,39 @@ class CurrentNewsController extends Controller
             logKayit(['Haber Yönetimi ', 'Haber durumu değiştirilemedi', 0]);
             Alert::error('Haber durum değiştirmede Hata');
             throw ValidationException::withMessages([
-                'error' => 'Bir hatayla karşılaşıldı.'
+                'error' => 'Bir hatayla karşılaşıldı.',
             ]);
         }
         return redirect()->route('admin.currentNews.list');
     }
 
-    public function commentList($id){
-        $data = Comment::where('post_id',$id)->get();
-        return view('backend.currentNews.comments.list',compact('data'));
+    public function commentList($id)
+    {
+        $data = Comment::where('post_id', $id)->get();
+        return view('backend.currentNews.comments.list', compact('data'));
     }
 
-    public function changeCommentStatus($id){
+    public function changeCommentStatus($id)
+    {
         $data = Comment::findOrFail($id);
         $data->update([
-            "status" => !($data->status)
+            'status' => !$data->status,
         ]);
         Alert::success('Yorum Statüsü Değiştirildi');
         return redirect()->back();
     }
 
-    public function commentDestroy($id){
+    public function commentDestroy($id)
+    {
         $data = Comment::findOrFail($id);
         $data->delete();
         Alert::success('Yorum Silindi');
         return redirect()->back();
     }
 
-    public function ice_aktar(Request $request){
-        Excel::import(new CurrentNewsImport, $request->file('ice_aktar')->store('temp'));
+    public function ice_aktar(Request $request)
+    {
+        Excel::import(new CurrentNewsImport(), $request->file('ice_aktar')->store('temp'));
 
         Alert::success('Başarılı');
         return back();

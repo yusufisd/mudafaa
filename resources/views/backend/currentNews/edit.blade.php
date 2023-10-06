@@ -64,7 +64,11 @@
                                             <!--begin::Form-->
                                             <!--begin::Card body-->
                                             <div class="card-body px-3 py-9">
-                                                <!--begin::Input group-->
+
+                                                <div style="text-align: center; margin-bottom:5%">
+                                                    <img src="/{{ $data_tr->image }}"
+                                                        style="width: 20%; border-radius:15px;" alt="">
+                                                </div>
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
                                                     <label class="col-lg-2 col-form-label required fw-bold fs-6 ps-5">Görsel
@@ -72,10 +76,7 @@
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10">
-                                                        <div class="row">
-                                                            <img src="/{{ $data_tr->image }}"
-                                                                style="width: 30%; border-radius:5%" alt="">
-                                                        </div><br>
+                                                        
                                                         <div class="row">
                                                             <input type="file" class="form-control" name="image"
                                                                 id="">
@@ -93,10 +94,10 @@
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10 fv-row">
-                                                        <select name="category[]" aria-label="Seçiniz"
+                                                        <select name="category" aria-label="Seçiniz"
                                                             data-control="select2" data-placeholder="Seçiniz..."
                                                             class="form-select form-select-solid form-select-lg fw-semibold"
-                                                            multiple>
+                                                            >
                                                             <option value="">Seçiniz...</option>
                                                             @foreach ($categories as $cat)
                                                                 <option
@@ -281,7 +282,7 @@
                                                                                 <input type="text" id="etiket_tr"
                                                                                     name="etiket_tr[]"
                                                                                     class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                    value="{{ implode(',', $data_tr->tags) }}" />
+                                                                                    value="{{ json_encode( $data_tr->tags) }}" />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -307,19 +308,14 @@
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <div class="row">
-                                                                                    <div class="col-lg-10">
+                                                                                    <div class="col-lg-12">
                                                                                         <input type="text"
                                                                                             name="activity_url_tr"
                                                                                             id="activity_url_tr"
                                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                             value="{{ $data_tr->link }}" />
                                                                                     </div>
-                                                                                    <div class="col-lg-2">
-                                                                                        <button type="submit"
-                                                                                            class="btn btn-outline btn-outline-success w-100"
-                                                                                            id="activity_detail_url_btn_tr">URL
-                                                                                            ÜRET</button>
-                                                                                    </div>
+                                                                                    
 
                                                                                 </div>
                                                                             </div>
@@ -457,10 +453,7 @@
                                                                                 <input type="text" id="etiket_en"
                                                                                     name="etiket_en[]"
                                                                                     class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                    value="
-                                                                                    @foreach ($data_en->tags as $key => $value)
-                                                                                    {{ $value }} @endforeach
-                                                                                    " />
+                                                                                    value="{{ json_encode( $data_en->tags) }}"/>
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -486,19 +479,14 @@
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <div class="row">
-                                                                                    <div class="col-lg-10">
+                                                                                    <div class="col-lg-12">
                                                                                         <input type="text"
                                                                                             name="activity_url_en"
                                                                                             id="activity_url_en"
                                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                             value="{{ $data_en->link }}" />
                                                                                     </div>
-                                                                                    <div class="col-lg-2">
-                                                                                        <button type="submit"
-                                                                                            class="btn btn-outline btn-outline-success w-100"
-                                                                                            id="activity_detail_url_btn_tr">URL
-                                                                                            ÜRET</button>
-                                                                                    </div>
+                                                                                    
 
                                                                                 </div>
                                                                             </div>
@@ -646,7 +634,7 @@
                                                                             id="activity_seo_keywords_tr"
                                                                             name="activity_seo_keywords_tr[]"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            value="{{ implode(',', $data_tr->seo_key) }}" />
+                                                                            value="{{ json_encode( $data_tr->seo_key) }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -722,7 +710,7 @@
                                                                             id="activity_seo_keywords_en"
                                                                             name="activity_seo_keywords_en[]"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            value="{{ implode(',',$data_en->seo_key) }}" />
+                                                                            value="{{ json_encode($data_en->seo_key) }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>

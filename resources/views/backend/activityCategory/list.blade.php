@@ -97,8 +97,8 @@
                                                     </div>
                                                 </th>
                                                 <th> {{ __('message.başlık') }} <i class="fa fa-sort ms-3"></i></th>
-                                                <th> {{ __('message.sıralama') }} <i class="fa fa-sort ms-3"></i></th>
-                                                <th> {{ __('message.durum') }} <i class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center"> {{ __('message.sıralama') }} <i class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center"> {{ __('message.durum') }} <i class="fa fa-sort ms-3"></i></th>
                                                 <th> {{ __('message.işlem') }} <i class="fa fa-sort ms-3"></i></th>
                                             </tr>
                                         </thead>
@@ -114,8 +114,8 @@
                                                         </div>
                                                     </td>
                                                     <td> {{ $item->title }} </td>
-                                                    <td> {{ $item->queue }} </td>
-                                                    <td>
+                                                    <td style="text-align: center"> {{ $item->queue }} </td>
+                                                    <td style="text-align: center">
                                                         <div
                                                             class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
                                                             <input class="form-check-input w-50px h-25px" type="checkbox"
@@ -188,7 +188,7 @@
                 confirmButtonText: 'Evet, sil!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "{{ route('admin.currentNewsCategory.destroy') }}/" + d;
+                    window.location.href = "{{ route('admin.activityCategory.destroy') }}/" + d;
                 }
             })
         }

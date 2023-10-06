@@ -25,5 +25,9 @@ class Activity extends Model
         return $this->hasOne(CountryList::class, 'id', 'country_id');
     }
 
+    public function Author(){
+        return $this->hasOne(UserModel::class,'id','author');
+    }
+
 
 }

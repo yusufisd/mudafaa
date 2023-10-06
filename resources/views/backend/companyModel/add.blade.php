@@ -546,7 +546,7 @@
                                                 </div>
                                                 <div class="col-md-5">
                                                     <div class="col-lg-11 fv-row">
-                                                        <input type="text" placeholder="Sıralama"
+                                                        <input type="number" placeholder="Sıralama"
                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                             name="gorseller_queue[]" id="">
                                                     </div>
@@ -905,7 +905,7 @@
                         </div>\
                         <div class="col-md-5">\
                             <div class="col-lg-11 fv-row">\
-                                <input type="text" placeholder="Sıralama"\
+                                <input type="number" placeholder="Sıralama"\
                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
                                     name="gorseller_queue[]" id="">\
                             </div>\

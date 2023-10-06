@@ -428,7 +428,7 @@
                                                                         <input type="text" name="seo_key_tr[]"
                                                                             id="seo_key_tr"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                            @foreach ($data_tr as $value) value="{{ $value }}" @endforeach />
+                                                                            value="{{json_encode($data_tr->seo_key)}}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -503,7 +503,7 @@
                                                                         <input type="text" name="seo_key_en[]"
                                                                             id="seo_key_en"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                            @foreach ($data_en as $key => $value) value="{{ $value }}" @endforeach />
+                                                                            value="{{json_encode($data_en->seo_key)}}" />
                                                                             
                                                                     </div>
                                                                     <!--end::Col-->

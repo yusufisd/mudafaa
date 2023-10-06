@@ -13,4 +13,12 @@ class EnVideo extends Model
     protected $casts = [
         "seo_key" => "array"
     ];
+
+    public function Author(){
+        return $this->hasOne(UserModel::class,'id','author');
+    }
+
+    public function Category(){
+        return $this->hasOne(VideoCategory::class,'id','category_id');
+    }
 }

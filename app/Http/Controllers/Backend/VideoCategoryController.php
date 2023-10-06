@@ -49,35 +49,60 @@ class VideoCategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'queue' => 'required',
+                'name_tr' => 'required',
+                'link_tr' => 'required',
+                'name_en' => 'required',
+                'link_en' => 'required',
+                'seo_title_tr' => 'required',
+                'seo_description_tr' => 'required',
+                'seo_key_tr' => 'required',
+                'seo_title_en' => 'required',
+                'seo_description_en' => 'required',
+                'seo_key_en' => 'required',
+            ],
+            [
+                'queue.required' => 'Sıralama boş bırakılamaz',
+                'name_tr.required' => 'Başlık (TÜRKÇE) boş bırakılamaz',
+                'link_tr.required' => 'Link (TÜRKÇE) boş bırakılamaz',
+                'name_en.required' => 'Başlık (İNGİLİZCE) boş bırakılamaz',
+                'link_en.required' => 'Link (İNGİLİZCE) boş bırakılamaz',
+                'seo_title_tr.required' => 'Seo başlığı (TÜRKÇE) boş bırakılamaz',
+                'seo_description_tr.required' => 'Seo açıklaması (TÜRKÇE) boş bırakılamaz',
+                'seo_key_tr.required' => 'Seo anahtarı (TÜRKÇE) boş bırakılamaz',
+                'seo_title_en.required' => 'Seo başlığı (İNGİLİZCE) boş bırakılamaz',
+                'seo_description_en.required' => 'Seo açıklaması (İNGİLİZCE) boş bırakılamaz',
+                'seo_key_en.required' => 'Seo anahtarı (İNGİLİZCE) boş bırakılamaz',
+            ],
+        );
         try {
             DB::beginTransaction();
-            $request->validate([
-                "queue" => "required",
-                "name_tr" => "required",
-                "link_tr" => "required",
-                "name_en" => "required",
-                "link_en" => "required",
-                "seo_title_tr" => "required",
-                "seo_description_tr" => "required",
-                "seo_key_tr" => "required",
-                "seo_title_en" => "required",
-                "seo_description_en" => "required",
-                "seo_key_en" => "required",
-            ]);
-            							
+
+            $veri = json_decode(json_decode(json_encode($request->seo_key_tr[0])));
+            $merge = [];
+            foreach ($veri as $v) {
+                $merge[] = $v->value;
+            }
+
+            $veri_en = json_decode(json_decode(json_encode($request->seo_key_en[0])));
+            $merge_en = [];
+            foreach ($veri_en as $v) {
+                $merge_en[] = $v->value;
+            }
 
             $new = new VideoCategory();
             $new->title = $request->name_tr;
             $new->link = $request->link_tr;
             $new->seo_title = $request->seo_title_tr;
             $new->seo_description = $request->seo_description_tr;
-            $new->seo_key = $request->seo_key_tr;
             $new->queue = $request->queue;
+            $new->seo_key = $merge;
             if (!isset($request->status_tr)) {
                 $new->status = 0;
             }
             $new->save();
-
 
             $news_en = new EnVideoCategory();
             $news_en->title = $request->name_en;
@@ -86,7 +111,7 @@ class VideoCategoryController extends Controller
             $news_en->category_id = $new->id;
             $news_en->seo_title = $request->seo_title_en;
             $news_en->seo_description = $request->seo_description_en;
-            $news_en->seo_key = $request->seo_key_en;
+            $news_en->seo_key = $merge_en;
             $news_en->save();
             if (!isset($request->status_en)) {
                 $news_en->status = 0;
@@ -114,6 +139,7 @@ class VideoCategoryController extends Controller
         $users = UserModel::latest()->get();
         $data_tr = VideoCategory::findOrFail($id);
         $data_en = EnVideoCategory::where('category_id', $id)->first();
+
         return view('backend.videoCategory.edit', compact('data_tr', 'data_en', 'categories', 'users'));
     }
 
@@ -122,26 +148,37 @@ class VideoCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try {
-            DB::beginTransaction();
-
-            $request->validate([
+        $request->validate(
+            [
+                'queue' => 'required',
                 'name_tr' => 'required',
-                'short_description_tr' => 'required',
                 'link_tr' => 'required',
                 'name_en' => 'required',
-                'short_description_en' => 'required',
                 'link_en' => 'required',
                 'seo_title_tr' => 'required',
                 'seo_description_tr' => 'required',
                 'seo_key_tr' => 'required',
-                'seo_statu_tr' => 'required',
                 'seo_title_en' => 'required',
                 'seo_description_en' => 'required',
                 'seo_key_en' => 'required',
-                'seo_statu_en' => 'required',
-                'queue' => 'required',
-            ]);
+            ],
+            [
+                'queue.required' => 'Sıralama boş bırakılamaz',
+                'name_tr.required' => 'Başlık (TÜRKÇE) boş bırakılamaz',
+                'link_tr.required' => 'Link (TÜRKÇE) boş bırakılamaz',
+                'name_en.required' => 'Başlık (İNGİLİZCE) boş bırakılamaz',
+                'link_en.required' => 'Link (İNGİLİZCE) boş bırakılamaz',
+                'seo_title_tr.required' => 'Seo başlığı (TÜRKÇE) boş bırakılamaz',
+                'seo_description_tr.required' => 'Seo açıklaması (TÜRKÇE) boş bırakılamaz',
+                'seo_key_tr.required' => 'Seo anahtarı (TÜRKÇE) boş bırakılamaz',
+                'seo_title_en.required' => 'Seo başlığı (İNGİLİZCE) boş bırakılamaz',
+                'seo_description_en.required' => 'Seo açıklaması (İNGİLİZCE) boş bırakılamaz',
+                'seo_key_en.required' => 'Seo anahtarı (İNGİLİZCE) boş bırakılamaz',
+            ],
+        );
+
+        try {
+            DB::beginTransaction();
 
             $new = VideoCategory::findOrFail($id);
             $new->title = $request->name_tr;
@@ -156,7 +193,7 @@ class VideoCategoryController extends Controller
             }
             $new->save();
 
-            $news_en = EnVideoCategory::where('category_id',$id)->first();
+            $news_en = EnVideoCategory::where('category_id', $id)->first();
             $news_en->title = $request->name_en;
             $news_en->description = $request->short_description_en;
             $news_en->link = $request->link_en;
@@ -208,11 +245,11 @@ class VideoCategoryController extends Controller
         return redirect()->route('admin.videoCategory.list');
     }
 
-    public function ice_aktar(Request $request){
-        Excel::import(new VideoCategoryImport, $request->file('ice_aktar')->store('temp'));
+    public function ice_aktar(Request $request)
+    {
+        Excel::import(new VideoCategoryImport(), $request->file('ice_aktar')->store('temp'));
 
         Alert::success('Başarılı');
         return back();
     }
-
 }

@@ -231,7 +231,7 @@
                                                                         class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Açıklama</label><br>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-12 fv-row">
+                                                                    <div class="col-lg-10 fv-row">
                                                                         <textarea name="description_tr" id="editor"
                                                                             class="form-control form-control-lg form-control-solid" value=""></textarea>
                                                                     </div>
@@ -371,7 +371,7 @@
                                                                         class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Açıklama</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-12 fv-row">
+                                                                    <div class="col-lg-10 fv-row">
                                                                         <textarea name="description_en" id="editor2"
                                                                             class="form-control form-control-lg form-control-solid" value=""></textarea>
                                                                     </div>

@@ -135,7 +135,7 @@
                                                         <div
                                                             class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
                                                             <input class="form-check-input w-50px h-25px" type="checkbox"
-                                                                id="status"
+                                                                id="blog_status_1"
                                                                 onchange="change_status({{ $item->id }})"
                                                                 {{ $item->status == 1 ? 'checked' : '' }}>
                                                             <label class="form-check-label" for="blog_status_1"></label>

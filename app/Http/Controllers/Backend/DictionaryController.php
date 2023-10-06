@@ -43,11 +43,8 @@ class DictionaryController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            DB::beginTransaction();
-
-            $request->validate([
-                'image' => 'required',
+        $request->validate(
+            [
                 'author' => 'required',
                 'live_date' => 'required',
                 'name_tr' => 'required',
@@ -62,8 +59,8 @@ class DictionaryController extends Controller
                 'seo_title_en' => 'required',
                 'seo_description_en' => 'required',
                 'seo_key_en' => 'required',
-            ],[
-                'image.required' => 'image',
+            ],
+            [
                 'author.required' => 'author',
                 'live_date.required' => 'live_date',
                 'name_tr.required' => 'name_tr',
@@ -78,18 +75,35 @@ class DictionaryController extends Controller
                 'seo_title_en.required' => 'seo_title_en',
                 'seo_description_en.required' => 'seo_description_en',
                 'seo_key_en.required' => 'seo_key_en',
-            ]);
+            ],
+        );
+        try {
+            DB::beginTransaction();
 
+            $veri = json_decode(json_decode(json_encode($request->seo_key_tr[0])));
+            $merge = [];
+            foreach ($veri as $v) {
+                $merge[] = $v->value;
+            }
+
+            $veri_en = json_decode(json_decode(json_encode($request->seo_key_en[0])));
+            $merge_en = [];
+            foreach ($veri_en as $v) {
+                $merge_en[] = $v->value;
+            }
             $new = new Dictionary();
+
             $new->author = $request->author;
             $new->live_date = $request->live_date;
             $new->title = $request->name_tr;
             $new->description = $request->short_description_tr;
             $new->link = $request->link_tr;
-
             $new->seo_title = $request->seo_title_tr;
             $new->seo_description = $request->seo_description_tr;
-            $new->seo_key = $request->seo_key_tr;
+            $new->seo_key = $merge;
+            if (!isset($request->status_tr)) {
+                $new->status = 0;
+            }
             if ($request->file('image') != null) {
                 $image = $request->file('image');
                 $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
@@ -99,23 +113,31 @@ class DictionaryController extends Controller
                     ->save($save_url);
                 $new->image = $save_url;
             }
-            if (!isset($request->seo_statu)) {
-                $new->seo_statu = 0;
-            }
             $new->save();
-            
-            $news_en = new EnDictionary();
-            $news_en->title = $request->name_en;
-            $news_en->description = $request->short_description_en;
-            $news_en->link = $request->link_en;
-            $news_en->seo_title = $request->seo_title_en;
-            $news_en->seo_description = $request->seo_description_en;
-            $news_en->seo_key = $request->seo_key_en;
-            $news_en->dictionary_id = $new->id;
-            if (!isset($request->seo_statu)) {
-                $news_en->seo_statu = 0;
+
+            $new_en = new EnDictionary();
+            $new_en->dictionary_id = $new->id;
+            $new_en->author = $request->author;
+            $new_en->live_date = $request->live_date;
+            $new_en->title = $request->name_en;
+            $new_en->description = $request->short_description_en;
+            $new_en->link = $request->link_en;
+            $new_en->seo_title = $request->seo_title_en;
+            $new_en->seo_description = $request->seo_description_en;
+            $new_en->seo_key = $merge_en;
+            if (!isset($request->status_en)) {
+                $new_en->status = 0;
             }
-            $news_en->save();
+            if ($request->file('image') != null) {
+                $image = $request->file('image');
+                $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+                $save_url = 'assets/uploads/dictionary/' . $image_name;
+                Image::make($image)
+                    ->resize(960, 520)
+                    ->save($save_url);
+                $new_en->image = $save_url;
+            }
+            $new_en->save();
 
             logKayit(['Sözlük Yönetimi ', 'Sözlük başarıyla eklendi']);
             Alert::success('Sözlük Başarıyla Eklendi');
@@ -134,11 +156,10 @@ class DictionaryController extends Controller
 
     public function edit($id)
     {
-        $categories = CurrentNewsCategory::latest()->get();
         $users = UserModel::latest()->get();
-        $data_tr = CurrentNews::findOrFail($id);
-        $data_en = EnCurrentNews::where('currentNews_id', $id)->first();
-        return view('backend.currentNews.edit', compact('data_tr', 'data_en', 'categories', 'users'));
+        $data_tr = Dictionary::findOrFail($id);
+        $data_en = EnDictionary::where('dictionary_id', $id)->first();
+        return view('backend.dictionary.edit', compact('data_tr', 'data_en',  'users'));
     }
 
     /**
@@ -146,93 +167,109 @@ class DictionaryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try {
-            DB::beginTransaction();
-
-            $request->validate([
-                'category' => 'required',
+        $request->validate(
+            [
                 'author' => 'required',
-                'activity_on_location_tr' => 'required',
-                'activity_name_tr' => 'required',
-                'etiket_tr' => 'required',
-                'activity_summary_tr' => 'required',
-                'tinymce_activity_detail_tr' => 'required',
-                'etiket_tr' => 'required',
-                'activity_url_tr' => 'required',
-                'activity_seo_title_tr' => 'required',
-                'activity_seo_description_tr' => 'required',
-                'activity_seo_keywords_tr' => 'required',
-            ]);
+                'live_date' => 'required',
+                'name_tr' => 'required',
+                'short_description_tr' => 'required',
+                'link_tr' => 'required',
+                'name_en' => 'required',
+                'short_description_en' => 'required',
+                'link_en' => 'required',
+                'seo_title_tr' => 'required',
+                'seo_description_tr' => 'required',
+                'seo_key_tr' => 'required',
+                'seo_title_en' => 'required',
+                'seo_description_en' => 'required',
+                'seo_key_en' => 'required',
+            ],
+            [
+                'author.required' => 'author',
+                'live_date.required' => 'live_date',
+                'name_tr.required' => 'name_tr',
+                'short_description_tr.required' => 'short_description_tr',
+                'link_tr.required' => 'link_tr',
+                'name_en.required' => 'name_en',
+                'short_description_en.required' => 'short_description_en',
+                'link_en.required' => 'link_en',
+                'seo_title_tr.required' => 'seo_title_tr',
+                'seo_description_tr.required' => 'seo_description_tr',
+                'seo_key_tr.required' => 'seo_key_tr',
+                'seo_title_en.required' => 'seo_title_en',
+                'seo_description_en.required' => 'seo_description_en',
+                'seo_key_en.required' => 'seo_key_en',
+            ],
+        );
+  
 
-            $news = CurrentNews::findOrFail($id);
+            $new = Dictionary::findOrFail($id);
 
-            $news->category_id = $request->category;
-            $news->author_id = $request->author;
-            $news->live_time = $request->activity_on_location_tr;
-            $news->title = $request->activity_name_tr;
-            $news->tags = $request->etiket_tr;
-            $news->short_description = $request->activity_summary_tr;
-            $news->description = $request->tinymce_activity_detail_tr;
-            $news->tags = $request->etiket_tr;
-            $news->link = $request->activity_url_tr;
-            $news->seo_title = $request->activity_seo_title_tr;
-            $news->seo_description = $request->activity_seo_description_tr;
-            $news->seo_key = $request->activity_seo_keywords_tr;
+            $veri = json_decode(json_decode(json_encode($request->seo_key_tr[0])));
+            $merge = [];
+            foreach ($veri as $v) {
+                $merge[] = $v->value;
+            }
+
+            $veri_en = json_decode(json_decode(json_encode($request->seo_key_en[0])));
+            $merge_en = [];
+            foreach ($veri_en as $v) {
+                $merge_en[] = $v->value;
+            }
+
+            $new->author = $request->author;
+            $new->live_date = $request->live_date;
+            $new->title = $request->name_tr;
+            $new->description = $request->short_description_tr;
+            $new->link = $request->link_tr;
+            $new->seo_title = $request->seo_title_tr;
+            $new->seo_description = $request->seo_description_tr;
+            $new->seo_key = $merge;
+            if (!isset($request->status_tr)) {
+                $new->status = 0;
+            }
             if ($request->file('image') != null) {
                 $image = $request->file('image');
                 $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-                $save_url = 'assets/uploads/currentNews/' . $image_name;
+                $save_url = 'assets/uploads/dictionary/' . $image_name;
                 Image::make($image)
                     ->resize(960, 520)
                     ->save($save_url);
-                $news->image = $save_url;
+                $new->image = $save_url;
             }
-            if (!isset($request->manset_tr)) {
-                $news->headline = 0;
-            }
-            if (!isset($request->status_tr)) {
-                $news->status = 0;
-            }
-            if (!isset($request->seo_statu)) {
-                $news->seo_statu = 0;
-            }
+            $new->save();
 
-            $news->save();
+            
 
-            $news_en = EnCurrentNews::where('currentNews_id', $id)->first();
-            $news_en->title = $request->activity_name_en;
-            $news_en->short_description = $request->activity_summary_en;
-            $news_en->description = $request->tinymce_activity_detail_en;
-            $news_en->tags = $request->etiket_en;
-            $news_en->currentNews_id = $news->id;
-            $news_en->link = $request->activity_url_en;
-            $news_en->seo_title = $request->activity_seo_title_en;
-            $news_en->seo_description = $request->activity_seo_description_en;
-            $news_en->seo_key = $request->activity_seo_keywords_en;
-            if (!isset($request->seo_statu_en)) {
-                $news_en->seo_statu = 0;
+            $new_en = EnDictionary::where('dictionary_id', $id)->first();
+            $new_en->dictionary_id = $new->id;
+            $new_en->author = $request->author;
+            $new_en->live_date = $request->live_date;
+            $new_en->title = $request->name_en;
+            $new_en->description = $request->short_description_en;
+            $new_en->link = $request->link_en;
+            $new_en->seo_title = $request->seo_title_en;
+            $new_en->seo_description = $request->seo_description_en;
+            $new_en->seo_key = $merge_en;
+            if (!isset($request->status_en)) {
+                $new_en->status = 0;
             }
-            if (!isset($request->manset_en)) {
-                $news_en->headline = 0;
+            if ($request->file('image') != null) {
+                $image = $request->file('image');
+                $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+                $save_url = 'assets/uploads/dictionary/' . $image_name;
+                Image::make($image)
+                    ->resize(960, 520)
+                    ->save($save_url);
+                $new_en->image = $save_url;
             }
-            if (!isset($request->status)) {
-                $news_en->status = 0;
-            }
-            $news_en->save();
+            $new_en->save();
 
-            logKayit(['Haber Yönetimi ', 'Haber düzenlendi']);
-            Alert::success('Haber Başarıyla Düzenlendi');
+            logKayit(['Sözlük Yönetimi ', 'Sözlük başarıyla düzenlendi']);
+            Alert::success('Sözlük Başarıyla Düzenlendi');
             DB::commit();
-        } catch (Throwable $e) {
-            DB::rollBack();
-
-            logKayit(['Haber Yönetimi ', 'Haber düzenlemede hata', 0]);
-            Alert::error('Haber Düzenlemede Hata');
-            throw ValidationException::withMessages([
-                'error' => 'Tüm alanların doldurulması zorunludur.',
-            ]);
-        }
-        return redirect()->route('admin.currentNews.list');
+        
+        return redirect()->route('admin.dictionary.list');
     }
 
     public function destroy($id)
@@ -249,63 +286,41 @@ class DictionaryController extends Controller
         } catch (Throwable $e) {
             DB::rollBack();
 
-            logKayit(['Haber Yönetimi ', 'Haber silmede hata', 0]);
-            Alert::error('Haber Silmede Hata');
+            logKayit(['Sözlük Yönetimi ', 'Sözlük silmede hata', 0]);
+            Alert::error('Sözlük Silmede Hata');
             throw ValidationException::withMessages([
                 'error' => 'Bir hatayla karşılaşıldı.',
             ]);
         }
-        return redirect()->route('admin.currentNews.list');
-    }
-
-    public function change_headline($id)
-    {
-        try {
-            DB::beginTransaction();
-            $data = CurrentNews::findOrFail($id);
-            $data->headline = !$data->headline;
-            $data->save();
-
-            logKayit(['Haber Yönetimi ', 'Manşet durumu değiştirildi']);
-            Alert::success('Haber Manşet Durumu Değiştirildi');
-            DB::commit();
-        } catch (Throwable $e) {
-            DB::rollBack();
-
-            logKayit(['Haber Yönetimi ', 'Manşet durumu değiştirilemedi', 0]);
-            Alert::error('Manşet değiştirmede Hata');
-            throw ValidationException::withMessages([
-                'error' => 'Bir hatayla karşılaşıldı.',
-            ]);
-        }
-        return redirect()->route('admin.currentNews.list');
+        return redirect()->route('admin.dictionary.list');
     }
 
     public function change_status($id)
     {
         try {
             DB::beginTransaction();
-            $data = CurrentNews::findOrFail($id);
+            $data = Dictionary::findOrFail($id);
             $data->status = !$data->status;
             $data->save();
 
-            logKayit(['Haber Yönetimi ', 'Haber durumu değiştirildi']);
-            Alert::success('Haber Durumu Değiştirildi');
+            logKayit(['Sözlük Yönetimi ', 'Sözlük durumu değiştirildi']);
+            Alert::success('Sözlük Durumu Değiştirildi');
             DB::commit();
         } catch (Throwable $e) {
             DB::rollBack();
 
-            logKayit(['Haber Yönetimi ', 'Haber durumu değiştirilemedi', 0]);
-            Alert::error('Haber durum değiştirmede Hata');
+            logKayit(['Sözlük Yönetimi ', 'Sözlük durumu değiştirilemedi', 0]);
+            Alert::error('Sözlük durum değiştirmede Hata');
             throw ValidationException::withMessages([
                 'error' => 'Bir hatayla karşılaşıldı.',
             ]);
         }
-        return redirect()->route('admin.currentNews.list');
+        return redirect()->route('admin.dictionary.list');
     }
 
-    public function ice_aktar(Request $request){
-        Excel::import(new DictionaryImport, $request->file('ice_aktar')->store('temp'));
+    public function ice_aktar(Request $request)
+    {
+        Excel::import(new DictionaryImport(), $request->file('ice_aktar')->store('temp'));
 
         Alert::success('Başarılı');
         return back();

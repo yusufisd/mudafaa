@@ -3,11 +3,11 @@
     <!--begin::Content wrapper-->
     <div class="d-flex flex-column flex-column-fluid">
         <!--begin::Toolbar-->
-        <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-10">
+        <div id="kt_app_toolbar" class="app-toolbar py-lg-10 py-3">
             <!--begin::Toolbar container-->
             <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
                 <!--begin::Page title-->
-                <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                <div class="page-title d-flex flex-column justify-content-center me-3 flex-wrap">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-primary fw-bold fs-3 flex-column justify-content-center my-0">
                         {{ __('message.güncel') }} {{ __('message.haber') }} {{ __('message.ekle') }} </h1>
@@ -15,11 +15,11 @@
                 </div>
                 <!--end::Page title-->
                 <!--begin::Back-->
-                <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                <div class="page-title d-flex flex-column justify-content-center me-3 flex-wrap">
                     <!--begin::Title-->
                     <a href="javascript:history.back()"
-                        class="page-heading d-flex text-dark fw-bold fs-3 justify-content-center my-0 text-hover-success">
-                        <i class="fa fa-arrow-left my-auto mx-2"></i>
+                        class="page-heading d-flex text-dark fw-bold fs-3 justify-content-center text-hover-success my-0">
+                        <i class="fa fa-arrow-left mx-2 my-auto"></i>
                         {{ __('message.geri dön') }}
                     </a>
                     <!--end::Title-->
@@ -31,13 +31,7 @@
         <!--end::Toolbar-->
         <!--begin::Content-->
 
-        @if($errors->any())
-            @foreach ($errors->all() as $e)
-                <div class="alert alert-danger">
-                    {{$e}}
-                </div>
-            @endforeach
-        @endif
+
 
 
         <form action="{{ route('admin.currentNews.store') }}" method="POST" enctype="multipart/form-data">
@@ -46,17 +40,25 @@
                 <!--begin::Content container-->
                 <div id="kt_app_content_container" class="app-container container-fluid">
                     <!--begin::Row-->
+
+                    @if ($errors->any())
+                        @foreach ($errors->all() as $e)
+                            <div class="alert alert-danger">
+                                {{ $e }}
+                            </div>
+                        @endforeach
+                    @endif
                     <div class="row g-5 g-xl-8">
                         <!--begin::Col-->
-                        <div class="col-xl-12 mb-5 mb-xl-8">
-                            <div class="card card-flush h-xl-100 mb-5 mb-xl-8">
+                        <div class="col-xl-12 mb-xl-8 mb-5">
+                            <div class="card card-flush h-xl-100 mb-xl-8 mb-5">
                                 <!--begin::Header-->
                                 <!--<div class="ps-12 pt-12"></div>-->
                                 <!--end::Header-->
                                 <!--begin::Body-->
                                 <div class="card-body py-5">
                                     <!--begin::Tab-->
-                                    <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
+                                    <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x fs-6 mb-5">
                                         <li class="nav-item">
                                             <a class="nav-link active" data-bs-toggle="tab"
                                                 href="#tab_activity_detay">Detay</a>
@@ -73,7 +75,8 @@
 
 
                                                 <div class="row mb-6">
-                                                    <label class="col-lg-2 col-form-label required ps-5 fw-bold fs-6">Görsel <br><span style="font-weight:normal">( 960px - 520px)</span></label> 
+                                                    <label class="col-lg-2 col-form-label required fw-bold fs-6 ps-5">Görsel
+                                                        <br><span style="font-weight:normal">( 960px - 520px)</span></label>
                                                     <div class="col-lg-10">
                                                         <input type="file" class="form-control" name="image"
                                                             id="">
@@ -81,7 +84,9 @@
                                                 </div>
 
                                                 <div class="row mb-6">
-                                                    <label class="col-lg-2 col-form-label required ps-5 fw-bold fs-6">Hikaye Görseli <br><span style="font-weight:normal">( 311px - 75px)</span></label> 
+                                                    <label class="col-lg-2 col-form-label required fw-bold fs-6 ps-5">Hikaye
+                                                        Görseli <br><span style="font-weight:normal">( 311px -
+                                                            75px)</span></label>
                                                     <div class="col-lg-10">
                                                         <input type="file" class="form-control" name="mobil_image"
                                                             id="">
@@ -90,14 +95,13 @@
 
 
                                                 <div class="row mb-6">
-                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
+                                                    <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
                                                         <span class="required">Kategori</span>
                                                     </label>
                                                     <div class="col-lg-10 fv-row">
                                                         <select name="category" aria-label="Seçiniz"
-                                                             data-placeholder="Seçiniz..."
-                                                            class="form-select form-select-solid form-select-lg fw-semibold"
-                                                            >
+                                                            data-placeholder="Seçiniz..."
+                                                            class="form-select form-select-solid form-select-lg fw-semibold">
                                                             <option value="">Seçiniz...</option>
                                                             @foreach ($categories as $cat)
                                                                 <option value="{{ $cat->id }}"> {{ $cat->title }}
@@ -134,7 +138,8 @@
                                                                             @foreach ($users as $user)
                                                                             @endforeach
                                                                             <option value="{{ $user->id }}">
-                                                                                {{ $user->name ?? '' }} {{ $user->surname ?? ''}}
+                                                                                {{ $user->name ?? '' }}
+                                                                                {{ $user->surname ?? '' }}
                                                                             </option>
 
                                                                         </select>
@@ -160,10 +165,9 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input type="date"
-                                                                            name="activity_on_location_tr"
-                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                            value="{{ substr($now,0,10) }}" />
+                                                                        <input type="date" name="activity_on_location_tr"
+                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                            value="{{ substr($now, 0, 10) }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -177,14 +181,13 @@
                                                 <!--end::Input group-->
                                                 <div class="row mb-6">
                                                     <!--begin::Tab-->
-                                                    <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
+                                                    <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x fs-6 mb-5">
                                                         <li class="nav-item">
                                                             <a class="nav-link active" data-bs-toggle="tab"
                                                                 href="#tab_activity_tr">
                                                                 <span>
-                                                                    <img src="{{asset('/assets/tr.png')}}"
-                                                                        width="28" height="20" alt="TR"
-                                                                        title="TR">
+                                                                    <img src="{{ asset('/assets/tr.png') }}" width="28"
+                                                                        height="20" alt="TR" title="TR">
                                                                 </span>
 
                                                             </a>
@@ -193,7 +196,7 @@
                                                             <a class="nav-link" data-bs-toggle="tab"
                                                                 href="#tab_activity_en">
                                                                 <span>
-                                                                    <img src="{{asset('/assets/en.png')}}"
+                                                                    <img src="{{ asset('/assets/en.png') }}"
                                                                         width="28" height="20" alt="EN"
                                                                         title="EN">
                                                                 </span>
@@ -210,7 +213,7 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Başlık</label>
+                                                                        class="col-lg-2 col-form-label required fw-bold fs-6 ps-5">Başlık</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10">
@@ -222,7 +225,7 @@
                                                                                     name="activity_name_tr"
                                                                                     onchange="create_slug_tr()"
                                                                                     id="activity_name_tr"
-                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                     value="" />
                                                                             </div>
                                                                             <!--end::Col-->
@@ -236,7 +239,7 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Özet</label>
+                                                                        class="col-lg-2 col-form-label fw-bold fs-6 ps-5">Özet</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10 fv-row">
@@ -272,7 +275,7 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Etiket</label>
+                                                                        class="col-lg-2 col-form-label fw-bold fs-6 ps-5">Etiket</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10">
@@ -280,11 +283,10 @@
                                                                         <div class="row">
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
-                                                                                <input type="text"
-                                                                                    id="etiket_tr"
-                                                                                    name="etiket_tr"
-                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                     value="" />
+                                                                                <input type="text" id="etiket_tr"
+                                                                                    name="etiket_tr[]"
+                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                    value="" />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -301,7 +303,7 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Url</label>
+                                                                        class="col-lg-2 col-form-label required fw-bold fs-6 ps-5">Url</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10">
@@ -314,10 +316,10 @@
                                                                                         <input type="text"
                                                                                             name="activity_url_tr"
                                                                                             id="activity_url_tr"
-                                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                             value="" />
                                                                                     </div>
-                                                                                    
+
 
                                                                                 </div>
                                                                             </div>
@@ -333,7 +335,7 @@
                                                             <!--end::Card body-->
                                                             <!--begin::Actions-->
                                                             <div
-                                                                class="card-footer d-flex justify-content-between py-6 px-0">
+                                                                class="card-footer d-flex justify-content-between px-0 py-6">
 
                                                                 <!--begin::Input group-->
                                                                 <div class="row mb-0">
@@ -355,7 +357,7 @@
                                                             </div>
 
                                                             <div
-                                                                class="card-footer d-flex justify-content-between py-6 px-0">
+                                                                class="card-footer d-flex justify-content-between px-0 py-6">
 
                                                                 <!--begin::Input group-->
                                                                 <div class="row mb-0">
@@ -386,7 +388,7 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Başlık</label>
+                                                                        class="col-lg-2 col-form-label required fw-bold fs-6 ps-5">Başlık</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10">
@@ -398,7 +400,7 @@
                                                                                     name="activity_name_en"
                                                                                     id="activity_name_en"
                                                                                     onchange="create_slug_en()"
-                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                     value="" />
                                                                             </div>
                                                                             <!--end::Col-->
@@ -412,7 +414,7 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Özet</label>
+                                                                        class="col-lg-2 col-form-label fw-bold fs-6 ps-5">Özet</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10 fv-row">
@@ -443,7 +445,7 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Etiket</label>
+                                                                        class="col-lg-2 col-form-label fw-bold fs-6 ps-5">Etiket</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10">
@@ -451,10 +453,9 @@
                                                                         <div class="row">
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
-                                                                                <input type="text"
-                                                                                    id="etiket_en"
+                                                                                <input type="text" id="etiket_en"
                                                                                     name="etiket_en[]"
-                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                     value="" />
                                                                             </div>
                                                                             <!--end::Col-->
@@ -472,7 +473,7 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Url</label>
+                                                                        class="col-lg-2 col-form-label required fw-bold fs-6 ps-5">Url</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10">
@@ -485,10 +486,10 @@
                                                                                         <input type="text"
                                                                                             name="activity_url_en"
                                                                                             id="activity_url_en"
-                                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                             value="" />
                                                                                     </div>
-                                                                                    
+
 
                                                                                 </div>
                                                                             </div>
@@ -504,7 +505,7 @@
                                                             <!--end::Card body-->
                                                             <!--begin::Actions-->
                                                             <div
-                                                                class="card-footer d-flex justify-content-between py-6 px-0">
+                                                                class="card-footer d-flex justify-content-between px-0 py-6">
 
                                                                 <!--begin::Input group-->
                                                                 <div class="row mb-0">
@@ -526,7 +527,7 @@
                                                             </div>
 
                                                             <div
-                                                                class="card-footer d-flex justify-content-between py-6 px-0">
+                                                                class="card-footer d-flex justify-content-between px-0 py-6">
 
                                                                 <!--begin::Input group-->
                                                                 <div class="row mb-0">
@@ -557,13 +558,12 @@
                                         </div>
                                         <div class="tab-pane fade" id="tab_activity_seo" role="tabpanel">
                                             <!--begin::Tab-->
-                                            <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
+                                            <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x fs-6 mb-5">
                                                 <li class="nav-item">
                                                     <a class="nav-link active" data-bs-toggle="tab" href="#tab_seo_tr">
                                                         <span>
-                                                            <img src="{{asset('/assets/tr.png')}}"
-                                                                width="28" height="20" alt="TR"
-                                                                title="TR">
+                                                            <img src="{{ asset('/assets/tr.png') }}" width="28"
+                                                                height="20" alt="TR" title="TR">
                                                         </span>
 
                                                     </a>
@@ -571,9 +571,8 @@
                                                 <li class="nav-item">
                                                     <a class="nav-link" data-bs-toggle="tab" href="#tab_seo_en">
                                                         <span>
-                                                            <img src="{{asset('/assets/en.png')}}"
-                                                                width="28" height="20" alt="EN"
-                                                                title="EN">
+                                                            <img src="{{ asset('/assets/en.png') }}" width="28"
+                                                                height="20" alt="EN" title="EN">
                                                         </span>
                                                     </a>
                                                 </li>
@@ -586,7 +585,7 @@
                                                         <!--begin::Input group-->
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
-                                                            <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Site
+                                                            <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">Site
                                                                 Başlığı</label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
@@ -597,7 +596,7 @@
                                                                     <div class="col-lg-12 fv-row">
                                                                         <input type="text" name="activity_seo_title_tr"
                                                                             id="activity_seo_title_tr"
-                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="" />
                                                                     </div>
                                                                     <!--end::Col-->
@@ -610,7 +609,7 @@
                                                         <!--begin::Input group-->
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
-                                                            <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Site
+                                                            <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">Site
                                                                 Açıklaması</label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
@@ -625,7 +624,7 @@
                                                         <!--begin::Input group-->
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
-                                                            <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Site
+                                                            <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">Site
                                                                 Anahtar Kelimeleri</label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
@@ -637,7 +636,7 @@
                                                                         <input type="text"
                                                                             id="activity_seo_keywords_tr"
                                                                             name="activity_seo_keywords_tr[]"
-                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="" />
                                                                     </div>
                                                                     <!--end::Col-->
@@ -651,7 +650,7 @@
                                                     </div>
                                                     <!--end::Card body-->
                                                     <!--begin::Actions-->
-                                                    
+
                                                     <!--end::Actions-->
                                                     <!--end::Form-->
                                                 </div>
@@ -662,7 +661,7 @@
                                                         <!--begin::Input group-->
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
-                                                            <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Site
+                                                            <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">Site
                                                                 Başlığı</label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
@@ -673,7 +672,7 @@
                                                                     <div class="col-lg-12 fv-row">
                                                                         <input type="text" name="activity_seo_title_en"
                                                                             id="activity_seo_title_en"
-                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="" />
                                                                     </div>
                                                                     <!--end::Col-->
@@ -686,7 +685,7 @@
                                                         <!--begin::Input group-->
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
-                                                            <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Site
+                                                            <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">Site
                                                                 Açıklaması</label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
@@ -701,7 +700,7 @@
                                                         <!--begin::Input group-->
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
-                                                            <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Site
+                                                            <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">Site
                                                                 Anahtar Kelimeleri</label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
@@ -713,7 +712,7 @@
                                                                         <input type="text"
                                                                             id="activity_seo_keywords_en"
                                                                             name="activity_seo_keywords_en[]"
-                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="" />
                                                                     </div>
                                                                     <!--end::Col-->
@@ -727,7 +726,7 @@
                                                     </div>
                                                     <!--end::Card body-->
                                                     <!--begin::Actions-->
-                                                    
+
                                                     <!--end::Actions-->
                                                     <!--end::Form-->
                                                 </div>
@@ -744,7 +743,7 @@
                     </div>
                     <!--end::Row-->
 
-                    <div class="right " style="text-align: right">
+                    <div class="right" style="text-align: right">
                         <button type="submit" class="btn btn-primary"> {{ __('message.kaydet') }} </button>
                     </div>
 

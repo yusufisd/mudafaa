@@ -101,7 +101,7 @@
                                                             <option >Seçiniz...</option>
 
                                                             @foreach ($categories as $cat)
-                                                                <option {{$cat->id == $data_tr->category_id ? 'selected' : ''}}>{{ $cat->title }}</option>
+                                                                <option {{$cat->id == $data_tr->category_id ? 'selected' : ''}} value="{{$cat->id}}" >{{ $cat->title }}</option>
                                                             @endforeach
 
 
@@ -360,7 +360,7 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10 fv-row">
                                                                         <textarea name="description_en" id="editor2" onchange="create_ozet_en()"
-                                                                            class="form-control form-control-lg form-control-solid" value="">{{$data_en->description}}</textarea>
+                                                                            class="form-control form-control-lg form-control-solid">{{$data_en->description}}</textarea>
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -515,7 +515,6 @@
                                                         </div>
                                                         <!--end::Input group-->
 
-                                                        @dd($data_tr->seo_key)
                                                         <!--begin::Input group-->
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
@@ -604,7 +603,7 @@
                                                                             id="activity_seo_keywords_en"
                                                                             name="seo_key_en[]"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                            value="" /> 
+                                                                            value="{{json_encode($data_en->seo_key)}}" /> 
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>

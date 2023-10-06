@@ -101,6 +101,8 @@
                                                 <th> {{ __('message.başlık') }} <i class="fa fa-sort ms-3"></i></th>
                                                 <th> {{ __('message.yazar') }} <i class="fa fa-sort ms-3"></i></th>
                                                 <th> Yayın Tarihi <i class="fa fa-sort ms-3"></i></th>
+                                                <th class="pe-7 text-center">{{ __('message.durum') }}<i
+                                                    class="fa fa-sort ms-3"></i></th>
                                                 <th> {{ __('message.işlem') }} <i class="fa fa-sort ms-3"></i></th>
                                             </tr>
                                         </thead>
@@ -123,12 +125,22 @@
                                                     <td> {{ $item->Author->name }} {{ $item->Author->surname }} </td>
                                                     <td> {{ $item->live_date }} </td>
                                                     <td>
+                                                        <div
+                                                            class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
+                                                            <input class="form-check-input w-50px h-25px" type="checkbox"
+                                                                id="status"
+                                                                onchange="change_status({{ $item->id }})"
+                                                                {{ $item->status == 1 ? 'checked' : '' }}>
+                                                            <label class="form-check-label" for="blog_status_1"></label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
                                                         <a href="#"
                                                             class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 px-2"
                                                             title="Görüntüle">
                                                             <i class="fa-solid fa-eye fs-3"></i>
                                                         </a>
-                                                        <a href="{{ route('admin.currentNewsCategory.edit', $item->id) }}"
+                                                        <a href="{{ route('admin.dictionary.edit', $item->id) }}"
                                                             class="btn btn-icon btn-bg-light btn-active-color-secondary btn-sm me-1 px-2"
                                                             title="Düzenle">
                                                             <i class="fa-regular fa-pen-to-square fs-3"></i>
@@ -170,7 +182,7 @@
     </script>
     <script>
         function change_status(d) {
-            window.location.href = "{{ route('admin.currentNewsCategory.change_status') }}/" + d
+            window.location.href = "{{ route('admin.dictionary.change_status') }}/" + d
         }
 
         function destroy(d) {

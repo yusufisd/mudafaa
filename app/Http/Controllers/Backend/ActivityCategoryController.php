@@ -44,23 +44,49 @@ class ActivityCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            DB::beginTransaction();
-
-            $request->validate([
+        $request->validate(
+            [
                 'queue' => 'required',
                 'title_tr' => 'required',
                 'link_tr' => 'required',
                 'seo_title_tr' => 'required',
                 'seo_description_tr' => 'required',
                 'seo_key_tr' => 'required',
-
                 'title_en' => 'required',
                 'link_en' => 'required',
                 'seo_title_en' => 'required',
                 'seo_descriptipn_en' => 'required',
                 'seo_key_en' => 'required',
-            ]);
+            ],
+            [
+                'queue' => 'Sıralama boş bırakılamaz.',
+                'title_tr' => 'Başlık (TÜRKÇE) boş bırakılamaz.',
+                'link_tr' => 'Link (TÜRKÇE) boş bırakılamaz.',
+                'seo_title_tr' => 'Seo başlığı (TÜRKÇE) boş bırakılamaz.',
+                'seo_description_tr' => 'Seo açıklaması (TÜRKÇE) boş bırakılamaz.',
+                'seo_key_tr' => 'Seo anahtarı (TÜRKÇE) boş bırakılamaz.',
+                'title_en' => 'Başlık (İNGİLİZCE) boş bırakılamaz.',
+                'link_en' => 'Link (İNGİLİZCE) boş bırakılamaz.',
+                'seo_title_en' => 'Seo başlığı (İNGİLİZCE) boş bırakılamaz.',
+                'seo_descriptipn_en' => 'Seo açıklaması (İNGİLİZCE) boş bırakılamaz.',
+                'seo_key_en' => 'Seo anahtarı (İNGİLİZCE) boş bırakılamaz.',
+            ],
+        );
+        try {
+            DB::beginTransaction();
+
+            $veri = json_decode(json_decode(json_encode($request->seo_key_tr[0])));
+            $merge = [];
+            foreach ($veri as $v) {
+                $merge[] = $v->value;
+            }
+
+            $veri_en = json_decode(json_decode(json_encode($request->seo_key_en[0])));
+            $merge_en = [];
+            foreach ($veri_en as $v) {
+                $merge_en[] = $v->value;
+            }
+
             $category = new ActivityCategory();
             $category->queue = $request->queue;
             $category->title = $request->title_tr;
@@ -68,12 +94,10 @@ class ActivityCategoryController extends Controller
             $category->color_code = $request->color_code;
             $category->seo_title = $request->seo_title_tr;
             $category->seo_description = $request->seo_description_tr;
-            $category->seo_key = $request->seo_key_tr;
+            $category->seo_key = $merge;
             if (!isset($request->status_tr)) {
                 $category->status = 0;
             }
-    
-
             $category->save();
 
             $category_en = new EnActivityCategory();
@@ -84,11 +108,11 @@ class ActivityCategoryController extends Controller
             $category_en->activity_id = $category->id;
             $category_en->seo_title = $request->seo_title_en;
             $category_en->seo_description = $request->seo_descriptipn_en;
-            $category_en->seo_key = $request->seo_key_en;
+            $category_en->seo_key = $merge_en;
             if (!isset($request->status_en)) {
                 $category_en->status = 0;
             }
-        
+
             $category_en->save();
 
             logKayit(['Etkinlik Kategori', 'Etkinlik kategorisi eklendi']);
@@ -117,23 +141,49 @@ class ActivityCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try {
-            DB::beginTransaction();
-
-            $request->validate([
+        $request->validate(
+            [
                 'queue' => 'required',
                 'title_tr' => 'required',
                 'link_tr' => 'required',
                 'seo_title_tr' => 'required',
                 'seo_description_tr' => 'required',
                 'seo_key_tr' => 'required',
-
                 'title_en' => 'required',
                 'link_en' => 'required',
                 'seo_title_en' => 'required',
                 'seo_descriptipn_en' => 'required',
                 'seo_key_en' => 'required',
-            ]);
+            ],
+            [
+                'queue' => 'Sıralama boş bırakılamaz.',
+                'title_tr' => 'Başlık (TÜRKÇE) boş bırakılamaz.',
+                'link_tr' => 'Link (TÜRKÇE) boş bırakılamaz.',
+                'seo_title_tr' => 'Seo başlığı (TÜRKÇE) boş bırakılamaz.',
+                'seo_description_tr' => 'Seo açıklaması (TÜRKÇE) boş bırakılamaz.',
+                'seo_key_tr' => 'Seo anahtarı (TÜRKÇE) boş bırakılamaz.',
+                'title_en' => 'Başlık (İNGİLİZCE) boş bırakılamaz.',
+                'link_en' => 'Link (İNGİLİZCE) boş bırakılamaz.',
+                'seo_title_en' => 'Seo başlığı (İNGİLİZCE) boş bırakılamaz.',
+                'seo_descriptipn_en' => 'Seo açıklaması (İNGİLİZCE) boş bırakılamaz.',
+                'seo_key_en' => 'Seo anahtarı (İNGİLİZCE) boş bırakılamaz.',
+            ],
+        );
+        try {
+            DB::beginTransaction();
+
+            $veri = json_decode(json_decode(json_encode($request->seo_key_tr[0])));
+            $merge = [];
+            foreach ($veri as $v) {
+                $merge[] = $v->value;
+            }
+
+            $veri_en = json_decode(json_decode(json_encode($request->seo_key_en[0])));
+            $merge_en = [];
+            foreach ($veri_en as $v) {
+                $merge_en[] = $v->value;
+            }
+
             $category = ActivityCategory::findOrFail($id);
 
             if ($request->queue > $category->queue) {
@@ -158,13 +208,13 @@ class ActivityCategoryController extends Controller
             $category->link = $request->link_tr;
             $category->seo_title = $request->seo_title_tr;
             $category->seo_description = $request->seo_description_tr;
-            $category->seo_key = $request->seo_key_tr;
+            $category->seo_key = $merge;
             if (!isset($request->status_tr)) {
                 $category->status = 0;
-            }else{
+            } else {
                 $category->status = 1;
             }
-   
+
             $category->save();
 
             $category_en = EnActivityCategory::where('activity_id', $id)->first();
@@ -172,15 +222,15 @@ class ActivityCategoryController extends Controller
             $category_en->link = $request->link_en;
             $category_en->seo_title = $request->seo_title_en;
             $category_en->seo_description = $request->seo_descriptipn_en;
-            $category_en->seo_key = $request->seo_key_en;
+            $category_en->seo_key = $merge_en;
             if (!isset($request->status_en)) {
                 $category_en->status = 0;
-            }else{
+            } else {
                 $category_en->status = 1;
             }
             $category_en->save();
 
-            logKayit(['Etkinlik Kategori', 'Haber kategorisi düzenlendi']);
+            logKayit(['Etkinlik Kategori', 'Etkinlik kategorisi düzenlendi']);
             Alert::success('Etkinlik Kategorisi Düzenlendi');
             DB::commit();
         } catch (Throwable $e) {
@@ -208,11 +258,11 @@ class ActivityCategoryController extends Controller
                 $item->queue = $item->queue - 1;
                 $item->save();
             }
-            EnActivityCategory::where('category_id', $id)->delete();
+            EnActivityCategory::where('activity_id', $id)->delete();
             $data->delete();
 
             logKayit(['Etkinlik Kategori', 'Haber kategorisi silindi']);
-            Alert::success('Güncel Haber Kategorisi Silindi');
+            Alert::success('Etkinlik Kategorisi Silindi');
             DB::commit();
         } catch (Throwable $e) {
             DB::rollBack();
@@ -251,8 +301,9 @@ class ActivityCategoryController extends Controller
         return redirect()->route('admin.activityCategory.list');
     }
 
-    public function ice_aktar(Request $request){
-        Excel::import(new ActivityCategoryImport, $request->file('ice_aktar')->store('temp'));
+    public function ice_aktar(Request $request)
+    {
+        Excel::import(new ActivityCategoryImport(), $request->file('ice_aktar')->store('temp'));
 
         Alert::success('Başarılı');
         return back();

@@ -81,7 +81,7 @@
                                                 <th>{{ __('message.görsel') }}<i class="fa fa-sort ms-3"></i></th>
                                                 <th>{{ __('message.başlık') }}<i class="fa fa-sort ms-3"></i></th>
                                                 <th>{{ __('message.kategori') }}<i class="fa fa-sort ms-3"></i></th>
-                                                <th>{{ __('message.durum') }}<i class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center">{{ __('message.durum') }}<i class="fa fa-sort ms-3"></i></th>
                                                 <th class="text-center">{{ __('message.işlem') }}<i
                                                         class="fa fa-sort ms-3"></i></th>
                                             </tr>
@@ -104,15 +104,14 @@
                                                     </td>
                                                     <td> {{ $item->title }} </td>
                                                     <td>
-                                                        @foreach ($item->Category() as $cat)
-                                                            {{ $cat->title }},
-                                                        @endforeach
+                                                        
+                                                        {{$item->Category->name}}
                                                     </td>
                                                     <td style="text-align: center">
                                                         <div
                                                             class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
                                                             <input class="form-check-input w-50px h-25px" type="checkbox"
-                                                                id="blog_status_1"
+                                                                id="status"
                                                                 onchange="change_status({{ $item->id }})"
                                                                 {{ $item->status == 1 ? 'checked' : '' }}>
                                                             <label class="form-check-label" for="blog_status_1"></label>
@@ -122,7 +121,7 @@
                                                     <td class="text-center">
 
 
-                                                        <a href="{{ route('admin.video.edit', $item->id) }}"
+                                                        <a href="{{ route('admin.companyModel.edit', $item->id) }}"
                                                             class="px-2 btn btn-icon btn-bg-light btn-active-color-secondary btn-sm me-1"
                                                             title="Düzenle">
                                                             <i class="fa-regular fa-pen-to-square fs-3"></i>
@@ -158,7 +157,11 @@
     <!--end::Content wrapper-->
 @endsection
 @section('script')
+
     <script>
+        function change_status(d) {
+            window.location.href = "{{ route('admin.companyModel.change_status') }}/" + d;
+        }
         function destroy(d) {
             Swal.fire({
                 title: 'Emin misiniz?',

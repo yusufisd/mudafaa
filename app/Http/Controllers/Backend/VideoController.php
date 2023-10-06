@@ -42,28 +42,28 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'image' => 'required',
+            'category' => 'required',
+            'author' => 'required',
+            'live_date' => 'required',
+            'name_tr' => 'required',
+            'description_tr' => 'required',
+            'youtube_tr' => 'required',
+            'link_tr' => 'required',
+            'name_en' => 'required',
+            'description_en' => 'required',
+            'youtube_en' => 'required',
+            'link_en' => 'required',
+            'seo_title_tr' => 'required',
+            'seo_description_tr' => 'required',
+            'seo_key_tr' => 'required',
+            'seo_title_en' => 'required',
+            'seo_description_en' => 'required',
+            'seo_key_en' => 'required',
+        ]);
         try {
             DB::beginTransaction();
-            $request->validate([
-                'image' => 'required',
-                'category' => 'required',
-                'author' => 'required',
-                'live_date' => 'required',
-                'name_tr' => 'required',
-                'description_tr' => 'required',
-                'youtube_tr' => 'required',
-                'link_tr' => 'required',
-                'name_en' => 'required',
-                'description_en' => 'required',
-                'youtube_en' => 'required',
-                'link_en' => 'required',
-                'seo_title_tr' => 'required',
-                'seo_description_tr' => 'required',
-                'seo_key_tr' => 'required',
-                'seo_title_en' => 'required',
-                'seo_description_en' => 'required',
-                'seo_key_en' => 'required',
-            ]);
 
             $veri = json_decode(json_decode(json_encode($request->seo_key_tr[0])));
             $merge = [];
@@ -116,6 +116,12 @@ class VideoController extends Controller
             $news_en->seo_key = $merge_en;
             $news_en->video_id = $news->id;
             if ($request->file('image') != null) {
+                $image = $request->file('image');
+                $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+                $save_url = 'assets/uploads/video/' . $image_name;
+                Image::make($image)
+                    ->resize(960, 520)
+                    ->save($save_url);
                 $news_en->image = $save_url;
             }
             if (!isset($request->status_en)) {
@@ -149,31 +155,42 @@ class VideoController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'category' => 'required',
+            'author' => 'required',
+            'live_date' => 'required',
+            'name_tr' => 'required',
+            'description_tr' => 'required',
+            'youtube_tr' => 'required',
+            'link_tr' => 'required',
+            'name_en' => 'required',
+            'description_en' => 'required',
+            'youtube_en' => 'required',
+            'link_en' => 'required',
+            'seo_title_tr' => 'required',
+            'seo_description_tr' => 'required',
+            'seo_key_tr' => 'required',
+            'seo_title_en' => 'required',
+            'seo_description_en' => 'required',
+            'seo_key_en' => 'required',
+        ]);
         try {
             DB::beginTransaction();
 
-            $request->validate([
-                'category' => 'required',
-                'author' => 'required',
-                'live_date' => 'required',
-                'name_tr' => 'required',
-                'description_tr' => 'required',
-                'youtube_tr' => 'required',
-                'link_tr' => 'required',
-                'name_en' => 'required',
-                'description_en' => 'required',
-                'youtube_en' => 'required',
-                'link_en' => 'required',
-                'seo_title_tr' => 'required',
-                'seo_description_tr' => 'required',
-                'seo_key_tr' => 'required',
-                'seo_title_en' => 'required',
-                'seo_description_en' => 'required',
-                'seo_key_en' => 'required',
-            ]);
+            $veri = json_decode(json_decode(json_encode($request->seo_key_tr[0])));
+            $merge = [];
+            foreach ($veri as $v) {
+                $merge[] = $v->value;
+            }
+
+            $veri_en = json_decode(json_decode(json_encode($request->seo_key_en[0])));
+            $merge_en = [];
+            foreach ($veri_en as $v) {
+                $merge_en[] = $v->value;
+            }
 
             $news = Video::findOrFail($id);
-            $news->category = $request->category;
+            $news->category_id = $request->category;
             $news->author = $request->author;
             $news->live_date = $request->live_date;
             $news->title = $request->name_tr;
@@ -182,7 +199,7 @@ class VideoController extends Controller
             $news->link = $request->link_tr;
             $news->seo_title = $request->seo_title_tr;
             $news->seo_description = $request->seo_description_tr;
-            $news->seo_key = $request->seo_key_tr;
+            $news->seo_key = $merge;
             if ($request->file('image') != null) {
                 $image = $request->file('image');
                 $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
@@ -192,22 +209,35 @@ class VideoController extends Controller
                     ->save($save_url);
                 $news->image = $save_url;
             }
-            if (!isset($request->seo_statu_tr)) {
-                $news->seo_statu = 0;
+            if (!isset($request->status_tr)) {
+                $news->status = 0;
             }
             $news->save();
 
+
             $news_en = EnVideo::where('video_id', $id)->first();
+            $news_en->live_date = $request->live_date;
+            $news_en->author = $request->author;
+            $news_en->category_id = $request->category;
             $news_en->title = $request->name_en;
             $news_en->description = $request->description_en;
             $news_en->youtube = $request->youtube_en;
             $news_en->link = $request->link_en;
             $news_en->seo_title = $request->seo_title_en;
             $news_en->seo_description = $request->seo_description_en;
-            $news_en->seo_key = $request->seo_key_en;
+            $news_en->seo_key = $merge_en;
             $news_en->video_id = $news->id;
-            if (!isset($request->seo_statu_en)) {
-                $news_en->seo_statu = 0;
+            if ($request->file('image') != null) {
+                $image = $request->file('image');
+                $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+                $save_url = 'assets/uploads/video/' . $image_name;
+                Image::make($image)
+                    ->resize(960, 520)
+                    ->save($save_url);
+                $news_en->image = $save_url;
+            }
+            if (!isset($request->status_en)) {
+                $news_en->status = 0;
             }
             $news_en->save();
 
