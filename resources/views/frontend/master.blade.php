@@ -425,35 +425,20 @@
                                             <!-- <h3 class="footer-widget-title">Diğer</h3> -->
                                             <ul class="widget-list cat-list">
                                                 <li class="widget-list-item">
-                                                    <a href="corporate.html" class="widget-list-link">
-                                                        Hakkımızda
+                                                    <a href="{{route('front.about.detail')}}" class="widget-list-link">
+                                                        {{__('message.hakkımızda')}}
                                                     </a>
                                                 </li>
+
+                                                @foreach (sayfalar() as $item)
+                                                    
                                                 <li class="widget-list-item">
-                                                    <a href="empty.html" class="widget-list-link">
-                                                        Yayın İlkeleri
+                                                    <a href="{{route('front.page.detail',$item->id)}}" class="widget-list-link">
+                                                        {{$item->title}}
                                                     </a>
                                                 </li>
-                                                <li class="widget-list-item">
-                                                    <a href="empty.html" class="widget-list-link">
-                                                        Kullanım Şartları
-                                                    </a>
-                                                </li>
-                                                <li class="widget-list-item">
-                                                    <a href="empty.html" class="widget-list-link">
-                                                        Gizlilik Politikası
-                                                    </a>
-                                                </li>
-                                                <li class="widget-list-item">
-                                                    <a href="empty.html" class="widget-list-link">
-                                                        Çerez Politikası
-                                                    </a>
-                                                </li>
-                                                <li class="widget-list-item">
-                                                    <a href="" class="widget-list-link">
-                                                        Kişisel Verilerin Korunması
-                                                    </a>
-                                                </li>
+                                                @endforeach
+                                                
 
                                             </ul>
                                         </div>

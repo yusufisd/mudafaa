@@ -143,9 +143,13 @@ class InterviewController extends Controller
      */
     public function edit( $id)
     {
+        $dialog_tr = Dialog::where('interview_id',$id)->get();
+        $dialog_en = EnDialog::where('interview_id',$id)->get();
+        $data_tr = Interview::findOrFail($id);
+        $data_en = EnInterview::where('interview_id',$id)->first();
         $users = UserModel::latest()->get();
         $now = Carbon::now();
-        return view('bcakend.interview.edit',compact('data_tr','data_en','users','now'));
+        return view('backend.interview.edit',compact('data_tr','data_en','users','now','dialog_tr','dialog_en'));
     }
 
     /**

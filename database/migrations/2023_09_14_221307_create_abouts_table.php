@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('link')->nullable();
             $table->longText('description')->nullable();
+            $table->string('seo_title');
+            $table->string('seo_description');
+            $table->string('seo_key');
             $table->timestamps();
         });
     }

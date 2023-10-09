@@ -3,11 +3,11 @@
     <!--begin::Content wrapper-->
     <div class="d-flex flex-column flex-column-fluid">
         <!--begin::Toolbar-->
-        <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-10">
+        <div id="kt_app_toolbar" class="app-toolbar py-lg-10 py-3">
             <!--begin::Toolbar container-->
             <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
                 <!--begin::Page title-->
-                <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                <div class="page-title d-flex flex-column justify-content-center me-3 flex-wrap">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-primary fw-bold fs-3 flex-column justify-content-center my-0">
                         Kullanıcı Ekle</h1>
@@ -15,11 +15,11 @@
                 </div>
                 <!--end::Page title-->
                 <!--begin::Back-->
-                <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                <div class="page-title d-flex flex-column justify-content-center me-3 flex-wrap">
                     <!--begin::Title-->
                     <a href="javascript:history.back()"
-                        class="page-heading d-flex text-dark fw-bold fs-3 justify-content-center my-0 text-hover-success">
-                        <i class="fa fa-arrow-left my-auto mx-2"></i>
+                        class="page-heading d-flex text-dark fw-bold fs-3 justify-content-center text-hover-success my-0">
+                        <i class="fa fa-arrow-left mx-2 my-auto"></i>
                         Geri Dön
                     </a>
                     <!--end::Title-->
@@ -47,8 +47,8 @@
                     <!--begin::Row-->
                     <div class="row g-5 g-xl-8">
                         <!--begin::Col-->
-                        <div class="col-xl-12 mb-5 mb-xl-8">
-                            <div class="card card-flush h-xl-100 mb-5 mb-xl-8">
+                        <div class="col-xl-12 mb-xl-8 mb-5">
+                            <div class="card card-flush h-xl-100 mb-xl-8 mb-5">
                                 <!--begin::Header-->
                                 <!--<div class="ps-12 pt-12"></div>-->
                                 <!--end::Header-->
@@ -76,7 +76,7 @@
                                                             <!--begin::Col-->
                                                             <div class="col-lg-12 fv-row">
                                                                 <input id="user_name" name="user_name"
-                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                     value="" />
                                                             </div>
                                                             <!--end::Col-->
@@ -101,7 +101,7 @@
                                                             <!--begin::Col-->
                                                             <div class="col-lg-12 fv-row">
                                                                 <input id="user_surname" name="user_surname"
-                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                     value="" />
                                                             </div>
                                                             <!--end::Col-->
@@ -128,7 +128,7 @@
                                                             <!--begin::Col-->
                                                             <div class="col-lg-12 fv-row">
                                                                 <input id="user_no" name="user_no"
-                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                     value="" />
                                                             </div>
                                                             <!--end::Col-->
@@ -159,7 +159,7 @@
                                                             <!--begin::Col-->
                                                             <div class="col-lg-12 fv-row">
                                                                 <input type="email" id="user_email" name="user_email"
-                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                     value="" />
                                                             </div>
                                                             <!--end::Col-->
@@ -182,12 +182,16 @@
                                                         <div class="row">
                                                             <!--begin::Col-->
                                                             <div class="col-lg-12 fv-row">
-                                                                <select name="user_category" aria-label="Seçiniz"
+                                                                <select name="role" aria-label="Seçiniz"
                                                                     data-control="select2" data-placeholder="Seçiniz..."
                                                                     class="form-select form-select-solid form-select-lg fw-semibold">
-                                                                    <option value="">Seçiniz...</option>
-                                                                    <option value="admin">Admin</option>
-                                                                    <option value="demo">Demo</option>
+                                                                    <option>Seçiniz...</option>
+
+                                                                    @foreach ($roles as $role)
+                                                                        <option value="{{ $role->id }}">
+                                                                            {{ $role->name }} </option>
+                                                                    @endforeach
+
                                                                 </select>
                                                             </div>
                                                             <!--end::Col-->
@@ -216,7 +220,7 @@
                                                             <div class="col-lg-12 fv-row">
                                                                 <input id="user_password" name="user_password"
                                                                     type="password"
-                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                     value="" />
                                                             </div>
                                                             <!--end::Col-->
@@ -242,7 +246,7 @@
                                                             <div class="col-lg-12 fv-row">
                                                                 <input type="password" id="user_password_again"
                                                                     name="user_password_again"
-                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                     value="" />
                                                             </div>
                                                             <!--end::Col-->
@@ -261,12 +265,12 @@
                                         <div class="row mb-6">
                                             <div class="col-lg-4 fv-row fv-plugins-icon-container ps-5">
                                                 <div class="row">
-                                                    <label class="col-lg-4 col-form-label fw-bold fs-6 ">Instagram</label>
+                                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Instagram</label>
                                                     <div class="col-lg-8">
                                                         <div class="row">
                                                             <div class="col-lg-12 fv-row">
                                                                 <input id="user_name" name="user_name"
-                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                     value="" />
                                                             </div>
                                                         </div>
@@ -276,12 +280,12 @@
 
                                             <div class="col-lg-4 fv-row fv-plugins-icon-container ps-5">
                                                 <div class="row">
-                                                    <label class="col-lg-4 col-form-label fw-bold fs-6 ">Twitter</label>
+                                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Twitter</label>
                                                     <div class="col-lg-8">
                                                         <div class="row">
                                                             <div class="col-lg-12 fv-row">
                                                                 <input id="user_name" name="user_name"
-                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                     value="" />
                                                             </div>
                                                         </div>
@@ -291,12 +295,12 @@
 
                                             <div class="col-lg-4 fv-row fv-plugins-icon-container ps-5">
                                                 <div class="row">
-                                                    <label class="col-lg-4 col-form-label fw-bold fs-6 ">Facebook</label>
+                                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Facebook</label>
                                                     <div class="col-lg-8">
                                                         <div class="row">
                                                             <div class="col-lg-12 fv-row">
                                                                 <input id="user_name" name="user_name"
-                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                     value="" />
                                                             </div>
                                                         </div>
@@ -304,9 +308,9 @@
                                                 </div>
                                             </div>
 
-                                            
 
-                                            
+
+
                                         </div>
                                         <!--end::Input group-->
 
@@ -339,7 +343,7 @@
                                         <!--end::Col-->
                                     </div>
 
-                                    <div class="card-footer d-flex justify-content-between py-6 px-0">
+                                    <div class="card-footer d-flex justify-content-between px-0 py-6">
 
                                         <!--begin::Input group-->
                                         <div class="row mb-0">

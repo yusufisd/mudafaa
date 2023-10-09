@@ -100,7 +100,7 @@
                                                         <img src="/{{$item->image}}" style="width:100px; border-radius:5%" alt="">
                                                     </td>
 
-                                                    <td style="text-align: center"> {{ $item->name }} </td>
+                                                    <td style="text-align: center"> {{ $item->title }} </td>
 
                                                     <td style="text-align: center">
                                                         <a href="#"

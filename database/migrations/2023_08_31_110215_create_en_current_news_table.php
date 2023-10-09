@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('seo_title');
             $table->longText('seo_description');
             $table->string('seo_key');
+            $table->integer('view_counter')->default(0);
             $table->integer('seo_statu')->default(1);
             $table->integer('currentNews_id');
             $table->timestamps();

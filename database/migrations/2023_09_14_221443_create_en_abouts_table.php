@@ -13,9 +13,15 @@ return new class extends Migration
     {
         Schema::create('en_abouts', function (Blueprint $table) {
             $table->id();
+            $table->string('image1')->nullable();
+            $table->string('image2')->nullable();
+            $table->string('image3')->nullable();
             $table->string('title')->nullable();
             $table->string('link')->nullable();
             $table->longText('description')->nullable();
+            $table->string('seo_title');
+            $table->string('seo_description');
+            $table->string('seo_key');
             $table->timestamps();
         });
     }

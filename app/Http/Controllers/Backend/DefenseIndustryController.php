@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Imports\DefenseIndustryCategoryImport;
 use App\Models\DefenseIndustry;
 use App\Models\EnDefenseIndustry;
 use Illuminate\Http\Request;
@@ -10,6 +11,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 use Illuminate\Validation\ValidationException;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DefenseIndustryController extends Controller
 {
@@ -18,7 +20,7 @@ class DefenseIndustryController extends Controller
      */
     public function index()
     {
-        $data = DefenseIndustry::latest()->get();
+        $data = DefenseIndustry::orderBy('queue','asc')->get();
         return view('backend.defenseIndustry.list', compact('data'));
     }
 
@@ -33,7 +35,7 @@ class DefenseIndustryController extends Controller
             $no = DefenseIndustry::orderBy('queue', 'desc')->first();
             $no = $no->queue + 1;
         }
-        return view('backend.defenseIndustry.add',compact('no'));
+        return view('backend.defenseIndustry.add', compact('no'));
     }
 
     /**
@@ -41,26 +43,33 @@ class DefenseIndustryController extends Controller
      */
     public function store(Request $request)
     {
-
+        $request->validate([
+            'name_tr' => 'required',
+            'name_en' => 'required',
+            'link_tr' => 'required',
+            'link_en' => 'required',
+            'queue' => 'required',
+        ],[
+            'name_tr.required' => 'Başlık (TR) boş bırakılamaz',
+            'name_en.required' => 'Başlık (EN) boş bırakılamaz',
+            'link_tr.required' => 'Link (TR) boş bırakılamaz',
+            'link_en.required' => 'Link (EN) boş bırakılamaz',
+            'queue.required' => 'Sıralama boş bırakılamaz',
+        ]);
         try {
             DB::beginTransaction();
-            $request->validate([
-                'name_tr' => 'required',
-                'name_en' => 'required',
-                'link_tr' => 'required',
-                'link_en' => 'required',
-                'queue' => 'required',
-            ]);
+            
             $defense = DefenseIndustry::create([
-                "title" => $request->name_tr,
-                "queue" => $request->queue,
-                "link" => $request->link_tr,
+                'title' => $request->name_tr,
+                'queue' => $request->queue,
+                'link' => $request->link_tr,
             ]);
 
             EnDefenseIndustry::create([
-                "title" => $request->name_en,
-                "link" => $request->link_en,
-                "defense_id" => $defense->id,
+                'title' => $request->name_en,
+                'link' => $request->link_en,
+                'queue' => $request->queue,
+                'defense_id' => $defense->id,
             ]);
 
             logKayit(['Savunma Sanayi Kategorisi ', 'Savunma sanayi kategorisi eklendi']);
@@ -72,18 +81,17 @@ class DefenseIndustryController extends Controller
             logKayit(['Savunma Sanayi Kategorisi ', 'Savunma sanayi kategorisi eklemede hata', 0]);
             Alert::error('Firma Eklemede Hata');
             throw ValidationException::withMessages([
-                'error' => 'Tüm alanların doldurulması zorunludur.'
+                'error' => 'Tüm alanların doldurulması zorunludur.',
             ]);
         }
         return redirect()->route('admin.defenseIndustry.list');
     }
 
-
     public function edit($id)
     {
         $data_tr = DefenseIndustry::findOrFail($id);
         $data_en = EnDefenseIndustry::where('defense_id', $id)->first();
-        return view('backend.company.edit', compact('data_tr', 'data_en'));
+        return view('backend.defenseIndustry.edit', compact('data_tr', 'data_en'));
     }
 
     /**
@@ -91,24 +99,32 @@ class DefenseIndustryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name_tr' => 'required',
+            'name_en' => 'required',
+            'link_tr' => 'required',
+            'link_en' => 'required',
+            'queue' => 'required',
+        ],[
+            'name_tr.required' => 'Başlık (TR) boş bırakılamaz',
+            'name_en.required' => 'Başlık (EN) boş bırakılamaz',
+            'link_tr.required' => 'Link (TR) boş bırakılamaz',
+            'link_en.required' => 'Link (EN) boş bırakılamaz',
+            'queue.required' => 'Sıralama boş bırakılamaz',
+        ]);
         try {
             DB::beginTransaction();
-            $request->validate([
-                'name_tr' => 'required',
-                'name_en' => 'required',
-                'link_tr' => 'required',
-                'link_en' => 'required',
-                'queue' => 'required',
-            ]);
+            
             $defense = DefenseIndustry::where('id', $id)->update([
-                "title" => $request->name_tr,
-                "queue" => $request->queue,
-                "link" => $request->link_tr,
+                'title' => $request->name_tr,
+                'queue' => $request->queue,
+                'link' => $request->link_tr,
             ]);
 
             EnDefenseIndustry::where('defense_id', $id)->update([
-                "title" => $request->name_en,
-                "link" => $request->link_en,
+                'title' => $request->name_en,
+                'queue' => $request->queue,
+                'link' => $request->link_en,
             ]);
 
             logKayit(['Savunma Sanayi Kategorisi ', 'Savunma sanayi kategorisi düzenlendi']);
@@ -120,7 +136,7 @@ class DefenseIndustryController extends Controller
             logKayit(['Savunma Sanayi Kategorisi ', 'Savunma sanayi kategorisi düzenlemede hata', 0]);
             Alert::error('Firma Düzenlemede Hata');
             throw ValidationException::withMessages([
-                'error' => 'Tüm alanların doldurulması zorunludur.'
+                'error' => 'Tüm alanların doldurulması zorunludur.',
             ]);
         }
         return redirect()->route('admin.defenseIndustry.list');
@@ -132,8 +148,14 @@ class DefenseIndustryController extends Controller
     public function destroy(string $id)
     {
         try {
-            DB::beginTransaction();
             $data = DefenseIndustry::findOrFail($id);
+            $son_id = DefenseIndustry::orderBy('queue', 'desc')->first()->queue;
+            for ($i = $data->queue + 1; $i <= $son_id; $i++) {
+                $item = DefenseIndustry::where('queue', $i)->first();
+                $item->queue = $item->queue - 1;
+                $item->save();
+            }
+            EnDefenseIndustry::where('defense_id', $id)->delete();
             $data->delete();
             logKayit(['Savunma Sanayi Kategorisi ', 'Savunma sanayi kategorisi silindi']);
             Alert::success('Savunma Sanayi Başarıyla Silindi');
@@ -144,9 +166,16 @@ class DefenseIndustryController extends Controller
             logKayit(['Savunma Sanayi Kategorisi ', 'Savunma sanayi kategorisi silmede hata', 0]);
             Alert::error('Firma Silmede Hata');
             throw ValidationException::withMessages([
-                'error' => 'Tüm alanların doldurulması zorunludur.'
+                'error' => 'Tüm alanların doldurulması zorunludur.',
             ]);
         }
         return redirect()->route('admin.defenseIndustry.list');
+    }
+
+    public function ice_aktar(Request $request){
+        Excel::import(new DefenseIndustryCategoryImport, $request->file('ice_aktar')->store('temp'));
+
+        Alert::success('Başarılı');
+        return back();
     }
 }

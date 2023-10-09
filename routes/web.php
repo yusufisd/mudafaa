@@ -16,9 +16,12 @@ use App\Http\Controllers\Backend\DefenseIndustryController;
 use App\Http\Controllers\Backend\DictionaryController;
 use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\InterviewController;
+use App\Http\Controllers\Backend\PageController;
+use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\VideoCategoryController;
 use App\Http\Controllers\Backend\VideoController;
+use App\Http\Controllers\Frontend\AboutController as FrontendAboutController;
 use App\Http\Controllers\Frontend\ActivityController as FrontendActivityController;
 use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\CompanyController as FrontendCompanyController;
@@ -32,6 +35,7 @@ use App\Http\Controllers\Frontend\InterviewController as FrontendInterviewContro
 use App\Http\Controllers\Frontend\VideoController as FrontendVideoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\LanguageController;
+use App\Http\Controllers\Frontend\PageController as FrontendPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,17 +48,15 @@ use App\Http\Controllers\Frontend\LanguageController;
 |
 */
 
-
 // CHANGE LANG
 Route::get('/change-lang/{lang}', [LanguageController::class, 'change'])->name('chaange.lang');
 
-Route::middleware('lang')->group(function(){
-
+Route::middleware('lang')->group(function () {
     Route::get('/login', [AuthController::class, 'login'])->name('admin.login');
     Route::post('/login', [AuthController::class, 'login_post'])->name('admin.login_post');
 
     Route::prefix('admin')
-        ->middleware('auth:admin')
+        ->middleware('panel')
         ->name('admin.')
         ->group(function () {
             Route::get('/', [HomeController::class, 'index'])->name('index');
@@ -65,15 +67,26 @@ Route::middleware('lang')->group(function(){
                 ->prefix('guncel-haber-kategori')
                 ->name('currentNewsCategory.')
                 ->group(function () {
-                    Route::get('ekle', 'create')->name('add');
-                    Route::post('ekle', 'store')->name('store');
-                    Route::get('liste', 'index')->name('list');
-                    Route::get('duzenle/{id?}', 'edit')->name('edit');
-                    Route::post('guncelle/{id?}', 'update')->name('update');
-                    Route::get('sil/{id?}', 'destroy')->name('destroy');
+                    Route::middleware('per:currentNewsCategory_add')
+                        ->get('ekle', 'create')
+                        ->name('add');
+                    Route::middleware('per:currentNewsCategory_add')
+                        ->post('ekle', 'store')
+                        ->name('store');
+                    Route::middleware('per:currentNewsCategory_list')
+                        ->get('liste', 'index')
+                        ->name('list');
+                    Route::middleware('per:currentNewsCategory_edit')
+                        ->get('duzenle/{id?}', 'edit')
+                        ->name('edit');
+                    Route::middleware('per:currentNewsCategory_edit')
+                        ->post('guncelle/{id?}', 'update')
+                        ->name('update');
+                    Route::middleware('per:currentNewsCategory_delete')
+                        ->get('sil/{id?}', 'destroy')
+                        ->name('destroy');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
-
                 });
 
             // CURRENT NEWS CONTROLLER
@@ -81,20 +94,32 @@ Route::middleware('lang')->group(function(){
                 ->prefix('guncel-haber')
                 ->name('currentNews.')
                 ->group(function () {
-                    Route::get('ekle', 'create')->name('add');
-                    Route::post('ekle', 'store')->name('store');
-                    Route::get('liste', 'index')->name('list');
-                    Route::get('duzenle/{id?}', 'edit')->name('edit');
-                    Route::post('guncelle/{id?}', 'update')->name('update');
-                    Route::get('sil/{id?}', 'destroy')->name('destroy');
+                    Route::middleware('per:currentNews_add')
+                        ->get('ekle', 'create')
+                        ->name('add');
+                    Route::middleware('per:currentNews_add')
+                        ->post('ekle', 'store')
+                        ->name('store');
+                    Route::middleware('per:currentNews_list')
+                        ->get('liste', 'index')
+                        ->name('list');
+                    Route::middleware('per:currentNews_edit')
+                        ->get('duzenle/{id?}', 'edit')
+                        ->name('edit');
+                    Route::middleware('per:currentNews_edit')
+                        ->post('guncelle/{id?}', 'update')
+                        ->name('update');
+                    Route::middleware('per:currentNews_delete')
+                        ->get('sil/{id?}', 'destroy')
+                        ->name('destroy');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
                     Route::get('manset-degistir/{id?}', 'change_headline')->name('change_headline');
-                    Route::get('yorumlar/{id?}', 'commentList')->name('commentList');
+                    Route::middleware('per:currentNews_list')
+                        ->get('yorumlar/{id?}', 'commentList')
+                        ->name('commentList');
                     Route::get('yorum-statu/{id?}', 'changeCommentStatus')->name('changeCommentStatus');
                     Route::get('yorum-sil/{id?}', 'commentDestroy')->name('commentDestroy');
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
-                    
-
                 });
 
             // USER CONTROLLER
@@ -115,12 +140,25 @@ Route::middleware('lang')->group(function(){
                 ->prefix('savunma-sanayi-icerik')
                 ->name('defenseIndustryContent.')
                 ->group(function () {
-                    Route::get('ekle', 'create')->name('add');
-                    Route::post('ekle', 'store')->name('store');
-                    Route::get('liste', 'index')->name('list');
-                    Route::get('duzenle/{id?}', 'edit')->name('edit');
-                    Route::post('guncelle/{id?}', 'update')->name('update');
-                    Route::get('sil/{id?}', 'destroy')->name('destroy');
+                    Route::middleware('per:defenseIndustryContent_add')
+                        ->get('ekle', 'create')
+                        ->name('add');
+                    Route::middleware('per:defenseIndustryContent_add')
+                        ->post('ekle', 'store')
+                        ->name('store');
+                    Route::middleware('per:defenseIndustryContent_list')
+                        ->get('liste', 'index')
+                        ->name('list');
+                    Route::middleware('per:defenseIndustryContent_edit')
+                        ->get('duzenle/{id?}', 'edit')
+                        ->name('edit');
+                    Route::middleware('per:defenseIndustryContent_edit')
+                        ->post('guncelle/{id?}', 'update')
+                        ->name('update');
+                    Route::middleware('per:defenseIndustryContent_delete')
+                        ->get('sil/{id?}', 'destroy')
+                        ->name('destroy');
+                    Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
                 });
 
             // SAVUNMA SANAYİ  CONTROLLER
@@ -128,12 +166,26 @@ Route::middleware('lang')->group(function(){
                 ->prefix('savunma-sanayi')
                 ->name('defenseIndustry.')
                 ->group(function () {
-                    Route::get('ekle', 'create')->name('add');
-                    Route::post('ekle', 'store')->name('store');
-                    Route::get('liste', 'index')->name('list');
-                    Route::get('duzenle/{id?}', 'edit')->name('edit');
-                    Route::post('guncelle/{id?}', 'update')->name('update');
-                    Route::get('sil/{id?}', 'destroy')->name('destroy');
+                    Route::middleware('per:defenseIndustry_add')
+                        ->get('ekle', 'create')
+                        ->name('add');
+                    Route::middleware('per:defenseIndustry_add')
+                        ->post('ekle', 'store')
+                        ->name('store');
+                    Route::middleware('per:defenseIndustry_list')
+                        ->get('liste', 'index')
+                        ->name('list');
+                    Route::middleware('per:defenseIndustry_edit')
+                        ->get('duzenle/{id?}', 'edit')
+                        ->name('edit');
+                    Route::middleware('per:defenseIndustry_edit')
+                        ->post('guncelle/{id?}', 'update')
+                        ->name('update');
+                    Route::middleware('per:defenseIndustry_delete')
+                        ->get('sil/{id?}', 'destroy')
+                        ->name('destroy');
+                    Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
+
                 });
 
             // SAVUNMA SANAYİ KATEGORİ CONTROLLER
@@ -141,12 +193,25 @@ Route::middleware('lang')->group(function(){
                 ->prefix('savunma-sanayi-kategori')
                 ->name('defenseIndustryCategory.')
                 ->group(function () {
-                    Route::get('ekle', 'create')->name('add');
-                    Route::post('ekle', 'store')->name('store');
-                    Route::get('liste', 'index')->name('list');
-                    Route::get('duzenle/{id?}', 'edit')->name('edit');
-                    Route::post('guncelle/{id?}', 'update')->name('update');
-                    Route::get('sil/{id?}', 'destroy')->name('destroy');
+                    Route::middleware('per:defenseIndustryCategory_add')
+                        ->get('ekle', 'create')
+                        ->name('add');
+                    Route::middleware('per:defenseIndustryCategory_add')
+                        ->post('ekle', 'store')
+                        ->name('store');
+                    Route::middleware('per:defenseIndustryCategory_list')
+                        ->get('liste', 'index')
+                        ->name('list');
+                    Route::middleware('per:defenseIndustryCategory_edit')
+                        ->get('duzenle/{id?}', 'edit')
+                        ->name('edit');
+                    Route::middleware('per:defenseIndustryCategory_edit')
+                        ->post('guncelle/{id?}', 'update')
+                        ->name('update');
+                    Route::middleware('per:defenseIndustryCategory_delete')
+                        ->get('sil/{id?}', 'destroy')
+                        ->name('destroy');
+                    Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
                 });
 
             // ÜLKE CONTROLLER
@@ -154,12 +219,24 @@ Route::middleware('lang')->group(function(){
                 ->prefix('ulke')
                 ->name('country.')
                 ->group(function () {
-                    Route::get('ekle', 'create')->name('add');
-                    Route::post('ekle', 'store')->name('store');
-                    Route::get('liste', 'index')->name('list');
-                    Route::get('duzenle/{id?}', 'edit')->name('edit');
-                    Route::post('guncelle/{id?}', 'update')->name('update');
-                    Route::get('sil/{id?}', 'destroy')->name('destroy');
+                    Route::middleware('per:defenseIndustryCategory_add')
+                        ->get('ekle', 'create')
+                        ->name('add');
+                    Route::middleware('per:defenseIndustryCategory_add')
+                        ->post('ekle', 'store')
+                        ->name('store');
+                    Route::middleware('per:defenseIndustryCategory_list')
+                        ->get('liste', 'index')
+                        ->name('list');
+                    Route::middleware('per:defenseIndustryCategory_edit')
+                        ->get('duzenle/{id?}', 'edit')
+                        ->name('edit');
+                    Route::middleware('per:defenseIndustryCategory_edit')
+                        ->post('guncelle/{id?}', 'update')
+                        ->name('update');
+                    Route::middleware('per:defenseIndustryCategory_delete')
+                        ->get('sil/{id?}', 'destroy')
+                        ->name('destroy');
                 });
 
             // ŞİRKET CONTROLLER
@@ -167,12 +244,24 @@ Route::middleware('lang')->group(function(){
                 ->prefix('firma')
                 ->name('company.')
                 ->group(function () {
-                    Route::get('ekle', 'create')->name('add');
-                    Route::post('ekle', 'store')->name('store');
-                    Route::get('liste', 'index')->name('list');
-                    Route::get('duzenle/{id?}', 'edit')->name('edit');
-                    Route::post('guncelle/{id?}', 'update')->name('update');
-                    Route::get('sil/{id?}', 'destroy')->name('destroy');
+                    Route::middleware('per:company_add')
+                        ->get('ekle', 'create')
+                        ->name('add');
+                    Route::middleware('per:company_add')
+                        ->post('ekle', 'store')
+                        ->name('store');
+                    Route::middleware('per:company_list')
+                        ->get('liste', 'index')
+                        ->name('list');
+                    Route::middleware('per:company_edit')
+                        ->get('duzenle/{id?}', 'edit')
+                        ->name('edit');
+                    Route::middleware('per:company_edit')
+                        ->post('guncelle/{id?}', 'update')
+                        ->name('update');
+                    Route::middleware('per:company_delete')
+                        ->get('sil/{id?}', 'destroy')
+                        ->name('destroy');
                 });
 
             // ETKİNLİK KATEGORİSİ CONTROLLER
@@ -180,15 +269,26 @@ Route::middleware('lang')->group(function(){
                 ->prefix('etkinlik-kategorisi')
                 ->name('activityCategory.')
                 ->group(function () {
-                    Route::get('ekle', 'create')->name('add');
-                    Route::post('ekle', 'store')->name('store');
-                    Route::get('liste', 'index')->name('list');
-                    Route::get('duzenle/{id?}', 'edit')->name('edit');
-                    Route::post('guncelle/{id?}', 'update')->name('update');
-                    Route::get('sil/{id?}', 'destroy')->name('destroy');
+                    Route::middleware('per:activityCategory_add')
+                        ->get('ekle', 'create')
+                        ->name('add');
+                    Route::middleware('per:activityCategory_add')
+                        ->post('ekle', 'store')
+                        ->name('store');
+                    Route::middleware('per:activityCategory_list')
+                        ->get('liste', 'index')
+                        ->name('list');
+                    Route::middleware('per:activityCategory_edit')
+                        ->get('duzenle/{id?}', 'edit')
+                        ->name('edit');
+                    Route::middleware('per:activityCategory_edit')
+                        ->post('guncelle/{id?}', 'update')
+                        ->name('update');
+                    Route::middleware('per:activityCategory_delete')
+                        ->get('sil/{id?}', 'destroy')
+                        ->name('destroy');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
-
                 });
 
             // ETKİNLİK  CONTROLLER
@@ -196,14 +296,25 @@ Route::middleware('lang')->group(function(){
                 ->prefix('etkinlik')
                 ->name('activity.')
                 ->group(function () {
-                    Route::get('ekle', 'create')->name('add');
-                    Route::post('ekle', 'store')->name('store');
-                    Route::get('liste', 'index')->name('list');
-                    Route::get('duzenle/{id?}', 'edit')->name('edit');
-                    Route::post('guncelle/{id?}', 'update')->name('update');
-                    Route::get('sil/{id?}', 'destroy')->name('destroy');
+                    Route::middleware('per:activity_add')
+                        ->get('ekle', 'create')
+                        ->name('add');
+                    Route::middleware('per:activity_add')
+                        ->post('ekle', 'store')
+                        ->name('store');
+                    Route::middleware('per:activity_list')
+                        ->get('liste', 'index')
+                        ->name('list');
+                    Route::middleware('per:activity_edit')
+                        ->get('duzenle/{id?}', 'edit')
+                        ->name('edit');
+                    Route::middleware('per:activity_edit')
+                        ->post('guncelle/{id?}', 'update')
+                        ->name('update');
+                    Route::middleware('per:activity_delete')
+                        ->get('sil/{id?}', 'destroy')
+                        ->name('destroy');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
-
                 });
 
             // RÖPORTAJ  CONTROLLER
@@ -211,15 +322,26 @@ Route::middleware('lang')->group(function(){
                 ->prefix('roportaj')
                 ->name('interview.')
                 ->group(function () {
-                    Route::get('ekle', 'create')->name('add');
-                    Route::post('ekle', 'store')->name('store');
-                    Route::get('liste', 'index')->name('list');
-                    Route::get('duzenle/{id?}', 'edit')->name('edit');
-                    Route::post('guncelle/{id?}', 'update')->name('update');
-                    Route::get('sil/{id?}', 'destroy')->name('destroy');
+                    Route::middleware('per:interview_add')
+                        ->get('ekle', 'create')
+                        ->name('add');
+                    Route::middleware('per:interview_add')
+                        ->post('ekle', 'store')
+                        ->name('store');
+                    Route::middleware('per:interview_list')
+                        ->get('liste', 'index')
+                        ->name('list');
+                    Route::middleware('per:interview_edit')
+                        ->get('duzenle/{id?}', 'edit')
+                        ->name('edit');
+                    Route::middleware('per:interview_edit')
+                        ->post('guncelle/{id?}', 'update')
+                        ->name('update');
+                    Route::middleware('per:interview_delete')
+                        ->get('sil/{id?}', 'destroy')
+                        ->name('destroy');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
-
                 });
 
             // SÖZLÜK  CONTROLLER
@@ -227,15 +349,26 @@ Route::middleware('lang')->group(function(){
                 ->prefix('sozluk')
                 ->name('dictionary.')
                 ->group(function () {
-                    Route::get('ekle', 'create')->name('add');
-                    Route::post('ekle', 'store')->name('store');
-                    Route::get('liste', 'index')->name('list');
-                    Route::get('duzenle/{id?}', 'edit')->name('edit');
-                    Route::post('guncelle/{id?}', 'update')->name('update');
-                    Route::get('sil/{id?}', 'destroy')->name('destroy');
+                    Route::middleware('per:dictionary_add')
+                        ->get('ekle', 'create')
+                        ->name('add');
+                    Route::middleware('per:dictionary_add')
+                        ->post('ekle', 'store')
+                        ->name('store');
+                    Route::middleware('per:dictionary_list')
+                        ->get('liste', 'index')
+                        ->name('list');
+                    Route::middleware('per:dictionary_edit')
+                        ->get('duzenle/{id?}', 'edit')
+                        ->name('edit');
+                    Route::middleware('per:dictionary_edit')
+                        ->post('guncelle/{id?}', 'update')
+                        ->name('update');
+                    Route::middleware('per:dictionary_delete')
+                        ->get('sil/{id?}', 'destroy')
+                        ->name('destroy');
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
-
                 });
 
             // VİDEO KATEGORİ  CONTROLLER
@@ -243,12 +376,24 @@ Route::middleware('lang')->group(function(){
                 ->prefix('video-kategori')
                 ->name('videoCategory.')
                 ->group(function () {
-                    Route::get('ekle', 'create')->name('add');
-                    Route::post('ekle', 'store')->name('store');
-                    Route::get('liste', 'index')->name('list');
-                    Route::get('duzenle/{id?}', 'edit')->name('edit');
-                    Route::post('guncelle/{id?}', 'update')->name('update');
-                    Route::get('sil/{id?}', 'destroy')->name('destroy');
+                    Route::middleware('per:videoCategory_add')
+                        ->get('ekle', 'create')
+                        ->name('add');
+                    Route::middleware('per:videoCategory_add')
+                        ->post('ekle', 'store')
+                        ->name('store');
+                    Route::middleware('per:videoCategory_list')
+                        ->get('liste', 'index')
+                        ->name('list');
+                    Route::middleware('per:videoCategory_edit')
+                        ->get('duzenle/{id?}', 'edit')
+                        ->name('edit');
+                    Route::middleware('per:videoCategory_edit')
+                        ->post('guncelle/{id?}', 'update')
+                        ->name('update');
+                    Route::middleware('per:videoCategory_delete')
+                        ->get('sil/{id?}', 'destroy')
+                        ->name('destroy');
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
                 });
 
@@ -257,12 +402,24 @@ Route::middleware('lang')->group(function(){
                 ->prefix('video')
                 ->name('video.')
                 ->group(function () {
-                    Route::get('ekle', 'create')->name('add');
-                    Route::post('ekle', 'store')->name('store');
-                    Route::get('liste', 'index')->name('list');
-                    Route::get('duzenle/{id?}', 'edit')->name('edit');
-                    Route::post('guncelle/{id?}', 'update')->name('update');
-                    Route::get('sil/{id?}', 'destroy')->name('destroy');
+                    Route::middleware('per:video_add')
+                        ->get('ekle', 'create')
+                        ->name('add');
+                    Route::middleware('per:video_add')
+                        ->post('ekle', 'store')
+                        ->name('store');
+                    Route::middleware('per:video_list')
+                        ->get('liste', 'index')
+                        ->name('list');
+                    Route::middleware('per:video_edit')
+                        ->get('duzenle/{id?}', 'edit')
+                        ->name('edit');
+                    Route::middleware('per:video_edit')
+                        ->post('guncelle/{id?}', 'update')
+                        ->name('update');
+                    Route::middleware('per:video_delete')
+                        ->get('sil/{id?}', 'destroy')
+                        ->name('destroy');
                 });
 
             // FİRMA  CONTROLLER
@@ -270,14 +427,25 @@ Route::middleware('lang')->group(function(){
                 ->prefix('yeni-firma')
                 ->name('companyModel.')
                 ->group(function () {
-                    Route::get('ekle', 'create')->name('add');
-                    Route::post('ekle', 'store')->name('store');
-                    Route::get('liste', 'index')->name('list');
-                    Route::get('duzenle/{id?}', 'edit')->name('edit');
-                    Route::post('guncelle/{id?}', 'update')->name('update');
-                    Route::get('sil/{id?}', 'destroy')->name('destroy');
+                    Route::middleware('per:company_add')
+                        ->get('ekle', 'create')
+                        ->name('add');
+                    Route::middleware('per:company_add')
+                        ->post('ekle', 'store')
+                        ->name('store');
+                    Route::middleware('per:company_list')
+                        ->get('liste', 'index')
+                        ->name('list');
+                    Route::middleware('per:company_edit')
+                        ->get('duzenle/{id?}', 'edit')
+                        ->name('edit');
+                    Route::middleware('per:company_edit')
+                        ->post('guncelle/{id?}', 'update')
+                        ->name('update');
+                    Route::middleware('per:company_delete')
+                        ->get('sil/{id?}', 'destroy')
+                        ->name('destroy');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
-
                 });
 
             // FİRMA KATEGORİ CONTROLLER
@@ -285,16 +453,26 @@ Route::middleware('lang')->group(function(){
                 ->prefix('firma-kategori')
                 ->name('companyCategory.')
                 ->group(function () {
-                    Route::get('ekle', 'create')->name('add');
-                    Route::post('ekle', 'store')->name('store');
-                    Route::get('liste', 'index')->name('list');
-                    Route::get('duzenle/{id?}', 'edit')->name('edit');
-                    Route::post('guncelle/{id?}', 'update')->name('update');
-                    Route::get('sil/{id?}', 'destroy')->name('destroy');
+                    Route::middleware('per:companyCategory_add')
+                        ->get('ekle', 'create')
+                        ->name('add');
+                    Route::middleware('per:companyCategory_add')
+                        ->post('ekle', 'store')
+                        ->name('store');
+                    Route::middleware('per:companyCategory_list')
+                        ->get('liste', 'index')
+                        ->name('list');
+                    Route::middleware('per:companyCategory_edit')
+                        ->get('duzenle/{id?}', 'edit')
+                        ->name('edit');
+                    Route::middleware('per:companyCategory_edit')
+                        ->post('guncelle/{id?}', 'update')
+                        ->name('update');
+                    Route::middleware('per:companyCategory_delete')
+                        ->get('sil/{id?}', 'destroy')
+                        ->name('destroy');
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
-
-
                 });
 
             // HAKKIMIZDA CONTROLLER
@@ -303,6 +481,45 @@ Route::middleware('lang')->group(function(){
                 ->name('about.')
                 ->group(function () {
                     Route::get('ekle', 'add')->name('add');
+                    Route::post('ekle', 'store')->name('store');
+                });
+
+            // PAGE CONTROLLER
+            Route::controller(PageController::class)
+                ->prefix('sayfa')
+                ->name('page.')
+                ->group(function () {
+                    Route::middleware('per:page_list')
+                        ->get('/', 'list')
+                        ->name('list');
+                    Route::middleware('per:page_add')
+                        ->get('/ekle', 'add')
+                        ->name('add');
+                    Route::middleware('per:page_add')
+                        ->post('/ekle', 'store')
+                        ->name('store');
+                    Route::middleware('per:page_edit')
+                        ->get('/duzenle/{id?}', 'edit')
+                        ->name('edit');
+                    Route::middleware('per:page_edit')
+                        ->post('/duzenle/{id?}', 'update')
+                        ->name('update');
+                    Route::middleware('per:page_delete')
+                        ->get('sil/{id?}', 'destroy')
+                        ->name('destroy');
+                });
+
+            // ROLE CONTROLLER
+            Route::controller(RoleController::class)
+                ->prefix('rol')
+                ->name('role.')
+                ->middleware('auth:admin')
+                ->group(function () {
+                    Route::get('/', 'list')->name('list');
+                    Route::get('/ekle', 'add')->name('add');
+                    Route::post('/ekle', 'store')->name('store');
+                    Route::get('/duzenle/{id?}', 'edit')->name('edit');
+                    Route::post('/duzenle/{id?}', 'update')->name('update');
                 });
         });
 
@@ -353,7 +570,6 @@ Route::middleware('lang')->group(function(){
                     Route::get('kategori-detay/{id?}', 'categoryDetail')->name('categoryDetail');
                     Route::post('etkinlik-ara', 'searchActivity')->name('searchActivity');
                     Route::get('etkinlik-takvimi', 'calendar')->name('calendar');
-                    
                 });
 
             // VİDEO CONTROLLER
@@ -402,5 +618,29 @@ Route::middleware('lang')->group(function(){
                     Route::get('liste', 'index')->name('list');
                     Route::get('detay/{id?}', 'detail')->name('detail');
                 });
+
+            // ABOUT CONTROLLER
+            Route::controller(FrontendAboutController::class)
+                ->prefix('hakkimizda')
+                ->name('about.')
+                ->group(function () {
+                    Route::get('/', 'detail')->name('detail');
+                });
+
+            // ABOUT CONTROLLER
+            Route::controller(FrontendAboutController::class)
+                ->prefix('hakkimizda')
+                ->name('about.')
+                ->group(function () {
+                    Route::get('/', 'detail')->name('detail');
+                });
+
+                // PAGE CONTROLLER
+            Route::controller(FrontendPageController::class)
+            ->prefix('sayfalar')
+            ->name('page.')
+            ->group(function () {
+                Route::get('/detay/{id?}', 'detail')->name('detail');
+            });
         });
-    });
+});

@@ -80,9 +80,9 @@
                                                 </th>
                                                 <th> {{ __('message.görsel') }} <i class="fa fa-sort ms-3"></i></th>
                                                 <th> {{ __('message.başlık') }} <i class="fa fa-sort ms-3"></i></th>
-                                                <th> {{ __('message.sıralama') }} <i class="fa fa-sort ms-3"></i></th>
-                                                <th> {{ __('message.durum') }} <i class="fa fa-sort ms-3"></i></th>
-                                                <th> {{ __('message.işlem') }} <i class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center"> {{ __('message.sıralama') }} <i class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center"> {{ __('message.durum') }} <i class="fa fa-sort ms-3"></i></th>
+                                                <th style="width: 180px"> {{ __('message.işlem') }} <i class="fa fa-sort ms-3"></i></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -99,9 +99,9 @@
                                                     <td>
                                                         <img src="/{{ $item->image }}" style="width:150px; border-radius:5%" alt="">
                                                     </td>
-                                                    <td> {{ $item->title }} </td>
-                                                    <td> {{ $item->queue }} </td>
-                                                    <td>
+                                                    <td> <p style="text-transform: capitalize"> {{ $item->title }} </p></td>
+                                                    <td style="text-align: center"> {{ $item->queue }} </td>
+                                                    <td style="text-align: center">
                                                         <div
                                                             class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
                                                             <input class="form-check-input w-50px h-25px" type="checkbox"
@@ -118,7 +118,7 @@
                                                             title="Görüntüle">
                                                             <i class="fa-solid fa-eye fs-3"></i>
                                                         </a>
-                                                        <a href="{{ route('admin.currentNewsCategory.edit', $item->id) }}"
+                                                        <a href="{{ route('admin.defenseIndustryCategory.edit', $item->id) }}"
                                                             class="px-2 btn btn-icon btn-bg-light btn-active-color-secondary btn-sm me-1"
                                                             title="Düzenle">
                                                             <i class="fa-regular fa-pen-to-square fs-3"></i>
@@ -155,7 +155,7 @@
 @section('script')
     <script>
         function change_status(d) {
-            window.location.href = "{{ route('admin.currentNewsCategory.change_status') }}/" + d
+            window.location.href = "{{ route('admin.defenseIndustryCategory.change_status') }}/" + d
         }
 
         function destroy(d) {
@@ -169,7 +169,7 @@
                 confirmButtonText: 'Evet, sil!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "{{ route('admin.currentNewsCategory.destroy') }}/" + d;
+                    window.location.href = "{{ route('admin.defenseIndustryCategory.destroy') }}/" + d;
                 }
             })
         }

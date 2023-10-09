@@ -96,7 +96,7 @@
                                                         <div class="row">
                                                             <!--begin::Col-->
                                                             <div class="col-lg-12 fv-row">
-                                                                <input type="file" name="image"
+                                                                <input required type="file" name="image"
                                                                     class="form-control form-control-lg  mb-3 mb-lg-0"
                                                                     value="" />
                                                             </div>
@@ -115,7 +115,7 @@
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10 fv-row">
-                                                        <select name="category" aria-label="Seçiniz" data-control="select2"
+                                                        <select required name="category" aria-label="Seçiniz" data-control="select2"
                                                             data-placeholder="Seçiniz..."
                                                             class="form-select form-select-solid form-select-lg fw-semibold">
                                                             <option value="">Seçiniz...</option>
@@ -192,16 +192,14 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5">
+                                                                        class="col-lg-12 required col-form-label fw-bold fs-6 mb-5 ps-5">
                                                                         <span>İçerik</span>
                                                                     </label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row mb-5 ps-5">
 
-                                                                        <textarea id="editor" name="description_tr" class="tox-target ckeditor">
-                                                                                        
-                                                                                    </textarea>
+                                                                        <textarea required id="editor" name="description_tr" class="tox-target ckeditor"></textarea>
 
 
                                                                     </div>
@@ -254,7 +252,7 @@
                                                                         <div class="row">
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
-                                                                                <input type="text" name="title_en"
+                                                                                <input required type="text" name="title_en"
                                                                                     id="title_en"
                                                                                     onchange="create_slug_en()"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
@@ -278,9 +276,7 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row mb-5 ps-5">
 
-                                                                        <textarea id="editor2" name="description_en" class="tox-target ckeditor">
-                                                                                        
-                                                                                    </textarea>
+                                                                        <textarea required id="editor2" name="description_en" class="tox-target ckeditor"></textarea>
 
 
                                                                     </div>
@@ -302,7 +298,7 @@
                                                                     <div class="col-lg-4 d-flex align-items-center">
                                                                         <div
                                                                             class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                            <input name="status_en"
+                                                                            <input  name="status_en"
                                                                                 class="form-check-input w-50px h-25px"
                                                                                 type="checkbox"
                                                                                 id="allowblog_category_detail_en"

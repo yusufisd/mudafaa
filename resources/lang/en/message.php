@@ -86,6 +86,10 @@ return [
     "ilgili haberler" => "Related News",
     "bizi takip edin" => "Follow Us",
     "röportaj" => "Interview",
+    "sayfa" => "Page",
+    "sözlük" => "Dictionary",
+    "kullanıcı" => "User",
+    "hakkımızda" => "About",
 
 
 ];

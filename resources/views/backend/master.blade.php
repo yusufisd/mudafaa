@@ -708,7 +708,7 @@
                                         <span class="menu-icon">
                                             <i class="fa fa-text-width" aria-hidden="true"></i>
                                         </span>
-                                        <span class="menu-title"> Röportaj {{ __('message.yönetimi') }}
+                                        <span class="menu-title"> {{__('message.röportaj')}} {{ __('message.yönetimi') }}
                                         </span>
                                     </a>
                                     <!--end:Menu link-->
@@ -720,7 +720,7 @@
                                         <span class="menu-icon">
                                             <i class="fa fa-text-width" aria-hidden="true"></i>
                                         </span>
-                                        <span class="menu-title"> Sözlük {{ __('message.yönetimi') }}
+                                        <span class="menu-title"> {{__('message.sözlük')}} {{ __('message.yönetimi') }}
                                         </span>
                                     </a>
                                     <!--end:Menu link-->
@@ -744,12 +744,25 @@
                                         <span class="menu-icon">
                                             <i class="fa fa-text-width" aria-hidden="true"></i>
                                         </span>
-                                        <span class="menu-title"> Firma {{ __('message.yönetimi') }}
+                                        <span class="menu-title"> {{__('message.firma')}} {{ __('message.yönetimi') }}
                                         </span>
                                     </a>
                                     <!--end:Menu link-->
                                 </div>
 
+                                <div class="menu-item">
+                                    <!--begin:Menu link-->
+                                    <a class="menu-link" href="{{ route('admin.page.list') }}">
+                                        <span class="menu-icon">
+                                            <i class="fa fa-text-width" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="menu-title"> {{__('message.sayfa')}} {{ __('message.yönetimi') }}
+                                        </span>
+                                    </a>
+                                    <!--end:Menu link-->
+                                </div>
+
+                                @if(auth()->guard('admin')->user() != null)
                                  <!--begin:Menu item-->
                                  <div class="menu-item">
                                     <!--begin:Menu link-->
@@ -757,10 +770,12 @@
                                         <span class="menu-icon">
                                             <i class="fa fa-user" aria-hidden="true"></i>
                                         </span>
-                                        <span class="menu-title">Kullanıcı Yönetimi</span>
+                                        <span class="menu-title"> {{__('message.kullanıcı')}} {{__('message.yönetimi')}} </span>
                                     </a>
                                     <!--end:Menu link-->
                                 </div>
+
+                                @endif
                                 <!--end:Menu item-->
 
                                 <hr>

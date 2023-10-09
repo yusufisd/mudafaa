@@ -41,7 +41,7 @@
                                         <!--end::Add user-->
 
                                         <a type="button" class="btn btn-outline btn-outline-success ms-5"
-                                            href="user_group_list.html">
+                                            href="{{route('admin.role.list')}}">
                                             <i class="fa fa-podcast" aria-hidden="true"></i>Kullanıcı Grupları</a>
 
                                     </div>
@@ -81,8 +81,8 @@
                                                                 value="1" />
                                                         </div>
                                                     </td>
-                                                    <td> {{ $item->name }} {{ $item->surname }} </td>
-                                                    <td> test </td>
+                                                    <td> <p style="text-transform: capitalize"> {{ $item->name }} {{ $item->surname }} </p></td>
+                                                    <td> <p style="text-transform: capitalize">test </p> </td>
                                                     <td>
                                                         <div
                                                             class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">

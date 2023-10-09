@@ -78,7 +78,7 @@
                                                     <label class="col-lg-2 col-form-label required fw-bold fs-6 ps-5">Görsel
                                                         <br><span style="font-weight:normal">( 960px - 520px)</span></label>
                                                     <div class="col-lg-10">
-                                                        <input type="file" class="form-control" name="image"
+                                                        <input required type="file" class="form-control" name="image"
                                                             id="">
                                                     </div>
                                                 </div>
@@ -88,7 +88,7 @@
                                                         Görseli <br><span style="font-weight:normal">( 311px -
                                                             75px)</span></label>
                                                     <div class="col-lg-10">
-                                                        <input type="file" class="form-control" name="mobil_image"
+                                                        <input required type="file" class="form-control" name="mobil_image"
                                                             id="">
                                                     </div>
                                                 </div>
@@ -165,7 +165,7 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input type="date" name="activity_on_location_tr"
+                                                                        <input required type="date" name="activity_on_location_tr"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="{{ substr($now, 0, 10) }}" />
                                                                     </div>
@@ -221,7 +221,7 @@
                                                                         <div class="row">
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
-                                                                                <input type="text"
+                                                                                <input required type="text"
                                                                                     name="activity_name_tr"
                                                                                     onchange="create_slug_tr()"
                                                                                     id="activity_name_tr"
@@ -283,7 +283,7 @@
                                                                         <div class="row">
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
-                                                                                <input type="text" id="etiket_tr"
+                                                                                <input required type="text" id="etiket_tr"
                                                                                     name="etiket_tr[]"
                                                                                     class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                     value="" />
@@ -313,7 +313,7 @@
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <div class="row">
                                                                                     <div class="col-lg-12">
-                                                                                        <input type="text"
+                                                                                        <input required type="text"
                                                                                             name="activity_url_tr"
                                                                                             id="activity_url_tr"
                                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
@@ -344,7 +344,7 @@
                                                                     <div class="col-lg-4 d-flex align-items-center">
                                                                         <div
                                                                             class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                            <input class="form-check-input w-50px h-25px"
+                                                                            <input  class="form-check-input w-50px h-25px"
                                                                                 type="checkbox" name="manset_tr"
                                                                                 id="allowactivity_detail_tr"
                                                                                 checked="checked" />
@@ -366,7 +366,7 @@
                                                                     <div class="col-lg-4 d-flex align-items-center">
                                                                         <div
                                                                             class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                            <input class="form-check-input w-50px h-25px"
+                                                                            <input  class="form-check-input w-50px h-25px"
                                                                                 type="checkbox" name="status_tr"
                                                                                 id="allowactivity_detail_tr"
                                                                                 checked="checked" />
@@ -396,7 +396,7 @@
                                                                         <div class="row">
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
-                                                                                <input type="text"
+                                                                                <input required type="text"
                                                                                     name="activity_name_en"
                                                                                     id="activity_name_en"
                                                                                     onchange="create_slug_en()"
@@ -453,7 +453,7 @@
                                                                         <div class="row">
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
-                                                                                <input type="text" id="etiket_en"
+                                                                                <input required type="text" id="etiket_en"
                                                                                     name="etiket_en[]"
                                                                                     class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                     value="" />
@@ -483,7 +483,7 @@
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <div class="row">
                                                                                     <div class="col-lg-12">
-                                                                                        <input type="text"
+                                                                                        <input required type="text"
                                                                                             name="activity_url_en"
                                                                                             id="activity_url_en"
                                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
@@ -514,7 +514,7 @@
                                                                     <div class="col-lg-4 d-flex align-items-center">
                                                                         <div
                                                                             class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                            <input class="form-check-input w-50px h-25px"
+                                                                            <input  class="form-check-input w-50px h-25px"
                                                                                 type="checkbox" name="manset_en"
                                                                                 id="allowactivity_detail_tr"
                                                                                 checked="checked" />
@@ -536,7 +536,7 @@
                                                                     <div class="col-lg-4 d-flex align-items-center">
                                                                         <div
                                                                             class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                            <input class="form-check-input w-50px h-25px"
+                                                                            <input  class="form-check-input w-50px h-25px"
                                                                                 type="checkbox" name="status_en"
                                                                                 id="allowactivity_detail_tr"
                                                                                 checked="checked" />
@@ -594,7 +594,7 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input type="text" name="activity_seo_title_tr"
+                                                                        <input required type="text" name="activity_seo_title_tr"
                                                                             id="activity_seo_title_tr"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="" />
@@ -633,7 +633,7 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input type="text"
+                                                                        <input required type="text"
                                                                             id="activity_seo_keywords_tr"
                                                                             name="activity_seo_keywords_tr[]"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
@@ -670,7 +670,7 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input type="text" name="activity_seo_title_en"
+                                                                        <input required type="text" name="activity_seo_title_en"
                                                                             id="activity_seo_title_en"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="" />
@@ -709,7 +709,7 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input type="text"
+                                                                        <input required type="text"
                                                                             id="activity_seo_keywords_en"
                                                                             name="activity_seo_keywords_en[]"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"

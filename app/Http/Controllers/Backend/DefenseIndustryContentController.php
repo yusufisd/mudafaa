@@ -37,7 +37,7 @@ class DefenseIndustryContentController extends Controller
         $users = UserModel::latest()->get();
         $categories = DefenseIndustryCategory::latest()->get();
         $countries = CountryList::orderBy('name', 'asc')->get();
-        $companies = Company::orderBy('name', 'asc')->get();
+        $companies = Company::orderBy('title', 'asc')->get();
         $no = 1;
         return view('backend.defenseIndustryContent.add', compact('users', 'categories', 'companies', 'countries'));
     }
@@ -47,11 +47,85 @@ class DefenseIndustryContentController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'category' => 'required',
+                'countries' => 'required',
+                'company' => 'required',
+                'origin' => 'required',
+                'author' => 'required',
+                'name_tr' => 'required',
+                'short_description_tr' => 'required',
+                'description_tr' => 'required',
+                'etiket_tr' => 'required',
+                'link_tr' => 'required',
+                'name_en' => 'required',
+                'short_description_en' => 'required',
+                'description_en' => 'required',
+                'etiket_en' => 'required',
+                'link_en' => 'required',
+                'seo_title_tr' => 'required',
+                'seo_description_tr' => 'required',
+                'seo_key_tr' => 'required',
+                'seo_title_en' => 'required',
+                'seo_description_en' => 'required',
+                'seo_key_en' => 'required',
+                'image' => 'required',
+            ],
+            [
+                'category.required' => 'Kategori boş bırakılamaz',
+                'countries.required' => 'Ülke boş bırakılamaz',
+                'company.required' => 'Firma boş bırakılamaz',
+                'origin.required' => 'Menşei boş bırakılamaz',
+                'author.required' => 'Yazar boş bırakılamaz',
+                'name_tr.required' => 'Başlık (TR) boş bırakılamaz',
+                'short_description_tr.required' => 'Kısa açıklama (TR) boş bırakılamaz',
+                'description_tr.required' => 'İçerik (TR) boş bırakılamaz',
+                'etiket_tr.required' => 'Etiket (TR) boş bırakılamaz',
+                'link_tr.required' => 'Link (TR) boş bırakılamaz',
+                'name_en.required' => 'Başlık (EN) boş bırakılamaz',
+                'short_description_en.required' => 'Kısa açıklama (EN) boş bırakılamaz',
+                'description_en.required' => 'Açıklama (EN) boş bırakılamaz',
+                'etiket_en.required' => 'Etiket (EN) boş bırakılamaz',
+                'link_en.required' => 'Link (EN) boş bırakılamaz',
+                'seo_title_tr.required' => 'Seo başlık (TR) boş bırakılamaz',
+                'seo_description_tr.required' => 'Seo açıklama (TR) boş bırakılamaz',
+                'seo_key_tr.required' => 'Seo anahtar (TR) boş bırakılamaz',
+                'seo_title_en.required' => 'Seo başlık (EN) boş bırakılamaz',
+                'seo_description_en.required' => 'Seo açıklama (EN) boş bırakılamaz',
+                'seo_key_en.required' => 'Seo anahtar (EN) boş bırakılamaz',
+                'image.required' => 'Görsel boş bırakılamaz',
+            ],
+        );
         $genel_id = DefenseIndustryCategory::where('id', $request->category)->first();
         $new = new DefenseIndustryContent();
 
-        $read_time_tr = (int)(round((str_word_count($request->description_tr))/200));
-        $read_time_en = (int)(round((str_word_count($request->description_en))/200));
+        $read_time_tr = (int) round(str_word_count($request->description_tr) / 200);
+        $read_time_en = (int) round(str_word_count($request->description_en) / 200);
+
+        $veri = json_decode(json_decode(json_encode($request->seo_key_tr[0])));
+        $merge = [];
+        foreach ($veri as $v) {
+            $merge[] = $v->value;
+        }
+
+        $veri_en = json_decode(json_decode(json_encode($request->seo_key_en[0])));
+        $merge_en = [];
+        foreach ($veri_en as $v) {
+            $merge_en[] = $v->value;
+        }
+
+        $tags_tr = json_decode(json_decode(json_encode($request->etiket_tr[0])));
+        $tag_tr = [];
+        foreach ($tags_tr as $v) {
+            $tag_tr[] = $v->value;
+        }
+
+        $tags_en = json_decode(json_decode(json_encode($request->etiket_en[0])));
+        $tag_en = [];
+        foreach ($tags_en as $v) {
+            $tag_en[] = $v->value;
+        }
 
         $new->category_id = $request->category;
         $new->defense_id = $genel_id->defense_id;
@@ -63,12 +137,11 @@ class DefenseIndustryContentController extends Controller
         $new->countries = $request->countries;
         $new->companies = $request->company;
         $new->link = $request->link_tr;
-        $new->tags = $request->etiket_tr;
+        $new->tags = $tag_tr;
         $new->origin = $request->origin;
         $new->author = $request->author;
         $new->seo_description = $request->seo_description_tr;
-        $new->seo_key = $request->seo_key_tr;
-        $new->seo_statu = $request->seo_statu_tr;
+        $new->seo_key = $merge;
         if ($request->file('image') != null) {
             $image = $request->file('image');
             $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
@@ -94,11 +167,7 @@ class DefenseIndustryContentController extends Controller
         if (!isset($request->status_tr)) {
             $new->status = 0;
         }
-        if (!isset($request->seo_statu_tr)) {
-            $new->seo_statu = 0;
-        } else {
-            $new->seo_statu = 1;
-        }
+
         if (!isset($request->national)) {
             $new->national = 0;
         }
@@ -112,11 +181,11 @@ class DefenseIndustryContentController extends Controller
         $new_en->short_description = $request->short_description_en;
         $new_en->description = $request->description_en;
         $new_en->content_id = $new->id;
-        $new_en->tags = $request->etiket_en;
+        $new_en->tags = $tag_en;
         $new_en->link = $request->link_en;
         $new_en->seo_title = $request->seo_title_en;
         $new_en->seo_description = $request->seo_description_en;
-        $new_en->seo_key = $request->seo_key_en;
+        $new_en->seo_key = $merge_en;
         if ($request->file('image') != null) {
             $new_en->image = $save_url;
         }
@@ -133,11 +202,7 @@ class DefenseIndustryContentController extends Controller
         if (!isset($request->status_en)) {
             $new->status = 0;
         }
-        if (!isset($request->seo_statu_en)) {
-            $new->seo_statu = 0;
-        } else {
-            $new->seo_statu = 1;
-        }
+
         $new_en->save();
         logKayit(['Savunma Sanayi ', 'Savunma sanayi içeriği eklendi']);
         Alert::success('İçerik Başarıyla Eklendi');
@@ -152,8 +217,8 @@ class DefenseIndustryContentController extends Controller
         $data_en = EnDefenseIndustryContent::where('content_id', $id)->first();
         $users = UserModel::latest()->get();
         $categories = DefenseIndustryCategory::latest()->get();
-        $countries = Country::orderBy('name', 'asc')->get();
-        $companies = Company::orderBy('name', 'asc')->get();
+        $countries = CountryList::orderBy('name', 'asc')->get();
+        $companies = Company::orderBy('title', 'asc')->get();
         return view('backend.defenseIndustryContent.edit', compact('data_tr', 'data_en', 'users', 'categories', 'companies', 'countries'));
     }
 
@@ -162,111 +227,162 @@ class DefenseIndustryContentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try {
-            DB::beginTransaction();
-            $genel_id = DefenseIndustryCategory::where('id', $request->category)->first();
+        $request->validate(
+            [
+                'category' => 'required',
+                'countries' => 'required',
+                'company' => 'required',
+                'origin' => 'required',
+                'author' => 'required',
+                'name_tr' => 'required',
+                'short_description_tr' => 'required',
+                'description_tr' => 'required',
+                'etiket_tr' => 'required',
+                'link_tr' => 'required',
+                'name_en' => 'required',
+                'short_description_en' => 'required',
+                'description_en' => 'required',
+                'etiket_en' => 'required',
+                'link_en' => 'required',
+                'seo_title_tr' => 'required',
+                'seo_description_tr' => 'required',
+                'seo_key_tr' => 'required',
+                'seo_title_en' => 'required',
+                'seo_description_en' => 'required',
+                'seo_key_en' => 'required',
+            ],
+            [
+                'category.required' => 'Kategori boş bırakılamaz',
+                'countries.required' => 'Ülke boş bırakılamaz',
+                'company.required' => 'Firma boş bırakılamaz',
+                'origin.required' => 'Menşei boş bırakılamaz',
+                'author.required' => 'Yazar boş bırakılamaz',
+                'name_tr.required' => 'Başlık (TR) boş bırakılamaz',
+                'short_description_tr.required' => 'Kısa açıklama (TR) boş bırakılamaz',
+                'description_tr.required' => 'İçerik (TR) boş bırakılamaz',
+                'etiket_tr.required' => 'Etiket (TR) boş bırakılamaz',
+                'link_tr.required' => 'Link (TR) boş bırakılamaz',
+                'name_en.required' => 'Başlık (EN) boş bırakılamaz',
+                'short_description_en.required' => 'Kısa açıklama (EN) boş bırakılamaz',
+                'description_en.required' => 'Açıklama (EN) boş bırakılamaz',
+                'etiket_en.required' => 'Etiket (EN) boş bırakılamaz',
+                'link_en.required' => 'Link (EN) boş bırakılamaz',
+                'seo_title_tr.required' => 'Seo başlık (TR) boş bırakılamaz',
+                'seo_description_tr.required' => 'Seo açıklama (TR) boş bırakılamaz',
+                'seo_key_tr.required' => 'Seo anahtar (TR) boş bırakılamaz',
+                'seo_title_en.required' => 'Seo başlık (EN) boş bırakılamaz',
+                'seo_description_en.required' => 'Seo açıklama (EN) boş bırakılamaz',
+                'seo_key_en.required' => 'Seo anahtar (EN) boş bırakılamaz',
+            ],
+        );
+        $read_time_tr = (int) round(str_word_count($request->description_tr) / 200);
+        $read_time_en = (int) round(str_word_count($request->description_en) / 200);
 
-            $new = DefenseIndustryContent::findOrFail($id);
-            $new->defense_id = $genel_id->defense_id;
-            $new->category_id = $request->category;
-            $new->category = $request->category;
-            $new->title = $request->name_tr;
-            $new->short_description = $request->short_description_tr;
-            $new->description = $request->description_tr;
-            $new->seo_title = $request->seo_title_tr;
-            $new->countries = $request->countries;
-            $new->companies = $request->company;
-            $new->tags = $request->etiket_tr;
-            $new->origin = $request->origin;
-            $new->author = $request->author;
-            $new->seo_description = $request->seo_description_tr;
-            $new->seo_key = $request->seo_key_tr;
-            $new->seo_statu = $request->seo_statu_tr;
-            if ($request->file('image') != null) {
-                $image = $request->file('image');
+        $genel_id = DefenseIndustryCategory::where('id', $request->category)->first();
+
+        $veri = json_decode(json_decode(json_encode($request->seo_key_tr[0])));
+        $merge = [];
+        foreach ($veri as $v) {
+            $merge[] = $v->value;
+        }
+
+        $veri_en = json_decode(json_decode(json_encode($request->seo_key_en[0])));
+        $merge_en = [];
+        foreach ($veri_en as $v) {
+            $merge_en[] = $v->value;
+        }
+
+        $tags_tr = json_decode(json_decode(json_encode($request->etiket_tr[0])));
+        $tag_tr = [];
+        foreach ($tags_tr as $v) {
+            $tag_tr[] = $v->value;
+        }
+
+        $tags_en = json_decode(json_decode(json_encode($request->etiket_en[0])));
+        $tag_en = [];
+        foreach ($tags_en as $v) {
+            $tag_en[] = $v->value;
+        }
+
+        $new = DefenseIndustryContent::findOrFail($id);
+        $new->category_id = $request->category;
+        $new->defense_id = $genel_id->defense_id;
+        $new->title = $request->name_tr;
+        $new->short_description = $request->short_description_tr;
+        $new->description = $request->description_tr;
+        $new->read_time = $read_time_tr;
+        $new->seo_title = $request->seo_title_tr;
+        $new->countries = $request->countries;
+        $new->companies = $request->company;
+        $new->link = $request->link_tr;
+        $new->tags = $tag_tr;
+        $new->origin = $request->origin;
+        $new->author = $request->author;
+        $new->seo_description = $request->seo_description_tr;
+        $new->seo_key = $merge;
+        if ($request->file('image') != null) {
+            $image = $request->file('image');
+            $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $save_url = 'assets/uploads/defenceIndustryContent/' . $image_name;
+            Image::make($image)
+                ->resize(960, 520)
+                ->save($save_url);
+            $new->image = $save_url;
+        }
+        if ($request->file('multiple_image') != null) {
+            $datas = [];
+            foreach ($request->file('multiple_image') as $key) {
+                $image = $key;
                 $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
                 $save_url = 'assets/uploads/defenceIndustryContent/' . $image_name;
                 Image::make($image)
-                    ->resize(960, 520)
+                    ->resize(170, 170)
                     ->save($save_url);
-                $new->image = $save_url;
+                array_push($datas, $save_url);
             }
-            if ($request->file('multiple_image') != null) {
-                $datas = [];
-                foreach ($request->file('multiple_image') as $key) {
-                    $image = $key;
-                    $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-                    $save_url = 'assets/uploads/defenceIndustryContent/' . $image_name;
-                    Image::make($image)
-                        ->resize(170, 170)
-                        ->save($save_url);
-                    array_push($datas, $save_url);
-                }
-                $new->multiple_image = $datas;
-            }
-            if ($request->file('multiple_image') != null) {
-                foreach ($request->file('multiple_image') as $key) {
-                    dd($key);
-                }
-            }
-            if (!isset($request->status_tr)) {
-                $new->status = 0;
-            }
-            if (!isset($request->seo_statu_tr)) {
-                $new->seo_statu = 0;
-            } else {
-                $new->seo_statu = 1;
-            }
-            if (!isset($request->national)) {
-                $new->national = 0;
-            }
-            $new->save();
-
-            $new_en = EnDefenseIndustryContent::where('content_id', $id)->first();
-            $new_en->defense_id = $genel_id->defense_id;
-            $new_en->category_id = $request->category;
-            $new_en->title = $request->name_en;
-            $new_en->short_description = $request->short_description_en;
-            $new_en->description = $request->description_en;
-            $new_en->content_id = $new->id;
-            $new_en->tags = $request->etiket_en;
-            $new_en->seo_title = $request->seo_title_en;
-            $new_en->seo_description = $request->seo_description_en;
-            $new_en->seo_key = $request->seo_key_en;
-            if ($request->file('image') != null) {
-                $new_en->image = $save_url;
-            }
-            if ($request->file('multiple_image') != null) {
-                $datas = [];
-                foreach ($request->file('multiple_image') as $key) {
-                    $image = $key;
-                    $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-                    $save_url = 'assets/uploads/defenceIndustryContent/' . $image_name;
-                    array_push($datas, $save_url);
-                }
-                $new_en->multiple_image = $datas;
-            }
-            if (!isset($request->status_en)) {
-                $new->status = 0;
-            }
-            if (!isset($request->seo_statu_en)) {
-                $new->seo_statu = 0;
-            } else {
-                $new->seo_statu = 1;
-            }
-            $new_en->save();
-            logKayit(['Savunma Sanayi ', 'Savunma sanayi içeriği düzenlendi']);
-            Alert::success('İçerik Başarıyla Eklendi');
-            DB::commit();
-        } catch (Throwable $e) {
-            DB::rollBack();
-
-            logKayit(['Savunma Sanayi ', 'Savunma sanayi içeriği düzenlemede hata', 0]);
-            Alert::error('Savunma Sanayi Düzenlemede Hata');
-            throw ValidationException::withMessages([
-                'error' => 'Tüm alanların doldurulması zorunludur.',
-            ]);
+            $new->multiple_image = $datas;
         }
+        if (!isset($request->status_tr)) {
+            $new->status = 0;
+        }
+
+        if (!isset($request->national)) {
+            $new->national = 0;
+        }
+        $new->save();
+
+        $new_en = EnDefenseIndustryContent::where('content_id', $id)->first();
+        $new_en->defense_id = $genel_id->defense_id;
+        $new_en->category_id = $request->category;
+        $new_en->title = $request->name_en;
+        $new_en->short_description = $request->short_description_en;
+        $new_en->description = $request->description_en;
+        $new_en->content_id = $new->id;
+        $new_en->tags = $tag_en;
+        $new_en->seo_title = $request->seo_title_en;
+        $new_en->seo_description = $request->seo_description_en;
+        $new_en->seo_key = $merge_en;
+        if ($request->file('image') != null) {
+            $new_en->image = $save_url;
+        }
+        if ($request->file('multiple_image') != null) {
+            $datas = [];
+            foreach ($request->file('multiple_image') as $key) {
+                $image = $key;
+                $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+                $save_url = 'assets/uploads/defenceIndustryContent/' . $image_name;
+                array_push($datas, $save_url);
+            }
+            $new_en->multiple_image = $datas;
+        }
+        if (!isset($request->status_en)) {
+            $new->status = 0;
+        }
+
+        $new_en->save();
+        logKayit(['Savunma Sanayi ', 'Savunma sanayi içeriği düzenlendi']);
+        Alert::success('İçerik Başarıyla Eklendi');
+        DB::commit();
         return redirect()->route('admin.defenseIndustryContent.list');
     }
 
@@ -291,6 +407,31 @@ class DefenseIndustryContentController extends Controller
             Alert::error('İçerik Silmede Hata');
             throw ValidationException::withMessages([
                 'error' => 'Bir hatayla karşılaşıldı.',
+            ]);
+        }
+        return redirect()->route('admin.defenseIndustryContent.list');
+    }
+
+    public function change_status($id)
+    {
+        try {
+            DB::beginTransaction();
+            $data = DefenseIndustryContent::findOrFail($id);
+            $data_en = EnDefenseIndustryContent::where('defense_id', $id)->first();
+            $data_en->status = !$data->status;
+            $data_en->save();
+            $data->status = !$data->status;
+            $data->save();
+            logKayit(['Savunma Sanayi', 'İçerik durumu değiştirildi']);
+            Alert::success('Durum Başarıyla Değiştirildi');
+            DB::commit();
+        } catch (Throwable $e) {
+            DB::rollBack();
+
+            logKayit(['Savunma Sanayi', 'İçerik durumu değiştirmede hata', 0]);
+            Alert::error('Durum Değiştirmede Hata');
+            throw ValidationException::withMessages([
+                'error' => 'Tüm alanların doldurulması zorunludur.',
             ]);
         }
         return redirect()->route('admin.defenseIndustryContent.list');

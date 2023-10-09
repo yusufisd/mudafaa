@@ -31,11 +31,12 @@
 
                     @foreach ($cats as $variable)
                         <div class="swiper-slide">
-                            <a href="{{route('front.currentNews.detail',$variable->id)}}">
+                            <a href="{{ route('front.currentNews.detail', $variable->id) }}">
                                 <img style="height: 100%" src="{{ $variable->mobil_image }}" alt="slide-1">
                             </a>
                             <div class="swiper-content">
                                 <a href="black_news.html"
+                                    style="background-color: {{ $variable->Category->color_code != null ? $variable->Category->color_code : '' }}"
                                     class="rt-cat-primary restricted_story_title">{{ $variable->Category->title }}</a>
                             </div>
                         </div>
@@ -59,16 +60,20 @@
                     <div class="col-xl-3 col-md-6 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="800ms">
                         <div class="rt-post post-sm style-1">
                             <div class="post-img">
-                                <a href="{{route('front.currentNews.detail',$variable->id)}}">
-                                    <img src="{{ $variable->mobil_image != null ? $variable->mobil_image : '/media/gallery/post-sm_1.jpg'}}"  alt="post" width="100" height="100">
+                                <a href="{{ route('front.currentNews.detail', $variable->id) }}">
+                                    <img src="{{ $variable->mobil_image != null ? $variable->mobil_image : '/media/gallery/post-sm_1.jpg' }}"
+                                        alt="post" width="100" height="100">
                                 </a>
                             </div>
-                            <div class="ms-4 post-content">
-                                <a href="gaming.html" class="rt-cat-primary restricted_category_title">
+                            <div class="post-content ms-4">
+                                <a href="gaming.html"
+                                    style="background-color: {{ $variable->Category->color_code != null ? $variable->Category->color_code : '' }}"
+                                    class="rt-cat-primary restricted_category_title">
                                     {{ $variable->Category->title }}
                                 </a>
                                 <h3 class="post-title">
-                                    <a href="{{route('front.currentNews.detail',$variable->id)}}" class="top_restricted_title">
+                                    <a href="{{ route('front.currentNews.detail', $variable->id) }}"
+                                        class="top_restricted_title">
                                         {{ $variable->title }}
                                     </a>
                                 </h3>
@@ -103,16 +108,19 @@
 
                     <div class="rt-post-overlay rt-post-overlay-xl layout-2">
                         <div class="post-img">
-                            <a href="{{route('front.currentNews.detail',$tek_haber->id)}}" class="img-link">
+                            <a href="{{ route('front.currentNews.detail', $tek_haber->id) }}" class="img-link">
                                 <img src="/{{ $tek_haber->image }}" alt="travel-xl_1" width="900" height="600">
                             </a>
                         </div>
                         <div class="post-content">
-                            <a href="gaming.html" class="tr-america restricted_category_title">
+                            <a href="gaming.html"
+                                style="background-color: {{ $tek_haber->Category->color_code != null ? $tek_haber->Category->color_code : '' }}"
+                                class="tr-america restricted_category_title">
                                 {{ $tek_haber->Category->title }}
                             </a>
                             <h3 class="post-title">
-                                <a href="{{route('front.currentNews.detail',$tek_haber->id)}}" class="section_2_title_style_1">
+                                <a href="{{ route('front.currentNews.detail', $tek_haber->id) }}"
+                                    class="section_2_title_style_1">
                                     {{ $tek_haber->title }}
                                 </a>
                             </h3>
@@ -128,7 +136,7 @@
                                     <li>
                                         <span class="rt-meta">
                                             <i class="far fa-calendar-alt icon"></i>
-                                            {{ ($tek_haber->created_at->translatedFormat('d M Y')) }}
+                                            {{ $tek_haber->created_at->translatedFormat('d M Y') }}
                                         </span>
                                     </li>
                                     <li>
@@ -156,16 +164,19 @@
                             <div class="col-12">
                                 <div class="rt-post-overlay rt-post-overlay-md layout-3">
                                     <div class="post-img">
-                                        <a href="{{route('front.currentNews.detail',$item->id)}}" class="img-link">
+                                        <a href="{{ route('front.currentNews.detail', $item->id) }}" class="img-link">
                                             <img src="{{ $item->image }}" alt="travel-xl_2" width="900" height="600">
                                         </a>
                                     </div>
                                     <div class="post-content">
-                                        <a href="gaming.html" class="tr-europe restricted_category_title">
+                                        <a href="gaming.html"
+                                            style="background-color: {{ $item->Category->color_code != null ? $item->Category->color_code : '' }}"
+                                            class="tr-europe restricted_category_title">
                                             {{ $item->Category->title }}
                                             <a>
                                                 <h4 class="post-title">
-                                                    <a href="{{route('front.currentNews.detail',$item->id)}}" class="section_2_title_style_2">
+                                                    <a href="{{ route('front.currentNews.detail', $item->id) }}"
+                                                        class="section_2_title_style_2">
                                                         {{ $item->title }}
                                                     </a>
                                                 </h4>
@@ -181,7 +192,7 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ ($item->created_at->translatedFormat('d M Y')) }}
+                                                                {{ $item->created_at->translatedFormat('d M Y') }}
                                                             </span>
                                                         </li>
                                                         <li>
@@ -221,7 +232,7 @@
                     <div class="wrap">
                         <div class="featured-tab-title">
                             <h2 class="rt-section-heading">
-                                <span class="rt-section-text"> {{__('message.güncel haberler')}} </span>
+                                <span class="rt-section-text"> {{ __('message.güncel haberler') }} </span>
                                 <span class="rt-section-dot"></span>
                                 <span class="rt-section-line"></span>
                             </h2>
@@ -248,16 +259,20 @@
                                     <div class="col-xl-4 col-lg-6">
                                         <div class="rt-post-overlay rt-post-overlay-md">
                                             <div class="post-img">
-                                                <a href="{{route('front.currentNews.detail',$ilk_kategori_icerigi->id)}}" class="img-link">
+                                                <a href="{{ route('front.currentNews.detail', $ilk_kategori_icerigi->id) }}"
+                                                    class="img-link">
                                                     <img src="{{ $ilk_kategori_icerigi->image }}" alt="post-xl-3"
                                                         width="900" height="600">
                                                 </a>
                                             </div>
                                             <div class="post-content">
-                                                <a href="life-style.html" class="music restricted_category_title">
+                                                <a href="life-style.html"
+                                                    style="background-color: {{ $ilk_kategori_icerigi->Category->color_code != null ? $ilk_kategori_icerigi->Category->color_code : '' }}"
+                                                    class="music restricted_category_title">
                                                     {{ $ilk_kategori_icerigi->Category->title }} </a>
                                                 <h3 class="post-title">
-                                                    <a href="{{route('front.currentNews.detail',$ilk_kategori_icerigi->id)}}" class="section_4_title_style_1">
+                                                    <a href="{{ route('front.currentNews.detail', $ilk_kategori_icerigi->id) }}"
+                                                        class="section_4_title_style_1">
                                                         {{ $ilk_kategori_icerigi->title }}
                                                     </a>
                                                 </h3>
@@ -276,7 +291,7 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ ($item->created_at->translatedFormat('d M Y')) }}
+                                                                {{ $item->created_at->translatedFormat('d M Y') }}
                                                             </span>
                                                         </li>
                                                         <li>
@@ -307,24 +322,25 @@
                                                 <div class="item">
                                                     <div class="rt-post post-md style-8">
                                                         <div class="post-img">
-                                                            <a href="{{route('front.currentNews.detail',$item->id)}}">
+                                                            <a href="{{ route('front.currentNews.detail', $item->id) }}">
                                                                 <img src="{{ $item->image }}" alt="post"
                                                                     width="343" height="250">
                                                             </a>
                                                         </div>
                                                         <div class="post-content">
                                                             <a href="technology.html"
+                                                                style="background-color: {{ $item->Category->color_code != null ? $item->Category->color_code : '' }}"
                                                                 class="rt-cat-primary restricted_category_title">
                                                                 {{ $item->Category->title }} </a>
                                                             <h4 class="post-title">
-                                                                <a href="{{route('front.currentNews.detail',$item->id)}}"
+                                                                <a href="{{ route('front.currentNews.detail', $item->id) }}"
                                                                     class="section_4_title_style_2">
                                                                     {{ $item->title }}
                                                                 </a>
                                                             </h4>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ ($item->created_at->translatedFormat('d M Y')) }}
+                                                                {{ $item->created_at->translatedFormat('d M Y') }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
                                                                 <i class="far fa-eye icon"></i>
@@ -350,23 +366,24 @@
                                                 <div class="item">
                                                     <div class="rt-post post-md style-8">
                                                         <div class="post-img">
-                                                            <a href="{{route('front.currentNews.detail',$item->id)}}">
+                                                            <a href="{{ route('front.currentNews.detail', $item->id) }}">
                                                                 <img src="{{ $item->image }}" alt="post"
                                                                     width="343" height="250">
                                                             </a>
                                                         </div>
                                                         <div class="post-content">
                                                             <a href="life-style.html"
-                                                                class="rt-cat-primary restricted_category_title">Travel</a>
+                                                                style="background-color: {{ $item->Category->color_code != null ? $item->Category->color_code : '' }}"
+                                                                class="rt-cat-primary restricted_category_title">{{ $item->Category->title }}</a>
                                                             <h4 class="post-title">
-                                                                <a href="{{route('front.currentNews.detail',$item->id)}}"
+                                                                <a href="{{ route('front.currentNews.detail', $item->id) }}"
                                                                     class="section_4_title_style_2">
                                                                     {{ $item->title }}
                                                                 </a>
                                                             </h4>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ ($item->created_at->translatedFormat('d M Y')) }}
+                                                                {{ $item->created_at->translatedFormat('d M Y') }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
                                                                 <i class="far fa-eye icon"></i>
@@ -385,21 +402,23 @@
                                 </div>
                             </div>
 
-                            <div class="tab-pane tab-item animated fadeInUp  " id="menu-2" role="tabpanel"
+                            <div class="tab-pane tab-item animated fadeInUp" id="menu-2" role="tabpanel"
                                 aria-labelledby="menu-22-tab">
                                 <div class="row gutter-24">
 
                                     <div class="col-xl-4 col-lg-6">
                                         <div class="rt-post-overlay rt-post-overlay-md">
                                             <div class="post-img">
-                                                <a href="{{route('front.currentNews.detail',$ikinci_kategori_icerigi->id)}}" class="img-link">
+                                                <a href="{{ route('front.currentNews.detail', $ikinci_kategori_icerigi->id) }}"
+                                                    class="img-link">
                                                     <img src="{{ $ikinci_kategori_icerigi->image }}" alt="post-xl-3"
                                                         width="900" height="600">
                                                 </a>
                                             </div>
                                             <div class="post-content">
                                                 <h3 class="post-title">
-                                                    <a href="{{route('front.currentNews.detail',$ikinci_kategori_icerigi->id)}}" class="section_4_title_style_2">
+                                                    <a href="{{ route('front.currentNews.detail', $ikinci_kategori_icerigi->id) }}"
+                                                        class="section_4_title_style_2">
                                                         {{ $ikinci_kategori_icerigi->title }}
                                                     </a>
                                                 </h3>
@@ -418,7 +437,7 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ ($ikinci_kategori_icerigi->created_at->translatedFormat('d M Y')) }}
+                                                                {{ $ikinci_kategori_icerigi->created_at->translatedFormat('d M Y') }}
                                                             </span>
                                                         </li>
                                                     </ul>
@@ -437,23 +456,24 @@
                                                 <div class="item">
                                                     <div class="rt-post post-md style-8">
                                                         <div class="post-img">
-                                                            <a href="{{route('front.currentNews.detail',$item->id)}}">
+                                                            <a href="{{ route('front.currentNews.detail', $item->id) }}">
                                                                 <img src="{{ $item->image }}" alt="post"
                                                                     width="343" height="250">
                                                             </a>
                                                         </div>
                                                         <div class="post-content">
                                                             <a href="technology.html"
+                                                                style="background-color: {{ $item->Category->color_code != null ? $item->Category->color_code : '' }}"
                                                                 class="rt-cat-primary restricted_category_title">{{ $item->Category->title }}</a>
                                                             <h4 class="post-title">
-                                                                <a href="{{route('front.currentNews.detail',$item->id)}}"
+                                                                <a href="{{ route('front.currentNews.detail', $item->id) }}"
                                                                     class="section_4_title_style_2">
                                                                     {{ $item->title }}
                                                                 </a>
                                                             </h4>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ ($item->created_at->translatedFormat('d M Y')) }}
+                                                                {{ $item->created_at->translatedFormat('d M Y') }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
                                                                 <i class="far fa-eye icon"></i>
@@ -475,23 +495,24 @@
                                                 <div class="item">
                                                     <div class="rt-post post-md style-8">
                                                         <div class="post-img">
-                                                            <a href="{{route('front.currentNews.detail',$item->id)}}">
+                                                            <a href="{{ route('front.currentNews.detail', $item->id) }}">
                                                                 <img src="{{ $item->image }}" alt="post"
                                                                     width="343" height="250">
                                                             </a>
                                                         </div>
                                                         <div class="post-content">
                                                             <a href="life-style.html"
+                                                                style="background-color: {{ $item->Category->color_code != null ? $item->Category->color_code : '' }}"
                                                                 class="rt-cat-primary restricted_category_title">{{ $item->Category->title }}</a>
                                                             <h4 class="post-title">
-                                                                <a href="{{route('front.currentNews.detail',$item->id)}}"
+                                                                <a href="{{ route('front.currentNews.detail', $item->id) }}"
                                                                     class="section_4_title_style_2">
                                                                     {{ $item->title }}
                                                                 </a>
                                                             </h4>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ ($item->created_at->translatedFormat('d M Y')) }}
+                                                                {{ $item->created_at->translatedFormat('d M Y') }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
                                                                 <i class="far fa-eye icon"></i>
@@ -515,24 +536,28 @@
                             </div>
                             <!-- end ./tab item -->
 
-                            <div class="tab-pane tab-item animated fadeInUp  " id="menu-3" role="tabpanel"
+                            <div class="tab-pane tab-item animated fadeInUp" id="menu-3" role="tabpanel"
                                 aria-labelledby="menu-33-tab">
                                 <div class="row gutter-24">
 
                                     <div class="col-xl-4 col-lg-6">
                                         <div class="rt-post-overlay rt-post-overlay-md">
                                             <div class="post-img">
-                                                <a href="{{route('front.currentNews.detail',$ucuncu_kategori_icerigi->id)}}" class="img-link">
-                                                    <img src="/{{$ucuncu_kategori_icerigi->image}}" alt="post-xl-3"
+                                                <a href="{{ route('front.currentNews.detail', $ucuncu_kategori_icerigi->id) }}"
+                                                    class="img-link">
+                                                    <img src="/{{ $ucuncu_kategori_icerigi->image }}" alt="post-xl-3"
                                                         width="900" height="600">
                                                 </a>
                                             </div>
                                             <div class="post-content">
                                                 <a href="life-style.html"
-                                                    class="music restricted_category_title"> {{$ucuncu_kategori_icerigi->Category->title}} </a>
+                                                    style="background-color: {{ $ucuncu_kategori_icerigi->Category->color_code != null ? $ucuncu_kategori_icerigi->Category->color_code : '' }}"
+                                                    class="music restricted_category_title">
+                                                    {{ $ucuncu_kategori_icerigi->Category->title }} </a>
                                                 <h3 class="post-title">
-                                                    <a href="{{route('front.currentNews.detail',$ucuncu_kategori_icerigi->id)}}" class="section_4_title_style_2">
-                                                        {{$ucuncu_kategori_icerigi->title}}
+                                                    <a href="{{ route('front.currentNews.detail', $ucuncu_kategori_icerigi->id) }}"
+                                                        class="section_4_title_style_2">
+                                                        {{ $ucuncu_kategori_icerigi->title }}
                                                     </a>
                                                 </h3>
 
@@ -541,13 +566,13 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="fa fa-user"></i> <a href=""
-                                                                    class="name">{{$ucuncu_kategori_icerigi->Author->name}}</a>
+                                                                    class="name">{{ $ucuncu_kategori_icerigi->Author->name }}</a>
                                                             </span>
                                                         </li>
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{substr($ucuncu_kategori_icerigi->created_at,0,10)}}
+                                                                {{ substr($ucuncu_kategori_icerigi->created_at, 0, 10) }}
                                                             </span>
                                                         </li>
                                                     </ul>
@@ -566,24 +591,25 @@
                                                 <div class="item">
                                                     <div class="rt-post post-md style-8">
                                                         <div class="post-img">
-                                                            <a href="{{route('front.currentNews.detail',$item->id)}}">
+                                                            <a href="{{ route('front.currentNews.detail', $item->id) }}">
                                                                 <img src="{{ $item->image }}" alt="post"
                                                                     width="343" height="250">
                                                             </a>
                                                         </div>
                                                         <div class="post-content">
                                                             <a href="technology.html"
+                                                                style="background-color: {{ $item->Category->color_code != null ? $item->Category->color_code : '' }}"
                                                                 class="rt-cat-primary restricted_category_title">
                                                                 {{ $item->Category->title }} </a>
                                                             <h4 class="post-title">
-                                                                <a href="{{route('front.currentNews.detail',$item->id)}}"
+                                                                <a href="{{ route('front.currentNews.detail', $item->id) }}"
                                                                     class="section_4_title_style_2">
                                                                     {{ $item->title }}
                                                                 </a>
                                                             </h4>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ ($item->created_at->translatedFormat('d M Y')) }}
+                                                                {{ $item->created_at->translatedFormat('d M Y') }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
                                                                 <i class="far fa-eye icon"></i>
@@ -608,24 +634,25 @@
                                                 <div class="item">
                                                     <div class="rt-post post-md style-8">
                                                         <div class="post-img">
-                                                            <a href="{{route('front.currentNews.detail',$item->id)}}">
+                                                            <a href="{{ route('front.currentNews.detail', $item->id) }}">
                                                                 <img src="{{ $item->image }}" alt="post"
                                                                     width="343" height="250">
                                                             </a>
                                                         </div>
                                                         <div class="post-content">
                                                             <a href="technology.html"
+                                                                style="background-color: {{ $item->Category->color_code != null ? $item->Category->color_code : '' }}"
                                                                 class="rt-cat-primary restricted_category_title">
                                                                 {{ $item->Category->title }} </a>
                                                             <h4 class="post-title">
-                                                                <a href="{{route('front.currentNews.detail',$item->id)}}"
+                                                                <a href="{{ route('front.currentNews.detail', $item->id) }}"
                                                                     class="section_4_title_style_2">
                                                                     {{ $item->title }}
                                                                 </a>
                                                             </h4>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ ($item->created_at->translatedFormat('d M Y')) }}
+                                                                {{ $item->created_at->translatedFormat('d M Y') }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
                                                                 <i class="far fa-eye icon"></i>
@@ -668,14 +695,15 @@
             <div class="row">
                 <div class="col-12">
                     <div class="titile-wrapper mb--40">
-                        <h2 class="rt-section-heading mb-0 flex-grow-1 me-3">
-                            <span class="rt-section-text restricted_section_title"> {{__('message.yaklaşan etkinlikler')}} </span>
+                        <h2 class="rt-section-heading flex-grow-1 mb-0 me-3">
+                            <span class="rt-section-text restricted_section_title">
+                                {{ __('message.yaklaşan etkinlikler') }} </span>
                             <span class="rt-section-dot"></span>
                             <span class="rt-section-line"></span>
                         </h2>
 
                         <div>
-                            <h6><a href="fair_list.html"> {{__('message.tümünü gör')}} </a></h6>
+                            <h6><a href="{{ route('front.activity.list') }}"> {{ __('message.tümünü gör') }} </a></h6>
                         </div>
                     </div>
                     <!-- end titile-wrapper -->
@@ -694,8 +722,8 @@
                             <div class="post-content">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <a href="graphics.html" class="rt-cat-primary restricted_category_title">
-                                        {{ substr($item->Category->title,0,10) }} ...</a>
-                                    <h6 class="rt-news-cat-normal mx-2 text-danger">
+                                        {{ substr($item->Category->title, 0, 10) }} ...</a>
+                                    <h6 class="rt-news-cat-normal text-danger mx-2">
                                         <i class="far fa-clock icon"></i>
                                         1 gün, 20 saat , 15 dk.
                                     </h6>
@@ -711,7 +739,7 @@
                                         <li>
                                             <span class="rt-meta">
                                                 <i class="far fa-calendar-alt icon"></i>
-                                                {{ substr($item->start_time, 0, 10) }}
+                                                {{ $item->start_time->translatedFormat('d M Y') }}
                                             </span>
                                         </li>
                                         <li>
@@ -752,7 +780,8 @@
                     <div class="featured-area-style-5 mx-auto">
                         <div class="wrap">
                             <h2 class="rt-section-heading mb--30">
-                                <span class="rt-section-text restricted_section_title"> {{__('message.popüler haberler')}} </span>
+                                <span class="rt-section-text restricted_section_title">
+                                    {{ __('message.popüler haberler') }} </span>
                                 <span class="rt-section-dot"></span>
                                 <span class="rt-section-line"></span>
                             </h2>
@@ -760,20 +789,23 @@
 
                             <div class="rt-post post-md style-7 grid-meta bold-underline mb--20">
                                 <div class="post-img">
-                                    <a href="{{route('front.currentNews.detail',$populer_haber_first->id)}}">
+                                    <a href="{{ route('front.currentNews.detail', $populer_haber_first->id) }}">
                                         <img src="{{ $populer_haber_first->image }}" alt="post" width="696"
                                             height="491">
                                     </a>
                                 </div>
                                 <div class="post-content">
-                                    <a href="life-style.html" class="world"> {{$populer_haber_first->Category->title}} </a>
+                                    <a href="life-style.html"
+                                        style="background-color: {{ $populer_haber_first->Category->color_code != null ? $populer_haber_first->Category->color_code : '' }}"
+                                        class="world"> {{ $populer_haber_first->Category->title }} </a>
                                     <h3 class="post-title">
-                                        <a href="{{route('front.currentNews.detail',$populer_haber_first->id)}}" class="restricted_title">
+                                        <a href="{{ route('front.currentNews.detail', $populer_haber_first->id) }}"
+                                            class="restricted_title">
                                             {{ $populer_haber_first->title }}
                                         </a>
                                     </h3>
                                     <p class="restricted_text">
-                                        {{ ($populer_haber_first->short_description) }}
+                                        {{ $populer_haber_first->short_description }}
 
                                     </p>
                                     <div class="post-meta">
@@ -789,7 +821,7 @@
                                             <li>
                                                 <span class="rt-meta">
                                                     <i class="far fa-calendar-alt icon"></i>
-                                                    {{ ($populer_haber_first->created_at->translatedFormat('d M Y')) }}
+                                                    {{ $populer_haber_first->created_at->translatedFormat('d M Y') }}
                                                 </span>
                                             </li>
                                             <li>
@@ -808,7 +840,7 @@
                                     </div>
                                     <div class="btn-wrap mt--25">
                                         <a href="single-post1.html" class="rt-read-more rt-button-animation-out">
-                                            {{__('message.daha fazla oku')}}
+                                            {{ __('message.daha fazla oku') }}
                                             <svg width="34px" height="16px" viewBox="0 0 34.53 16"
                                                 xml:space="preserve">
                                                 <rect class="rt-button-line" y="7.6" width="34"
@@ -823,7 +855,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row  justify-content-center">
+                            <div class="row justify-content-center">
 
 
                                 @foreach ($populer_haber_three as $item)
@@ -831,16 +863,17 @@
                                         data-wow-duration="800ms">
                                         <div class="rt-post-grid grid-meta">
                                             <div class="post-img">
-                                                <a href="{{route('front.currentNews.detail',$item->id)}}">
+                                                <a href="{{ route('front.currentNews.detail', $item->id) }}">
                                                     <img src="{{ $item->image }}" alt="post" width="551"
                                                         height="431">
                                                 </a>
                                             </div>
                                             <div class="post-content">
-                                                <a href="life-style.html"
+                                                <a href="life-style.html" style="background-color: {{ $item->Category->color_code != null ? $item->Category->color_code : '' }}"
                                                     class="tr-america restricted_category_title">{{ $item->Category->title }}</a>
                                                 <h3 class="post-title">
-                                                    <a href="{{route('front.currentNews.detail',$item->id)}}" class="title_style_2">
+                                                    <a href="{{ route('front.currentNews.detail', $item->id) }}"
+                                                        class="title_style_2">
                                                         {{ $item->title }}
                                                     </a>
                                                 </h3>
@@ -851,7 +884,7 @@
                                                 </span>
                                                 <span class="rt-meta me-2">
                                                     <i class="far fa-calendar-alt icon"></i>
-                                                    {{ ($item->created_at->translatedFormat('d M Y')) }}
+                                                    {{ $item->created_at->translatedFormat('d M Y') }}
                                                 </span>
                                                 <span class="rt-meta">
                                                     <i class="far fa-eye icon"></i>
@@ -999,16 +1032,17 @@
             <div class="row">
                 <div class="col-12">
 
-                    <div class="mb--30  d-flex align-items-center justify-content-between flex-wrap">
-                        <h2 class="rt-section-heading mb-2 me-3 flex-grow-1 white-style">
-                            <span class="rt-section-text restricted_section_title"> {{__('message.popüler videolar')}} </span>
+                    <div class="mb--30 d-flex align-items-center justify-content-between flex-wrap">
+                        <h2 class="rt-section-heading flex-grow-1 white-style mb-2 me-3">
+                            <span class="rt-section-text restricted_section_title"> {{ __('message.popüler videolar') }}
+                            </span>
                             <span class="d-none d-md-block rt-section-dot"></span>
                             <span class="d-none d-md-block rt-section-line"></span>
                         </h2>
 
                         <div class="mb-2">
                             <a href="videos.html" class="rt-read-more-white rt-button-animation-out">
-                                 {{__('message.tümünü gör')}} 
+                                {{ __('message.tümünü gör') }}
                                 <svg width="34px" height="16px" viewBox="0 0 34.53 16" xml:space="preserve">
                                     <rect class="rt-button-line" y="7.6" width="34" height=".4">
                                     </rect>
@@ -1038,7 +1072,7 @@
                             </div>
                             <div class="post-content">
                                 <a href="gaming.html" class="mission restricted_category_title">
-                                    {{ $item->Category->title  }} </a>
+                                    {{ $item->Category->title }} </a>
                                 <h3 class="post-title">
                                     <a href="single-post1.html" class="section_6_restricted_title">
                                         {{ $item->title }}
@@ -1049,7 +1083,7 @@
                                         <li>
                                             <span class="rt-meta">
                                                 <i class="far fa-calendar-alt icon"></i>
-                                                {{ ($item->created_at->translatedFormat('d M Y')) }}
+                                                {{ $item->created_at->translatedFormat('d M Y') }}
                                             </span>
                                         </li>
                                     </ul>
@@ -1075,14 +1109,15 @@
             <div class="row">
                 <div class="col-12">
                     <div class="titile-wrapper mb--40">
-                        <h2 class="rt-section-heading mb-0 flex-grow-1 me-3">
-                            <span class="rt-section-text restricted_section_title"> {{__('message.röportajlar')}} </span>
+                        <h2 class="rt-section-heading flex-grow-1 mb-0 me-3">
+                            <span class="rt-section-text restricted_section_title"> {{ __('message.röportajlar') }}
+                            </span>
                             <span class="rt-section-dot"></span>
                             <span class="rt-section-line"></span>
                         </h2>
 
                         <div>
-                            <h6><a href="reports_list.html"> {{__('message.tümünü gör')}} </a></h6>
+                            <h6><a href="reports_list.html"> {{ __('message.tümünü gör') }} </a></h6>
                         </div>
                     </div>
                     <!-- end titile-wrapper -->
@@ -1117,7 +1152,7 @@
                                         <li>
                                             <span class="rt-meta">
                                                 <i class="far fa-calendar-alt icon"></i>
-                                                {{ ($item->created_at->translatedFormat('d M Y')) }}
+                                                {{ $item->created_at->translatedFormat('d M Y') }}
                                             </span>
                                         </li>
                                     </ul>
@@ -1139,7 +1174,7 @@
     <div class="section subscribe-section-style-1 section-padding"
         style="background-image: url('media/elements/element_9.png');">
         <div class="container">
-            <div class="row  justify-content-evenly">
+            <div class="row justify-content-evenly">
 
                 <div class="col-lg-4 align-self-end wow fadeInLeft d-none d-lg-block" data-wow-delay="300ms"
                     data-wow-duration="800ms">
@@ -1181,8 +1216,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                                       // limit by device width
-                                       -------------------------------*/
+                                           // limit by device width
+                                           -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
 

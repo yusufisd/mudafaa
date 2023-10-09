@@ -12,4 +12,8 @@ class UserModel extends Authenticatable
 {
     use HasFactory, SoftDeletes;
     protected $guarded = [];
+
+    public function Role(){
+        return $this->hasOne(Role::class,'id','role');
+    }
 }

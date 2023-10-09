@@ -1,7 +1,6 @@
 @extends('backend.master')
 @section('content')
     <style>
-        #headline,
         #status {
             cursor: pointer;
         }
@@ -98,8 +97,8 @@
                                                 <th>{{ __('message.görsel') }}<i class="fa fa-sort ms-3"></i></th>
                                                 <th>{{ __('message.yazar') }}<i class="fa fa-sort ms-3"></i></th>
                                                 <th>{{ __('message.başlık') }}<i class="fa fa-sort ms-3"></i></th>
-                                                <th>{{ __('message.durum') }}<i class="fa fa-sort ms-3"></i></th>
                                                 <th>{{ __('message.kategori') }}<i class="fa fa-sort ms-3"></i></th>
+                                                <th>{{ __('message.durum') }}<i class="fa fa-sort ms-3"></i></th>
                                                 <th>{{ __('message.işlem') }}<i class="fa fa-sort ms-3"></i></th>
 
                                             </tr>
@@ -120,25 +119,23 @@
                                                         <img src="/{{ $item->image }}" style="width: 150px; border-radius:15px" class=" ms-n1"
                                                             alt="">
                                                     </td>
-                                                    <td> {{ strtoupper($item->Author->name ?? '-') }} {{ strtoupper($item->Author->surname ?? '-') }} </td>
+                                                    <td> <p style="text-transform: capitalize"> {{ ($item->Author->name ?? '-') }} {{ ($item->Author->surname ?? '-') }}</p> </td>
 
                                                     <td> {{ $item->title }} </td>
 
-
+                                                    <td> <p style="text-transform: capitalize"> {{$item->Category->title}} </p> </td>
                                                     <td>
                                                         <div
                                                             class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
                                                             <input class="form-check-input w-50px h-25px" type="checkbox"
-                                                                id="blog_status_1"
+                                                                id="status"
                                                                 onchange="change_status({{ $item->id }})"
                                                                 {{ $item->status == 1 ? 'checked' : '' }}>
                                                             <label class="form-check-label" for="blog_status_1"></label>
                                                         </div>
 
                                                     </td>
-                                                    <td>
-                                                        asd
-                                                    </td>
+                                                   
 
                                                     <td class="text-center">
                                                         <a href="{{ route('admin.defenseIndustryContent.edit', $item->id) }}"
@@ -194,12 +191,9 @@
             })
         }
 
-        function change_headline(d) {
-            window.location.href = "{{ route('admin.currentNews.change_headline') }}/" + d;
-        }
 
         function change_status(d) {
-            window.location.href = "{{ route('admin.currentNews.change_status') }}/" + d;
+            window.location.href = "{{ route('admin.defenseIndustryContent.change_status') }}/" + d;
         }
     </script>
     <!--begin:: extra js-->

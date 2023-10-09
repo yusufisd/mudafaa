@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('link');
             $table->string('seo_description');
             $table->string('seo_key');
-            $table->integer('seo_statu')->default(1);
+            $table->integer('view_counter')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

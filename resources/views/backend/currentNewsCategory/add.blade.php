@@ -87,7 +87,7 @@
                                                         <div class="row">
                                                             <!--begin::Col-->
                                                             <div class="col-lg-12 fv-row">
-                                                                <input type="file" name="image"
+                                                                <input required type="file" name="image"
                                                                     class="form-control form-control-lg  mb-3 mb-lg-0"
                                                                     value="" />
                                                             </div>
@@ -109,9 +109,31 @@
                                                         <div class="row">
                                                             <!--begin::Col-->
                                                             <div class="col-lg-12 fv-row">
-                                                                <input type="number" name="queue"
+                                                                <input required type="number" name="queue"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                     value="{{ $no }}" />
+                                                            </div>
+                                                            <!--end::Col-->
+                                                        </div>
+                                                        <!--end::Row-->
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+
+                                                <div class="row mb-6">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-2  col-form-label ps-5 fw-bold fs-6">
+                                                        {{ __('message.renk kodu') }} </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-10">
+                                                        <!--begin::Row-->
+                                                        <div class="row">
+                                                            <!--begin::Col-->
+                                                            <div class="col-lg-12 fv-row">
+                                                                <input type="string" name="color_code" placeholder="#236500"
+                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                    />
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -166,7 +188,7 @@
                                                                         <div class="row">
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
-                                                                                <input type="text" name="title_tr"
+                                                                                <input required type="text" name="title_tr"
                                                                                     id="title_tr" id="title_tr"
                                                                                     onchange="create_slug_tr()"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
@@ -193,7 +215,7 @@
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <div class="row">
                                                                                     <div class="col-lg-12">
-                                                                                        <input type="text"
+                                                                                        <input required type="text"
                                                                                             name="link_tr" id="link_tr"
                                                                                           
                                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
@@ -225,7 +247,7 @@
                                                                     <div class="col-lg-4 d-flex align-items-center">
                                                                         <div
                                                                             class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                            <input class="form-check-input w-50px h-25px"
+                                                                            <input  class="form-check-input w-50px h-25px"
                                                                                 type="checkbox" name="status_tr"
                                                                                 id="allowblog_category_detail_tr"
                                                                                 checked="checked" />
@@ -257,7 +279,7 @@
                                                                         <div class="row">
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
-                                                                                <input type="text" name="title_en"
+                                                                                <input required type="text" name="title_en"
                                                                                     id="title_en"
                                                                                     onchange="create_slug_en()"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
@@ -284,7 +306,7 @@
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <div class="row">
                                                                                     <div class="col-lg-12">
-                                                                                        <input type="text"
+                                                                                        <input required type="text"
                                                                                             id="link_en" name="link_en"
                                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                             value="" />
@@ -315,7 +337,7 @@
                                                                     <div class="col-lg-4 d-flex align-items-center">
                                                                         <div
                                                                             class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                            <input name="status_en"
+                                                                            <input  name="status_en"
                                                                                 class="form-check-input w-50px h-25px"
                                                                                 type="checkbox"
                                                                                 id="allowblog_category_detail_en"
@@ -381,7 +403,7 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input type="text" id="seo_title_tr"
+                                                                        <input required type="text" id="seo_title_tr"
                                                                             name="seo_title_tr"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                             value="" />
@@ -420,7 +442,7 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input type="text" name="seo_key_tr[]"
+                                                                        <input required type="text" name="seo_key_tr[]"
                                                                             id="seo_key_tr"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                             value="" />
@@ -456,7 +478,7 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input type="text" name="seo_title_en"
+                                                                        <input required type="text" name="seo_title_en"
                                                                             id="seo_title_en"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                             value="" />
@@ -495,7 +517,7 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input type="text" name="seo_key_en[]"
+                                                                        <input required type="text" name="seo_key_en[]"
                                                                             id="seo_key_en"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                             value="" />

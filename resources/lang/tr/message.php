@@ -84,6 +84,11 @@ return [
     "ilgili haberler" => "İlgili Haberler",
     "bizi takip edin" => "Bizi Takip Edin",
     "röportaj" => "Röportaj",
+    "sayfa" => "Sayfa",
+    "sözlük" => "Sözlük",
+    "kullanıcı" => "Kullanıcı",
+    "hakkımızda" => "Hakkımızda",
+
 
 
 ];

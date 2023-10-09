@@ -6,7 +6,9 @@ use App\Models\DefenseIndustry;
 use App\Models\EnCurrentNews;
 use App\Models\EnCurrentNewsCategory;
 use App\Models\EnDefenseIndustry;
+use App\Models\EnPage;
 use App\Models\LogModel;
+use App\Models\Page;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -71,4 +73,15 @@ function currentDate()
 function langua()
 {
     return $local = \Session::get('applocale') ?? config('app.fallback_locale');
+}
+
+function sayfalar(){
+    $local = \Session::get('applocale') ?? config('app.fallback_locale');
+
+    if ($local == 'tr') {
+        $data = Page::latest()->get();
+    } elseif ($local == 'en') {
+        $data = EnPage::latest()->get();
+    }
+    return $data;
 }

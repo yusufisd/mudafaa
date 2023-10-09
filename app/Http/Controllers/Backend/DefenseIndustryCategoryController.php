@@ -20,7 +20,7 @@ class DefenseIndustryCategoryController extends Controller
      */
     public function index()
     {
-        $data = DefenseIndustryCategory::latest()->get();
+        $data = DefenseIndustryCategory::orderBy('queue', 'asc')->get();
         return view('backend.defenseIndustryCategory.list', compact('data'));
     }
 
@@ -44,121 +44,232 @@ class DefenseIndustryCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            DB::beginTransaction();
-
-
-
-            $news = new DefenseIndustryCategory();
-
-            $news->defense_id = $request->category;
-            $news->title = $request->title_tr;
-            $news->link = $request->link_tr;
-            $news->queue = $request->queue;
-            $news->seo_title = $request->seo_title_tr;
-            $news->seo_description = $request->seo_description_tr;
-            $news->seo_key = $request->seo_key_tr;
-            if ($request->file('image') != null) {
-                $image = $request->file('image');
-                $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-                $save_url = 'assets/uploads/defenseIndustryCategory/' . $image_name;
-                Image::make($image)->resize(696, 491)->save($save_url);
-                $news->image = $save_url;
-            }
-            if (!isset($request->status_tr)) {
-                $news->status = 0;
-            }
-            if (!isset($request->seo_statu_tr)) {
-                $news->seo_statu = 0;
-            }
-            $news->save();
-
-
-            $news_en = new EnDefenseIndustryCategory();
-            $news_en->defense_id = $request->category;
-            $news_en->title = $request->title_en;
-            $news_en->link = $request->link_en;
-            $news_en->category_tr = $news->id;
-            $news_en->seo_title = $request->seo_title_en;
-            $news_en->seo_description = $request->seo_descriptipn_en;
-            $news_en->seo_key = $request->seo_key_en;
-            if ($request->file('image') != null) {
-                $news_en->image = $save_url;
-            }
-            if (!isset($request->status_tr)) {
-                $news_en->status = 0;
-            }
-            if (!isset($request->seo_statu_en)) {
-                $news_en->seo_statu = 0;
-            }
-            logKayit(['Savunma Sanayi Alt Kategori ', 'Alt Kategori Eklendi']);
-            Alert::success('Alt Kategori Başarıyla Eklendi');
-            DB::commit();
-        } catch (Throwable $e) {
-            DB::rollBack();
-
-            logKayit(['Savunma Sanayi Alt Kategori ', 'Alt Kategori Eklemede Hata', 0]);
-            Alert::error('Alt Kategori Eklemede Hata');
-            throw ValidationException::withMessages([
-                'error' => 'Tüm alanların doldurulması zorunludur.'
-            ]);
+        $request->validate(
+            [
+                'queue' => 'required',
+                'category' => 'required',
+                'title_tr' => 'required',
+                'link_tr' => 'required',
+                'title_en' => 'required',
+                'link_en' => 'required',
+                'seo_title_tr' => 'required',
+                'seo_description_tr' => 'required',
+                'seo_key_tr' => 'required',
+                'seo_title_en' => 'required',
+                'seo_descriptipn_en' => 'required',
+                'seo_key_en' => 'required',
+                'image' => 'required',
+            ],
+            [
+                'queue.required' => 'Sıralama boş bırakılamaz',
+                'category.required' => 'Kateogori boş bırakılamaz',
+                'title_tr.required' => 'Başlık boş bırakılamaz',
+                'link_tr.required' => 'Link boş bırakılamaz',
+                'title_en.required' => 'Başlık boş bırakılamaz',
+                'link_en.required' => 'Link boş bırakılamaz',
+                'seo_title_tr.required' => 'Seo başlığı boş bırakılamaz',
+                'seo_description_tr.required' => 'Seo açıklaması boş bırakılamaz',
+                'seo_key_tr.required' => 'Seo anahtarı boş bırakılamaz',
+                'seo_title_en.required' => 'Seo başlığı boş bırakılamaz',
+                'seo_descriptipn_en.required' => 'Seo açıklaması boş bırakılamaz',
+                'seo_key_en.required' => 'Seo anahtarı boş bırakılamaz',
+                'image.required' => 'Resim boş bırakılamaz',
+            ],
+        );
+        $veri = json_decode(json_decode(json_encode($request->seo_key_tr[0])));
+        $merge = [];
+        foreach ($veri as $v) {
+            $merge[] = $v->value;
         }
+
+        $veri_en = json_decode(json_decode(json_encode($request->seo_key_en[0])));
+        $merge_en = [];
+        foreach ($veri_en as $v) {
+            $merge_en[] = $v->value;
+        }
+
+        $news = new DefenseIndustryCategory();
+
+        $news->defense_id = $request->category;
+        $news->title = $request->title_tr;
+        $news->link = $request->link_tr;
+        $news->queue = $request->queue;
+        $news->seo_title = $request->seo_title_tr;
+        $news->seo_description = $request->seo_description_tr;
+        $news->seo_key = $merge;
+        if ($request->file('image') != null) {
+            $image = $request->file('image');
+            $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $save_url = 'assets/uploads/defenseIndustryCategory/' . $image_name;
+            Image::make($image)
+                ->resize(696, 491)
+                ->save($save_url);
+            $news->image = $save_url;
+        }
+        if (!isset($request->status_tr)) {
+            $news->status = 0;
+        }
+        $news->save();
+
+        $news_en = new EnDefenseIndustryCategory();
+        $news_en->defense_id = $news->id;
+        $news_en->title = $request->title_en;
+        $news_en->link = $request->link_en;
+        $news_en->queue = $request->queue;
+        $news_en->defense_category_id = $news->id;
+        $news_en->seo_title = $request->seo_title_en;
+        $news_en->seo_description = $request->seo_descriptipn_en;
+        $news_en->seo_key = $merge_en;
+        if ($request->file('image') != null) {
+            $image = $request->file('image');
+            $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $save_url = 'assets/uploads/defenseIndustryCategory/' . $image_name;
+            Image::make($image)
+                ->resize(696, 491)
+                ->save($save_url);
+            $news_en->image = $save_url;
+        }
+        if (!isset($request->status_tr)) {
+            $news_en->status = 0;
+        }
+        $news_en->save();
+
+        logKayit(['Savunma Sanayi Alt Kategori ', 'Alt Kategori Eklendi']);
+        Alert::success('Alt Kategori Başarıyla Eklendi');
+        DB::commit();
+
         return redirect()->route('admin.defenseIndustryCategory.list');
     }
 
-
     public function edit($id)
     {
-        $cate = DefenseIndustry::latest()->get();
+        $cats = DefenseIndustry::latest()->get();
         $data_tr = DefenseIndustryCategory::findOrFail($id);
-        $data_en = EnDefenseIndustryCategory::where('category_tr', $id)->first();
-        return view('backend.defenseIndustryCategory.edit', compact('data_tr', 'data_en', 'cat'));
+        $data_en = EnDefenseIndustryCategory::where('defense_category_id', $id)->first();
+        return view('backend.defenseIndustryCategory.edit', compact('data_tr', 'data_en', 'cats'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,  $id)
+    public function update(Request $request, $id)
     {
-        try {
-            DB::beginTransaction();
+        $request->validate(
+            [
+                'queue' => 'required',
+                'category' => 'required',
+                'title_tr' => 'required',
+                'link_tr' => 'required',
+                'title_en' => 'required',
+                'link_en' => 'required',
+                'seo_title_tr' => 'required',
+                'seo_description_tr' => 'required',
+                'seo_key_tr' => 'required',
+                'seo_title_en' => 'required',
+                'seo_descriptipn_en' => 'required',
+                'seo_key_en' => 'required',
+            ],
+            [
+                'queue.required' => 'Sıralama boş bırakılamaz',
+                'category.required' => 'Kateogori boş bırakılamaz',
+                'title_tr.required' => 'Başlık boş bırakılamaz',
+                'link_tr.required' => 'Link boş bırakılamaz',
+                'title_en.required' => 'Başlık boş bırakılamaz',
+                'link_en.required' => 'Link boş bırakılamaz',
+                'seo_title_tr.required' => 'Seo başlığı boş bırakılamaz',
+                'seo_description_tr.required' => 'Seo açıklaması boş bırakılamaz',
+                'seo_key_tr.required' => 'Seo anahtarı boş bırakılamaz',
+                'seo_title_en.required' => 'Seo başlığı boş bırakılamaz',
+                'seo_descriptipn_en.required' => 'Seo açıklaması boş bırakılamaz',
+                'seo_key_en.required' => 'Seo anahtarı boş bırakılamaz',
+            ],
+        );
 
-            $request->validate([
-                'activity_seo_keywords_tr' => 'required',
-            ]);
-
-            $news = DefenseIndustryCategory::findOrFail($id);
-            $news->defense_id = $request->test;
-            $news->title = $request->test;
-            $news->link = $request->test;
-            $news->queue = $request->test;
-            if ($request->file('image') != null) {
-                $image = $request->file('image');
-                $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-                $save_url = 'assets/uploads/defenseIndustryCategory/' . $image_name;
-                Image::make($image)->resize(696, 491)->save($save_url);
-                $news->image = $save_url;
-            }
-            $news->save();
-
-            $news_en = EnDefenseIndustryCategory::where('category_tr', $id)->first();
-            $news_en->defense_id = $request->test;
-            $news_en->$request->test;
-            $news_en->title = $request->test;
-            $news_en->link = $request->test;
-            $news_en->queue = $request->test;
-            logKayit(['Savunma Sanayi Alt Kategori ', 'Alt Kategori Eklendi']);
-            Alert::success('Alt Kategori Başarıyla Eklendi');
-            DB::commit();
-        } catch (Throwable $e) {
-            DB::rollBack();
-
-            logKayit(['Savunma Sanayi Alt Kategori ', 'Alt Kategori Eklemede Hata', 0]);
-            Alert::error('Alt Kategori Eklemede Hata');
-            throw ValidationException::withMessages([
-                'error' => 'Tüm alanların doldurulması zorunludur.'
-            ]);
+        $veri = json_decode(json_decode(json_encode($request->seo_key_tr[0])));
+        $merge = [];
+        foreach ($veri as $v) {
+            $merge[] = $v->value;
         }
+
+        $veri_en = json_decode(json_decode(json_encode($request->seo_key_en[0])));
+        $merge_en = [];
+        foreach ($veri_en as $v) {
+            $merge_en[] = $v->value;
+        }
+        $news = DefenseIndustryCategory::findOrFail($id);
+
+        if ($request->queue > $news->queue) {
+            for ($i = $news->queue; $i <= $request->queue; $i++) {
+                $data = DefenseIndustryCategory::where('queue', $i)->first();
+                if ($data != null) {
+                    $data->queue = $data->queue - 1;
+                    $data->save();
+                }
+            }
+            $news->queue = $request->queue;
+        }
+        if ($request->queue < $news->queue) {
+            for ($i = $news->queue; $i >= $request->queue; $i--) {
+                $data = DefenseIndustryCategory::where('queue', $i)->first();
+                if ($data != null) {
+                    $data->queue = $data->queue + 1;
+                    $data->save();
+                }
+            }
+            $news->queue = $request->queue;
+        }
+
+        $news->defense_id = $request->category;
+        $news->title = $request->title_tr;
+        $news->link = $request->link_tr;
+        $news->queue = $request->queue;
+        $news->seo_title = $request->seo_title_tr;
+        $news->seo_description = $request->seo_description_tr;
+        $news->seo_key = $merge;
+        if ($request->file('image') != null) {
+            $image = $request->file('image');
+            $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $save_url = 'assets/uploads/defenseIndustryCategory/' . $image_name;
+            Image::make($image)
+                ->resize(696, 491)
+                ->save($save_url);
+            $news->image = $save_url;
+        }
+        if (!isset($request->status_tr)) {
+            $news->status = 0;
+        } else {
+            $news->status = 1;
+        }
+        $news->save();
+
+        $news_en = EnDefenseIndustryCategory::where('defense_category_id', $id)->first();
+        $news_en->defense_id = $request->category;
+        $news_en->title = $request->title_en;
+        $news_en->link = $request->link_en;
+        $news_en->queue = $request->queue;
+        $news_en->seo_title = $request->seo_title_en;
+        $news_en->seo_description = $request->seo_descriptipn_en;
+        $news_en->seo_key = $merge_en;
+        if ($request->file('image') != null) {
+            $image = $request->file('image');
+            $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $save_url = 'assets/uploads/defenseIndustryCategory/' . $image_name;
+            Image::make($image)
+                ->resize(696, 491)
+                ->save($save_url);
+            $news_en->image = $save_url;
+        }
+        if (!isset($request->status_tr)) {
+            $news_en->status = 0;
+        } else {
+            $news_en->status = 1;
+        }
+        $news_en->save();
+
+        logKayit(['Savunma Sanayi Alt Kategori ', 'Alt Kategori Düzenlendi']);
+        Alert::success('Alt Kategori Düzenlendi');
+        DB::commit();
+
         return redirect()->route('admin.defenseIndustryCategory.list');
     }
 
@@ -170,19 +281,48 @@ class DefenseIndustryCategoryController extends Controller
         try {
             DB::beginTransaction();
             $data = DefenseIndustryCategory::findOrFail($id);
-            EnDefenseIndustryCategory::where('currentNews_id', $id)->delete();
+            $son_id = DefenseIndustryCategory::orderBy('queue', 'desc')->first()->queue;
+            for ($i = $data->queue + 1; $i <= $son_id; $i++) {
+                $item = DefenseIndustryCategory::where('queue', $i)->first();
+                $item->queue = $item->queue - 1;
+                $item->save();
+            }
+            EnDefenseIndustryCategory::where('defense_category_id', $id)->delete();
             $data->delete();
 
-            logKayit(['Savunma Sanayi Alt Kategori ', 'Haber silindi']);
-            Alert::success('Haber Başarıyla Silindi');
+            logKayit(['Savunma Sanayi Alt Kategori ', 'Kategori silindi']);
+            Alert::success('Kategori Başarıyla Silindi');
             DB::commit();
         } catch (Throwable $e) {
             DB::rollBack();
 
-            logKayit(['Savunma Sanayi Alt Kategori ', 'Haber silmede hata', 0]);
-            Alert::error('Haber Silmede Hata');
+            logKayit(['Savunma Sanayi Alt Kategori ', 'Kategori silmede hata', 0]);
+            Alert::error('Kategori Silmede Hata');
             throw ValidationException::withMessages([
-                'error' => 'Bir hatayla karşılaşıldı.'
+                'error' => 'Bir hatayla karşılaşıldı.',
+            ]);
+        }
+        return redirect()->route('admin.defenseIndustryCategory.list');
+    }
+
+    public function change_status($id)
+    {
+        try {
+            DB::beginTransaction();
+            $data = DefenseIndustryCategory::findOrFail($id);
+            $data->status = !$data->status;
+            $data->save();
+
+            logKayit(['Savunma Sanayi Kategori Yönetimi ', 'Kategori durumu değiştirildi']);
+            Alert::success(' Kategori Durumu Değiştirildi');
+            DB::commit();
+        } catch (Throwable $e) {
+            DB::rollBack();
+
+            logKayit(['Savunma Sanayi Kategori Yönetimi ', 'Kategori durumu değiştirilemedi', 0]);
+            Alert::error('Haber durum değiştirmede Hata');
+            throw ValidationException::withMessages([
+                'error' => 'Bir hatayla karşılaşıldı.',
             ]);
         }
         return redirect()->route('admin.defenseIndustryCategory.list');

@@ -79,14 +79,14 @@
                                                 <!--begin::Input group-->
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
-                                                    <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
+                                                    <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5 ">
                                                         {{ __('message.görsel') }} (1920px -
                                                         2880px) </label>
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10">
 
-                                                        <input type="file" class="form-control" name="image"
+                                                        <input required type="file" class="form-control" name="image"
                                                             accept=".png, .jpg, .jpeg" />
 
                                                     </div>
@@ -101,7 +101,7 @@
                                                         <div class="row">
                                                             <!--begin::Label-->
                                                             <label
-                                                                class="col-lg-4 col-form-label fw-bold fs-6">Yazar</label>
+                                                                class="col-lg-4 col-form-label fw-bold fs-6 required">Yazar</label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
                                                             <div class="col-lg-8">
@@ -135,7 +135,7 @@
                                                     <div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">
                                                         <div class="row ms-10">
                                                             <!--begin::Label-->
-                                                            <label class="col-lg-4 col-form-label fw-bold fs-6">Yayın
+                                                            <label class="col-lg-4 col-form-label fw-bold fs-6 required">Yayın
                                                                 Tarihi</label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
@@ -144,7 +144,7 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input type="date" name="live_date"
+                                                                        <input required type="date" name="live_date"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="{{ substr($now, 0, 10) }}" />
                                                                     </div>
@@ -191,7 +191,7 @@
                                                             <div class="row mb-6">
                                                                 <!--begin::Label-->
                                                                 <label
-                                                                    class="col-lg-2 col-form-label required fw-bold fs-6 ps-5">Başlık</label>
+                                                                    class="col-lg-2 col-form-label required fw-bold fs-6 ps-5 ">Başlık</label>
                                                                 <!--end::Label-->
                                                                 <!--begin::Col-->
                                                                 <div class="col-lg-10">
@@ -199,7 +199,7 @@
                                                                     <div class="row">
                                                                         <!--begin::Col-->
                                                                         <div class="col-lg-12 fv-row">
-                                                                            <input type="text" name="name_tr"
+                                                                            <input required type="text" name="name_tr"
                                                                                 id="name_tr" onchange="create_slug_tr()"
                                                                                 class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                 value="" />
@@ -216,15 +216,14 @@
                                                             <div class="row mb-6">
                                                                 <!--begin::Label-->
                                                                 <label
-                                                                    class="col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5">
+                                                                    class="col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5 required">
                                                                     <span>İçerik</span>
                                                                 </label>
                                                                 <!--end::Label-->
                                                                 <!--begin::Col-->
                                                                 <div class="col-lg-12 fv-row mb-5 ps-5">
 
-                                                                    <textarea id="editor" name="short_description_tr" class="tox-target ckeditor">
-                                                                        </textarea>
+                                                                    <textarea id="editor" name="short_description_tr" class="tox-target ckeditor"></textarea>
 
                                                                 </div>
                                                             </div>
@@ -242,7 +241,7 @@
                                                                     <div class="row">
                                                                         <!--begin::Col-->
                                                                         <div class="col-lg-12 fv-row">
-                                                                            <input type="text" name="link_tr"
+                                                                            <input required type="text" name="link_tr"
                                                                                 id="link_tr"
                                                                                 class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                 value="" />
@@ -265,7 +264,7 @@
                                                                     <div class="col-lg-4 d-flex align-items-center">
                                                                         <div
                                                                             class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                            <input class="form-check-input w-50px h-25px"
+                                                                            <input  class="form-check-input w-50px h-25px"
                                                                                 name="status_tr" type="checkbox"
                                                                                 id="allowblog_seo_tr" checked="checked" />
                                                                             <label class="form-check-label"
@@ -296,7 +295,7 @@
                                                                     <div class="row">
                                                                         <!--begin::Col-->
                                                                         <div class="col-lg-12 fv-row">
-                                                                            <input type="text" name="name_en"
+                                                                            <input required type="text" name="name_en"
                                                                                 id="name_en" onchange="create_slug_en()"
                                                                                 class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                 value="" />
@@ -314,7 +313,7 @@
                                                             <div class="row mb-6">
                                                                 <!--begin::Label-->
                                                                 <label
-                                                                    class="col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5">
+                                                                    class="col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5 required">
                                                                     <span>İçerik</span>
                                                                 </label>
                                                                 <!--end::Label-->
@@ -339,7 +338,7 @@
                                                                     <div class="row">
                                                                         <!--begin::Col-->
                                                                         <div class="col-lg-12 fv-row">
-                                                                            <input type="text" name="link_en"
+                                                                            <input required type="text" name="link_en"
                                                                                 id="link_en"
                                                                                 class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                 value="" />
@@ -365,7 +364,7 @@
                                                                     <div class="col-lg-4 d-flex align-items-center">
                                                                         <div
                                                                             class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                            <input class="form-check-input w-50px h-25px"
+                                                                            <input  class="form-check-input w-50px h-25px"
                                                                                 name="status_tr" type="checkbox"
                                                                                 id="allowblog_seo_tr" checked="checked" />
                                                                             <label class="form-check-label"
@@ -428,7 +427,7 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input type="text" name="seo_title_tr"
+                                                                        <input required type="text" name="seo_title_tr"
                                                                             id="seo_title_tr"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="" />
@@ -467,7 +466,7 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input type="text"
+                                                                        <input required type="text"
                                                                             id="activity_seo_keywords_tr"
                                                                             name="seo_key_tr[]"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
@@ -504,7 +503,7 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input type="text" name="seo_title_en"
+                                                                        <input required type="text" name="seo_title_en"
                                                                             id="seo_title_en"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="" />
@@ -543,7 +542,7 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input type="text"
+                                                                        <input required type="text"
                                                                             id="activity_seo_keywords_en"
                                                                             name="seo_key_en[]"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"

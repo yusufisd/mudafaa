@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('link');
             $table->integer('queue');
+            $table->string('color_code')->nullable();
             $table->string('image')->nullable();
             $table->integer('category_id');
             $table->integer('status')->default(1);

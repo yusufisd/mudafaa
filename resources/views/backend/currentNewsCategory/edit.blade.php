@@ -72,6 +72,10 @@
                                             <!--begin::Card body-->
                                             <div class="card-body px-3 py-9">
 
+                                                <div style="text-align: center; margin-bottom:3%">
+                                                    <img src="/{{$data_tr->image}}" style="border-radius: 15px; width:300px" alt="">
+                                                    
+                                                </div>
 
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
@@ -81,7 +85,6 @@
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10">
 
-                                                        <img src="/{{$data_tr->image}}" style="border-radius: 5%" alt="">
                                                         <!--begin::Row-->
                                                         <div class="row">
                                                             <!--begin::Col-->
@@ -111,6 +114,28 @@
                                                                 <input type="number" name="queue"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                     value="{{$data_tr->queue}}" />
+                                                            </div>
+                                                            <!--end::Col-->
+                                                        </div>
+                                                        <!--end::Row-->
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+
+                                                <div class="row mb-6">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-2  col-form-label ps-5 fw-bold fs-6">
+                                                        {{ __('message.renk kodu') }} </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-10">
+                                                        <!--begin::Row-->
+                                                        <div class="row">
+                                                            <!--begin::Col-->
+                                                            <div class="col-lg-12 fv-row">
+                                                                <input type="string" value="{{$data_tr->color_code}}" name="color_code" placeholder="#236500"
+                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                    />
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -190,18 +215,13 @@
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <div class="row">
-                                                                                    <div class="col-lg-10">
+                                                                                    <div class="col-lg-12">
                                                                                         <input type="text"
                                                                                             name="link_tr" id="link_tr"
                                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                             value="{{$data_tr->link}}" />
                                                                                     </div>
-                                                                                    <div class="col-lg-2">
-                                                                                        <button type="submit"
-                                                                                            class="btn btn-outline btn-outline-success w-100"
-                                                                                            id="blog_category_detail_url_btn_tr">URL
-                                                                                            ÜRET</button>
-                                                                                    </div>
+                                                                                    
 
                                                                                 </div>
                                                                             </div>
@@ -283,18 +303,13 @@
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <div class="row">
-                                                                                    <div class="col-lg-10">
+                                                                                    <div class="col-lg-12">
                                                                                         <input type="text"
                                                                                             id="link_en" name="link_en"
                                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                             value="{{$data_en->link}}" />
                                                                                     </div>
-                                                                                    <div class="col-lg-2">
-                                                                                        <button type="submit"
-                                                                                            class="btn btn-outline btn-outline-success w-100"
-                                                                                            id="blog_category_detail_url_btn_en">URL
-                                                                                            ÜRET</button>
-                                                                                    </div>
+                                                                                    
 
                                                                                 </div>
                                                                             </div>

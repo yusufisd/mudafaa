@@ -13,6 +13,7 @@ class Activity extends Model
     protected $guarded = [];
     protected $casts = [
         'seo_key' => 'array',
+        'start_time' => 'datetime'
     ];
 
     public function Category()

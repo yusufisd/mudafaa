@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -10,6 +11,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 use Illuminate\Validation\ValidationException;
+
 
 
 class UserController extends Controller
@@ -28,7 +30,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('backend.user.add');
+        $roles = Role::latest()->get();
+        return view('backend.user.add',compact('roles'));
     }
 
     /**
@@ -36,24 +39,36 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            "user_name" => "required",
+            "user_surname" => "required",
+            "user_no" => "required",
+            "user_email" => "required|email",
+            "role" => "required",
+            "user_password" => "required",
+            "description" => "required",
+            "user_password_again" => "required|same:user_password",
+        ],[
+            "user_name.required" => "İsim boş bırakılamaz",
+            "user_surname.required" => "Soyisim boş bırakılamaz",
+            "user_no.required" => "Telefon boş bırakılamaz",
+            "user_email.required" => "Email boş bırakılamaz|email",
+            "role.required" => "Kullanıcı grubu boş bırakılamaz",
+            "user_password.required" => "Şifre boş bırakılamaz",
+            "description.description" => "Açıklama boş bırakılamaz",
+            "user_password_again.required" => "Şifre tekrarı boş bırakılamaz|same:user_password",
+        ]);
         try {
             DB::beginTransaction();
-            $request->validate([
-                "user_name" => "required",
-                "user_surname" => "required",
-                "user_no" => "required",
-                "user_email" => "required|email",
-                "user_category" => "required",
-                "user_password" => "required",
-                "description" => "description",
-                "user_password_again" => "required|same:user_password",
-            ]);
+            
 
             $user = new UserModel();
             $user->name = $request->user_name;
             $user->surname = $request->user_surname;
             $user->phone = $request->user_no;
             $user->email = $request->user_email;
+            $user->role = $request->role;
             $user->description = $request->description;
             $user->password = Hash::make($request->user_password);
             $user->save();
