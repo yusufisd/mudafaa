@@ -92,7 +92,7 @@
                                                             <!--begin::Col-->
                                                             <div class="col-lg-12 fv-row">
                                                                 <input type="file" name="image"
-                                                                    class="form-control form-control-lg  mb-3 mb-lg-0"
+                                                                     class="form-control form-control-lg  mb-3 mb-lg-0"
                                                                     value="" />
                                                             </div>
                                                             <!--end::Col-->
@@ -114,7 +114,7 @@
                                                             <!--begin::Col-->
                                                             <div class="col-lg-12 fv-row">
                                                                 <input type="number" name="queue"
-                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                    required class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                     value="{{$data_tr->queue}}" />
                                                             </div>
                                                             <!--end::Col-->
@@ -203,7 +203,7 @@
                                                                                 <input type="text" name="title_tr"
                                                                                     id="title_tr" id="title_tr"
                                                                                     onchange="create_slug_tr()"
-                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                    required class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                     value="{{$data_tr->title}}" />
                                                                             </div>
                                                                             <!--end::Col-->
@@ -230,10 +230,10 @@
                                                                                         <input type="text"
                                                                                             name="link_tr" id="link_tr"
                                                                                             id="link_tr"
-                                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                            required class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                             value="{{$data_tr->link}}" />
                                                                                     </div>
-                                                                                    
+
 
                                                                                 </div>
                                                                             </div>
@@ -295,7 +295,7 @@
                                                                                 <input type="text" name="title_en"
                                                                                     id="title_en"
                                                                                     onchange="create_slug_en()"
-                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                    required class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                     value="{{$data_en->title}}" />
                                                                             </div>
                                                                             <!--end::Col-->
@@ -321,10 +321,10 @@
                                                                                     <div class="col-lg-12">
                                                                                         <input type="text"
                                                                                             id="link_en" name="link_en"
-                                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                            required class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                             value="{{$data_en->link}}" />
                                                                                     </div>
-                                                                                    
+
 
                                                                                 </div>
                                                                             </div>
@@ -418,7 +418,7 @@
                                                                     <div class="col-lg-12 fv-row">
                                                                         <input type="text" id="seo_title_tr"
                                                                             name="seo_title_tr"
-                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                            required class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                             value="{{$data_tr->seo_title}}" />
                                                                     </div>
                                                                     <!--end::Col-->
@@ -436,7 +436,7 @@
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
                                                             <div class="col-lg-10 fv-row">
-                                                                <textarea name="seo_description_tr" id="seo_description_tr" class="form-control form-control-lg form-control-solid">{{$data_tr->seo_description}}</textarea>
+                                                                <textarea name="seo_description_tr" id="seo_description_tr" required class="form-control form-control-lg form-control-solid">{{$data_tr->seo_description}}</textarea>
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -456,7 +456,7 @@
                                                                     <div class="col-lg-12 fv-row">
                                                                         <input type="text" name="seo_key_tr[]"
                                                                             id="seo_key_tr"
-                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                            required class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                             value="{{json_encode($data_tr->seo_key)}}" />
                                                                     </div>
                                                                     <!--end::Col-->
@@ -473,7 +473,7 @@
                                                     <div class="card-footer d-flex justify-content-between py-6 px-0">
 
                                                         <!--begin::Input group-->
-                                                      
+
                                                         <!--end::Input group-->
 
 
@@ -499,7 +499,7 @@
                                                                     <div class="col-lg-12 fv-row">
                                                                         <input type="text" name="seo_title_en"
                                                                             id="seo_title_en"
-                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                            required class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                             value="{{$data_en->seo_title}}" />
                                                                     </div>
                                                                     <!--end::Col-->
@@ -517,7 +517,7 @@
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
                                                             <div class="col-lg-10 fv-row">
-                                                                <textarea name="seo_descriptipn_en" id="seo_description_en" class="form-control form-control-lg form-control-solid"
+                                                                <textarea name="seo_descriptipn_en" id="seo_description_en" required class="form-control form-control-lg form-control-solid"
                                                                     value="">{{$data_en->seo_description}}</textarea>
                                                             </div>
                                                             <!--end::Col-->
@@ -537,7 +537,7 @@
                                                                     <div class="col-lg-12 fv-row">
                                                                         <input type="text" name="seo_key_en[]"
                                                                             id="seo_key_en"
-                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                            required class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                             value="{{json_encode($data_en->seo_key)}}" />
                                                                     </div>
                                                                     <!--end::Col-->
@@ -554,7 +554,7 @@
                                                     <div class="card-footer d-flex justify-content-between py-6 px-0">
 
                                                         <!--begin::Input group-->
-                                                       
+
                                                         <!--end::Input group-->
 
 

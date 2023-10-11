@@ -74,7 +74,7 @@
 
                                                 <div style="text-align: center; margin-bottom:3%">
                                                     <img src="/{{$data_tr->image}}" style="border-radius: 15px; width:300px" alt="">
-                                                    
+
                                                 </div>
 
                                                 <div class="row mb-6">
@@ -144,7 +144,7 @@
                                                     <!--end::Col-->
                                                 </div>
 
-                                                
+
                                                 <!--end::Input group-->
                                                 <div class="row mb-6">
                                                     <!--begin::Tab-->
@@ -221,7 +221,7 @@
                                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                             value="{{$data_tr->link}}" />
                                                                                     </div>
-                                                                                    
+
 
                                                                                 </div>
                                                                             </div>
@@ -309,7 +309,7 @@
                                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                             value="{{$data_en->link}}" />
                                                                                     </div>
-                                                                                    
+
 
                                                                                 </div>
                                                                             </div>
@@ -420,7 +420,7 @@
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
                                                             <div class="col-lg-10 fv-row">
-                                                                <textarea name="seo_description_tr" id="seo_description_tr" class="form-control form-control-lg form-control-solid"
+                                                                <textarea name="seo_description_tr" required id="seo_description_tr" class="form-control form-control-lg form-control-solid"
                                                                     value="">{{$data_tr->seo_description}}</textarea>
                                                             </div>
                                                             <!--end::Col-->
@@ -441,7 +441,7 @@
                                                                     <div class="col-lg-12 fv-row">
                                                                         <input type="text" name="seo_key_tr[]"
                                                                             id="seo_key_tr"
-                                                                            
+
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                             value="{{$data_tr->seo_key[0]}}" />
                                                                     </div>
@@ -456,7 +456,7 @@
                                                     </div>
                                                     <!--end::Card body-->
                                                     <!--begin::Actions-->
-                                                    
+
                                                     <!--end::Actions-->
                                                     <!--end::Form-->
                                                 </div>
@@ -496,7 +496,7 @@
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
                                                             <div class="col-lg-10 fv-row">
-                                                                <textarea name="seo_descriptipn_en" id="seo_description_en" class="form-control form-control-lg form-control-solid"
+                                                                <textarea name="seo_descriptipn_en" required id="seo_description_en" class="form-control form-control-lg form-control-solid"
                                                                     value="">{{$data_en->seo_description}}</textarea>
                                                             </div>
                                                             <!--end::Col-->
@@ -531,7 +531,7 @@
                                                     </div>
                                                     <!--end::Card body-->
                                                     <!--begin::Actions-->
-                                                    
+
                                                     <!--end::Actions-->
                                                     <!--end::Form-->
                                                 </div>

@@ -26,7 +26,7 @@ class CountryController extends Controller
      */
     public function create()
     {
-        
+
         return view('backend.country.add');
     }
 
@@ -42,9 +42,10 @@ class CountryController extends Controller
                 'name_en' => 'required',
                 'image' => 'required',
             ]);
-            $countr = new Country();
+            $countr = new CountryList();
             $countr->name = $request->name_tr;
 
+            /*
             if ($request->file('image') != null) {
                 $image = $request->file('image');
                 $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
@@ -52,13 +53,14 @@ class CountryController extends Controller
                 Image::make($image)->resize(300, 200)->save($save_url);
                 $countr->image = $save_url;
             }
+            */
             $countr->save();
 
             $co_en = new EnCountry();
             $co_en->name = $request->name_en;
             $co_en->country_id = $countr->id;
             $co_en->save();
-            
+
 
 
             logKayit(['Ülke Yönetimi ', 'Ülke eklendi']);

@@ -32,9 +32,9 @@ function currentCats()
         $local = config('app.fallback_locale');
     }
     if ($local == 'tr') {
-        $cats = CurrentNewsCategory::orderBy('queue', 'asc')->get();
+        $cats = CurrentNewsCategory::where('status', 1)->orderBy('queue', 'asc')->get();
     } elseif ($local == 'en') {
-        $cats = EnCurrentNewsCategory::orderBy('id', 'asc')->get();
+        $cats = EnCurrentNewsCategory::where('status', 1)->orderBy('id', 'asc')->get();
     }
     return $cats;
 }

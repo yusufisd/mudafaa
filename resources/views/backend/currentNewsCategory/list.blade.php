@@ -101,7 +101,7 @@
                                                 <th> {{ __('message.başlık') }} <i class="fa fa-sort ms-3"></i></th>
                                                 <th> {{ __('message.sıralama') }} <i class="fa fa-sort ms-3"></i></th>
                                                 <th> {{ __('message.durum') }} <i class="fa fa-sort ms-3"></i></th>
-                                                <th> {{ __('message.işlem') }} <i class="fa fa-sort ms-3"></i></th>
+                                                <th style="width: 180px"> {{ __('message.işlem') }} <i class="fa fa-sort ms-3"></i></th>
                                             </tr>
                                         </thead>
                                         <tbody>

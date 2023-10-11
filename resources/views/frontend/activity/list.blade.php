@@ -226,13 +226,13 @@
                     <div class="related-post-box">
                         <div class="titile-wrapper mb--40">
                             <h2 class="rt-section-heading flex-grow-1 mb-0 me-3">
-                                <span class="rt-section-text restricted_section_title"> {{ $cat1_name->title }} </span>
+                                <span class="rt-section-text restricted_section_title"> {{ $cat1_name->title ?? ''}} </span>
                                 <span class="rt-section-dot"></span>
                                 <span class="rt-section-line"></span>
                             </h2>
 
                             <div>
-                                <h6><a href="{{ route('front.activity.categoryDetail', $cat1_name->id) }}">Tümünü Gör</a>
+                                <h6><a href="{{ route('front.activity.categoryDetail', $cat1_name->id ?? 1) }}">Tümünü Gör</a>
                                 </h6>
                             </div>
                         </div>
@@ -313,13 +313,13 @@
                     <div class="related-post-box">
                         <div class="titile-wrapper mb--40">
                             <h2 class="rt-section-heading flex-grow-1 mb-0 me-3">
-                                <span class="rt-section-text restricted_section_title">{{ $cat2_name->title }} </span>
+                                <span class="rt-section-text restricted_section_title">{{ $cat2_name->title ?? '' }} </span>
                                 <span class="rt-section-dot"></span>
                                 <span class="rt-section-line"></span>
                             </h2>
 
                             <div>
-                                <h6><a href="{{ route('front.activity.categoryDetail', $cat2_name->id) }}">Tümünü Gör</a>
+                                <h6><a href="{{ route('front.activity.categoryDetail', $cat2_name->id ?? 1) }}">Tümünü Gör</a>
                                 </h6>
                             </div>
                         </div>
@@ -389,13 +389,13 @@
                     <div class="related-post-box">
                         <div class="titile-wrapper mb--40">
                             <h2 class="rt-section-heading flex-grow-1 mb-0 me-3">
-                                <span class="rt-section-text restricted_section_title"> {{ $cat3_name->title }} </span>
+                                <span class="rt-section-text restricted_section_title"> {{ $cat3_name->title ?? '' }} </span>
                                 <span class="rt-section-dot"></span>
                                 <span class="rt-section-line"></span>
                             </h2>
 
                             <div>
-                                <h6><a href="{{ route('front.activity.categoryDetail', $cat3_name->id) }}">Tümünü Gör</a>
+                                <h6><a href="{{ route('front.activity.categoryDetail', $cat3_name->id ?? 1) }}">Tümünü Gör</a>
                                 </h6>
                             </div>
                         </div>

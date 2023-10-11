@@ -77,7 +77,7 @@
                                                             <!--begin::Col-->
                                                             <div class="col-lg-12 fv-row">
                                                                 <input type="file" name="image"
-                                                                    class="form-control form-control-lg mb-lg-0 mb-3" />
+                                                                    required class="form-control form-control-lg mb-lg-0 mb-3" />
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -135,7 +135,7 @@
                                                                                 <input type="text" name="name_tr"
                                                                                     id="name_tr"
                                                                                     onchange="create_slug_tr()"
-                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                    required class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                     value="" />
                                                                             </div>
                                                                             <!--end::Col-->
@@ -162,7 +162,7 @@
                                                                                     <div class="col-lg-12">
                                                                                         <input type="text" name="link_tr"
                                                                                             id="link_tr"
-                                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                            required class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                             value="" />
                                                                                     </div>
 
@@ -202,7 +202,7 @@
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <input type="text" name="name_en"
                                                                                     id="name_en" onchange="create_slug_en()"
-                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                    required class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                     value="" />
                                                                             </div>
                                                                             <!--end::Col-->
@@ -227,7 +227,7 @@
                                                                                     <div class="col-lg-12">
                                                                                         <input type="text"
                                                                                             name="link_en" id="link_en"
-                                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                            required class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                             value="" />
                                                                                     </div>
 

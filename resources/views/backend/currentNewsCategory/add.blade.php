@@ -217,11 +217,11 @@
                                                                                     <div class="col-lg-12">
                                                                                         <input required type="text"
                                                                                             name="link_tr" id="link_tr"
-                                                                                          
+
                                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                             value="" />
                                                                                     </div>
-                                                                                    
+
 
                                                                                 </div>
                                                                             </div>
@@ -311,7 +311,7 @@
                                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                             value="" />
                                                                                     </div>
-                                                                                    
+
 
                                                                                 </div>
                                                                             </div>
@@ -423,7 +423,7 @@
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
                                                             <div class="col-lg-10 fv-row">
-                                                                <textarea name="seo_description_tr" id="seo_description_tr" class="form-control form-control-lg form-control-solid"
+                                                                <textarea name="seo_description_tr" required id="seo_description_tr" class="form-control form-control-lg form-control-solid"
                                                                     value=""></textarea>
                                                             </div>
                                                             <!--end::Col-->
@@ -458,7 +458,7 @@
                                                     </div>
                                                     <!--end::Card body-->
                                                     <!--begin::Actions-->
-                                                    
+
                                                     <!--end::Actions-->
                                                     <!--end::Form-->
                                                 </div>
@@ -498,7 +498,7 @@
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
                                                             <div class="col-lg-10 fv-row">
-                                                                <textarea name="seo_descriptipn_en" id="seo_description_en" class="form-control form-control-lg form-control-solid"
+                                                                <textarea name="seo_descriptipn_en" required id="seo_description_en" class="form-control form-control-lg form-control-solid"
                                                                     value=""></textarea>
                                                             </div>
                                                             <!--end::Col-->
@@ -533,7 +533,7 @@
                                                     </div>
                                                     <!--end::Card body-->
                                                     <!--begin::Actions-->
-                                                    
+
                                                     <!--end::Actions-->
                                                     <!--end::Form-->
                                                 </div>

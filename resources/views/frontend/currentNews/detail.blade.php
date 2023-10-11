@@ -532,7 +532,7 @@
                                             <div class="col-xl-6">
                                                 <div class="rt-form-group">
                                                     <label for="email">Email *</label>
-                                                    <input type="text" name="email" id="email"
+                                                    <input type="email" name="email" id="email"
                                                         class="form-control" data-error="Bu alan zorunludur" required>
                                                     <div class="help-block with-errors"></div>
                                                 </div>
@@ -547,7 +547,7 @@
                                             <div class="col-12">
                                                 <div class="rt-form-group">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value=""
+                                                        <input class="form-check-input" required type="checkbox" value=""
                                                             id="comment-form-check1">
                                                         <label class="form-check-label" for="comment-form-check1">
                                                             <a
@@ -938,7 +938,7 @@
             var emoji_progress_bar = $("#" + emoji_id + "_bar").css('width'); //get width property of emoji's bar
             var intValue = parseInt(emoji_progress_bar, 10);
             intValue++; //increase the value
-            $("#" + emoji_id + "_bar").css('width', intValue); //update the value  
+            $("#" + emoji_id + "_bar").css('width', intValue); //update the value
         });
     </script>
 @endsection

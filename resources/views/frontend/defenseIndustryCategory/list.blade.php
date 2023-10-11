@@ -27,8 +27,8 @@
                             </a>
                         </li>
 
-                        
-                        
+
+
                         <li class="breadcrumb-item active" aria-current="page">
                             {{$defense->title}}
                         </li>
@@ -64,8 +64,6 @@
                             <div class="row gutter-24">
 
                                 @foreach ($contents_first as $item)
-                                    
-
                                 <div class="col-md-6 wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
                                     <div class="rt-post-overlay rt-post-overlay-md layout-6">
                                         <div class="post-img">
@@ -85,19 +83,15 @@
                                                     <li>
                                                         <span class="rt-meta">
                                                             <i class="fa fa-user"></i>
-                                                            <a href="author.html" class="name">{{$item->Author->name}} {{$item->Author->surname}}</a>
+                                                            @if(isset($item->Author))
+                                                                <a href="#" class="name">{{$item->Author->name}} {{$item->Author->surname}}</a>
+                                                            @endif
                                                         </span>
                                                     </li>
                                                     <li>
                                                         <span class="rt-meta">
                                                             <i class="far fa-calendar-alt icon"></i>
                                                             {{$item->created_at->translatedFormat('d M Y')}}
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-comments icon"></i>
-                                                            <a href="#"> 3,250</a>
                                                         </span>
                                                     </li>
                                                 </ul>
@@ -111,29 +105,14 @@
 
 
 
-                               
-                                
 
 
                             </div>
                             <!-- end inner row -->
 
-                            <nav class="rt-pagination-area gap-top-90">
-                                <ul class="pagination rt-pagination justify-content-center">
-                                    <li class="page-item prev">
-                                        <a class="page-link" href="#"><i class="fas fa-angle-double-left"></i></a>
-                                    </li>
-                                    <li class="page-item active" aria-current="page">
-                                        <span class="page-link">1</span>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                    <li class="page-item next">
-                                        <a class="page-link" href="#"><i class="fas fa-angle-double-right"></i></a>
-                                    </li>
-                                </ul>
-                            </nav>
+                            <div class="d-flex justify-content-center" style="padding:10%">
+                                {{ $contents_first->links() }}
+                            </div>
                             <!-- end rt-pagination-area -->
 
                         </div>
@@ -170,7 +149,7 @@
 
 
                                     @foreach ($data as $item)
-                                        
+
                                     <div class="cat-item">
                                         <div class="rt-cart-item">
                                             <div class="item-img">

@@ -35,7 +35,7 @@ class CurrentNewsController extends Controller
     public function create()
     {
         $now = Carbon::now();
-        $categories = CurrentNewsCategory::orderBy('queue', 'asc')->get();
+        $categories = CurrentNewsCategory::where('status', 1)->orderBy('queue', 'asc')->get();
         $users = UserModel::latest()->get();
         return view('backend.currentNews.add', compact('now', 'categories', 'users'));
     }
@@ -177,7 +177,7 @@ class CurrentNewsController extends Controller
         if (!isset($request->manset_en)) {
             $news_en->headline = 0;
         }
-        if (!isset($request->status)) {
+        if (!isset($request->status_en)) {
             $news_en->status = 0;
         }
         $news_en->save();
@@ -191,7 +191,7 @@ class CurrentNewsController extends Controller
 
     public function edit($id)
     {
-        $categories = CurrentNewsCategory::latest()->get();
+        $categories = CurrentNewsCategory::where('status', 1)->latest()->get();
         $users = UserModel::latest()->get();
         $data_tr = CurrentNews::findOrFail($id);
         $data_en = EnCurrentNews::where('currentNews_id', $id)->first();
@@ -340,7 +340,7 @@ class CurrentNewsController extends Controller
             }else{
                 $news_en->headline = 1;
             }
-            if (!isset($request->status)) {
+            if (!isset($request->status_en)) {
                 $news_en->status = 0;
             }else{
                 $news_en->status = 1;

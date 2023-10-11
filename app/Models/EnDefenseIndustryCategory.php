@@ -13,5 +13,7 @@ class EnDefenseIndustryCategory extends Model
     protected $casts = [
         "seo_key" => "array"
     ];
-
+    public function adet(){
+        return EnCurrentNews::where('status', 1)->where('category_id',$this->id)->count();
+    }
 }

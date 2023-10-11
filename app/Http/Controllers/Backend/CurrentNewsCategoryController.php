@@ -76,6 +76,8 @@ class CurrentNewsCategoryController extends Controller
         try {
             DB::beginTransaction();
 
+            CurrentNewsCategory::where('queue', '>=', $request->queue)->increment("queue");
+
             $category = new CurrentNewsCategory();
             $category->queue = $request->queue;
             $category->color_code = $request->color_code;
@@ -114,8 +116,9 @@ class CurrentNewsCategoryController extends Controller
             if (!isset($request->status_en)) {
                 $category_en->status = 0;
             }
-
+            $category->queue = $request->queue;
             $category_en->save();
+
 
             logKayit(['Güncel Haber Kategori', 'Haber kategorisi eklendi']);
             Alert::success('Güncel Haber Kategorisi Eklendi');

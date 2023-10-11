@@ -15,6 +15,6 @@ class CurrentNewsCategory extends Model
     ];
 
     public function adet(){
-        return CurrentNews::where('category_id',$this->id)->count();
+        return CurrentNews::where('status', 1)->where('category_id',$this->id)->count();
     }
 }

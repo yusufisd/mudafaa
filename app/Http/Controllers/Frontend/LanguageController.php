@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class LanguageController extends Controller
 {
@@ -24,9 +25,19 @@ class LanguageController extends Controller
             \Artisan::call('optimize:clear');
             \Artisan::call('config:cache');
 
+
+            /*
             Route::dispatchToRoute(Request::create(url()->previous()));
+            $params = explode('/', url()->previous());
+            $param  = $params[count($params) - 1];
             $route = Route::currentRouteName();
-            return redirect()->route($route);
+            return redirect()->route($route, $param);
+            */
+            if (Auth::user()){
+                return redirect('/admin');
+            }else{
+                return redirect('/');
+            }
         }else{
             // session process
             Session::forget("applocale");
@@ -39,10 +50,19 @@ class LanguageController extends Controller
             \Artisan::call('optimize:clear');
             \Artisan::call('config:cache');
             \Artisan::call('optimize');
-            
+
+            /*
             Route::dispatchToRoute(Request::create(url()->previous()));
+            $params = explode('/', url()->previous());
+            $param  = $params[count($params) - 1];
             $route = Route::currentRouteName();
-            return redirect()->route($route);
+            return redirect()->route($route, $param);
+            */
+            if (Auth::user()){
+                return redirect('/admin');
+            }else{
+                return redirect('/');
+            }
         }
     }
 }

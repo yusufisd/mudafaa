@@ -95,7 +95,7 @@
                                                                             520px)</span></label>
                                                                 </div>
                                                                 <div class="col-md-8">
-                                                                    <input type="file" class="form-control col-lg-8"
+                                                                    <input type="file"  class="form-control col-lg-8"
                                                                         name="image" id="">
                                                                 </div>
                                                             </div>
@@ -107,7 +107,7 @@
                                                                             520px)</span></label>
                                                                 </div>
                                                                 <div class="col-md-8">
-                                                                    <input type="file" class="form-control col-lg-8"
+                                                                    <input type="file"  class="form-control col-lg-8"
                                                                         name="mobil_image" id="">
                                                                 </div>
                                                             </div>
@@ -196,7 +196,7 @@
                                                                     <div class="col-lg-12 fv-row">
                                                                         <input type="date"
                                                                             name="activity_on_location_tr"
-                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                            required class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="{{ $data_tr->live_time }}" />
                                                                     </div>
                                                                     <!--end::Col-->
@@ -256,7 +256,7 @@
                                                                                     name="activity_name_tr"
                                                                                     onchange="create_slug_tr()"
                                                                                     id="activity_name_tr"
-                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                    required class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                     value="{{ $data_tr->title }}" />
                                                                             </div>
                                                                             <!--end::Col-->
@@ -275,7 +275,7 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10 fv-row">
                                                                         <textarea name="activity_summary_tr" id="ozet_tr" onchange="create_ozet_tr()"
-                                                                            class="form-control form-control-lg form-control-solid">{{ $data_tr->short_description }}</textarea>
+                                                                            required class="form-control form-control-lg form-control-solid">{{ $data_tr->short_description }}</textarea>
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -318,7 +318,7 @@
                                                                                         <input type="text"
                                                                                             name="activity_url_tr"
                                                                                             id="activity_url_tr"
-                                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                            required class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                             value="{{ $data_tr->link }}" />
                                                                                     </div>
 
@@ -402,7 +402,7 @@
                                                                                     name="activity_name_en"
                                                                                     id="activity_name_en"
                                                                                     onchange="create_slug_en()"
-                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                    required class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                     value="{{ $data_en->title ?? '' }}" />
                                                                             </div>
                                                                             <!--end::Col-->
@@ -421,7 +421,7 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10 fv-row">
                                                                         <textarea name="activity_summary_en" id="ozet_en" onchange="create_ozet_en()"
-                                                                            class="form-control form-control-lg form-control-solid">{{ $data_en->short_description }}</textarea>
+                                                                            required class="form-control form-control-lg form-control-solid">{{ $data_en->short_description }}</textarea>
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -463,7 +463,7 @@
                                                                                         <input type="text"
                                                                                             name="activity_url_en"
                                                                                             id="activity_url_en"
-                                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                            required class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                             value="{{ $data_en->link }}" />
                                                                                     </div>
 
@@ -573,7 +573,7 @@
                                                                     <div class="col-lg-12 fv-row">
                                                                         <input type="text" name="activity_seo_title_tr"
                                                                             id="activity_seo_title_tr"
-                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                            required class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="{{ $data_tr->seo_title }}" />
                                                                     </div>
                                                                     <!--end::Col-->
@@ -592,7 +592,7 @@
                                                             <!--begin::Col-->
                                                             <div class="col-lg-10 fv-row">
                                                                 <textarea name="activity_seo_description_tr" id="seo_description_tr"
-                                                                    class="form-control form-control-lg form-control-solid" value="">{!! $data_tr->seo_description !!}</textarea>
+                                                                    required class="form-control form-control-lg form-control-solid" value="">{!! $data_tr->seo_description !!}</textarea>
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -613,7 +613,7 @@
                                                                         <input type="text"
                                                                             id="activity_seo_keywords_tr"
                                                                             name="activity_seo_keywords_tr[]"
-                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                            required class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="{{ json_encode($data_tr->seo_key) }}" />
                                                                     </div>
                                                                     <!--end::Col-->
@@ -649,7 +649,7 @@
                                                                     <div class="col-lg-12 fv-row">
                                                                         <input type="text" name="activity_seo_title_en"
                                                                             id="activity_seo_title_en"
-                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                            required class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="{{ $data_en->seo_title }}" />
                                                                     </div>
                                                                     <!--end::Col-->
@@ -668,7 +668,7 @@
                                                             <!--begin::Col-->
                                                             <div class="col-lg-10 fv-row">
                                                                 <textarea name="activity_seo_description_en" id="seo_description_en"
-                                                                    class="form-control form-control-lg form-control-solid" value="">{!! $data_en->seo_description !!}</textarea>
+                                                                    required class="form-control form-control-lg form-control-solid" value="">{!! $data_en->seo_description !!}</textarea>
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -689,7 +689,7 @@
                                                                         <input type="text"
                                                                             id="activity_seo_keywords_en"
                                                                             name="activity_seo_keywords_en[]"
-                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                            required class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="{{ json_encode($data_en->seo_key) }}" />
                                                                     </div>
                                                                     <!--end::Col-->
@@ -808,7 +808,7 @@
         var input2 = document.querySelector("#activity_seo_keywords_en");
         new Tagify(input2);
 
-       
+
         $(document).ready(function() {
             tinymce.init({
                 selector: "#tinymce_activity_detail_tr",
