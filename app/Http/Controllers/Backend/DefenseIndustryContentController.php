@@ -111,8 +111,6 @@ class DefenseIndustryContentController extends Controller
             $merge_en[] = $v->value;
         }
 
-        
-
         $new->category_id = $request->category;
         $new->defense_id = $genel_id->defense_id;
         $new->title = $request->name_tr;
@@ -272,8 +270,6 @@ class DefenseIndustryContentController extends Controller
             $merge_en[] = $v->value;
         }
 
-       
-
         $new = DefenseIndustryContent::findOrFail($id);
         $new->category_id = $request->category;
         $new->defense_id = $genel_id->defense_id;
@@ -313,16 +309,14 @@ class DefenseIndustryContentController extends Controller
         }
         if (!isset($request->status_tr)) {
             $new->status = 0;
-        }else{
+        } else {
             $new->status = 1;
-
         }
 
         if (!isset($request->national)) {
             $new->national = 0;
-        }else{
+        } else {
             $new->national = 1;
-
         }
         $new->save();
 
@@ -411,32 +405,52 @@ class DefenseIndustryContentController extends Controller
         return redirect()->route('admin.defenseIndustryContent.list');
     }
 
-    public function multipleImage($id){
+    public function multipleImage($id)
+    {
         $data2 = DefenseIndustryContent::findOrFail($id);
         $data = $data2->multiple_image;
         $id = $id;
 
-        return view('backend.defenseIndustryContent.multipleImage.multiple_image',compact('data','id'));
+        return view('backend.defenseIndustryContent.multipleImage.multiple_image', compact('data', 'id'));
     }
 
-    public function multipleImage_add($id){
-
-        return view('backend.defenseIndustryContent.multipleImage.add',compact('id'));
+    public function multipleImage_add($id)
+    {
+        return view('backend.defenseIndustryContent.multipleImage.add', compact('id'));
     }
 
-    public function multipleImage_store(Request $request,$id){
+    public function multipleImage_store(Request $request, $id)
+    {
         $data = DefenseIndustryContent::findOrFail($id);
         if ($request->file('image') != null) {
             $image = $request->file('image');
             $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
             $save_url = 'assets/uploads/defenceIndustryContent/' . $image_name;
-                Image::make($image)
-                    ->resize(170, 170)
-                    ->save($save_url);
+            Image::make($image)
+                ->resize(170, 170)
+                ->save($save_url);
         }
-        $new = array_push($data->multiple_image,$save_url);
-        dd($new);
+        $old_images = $data->multiple_image;
+        array_push($old_images, $save_url);
+        $data->multiple_image = $old_images;
+        $data->save();
         Alert::success('Görsel Başarıyla Eklendi');
-        return back();
+        return redirect()->route('admin.defenseIndustryContent.list');
+    }
+
+    public function multipleImage_destroy(Request $request,$id)
+    {
+
+        $data = DefenseIndustryContent::findOrFail($id);
+        $images = $data->multiple_image;
+
+        $ara = array_search($request->path,$images);
+        unset($images[$ara]);
+        $data->multiple_image = $images;
+        $data->save();
+
+        Alert::success('Görsel başarıyla silindi');
+        return redirect()->route('admin.defenseIndustryContent.list');
+
     }
 }

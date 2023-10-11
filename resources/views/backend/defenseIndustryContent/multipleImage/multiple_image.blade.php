@@ -15,7 +15,7 @@
                 <div class="page-title d-flex flex-column justify-content-center me-3 flex-wrap">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-primary fw-bold fs-3 flex-column justify-content-center my-0">
-                        {{ __('message.içerik') }} {{ __('message.görsel') }}  </h1>
+                        {{ __('message.içerik') }} {{ __('message.görsel') }} </h1>
                     <!--end::Title-->
                 </div>
             </div>
@@ -40,13 +40,13 @@
                                     <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
                                         <!--begin::Add user-->
                                         <a type="button" class="btn btn-outline btn-outline-success"
-                                            href="{{ route('admin.defenseIndustryContent.multipleImage_add',$id) }}">
+                                            href="{{ route('admin.defenseIndustryContent.multipleImage_add', $id) }}">
                                             <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <rect opacity="0.5" x="11.364" y="20.364" width="16"
-                                                        height="2" rx="1" transform="rotate(-90 11.364 20.364)"
+                                                    <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2"
+                                                        rx="1" transform="rotate(-90 11.364 20.364)"
                                                         fill="currentColor" />
                                                     <rect x="4.36396" y="11.364" width="16" height="2"
                                                         rx="1" fill="currentColor" />
@@ -77,13 +77,13 @@
                                                             value="1" />
                                                     </div>
                                                 </th>
-                                                <th style="text-align: center"> {{ __('message.görsel') }} <i class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center"> {{ __('message.görsel') }} <i
+                                                        class="fa fa-sort ms-3"></i></th>
                                                 <th> {{ __('message.işlem') }} <i class="fa fa-sort ms-3"></i></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($data as $item)
-
                                                 <tr class="align-middle">
                                                     <td>
                                                         <div
@@ -96,19 +96,15 @@
                                                         <img src="/{{ $item }}"
                                                             style="width:150px; border-radius:5%" alt="">
                                                     </td>
-                                                    
+
                                                     <td>
                                                         <a href="#"
                                                             class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 px-2"
                                                             title="Görüntüle">
                                                             <i class="fa-solid fa-eye fs-3"></i>
                                                         </a>
-                                                        <a href=""
-                                                            class="btn btn-icon btn-bg-light btn-active-color-secondary btn-sm me-1 px-2"
-                                                            title="Düzenle">
-                                                            <i class="fa-regular fa-pen-to-square fs-3"></i>
-                                                        </a>
-                                                        <a onclick="destroy()"
+
+                                                        <a onclick="destroy('{{$item}}')"
                                                             class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1 px-2"
                                                             data-bs-toggle="modal" data-bs-target="#delete_modal"
                                                             title="Sil">
@@ -139,7 +135,21 @@
 @endsection
 @section('script')
     <script>
-   
+        function destroy(d) {
+            Swal.fire({
+                title: 'Emin misiniz?',
+                text: "Seçtiğiniz içerik silinecek!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Evet, sil!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "{{ route('admin.defenseIndustryContent.multipleImage_destroy') }}/{{$id}}?path=" + d;
+                }
+            })
+        }
     </script>
     <!--begin:: extra js-->
     <script>
@@ -183,4 +193,23 @@
         // end: DataTable Scripts
     </script>
     <!--end:: extra js-->
+@endsection
+@section('script')
+    <script>
+        function destroy(d) {
+            Swal.fire({
+                title: 'Emin misiniz?',
+                text: "Seçtiğiniz içerik silinecek!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Evet, sil!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "{{ route('admin.currentNews.destroy') }}/" + d;
+                }
+            })
+        }
+    </script>
 @endsection

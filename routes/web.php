@@ -163,6 +163,7 @@ Route::middleware('lang')->group(function () {
                     Route::get('/coklu-gorsel/{id?}','multipleImage')->name('multipleImage');
                     Route::get('/coklu-gorsel-ekle/{id?}','multipleImage_add')->name('multipleImage_add');
                     Route::post('/coklu-gorsel-ekle/{id?}','multipleImage_store')->name('multipleImage_store');
+                    Route::get('/coklu-gorsel-sil/{id?}','multipleImage_destroy')->name('multipleImage_destroy');
                 });
 
             // SAVUNMA SANAYİ  CONTROLLER
