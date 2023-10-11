@@ -59,7 +59,7 @@ return [
     "ss sözlüğü" => "SS Sözlüğü",
     "videolar" => "Videolar",
     "anasayfa" => "Anasayfa",
-    'Sitede yayınlanan yazı, haber, video ve fotoğrafların tüm hakları Dada İst Ajans a aittir. Kaynak gösterilerek dahi olsa izin alınmadan alıntı yapılamaz.' => 'Sitede yayınlanan yazı, haber, video ve fotoğrafların tüm hakları Dada İst Ajans a aittir. Kaynak gösterilerek dahi olsa izin alınmadan alıntı yapılamaz.',
+    'Sitede yayınlanan yazı, haber, video ve fotoğrafların tüm hakları Dada İst Ajans a aittir. Kaynak gösterilerek dahi olsa izin alınmadan alıntı yapılamaz' => 'Sitede yayınlanan yazı, haber, video ve fotoğrafların tüm hakları Dada İst Ajans a aittir. Kaynak gösterilerek dahi olsa izin alınmadan alıntı yapılamaz.',
     "daha fazla oku" => "Daha Fazla Oku",
     "popüler haberler" => "Popüler Haberler",
     "kategoriler" => "Kategoriler",

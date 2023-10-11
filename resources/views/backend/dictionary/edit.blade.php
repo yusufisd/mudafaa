@@ -137,6 +137,7 @@
 
                                                     </div>
 
+
                                                     <div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">
                                                         <div class="row ms-10">
                                                             <!--begin::Label-->
@@ -149,9 +150,9 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input type="date" name="live_date"
+                                                                        <input type="datetime-local" name="live_date"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            value="{{ $data_tr->live_date }}" />
+                                                                            value="{{ $data_tr->live_date}}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -370,7 +371,7 @@
                                                                         <div
                                                                             class="form-check form-check-solid form-switch form-check-custom fv-row">
                                                                             <input class="form-check-input w-50px h-25px"
-                                                                                name="status_tr" type="checkbox"
+                                                                                name="status_en" type="checkbox"
                                                                                 id="allowblog_seo_tr" {{ $data_en->status == 1 ? 'checked' : '' }} />
                                                                             <label class="form-check-label"
                                                                                 for="allowblog_seo_tr"></label>

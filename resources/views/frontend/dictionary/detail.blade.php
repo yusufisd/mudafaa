@@ -43,7 +43,7 @@
         <!-- End inner page Banner -->
 
         <!-- Start single-post-banner -->
-        <div class="single-post-banner rt-gradient-overaly" data-bg-image="/{{$data->image}}">
+        <div class="single-post-banner rt-gradient-overaly" data-bg-image="/{{ $data->image }}">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-9 col-lg-10 mx-auto">
@@ -68,15 +68,10 @@
                                     <li>
                                         <span class="rt-meta">
                                             <i class="far fa-clock icon"></i>
-                                            2 Dk.
+                                            {{ $data->read_time }}
                                         </span>
                                     </li>
-                                    <li>
-                                        <span class="rt-meta">
-                                            <i class="far fa-eye icon"></i>
-                                            3,250
-                                        </span>
-                                    </li>
+
                                 </ul>
                             </div>
                         </div>
@@ -133,7 +128,7 @@
                             </div>
 
                             <!-- strat psot body -->
-                            <div class="post-body">
+                            <div class="post-body justify-between" style="text-align: justify; margin-bottom:3%" >
 
                                 {!! $data->description !!}
 
@@ -147,11 +142,12 @@
                                         <div class="conent-block">
                                             <h4 class="block-tile mb--20">Popüler Etiketler:</h4>
                                             <div class="tag-list">
-                                                <a href="#" class="tag-link">Güzel</a>
-                                                <a href="#" class="tag-link">Seyahat</a>
-                                                <a href="#" class="tag-link">Teknoloji</a>
-                                                <a href="#" class="tag-link">Siyaset</a>
+
+                                                @foreach ($data->seo_key as $key)
+                                                    <a  class="tag-link"> {{ $key }} </a>
+                                                @endforeach
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -196,51 +192,44 @@
                     <div class="swiper-wrapper">
 
                         @foreach ($other as $item)
-                            
-
-                        <div class="swiper-slide">
-                            <div class="slide-item">
-                                <div class="rt-post-grid grid-meta">
-                                    <div class="post-img">
-                                        <a href="{{route('front.dictionary.detail',$item->id)}}">
-                                            <img src="/{{$item->image}}" alt="post" width="551"
-                                                height="431">
-                                        </a>
-                                    </div>
-                                    <div class="post-content">
-
-                                        <h3 class="post-title">
-                                            <a href="{{route('front.dictionary.detail',$item->id)}}">
-                                                {{$item->title}}
+                            <div class="swiper-slide">
+                                <div class="slide-item">
+                                    <div class="rt-post-grid grid-meta">
+                                        <div class="post-img">
+                                            <a href="{{ route('front.dictionary.detail', $item->id) }}">
+                                                <img src="/{{ $item->image }}" alt="post" width="551"
+                                                    height="431">
                                             </a>
-                                        </h3>
-                                        <div class="post-meta">
-                                            <ul>
-                                                <li>
-                                                    <span class="rt-meta">
-                                                        <i class="fa fa-user icon"></i>
-                                                        {{$item->Author->name}}  {{$item->Author->surname}}
-                                                    </span>
-                                                </li>
-                                                <li>
-                                                    <span class="rt-meta">
-                                                        <i class="far fa-clock icon"></i>
-                                                        2 Dk.
-                                                    </span>
-                                                </li>
-                                                <li>
-                                                    <span class="rt-meta">
-                                                        <i class="far fa-eye icon"></i>
-                                                        3,250
-                                                    </span>
-                                                </li>
-                                            </ul>
+                                        </div>
+                                        <div class="post-content">
+
+                                            <h3 class="post-title">
+                                                <a href="{{ route('front.dictionary.detail', $item->id) }}">
+                                                    {{ $item->title }}
+                                                </a>
+                                            </h3>
+                                            <div class="post-meta">
+                                                <ul>
+                                                    <li>
+                                                        <span class="rt-meta">
+                                                            <i class="fa fa-user icon"></i>
+                                                            {{ $item->Author->name }} {{ $item->Author->surname }}
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="rt-meta">
+                                                            <i class="far fa-clock icon"></i>
+                                                            {{$item->read_time}}
+                                                        </span>
+                                                    </li>
+                                                    
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- end swiper slide -->
+                            <!-- end swiper slide -->
                         @endforeach
 
 
@@ -260,8 +249,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-           // sidebar title limitation
-        -------------------------------*/
+               // sidebar title limitation
+            -------------------------------*/
         // Select all tags with class .sidebar_restricted_category_title
         $('.sidebar_restricted_category_title').each(function() {
             var content = $(this).text().trim(); // get the content of a tag

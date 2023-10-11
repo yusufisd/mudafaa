@@ -80,6 +80,9 @@ class DictionaryController extends Controller
         try {
             DB::beginTransaction();
 
+            $read_time_tr = (int) round(str_word_count($request->short_description_tr) / 200);
+            $read_time_en = (int) round(str_word_count($request->short_description_en) / 200);
+
             $veri = json_decode(json_decode(json_encode($request->seo_key_tr[0])));
             $merge = [];
             foreach ($veri as $v) {
@@ -98,6 +101,7 @@ class DictionaryController extends Controller
             $new->title = $request->name_tr;
             $new->description = $request->short_description_tr;
             $new->link = $request->link_tr;
+            $new->read_time = $read_time_tr;
             $new->seo_title = $request->seo_title_tr;
             $new->seo_description = $request->seo_description_tr;
             $new->seo_key = $merge;
@@ -122,6 +126,7 @@ class DictionaryController extends Controller
             $new_en->title = $request->name_en;
             $new_en->description = $request->short_description_en;
             $new_en->link = $request->link_en;
+            $new->read_time = $read_time_en;
             $new_en->seo_title = $request->seo_title_en;
             $new_en->seo_description = $request->seo_description_en;
             $new_en->seo_key = $merge_en;
@@ -159,7 +164,7 @@ class DictionaryController extends Controller
         $users = UserModel::latest()->get();
         $data_tr = Dictionary::findOrFail($id);
         $data_en = EnDictionary::where('dictionary_id', $id)->first();
-        return view('backend.dictionary.edit', compact('data_tr', 'data_en',  'users'));
+        return view('backend.dictionary.edit', compact('data_tr', 'data_en', 'users'));
     }
 
     /**
@@ -201,74 +206,75 @@ class DictionaryController extends Controller
                 'seo_key_en.required' => 'seo_key_en',
             ],
         );
-  
 
-            $new = Dictionary::findOrFail($id);
+        $new = Dictionary::findOrFail($id);
 
-            $veri = json_decode(json_decode(json_encode($request->seo_key_tr[0])));
-            $merge = [];
-            foreach ($veri as $v) {
-                $merge[] = $v->value;
-            }
+        $veri = json_decode(json_decode(json_encode($request->seo_key_tr[0])));
+        $merge = [];
+        foreach ($veri as $v) {
+            $merge[] = $v->value;
+        }
 
-            $veri_en = json_decode(json_decode(json_encode($request->seo_key_en[0])));
-            $merge_en = [];
-            foreach ($veri_en as $v) {
-                $merge_en[] = $v->value;
-            }
+        $veri_en = json_decode(json_decode(json_encode($request->seo_key_en[0])));
+        $merge_en = [];
+        foreach ($veri_en as $v) {
+            $merge_en[] = $v->value;
+        }
 
-            $new->author = $request->author;
-            $new->live_date = $request->live_date;
-            $new->title = $request->name_tr;
-            $new->description = $request->short_description_tr;
-            $new->link = $request->link_tr;
-            $new->seo_title = $request->seo_title_tr;
-            $new->seo_description = $request->seo_description_tr;
-            $new->seo_key = $merge;
-            if (!isset($request->status_tr)) {
-                $new->status = 0;
-            }
-            if ($request->file('image') != null) {
-                $image = $request->file('image');
-                $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-                $save_url = 'assets/uploads/dictionary/' . $image_name;
-                Image::make($image)
-                    ->resize(960, 520)
-                    ->save($save_url);
-                $new->image = $save_url;
-            }
-            $new->save();
+        $new->author = $request->author;
+        $new->live_date = $request->live_date;
+        $new->title = $request->name_tr;
+        $new->description = $request->short_description_tr;
+        $new->link = $request->link_tr;
+        $new->seo_title = $request->seo_title_tr;
+        $new->seo_description = $request->seo_description_tr;
+        $new->seo_key = $merge;
+        if (!isset($request->status_tr)) {
+            $new->status = 0;
+        } else {
+            $new->status = 1;
+        }
+        if ($request->file('image') != null) {
+            $image = $request->file('image');
+            $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $save_url = 'assets/uploads/dictionary/' . $image_name;
+            Image::make($image)
+                ->resize(960, 520)
+                ->save($save_url);
+            $new->image = $save_url;
+        }
+        $new->save();
 
-            
+        $new_en = EnDictionary::where('dictionary_id', $id)->first();
+        $new_en->dictionary_id = $new->id;
+        $new_en->author = $request->author;
+        $new_en->live_date = $request->live_date;
+        $new_en->title = $request->name_en;
+        $new_en->description = $request->short_description_en;
+        $new_en->link = $request->link_en;
+        $new_en->seo_title = $request->seo_title_en;
+        $new_en->seo_description = $request->seo_description_en;
+        $new_en->seo_key = $merge_en;
+        if (!isset($request->status_en)) {
+            $new_en->status = 0;
+        } else {
+            $new_en->status = 1;
+        }
+        if ($request->file('image') != null) {
+            $image = $request->file('image');
+            $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $save_url = 'assets/uploads/dictionary/' . $image_name;
+            Image::make($image)
+                ->resize(960, 520)
+                ->save($save_url);
+            $new_en->image = $save_url;
+        }
+        $new_en->save();
 
-            $new_en = EnDictionary::where('dictionary_id', $id)->first();
-            $new_en->dictionary_id = $new->id;
-            $new_en->author = $request->author;
-            $new_en->live_date = $request->live_date;
-            $new_en->title = $request->name_en;
-            $new_en->description = $request->short_description_en;
-            $new_en->link = $request->link_en;
-            $new_en->seo_title = $request->seo_title_en;
-            $new_en->seo_description = $request->seo_description_en;
-            $new_en->seo_key = $merge_en;
-            if (!isset($request->status_en)) {
-                $new_en->status = 0;
-            }
-            if ($request->file('image') != null) {
-                $image = $request->file('image');
-                $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-                $save_url = 'assets/uploads/dictionary/' . $image_name;
-                Image::make($image)
-                    ->resize(960, 520)
-                    ->save($save_url);
-                $new_en->image = $save_url;
-            }
-            $new_en->save();
+        logKayit(['Sözlük Yönetimi ', 'Sözlük başarıyla düzenlendi']);
+        Alert::success('Sözlük Başarıyla Düzenlendi');
+        DB::commit();
 
-            logKayit(['Sözlük Yönetimi ', 'Sözlük başarıyla düzenlendi']);
-            Alert::success('Sözlük Başarıyla Düzenlendi');
-            DB::commit();
-        
         return redirect()->route('admin.dictionary.list');
     }
 
@@ -276,12 +282,12 @@ class DictionaryController extends Controller
     {
         try {
             DB::beginTransaction();
-            $data = CurrentNews::findOrFail($id);
-            EnCurrentNews::where('currentNews_id', $id)->delete();
+            $data = Dictionary::findOrFail($id);
+            EnDictionary::where('dictionary_id', $id)->delete();
             $data->delete();
 
-            logKayit(['Haber Yönetimi ', 'Haber silindi']);
-            Alert::success('Haber Başarıyla Silindi');
+            logKayit(['Sözlük Yönetimi ', 'Sözlük silindi']);
+            Alert::success('Sözlük Başarıyla Silindi');
             DB::commit();
         } catch (Throwable $e) {
             DB::rollBack();

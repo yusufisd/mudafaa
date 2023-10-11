@@ -122,13 +122,13 @@
                                                             style="width:150px; border-radius:5%" alt="">
                                                     </td>
                                                     <td> {{ $item->title }} </td>
-                                                    <td> {{ $item->Author->name }} {{ $item->Author->surname }} </td>
-                                                    <td> {{ $item->live_date }} </td>
+                                                    <td> <p style="text-transform: capitalize">{{ $item->Author->name }} {{ $item->Author->surname }} </p>  </td>
+                                                    <td> {{ $item->live_date->translatedFormat('d M Y') }} </td>
                                                     <td>
                                                         <div
                                                             class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
                                                             <input class="form-check-input w-50px h-25px" type="checkbox"
-                                                                id="status"
+                                                                id="blog_status_1"
                                                                 onchange="change_status({{ $item->id }})"
                                                                 {{ $item->status == 1 ? 'checked' : '' }}>
                                                             <label class="form-check-label" for="blog_status_1"></label>
@@ -196,7 +196,7 @@
                 confirmButtonText: 'Evet, sil!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "{{ route('admin.currentNewsCategory.destroy') }}/" + d;
+                    window.location.href = "{{ route('admin.dictionary.destroy') }}/" + d;
                 }
             })
         }

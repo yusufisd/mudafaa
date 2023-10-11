@@ -61,7 +61,7 @@ return [
     "ss sözlüğü" => "Dictionary",
     "videolar" => "Videos",
     "anasayfa" => "Home",
-    'Sitede yayınlanan yazı, haber, video ve fotoğrafların tüm hakları Dada İst Ajans a aittir. Kaynak gösterilerek dahi olsa izin alınmadan alıntı yapılamaz.' => 'All rights of the articles, news, videos and photos published on the site belong to Dada Ist Agency. It cannot be quoted without permission, even by citing the source.',
+    'Sitede yayınlanan yazı, haber, video ve fotoğrafların tüm hakları Dada İst Ajans a aittir. Kaynak gösterilerek dahi olsa izin alınmadan alıntı yapılamaz' => 'All rights of the articles, news, videos and photos published on the site belong to Dada Ist Agency. It cannot be quoted without permission, even by citing the source.',
     "daha fazla oku" => "Read More",
     "popüler haberler" => "Popular News",
     "yaklaşan etkinlikler" => "Upcoming Activities",

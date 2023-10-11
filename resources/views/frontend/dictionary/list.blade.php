@@ -161,8 +161,8 @@
                                     <div class="col-md-4 wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
                                         <div class="rt-post-overlay rt-post-overlay-md layout-6">
                                             <div class="post-img">
-                                                <a href="" class="img-link">
-                                                    <img src="/{{ $item->image }}" alt="post-xl_37" width="900"
+                                                <a href="{{ route('front.dictionary.detail', $item->id) }}" class="img-link">
+                                                    <img src="/{{ $item->image }}" alt="{{ $item->title }}" width="900"
                                                         height="600">
                                                 </a>
                                             </div>
@@ -186,15 +186,10 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-clock icon"></i>
-                                                                2 Dk.
+                                                                {{ $item->read_time }}
                                                             </span>
                                                         </li>
-                                                        <li>
-                                                            <span class="rt-meta">
-                                                                <i class="far fa-comments icon"></i>
-                                                                <a href="#"> 3,250</a>
-                                                            </span>
-                                                        </li>
+                                                        
                                                     </ul>
                                                 </div>
                                             </div>
