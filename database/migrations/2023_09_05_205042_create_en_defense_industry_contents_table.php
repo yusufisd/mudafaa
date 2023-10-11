@@ -24,7 +24,6 @@ return new class extends Migration
             $table->integer('read_time')->default(3);
             $table->integer('status')->default(1);
             $table->string('seo_title');
-            $table->string('tags');
             $table->string('link');
             $table->string('seo_description');
             $table->string('seo_key');

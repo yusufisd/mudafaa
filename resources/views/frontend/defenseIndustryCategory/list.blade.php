@@ -22,12 +22,15 @@
                 <nav class="rt-breadcrumb-wrap" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">
+                            <a href="{{route('front.home')}}">
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
+
+                        
+                        
                         <li class="breadcrumb-item active" aria-current="page">
-                            Hava Platformları
+                            {{$defense->title}}
                         </li>
                     </ol>
                 </nav>
@@ -66,15 +69,14 @@
                                 <div class="col-md-6 wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
                                     <div class="rt-post-overlay rt-post-overlay-md layout-6">
                                         <div class="post-img">
-                                            <a href="" class="img-link">
+                                            <a href="{{route('front.defenseIndustryContent.detail',$item->link)}}" class="img-link">
                                                 <img src="/{{$item->image}}" alt="post-xl_37" width="900"
                                                     height="600">
                                             </a>
                                         </div>
                                         <div class="post-content">
-                                            <a href="life-style.html" class="life-style">{{$item->Category->title}}</a>
                                             <h3 class="post-title">
-                                                <a href="{{route('front.defenseIndustryContent.detail',$item->id)}}">
+                                                <a href="{{route('front.defenseIndustryContent.detail',$item->link)}}">
                                                     {{$item->title}}
                                                 </a>
                                             </h3>
@@ -109,60 +111,8 @@
 
 
 
-                                <div class="ad-banner-img mt--45 mb--40  wow fadeInUp" data-wow-delay="600ms"
-                                    data-wow-duration="800ms">
-                                    <a href="#">
-                                        <img src="/assets/frontend/media/gallery/ad-banner_5.jpg" alt="ad-banner" width="960"
-                                            height="150">
-                                    </a>
-                                </div>
-
-                                @foreach ($contents_reverse as $item)
-                                    
-
-                                <div class="col-md-6 wow fadeInUp" data-wow-delay="700ms" data-wow-duration="800ms">
-                                    <div class="rt-post-overlay rt-post-overlay-md layout-6">
-                                        <div class="post-img">
-                                            <a href="" class="img-link">
-                                                <img src="/{{$item->image}}" alt="post-xl_41" width="900"
-                                                    height="600">
-                                            </a>
-                                        </div>
-                                        <div class="post-content">
-                                            <a href="life-style.html" class="life-style">Fashion</a>
-                                            <h3 class="post-title">
-                                                <a href="">
-                                                    Turboprop AT225
-                                                </a>
-                                            </h3>
-                                            <div class="post-meta">
-                                                <ul>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="fa fa-user"></i>
-                                                            <a href="author.html" class="name">Alİ YILMAZ</a>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-calendar-alt icon"></i>
-                                                            18.07.2023
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-comments icon"></i>
-                                                            <a href="#"> 3,250</a>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                @endforeach
+                               
+                                
 
 
                             </div>
@@ -228,7 +178,7 @@
                                                     height="491">
                                                 <div class="item-content">
                                                     <h4 class="title">
-                                                        <a href="life-style.html"> {{$item->title}} </a>
+                                                        <a href="{{ route('front.defenseIndustrySubCategory.list2', $item->link) }}"> {{$item->title}} </a>
                                                     </h4>
                                                     <p class="count">
                                                         <span class="anim-overflow"> ({{$item->adet()}}) </span>

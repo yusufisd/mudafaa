@@ -270,34 +270,6 @@
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
-                                                                <!--end::Input group-->
-                                                                <!--begin::Input group-->
-                                                                <div class="row mb-6">
-                                                                    <!--begin::Label-->
-                                                                    <label
-                                                                        class="col-lg-2 col-form-label fw-bold fs-6 ps-5">Etiket</label>
-                                                                    <!--end::Label-->
-                                                                    <!--begin::Col-->
-                                                                    <div class="col-lg-10">
-                                                                        <!--begin::Row-->
-                                                                        <div class="row">
-                                                                            <!--begin::Col-->
-                                                                            <div class="col-lg-12 fv-row">
-                                                                                <input required type="text" id="etiket_tr"
-                                                                                    name="etiket_tr[]"
-                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                    value="" />
-                                                                            </div>
-                                                                            <!--end::Col-->
-                                                                        </div>
-                                                                        <!--end::Row-->
-                                                                    </div>
-                                                                    <!--end::Col-->
-                                                                </div>
-                                                                <!--end::Input group-->
-
-
-
 
                                                                 <!--begin::Input group-->
                                                                 <div class="row mb-6">
@@ -440,32 +412,7 @@
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
-                                                                <!--end::Input group-->
-                                                                <!--begin::Input group-->
-                                                                <div class="row mb-6">
-                                                                    <!--begin::Label-->
-                                                                    <label
-                                                                        class="col-lg-2 col-form-label fw-bold fs-6 ps-5">Etiket</label>
-                                                                    <!--end::Label-->
-                                                                    <!--begin::Col-->
-                                                                    <div class="col-lg-10">
-                                                                        <!--begin::Row-->
-                                                                        <div class="row">
-                                                                            <!--begin::Col-->
-                                                                            <div class="col-lg-12 fv-row">
-                                                                                <input required type="text" id="etiket_en"
-                                                                                    name="etiket_en[]"
-                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                    value="" />
-                                                                            </div>
-                                                                            <!--end::Col-->
-                                                                        </div>
-                                                                        <!--end::Row-->
-                                                                    </div>
-                                                                    <!--end::Col-->
-                                                                </div>
-                                                                <!--end::Input group-->
-
+                                                                
 
 
 
@@ -831,11 +778,7 @@
         var input2 = document.querySelector("#activity_seo_keywords_en");
         new Tagify(input2);
 
-        var input3 = document.querySelector("#etiket_tr");
-        new Tagify(input3);
-
-        var input4 = document.querySelector("#etiket_en");
-        new Tagify(input4);
+  
 
         $(document).ready(function() {
             tinymce.init({

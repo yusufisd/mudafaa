@@ -202,7 +202,7 @@
 
                                                     @foreach (currentCats() as $item)
                                                         <li><a
-                                                                href="{{ route('front.currentNewsCategory.list', $item->id) }}">
+                                                                href="{{ route('front.currentNewsCategory.list', $item->link) }}">
                                                                 {{ $item->title }} </a></li>
                                                     @endforeach
 
@@ -216,7 +216,7 @@
 
                                                     @foreach (defenseIndustryCat() as $item)
                                                         <li><a
-                                                                href="{{ route('front.defenseIndustryCategory.list', $item->id) }}">
+                                                                href="{{ route('front.defenseIndustryCategory.list', $item->link) }}">
                                                                 {{ $item->title }} </a>
                                                         </li>
                                                     @endforeach

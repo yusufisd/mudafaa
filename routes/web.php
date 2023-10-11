@@ -159,6 +159,10 @@ Route::middleware('lang')->group(function () {
                         ->get('sil/{id?}', 'destroy')
                         ->name('destroy');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
+
+                    Route::get('/coklu-gorsel/{id?}','multipleImage')->name('multipleImage');
+                    Route::get('/coklu-gorsel-ekle/{id?}','multipleImage_add')->name('multipleImage_add');
+                    Route::post('/coklu-gorsel-ekle/{id?}','multipleImage_store')->name('multipleImage_store');
                 });
 
             // SAVUNMA SANAYİ  CONTROLLER
@@ -533,7 +537,7 @@ Route::middleware('lang')->group(function () {
                 ->prefix('guncel-haber-kategorisi')
                 ->name('currentNewsCategory.')
                 ->group(function () {
-                    Route::get('liste/{id?}', 'index')->name('list');
+                    Route::get('/{id?}', 'index')->name('list');
                 });
 
             // CURRENT NEWS  CONTROLLER
@@ -541,7 +545,7 @@ Route::middleware('lang')->group(function () {
                 ->prefix('guncel-haber')
                 ->name('currentNews.')
                 ->group(function () {
-                    Route::get('detail/{id?}', 'detail')->name('detail');
+                    Route::get('/{id?}', 'detail')->name('detail');
                 });
 
             // DEFENSE INDUSTRY CATEGORY CONTROLLER
@@ -549,15 +553,23 @@ Route::middleware('lang')->group(function () {
                 ->prefix('savunma-sanayi-kategorisi')
                 ->name('defenseIndustryCategory.')
                 ->group(function () {
-                    Route::get('liste/{id?}', 'index')->name('list');
+                    Route::get('/{id?}', 'index')->name('list');
                 });
+
+                // DEFENSE INDUSTRY CATEGORY2 CONTROLLER
+            Route::controller(FrontendDefenseIndustryCategoryController::class)
+            ->prefix('savunma-sanayi-alt-kategorisi')
+            ->name('defenseIndustrySubCategory.')
+            ->group(function () {
+                Route::get('/{id?}', 'sub_category_index')->name('list2');
+            });
 
             // DEFENSE INDUSTRY CONTENT CONTROLLER
             Route::controller(FrontendDefenseIndustryContentController::class)
                 ->prefix('savunma-sanayi')
                 ->name('defenseIndustryContent.')
                 ->group(function () {
-                    Route::get('detay/{id?}', 'detail')->name('detail');
+                    Route::get('/{id?}', 'detail')->name('detail');
                 });
 
             // ACTİVİYY CONTROLLER

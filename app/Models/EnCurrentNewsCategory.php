@@ -14,4 +14,7 @@ class EnCurrentNewsCategory extends Model
         "seo_key" => "array"
     ];
 
+    public function adet(){
+        return EnCurrentNews::where('category_id',$this->id)->count();
+    }
 }

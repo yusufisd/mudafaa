@@ -57,12 +57,10 @@ class DefenseIndustryContentController extends Controller
                 'name_tr' => 'required',
                 'short_description_tr' => 'required',
                 'description_tr' => 'required',
-                'etiket_tr' => 'required',
                 'link_tr' => 'required',
                 'name_en' => 'required',
                 'short_description_en' => 'required',
                 'description_en' => 'required',
-                'etiket_en' => 'required',
                 'link_en' => 'required',
                 'seo_title_tr' => 'required',
                 'seo_description_tr' => 'required',
@@ -81,12 +79,10 @@ class DefenseIndustryContentController extends Controller
                 'name_tr.required' => 'Başlık (TR) boş bırakılamaz',
                 'short_description_tr.required' => 'Kısa açıklama (TR) boş bırakılamaz',
                 'description_tr.required' => 'İçerik (TR) boş bırakılamaz',
-                'etiket_tr.required' => 'Etiket (TR) boş bırakılamaz',
                 'link_tr.required' => 'Link (TR) boş bırakılamaz',
                 'name_en.required' => 'Başlık (EN) boş bırakılamaz',
                 'short_description_en.required' => 'Kısa açıklama (EN) boş bırakılamaz',
                 'description_en.required' => 'Açıklama (EN) boş bırakılamaz',
-                'etiket_en.required' => 'Etiket (EN) boş bırakılamaz',
                 'link_en.required' => 'Link (EN) boş bırakılamaz',
                 'seo_title_tr.required' => 'Seo başlık (TR) boş bırakılamaz',
                 'seo_description_tr.required' => 'Seo açıklama (TR) boş bırakılamaz',
@@ -115,17 +111,7 @@ class DefenseIndustryContentController extends Controller
             $merge_en[] = $v->value;
         }
 
-        $tags_tr = json_decode(json_decode(json_encode($request->etiket_tr[0])));
-        $tag_tr = [];
-        foreach ($tags_tr as $v) {
-            $tag_tr[] = $v->value;
-        }
-
-        $tags_en = json_decode(json_decode(json_encode($request->etiket_en[0])));
-        $tag_en = [];
-        foreach ($tags_en as $v) {
-            $tag_en[] = $v->value;
-        }
+        
 
         $new->category_id = $request->category;
         $new->defense_id = $genel_id->defense_id;
@@ -137,7 +123,6 @@ class DefenseIndustryContentController extends Controller
         $new->countries = $request->countries;
         $new->companies = $request->company;
         $new->link = $request->link_tr;
-        $new->tags = $tag_tr;
         $new->origin = $request->origin;
         $new->author = $request->author;
         $new->seo_description = $request->seo_description_tr;
@@ -181,7 +166,6 @@ class DefenseIndustryContentController extends Controller
         $new_en->short_description = $request->short_description_en;
         $new_en->description = $request->description_en;
         $new_en->content_id = $new->id;
-        $new_en->tags = $tag_en;
         $new_en->link = $request->link_en;
         $new_en->seo_title = $request->seo_title_en;
         $new_en->seo_description = $request->seo_description_en;
@@ -237,12 +221,10 @@ class DefenseIndustryContentController extends Controller
                 'name_tr' => 'required',
                 'short_description_tr' => 'required',
                 'description_tr' => 'required',
-                'etiket_tr' => 'required',
                 'link_tr' => 'required',
                 'name_en' => 'required',
                 'short_description_en' => 'required',
                 'description_en' => 'required',
-                'etiket_en' => 'required',
                 'link_en' => 'required',
                 'seo_title_tr' => 'required',
                 'seo_description_tr' => 'required',
@@ -260,12 +242,10 @@ class DefenseIndustryContentController extends Controller
                 'name_tr.required' => 'Başlık (TR) boş bırakılamaz',
                 'short_description_tr.required' => 'Kısa açıklama (TR) boş bırakılamaz',
                 'description_tr.required' => 'İçerik (TR) boş bırakılamaz',
-                'etiket_tr.required' => 'Etiket (TR) boş bırakılamaz',
                 'link_tr.required' => 'Link (TR) boş bırakılamaz',
                 'name_en.required' => 'Başlık (EN) boş bırakılamaz',
                 'short_description_en.required' => 'Kısa açıklama (EN) boş bırakılamaz',
                 'description_en.required' => 'Açıklama (EN) boş bırakılamaz',
-                'etiket_en.required' => 'Etiket (EN) boş bırakılamaz',
                 'link_en.required' => 'Link (EN) boş bırakılamaz',
                 'seo_title_tr.required' => 'Seo başlık (TR) boş bırakılamaz',
                 'seo_description_tr.required' => 'Seo açıklama (TR) boş bırakılamaz',
@@ -292,17 +272,7 @@ class DefenseIndustryContentController extends Controller
             $merge_en[] = $v->value;
         }
 
-        $tags_tr = json_decode(json_decode(json_encode($request->etiket_tr[0])));
-        $tag_tr = [];
-        foreach ($tags_tr as $v) {
-            $tag_tr[] = $v->value;
-        }
-
-        $tags_en = json_decode(json_decode(json_encode($request->etiket_en[0])));
-        $tag_en = [];
-        foreach ($tags_en as $v) {
-            $tag_en[] = $v->value;
-        }
+       
 
         $new = DefenseIndustryContent::findOrFail($id);
         $new->category_id = $request->category;
@@ -315,7 +285,6 @@ class DefenseIndustryContentController extends Controller
         $new->countries = $request->countries;
         $new->companies = $request->company;
         $new->link = $request->link_tr;
-        $new->tags = $tag_tr;
         $new->origin = $request->origin;
         $new->author = $request->author;
         $new->seo_description = $request->seo_description_tr;
@@ -344,10 +313,16 @@ class DefenseIndustryContentController extends Controller
         }
         if (!isset($request->status_tr)) {
             $new->status = 0;
+        }else{
+            $new->status = 1;
+
         }
 
         if (!isset($request->national)) {
             $new->national = 0;
+        }else{
+            $new->national = 1;
+
         }
         $new->save();
 
@@ -358,7 +333,6 @@ class DefenseIndustryContentController extends Controller
         $new_en->short_description = $request->short_description_en;
         $new_en->description = $request->description_en;
         $new_en->content_id = $new->id;
-        $new_en->tags = $tag_en;
         $new_en->seo_title = $request->seo_title_en;
         $new_en->seo_description = $request->seo_description_en;
         $new_en->seo_key = $merge_en;
@@ -381,7 +355,7 @@ class DefenseIndustryContentController extends Controller
 
         $new_en->save();
         logKayit(['Savunma Sanayi ', 'Savunma sanayi içeriği düzenlendi']);
-        Alert::success('İçerik Başarıyla Eklendi');
+        Alert::success('İçerik Başarıyla Düzenlendi');
         DB::commit();
         return redirect()->route('admin.defenseIndustryContent.list');
     }
@@ -435,5 +409,34 @@ class DefenseIndustryContentController extends Controller
             ]);
         }
         return redirect()->route('admin.defenseIndustryContent.list');
+    }
+
+    public function multipleImage($id){
+        $data2 = DefenseIndustryContent::findOrFail($id);
+        $data = $data2->multiple_image;
+        $id = $id;
+
+        return view('backend.defenseIndustryContent.multipleImage.multiple_image',compact('data','id'));
+    }
+
+    public function multipleImage_add($id){
+
+        return view('backend.defenseIndustryContent.multipleImage.add',compact('id'));
+    }
+
+    public function multipleImage_store(Request $request,$id){
+        $data = DefenseIndustryContent::findOrFail($id);
+        if ($request->file('image') != null) {
+            $image = $request->file('image');
+            $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $save_url = 'assets/uploads/defenceIndustryContent/' . $image_name;
+                Image::make($image)
+                    ->resize(170, 170)
+                    ->save($save_url);
+        }
+        $new = array_push($data->multiple_image,$save_url);
+        dd($new);
+        Alert::success('Görsel Başarıyla Eklendi');
+        return back();
     }
 }

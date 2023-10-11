@@ -45,24 +45,36 @@ class CurrentNewsCategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'queue' => 'required',
+            'title_tr' => 'required',
+            'link_tr' => 'required',
+            'seo_title_tr' => 'required',
+            'seo_description_tr' => 'required',
+            'seo_key_tr' => 'required',
+            'image' => 'required',
+
+            'title_en' => 'required',
+            'link_en' => 'required',
+            'seo_title_en' => 'required',
+            'seo_descriptipn_en' => 'required',
+            'seo_key_en' => 'required',
+        ]);
+
+        $veri = json_decode(json_decode(json_encode($request->seo_key_tr[0])));
+        $merge = [];
+        foreach ($veri as $v) {
+            $merge[] = $v->value;
+        }
+
+        $veri_en = json_decode(json_decode(json_encode($request->seo_key_en[0])));
+        $merge_en = [];
+        foreach ($veri_en as $v) {
+            $merge_en[] = $v->value;
+        }
+
         try {
             DB::beginTransaction();
-
-            $request->validate([
-                'queue' => 'required',
-                'title_tr' => 'required',
-                'link_tr' => 'required',
-                'seo_title_tr' => 'required',
-                'seo_description_tr' => 'required',
-                'seo_key_tr' => 'required',
-                'image' => 'required',
-
-                'title_en' => 'required',
-                'link_en' => 'required',
-                'seo_title_en' => 'required',
-                'seo_descriptipn_en' => 'required',
-                'seo_key_en' => 'required',
-            ]);
 
             $category = new CurrentNewsCategory();
             $category->queue = $request->queue;
@@ -71,7 +83,7 @@ class CurrentNewsCategoryController extends Controller
             $category->link = $request->link_tr;
             $category->seo_title = $request->seo_title_tr;
             $category->seo_description = $request->seo_description_tr;
-            $category->seo_key = $request->seo_key_tr;
+            $category->seo_key = $merge;
             if (!isset($request->status_tr)) {
                 $category->status = 0;
             }
@@ -95,7 +107,7 @@ class CurrentNewsCategoryController extends Controller
             $category_en->category_id = $category->id;
             $category_en->seo_title = $request->seo_title_en;
             $category_en->seo_description = $request->seo_descriptipn_en;
-            $category_en->seo_key = $request->seo_key_en;
+            $category_en->seo_key = $merge_en;
             if ($request->file('image') != null) {
                 $category_en->image = $save_url;
             }
@@ -147,6 +159,18 @@ class CurrentNewsCategoryController extends Controller
             'seo_key_en' => 'required',
         ]);
 
+        $veri = json_decode(json_decode(json_encode($request->seo_key_tr[0])));
+        $merge = [];
+        foreach ($veri as $v) {
+            $merge[] = $v->value;
+        }
+
+        $veri_en = json_decode(json_decode(json_encode($request->seo_key_en[0])));
+        $merge_en = [];
+        foreach ($veri_en as $v) {
+            $merge_en[] = $v->value;
+        }
+
         $category = CurrentNewsCategory::findOrFail($id);
 
         if ($request->queue > $category->queue) {
@@ -177,7 +201,7 @@ class CurrentNewsCategoryController extends Controller
         $category->link = $request->link_tr;
         $category->seo_title = $request->seo_title_tr;
         $category->seo_description = $request->seo_description_tr;
-        $category->seo_key = $request->seo_key_tr;
+        $category->seo_key = $merge;
         if (!isset($request->status_tr)) {
             $category->status = 0;
         }
@@ -200,7 +224,7 @@ class CurrentNewsCategoryController extends Controller
         $category_en->color_code = $request->color_code;
         $category_en->seo_title = $request->seo_title_en;
         $category_en->seo_description = $request->seo_descriptipn_en;
-        $category_en->seo_key = $request->seo_key_en;
+        $category_en->seo_key = $merge_en;
         if (!isset($request->status_en)) {
             $category_en->status = 0;
         }

@@ -52,7 +52,6 @@ class CurrentNewsController extends Controller
                 'activity_name_en' => 'required',
                 'activity_summary_en' => 'required',
                 'tinymce_activity_detail_en' => 'required',
-                'etiket_en' => 'required',
                 'activity_url_en' => 'required',
                 'activity_seo_title_en' => 'required',
                 'activity_seo_description_en' => 'required',
@@ -61,7 +60,6 @@ class CurrentNewsController extends Controller
                 'author' => 'required',
                 'activity_on_location_tr' => 'required',
                 'activity_name_tr' => 'required',
-                'etiket_tr' => 'required',
                 'activity_summary_tr' => 'required',
                 'tinymce_activity_detail_tr' => 'required',
                 'activity_url_tr' => 'required',
@@ -75,7 +73,6 @@ class CurrentNewsController extends Controller
                 'activity_name_en' => 'Başlık (İNGİLİZCE) boş bırakılamaz',
                 'activity_summary_en' => 'Kısa açıklama (İNGİLİZCE) boş bırakılamaz',
                 'tinymce_activity_detail_en' => 'İçerik (İNGİLİZCE) boş bırakılamaz',
-                'etiket_en' => 'Etiket (İNGİLİZCE) boş bırakılamaz',
                 'activity_url_en' => 'Link (İNGİLİZCE) boş bırakılamaz',
                 'activity_seo_title_en' => 'Seo başlığı (İNGİLİZCE) boş bırakılamaz',
                 'activity_seo_description_en' => 'Seo açıklaması (İNGİLİZCE) boş bırakılamaz',
@@ -84,7 +81,6 @@ class CurrentNewsController extends Controller
                 'author' => 'Yazar boş bırakılamaz',
                 'activity_on_location_tr' => 'Yayın tarihi boş bırakılamaz',
                 'activity_name_tr' => 'Başlık (TÜRKÇE) boş bırakılamaz',
-                'etiket_tr' => 'Etiket (TÜRKÇE) boş bırakılamaz',
                 'activity_summary_tr' => 'Kısa açıklama (TÜRKÇE) boş bırakılamaz',
                 'tinymce_activity_detail_tr' => 'İçerik (TÜRKÇE) boş bırakılamaz',
                 'activity_url_tr' => 'Link (TÜRKÇE) boş bırakılamaz',
@@ -94,121 +90,102 @@ class CurrentNewsController extends Controller
             ],
         );
 
+        $veri = json_decode(json_decode(json_encode($request->activity_seo_keywords_tr[0])));
+        $merge = [];
+        foreach ($veri as $v) {
+            $merge[] = $v->value;
+        }
 
-            $veri = json_decode(json_decode(json_encode($request->activity_seo_keywords_tr[0])));
-            $merge = [];
-            foreach ($veri as $v) {
-                $merge[] = $v->value;
-            }
+        $veri_en = json_decode(json_decode(json_encode($request->activity_seo_keywords_en[0])));
+        $merge_en = [];
+        foreach ($veri_en as $v) {
+            $merge_en[] = $v->value;
+        }
 
-            $tags_tr = json_decode(json_decode(json_encode(($request->etiket_tr[0]))));
-            $tag_tr = [];
-            foreach($tags_tr as $v){
-                $tag_tr[] = $v->value;
-            }
+        $read_time_tr = (int) round(str_word_count($request->tinymce_activity_detail_tr) / 200);
+        $read_time_en = (int) round(str_word_count($request->tinymce_activity_detail_en) / 200);
 
+        $news = new CurrentNews();
+        $news->category_id = $request->category;
+        $news->author_id = $request->author;
+        $news->live_time = $request->activity_on_location_tr;
+        $news->title = $request->activity_name_tr;
+        $news->short_description = $request->activity_summary_tr;
+        $news->description = $request->tinymce_activity_detail_tr;
+        $news->read_time = $read_time_tr;
+        $news->link = $request->activity_url_tr;
+        $news->seo_title = $request->activity_seo_title_tr;
+        $news->seo_description = $request->activity_seo_description_tr;
+        $news->seo_key = $merge;
+        if ($request->file('image') != null) {
+            $image = $request->file('image');
+            $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $save_url = 'assets/uploads/currentNews/' . $image_name;
+            Image::make($image)
+                ->resize(960, 520)
+                ->save($save_url);
+            $news->image = $save_url;
+        }
+        if ($request->file('mobil_image') != null) {
+            $image = $request->file('mobil_image');
+            $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $save_url = 'assets/uploads/currentNews/' . $image_name;
+            Image::make($image)
+                ->resize(97, 123)
+                ->save($save_url);
+            $news->mobil_image = $save_url;
+        }
+        if (!isset($request->manset_tr)) {
+            $news->headline = 0;
+        }
+        if (!isset($request->status_tr)) {
+            $news->status = 0;
+        }
 
-            $veri_en = json_decode(json_decode(json_encode($request->activity_seo_keywords_en[0])));
-            $merge_en = [];
-            foreach ($veri_en as $v) {
-                $merge_en[] = $v->value;
-            }
+        $news->save();
 
-            $tags_en = json_decode(json_decode(json_encode(($request->etiket_en[0]))));
-            $tag_en = [];
-            foreach($tags_en as $v){
-                $tag_en[] = $v->value;
-            }
+        $news_en = new EnCurrentNews();
+        $news_en->author_id = $request->author;
+        $news_en->category_id = $request->category;
+        $news_en->title = $request->activity_name_en;
+        $news_en->short_description = $request->activity_summary_en;
+        $news_en->description = $request->tinymce_activity_detail_en;
+        $news_en->read_time = $read_time_en;
+        $news_en->currentNews_id = $news->id;
+        $news_en->link = $request->activity_url_en;
+        $news_en->seo_title = $request->activity_seo_title_en;
+        $news_en->seo_description = $request->activity_seo_description_en;
+        $news_en->seo_key = $merge_en;
+        if ($request->file('image') != null) {
+            $image = $request->file('image');
+            $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $save_url = 'assets/uploads/currentNews/' . $image_name;
+            Image::make($image)
+                ->resize(960, 520)
+                ->save($save_url);
+            $news_en->image = $save_url;
+        }
+        if ($request->file('mobil_image') != null) {
+            $image = $request->file('mobil_image');
+            $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $save_url = 'assets/uploads/currentNews/' . $image_name;
+            Image::make($image)
+                ->resize(97, 123)
+                ->save($save_url);
+            $news_en->mobil_image = $save_url;
+        }
+        if (!isset($request->manset_en)) {
+            $news_en->headline = 0;
+        }
+        if (!isset($request->status)) {
+            $news_en->status = 0;
+        }
+        $news_en->save();
 
-            $read_time_tr = (int) round(str_word_count($request->tinymce_activity_detail_tr) / 200);
-            $read_time_en = (int) round(str_word_count($request->tinymce_activity_detail_en) / 200);
+        logKayit(['Haber Yönetimi ', 'Haber eklendi']);
+        Alert::success('Haber Başarıyla Eklendi');
+        DB::commit();
 
-            $news = new CurrentNews();
-            $news->category_id = $request->category;
-            $news->author_id = $request->author;
-            $news->live_time = $request->activity_on_location_tr;
-            $news->title = $request->activity_name_tr;
-            $news->short_description = $request->activity_summary_tr;
-            $news->description = $request->tinymce_activity_detail_tr;
-            $news->tags = $tag_tr;
-            $news->read_time = $read_time_tr;
-            $news->link = $request->activity_url_tr;
-            $news->seo_title = $request->activity_seo_title_tr;
-            $news->seo_description = $request->activity_seo_description_tr;
-            $news->seo_key = $merge;
-            if ($request->file('image') != null) {
-                $image = $request->file('image');
-                $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-                $save_url = 'assets/uploads/currentNews/' . $image_name;
-                Image::make($image)
-                    ->resize(960, 520)
-                    ->save($save_url);
-                $news->image = $save_url;
-            }
-            if ($request->file('mobil_image') != null) {
-                $image = $request->file('mobil_image');
-                $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-                $save_url = 'assets/uploads/currentNews/' . $image_name;
-                Image::make($image)
-                    ->resize(97, 123)
-                    ->save($save_url);
-                $news->mobil_image = $save_url;
-            }
-            if (!isset($request->manset_tr)) {
-                $news->headline = 0;
-            }
-            if (!isset($request->status_tr)) {
-                $news->status = 0;
-            }
-            if (!isset($request->seo_statu)) {
-                $news->seo_statu = 0;
-            }
-
-            $news->save();
-
-            $news_en = new EnCurrentNews();
-            $news_en->author_id = $request->author;
-            $news_en->category_id = $request->category;
-            $news_en->title = $request->activity_name_en;
-            $news_en->short_description = $request->activity_summary_en;
-            $news_en->description = $request->tinymce_activity_detail_en;
-            $news_en->tags = $tag_en;
-            $news_en->read_time = $read_time_en;
-            $news_en->currentNews_id = $news->id;
-            $news_en->link = $request->activity_url_en;
-            $news_en->seo_title = $request->activity_seo_title_en;
-            $news_en->seo_description = $request->activity_seo_description_en;
-            $news_en->seo_key = $merge_en;
-            if ($request->file('image') != null) {
-                $image = $request->file('image');
-                $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-                $save_url = 'assets/uploads/currentNews/' . $image_name;
-                Image::make($image)
-                    ->resize(960, 520)
-                    ->save($save_url);
-                $news_en->image = $save_url;
-            }
-            if ($request->file('mobil_image') != null) {
-                $image = $request->file('mobil_image');
-                $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-                $save_url = 'assets/uploads/currentNews/' . $image_name;
-                Image::make($image)
-                    ->resize(97, 123)
-                    ->save($save_url);
-                $news_en->mobil_image = $save_url;
-            }
-            if (!isset($request->manset_en)) {
-                $news_en->headline = 0;
-            }
-            if (!isset($request->status)) {
-                $news_en->status = 0;
-            }
-            $news_en->save();
-
-            logKayit(['Haber Yönetimi ', 'Haber eklendi']);
-            Alert::success('Haber Başarıyla Eklendi');
-            DB::commit();
-        
         return redirect()->route('admin.currentNews.list');
     }
 
@@ -231,7 +208,6 @@ class CurrentNewsController extends Controller
                 'activity_name_en' => 'required',
                 'activity_summary_en' => 'required',
                 'tinymce_activity_detail_en' => 'required',
-                'etiket_en' => 'required',
                 'activity_url_en' => 'required',
                 'activity_seo_title_en' => 'required',
                 'activity_seo_description_en' => 'required',
@@ -240,7 +216,6 @@ class CurrentNewsController extends Controller
                 'author' => 'required',
                 'activity_on_location_tr' => 'required',
                 'activity_name_tr' => 'required',
-                'etiket_tr' => 'required',
                 'activity_summary_tr' => 'required',
                 'tinymce_activity_detail_tr' => 'required',
                 'activity_url_tr' => 'required',
@@ -252,7 +227,6 @@ class CurrentNewsController extends Controller
                 'activity_name_en' => 'Başlık (İNGİLİZCE) boş bırakılamaz',
                 'activity_summary_en' => 'Kısa açıklama (İNGİLİZCE) boş bırakılamaz',
                 'tinymce_activity_detail_en' => 'İçerik (İNGİLİZCE) boş bırakılamaz',
-                'etiket_en' => 'Etiket (İNGİLİZCE) boş bırakılamaz',
                 'activity_url_en' => 'Link (İNGİLİZCE) boş bırakılamaz',
                 'activity_seo_title_en' => 'Seo başlığı (İNGİLİZCE) boş bırakılamaz',
                 'activity_seo_description_en' => 'Seo açıklaması (İNGİLİZCE) boş bırakılamaz',
@@ -261,7 +235,6 @@ class CurrentNewsController extends Controller
                 'author' => 'Yazar boş bırakılamaz',
                 'activity_on_location_tr' => 'Yayın tarihi boş bırakılamaz',
                 'activity_name_tr' => 'Başlık (TÜRKÇE) boş bırakılamaz',
-                'etiket_tr' => 'Etiket (TÜRKÇE) boş bırakılamaz',
                 'activity_summary_tr' => 'Kısa açıklama (TÜRKÇE) boş bırakılamaz',
                 'tinymce_activity_detail_tr' => 'İçerik (TÜRKÇE) boş bırakılamaz',
                 'activity_url_tr' => 'Link (TÜRKÇE) boş bırakılamaz',
@@ -279,29 +252,14 @@ class CurrentNewsController extends Controller
                 $merge[] = $v->value;
             }
 
-            $tags_tr = json_decode(json_decode(json_encode(($request->etiket_tr[0]))));
-            $tag_tr = [];
-            foreach($tags_tr as $v){
-                $tag_tr[] = $v->value;
-            }
-
-
             $veri_en = json_decode(json_decode(json_encode($request->activity_seo_keywords_en[0])));
             $merge_en = [];
             foreach ($veri_en as $v) {
                 $merge_en[] = $v->value;
             }
 
-            $tags_en = json_decode(json_decode(json_encode(($request->etiket_en[0]))));
-            $tag_en = [];
-            foreach($tags_en as $v){
-                $tag_en[] = $v->value;
-            }
-
             $read_time_tr = (int) round(str_word_count($request->tinymce_activity_detail_tr) / 200);
             $read_time_en = (int) round(str_word_count($request->tinymce_activity_detail_en) / 200);
-
-           
 
             $news = CurrentNews::findOrFail($id);
 
@@ -311,7 +269,6 @@ class CurrentNewsController extends Controller
             $news->title = $request->activity_name_tr;
             $news->short_description = $request->activity_summary_tr;
             $news->description = $request->tinymce_activity_detail_tr;
-            $news->tags = $tag_tr;
             $news->read_time = $read_time_tr;
             $news->link = $request->activity_url_tr;
             $news->seo_title = $request->activity_seo_title_tr;
@@ -337,12 +294,13 @@ class CurrentNewsController extends Controller
             }
             if (!isset($request->manset_tr)) {
                 $news->headline = 0;
+            }else{
+                $news->headline = 1;
             }
             if (!isset($request->status_tr)) {
                 $news->status = 0;
-            }
-            if (!isset($request->seo_statu)) {
-                $news->seo_statu = 0;
+            }else{
+                $news->status = 1;
             }
 
             $news->save();
@@ -353,7 +311,6 @@ class CurrentNewsController extends Controller
             $news_en->title = $request->activity_name_en;
             $news_en->short_description = $request->activity_summary_en;
             $news_en->description = $request->tinymce_activity_detail_en;
-            $news_en->tags = $tag_en;
             $news_en->read_time = $read_time_en;
             $news_en->currentNews_id = $news->id;
             $news_en->link = $request->activity_url_en;
@@ -378,18 +335,17 @@ class CurrentNewsController extends Controller
                     ->save($save_url);
                 $news_en->mobil_image = $save_url;
             }
-            if (!isset($request->seo_statu_en)) {
-                $news_en->seo_statu = 0;
-            }
             if (!isset($request->manset_en)) {
                 $news_en->headline = 0;
+            }else{
+                $news_en->headline = 1;
             }
             if (!isset($request->status)) {
                 $news_en->status = 0;
+            }else{
+                $news_en->status = 1;
             }
             $news_en->save();
-
-            
 
             logKayit(['Haber Yönetimi ', 'Haber düzenlendi']);
             Alert::success('Haber Başarıyla Düzenlendi');

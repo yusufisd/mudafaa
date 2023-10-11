@@ -35,7 +35,7 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{ route('admin.currentNewsCategory.list', $data->Category->id) }}">
+                            <a href="{{ route('front.currentNewsCategory.list', $data->Category->link) }}">
                                 {{ $data->Category->title }}
                             </a>
                         </li>
@@ -62,7 +62,9 @@
 
                                 <!-- start post header -->
                                 <div class="post-header">
-                                    <span class="rt-cat-primary"> {{ $data->Category->title }} </span>
+                                    <span class="rt-cat-primary"
+                                        style="background-color: {{ $data->Category->color_code != null ? $data->Category->color_code : '' }}">
+                                        {{ $data->Category->title }} </span>
                                     <h2 class="title">
                                         {{ $data->title }}
                                     </h2>
@@ -71,7 +73,7 @@
                                             <li>
                                                 <span class="rt-meta">
                                                     <i class="fa fa-user"></i>
-                                                    <a href="" class="name">{{ $data->Author->name }}
+                                                    <a href="#" class="name">{{ $data->Author->name }}
                                                         {{ $data->Author->surname }}</a>
                                                 </span>
                                             </li>
@@ -80,7 +82,7 @@
                                                     <i class="far fa-calendar-alt icon"></i>
                                                     {{ $data->created_at->translatedFormat('d M Y H:i') }}
                                                     @if ($data->created_at != $data->updated_at)
-                                                        | <b> {{__('message.son güncelleme')}} :</b>
+                                                        | <b> {{ __('message.son güncelleme') }} :</b>
                                                         {{ $data->updated_at->translatedFormat('d M Y H:i') }}
                                                     @endif
                                                 </span>
@@ -94,13 +96,13 @@
                                             <li>
                                                 <span class="rt-meta">
                                                     <i class="far fa-clock icon"></i>
-                                                    2 Dk.
+                                                    {{ $data->read_time }}
                                                 </span>
                                             </li>
                                             <li>
                                                 <span class="rt-meta">
                                                     <i class="far fa-eye icon"></i>
-                                                    3,250
+                                                    {{ $data->view_counter }}
                                                 </span>
                                             </li>
                                         </ul>
@@ -196,16 +198,21 @@
                                     <div class="row gutter-30">
                                         <div class="col-xl-7 col-lg-6">
                                             <div class="conent-block">
-                                                <h4 class="block-tile mb--20"> {{__('message.popüler etiketler')}} :  </h4>
+                                                <h4 class="block-tile mb--20"> {{ __('message.popüler etiketler') }} :
+                                                </h4>
                                                 <div class="tag-list">
-                                                    
+
+                                                    @foreach ($data->seo_key as $item)
+                                                        <a href="#" class="tag-link"> {{ $item }} </a>
+                                                    @endforeach
+
 
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-xl-5 col-lg-6 d-flex justify-content-start justify-content-lg-end">
                                             <div class="conent-block">
-                                                <h4 class="block-tile mb--20"> {{__('message.paylaş')}} :</h4>
+                                                <h4 class="block-tile mb--20"> {{ __('message.paylaş') }} :</h4>
                                                 <ul class="social-share-style-1">
                                                     <li>
                                                         <a class="fb" target="_blank"
@@ -305,15 +312,15 @@
                                                 <div class="next-prev-wrap">
                                                     <div class="item-icon">
                                                         <a
-                                                            href="{{ route('front.currentNews.detail', $previous_data->id) }}">
+                                                            href="{{ route('front.currentNews.detail', $previous_data->link) }}">
                                                             <i class="fas fa-chevron-left"></i>
-                                                            {{__('message.önceki haber')}}
+                                                            {{ __('message.önceki haber') }}
                                                         </a>
                                                     </div>
                                                     <div class="content">
                                                         <h4 class="title">
                                                             <a
-                                                                href="{{ route('front.currentNews.detail', $previous_data->id) }}">
+                                                                href="{{ route('front.currentNews.detail', $previous_data->link) }}">
                                                                 {{ $previous_data->title }}
                                                             </a>
                                                         </h4>
@@ -332,15 +339,16 @@
                                             @if ($next_data != null)
                                                 <div class="next-prev-wrap next-wrap">
                                                     <div class="item-icon">
-                                                        <a href="{{ route('front.currentNews.detail', $next_data->id) }}">
-                                                            {{__('message.sonraki haber')}}
+                                                        <a
+                                                            href="{{ route('front.currentNews.detail', $next_data->link) }}">
+                                                            {{ __('message.sonraki haber') }}
                                                             <i class="fas fa-chevron-right"></i>
                                                         </a>
                                                     </div>
                                                     <div class="content">
                                                         <h4 class="title">
                                                             <a
-                                                                href="{{ route('front.currentNews.detail', $next_data->id) }}">
+                                                                href="{{ route('front.currentNews.detail', $next_data->link) }}">
                                                                 {{ $next_data->title }}
                                                             </a>
                                                         </h4>
@@ -463,7 +471,7 @@
 
                                     </div>
                                     <div class="row mb--20">
-                                        <h5> {{__('message.yorumlar')}} ({{ $data->CommentCount() }}) </h5>
+                                        <h5> {{ __('message.yorumlar') }} ({{ $data->CommentCount() }}) </h5>
                                     </div>
 
                                     @foreach ($data->comments() as $item)
@@ -487,7 +495,7 @@
                                             <div class="row justify-content-end">
                                                 <div class="col-md-4">
                                                     <span class="comment_span mx-2"><i class="fas fa-pencil-alt"></i>
-                                                        {{__('message.cevap yaz')}} </span>
+                                                        {{ __('message.cevap yaz') }} </span>
                                                     <span class="comment_span mx-2"><i class="far fa-thumbs-up icon"></i>
                                                         0</span>
                                                     <span class="comment_span mx-2"><i
@@ -515,7 +523,7 @@
                                         <div class="row">
                                             <div class="col-xl-6">
                                                 <div class="rt-form-group">
-                                                    <label for="name"> {{__('message.ad soyad')}} *</label>
+                                                    <label for="name"> {{ __('message.ad soyad') }} *</label>
                                                     <input type="text" name="full_name" id="name"
                                                         class="form-control" data-error="Bu alan zorunludur" required>
                                                     <div class="help-block with-errors"></div>
@@ -531,7 +539,7 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="rt-form-group">
-                                                    <label for="comment"> {{__('message.yorum')}} *</label>
+                                                    <label for="comment"> {{ __('message.yorum') }} *</label>
                                                     <textarea name="comment" id="comment" class="form-control text-area" data-error="Bu alan zorunludur" required></textarea>
                                                     <div class="help-block with-errors"></div>
                                                 </div>
@@ -542,7 +550,9 @@
                                                         <input class="form-check-input" type="checkbox" value=""
                                                             id="comment-form-check1">
                                                         <label class="form-check-label" for="comment-form-check1">
-                                                            <a href="empty.html">{{__('message.Kişisel Verilerin Korunması')}}</a> {{__('message.Hakkında Aydınlatma Metnini okudum, onay veriyorum.')}}
+                                                            <a
+                                                                href="empty.html">{{ __('message.Kişisel Verilerin Korunması') }}</a>
+                                                            {{ __('message.Hakkında Aydınlatma Metnini okudum, onay veriyorum.') }}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -562,7 +572,7 @@
                                 <div class="related-post-box">
                                     <div class="titile-wrapper mb--40">
                                         <h2 class="rt-section-heading flex-grow-1 mb-0 me-3">
-                                            <span class="rt-section-text"> {{__('message.ilgili haberler')}} </span>
+                                            <span class="rt-section-text"> {{ __('message.ilgili haberler') }} </span>
                                             <span class="rt-section-dot"></span>
                                             <span class="rt-section-line"></span>
                                         </h2>
@@ -583,17 +593,19 @@
                                                         <div class="rt-post-grid grid-meta">
                                                             <div class="post-img">
                                                                 <a
-                                                                    href="{{ route('front.currentNews.detail', $single->id) }}">
-                                                                    <img src="/{{ $single->image }}" alt="post"
+                                                                    href="{{ route('front.currentNews.detail', $single->link) }}">
+                                                                    <img style="object-fit:cover"
+                                                                        src="/{{ $single->image }}" alt="post"
                                                                         width="551" height="431">
                                                                 </a>
                                                             </div>
                                                             <div class="post-content">
-                                                                <a href="{{ route('front.currentNewsCategory.list', $single->Category->id) }}"
+                                                                <a style="background-color: {{ $single->Category->color_code != null ? $single->Category->color_code : '' }}"
+                                                                    href="{{ route('front.currentNewsCategory.list', $single->Category->link) }}"
                                                                     class="rt-cat-primary sidebar_restricted_category_title">
                                                                     {{ $single->Category->title }} </a>
                                                                 <h4 class="post-title">
-                                                                    <a href="{{ route('front.currentNews.detail', $single->id) }}"
+                                                                    <a href="{{ route('front.currentNews.detail', $single->link) }}"
                                                                         class="restricted_title_2">
                                                                         {{ $single->title }}
                                                                     </a>
@@ -662,7 +674,7 @@
 
                             <div class="d-none d-md-block sidebar-wrap mb--40">
                                 <h2 class="rt-section-heading style-2 mb--30">
-                                    <span class="rt-section-text"> {{__('message.bizi takip edin')}} </span>
+                                    <span class="rt-section-text"> {{ __('message.bizi takip edin') }} </span>
                                     <span class="rt-section-dot"></span>
                                     <span class="rt-section-line"></span>
                                 </h2>
@@ -704,7 +716,7 @@
 
                             <div class="d-none d-md-block sidebar-wrap mb--40">
                                 <h2 class="rt-section-heading style-2 mb--30">
-                                    <span class="rt-section-text"> {{__('message.popüler haberler')}} </span>
+                                    <span class="rt-section-text"> {{ __('message.popüler haberler') }} </span>
                                     <span class="rt-section-dot"></span>
                                     <span class="rt-section-line"></span>
                                 </h2>
@@ -714,16 +726,19 @@
                                         <div class="item">
                                             <div class="rt-post post-sm style-1">
                                                 <div class="post-img">
-                                                    <a href="{{route('front.currentNews.detail',$item->id)}}">
-                                                        <img src="/{{ $item->image }}" alt="post" width="100"
+                                                    <a href="{{ route('front.currentNews.detail', $item->link) }}">
+                                                        <img style="object-fit:cover" src="/{{ $item->image }}" alt="post" width="100"
                                                             height="100">
                                                     </a>
                                                 </div>
                                                 <div class="post-content ms-4">
-                                                    <a href="{{route('front.currentNewsCategory.list',$item->Category->id)}}"
-                                                        class="rt-cat-primary sidebar_restricted_category_title"> {{$item->Category->title}} </a>
+                                                    <a style="background-color: {{ $item->Category->color_code != null ? $item->Category->color_code : '' }}"
+                                                    href="{{ route('front.currentNewsCategory.list', $item->Category->link) }}"
+                                                        class="rt-cat-primary sidebar_restricted_category_title">
+                                                        {{ $item->Category->title }} </a>
                                                     <h4 class="post-title">
-                                                        <a href="{{route('front.currentNews.detail',$item->id)}}" class="sidebar_restricted_title">
+                                                        <a href="{{ route('front.currentNews.detail', $item->link) }}"
+                                                            class="sidebar_restricted_title">
                                                             {{ $item->title }}
                                                         </a>
                                                     </h4>
@@ -745,10 +760,10 @@
                                 <div class="subscribe-box-style-1" data-bg-image="media/elements/elm_3.png">
                                     <div class="subscribe-content">
                                         <h3 class="title">
-                                            {{__('message.Haber Bültenimize Abone Ol')}}
+                                            {{ __('message.Haber Bültenimize Abone Ol') }}
                                         </h3>
                                         <p>
-                                            {{__('message.Ulusal ve küresel savunma gündeminden daha hızlı haberdar olmak istiyorsanız Milli Müdafaa mail listesine kaydolun!')}}
+                                            {{ __('message.Ulusal ve küresel savunma gündeminden daha hızlı haberdar olmak istiyorsanız Milli Müdafaa mail listesine kaydolun!') }}
                                         </p>
                                         <form action="#" class="rt-contact-form subscribe-form rt-form">
                                             <div class="rt-form-group">
@@ -756,7 +771,8 @@
                                                     placeholder="E-posta *" name="email" id="email_1"
                                                     data-error="E-posta alanı zorunludur" required>
                                             </div>
-                                            <button type="submit" class="rt-submit-btn"> {{__('message.şimdi abone ol')}} </button>
+                                            <button type="submit" class="rt-submit-btn">
+                                                {{ __('message.şimdi abone ol') }} </button>
                                             <div class="form-response"></div>
                                         </form>
                                     </div>
@@ -766,13 +782,15 @@
 
                             <div class="d-none d-md-block sidebar-wrap">
                                 <h2 class="rt-section-heading style-2 mb--30">
-                                    <span class="rt-section-text"> {{__('message.etiketler')}}  </span>
+                                    <span class="rt-section-text"> {{ __('message.etiketler') }} </span>
                                     <span class="rt-section-dot"></span>
                                     <span class="rt-section-line"></span>
                                 </h2>
                                 <div class="tag-list">
 
-                                    
+                                    @foreach ($data->seo_key as $key)
+                                        <a href="#" class="tag-link"> {{ $key }} </a>
+                                    @endforeach
 
                                 </div>
                             </div>
@@ -797,8 +815,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                            // limit by device width
-                            -------------------------------*/
+                                                // limit by device width
+                                                -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
 
@@ -867,7 +885,7 @@
                 '<div class="row">' +
                 '<div class="col-xl-6">' +
                 '<div class="rt-form-group">' +
-                '<label for="name"> {{__("message.ad soyad")}} *</label>' +
+                '<label for="name"> {{ __('message.ad soyad') }} *</label>' +
                 '<input type="text" name="name" id="name" class="form-control" data-error="Bu alan zorunludur" required>' +
                 '<div class="help-block with-errors"></div>' +
                 '</div>' +
@@ -881,7 +899,7 @@
                 '</div>' +
                 '<div class="col-12">' +
                 '<div class="rt-form-group">' +
-                '<label for="comment">{{__("message.yorum")}} *</label>' +
+                '<label for="comment">{{ __('message.yorum') }} *</label>' +
                 '<textarea name="comment" id="comment" class="form-control text-area" data-error="Bu alan zorunludur" required></textarea>' +
                 '<div class="help-block with-errors"></div>' +
                 '</div>' +

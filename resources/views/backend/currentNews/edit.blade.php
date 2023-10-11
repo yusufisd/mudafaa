@@ -37,6 +37,14 @@
             <div id="kt_app_content" class="app-content flex-column-fluid">
                 <!--begin::Content container-->
                 <div id="kt_app_content_container" class="app-container container-fluid">
+
+                    @if($errors->any())
+                        @foreach ($errors->all() as $e)
+                            <div class="alert alert-danger">
+                                {{$e}}
+                            </div>
+                        @endforeach
+                    @endif
                     <!--begin::Row-->
                     <div class="row g-5 g-xl-8">
                         <!--begin::Col-->
@@ -61,58 +69,78 @@
 
                                     <div class="tab-content" id="TabContent_1">
                                         <div class="tab-pane fade show active" id="tab_activity_detay" role="tabpanel">
-                                            <!--begin::Form-->
-                                            <!--begin::Card body-->
                                             <div class="card-body px-3 py-9">
 
-                                                <div style="text-align: center; margin-bottom:5%">
-                                                    <img src="/{{ $data_tr->image }}"
-                                                        style="width: 20%; border-radius:15px;" alt="">
-                                                </div>
+
                                                 <div class="row mb-6">
-                                                    <!--begin::Label-->
-                                                    <label class="col-lg-2 col-form-label required fw-bold fs-6 ps-5">Görsel
-                                                        <span style="font-weight:normal">( 960px - 520px)</span></label>
-                                                    <!--end::Label-->
-                                                    <!--begin::Col-->
-                                                    <div class="col-lg-10">
-                                                        
-                                                        <div class="row">
-                                                            <input type="file" class="form-control" name="image"
-                                                                id="">
+                                                    <div class="images" style="margin-bottom: 3%">
+                                                        <div class="row" style="text-align: center">
+                                                            <div class="col-md-6">
+                                                                <img src="/{{ $data_tr->image }}"
+                                                                    style="width: 20%; border-radius:15px;" alt="">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <img src="/{{ $data_tr->mobil_image }}"
+                                                                    style="width: 20%; border-radius:15px;" alt="">
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <!--end::Col-->
+                                                    <div class="input">
+                                                        <div class="row">
+                                                            <div class="col-md-6 row">
+                                                                <div class="col-md-4">
+                                                                    <label class="col-form-label fw-bold fs-6 ps-5">Görsel
+                                                                        <br>
+                                                                        <span style="font-weight:normal">( 960px -
+                                                                            520px)</span></label>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <input type="file" class="form-control col-lg-8"
+                                                                        name="image" id="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 row">
+                                                                <div class="col-md-4">
+                                                                    <label class="col-form-label fw-bold fs-6 ps-5">Hikaye Görsel
+                                                                        <br>
+                                                                        <span style="font-weight:normal">( 960px -
+                                                                            520px)</span></label>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <input type="file" class="form-control col-lg-8"
+                                                                        name="mobil_image" id="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <!--end::Input group-->
-                                                <!--begin::Input group-->
+
+
+
+
+
                                                 <div class="row mb-6">
-                                                    <!--begin::Label-->
                                                     <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
                                                         <span class="required">Kategori</span>
                                                     </label>
-                                                    <!--end::Label-->
-                                                    <!--begin::Col-->
                                                     <div class="col-lg-10 fv-row">
-                                                        <select name="category" aria-label="Seçiniz"
-                                                            data-control="select2" data-placeholder="Seçiniz..."
-                                                            class="form-select form-select-solid form-select-lg fw-semibold"
-                                                            >
+                                                        <select name="category" aria-label="Seçiniz" data-control="select2"
+                                                            data-placeholder="Seçiniz..."
+                                                            class="form-select form-select-solid form-select-lg fw-semibold">
                                                             <option value="">Seçiniz...</option>
                                                             @foreach ($categories as $cat)
                                                                 <option
                                                                     {{ $cat->id == $data_tr->category_id ? 'selected' : '' }}
-                                                                    value="{{ $cat->id }}"> {{ $cat->title }}
+                                                                    value="{{ $cat->id }}">
+                                                                    {{ $cat->title }}
                                                                 </option>
                                                             @endforeach
 
 
                                                         </select>
                                                     </div>
-                                                    <!--end::Col-->
                                                 </div>
 
-                                                <!--begin::Input group-->
                                                 <div class="row mb-6">
 
                                                     <div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">
@@ -131,14 +159,16 @@
                                                                             data-control="select2"
                                                                             data-placeholder="Seçiniz..."
                                                                             class="form-select form-select-solid form-select-lg fw-semibold">
-                                                                            <option value="">Seçiniz...</option>
+                                                                            <option value="">Seçiniz...
+                                                                            </option>
 
                                                                             @foreach ($users as $user)
                                                                             @endforeach
                                                                             <option
                                                                                 {{ $data_tr->author_id == $user->id ? 'selected' : '' }}
                                                                                 value="{{ $user->id }}">
-                                                                                {{ $user->name }} {{ $user->surname }}
+                                                                                {{ $user->name }}
+                                                                                {{ $user->surname }}
                                                                             </option>
 
                                                                         </select>
@@ -164,7 +194,8 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input type="date" name="activity_on_location_tr"
+                                                                        <input type="date"
+                                                                            name="activity_on_location_tr"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="{{ $data_tr->live_time }}" />
                                                                     </div>
@@ -185,8 +216,9 @@
                                                             <a class="nav-link active" data-bs-toggle="tab"
                                                                 href="#tab_activity_tr">
                                                                 <span>
-                                                                    <img src="{{ asset('/assets/tr.png') }}" width="28"
-                                                                        height="20" alt="TR" title="TR">
+                                                                    <img src="{{ asset('/assets/tr.png') }}"
+                                                                        width="28" height="20" alt="TR"
+                                                                        title="TR">
                                                                 </span>
 
                                                             </a>
@@ -266,32 +298,6 @@
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
-                                                                <!--end::Input group-->
-                                                                <!--begin::Input group-->
-                                                                <div class="row mb-6">
-                                                                    <!--begin::Label-->
-                                                                    <label
-                                                                        class="col-lg-2 col-form-label fw-bold fs-6 ps-5">Etiket</label>
-                                                                    <!--end::Label-->
-                                                                    <!--begin::Col-->
-                                                                    <div class="col-lg-10">
-                                                                        <!--begin::Row-->
-                                                                        <div class="row">
-                                                                            <!--begin::Col-->
-                                                                            <div class="col-lg-12 fv-row">
-                                                                                <input type="text" id="etiket_tr"
-                                                                                    name="etiket_tr[]"
-                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                    value="{{ json_encode( $data_tr->tags) }}" />
-                                                                            </div>
-                                                                            <!--end::Col-->
-                                                                        </div>
-                                                                        <!--end::Row-->
-                                                                    </div>
-                                                                    <!--end::Col-->
-                                                                </div>
-                                                                <!--end::Input group-->
-
 
 
 
@@ -315,7 +321,7 @@
                                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                             value="{{ $data_tr->link }}" />
                                                                                     </div>
-                                                                                    
+
 
                                                                                 </div>
                                                                             </div>
@@ -437,32 +443,6 @@
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
-                                                                <!--end::Input group-->
-                                                                <!--begin::Input group-->
-                                                                <div class="row mb-6">
-                                                                    <!--begin::Label-->
-                                                                    <label
-                                                                        class="col-lg-2 col-form-label fw-bold fs-6 ps-5">Etiket</label>
-                                                                    <!--end::Label-->
-                                                                    <!--begin::Col-->
-                                                                    <div class="col-lg-10">
-                                                                        <!--begin::Row-->
-                                                                        <div class="row">
-                                                                            <!--begin::Col-->
-                                                                            <div class="col-lg-12 fv-row">
-                                                                                <input type="text" id="etiket_en"
-                                                                                    name="etiket_en[]"
-                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                    value="{{ json_encode( $data_en->tags) }}"/>
-                                                                            </div>
-                                                                            <!--end::Col-->
-                                                                        </div>
-                                                                        <!--end::Row-->
-                                                                    </div>
-                                                                    <!--end::Col-->
-                                                                </div>
-                                                                <!--end::Input group-->
-
 
 
 
@@ -486,7 +466,7 @@
                                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                             value="{{ $data_en->link }}" />
                                                                                     </div>
-                                                                                    
+
 
                                                                                 </div>
                                                                             </div>
@@ -634,7 +614,7 @@
                                                                             id="activity_seo_keywords_tr"
                                                                             name="activity_seo_keywords_tr[]"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            value="{{ json_encode( $data_tr->seo_key) }}" />
+                                                                            value="{{ json_encode($data_tr->seo_key) }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -828,12 +808,7 @@
         var input2 = document.querySelector("#activity_seo_keywords_en");
         new Tagify(input2);
 
-        var input3 = document.querySelector("#etiket_tr");
-        new Tagify(input3);
-
-        var input4 = document.querySelector("#etiket_en");
-        new Tagify(input4);
-
+       
         $(document).ready(function() {
             tinymce.init({
                 selector: "#tinymce_activity_detail_tr",

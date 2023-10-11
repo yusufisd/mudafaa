@@ -112,7 +112,7 @@
                                                             @foreach ($categories as $item)
                                                                 <option
                                                                     {{ $data_tr->category_id == $item->id ? 'selected' : '' }}
-                                                                    value="{{ $item->id }}"> <p style="text-transform: capitalize">  {{ $item->title }} </p>
+                                                                    value="{{ $item->id }}"> <p style="text-transform: capitalize">  {{ $item->title }} - {{$item->defense->title}} </p>
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -135,7 +135,7 @@
                                                             <option value="">Seçiniz...</option>
                                                             @foreach ($countries as $item)
                                                                 <option
-                                                                    {{ array_search($item->id, $data_tr->countries) ? 'selected' : '' }}
+                                                                    {{ in_array($item->id, $data_tr->countries) ? 'selected' : '' }}
                                                                     value="{{ $item->id }}">{{ $item->name }}
                                                                 </option>
                                                             @endforeach
@@ -330,29 +330,6 @@
                                                                     <!--end::Col-->
                                                                 </div>
 
-                                                                <div class="row mb-6">
-                                                                    <!--begin::Label-->
-                                                                    <label
-                                                                        class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Etiket</label>
-                                                                    <!--end::Label-->
-                                                                    <!--begin::Col-->
-                                                                    <div class="col-lg-10">
-                                                                        <!--begin::Row-->
-                                                                        <div class="row">
-                                                                            <!--begin::Col-->
-                                                                            <div class="col-lg-12 fv-row">
-                                                                                <input type="text"
-                                                                                    id="etiket_tr"
-                                                                                    name="etiket_tr[]"
-                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    multiple value="{{json_encode($data_tr->tags)}}" />
-                                                                            </div>
-                                                                            <!--end::Col-->
-                                                                        </div>
-                                                                        <!--end::Row-->
-                                                                    </div>
-                                                                    <!--end::Col-->
-                                                                </div>
 
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
@@ -467,29 +444,7 @@
                                                                     <!--end::Col-->
                                                                 </div>
                                                                 
-                                                                <div class="row mb-6">
-                                                                    <!--begin::Label-->
-                                                                    <label
-                                                                        class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Etiket</label>
-                                                                    <!--end::Label-->
-                                                                    <!--begin::Col-->
-                                                                    <div class="col-lg-10">
-                                                                        <!--begin::Row-->
-                                                                        <div class="row">
-                                                                            <!--begin::Col-->
-                                                                            <div class="col-lg-12 fv-row">
-                                                                                <input type="text"
-                                                                                    id="etiket_en"
-                                                                                    name="etiket_en[]"
-                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    multiple value="{{json_encode($data_en->tags)}}" />
-                                                                            </div>
-                                                                            <!--end::Col-->
-                                                                        </div>
-                                                                        <!--end::Row-->
-                                                                    </div>
-                                                                    <!--end::Col-->
-                                                                </div>
+                                                                
 
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
@@ -791,12 +746,7 @@
         new Tagify(input2);
 
 
-        var input3 = document.querySelector("#etiket_tr");
-        new Tagify(input3);
-
-        var input4 = document.querySelector("#etiket_en");
-        new Tagify(input4);
-
+       
 
         
 

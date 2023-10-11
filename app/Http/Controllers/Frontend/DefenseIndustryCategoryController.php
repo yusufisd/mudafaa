@@ -11,9 +11,17 @@ use Illuminate\Http\Request;
 class DefenseIndustryCategoryController extends Controller
 {
     public function index($id){
-        $data = DefenseIndustryCategory::where('defense_id',$id)->take(6)->get();
-        $contents_first = DefenseIndustryContent::where('defense_id',$id)->orderBy('id','asc')->take(6)->get();
-        $contents_reverse = DefenseIndustryContent::where('defense_id',$id)->orderBy('id','desc')->take(6)->get();
-        return view('frontend.defenseIndustryCategory.list',compact('data','contents_first','contents_reverse'));
+        $defense = DefenseIndustry::where('link',$id)->first();
+        $data = DefenseIndustryCategory::where('defense_id',$defense->id)->take(6)->get();
+        $contents_first = DefenseIndustryContent::where('defense_id',$defense->id)->orderBy('id','asc')->take(6)->get();
+        return view('frontend.defenseIndustryCategory.list',compact('data','contents_first','defense'));
+    }
+
+    public function sub_category_index($id){
+        $defense = DefenseIndustryCategory::where('link',$id)->first();
+        $data = DefenseIndustryCategory::where('defense_id',$defense->defense_id)->take(6)->get();
+        $contents_first = DefenseIndustryContent::where('defense_id',$defense->id)->orderBy('id','asc')->take(6)->get();
+        return view('frontend.defenseIndustryCategory.list',compact('data','contents_first','defense'));
+
     }
 }

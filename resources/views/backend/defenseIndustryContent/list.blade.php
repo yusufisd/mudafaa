@@ -8,11 +8,11 @@
     <!--begin::Content wrapper-->
     <div class="d-flex flex-column flex-column-fluid">
         <!--begin::Toolbar-->
-        <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-10">
+        <div id="kt_app_toolbar" class="app-toolbar py-lg-10 py-3">
             <!--begin::Toolbar container-->
             <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
                 <!--begin::Page title-->
-                <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                <div class="page-title d-flex flex-column justify-content-center me-3 flex-wrap">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-primary fw-bold fs-3 flex-column justify-content-center my-0">
                         {{ __('message.savunma') }} {{ __('message.sanayi') }} {{ __('message.içerik') }}
@@ -32,8 +32,8 @@
                 <!--begin::Row-->
                 <div class="row g-5 g-xl-8">
                     <!--begin::Col-->
-                    <div class="col-xl-12 mb-5 mb-xl-8">
-                        <div class="card card-flush h-xl-100 mb-5 mb-xl-8">
+                    <div class="col-xl-12 mb-xl-8 mb-5">
+                        <div class="card card-flush h-xl-100 mb-xl-8 mb-5">
                             <!--begin::Card header-->
                             <div class="card-header border-0 pt-6">
 
@@ -80,10 +80,10 @@
                             </div>
                             <!--end::Card header-->
                             <!--begin::Body-->
-                            <div class="card-body pt-0 pb-5">
+                            <div class="card-body pb-5 pt-0">
                                 <!--begin::Table container-->
                                 <div class="table-responsive with_search_table">
-                                    <table id="blog_management_table" class="table gy-7 gx-7">
+                                    <table id="blog_management_table" class="gy-7 gx-7 table">
                                         <thead>
                                             <tr class="fw-bold fs-6 text-gray-800">
                                                 <th class="w-10px">
@@ -99,7 +99,8 @@
                                                 <th>{{ __('message.başlık') }}<i class="fa fa-sort ms-3"></i></th>
                                                 <th>{{ __('message.kategori') }}<i class="fa fa-sort ms-3"></i></th>
                                                 <th>{{ __('message.durum') }}<i class="fa fa-sort ms-3"></i></th>
-                                                <th>{{ __('message.işlem') }}<i class="fa fa-sort ms-3"></i></th>
+                                                <th style="width: 220px; text-align:center">{{ __('message.işlem') }}<i
+                                                        class="fa fa-sort ms-3"></i></th>
 
                                             </tr>
                                         </thead>
@@ -116,14 +117,23 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <img src="/{{ $item->image }}" style="width: 150px; border-radius:15px" class=" ms-n1"
+                                                        <img src="/{{ $item->image }}"
+                                                            style="width: 150px; border-radius:15px" class="ms-n1"
                                                             alt="">
                                                     </td>
-                                                    <td> <p style="text-transform: capitalize"> {{ ($item->Author->name ?? '-') }} {{ ($item->Author->surname ?? '-') }}</p> </td>
+                                                    <td>
+                                                        <p style="text-transform: capitalize">
+                                                            {{ $item->Author->name ?? '-' }}
+                                                            {{ $item->Author->surname ?? '-' }}</p>
+                                                    </td>
 
-                                                    <td> {{ $item->title }} </td>
+                                                    <td> {{ substr($item->title, 0, 20) }} ...</td>
 
-                                                    <td> <p style="text-transform: capitalize"> {{$item->Category->title}} </p> </td>
+                                                    <td>
+                                                        <p style="text-transform: capitalize">
+                                                            {{ $item->GeneralCategory->title }} /
+                                                            {{ $item->Category->title }} </p>
+                                                    </td>
                                                     <td>
                                                         <div
                                                             class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
@@ -135,16 +145,22 @@
                                                         </div>
 
                                                     </td>
-                                                   
+
 
                                                     <td class="text-center">
+
+                                                        <a href="{{route('admin.defenseIndustryContent.multipleImage',$item->id)}}">
+                                                            <button type="button"
+                                                                class="btn btn-secondary btn-sm text-white"> Görseller ( {{$item->ImageCounter()}} )
+                                                            </button>
+                                                        </a>
                                                         <a href="{{ route('admin.defenseIndustryContent.edit', $item->id) }}"
-                                                            class="px-2 btn btn-icon btn-bg-light btn-active-color-secondary btn-sm me-1"
+                                                            class="btn btn-icon btn-bg-light btn-active-color-secondary btn-sm me-1 px-2"
                                                             title="Düzenle">
                                                             <i class="fa-regular fa-pen-to-square fs-3"></i>
                                                         </a>
                                                         <a onclick="destroy({{ $item->id }})"
-                                                            class="px-2 btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1"
+                                                            class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1 px-2"
                                                             data-bs-toggle="modal" data-bs-target="#delete_modal"
                                                             title="Sil">
                                                             <i class="fa-regular fa-trash-can fs-4"></i>

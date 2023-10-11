@@ -21,7 +21,6 @@ return new class extends Migration
             $table->longText('countries');
             $table->longText('companies');
             $table->longText('origin');
-            $table->string('tags');
             $table->string('link');
             $table->integer('read_time')->default(3);
             $table->integer('national')->default(1);

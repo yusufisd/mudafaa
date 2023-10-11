@@ -37,12 +37,18 @@ class DefenseIndustryContent extends Model
         return CountryList::whereIn('id',$this->countries)->get();
     }
 
+    public function Companies(){
+        return Company::whereIn('id',$this->companies)->get();
+    }
+
     public function GeneralCategory(){
         return $this->hasOne(DefenseIndustry::class,'id','defense_id');
     }
 
-    public function Tags(){
-        
-        return json_decode($this->tags);
+    public function ImageCounter(){
+        $data = DefenseIndustryContent::findOrFail($this->id);
+        return count($data->multiple_image);
     }
+
+   
 }

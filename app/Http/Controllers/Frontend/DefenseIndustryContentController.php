@@ -10,10 +10,11 @@ use Illuminate\Http\Request;
 class DefenseIndustryContentController extends Controller
 {
     public function detail($id){
-        $data = DefenseIndustryContent::findOrFail($id);
         
-        $previous_product = DefenseIndustryContent::where('id',$id-1)->first();
-        $next_product = DefenseIndustryContent::where('id',$id+1)->first();
+        $data = DefenseIndustryContent::where('link',$id)->first();
+        
+        $previous_product = DefenseIndustryContent::where('id',$data->id-1)->first();
+        $next_product = DefenseIndustryContent::where('id',$data->id+1)->first();
         $other_product = DefenseIndustryContent::inRandomOrder()->get();
         
         return view('frontend.defenseIndustry.detail',compact('data','previous_product','next_product','other_product'));

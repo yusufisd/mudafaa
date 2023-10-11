@@ -14,25 +14,27 @@ class CurrentNewsCategoryController extends Controller
 {
     public function index($id)
     {
-
+        
         $local = \Session::get('applocale');
         if ($local == null) {
             $local = config('app.fallback_locale');
         }
         if ($local == 'tr') {
-            $datas = CurrentNews::where('category_id', $id)->get();
+            $name = CurrentNewsCategory::where('link',$id)->first();
+            $datas = CurrentNews::where('category_id', $name->id)->paginate(8);
             $sub_categories = CurrentNewsCategory::latest()
                 ->take(7)
                 ->get();
-            $other_news = CurrentNews::latest()->get();
+            $other_news = CurrentNews::latest()->take(6)->get();
         } elseif ($local == 'en') {
-            $datas = EnCurrentNews::where('category_id', $id)->get();
+            $name = EnCurrentNewsCategory::where('link',$id)->first();
+            $datas = EnCurrentNews::where('category_id', $name->id)->paginate(8);
             $sub_categories = EnCurrentNewsCategory::latest()
                 ->take(7)
                 ->get();
-            $other_news = EnCurrentNewsCategory::latest()->get();
+            $other_news = EnCurrentNews::latest()->take(6)->get();
         }
 
-        return view('frontend.currentNewsCategory.list', compact('datas', 'sub_categories', 'other_news'));
+        return view('frontend.currentNewsCategory.list', compact('datas', 'sub_categories', 'other_news','name'));
     }
 }

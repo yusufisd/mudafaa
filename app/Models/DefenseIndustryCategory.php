@@ -17,4 +17,8 @@ class DefenseIndustryCategory extends Model
     public function adet(){
         return DefenseIndustryContent::where('category_id',$this->id)->count();
     }
+
+    public function defense(){
+        return $this->hasOne(DefenseIndustry::class,'id','defense_id');
+    }
 }

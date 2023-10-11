@@ -30,10 +30,17 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="aerial_platforms.html">
+                            <a href="{{ route('front.defenseIndustryCategory.list', $data->GeneralCategory->link) }}">
                                 {{ $data->GeneralCategory->title }}
                             </a>
                         </li>
+
+                        <li class="breadcrumb-item" aria-current="page">
+                            <span class="rt-text-truncate">
+                                {{ $data->Category->title }}
+                            </span>
+                        </li>
+
                         <li class="breadcrumb-item active" aria-current="page">
                             <span class="rt-text-truncate">
                                 {{ $data->title }}
@@ -60,25 +67,20 @@
                                     <li>
                                         <span class="rt-meta">
                                             <i class="far fa-calendar-alt icon"></i>
-                                            {{ ($data->created_at->translatedFormat('d M Y')) }}
+                                            {{ $data->created_at->translatedFormat('d M Y') }}
                                         </span>
                                     </li>
-                                    <li>
-                                        <span class="rt-meta">
-                                            <i class="far fa-comments icon"></i>
-                                            250
-                                        </span>
-                                    </li>
+
                                     <li>
                                         <span class="rt-meta">
                                             <i class="far fa-clock icon"></i>
-                                            2 Dk.
+                                            {{ $data->read_time }}
                                         </span>
                                     </li>
                                     <li>
                                         <span class="rt-meta">
                                             <i class="far fa-eye icon"></i>
-                                            3,250
+                                            {{ $data->view_counter }}
                                         </span>
                                     </li>
                                 </ul>
@@ -138,7 +140,7 @@
 
                             <!-- strat psot body -->
                             <div class="post-body" style="text-align: justify">
-                                {!! $data->description !!} 
+                                {!! $data->description !!}
                                 <br><br>
                                 <!-- ad banner -->
                                 <div class="ad-banner-img mt--45 mb--40">
@@ -181,10 +183,16 @@
                                         <div class="tab-pane tab-item animated fadeInUp show active" id="menu-1"
                                             role="tabpanel" aria-labelledby="menu-1-tab">
                                             <div class="row flag_tab">
+
+
                                                 <div class="col-lg-1 grid-adress">
-                                                    <img
-                                                        src="https://millimudafaa.com/panel/uploads/savunma/123a9a0dc37aae78e902bbf5419f3bdb5ae9497d.png">
+                                                    @foreach ($data->Companies() as $e)
+                                                        <img title="{{ $e->title }}" src="/{{ $e->image }}">
+                                                    @endforeach
+
                                                 </div>
+
+
 
                                             </div>
                                         </div><!-- end ./tab item -->
@@ -194,8 +202,9 @@
                                             <div class="row flag_tab">
 
                                                 @foreach ($data->Mensei() as $key)
-                                                    <div class="col-lg-1 ">
-                                                        <span class="fi fi-{{ $key->code }} fa-3x"
+                                                    <div class="col-lg-1">
+                                                        <span title="{{ $key->name }}"
+                                                            class="fi fi-{{ $key->code }} fa-3x"
                                                             style="border-radius: 10px"></span>
                                                     </div>
                                                 @endforeach
@@ -210,7 +219,8 @@
 
                                                 @foreach ($data->Countries() as $key)
                                                     <div class="col-lg-1">
-                                                        <span class="fi  fi-{{ $key->code }} fa-3x"
+                                                        <span title="{{ $key->name }}"
+                                                            class="fi fi-{{ $key->code }} fa-3x"
                                                             style="border-radius: 10px"></span>
                                                     </div>
                                                 @endforeach
@@ -231,10 +241,9 @@
 
                                     <!-- Galeri Resimleri -->
                                     <div class="gallery">
-
                                         @foreach ($data->multiple_image as $item)
                                             <a data-fancybox="gallery" href="/{{ $item }}">
-                                                <img src="/{{ $item }}" alt="Resim 1">
+                                                <img src="/{{ $item }}" alt="">
                                             </a>
                                         @endforeach
 
@@ -256,9 +265,9 @@
                                         <div class="conent-block">
                                             <h4 class="block-tile mb--20">Popüler Etiketler:</h4>
                                             <div class="tag-list">
-                                                @foreach($data->Tags() as $value)
-                                                            <a href="#" class="tag-link">{{$value->value}}</a>
-                                                        @endforeach
+                                                @foreach ($data->seo_key as $key)
+                                                @endforeach
+                                                <a href="#" class="tag-link"> {{ $key }} </a>
                                             </div>
                                         </div>
                                     </div>
@@ -277,21 +286,23 @@
                                         @if ($previous_product != null)
                                             <div class="next-prev-wrap">
                                                 <div class="item-icon">
-                                                    <a href="{{route('front.defenseIndustryContent.detail',$previous_product->id)}}">
+                                                    <a
+                                                        href="{{ route('front.defenseIndustryContent.detail', $previous_product->link) }}">
                                                         <i class="fas fa-chevron-left"></i>
                                                         Öncekİ Ürün
                                                     </a>
                                                 </div>
                                                 <div class="content">
                                                     <h4 class="title">
-                                                        <a href="{{route('front.defenseIndustryContent.detail',$previous_product->id)}}">
-                                                            {{$previous_product->title}} 
+                                                        <a
+                                                            href="{{ route('front.defenseIndustryContent.detail', $previous_product->link) }}">
+                                                            {{ $previous_product->title }}
                                                         </a>
                                                     </h4>
                                                     <span class="rt-meta">
                                                         <i class="far fa-calendar-alt icon"></i>
-                                                        {{($previous_product->created_at->translatedFormat('d M Y'))}}
-                                                        
+                                                        {{ $previous_product->created_at->translatedFormat('d M Y') }}
+
                                                     </span>
                                                 </div>
                                             </div>
@@ -304,19 +315,21 @@
                                         @if ($next_product != null)
                                             <div class="next-prev-wrap next-wrap">
                                                 <div class="item-icon">
-                                                    <a href="{{route('front.defenseIndustryContent.detail',$next_product->id)}}">
+                                                    <a
+                                                        href="{{ route('front.defenseIndustryContent.detail', $next_product->link) }}">
                                                         Sonrakİ Ürün
                                                         <i class="fas fa-chevron-right"></i>
                                                     </a>
                                                 </div>
                                                 <div class="content">
                                                     <h4 class="title">
-                                                        <a href="{{route('front.defenseIndustryContent.detail',$next_product->id)}}">
-                                                            {{$next_product->title}} </a>
+                                                        <a
+                                                            href="{{ route('front.defenseIndustryContent.detail', $next_product->link) }}">
+                                                            {{ $next_product->title }} </a>
                                                     </h4>
                                                     <span class="rt-meta">
                                                         <i class="far fa-calendar-alt icon"></i>
-                                                        {{substr($next_product->created_at,0,10)}}
+                                                        {{ substr($next_product->created_at, 0, 10) }}
                                                     </span>
                                                 </div>
                                             </div>
@@ -347,7 +360,7 @@
                     <div class="col-12">
                         <div class="titile-wrapper mb--30">
 
-                            <h2 class="rt-section-heading mb-0 flex-grow-1 me-3">
+                            <h2 class="rt-section-heading flex-grow-1 mb-0 me-3">
                                 <span class="rt-section-text">Diğer Ürünler </span>
                                 <span class="rt-section-dot"></span>
                                 <span class="rt-section-line"></span>
@@ -366,51 +379,49 @@
                     <div class="swiper-wrapper">
 
                         @foreach ($other_product as $item)
-                            
-                        <div class="swiper-slide">
-                            <div class="slide-item">
-                                <div class="rt-post-grid grid-meta">
-                                    <div class="post-img">
-                                        <a href="{{route('front.defenseIndustryContent.detail',$item->id)}}">
-                                            <img src="/{{$item->image}}" style="object-fit:contain!important" alt="post"
-                                                width="551" height="431">
-                                        </a>
-                                    </div>
-                                    <div class="post-content">
-                                        <a href="graphics.html"
-                                            class="rt-cat-primary sidebar_restricted_category_title">{{$item->GeneralCategory->title}}</a>
-                                        <h3 class="post-title">
-                                            <a href="{{route('front.defenseIndustryContent.detail',$item->id)}}">
-                                                {{$item->title}}
+                            <div class="swiper-slide">
+                                <div class="slide-item">
+                                    <div class="rt-post-grid grid-meta">
+                                        <div class="post-img">
+                                            <a href="{{ route('front.defenseIndustryContent.detail', $item->link) }}">
+                                                <img src="/{{ $item->image }}" style="object-fit:contain!important"
+                                                    alt="post" width="551" height="431">
                                             </a>
-                                        </h3>
-                                        <div class="post-meta">
-                                            <ul>
-                                                <li>
-                                                    <span class="rt-meta">
-                                                        <i class="far fa-comments icon"></i>
-                                                        250
-                                                    </span>
-                                                </li>
-                                                <li>
-                                                    <span class="rt-meta">
-                                                        <i class="far fa-clock icon"></i>
-                                                        2 Dk.
-                                                    </span>
-                                                </li>
-                                                <li>
-                                                    <span class="rt-meta">
-                                                        <i class="far fa-eye icon"></i>
-                                                        3,250
-                                                    </span>
-                                                </li>
-                                            </ul>
+                                        </div>
+                                        <div class="post-content">
+                                            <a href="{{ route('front.defenseIndustryCategory.list', $item->GeneralCategory->link) }}"
+                                                class="rt-cat-primary sidebar_restricted_category_title">{{ $item->GeneralCategory->title }}</a>
+                                            <h3 class="post-title">
+                                                <a href="{{ route('front.defenseIndustryContent.detail', $item->link) }}">
+                                                    {{ $item->title }}
+                                                </a>
+                                            </h3>
+                                            <div class="post-meta">
+                                                <ul>
+                                                    <li>
+                                                        <span class="rt-meta">
+                                                            <i class="far fa-comments icon"></i>
+                                                            250
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="rt-meta">
+                                                            <i class="far fa-clock icon"></i>
+                                                            2 Dk.
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="rt-meta">
+                                                            <i class="far fa-eye icon"></i>
+                                                            3,250
+                                                        </span>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
                         @endforeach
 
 
@@ -428,8 +439,8 @@
 @section('script')
     <script>
         /*--------------------------------
-                               // sidebar title limitation
-                            -------------------------------*/
+                                   // sidebar title limitation
+                                -------------------------------*/
         // Select all tags with class .sidebar_restricted_category_title
         $('.sidebar_restricted_category_title').each(function() {
             var content = $(this).text().trim(); // get the content of a tag

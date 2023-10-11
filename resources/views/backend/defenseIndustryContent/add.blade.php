@@ -105,7 +105,7 @@
                                                             <option value="">Seçiniz...</option>
 
                                                             @foreach ($categories as $item)
-                                                                <option value="{{ $item->id }}"> {{ $item->title }}
+                                                                <option value="{{ $item->id }}"> {{ $item->title }} - {{$item->defense->title}}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -315,29 +315,7 @@
                                                                     <!--end::Col-->
                                                                 </div>
 
-                                                                <div class="row mb-6">
-                                                                    <!--begin::Label-->
-                                                                    <label
-                                                                        class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Etiket</label>
-                                                                    <!--end::Label-->
-                                                                    <!--begin::Col-->
-                                                                    <div class="col-lg-10">
-                                                                        <!--begin::Row-->
-                                                                        <div class="row">
-                                                                            <!--begin::Col-->
-                                                                            <div class="col-lg-12 fv-row">
-                                                                                <input required type="text"
-                                                                                    id="etiket_tr"
-                                                                                    name="etiket_tr[]"
-                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    multiple value="" />
-                                                                            </div>
-                                                                            <!--end::Col-->
-                                                                        </div>
-                                                                        <!--end::Row-->
-                                                                    </div>
-                                                                    <!--end::Col-->
-                                                                </div>
+                                                                
 
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
@@ -450,30 +428,7 @@
                                                                     <!--end::Col-->
                                                                 </div>
 
-                                                                <div class="row mb-6">
-                                                                    <!--begin::Label-->
-                                                                    <label
-                                                                        class="col-lg-2 col-form-label required ps-5 fw-bold fs-6">Etiket</label>
-                                                                    <!--end::Label-->
-                                                                    <!--begin::Col-->
-                                                                    <div class="col-lg-10">
-                                                                        <!--begin::Row-->
-                                                                        <div class="row">
-                                                                            <!--begin::Col-->
-                                                                            <div class="col-lg-12 fv-row">
-                                                                                <input required type="text"
-                                                                                    id="etiket_en"
-                                                                                    name="etiket_en[]"
-                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    multiple value="" />
-                                                                            </div>
-                                                                            <!--end::Col-->
-                                                                        </div>
-                                                                        <!--end::Row-->
-                                                                    </div>
-                                                                    <!--end::Col-->
-                                                                </div>
-
+                                                                
 
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
@@ -809,12 +764,7 @@
         new Tagify(input2);
 
 
-        var input3 = document.querySelector("#etiket_tr");
-        new Tagify(input3);
-
-        var input4 = document.querySelector("#etiket_en");
-        new Tagify(input4);
-
+        
 
         $(document).ready(function() {
             tinymce.init({
