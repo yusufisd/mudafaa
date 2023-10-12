@@ -126,7 +126,7 @@
                                                     </td>
                                                     <td> {{ $item->Author->name }} {{ $item->Author->surname }} </td>
                                                     <td> {{ substr($item->title, 0, 30) }}... </td>
-                                                    <td> {{ $item->Category->title }} </td>
+                                                    <td> {{ $item->Category->title ?? '-' }} </td>
                                                     <td>
                                                         <div
                                                             class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">

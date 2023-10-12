@@ -106,39 +106,34 @@
                                     </div>
                                     <div class="social-wrap d-none d-xl-block">
                                         <ul class="rt-top-social">
-                                            <li>
-                                                <a href="https://www.facebook.com/millimudafaacom" target="_blank">
-                                                    <i class="fab fa-facebook-f"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="https://twitter.com/millimudafaacom" target="_blank">
-                                                    <div style="text-align:right">
-                                                        <img src="{{ asset('/assets/twitter.png') }}"
-                                                            style="width: 40%;" alt="">
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="https://www.instagram.com/millimudafaacom" target="_blank">
-                                                    <i class="fab fa-instagram px-2"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="https://www.youtube.com/channel/UC6uGHKEHHGh08sTWjhBrG9A"
-                                                    target="_blank">
-                                                    <i class="fab fa-youtube px-2"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="https://www.linkedin.com/company/milli-m%C3%BCdafaa/"
-                                                    target="_blank">
-                                                    <i class="fab fa-linkedin-in px-2"></i>
-                                                </a>
-                                            </li>
-
+                                           <li>
+                                              <a href="https://www.facebook.com/millimudafaacom" target="_blank">
+                                                 <i class="fab fa-facebook-f"></i>
+                                              </a>
+                                           </li>
+                                           <li>
+                                              <a href="https://twitter.com/millimudafaacom" target="_blank">
+                                                <img src="/assets/x.png" style="width: 13px" alt="">
+                                              </a>
+                                           </li>
+                                           <li>
+                                              <a href="https://www.instagram.com/millimudafaacom" target="_blank">
+                                                 <i class="fab fa-instagram"></i>
+                                              </a>
+                                           </li>
+                                           <li>
+                                              <a href="https://www.youtube.com/channel/UC6uGHKEHHGh08sTWjhBrG9A" target="_blank">
+                                                 <i class="fab fa-youtube"></i>
+                                              </a>
+                                           </li>
+                                           <li>
+                                              <a href="https://www.linkedin.com/company/milli-m%C3%BCdafaa/" target="_blank">
+                                                 <i class="fab fa-linkedin-in"></i>
+                                              </a>
+                                           </li>
+                                           
                                         </ul>
-                                    </div>
+                                     </div>
                                     <div class="meta-wrap ms-2">
                                         <span class="rt-meta">
                                             @if(langua() == "tr")

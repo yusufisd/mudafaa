@@ -109,7 +109,7 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <select name="author" aria-label="Seçiniz"
+                                                                        <select required name="author" aria-label="Seçiniz"
                                                                             data-control="select2"
                                                                             data-placeholder="Seçiniz..."
                                                                             class="form-select form-select-solid form-select-lg fw-semibold">
