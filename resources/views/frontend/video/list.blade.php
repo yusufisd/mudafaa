@@ -22,7 +22,7 @@
                 <nav class="rt-breadcrumb-wrap" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">
+                            <a href="/">
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
@@ -47,7 +47,7 @@
                             </h2>
 
                             <div>
-                                <h6><a href="video_list.html">Tümünü Gör</a></h6>
+                                <h6><a href="#">Tümünü Gör</a></h6>
                             </div>
                         </div>
                         <!-- end titile-wrapper -->
@@ -56,15 +56,14 @@
                 <div class="row gutter-24">
 
                     @foreach ($cat_first as $item)
-
                         <div class="col-xl-3 col-md-6 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="800ms">
                             <div class="rt-post-grid grid-meta">
                                 <div class="post-img">
-                                    <a href="single-post1.html">
+                                    <a href="#">
                                         <img src="/{{$item->image}}" alt="post"
                                             width="551" height="431">
                                     </a>
-                                    <a href="single-post1.html" class="tr-bangladesh rt-meta-over"> test </a>
+                                    <a href="{{ route('front.video.detail', $item->id) }}" class="tr-bangladesh rt-meta-over"> test </a>
                                     <a href="http://www.youtube.com/watch?v=1iIZeIy7TqM"
                                         class="play-btn play-btn-white_lg rt-play-over">
                                         <i class="fas fa-play"></i>

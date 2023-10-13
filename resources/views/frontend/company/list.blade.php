@@ -51,12 +51,10 @@
                             <div class="row gutter-24">
 
                                 @foreach ($data as $item)
-                                    
-
-                                <div class="col-md-2 wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
+                                <div class="col-md-4 wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
                                     <div class="cat-item">
                                         <div class="rt-cart-item">
-                                            <a href="{{route('front.company.detail',$item->id)}}">
+                                            <a href="{{route('front.company.detail',$item->id . "-" . \Illuminate\Support\Str::slug($item->title))}}">
                                                 <div class="item-img">
                                                     <img src="/{{$item->image}}"  alt="cat-slider"
                                                         width="696" height="491">
@@ -69,7 +67,7 @@
                                 <!-- end inner col -->
 
                                 @endforeach
-                               
+
 
                             </div>
                             <!-- end inner row -->
@@ -81,23 +79,6 @@
                                         height="150">
                                 </a>
                             </div>
-
-                            <nav class="rt-pagination-area gap-top-90">
-                                <ul class="pagination rt-pagination justify-content-center">
-                                    <li class="page-item prev">
-                                        <a class="page-link" href="#"><i class="fas fa-angle-double-left"></i></a>
-                                    </li>
-                                    <li class="page-item active" aria-current="page">
-                                        <span class="page-link">1</span>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                    <li class="page-item next">
-                                        <a class="page-link" href="#"><i class="fas fa-angle-double-right"></i></a>
-                                    </li>
-                                </ul>
-                            </nav>
                             <!-- end rt-pagination-area -->
 
                         </div>
@@ -117,7 +98,7 @@
                                 <ul class="rt-categories">
 
                                     @foreach ($categories as $item)
-                                        
+
                                     <li>
                                         <a href="gaming.html" data-bg-image="/{{$item->image}}">
                                             <span class="cat-name">
@@ -131,7 +112,7 @@
 
                                     @endforeach
 
-                                 
+
                                 </ul>
                             </div>
                             <!-- end slidebar wrap  -->

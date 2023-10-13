@@ -22,12 +22,12 @@
                 <nav class="rt-breadcrumb-wrap" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">
+                            <a href="/">
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="ss.html">
+                            <a href="{{ route('front.dictionary.list') }}">
                                 SS Sözlüğü
                             </a>
                         </li>
@@ -196,7 +196,7 @@
                                 <div class="slide-item">
                                     <div class="rt-post-grid grid-meta">
                                         <div class="post-img">
-                                            <a href="{{ route('front.dictionary.detail', $item->id) }}">
+                                            <a href="{{ route('front.dictionary.detail', $item->link) }}">
                                                 <img src="/{{ $item->image }}" alt="post" width="551"
                                                     height="431">
                                             </a>
@@ -204,7 +204,7 @@
                                         <div class="post-content">
 
                                             <h3 class="post-title">
-                                                <a href="{{ route('front.dictionary.detail', $item->id) }}">
+                                                <a href="{{ route('front.dictionary.detail', $item->link) }}">
                                                     {{ $item->title }}
                                                 </a>
                                             </h3>
@@ -222,7 +222,7 @@
                                                             {{$item->read_time}}
                                                         </span>
                                                     </li>
-                                                    
+
                                                 </ul>
                                             </div>
                                         </div>

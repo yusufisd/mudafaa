@@ -20,7 +20,7 @@
                     <!--end::Title-->
                 </div>
                 <!--end::Page title-->
-                
+
             </div>
             <!--end::Toolbar container-->
         </div>
@@ -51,7 +51,7 @@
                                         <a type="button" class="btn btn-outline btn-outline-success ms-5"
                                             href="{{ route('admin.companyCategory.list') }}">
                                             <i class="fa fa-newspaper" aria-hidden="true"></i> Firma
-                                            {{ __('message.kategorisi') }} 
+                                            {{ __('message.kategorisi') }}
                                         </a>
 
 
@@ -104,7 +104,7 @@
                                                     </td>
                                                     <td> {{ $item->title }} </td>
                                                     <td>
-                                                        
+
                                                         {{$item->Category->name}}
                                                     </td>
                                                     <td style="text-align: center">
@@ -117,7 +117,7 @@
                                                             <label class="form-check-label" for="blog_status_1"></label>
                                                         </div>
                                                     </td>
-                                                    
+
                                                     <td class="text-center">
 
 
@@ -173,7 +173,7 @@
                 confirmButtonText: 'Evet, sil!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "{{ route('admin.video.destroy') }}/" + d;
+                    window.location.href = "{{ route('admin.companyModel.destroy') }}/" + d;
                 }
             })
         }

@@ -59,98 +59,12 @@
 
                                 <div class="post_meta">
                                     <ul class="nav nav-pills" id="pills-tab" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link"
-                                                href="{{ route('front.dictionary.list', ['id' => 0]) }}">A</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link"
-                                                href="{{ route('front.dictionary.list', ['id' => 1]) }}">B</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link"
-                                                href="{{ route('front.dictionary.list', ['id' => 2]) }}">C-Ç</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link"
-                                                href="{{ route('front.dictionary.list', ['id' => 3]) }}">D</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link"
-                                                href="{{ route('front.dictionary.list', ['id' => 4]) }}">E</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link"
-                                                href="{{ route('front.dictionary.list', ['id' => 5]) }}">F</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('front.dictionary.list', ['id' => 6]) }}">G -
-                                                Ğ</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link"
-                                                href="{{ route('front.dictionary.list', ['id' => 7]) }}">H</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('front.dictionary.list', ['id' => 8]) }}">I -
-                                                İ</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link"
-                                                href="{{ route('front.dictionary.list', ['id' => 9]) }}">J</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link"
-                                                href="{{ route('front.dictionary.list', ['id' => 10]) }}">K</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link"
-                                                href="{{ route('front.dictionary.list', ['id' => 11]) }}">L</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link"
-                                                href="{{ route('front.dictionary.list', ['id' => 12]) }}">M</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link"
-                                                href="{{ route('front.dictionary.list', ['id' => 13]) }}">N</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link"
-                                                href="{{ route('front.dictionary.list', ['id' => 14]) }}">O-Ö</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link"
-                                                href="{{ route('front.dictionary.list', ['id' => 15]) }}">P</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link"
-                                                href="{{ route('front.dictionary.list', ['id' => 16]) }}">R</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link"
-                                                href="{{ route('front.dictionary.list', ['id' => 17]) }}">S-Ş</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link"
-                                                href="{{ route('front.dictionary.list', ['id' => 18]) }}">T</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link"
-                                                href="{{ route('front.dictionary.list', ['id' => 19]) }}">U-Ü</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link"
-                                                href="{{ route('front.dictionary.list', ['id' => 20]) }}">V</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link"
-                                                href="{{ route('front.dictionary.list', ['id' => 21]) }}">Y</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link"
-                                                href="{{ route('front.dictionary.list', ['id' => 22]) }}">Z</a>
-                                        </li>
+                                        @foreach($alphabets as $alp)
+                                            <li class="nav-item">
+                                                <a class="nav-link"
+                                                    href="{{ route('front.dictionary.list', ['id' => $alp]) }}">{{ $alp }}</a>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                     <ul class="nav nav-pills" id="pills-tab-mobile" role="tablist">
                                     </ul>
@@ -161,7 +75,7 @@
                                     <div class="col-md-4 wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
                                         <div class="rt-post-overlay rt-post-overlay-md layout-6">
                                             <div class="post-img">
-                                                <a href="{{ route('front.dictionary.detail', $item->id) }}" class="img-link">
+                                                <a href="{{ route('front.dictionary.detail', $item->link) }}" class="img-link">
                                                     <img src="/{{ $item->image }}" alt="{{ $item->title }}" width="900"
                                                         height="600">
                                                 </a>
@@ -169,7 +83,7 @@
                                             <div class="post-content">
 
                                                 <h3 class="post-title">
-                                                    <a href="{{ route('front.dictionary.detail', $item->id) }}">
+                                                    <a href="{{ route('front.dictionary.detail', $item->link) }}">
                                                         {{ $item->title }}
                                                     </a>
                                                 </h3>
@@ -178,9 +92,11 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="fa fa-user"></i>
-                                                                <a href="author.html" class="name">
+                                                                @if(isset($item->Author))
+                                                                <a href="#" class="name">
                                                                     {{ $item->Author->name }} {{ $item->Author->surname }}
                                                                 </a>
+                                                                @endif
                                                             </span>
                                                         </li>
                                                         <li>
@@ -189,7 +105,7 @@
                                                                 {{ $item->read_time }}
                                                             </span>
                                                         </li>
-                                                        
+
                                                     </ul>
                                                 </div>
                                             </div>

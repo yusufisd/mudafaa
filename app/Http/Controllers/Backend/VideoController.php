@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CurrentNews;
 use App\Models\CurrentNewsCategory;
 use App\Models\EnCurrentNews;
+use App\Models\EnCurrentNewsCategory;
 use App\Models\EnVideo;
 use App\Models\UserModel;
 use App\Models\Video;
@@ -278,4 +279,30 @@ class VideoController extends Controller
         }
         return redirect()->route('admin.video.list');
     }
+
+    public function change_status($id)
+    {
+        try {
+            DB::beginTransaction();
+            $data = CurrentNewsCategory::findOrFail($id);
+            $data_en = EnCurrentNewsCategory::where('category_id', $id)->first();
+            $data_en->status = !$data->status;
+            $data_en->save();
+            $data->status = !$data->status;
+            $data->save();
+            logKayit(['Güncel Haber Kategori', 'Haber kategori durumu değiştirildi']);
+            Alert::success('Durum Başarıyla Değiştirildi');
+            DB::commit();
+        } catch (Throwable $e) {
+            DB::rollBack();
+
+            logKayit(['Güncel Haber Kategori', 'Kategori durumu değiştirmede hata', 0]);
+            Alert::error('Durum Değiştirmede Hata');
+            throw ValidationException::withMessages([
+                'error' => 'Tüm alanların doldurulması zorunludur.',
+            ]);
+        }
+        return redirect()->route('admin.currentNewsCategory.list');
+    }
+
 }

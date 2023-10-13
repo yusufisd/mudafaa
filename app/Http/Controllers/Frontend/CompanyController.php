@@ -9,6 +9,7 @@ use App\Models\CompanyCategory;
 use App\Models\CompanyImage;
 use App\Models\CompanyModel;
 use App\Models\CompanyTitle;
+use App\Models\EnCompanyModel;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -20,10 +21,17 @@ class CompanyController extends Controller
     }
 
     public function detail($id){
-        $data = CompanyModel::findOrFail($id);
+        $id = explode('-', $id)[0];
+        $lang = session('applocale') ?? config('app.fallback_locale');
+        if ($lang == "tr"){
+            $data = CompanyModel::findOrFail($id);
+        }else{
+            $data = EnCompanyModel::findOrFail($id);
+        }
         $ekstra = CompanyTitle::where('company_id',$id)->get();
         $images = CompanyImage::where('company_id',$id)->get();
         $address = CompanyAddress::where('company_id',$id)->get();
+
         return view('frontend.company.detail',compact('data','ekstra','images','address'));
     }
 }

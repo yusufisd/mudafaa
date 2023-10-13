@@ -199,7 +199,7 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row mb-5 ps-5">
 
-                                                                        <textarea required id="editor" name="description_tr" class="tox-target ckeditor"></textarea>
+                                                                        <textarea  id="editor" name="description_tr" class="tox-target ckeditor"></textarea>
 
 
                                                                     </div>
@@ -276,7 +276,7 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row mb-5 ps-5">
 
-                                                                        <textarea required id="editor2" name="description_en" class="tox-target ckeditor"></textarea>
+                                                                        <textarea  id="editor2" name="description_en" class="tox-target ckeditor"></textarea>
 
 
                                                                     </div>
@@ -535,7 +535,7 @@
                                             <div class="row" style="padding: 1%" id="show_item3">
                                                 <div class="col-md-5">
                                                     <div class="col-lg-11 fv-row">
-                                                        <input type="file" 
+                                                        <input type="file"
                                                             class="form-control w-full form-control-lg  mb-3 mb-lg-0"
                                                             name="gorseller_image[]" id="">
                                                     </div>
@@ -911,14 +911,14 @@
                         </div>\
                     </div>');
                 });
-                
+
                 $(document).on('click', '.delete_item_buton3', function(e) {
                     e.preventDefault();
                     let row_item = $(this).parent().parent();
                     $(row_item).remove();
                 });
-    
+
             });
         </script>
-    
+
 @endsection

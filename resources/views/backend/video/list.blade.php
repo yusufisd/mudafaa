@@ -50,7 +50,7 @@
                                         <a type="button" class="btn btn-outline btn-outline-success ms-5"
                                             href="{{ route('admin.videoCategory.list') }}">
                                             <i class="fa fa-newspaper" aria-hidden="true"></i> Video
-                                            {{ __('message.kategorisi') }} 
+                                            {{ __('message.kategorisi') }}
                                         </a>
 
 
@@ -117,7 +117,7 @@
                                                             <label class="form-check-label" for="blog_status_1"></label>
                                                         </div>
                                                     </td>
-                                                    
+
                                                     <td class="text-center">
 
 
@@ -158,6 +158,9 @@
 @endsection
 @section('script')
     <script>
+        function change_status(d) {
+            window.location.href = "{{ route('admin.defenseIndustryCategory.change_status') }}/" + d
+        }
         function destroy(d) {
             Swal.fire({
                 title: 'Emin misiniz?',

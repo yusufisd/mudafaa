@@ -76,8 +76,8 @@
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
 
-                                                    
-                                                    
+
+
                                                     <div class="col-lg-10">
                                                         <input type="file" class="form-control" name="image"
                                                             id="">
@@ -297,10 +297,9 @@
                                                                                             value="{{$data_tr->link}}" />
                                                                                     </div>
                                                                                     <div class="col-lg-2">
-                                                                                        <button type="submit"
+                                                                                        <button type="button"
                                                                                             class="btn btn-outline btn-outline-success w-100"
-                                                                                            id="activity_detail_url_btn_tr">URL
-                                                                                            ÜRET</button>
+                                                                                            id="activity_detail_url_btn_tr">URL ÜRET</button>
                                                                                     </div>
 
                                                                                 </div>
@@ -417,10 +416,9 @@
                                                                                             value="{{$data_en->link}}" />
                                                                                     </div>
                                                                                     <div class="col-lg-2">
-                                                                                        <button type="submit"
+                                                                                        <button type="button"
                                                                                             class="btn btn-outline btn-outline-success w-100"
-                                                                                            id="activity_detail_url_btn_tr">URL
-                                                                                            ÜRET</button>
+                                                                                            id="activity_detail_url_btn_tr">URL ÜRET</button>
                                                                                     </div>
 
                                                                                 </div>
@@ -542,7 +540,7 @@
                                                         <!--end::Input group-->
 
                                                     </div>
-                                                    
+
                                                 </div>
                                                 <div class="tab-pane fade" id="tab_seo_en" role="tabpanel">
                                                     <!--begin::Form-->
@@ -603,7 +601,7 @@
                                                                             id="activity_seo_keywords_en"
                                                                             name="seo_key_en[]"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                            value="{{json_encode($data_en->seo_key)}}" /> 
+                                                                            value="{{json_encode($data_en->seo_key)}}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -614,7 +612,7 @@
                                                         <!--end::Input group-->
 
                                                     </div>
-                                                    
+
                                                 </div>
                                             </div>
 

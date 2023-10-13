@@ -375,9 +375,11 @@ class CompanyModelController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        CompanyModel::where('id',$id)->delete();
+        Alert::success('Firma Başarıyla Silindi');
+        return redirect()->route('admin.companyModel.list');
     }
 
     public function change_status($id)

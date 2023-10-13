@@ -25,12 +25,12 @@
                 <nav class="rt-breadcrumb-wrap" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">
+                            <a href="/">
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="companies.html">
+                            <a href="/firma/liste">
                                 Firmalar
                             </a>
                         </li>
@@ -92,14 +92,15 @@
                                     <span class="rt-section-line"></span>
                                 </h2>
 
-                                <!-- Galeri Resimleri -->
-                                <div class="gallery">
-
+                                <!-- Galeri Resimleri gallery classı kaldırıldı -->
+                                <div class="row">
                                     @foreach ($images as $item)
-                                        <a data-fancybox="gallery" href="/{{ $item->image }}">
-                                            <img src="/{{ $item->image }}" style="width: 170px; height:170px"
-                                                alt="Resim 3">
-                                        </a>
+                                        <div class="col-md-4">
+                                            <a data-fancybox="gallery" href="/{{ $item->image }}">
+                                                <img src="/{{ $item->image }}" style="width: 100%;"
+                                                    alt="Resim 3">
+                                            </a>
+                                        </div>
                                     @endforeach
 
                                 </div>
@@ -117,9 +118,9 @@
                                     </h2>
 
                                     <ul class="nav rt-tab-menu" id="myTab" role="tablist">
-                                        @foreach ($address as $item)
+                                        @foreach ($address as $key => $item)
                                             <li class="menu-item" role="presentation">
-                                                <a class="menu-link {{ $item->id == 1 ? 'active' : '' }}" id="menu-1-tab"
+                                                <a class="menu-link {{ $key == 0 ? 'active' : '' }}" id="menu-1-tab"
                                                     data-bs-toggle="tab" href="#menu-{{ $item->id }}" role="tab"
                                                     aria-controls="menu-1" aria-selected="true"> {{ $item->title }} </a>
                                             </li>
@@ -134,8 +135,8 @@
                                 <div class="tab-content" id="myTabContent">
 
 
-                                    @foreach ($address as $item)
-                                        <div class="tab-pane tab-item animated fadeInUp {{ $item->id == 1 ? 'show active' : '' }}"
+                                    @foreach ($address as $key => $item)
+                                        <div class="tab-pane tab-item animated fadeInUp {{ $key == 0 ? 'show active' : '' }}"
                                             id="menu-{{ $item->id }}" role="tabpanel"
                                             aria-labelledby="menu-{{ $item->id }}-tab">
                                             <div class="row gutter-30">
@@ -161,7 +162,7 @@
                                                                 <i class="fas fa-phone icon"></i>
                                                                 {{$item->phone}}
                                                             </p>
-                                                           
+
                                                         </li>
                                                         <li>
                                                             <h6>Web Site</h6>

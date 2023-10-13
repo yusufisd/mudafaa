@@ -9,115 +9,66 @@ use Illuminate\Http\Request;
 
 class DictionaryController extends Controller
 {
-    public function index()
+    public function index($letter = null)
     {
-        $local = \Session::get('applocale');
-        if ($local == null) {
-            $local = config('app.fallback_locale');
-        }
+        $local = \Session::get('applocale') ?? config('app.fallback_locale');
+
+        $alphabets = [
+            "A",
+            "B",
+            "C-Ç",
+            "D",
+            "E",
+            "G - Ğ",
+            "I - İ",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O-Ö",
+            "P",
+            "R",
+            "S-Ş",
+            "T",
+            "U-Ü",
+            "V",
+            "W",
+            "Y",
+            "Z"
+        ];
 
         if ($local == 'tr') {
-            if (request()->id != null) {
-                if (request()->id == 0) {
-                    $data = Dictionary::where('title', 'LIKE', 'A%')->paginate(6);
-                }
-                if (request()->id == 1) {
-                    $data = Dictionary::where('title', 'LIKE', 'b%')->paginate(6);
-                }
-                if (request()->id == 2) {
-                    $data = Dictionary::where('title', 'LIKE', 'C%')
-                        ->where('title', 'LIKE', 'Ç%')
-                        ->paginate(6);
-                }
-                if (request()->id == 3) {
-                    $data = Dictionary::where('title', 'LIKE', 'd%')->paginate(6);
-                }
-                if (request()->id == 4) {
-                    $data = Dictionary::where('title', 'LIKE', 'e%')->paginate(6);
-                }
-                if (request()->id == 5) {
-                    $data = Dictionary::where('title', 'LIKE', 'f%')->paginate(6);
-                }
-                if (request()->id == 6) {
-                    $data = Dictionary::where('title', 'LIKE', 'g%')->paginate(6);
-                }
-                if (request()->id == 7) {
-                    $data = Dictionary::where('title', 'LIKE', 'h%')->paginate(6);
-                }
-                if (request()->id == 8) {
-                    $data = Dictionary::where('title', 'LIKE', 'ı%')
-                        ->where('title', 'LIKE', 'i%')
-                        ->paginate(6);
-                }
-                if (request()->id == 9) {
-                    $data = Dictionary::where('title', 'LIKE', 'j%')->paginate(6);
-                }
-                if (request()->id == 10) {
-                    $data = Dictionary::where('title', 'LIKE', 'k%')->paginate(6);
-                }
-                if (request()->id == 11) {
-                    $data = Dictionary::where('title', 'LIKE', 'l%')->paginate(6);
-                }
-                if (request()->id == 12) {
-                    $data = Dictionary::where('title', 'LIKE', 'm%')->paginate(6);
-                }
-                if (request()->id == 13) {
-                    $data = Dictionary::where('title', 'LIKE', 'n%')->paginate(6);
-                }
-                if (request()->id == 14) {
-                    $data = Dictionary::where('title', 'LIKE', 'o%')
-                        ->where('title', 'LIKE', 'ö%')
-                        ->paginate(6);
-                }
-                if (request()->id == 15) {
-                    $data = Dictionary::where('title', 'LIKE', 'p%')->paginate(6);
-                }
-                if (request()->id == 16) {
-                    $data = Dictionary::where('title', 'LIKE', 'r%')->paginate(6);
-                }
-                if (request()->id == 17) {
-                    $data = Dictionary::where('title', 'LIKE', 's%')
-                        ->where('title', 'LIKE', 'ş%')
-                        ->paginate(6);
-                }
-                if (request()->id == 18) {
-                    $data = Dictionary::where('title', 'LIKE', 't%')->paginate(6);
-                }
-                if (request()->id == 19) {
-                    $data = Dictionary::where('title', 'LIKE', 'u%')
-                        ->where('title', 'LIKE', 'ü%')
-                        ->paginate(6);
-                }
-                if (request()->id == 20) {
-                    $data = Dictionary::where('title', 'LIKE', 'v%')->paginate(6);
-                }
-                if (request()->id == 21) {
-                    $data = Dictionary::where('title', 'LIKE', 'y%')->paginate(6);
-                }
-                if (request()->id == 22) {
-                    $data = Dictionary::where('title', 'LIKE', 'z%')->paginate(6);
-                }
+            if ($letter != null) {
+                $data = Dictionary::where('title', 'LIKE',  $letter . '%')->paginate(6);
             } else {
                 $data = Dictionary::latest()->paginate(6);
             }
         } elseif ($local == 'en') {
-            if (request()->id != null) {
-                if (request()->id == 1) {
-                    $data = EnDictionary::where('title', 'LIKE', 'A%')->paginate(6);
-                } else {
-                    $data = EnDictionary::latest()->paginate(6);
-                }
+            if ($letter != null) {
+                $data = EnDictionary::where('title', 'LIKE',  $letter . '%')->paginate(6);
             } else {
                 $data = EnDictionary::latest()->paginate(6);
             }
         }
-        return view('frontend.dictionary.list', compact('data'));
+        return view('frontend.dictionary.list', compact('data', 'alphabets'));
     }
 
     public function detail($id)
     {
-        $other = Dictionary::inRandomOrder()->paginate(6);
-        $data = Dictionary::findOrFail($id);
+        if (!$id) return abort(404);
+        $local = \Session::get('applocale') ?? config('app.fallback_locale');
+        if ($local == "tr"){
+            $other = Dictionary::inRandomOrder()->paginate(6);
+            $data = Dictionary::where('link', $id)->first();
+            if (!$data) abort(404);
+        }else{
+            $other = EnDictionary::inRandomOrder()->paginate(6);
+            $data = EnDictionary::where('link', $id)->first();
+            if (!$data) abort(404);
+        }
+
+
         return view('frontend.dictionary.detail', compact('data', 'other'));
     }
 

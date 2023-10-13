@@ -13,4 +13,9 @@ class EnDictionary extends Model
         "seo_key" => "array",
         "live_date" => "date",
     ];
+
+    public function Author(){
+        return $this->hasOne(UserModel::class,'id','author');
+    }
+
 }
