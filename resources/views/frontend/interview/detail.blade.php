@@ -133,11 +133,7 @@
 
                                                 @foreach ($dialogs as $item)
                                                     <div class="single-content">
-                                                        <h3 class="title report_title">
-                                                            <i class="fas fa-question"
-                                                                style="vertical-align: text-top; color:#3b4022;"></i>
-                                                            {{ $item->soru }}
-                                                        </h3>
+                                                        <h3 class="title report_title"><span class="text--gray">{{ $item->soran }} :</span> {{ $item->soru }} <i class="fas fa-question" style="vertical-align: text-top; color:#3b4022;"></i></h3>
                                                         <figure class="rt-blockquote-area">
                                                             <blockquote class="rt-blockquote">
                                                                 <h4>
@@ -399,7 +395,7 @@
                                     </div>
 
                                     @foreach ($data->comments() as $item)
-                                        
+
 
                                     <div class="comment_container">
                                         <div class="row">
@@ -436,7 +432,7 @@
                                     @endforeach
 
 
-              
+
 
 
                                 </div>
@@ -635,14 +631,9 @@
                                     <span class="rt-section-line"></span>
                                 </h2>
                                 <div class="tag-list">
-                                    <a href="#" class="tag-link">güzel</a>
-                                    <a href="#" class="tag-link">seyahat</a>
-                                    <a href="#" class="tag-link">teknoloji</a>
-                                    <a href="#" class="tag-link">kimyasak</a>
-                                    <a href="#" class="tag-link">siyaset</a>
-                                    <a href="#" class="tag-link">işletme</a>
-                                    <a href="#" class="tag-link">makyaj</a>
-                                    <a href="#" class="tag-link">sosyal</a>
+                                    @foreach(json_decode(json_encode($data->seo_key)) as $xkey)
+                                    <a href="#" class="tag-link">{{ $xkey }}</a>
+                                    @endforeach
                                 </div>
                             </div>
                             <!-- end sidebar wrap -->
@@ -741,10 +732,10 @@
             var emoji_progress_bar = $("#" + emoji_id + "_bar").css('width'); //get width property of emoji's bar
             var intValue = parseInt(emoji_progress_bar, 10);
             intValue++; //increase the value
-            $("#" + emoji_id + "_bar").css('width', intValue); //update the value  
+            $("#" + emoji_id + "_bar").css('width', intValue); //update the value
         });
 
-        
+
     </script>
 
 

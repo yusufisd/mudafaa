@@ -32,8 +32,10 @@
         <!--end::Toolbar-->
         <!--begin::Content-->
 
+
         <form action="{{ route('admin.interview.update', $data_tr->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" name="enInt" value="{{ $data_en->id }}">
             <div id="kt_app_content" class="app-content flex-column-fluid">
                 <!--begin::Content container-->
                 <div id="kt_app_content_container" class="app-container container-fluid">
@@ -119,8 +121,7 @@
                                                             <option value="">Seçiniz...</option>
 
                                                             @foreach ($users as $item)
-                                                                <option value="{{ $item->id }}"> {{ $item->name }}
-                                                                    {{ $item->surname }}
+                                                                <option value="{{ $item->id }}" {{ $item->id == $data_tr->author ? 'selected' : '' }}> {{ $item->name ?? '' }} {{ $item->surname ?? '' }}
                                                                 </option>
                                                             @endforeach
 
@@ -219,28 +220,7 @@
                                                                 <!--end::Col-->
                                                             </div>
 
-                                                            <div class="row mb-6">
-                                                                <!--begin::Label-->
-                                                                <label
-                                                                    class="col-lg-2 col-form-label required fw-bold fs-6 ps-5">Link</label>
-                                                                <!--end::Label-->
-                                                                <!--begin::Col-->
-                                                                <div class="col-lg-10">
-                                                                    <!--begin::Row-->
-                                                                    <div class="row">
-                                                                        <!--begin::Col-->
-                                                                        <div class="col-lg-12 fv-row">
-                                                                            <input type="text" name="link_tr"
-                                                                                id="link_tr" onchange="create_slug_tr()"
-                                                                                class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                value="{{ $data_tr->link }}" />
-                                                                        </div>
-                                                                        <!--end::Col-->
-                                                                    </div>
-                                                                    <!--end::Row-->
-                                                                </div>
-                                                                <!--end::Col-->
-                                                            </div>
+
                                                             <!--end::Input group-->
                                                             <!--begin::Input group-->
                                                             <div class="row mb-6">
@@ -270,6 +250,29 @@
                                                                     <textarea id="editor" name="description_tr" class="tox-target ckeditor">{{ $data_tr->description }}</textarea>
 
 
+                                                                </div>
+
+                                                                <div class="row mb-6">
+                                                                    <!--begin::Label-->
+                                                                    <label
+                                                                        class="col-lg-2 col-form-label required fw-bold fs-6 ps-5">Link</label>
+                                                                    <!--end::Label-->
+                                                                    <!--begin::Col-->
+                                                                    <div class="col-lg-10">
+                                                                        <!--begin::Row-->
+                                                                        <div class="row">
+                                                                            <!--begin::Col-->
+                                                                            <div class="col-lg-12 fv-row">
+                                                                                <input type="text" name="link_tr"
+                                                                                       id="link_tr" onchange="create_slug_tr()"
+                                                                                       class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                       value="{{ $data_tr->link }}" />
+                                                                            </div>
+                                                                            <!--end::Col-->
+                                                                        </div>
+                                                                        <!--end::Row-->
+                                                                    </div>
+                                                                    <!--end::Col-->
                                                                 </div>
                                                                 <!--end::Col-->
                                                             </div>
@@ -330,28 +333,7 @@
                                                                 <!--end::Col-->
                                                             </div>
 
-                                                            <div class="row mb-6">
-                                                                <!--begin::Label-->
-                                                                <label
-                                                                    class="col-lg-2 col-form-label required fw-bold fs-6 ps-5">Link</label>
-                                                                <!--end::Label-->
-                                                                <!--begin::Col-->
-                                                                <div class="col-lg-10">
-                                                                    <!--begin::Row-->
-                                                                    <div class="row">
-                                                                        <!--begin::Col-->
-                                                                        <div class="col-lg-12 fv-row">
-                                                                            <input type="text" name="link_en"
-                                                                                id="link_en" onchange="create_slug_en()"
-                                                                                class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                value="{{ $data_en->link }}" />
-                                                                        </div>
-                                                                        <!--end::Col-->
-                                                                    </div>
-                                                                    <!--end::Row-->
-                                                                </div>
-                                                                <!--end::Col-->
-                                                            </div>
+
                                                             <!--end::Input group-->
                                                             <!--begin::Input group-->
                                                             <div class="row mb-6">
@@ -381,6 +363,29 @@
                                                                     <textarea id="editor2" name="description_en" class="tox-target ckeditor">{{ $data_en->description }}</textarea>
 
 
+                                                                </div>
+
+                                                                <div class="row mb-6">
+                                                                    <!--begin::Label-->
+                                                                    <label
+                                                                        class="col-lg-2 col-form-label required fw-bold fs-6 ps-5">Link</label>
+                                                                    <!--end::Label-->
+                                                                    <!--begin::Col-->
+                                                                    <div class="col-lg-10">
+                                                                        <!--begin::Row-->
+                                                                        <div class="row">
+                                                                            <!--begin::Col-->
+                                                                            <div class="col-lg-12 fv-row">
+                                                                                <input type="text" name="link_en"
+                                                                                       id="link_en" onchange="create_slug_en()"
+                                                                                       class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                       value="{{ $data_en->link }}" />
+                                                                            </div>
+                                                                            <!--end::Col-->
+                                                                        </div>
+                                                                        <!--end::Row-->
+                                                                    </div>
+                                                                    <!--end::Col-->
                                                                 </div>
                                                                 <!--end::Col-->
                                                             </div>
@@ -502,7 +507,7 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
                                                                         <input type="text" id="blog_seo_keywords_tr"
-                                                                            name="seo_key_tr[]"
+                                                                            name="seo_key_tr[]" required
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="{{ json_encode($data_tr->seo_key) }}" />
                                                                     </div>
@@ -577,7 +582,7 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
                                                                         <input type="text" id="blog_seo_keywords_en"
-                                                                            name="seo_key_en[]"
+                                                                            name="seo_key_en[]" required
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="{{ json_encode($data_en->title) }}" />
                                                                     </div>
@@ -622,7 +627,7 @@
                                             </ul>
 
                                             <div class="tab-content">
-
+                                                @if(count($dialog_tr) <= 0)
                                                 <div id="asd" class="tab-pane fade show active">
                                                     <div id="show_item">
                                                         <div class="container" style=" padding:2%;" role="tabpanel">
@@ -636,7 +641,7 @@
                                                                         <div class="col-lg-8 fv-row">
                                                                             <input type="text"
                                                                                 class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                name="soran_tr[]" id="">
+                                                                                name="soran_tr[]" id="soranTr">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -650,7 +655,7 @@
                                                                         <div class="col-lg-8 fv-row">
                                                                             <input type="text"
                                                                                 class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                name="cevaplayan_tr[]" id="">
+                                                                                name="cevaplayan_tr[]" id="cevapTr">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -676,15 +681,16 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div class="ekle" style="text-align:center">
+                                                            <button type="button"
+                                                                    class="btn btn-primary add_item_buton">EKLE</button>
+                                                        </div>
                                                     </div><br>
-                                                    <div class="ekle" style="text-align:center">
-                                                        <button type="button"
-                                                            class="btn btn-primary add_item_buton">EKLE</button>
-                                                    </div>
-                                                </div>
 
-                                                @foreach ($dialog_tr as $item)
+                                                </div>
+                                                @endif
                                                     <div id="asd" class="tab-pane fade show active">
+                                                        @foreach ($dialog_tr as $ktr => $item)
                                                         <div id="show_item">
                                                             <div class="container" style=" padding:2%;" role="tabpanel">
                                                                 <div class="row mb-6">
@@ -697,7 +703,7 @@
                                                                             <div class="col-lg-8 fv-row">
                                                                                 <input type="text"
                                                                                     class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                    name="soran_tr[]" id="">
+                                                                                    name="soran_tr[]" id="{{ $ktr == 0 ? 'soranTr' : '' }}" value="{{ $item->soran }}">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -711,7 +717,7 @@
                                                                             <div class="col-lg-8 fv-row">
                                                                                 <input type="text"
                                                                                     class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                    name="cevaplayan_tr[]" id="">
+                                                                                    name="cevaplayan_tr[]" id="{{ $ktr == 0 ? 'cevapTr' : '' }}" value="{{ $item->cevaplayan }}">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -724,7 +730,7 @@
                                                                     <div class="col-lg-10 fv-row">
                                                                         <input type="text"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            name="soru_tr[]" id="">
+                                                                            name="soru_tr[]" id="" value="{{ $item->soru }}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mb-6">
@@ -735,21 +741,26 @@
                                                                     <div class="col-lg-10 fv-row">
                                                                         <input type="text"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            name="cevap_tr[]" id="">
+                                                                            name="cevap_tr[]" id="" value="{{ $item->cevap }}">
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <div class="ekle" style="text-align:center">
+                                                                @if($ktr == 0)
+                                                                    <button type="button"
+                                                                            class="btn btn-primary add_item_buton">EKLE</button>
+                                                                @else
+                                                                    <button type="button"
+                                                                            class="btn btn-danger delete_item_buton2">SİL</button>
+                                                                @endif
+                                                            </div>
                                                         </div><br>
-                                                        <div class="ekle" style="text-align:center">
-                                                            <button type="button"
-                                                                class="btn btn-primary add_item_buton">EKLE</button>
-                                                        </div>
-                                                    </div>
+
                                                 @endforeach
+                                                    </div>
 
 
-
-
+                                                    @if(count($dialog_en) <= 0)
                                                 <div id="dsa" class="tab-pane fade">
                                                     <div id="show_item2">
                                                         <div class="container" role="tabpanel" style=" padding:2%; ">
@@ -763,7 +774,7 @@
                                                                         <div class="col-lg-8 fv-row">
                                                                             <input type="text"
                                                                                 class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                name="soran_en[]" id="">
+                                                                                name="soran_en[]" id="soranEn">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -777,7 +788,7 @@
                                                                         <div class="col-lg-8 fv-row">
                                                                             <input type="text"
                                                                                 class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                name="cevaplayan_en[]" id="">
+                                                                                name="cevaplayan_en[]" id="cevapEn">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -809,9 +820,9 @@
                                                             class="btn btn-primary add_item_buton2">EKLE</button>
                                                     </div>
                                                 </div>
-
-                                                @foreach ($dialog_en as $item)
+                                                    @endif
                                                     <div id="dsa" class="tab-pane fade">
+                                                        @foreach ($dialog_en as $ken => $item)
                                                         <div id="show_item2">
                                                             <div class="container" role="tabpanel" style=" padding:2%; ">
                                                                 <div class="row mb-6">
@@ -824,7 +835,7 @@
                                                                             <div class="col-lg-8 fv-row">
                                                                                 <input type="text"
                                                                                     class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                    name="soran_en[]" id="">
+                                                                                    name="soran_en[]" id="{{ $ken == 0 ? 'soranEn' : '' }}" value="{{ $item->soran }}">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -838,7 +849,7 @@
                                                                             <div class="col-lg-8 fv-row">
                                                                                 <input type="text"
                                                                                     class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                    name="cevaplayan_en[]" id="">
+                                                                                    name="cevaplayan_en[]" id="{{ $ken == 0 ? 'cevapEn' : '' }}" value="{{ $item->cevaplayan }}">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -851,7 +862,7 @@
                                                                     <div class="col-lg-10 fv-row">
                                                                         <input type="text"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            name="soru_en[]" id="">
+                                                                            name="soru_en[]" id="" value="{{ $item->soru }}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mb-6">
@@ -862,17 +873,23 @@
                                                                     <div class="col-lg-10 fv-row">
                                                                         <input type="text"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            name="cevap_en[]" id="">
+                                                                            name="cevap_en[]" id="" value="{{ $item->cevap }}">
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <div class="ekle" style="text-align:center">
+                                                                @if($ken == 0)
+                                                                    <button type="button"
+                                                                            class="btn btn-primary add_item_buton2">EKLE</button>
+                                                                @else
+                                                                    <button type="button"
+                                                                            class="btn btn-danger delete_item_buton2">SİL</button>
+                                                                @endif
+                                                            </div>
                                                         </div><br>
-                                                        <div class="ekle" style="text-align:center">
-                                                            <button type="button"
-                                                                class="btn btn-primary add_item_buton2">EKLE</button>
-                                                        </div>
+
+                                                        @endforeach
                                                     </div>
-                                                @endforeach
 
                                             </div><br>
 
@@ -1017,7 +1034,9 @@
         $(document).ready(function() {
             $(".add_item_buton").click(function(e) {
                 e.preventDefault();
-                $("#show_item").prepend(' <div id="show_item" class="py-12">\
+                let soran = $("#soranTr").val();
+                let cevaplayan = $("#cevapTr").val();
+                $("#show_item").append(' <div id="show_item" class="py-12">\
                                     <div class=" container" style=" padding:2%;"\
                                         role="tabpanel">\
                                         <div class="row mb-6">\
@@ -1029,7 +1048,7 @@
                                                     <div class="col-lg-8 fv-row">\
                                                         <input type="text"\
                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                            name="soran_tr[]" id="">\
+                                                            name="soran_tr[]" id="" value="'+ soran +'">\
                                                     </div>\
                                                 </div>\
                                             </div>\
@@ -1042,7 +1061,7 @@
                                                     <div class="col-lg-8 fv-row">\
                                                         <input type="text"\
                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                            name="cevaplayan_tr[]" id="">\
+                                                            name="cevaplayan_tr[]" id="" value="'+ cevaplayan + '">\
                                                     </div>\
                                                 </div>\
                                             </div>\
@@ -1086,7 +1105,9 @@
         $(document).ready(function() {
             $(".add_item_buton2").click(function(e) {
                 e.preventDefault();
-                $("#show_item2").prepend('<div id="show_item2" class="py-12">\
+                let soran = $("#soranTr").val();
+                let cevaplayan = $("#cevapTr").val();
+                $("#show_item2").append('<div id="show_item2" class="py-12">\
                                     <div  role="tabpanel" style=" padding:2%;">\
                                         <div class="row mb-6">\
                                             <div class="col-md-6">\
@@ -1097,7 +1118,7 @@
                                                     <div class="col-lg-8 fv-row">\
                                                         <input type="text"\
                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                            name="soran_en[]" id="">\
+                                                            name="soran_en[]" id="" value="'+ soran +'">\
                                                     </div>\
                                                 </div>\
                                             </div>\
@@ -1110,7 +1131,7 @@
                                                     <div class="col-lg-8 fv-row">\
                                                         <input type="text"\
                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                            name="cevaplayan_en[]" id="">\
+                                                            name="cevaplayan_en[]" id="" value="'+ cevaplayan + '">\
                                                     </div>\
                                                 </div>\
                                             </div>\

@@ -143,22 +143,6 @@
                             </div>
 
 
-                            <nav class="rt-pagination-area gap-top-90">
-                                <ul class="pagination rt-pagination justify-content-center">
-                                    <li class="page-item prev">
-                                        <a class="page-link" href="#"><i class="fas fa-angle-double-left"></i></a>
-                                    </li>
-                                    <li class="page-item active" aria-current="page">
-                                        <span class="page-link">1</span>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                    <li class="page-item next">
-                                        <a class="page-link" href="#"><i class="fas fa-angle-double-right"></i></a>
-                                    </li>
-                                </ul>
-                            </nav>
                             <!-- end rt-pagination-area -->
 
                         </div>
@@ -281,14 +265,12 @@
                                     <span class="rt-section-line"></span>
                                 </h2>
                                 <div class="tag-list">
-                                    <a href="#" class="tag-link">güzel</a>
-                                    <a href="#" class="tag-link">seyahat</a>
-                                    <a href="#" class="tag-link">teknoloji</a>
-                                    <a href="#" class="tag-link">kimyasak</a>
-                                    <a href="#" class="tag-link">siyaset</a>
-                                    <a href="#" class="tag-link">işletme</a>
-                                    <a href="#" class="tag-link">makyaj</a>
-                                    <a href="#" class="tag-link">sosyal</a>
+                                    @foreach($keys as $key)
+                                        @dd($keys)
+                                        @foreach(json_decode(json_encode($key)) as $tag)
+                                            <a href="#" class="tag-link">{{ $tag }}</a>
+                                        @endforeach
+                                    @endforeach
                                 </div>
                             </div>
                             <!-- end sidebar wrap -->
