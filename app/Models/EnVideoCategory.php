@@ -13,4 +13,15 @@ class EnVideoCategory extends Model
     protected $casts = [
         "seo_key" => "array"
     ];
+
+    public function CategoryProduct()
+    {
+        $lang = session('applocale') ?? config('app.fallback_locale');
+        if ($lang == 'tr') {
+            $data = Video::where('category_id', $this->id)->take(4)->get();
+        } else {
+            $data = EnVideo::where('category_id', $this->id)->take(4)->get();
+        }
+        return $data;
+    }
 }

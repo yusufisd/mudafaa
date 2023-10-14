@@ -5,6 +5,19 @@
             background-color: #749f43;
             color: white;
         }
+
+        .post-body:first-letter {
+            float: left;
+            font-weight: bold;
+            font-size: 10px;
+            font-size: 4rem;
+            line-height: 20px;
+            line-height: 2rem;
+            height: 4rem;
+            text-transform: uppercase;
+            padding: 2%;
+            margin-left: 2%
+        }
     </style>
     <!-- Start Main -->
     <main>
@@ -135,7 +148,7 @@
                             </div>
 
                             <!-- strat psot body -->
-                            <div class="post-body justify-between" style="text-align: justify; margin-bottom:3%">
+                            <div class="post-body justify-between" style="text-align: justify">
 
                                 {!! $data->description !!}
 
@@ -145,13 +158,15 @@
                             <!-- start social-share-box-2 -->
                             <div class="social-share-box-2 mb--40">
                                 <div class="row gutter-30">
-                                    <div class="col-xl-7 col-lg-6">
-                                        <div class="conent-block">
+                                    <div class="col-xl-12 col-lg-12">
+                                        <div class="conent-block" style="margin-top:3%">
                                             <h4 class="block-tile mb--20">Popüler Etiketler:</h4>
                                             <div class="tag-list">
 
                                                 @foreach ($data->seo_key as $key)
-                                                    <a class="tag-link"> {{ $key }} </a>
+                                                    <a class="tag-link"
+                                                        style="text-transform: capitalize; text-decoration:none">
+                                                        {{ $key }} </a>
                                                 @endforeach
                                             </div>
 
@@ -256,8 +271,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                   // sidebar title limitation
-                -------------------------------*/
+                       // sidebar title limitation
+                    -------------------------------*/
         // Select all tags with class .sidebar_restricted_category_title
         $('.sidebar_restricted_category_title').each(function() {
             var content = $(this).text().trim(); // get the content of a tag

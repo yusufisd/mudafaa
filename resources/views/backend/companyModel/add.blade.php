@@ -503,12 +503,13 @@
                                         </div>
 
                                         <div class="tab-pane fade container" id="basliklar" role="tabpanel"><br>
-                                            <div class="row" style="padding: 1%" id="show_item">
+                                            <div class="row" style="padding: 1%;margin-left:0" id="show_item">
                                                 <div class="col-md-3">
                                                     <div class="col-lg-11 fv-row">
                                                         <input type="text" placeholder="İkon"
                                                             class="form-control w-full form-control-lg form-control-solid mb-3 mb-lg-0"
                                                             name="company_icon[]" id="">
+                                                            <span style="color:gray">Fontawesome sitesinden alınmaldır.</span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
@@ -525,14 +526,14 @@
                                                             name="company_description[]" id="">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-1">
-                                                    <button style="width:90px"  class="btn btn-primary add_item_buton">EKLE</button>
+                                                <div class="col-md-1" style="text-align: right;padding-right:0;padding-left:0">
+                                                    <button style="width:100%" style="text-align: right" class="btn btn-primary add_item_buton">EKLE</button>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="tab-pane fade container" id="gorseller" role="tabpanel"><br>
-                                            <div class="row" style="padding: 1%" id="show_item3">
+                                            <div class="row" id="show_item3">
                                                 <div class="col-md-5">
                                                     <div class="col-lg-11 fv-row">
                                                         <input type="file"
@@ -547,19 +548,19 @@
                                                             name="gorseller_queue[]" id="">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2">
-                                                    <button style="width:90px"  class="btn btn-primary add_item_buton3">EKLE</button>
+                                                <div class="col-md-2" style="text-align: right">
+                                                    <button style="width:100px"  class="btn btn-primary add_item_buton3">EKLE</button>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="tab-pane fade container" id="adresler" role="tabpanel"><br>
                                             <div id="show_item2">
-                                                <div  style="border:solid; padding:2%; border-color:lightgray; border-radius:15px">
+                                                <div style="padding:2%">
                                                     <div class="row mb-6">
                                                         <!--begin::Label-->
                                                         <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
-                                                            <span class="required"> Başlık</span>
+                                                            <span class=""> Başlık</span>
                                                         </label>
                                                         <!--end::Label-->
                                                         <!--begin::Col-->
@@ -574,7 +575,7 @@
                                                     <div class="row mb-6">
                                                         <!--begin::Label-->
                                                         <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
-                                                            <span class="required"> Adres</span>
+                                                            <span class=""> Adres</span>
                                                         </label>
                                                         <!--end::Label-->
                                                         <!--begin::Col-->
@@ -592,7 +593,7 @@
                                                             <div class="row mb-6">
                                                                 <!--begin::Label-->
                                                                 <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">
-                                                                    <span class="required"> website</span>
+                                                                    <span class=""> Website</span>
                                                                 </label>
                                                                 <!--end::Label-->
                                                                 <!--begin::Col-->
@@ -608,7 +609,7 @@
                                                             <div class="row mb-6">
                                                                 <!--begin::Label-->
                                                                 <label class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">
-                                                                    <span class="required"> Harita </span>
+                                                                    <span class=""> Harita <br><p style="  font-weight: normal;font-size:13px;">(iframe linki)</p> </span>
                                                                 </label>
                                                                 <!--end::Label-->
                                                                 <!--begin::Col-->
@@ -627,7 +628,7 @@
                                                             <div class="row mb-6">
                                                                 <!--begin::Label-->
                                                                 <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">
-                                                                    <span class="required"> Email</span>
+                                                                    <span class=""> Email</span>
                                                                 </label>
                                                                 <!--end::Label-->
                                                                 <!--begin::Col-->
@@ -643,12 +644,12 @@
                                                             <div class="row mb-6">
                                                                 <!--begin::Label-->
                                                                 <label class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">
-                                                                    <span class="required"> Telefon </span>
+                                                                    <span class=""> Telefon </span>
                                                                 </label>
                                                                 <!--end::Label-->
                                                                 <!--begin::Col-->
                                                                 <div class="col-lg-8 fv-row">
-                                                                    <input type="text"
+                                                                    <input type="number"
                                                                         class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                         name="address_phone[]" id="">
                                                                 </div>
@@ -657,10 +658,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div style="text-align: center" class="py-6">
+                                                    <button style="width:100px" type="button" class="btn btn-primary add_item_buton2">EKLE</button>
+                                                </div>
                                             </div>
-                                            <div style="text-align: center" class="py-6">
-                                                <button style="width:100px" type="button" class="btn btn-primary add_item_buton2">EKLE</button>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -758,12 +760,13 @@
         $(document).ready(function() {
             $(".add_item_buton").click(function(e) {
                 e.preventDefault();
-                $("#show_item").prepend('<div class="row pb-10"  padding-right:0%" id="show_item">\
+                $("#show_item").append('<div class="row pb-10"  style="margin-left:0" id="show_item">\
                                                 <div class="col-md-3">\
-                                                    <div class="col-lg-11 fv-row">\
+                                                    <div class="col-lg-11 fv-row" >\
                                                         <input type="text" placeholder="İkon"\
                                                             class="form-control w-full form-control-lg form-control-solid mb-3 mb-lg-0"\
                                                             name="company_icon[]" id="">\
+                                                            <span style="color:gray">Fontawesome sitesinden alınmaldır.</span>\
                                                     </div>\
                                                 </div>\
                                                 <div class="col-md-4">\
@@ -780,7 +783,7 @@
                                                             name="company_description[]" id="">\
                                                     </div>\
                                                 </div>\
-                                                <div class="col-md-1" >\
+                                                <div class="col-md-1" style="text-align:right;padding-right:0">\
                                                     <button style="width:100px" class="btn btn-danger delete_item_buton ">SİL</button>\
                                                 </div>\
                                             </div>');
@@ -798,11 +801,11 @@
         $(document).ready(function() {
             $(".add_item_buton2").click(function(e) {
                 e.preventDefault();
-                $("#show_item2").prepend('<div id="show_item2" class="pb-20">\
-                                                <div  style="border:solid; padding:2%; border-color:lightgray; border-radius:15px">\
+                $("#show_item2").append('<hr><div id="show_item2">\
+                                                <div style="padding:2%" >\
                                                     <div class="row mb-6">\
                                                         <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
-                                                            <span class="required"> Başlık</span>\
+                                                            <span class=""> Başlık</span>\
                                                         </label>\
                                                         <div class="col-lg-10 fv-row">\
                                                             <input type="text"\
@@ -812,7 +815,7 @@
                                                     </div>\
                                                     <div class="row mb-6">\
                                                         <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
-                                                            <span class="required"> Adres</span>\
+                                                            <span class=""> Adres</span>\
                                                         </label>\
                                                         <div class="col-lg-10 fv-row">\
                                                             <input type="text"\
@@ -824,7 +827,7 @@
                                                         <div class="col-md-6">\
                                                             <div class="row mb-6">\
                                                                 <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">\
-                                                                    <span class="required"> website</span>\
+                                                                    <span class=""> Website</span>\
                                                                 </label>\
                                                                 <div class="col-lg-8 fv-row">\
                                                                     <input type="text"\
@@ -836,10 +839,10 @@
                                                         <div class="col-md-6">\
                                                             <div class="row mb-6">\
                                                                 <label class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">\
-                                                                    <span class="required"> Harita </span>\
+                                                                    <span class=""> Harita <br><p style="  font-weight: normal;font-size:13px;">(iframe linki)</p> </span>\
                                                                 </label>\
                                                                 <div class="col-lg-8 fv-row">\
-                                                                    <input type="text"\
+                                                                    <input type="number"\
                                                                         class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
                                                                         name="address_map[]" id="">\
                                                                 </div>\
@@ -850,7 +853,7 @@
                                                         <div class="col-md-6">\
                                                             <div class="row mb-6">\
                                                                 <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">\
-                                                                    <span class="required"> Email</span>\
+                                                                    <span class=""> Email</span>\
                                                                 </label>\
                                                                 <div class="col-lg-8 fv-row">\
                                                                     <input type="text"\
@@ -862,7 +865,7 @@
                                                         <div class="col-md-6">\
                                                             <div class="row mb-6">\
                                                                 <label class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">\
-                                                                    <span class="required"> Telefon </span>\
+                                                                    <span class=""> Telefon </span>\
                                                                 </label>\
                                                                 <div class="col-lg-8 fv-row">\
                                                                     <input type="text"\
@@ -891,7 +894,7 @@
             $(document).ready(function() {
                 $(".add_item_buton3").click(function(e) {
                     e.preventDefault();
-                    $("#show_item3").prepend('<div class="row pb-10"  id="show_item3">\
+                    $("#show_item3").append('<div class="row pt-10" style="margin-left:0"  id="show_item3">\
                         <div class="col-md-5">\
                             <div class="col-lg-11 fv-row">\
                                 <input type="file"\
@@ -906,7 +909,7 @@
                                     name="gorseller_queue[]" id="">\
                             </div>\
                         </div>\
-                        <div class="col-md-2">\
+                        <div class="col-md-2" style="text-align:right;padding-right:0">\
                             <button style="width:100px" class="btn btn-danger delete_item_buton3">SİL</button>\
                         </div>\
                     </div>');

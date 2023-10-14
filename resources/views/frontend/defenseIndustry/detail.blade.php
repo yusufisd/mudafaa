@@ -297,7 +297,7 @@
                                             <div class="tag-list">
                                                 @foreach ($data->seo_key as $key)
                                                 @endforeach
-                                                <a href="#" class="tag-link"> {{ $key }} </a>
+                                                <a href="#" class="tag-link" style="text-transform: capitalize"> {{ $key }} </a>
                                             </div>
                                         </div>
                                     </div>

@@ -18,9 +18,28 @@
             padding: 2%;
             margin-left: 2%
         }
-        .tag-link:hover{
-            background-color:#749f43;
-            color:white;
+
+        .tag-link:hover {
+            background-color: #749f43;
+            color: white;
+        }
+
+        .social-connection a i.twitter {
+            background-color: #131414;
+        }
+    </style>
+    <style>
+        .social-connection li:nth-child(2) a {
+            background-image: -webkit-gradient(linear, right top, left top, from(#56c3f0), to(#13a4e7));
+            background-image: linear-gradient(-90deg, #909fa5 0%, #151616 100%);
+            background-image: -ms-linear-gradient(-90deg, #56c3f0 0%, #13a4e7 100%);
+        }
+
+        .social-connection li:nth-child(5) a {
+            border-radius: 3px;
+            background-image: -webkit-gradient(linear, right top, left top, from(#f43079), to(#f7679d));
+            background-image: linear-gradient(-90deg, #5579ad 0%, #1a6be1 100%);
+            background-image: -ms-linear-gradient(-90deg, #f43079 0%, #f7679d 100%);
         }
     </style>
     <main>
@@ -145,7 +164,8 @@
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a class="tw" style="background-color: black" target="_blank" href="https://twitter.com/">
+                                                        <a class="tw" style="background-color: black" target="_blank"
+                                                            href="https://twitter.com/">
                                                             <i class="fa-brands fa-square-x-twitter twitter"></i>
                                                         </a>
                                                     </li>
@@ -222,53 +242,12 @@
                                                 <div class="tag-list">
 
                                                     @foreach ($data->seo_key as $item)
-                                                        <a href="#" class="tag-link"> {{ $item }} </a>
+                                                        <a href="#" class="tag-link"
+                                                            style="text-transform: capitalize"> {{ $item }} </a>
                                                     @endforeach
 
 
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-5 col-lg-6 d-flex justify-content-start justify-content-lg-end">
-                                            <div class="conent-block">
-                                                <h4 class="block-tile mb--20"> {{ __('message.paylaş') }} :</h4>
-                                                <ul class="social-share-style-1">
-                                                    <li>
-                                                        <a class="fb" target="_blank"
-                                                            href="https://www.facebook.com/">
-                                                            <i class="social-icon fab fa-facebook-f"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="tw" target="_blank" style="background-color: black" href="https://twitter.com/">
-                                                            <i  class="fa-brands fa-square-x-twitter twitter"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="yu" target="_blank"
-                                                            href="https://www.youtube.com/">
-                                                            <i class="social-icon fab fa-youtube"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="fb" target="_blank" href="https://linkedin.com/">
-                                                            <i class="social-icon fab fa-linkedin"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="dw" target="_blank"
-                                                            href="https://cloud.google.com/">
-                                                            <i class="social-icon fas fa-cloud"></i>
-                                                        </a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a class="wh" target="_blank"
-                                                            href="https://www.whatsapp.com/">
-                                                            <i class="social-icon fab fa-whatsapp"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
                                             </div>
                                         </div>
                                     </div>
@@ -278,8 +257,8 @@
                                 <!-- start author box -->
                                 <div class="author-box-style-1 mb--35">
                                     <div class="author-img">
-                                        <img src="{{ asset('assets/sabit.png') }}" alt="author-img_1"
-                                            width="170" height="170">
+                                        <img src="{{ asset('assets/sabit.png') }}" alt="author-img_1" width="170"
+                                            height="170">
                                     </div>
                                     <div class="author-content">
                                         <h3 class="author-name"> {{ $data->Author->name }} {{ $data->Author->surname }}
@@ -705,7 +684,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a  href="https://twitter.com/millimudafaacom">
+                                        <a href="https://twitter.com/millimudafaacom">
                                             <i class="fa-brands fa-square-x-twitter twitter"></i>
                                             <span class="text"><span>20,751</span> Takipçi</span>
                                         </a>
@@ -725,7 +704,7 @@
                                     </li>
                                     <li>
                                         <a href="https://www.linkedin.com/company/milli-m%C3%BCdafaa/">
-                                            <i class="fab fa-linkedin-in linkedin"></i>
+                                            <i class="fab fa-linkedin-in facebook"></i>
                                             <span class="text"><span>35,999</span> Takipçi</span>
                                         </a>
                                     </li>
@@ -808,7 +787,8 @@
                                 <div class="tag-list">
 
                                     @foreach ($data->seo_key as $key)
-                                        <a href="#" class="tag-link"> {{ $key }} </a>
+                                        <a href="#" class="tag-link" style="text-transform: capitalize">
+                                            {{ $key }} </a>
                                     @endforeach
 
                                 </div>
@@ -834,8 +814,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                                                    // limit by device width
-                                                    -------------------------------*/
+                                                                    // limit by device width
+                                                                    -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
 

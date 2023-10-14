@@ -21,4 +21,6 @@ class Video extends Model
     public function Category(){
         return $this->hasOne(VideoCategory::class,'id','category_id');
     }
+
+    
 }

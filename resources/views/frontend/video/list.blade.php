@@ -35,51 +35,71 @@
         </div>
         <!-- End inner page Banner -->
 
-        <section class="section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="titile-wrapper mb--40">
-                            <h2 class="rt-section-heading mb-0 flex-grow-1 me-3">
-                                <span class="rt-section-text restricted_title"> {{$cat_first_name->title}} </span>
-                                <span class="rt-section-dot"></span>
-                                <span class="rt-section-line"></span>
-                            </h2>
+        @foreach ($categories as $cat)
+            <section class="section-padding">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="titile-wrapper mb--40">
+                                <h2 class="rt-section-heading flex-grow-1 mb-0 me-3">
+                                    <span class="rt-section-text restricted_title"> {{ $cat->title }} </span>
+                                    <span class="rt-section-dot"></span>
+                                    <span class="rt-section-line"></span>
+                                </h2>
 
-                            <div>
-                                <h6><a href="#">Tümünü Gör</a></h6>
-                            </div>
-                        </div>
-                        <!-- end titile-wrapper -->
-                    </div>
-                </div>
-                <div class="row gutter-24">
-
-                    @foreach ($cat_first as $item)
-                        <div class="col-xl-3 col-md-6 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="800ms">
-                            <div class="rt-post-grid grid-meta">
-                                <div class="post-img">
-                                    <a href="#">
-                                        <img src="/{{$item->image}}" alt="post"
-                                            width="551" height="431">
-                                    </a>
-                                    <a href="{{ route('front.video.detail', $item->id) }}" class="tr-bangladesh rt-meta-over"> test </a>
-                                    <a href="http://www.youtube.com/watch?v=1iIZeIy7TqM"
-                                        class="play-btn play-btn-white_lg rt-play-over">
-                                        <i class="fas fa-play"></i>
-                                    </a>
+                                <div>
+                                    <h6><a href="#">{{ __('message.tümünü gör')}}</a></h6>
                                 </div>
                             </div>
+                            <!-- end titile-wrapper -->
                         </div>
+                    </div>
+                    <div class="row gutter-24">
 
-                    @endforeach
+                        @foreach ($cat->CategoryProduct() as $item)
+                            <div class="col-xl-3 col-md-6 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="800ms">
+                                <div class="slide-item">
+                                    <div class="rt-post-grid grid-meta">
+                                        <div class="post-img">
+                                            <a href="#">
+                                                <img src="/{{ $item->image }}" alt="post" width="551"
+                                                    height="431">
+                                            </a>
+                                        </div>
+                                        <div class="post-content">
+                                           
+                                            <h4 class="post-title">
+                                                <a href="https://mudafaa.test/guncel-haber/altay-tanki-seri-uretime-hazir"
+                                                    class="restricted_title_2">
+                                                    {{ $item->title }}
+                                                </a>
+                                            </h4>
+
+                                            <div class="post-meta">
+                                                <ul>
+                                                    <li>
+                                                        <span class="rt-meta">
+                                                            <i class="far fa-calendar-alt icon"></i>
+                                                            {{ $item->created_at->translatedFormat('d M Y') }}
+                                                        </span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        @endforeach
 
 
+                    </div>
+                    <!-- end row -->
                 </div>
-                <!-- end row -->
-            </div>
-            <!-- end container -->
-        </section>
+                <!-- end container -->
+            </section>
+        @endforeach
+
 
         <!-- start rt ad banner -->
         <div class="rt-ad-banner rt-ad-banner-style-1 section-padding">
@@ -101,100 +121,6 @@
         </div>
         <!-- end rt ad banner -->
 
-        <!-- start travel-main-section-style-3 -->
-        <section class="travel-main-section-style-3 section-padding"
-            style="background-image: url('media/elements/element_9.png');">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="titile-wrapper mb--40">
-                            <h2 class="rt-section-heading mb-0 flex-grow-1 me-3">
-                                <span class="rt-section-text restricted_title"> {{$cat_second_name->title}} </span>
-                                <span class="rt-section-dot"></span>
-                                <span class="rt-section-line"></span>
-                            </h2>
-
-                            <div>
-                                <h6><a href="fair_list.html">Tümünü Gör</a></h6>
-                            </div>
-                        </div>
-                        <!-- end titile-wrapper -->
-                    </div>
-                </div>
-                <div class="row gutter-24">
-
-                    @foreach ($cat_second as $item)
-
-                        <div class="col-xl-3 col-md-6 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="800ms">
-                            <div class="rt-post-grid grid-meta">
-                                <div class="post-img">
-                                    <a href="single-post1.html">
-                                        <img src="/{{$item->image}}" alt="post"
-                                            width="551" height="431">
-                                    </a>
-                                    <a href="single-post1.html" class="tr-bangladesh rt-meta-over"> test </a>
-                                    <a href="http://www.youtube.com/watch?v=1iIZeIy7TqM"
-                                        class="play-btn play-btn-white_lg rt-play-over">
-                                        <i class="fas fa-play"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                    @endforeach
-
-                </div>
-                <!-- end row -->
-            </div>
-            <!-- end container -->
-        </section>
-        <!-- end travel-main-section-style-3 -->
-
-        <section class="section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="titile-wrapper mb--40">
-                            <h2 class="rt-section-heading mb-0 flex-grow-1 me-3">
-                                <span class="rt-section-text restricted_title"> {{$cat_third_name->title}} </span>
-                                <span class="rt-section-dot"></span>
-                                <span class="rt-section-line"></span>
-                            </h2>
-
-                            <div>
-                                <h6><a href="reports_list.html">Tümünü Gör</a></h6>
-                            </div>
-                        </div>
-                        <!-- end titile-wrapper -->
-                    </div>
-                </div>
-                <div class="row gutter-24">
-
-                    @foreach ($cat_third as $item)
-
-                        <div class="col-xl-3 col-md-6 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="800ms">
-                            <div class="rt-post-grid grid-meta">
-                                <div class="post-img">
-                                    <a href="single-post1.html">
-                                        <img src="/{{$item->image}}" alt="post"
-                                            width="551" height="431">
-                                    </a>
-                                    <a href="single-post1.html" class="tr-bangladesh rt-meta-over"> test </a>
-                                    <a href="http://www.youtube.com/watch?v=1iIZeIy7TqM"
-                                        class="play-btn play-btn-white_lg rt-play-over">
-                                        <i class="fas fa-play"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                    @endforeach
-
-                </div>
-                <!-- end row -->
-            </div>
-            <!-- end container -->
-        </section>
 
         <!-- start rt ad banner -->
         <div class="rt-ad-banner rt-ad-banner-style-1 section-padding">
@@ -222,8 +148,8 @@
 @section('script')
     <script>
         /*--------------------------------
-            // limit by device width
-            -------------------------------*/
+                // limit by device width
+                -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
         console.log(windowWidth);

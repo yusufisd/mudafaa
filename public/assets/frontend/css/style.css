@@ -7611,7 +7611,7 @@ video {
 }
 .social-connection li:nth-child(2) a {
   background-image: -webkit-gradient(linear, right top, left top, from(#56c3f0), to(#13a4e7));
-  background-image: linear-gradient(-90deg, #56c3f0 0%, #13a4e7 100%);
+  background-image: linear-gradient(-90deg, #131517 0%, #0a0b0b 100%);
   background-image: -ms-linear-gradient(-90deg, #56c3f0 0%, #13a4e7 100%);
 }
 .social-connection li:nth-child(3) a {
