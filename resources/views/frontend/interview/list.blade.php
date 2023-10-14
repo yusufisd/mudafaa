@@ -1,6 +1,12 @@
 @extends('frontend.master')
 @section('content')
     <!-- Start Main -->
+    <style>
+        .pagination>li>a,
+        .pagination>li>span {
+            color: rgb(26, 159, 26); // use your own color here
+        }
+    </style>
     <main>
         <!-- theme-switch-box -->
         <div class="theme-switch-box-mobile-wrap">
@@ -241,7 +247,7 @@
                                     </li>
                                     <li>
                                         <a href="https://twitter.com/millimudafaacom">
-                                            <i class="fab fa-twitter twitter"></i>
+                                            <i class="fa-brands fa-square-x-twitter twitter"></i>
                                             <span class="text"><span>20,751</span> Takipçi</span>
                                         </a>
                                     </li>

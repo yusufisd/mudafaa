@@ -2,6 +2,28 @@
 @section('css')
     <!-- Fancybox CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+    <style>
+        .post-body {
+            color: #000;
+        }
+
+        .post-body:first-letter {
+            float: left;
+            font-weight: bold;
+            font-size: 10px;
+            font-size: 4rem;
+            line-height: 20px;
+            line-height: 2rem;
+            height: 4rem;
+            text-transform: uppercase;
+            padding: 2%;
+            margin-left: 2%
+        }
+        .tag-link:hover{
+            background-color:#749f43;
+            color:white;
+        }
+    </style>
 @endsection
 @section('content')
     <main>
@@ -58,7 +80,7 @@
                 <div class="row">
                     <div class="col-xl-9 col-lg-10 mx-auto">
                         <div class="single-post-content">
-                            <span class="fashion">{{ $data->Category->title }}</span>
+                            <span style="background-color:#749f43" class="fashion">{{ $data->Category->title }}</span>
                             <h2 class="post-title">
                                 {{ $data->title }}
                             </h2>
@@ -74,7 +96,7 @@
                                     <li>
                                         <span class="rt-meta">
                                             <i class="far fa-clock icon"></i>
-                                            {{ $data->read_time }}
+                                            {{ $data->read_time }} DK
                                         </span>
                                     </li>
                                     <li>
@@ -116,7 +138,7 @@
                                         </li>
                                         <li>
                                             <a class="tw" target="_blank" href="https://twitter.com/">
-                                                <i class="social-icon fab fa-twitter"></i>
+                                                <i style="color:black" class="fa-brands fa-square-x-twitter twitter"></i>
                                             </a>
                                         </li>
                                         <li>
@@ -185,13 +207,13 @@
                                             <div class="row flag_tab">
 
 
-                                                <div class="col-lg-1 grid-adress">
-                                                    @foreach ($data->Companies() as $e)
+                                                @foreach ($data->Companies() as $e)
+                                                    <div class="col-lg-1 grid-adress" style="width: 150px">
+
                                                         <img title="{{ $e->title }}" src="/{{ $e->image }}">
-                                                    @endforeach
 
-                                                </div>
-
+                                                    </div>
+                                                @endforeach
 
 
                                             </div>
@@ -390,7 +412,7 @@
                                         </div>
                                         <div class="post-content">
                                             <a href="{{ route('front.defenseIndustryCategory.list', $item->GeneralCategory->link) }}"
-                                                class="rt-cat-primary sidebar_restricted_category_title">{{ $item->GeneralCategory->title }}</a>
+                                                class="rt-cat-primary ">{{ substr($item->GeneralCategory->title,0,20) }}...</a>
                                             <h3 class="post-title">
                                                 <a href="{{ route('front.defenseIndustryContent.detail', $item->link) }}">
                                                     {{ $item->title }}
@@ -407,13 +429,13 @@
                                                     <li>
                                                         <span class="rt-meta">
                                                             <i class="far fa-clock icon"></i>
-                                                            2 Dk.
+                                                            {{ $item->read_time == 0 ? '2' : $item->read_time }} DK
                                                         </span>
                                                     </li>
                                                     <li>
                                                         <span class="rt-meta">
                                                             <i class="far fa-eye icon"></i>
-                                                            3,250
+                                                            {{ $item->view_counter }}
                                                         </span>
                                                     </li>
                                                 </ul>
@@ -439,8 +461,8 @@
 @section('script')
     <script>
         /*--------------------------------
-                                   // sidebar title limitation
-                                -------------------------------*/
+                                       // sidebar title limitation
+                                    -------------------------------*/
         // Select all tags with class .sidebar_restricted_category_title
         $('.sidebar_restricted_category_title').each(function() {
             var content = $(this).text().trim(); // get the content of a tag

@@ -88,7 +88,9 @@ return [
     "sözlük" => "Sözlük",
     "kullanıcı" => "Kullanıcı",
     "hakkımızda" => "Hakkımızda",
-
+    "Üzgünüz... Sayfa Bulunamadı!" => "Üzgünüz... Sayfa Bulunamadı!",
+    "Aradığınız sayfa bulunamadı." => "Aradığınız sayfa bulunamadı.",
+    "ANA SAYFAYA DÖN" => "ANA SAYFAYA DÖN",
 
 
 ];

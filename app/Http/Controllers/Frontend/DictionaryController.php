@@ -42,13 +42,13 @@ class DictionaryController extends Controller
             if ($letter != null) {
                 $data = Dictionary::where('title', 'LIKE',  $letter . '%')->paginate(6);
             } else {
-                $data = Dictionary::latest()->paginate(6);
+                $data = Dictionary::latest()->paginate(12);
             }
         } elseif ($local == 'en') {
             if ($letter != null) {
                 $data = EnDictionary::where('title', 'LIKE',  $letter . '%')->paginate(6);
             } else {
-                $data = EnDictionary::latest()->paginate(6);
+                $data = EnDictionary::latest()->paginate(12);
             }
         }
         return view('frontend.dictionary.list', compact('data', 'alphabets'));

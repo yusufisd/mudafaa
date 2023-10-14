@@ -1,6 +1,28 @@
 @extends('frontend.master')
 @section('content')
     <!-- Start Main -->
+    <style>
+        .post-body {
+            color: #000;
+        }
+
+        .post-body:first-letter {
+            float: left;
+            font-weight: bold;
+            font-size: 10px;
+            font-size: 4rem;
+            line-height: 20px;
+            line-height: 2rem;
+            height: 4rem;
+            text-transform: uppercase;
+            padding: 2%;
+            margin-left: 2%
+        }
+        .tag-link:hover{
+            background-color:#749f43;
+            color:white;
+        }
+    </style>
     <main>
         <!-- theme-switch-box -->
         <div class="theme-switch-box-mobile-wrap">
@@ -61,7 +83,7 @@
                             <div class="rt-main-post-single grid-meta">
 
                                 <!-- start post header -->
-                                <div class="post-header">
+                                <div class="post-header drop-cap">
                                     <span class="rt-cat-primary"
                                         style="background-color: {{ $data->Category->color_code != null ? $data->Category->color_code : '' }}">
                                         {{ $data->Category->title }} </span>
@@ -96,7 +118,7 @@
                                             <li>
                                                 <span class="rt-meta">
                                                     <i class="far fa-clock icon"></i>
-                                                    {{ $data->read_time }}
+                                                    {{ $data->read_time }} DK
                                                 </span>
                                             </li>
                                             <li>
@@ -123,8 +145,8 @@
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a class="tw" target="_blank" href="https://twitter.com/">
-                                                            <i class="social-icon fab fa-twitter"></i>
+                                                        <a class="tw" style="background-color: black" target="_blank" href="https://twitter.com/">
+                                                            <i class="fa-brands fa-square-x-twitter twitter"></i>
                                                         </a>
                                                     </li>
                                                     <li>
@@ -133,8 +155,8 @@
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a class="dr" target="_blank" href="https://dribbble.com/">
-                                                            <i class="social-icon fab fa-dribbble"></i>
+                                                        <a class="fb" target="_blank" href="https://linkedin.com/">
+                                                            <i class="social-icon fab fa-linkedin"></i>
                                                         </a>
                                                     </li>
                                                     <li>
@@ -178,11 +200,8 @@
 
                                 <!-- strat psot body -->
                                 <div class="post-body" style="text-align: justify">
-
-
                                     {!! $data->description !!}
-
-                                    <!-- ad banner -->
+                                    <br><br>
                                     <div class="ad-banner-img mt--45 mb--40">
                                         <a href="#">
                                             <img src="/assets/frontend/media/gallery/ad-banner_4.jpg" alt="ad-banner"
@@ -221,8 +240,8 @@
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a class="tw" target="_blank" href="https://twitter.com/">
-                                                            <i class="social-icon fab fa-twitter"></i>
+                                                        <a class="tw" target="_blank" style="background-color: black" href="https://twitter.com/">
+                                                            <i  class="fa-brands fa-square-x-twitter twitter"></i>
                                                         </a>
                                                     </li>
                                                     <li>
@@ -232,8 +251,8 @@
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a class="dr" target="_blank" href="https://dribbble.com/">
-                                                            <i class="social-icon fab fa-dribbble"></i>
+                                                        <a class="fb" target="_blank" href="https://linkedin.com/">
+                                                            <i class="social-icon fab fa-linkedin"></i>
                                                         </a>
                                                     </li>
                                                     <li>
@@ -259,7 +278,7 @@
                                 <!-- start author box -->
                                 <div class="author-box-style-1 mb--35">
                                     <div class="author-img">
-                                        <img src="/assets/frontend/media/gallery/author-img_1.jpg" alt="author-img_1"
+                                        <img src="{{ asset('assets/sabit.png') }}" alt="author-img_1"
                                             width="170" height="170">
                                     </div>
                                     <div class="author-content">
@@ -479,7 +498,7 @@
                                             <div class="row">
                                                 <div class="d-none d-md-block col-md-3 mb-3">
                                                     <div class="commentator-img">
-                                                        <img src="/assets/frontend/media/gallery/post-sm_1.jpg"
+                                                        <img src="{{ asset('assets/sabit.png') }}"
                                                             alt="commentator-img_1" width="170" height="170">
                                                     </div>
                                                 </div>
@@ -547,8 +566,8 @@
                                             <div class="col-12">
                                                 <div class="rt-form-group">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" required type="checkbox" value=""
-                                                            id="comment-form-check1">
+                                                        <input class="form-check-input" required type="checkbox"
+                                                            value="" id="comment-form-check1">
                                                         <label class="form-check-label" for="comment-form-check1">
                                                             <a
                                                                 href="empty.html">{{ __('message.Kişisel Verilerin Korunması') }}</a>
@@ -686,8 +705,8 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://twitter.com/millimudafaacom">
-                                            <i class="fab fa-twitter twitter"></i>
+                                        <a  href="https://twitter.com/millimudafaacom">
+                                            <i class="fa-brands fa-square-x-twitter twitter"></i>
                                             <span class="text"><span>20,751</span> Takipçi</span>
                                         </a>
                                     </li>
@@ -727,13 +746,13 @@
                                             <div class="rt-post post-sm style-1">
                                                 <div class="post-img">
                                                     <a href="{{ route('front.currentNews.detail', $item->link) }}">
-                                                        <img style="object-fit:cover" src="/{{ $item->image }}" alt="post" width="100"
-                                                            height="100">
+                                                        <img style="object-fit:cover" src="/{{ $item->image }}"
+                                                            alt="post" width="100" height="100">
                                                     </a>
                                                 </div>
                                                 <div class="post-content ms-4">
                                                     <a style="background-color: {{ $item->Category->color_code != null ? $item->Category->color_code : '' }}"
-                                                    href="{{ route('front.currentNewsCategory.list', $item->Category->link) }}"
+                                                        href="{{ route('front.currentNewsCategory.list', $item->Category->link) }}"
                                                         class="rt-cat-primary sidebar_restricted_category_title">
                                                         {{ $item->Category->title }} </a>
                                                     <h4 class="post-title">
@@ -815,8 +834,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                                                // limit by device width
-                                                -------------------------------*/
+                                                    // limit by device width
+                                                    -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
 

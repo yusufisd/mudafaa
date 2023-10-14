@@ -405,7 +405,7 @@
                                         <div class="row">
                                             <div class="d-none d-md-block col-md-3 mb-3">
                                                 <div class="commentator-img">
-                                                    <img src="/assets/frontend/media/gallery/post-sm_1.jpg"
+                                                    <img src="{{ asset('assets/sabit.png') }}"
                                                         alt="commentator-img_1" width="170" height="170">
                                                 </div>
                                             </div>

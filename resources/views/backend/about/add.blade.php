@@ -72,39 +72,51 @@
                                         <div class="tab-pane fade show active" id="tab_activity_detay" role="tabpanel">
                                             <div class="card-body px-3 py-9">
 
-                                                <div class="row">
 
-                                                    <div style="text-align:center" class="col-md-4 mb-6">
-                                                        <img  src="/{{ $data_tr->image1 ?? '' }}"
-                                                            style="width:150px; border-radius:15px" alt="">
-                                                        <label class="row col-form-label required fs-6 ps-5">Görsel 1 (
-                                                            960px-520px)</label>
-                                                        <div class="col-md-10">
-                                                            <input required type="file" class="form-control" name="image1"
-                                                                id="">
+
+                                                <div style="margin-bottom: 3%">
+                                                    <div class="gorseller row" style="text-align: center">
+                                                        <div class="col-md-4">
+                                                            <img src="/{{ $data_tr->image1 ?? '' }}"
+                                                                style="width:150px; border-radius:15px" alt="">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <img src="/{{ $data_tr->image2 ?? '' }}"
+                                                                style="width:150px; border-radius:15px" alt="">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <img src="/{{ $data_tr->image3 ?? '' }}"
+                                                                style="width:150px; border-radius:15px" alt="">
                                                         </div>
                                                     </div>
-
-                                                    <div style="text-align: center" class="col-md-4 mb-6">
-                                                        <img src="/{{$data_tr->image2 ?? ''}}" style="width: 150px; border-radius:15px" alt="">
-                                                        <label class="row col-form-label required fs-6 ps-5">Görsel 2 (
-                                                            960px-520px)</label>
-                                                        <div class="col-md-10">
-                                                            <input required type="file" class="form-control" name="image2"
-                                                                id="">
+                                                    <div id="fileler" class="row">
+                                                        <div class="col-md-4">
+                                                            <label class="row col-form-label required fs-6 ps-5">Görsel 1 (
+                                                                960px-520px)</label>
+                                                            <div class="col-md-10">
+                                                                <input required type="file" class="form-control"
+                                                                    name="image1" id="">
+                                                            </div>
                                                         </div>
-                                                    </div>
-
-                                                    <div style="text-align: center" class="col-md-4 mb-6">
-                                                        <img src="/{{$data_tr->image3 ?? ''}}" style="width: 150px; border-radius:15px" alt="">
-                                                        <label class="row col-form-label required fs-6 ps-5">Görsel 3 (
-                                                            960px-520px)</label>
-                                                        <div class="col-md-10">
-                                                            <input required type="file" class="form-control" name="image3"
-                                                                id="">
+                                                        <div class="col-md-4">
+                                                            <label class="row col-form-label required fs-6 ps-5">Görsel 2 (
+                                                                960px-520px)</label>
+                                                            <div class="col-md-10">
+                                                                <input required type="file" class="form-control"
+                                                                    name="image2" id="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="row col-form-label required fs-6 ps-5">Görsel 3 (
+                                                                960px-520px)</label>
+                                                            <div class="col-md-10">
+                                                                <input required type="file" class="form-control"
+                                                                    name="image3" id="">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
+
 
 
 
@@ -153,7 +165,7 @@
                                                                                     onchange="create_slug_tr()"
                                                                                     id="activity_name_tr"
                                                                                     class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                    value="{{$data_tr->title ?? ''}}" />
+                                                                                    value="{{ $data_tr->title ?? '' }}" />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -176,7 +188,7 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row mb-5 ps-5">
 
-                                                                        <textarea id="editor" name="tinymce_activity_detail_tr" class="tox-target ckeditor"> {{$data_tr->description ?? ''}} </textarea>
+                                                                        <textarea id="editor" name="tinymce_activity_detail_tr" class="tox-target ckeditor"> {{ $data_tr->description ?? '' }} </textarea>
 
 
 
@@ -211,7 +223,7 @@
                                                                                             name="activity_url_tr"
                                                                                             id="activity_url_tr"
                                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                            value="{{$data_tr->link ?? ''}}" />
+                                                                                            value="{{ $data_tr->link ?? '' }}" />
                                                                                     </div>
 
 
@@ -253,7 +265,7 @@
                                                                                     id="activity_name_en"
                                                                                     onchange="create_slug_en()"
                                                                                     class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                    value="{{$data_en->title ?? ''}}" />
+                                                                                    value="{{ $data_en->title ?? '' }}" />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -276,7 +288,7 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row mb-5 ps-5">
 
-                                                                        <textarea id="editor2" name="tinymce_activity_detail_en" class="tox-target ckeditor"> {{$data_en->description ?? ''}} </textarea>
+                                                                        <textarea id="editor2" name="tinymce_activity_detail_en" class="tox-target ckeditor"> {{ $data_en->description ?? '' }} </textarea>
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -306,7 +318,7 @@
                                                                                             name="activity_url_en"
                                                                                             id="activity_url_en"
                                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                            value="{{$data_en->link ?? ''}}" />
+                                                                                            value="{{ $data_en->link ?? '' }}" />
                                                                                     </div>
 
 
@@ -371,10 +383,11 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input required type="text" name="activity_seo_title_tr"
+                                                                        <input required type="text"
+                                                                            name="activity_seo_title_tr"
                                                                             id="activity_seo_title_tr"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            value="{{$data_tr->seo_title ?? ''}}" />
+                                                                            value="{{ $data_tr->seo_title ?? '' }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -392,7 +405,7 @@
                                                             <!--begin::Col-->
                                                             <div class="col-lg-10 fv-row">
                                                                 <textarea name="activity_seo_description_tr" id="seo_description_tr"
-                                                                    class="form-control form-control-lg form-control-solid" > {{$data_tr->seo_description ?? ''}} </textarea>
+                                                                    class="form-control form-control-lg form-control-solid"> {{ $data_tr->seo_description ?? '' }} </textarea>
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -414,7 +427,7 @@
                                                                             id="activity_seo_keywords_tr"
                                                                             name="activity_seo_keywords_tr[]"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            value="{{json_encode($data_tr->seo_key ?? '') ?? ''}}" />
+                                                                            value="{{ $data_tr != null ? json_encode($data_tr->seo_key) : '' }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -447,10 +460,11 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input required type="text" name="activity_seo_title_en"
+                                                                        <input required type="text"
+                                                                            name="activity_seo_title_en"
                                                                             id="activity_seo_title_en"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            value="{{$data_en->seo_title ?? ''}}" />
+                                                                            value="{{ $data_en->seo_title ?? '' }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -468,7 +482,7 @@
                                                             <!--begin::Col-->
                                                             <div class="col-lg-10 fv-row">
                                                                 <textarea name="activity_seo_description_en" id="seo_description_en"
-                                                                    class="form-control form-control-lg form-control-solid" value=""> {{$data_en->seo_description ?? ''}} </textarea>
+                                                                    class="form-control form-control-lg form-control-solid" value=""> {{ $data_en->seo_description ?? '' }} </textarea>
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -490,7 +504,7 @@
                                                                             id="activity_seo_keywords_en"
                                                                             name="activity_seo_keywords_en[]"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            value="{{json_encode($data_en->seo_key ?? '') ?? ''}}" />
+                                                                            value="{{ $data_en != null ? json_encode($data_tr->seo_key) : '' }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>

@@ -31,7 +31,8 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"
         integrity="sha512-WW8/jxkELe2CAiE4LvQfwm1rajOS8PHasCCx+knHG0gBHt8EXxS6T6tJRTGuDQVnluuAvMxWF4j8SNFDKceLFg=="
@@ -106,47 +107,49 @@
                                     </div>
                                     <div class="social-wrap d-none d-xl-block">
                                         <ul class="rt-top-social">
-                                           <li>
-                                              <a href="https://www.facebook.com/millimudafaacom" target="_blank">
-                                                 <i class="fab fa-facebook-f"></i>
-                                              </a>
-                                           </li>
-                                           <li>
-                                              <a href="https://twitter.com/millimudafaacom" target="_blank">
-                                                <img src="/assets/x.png" style="width: 13px" alt="">
-                                              </a>
-                                           </li>
-                                           <li>
-                                              <a href="https://www.instagram.com/millimudafaacom" target="_blank">
-                                                 <i class="fab fa-instagram"></i>
-                                              </a>
-                                           </li>
-                                           <li>
-                                              <a href="https://www.youtube.com/channel/UC6uGHKEHHGh08sTWjhBrG9A" target="_blank">
-                                                 <i class="fab fa-youtube"></i>
-                                              </a>
-                                           </li>
-                                           <li>
-                                              <a href="https://www.linkedin.com/company/milli-m%C3%BCdafaa/" target="_blank">
-                                                 <i class="fab fa-linkedin-in"></i>
-                                              </a>
-                                           </li>
-                                           
+                                            <li>
+                                                <a href="https://www.facebook.com/millimudafaacom" target="_blank">
+                                                    <i class="fab fa-facebook-f"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://twitter.com/millimudafaacom" target="_blank">
+                                                    <img src="/assets/x.png" style="width: 13px" alt="">
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.instagram.com/millimudafaacom" target="_blank">
+                                                    <i class="fab fa-instagram"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.youtube.com/channel/UC6uGHKEHHGh08sTWjhBrG9A"
+                                                    target="_blank">
+                                                    <i class="fab fa-youtube"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.linkedin.com/company/milli-m%C3%BCdafaa/"
+                                                    target="_blank">
+                                                    <i class="fab fa-linkedin-in"></i>
+                                                </a>
+                                            </li>
+
                                         </ul>
-                                     </div>
+                                    </div>
                                     <div class="meta-wrap ms-2">
                                         <span class="rt-meta">
-                                            @if(langua() == "tr")
-                                            <a href="{{ route('chaange.lang',['en']) }}">
-                                                <img alt="image" width="30"
-                                                    src="{{ asset('/assets/en.png') }}">
-                                            </a>
+                                            @if (langua() == 'tr')
+                                                <a href="{{ route('chaange.lang', ['en']) }}">
+                                                    <img alt="image" width="30"
+                                                        src="{{ asset('/assets/en.png') }}">
+                                                </a>
                                             @endif
-                                            @if(langua() == "en")
-                                            <a href="{{ route('chaange.lang','tr') }}">
-                                                <img alt="image" width="30"
-                                                    src="{{ asset('/assets/tr.png') }}">
-                                            </a>
+                                            @if (langua() == 'en')
+                                                <a href="{{ route('chaange.lang', 'tr') }}">
+                                                    <img alt="image" width="30"
+                                                        src="{{ asset('/assets/tr.png') }}">
+                                                </a>
                                             @endif
                                         </span>
                                     </div>
@@ -190,13 +193,13 @@
                                                 <a class="animation" href="{{ route('front.home') }}"><i
                                                         class="fa fa-home fa-md"></i></a>
                                             </li>
-                                            <li class="main-menu__nav_sub list">
+                                            <li class="main-menu__nav_sub list {{ Route::is('front.currentNewsCategory.list') || Route::is('front.currentNews.detail') ? 'active' : '' }}" >
                                                 <a class="animation" href="javascript:void(0)">
                                                     {{ __('message.güncel haberler') }} </a>
                                                 <ul class="main-menu__dropdown">
 
                                                     @foreach (currentCats() as $item)
-                                                        <li><a
+                                                        <li><a  
                                                                 href="{{ route('front.currentNewsCategory.list', $item->link) }}">
                                                                 {{ $item->title }} </a></li>
                                                     @endforeach
@@ -204,7 +207,7 @@
 
                                                 </ul>
                                             </li>
-                                            <li class="main-menu__nav_sub list">
+                                            <li class="main-menu__nav_sub list {{ Route::is('front.defenseIndustryCategory.list') || Route::is('front.defenseIndustryContent.detail') || Route::is('front.defenseIndustrySubCategory.list2') ? 'active' : '' }}" >
                                                 <a class="animation" href="javascript:void(0)">
                                                     {{ __('message.savunma sanayi') }} </a>
                                                 <ul class="main-menu__dropdown">
@@ -218,24 +221,24 @@
 
                                                 </ul>
                                             </li>
-                                            <li>
+                                            <li class="{{ Route::is('front.defenseIndustryCategory.list') || Route::is('front.activity.list') || Route::is('front.activity.detail') ? 'active' : '' }}" >
                                                 <a class="animation" href="{{ route('front.activity.list') }}">
                                                     {{ __('message.etkinlikler') }} </a>
                                             </li>
-                                            <li>
+                                            <li class="{{ Route::is('front.interview.list') || Route::is('front.interview.detail') || Route::is('front.activity.detail') ? 'active' : '' }}" >
                                                 <a class="animation" href="{{ route('front.interview.list') }}">
                                                     {{ __('message.röportajlar') }} </a>
                                             </li>
-                                            <li>
+                                            <li class="{{ Route::is('front.company.list') || Route::is('front.company.detail') || Route::is('front.activity.detail') ? 'active' : '' }}" >
                                                 <a class="animation" href="{{ route('front.company.list') }}">
                                                     {{ __('message.firmalar') }} </a>
                                             </li>
-                                            <li>
+                                            <li class="{{ Route::is('front.dictionary.list') || Route::is('front.dictionary.detail') || Route::is('front.activity.detail') ? 'active' : '' }}" >
                                                 <a class="animation" href="{{ route('front.dictionary.list') }}">
                                                     {{ __('message.ss sözlüğü') }}
                                                 </a>
                                             </li>
-                                            <li>
+                                            <li class="{{ Route::is('front.video.list') || Route::is('front.video.detail') || Route::is('front.activity.detail') ? 'active' : '' }}" >
                                                 <a class="animation" href="{{ route('front.video.list') }}">
                                                     {{ __('message.videolar') }} </a>
                                             </li>
@@ -420,20 +423,21 @@
                                             <!-- <h3 class="footer-widget-title">Diğer</h3> -->
                                             <ul class="widget-list cat-list">
                                                 <li class="widget-list-item">
-                                                    <a href="{{route('front.about.detail')}}" class="widget-list-link">
-                                                        {{__('message.hakkımızda')}}
+                                                    <a href="{{ route('front.about.detail') }}"
+                                                        class="widget-list-link">
+                                                        {{ __('message.hakkımızda') }}
                                                     </a>
                                                 </li>
 
                                                 @foreach (sayfalar() as $item)
-                                                    
-                                                <li class="widget-list-item">
-                                                    <a href="{{route('front.page.detail',$item->id)}}" class="widget-list-link">
-                                                        {{$item->title}}
-                                                    </a>
-                                                </li>
+                                                    <li class="widget-list-item">
+                                                        <a href="{{ route('front.page.detail', $item->id) }}"
+                                                            class="widget-list-link">
+                                                            {{ $item->title }}
+                                                        </a>
+                                                    </li>
                                                 @endforeach
-                                                
+
 
                                             </ul>
                                         </div>

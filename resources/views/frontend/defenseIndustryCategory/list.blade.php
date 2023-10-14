@@ -1,6 +1,12 @@
 @extends('frontend.master')
 @section('content')
     <!-- Start Main -->
+    <style>
+        .pagination>li>a,
+        .pagination>li>span {
+            color: rgb(26, 159, 26); // use your own color here
+        }
+    </style>
     <main>
         <!-- theme-switch-box -->
         <div class="theme-switch-box-mobile-wrap">
@@ -156,7 +162,7 @@
                                                 <img src="/{{$item->image}}" alt="cat-slider" width="696"
                                                     height="491">
                                                 <div class="item-content">
-                                                    <h4 class="title">
+                                                    <h4 class="title" style="font-size: 13px">
                                                         <a href="{{ route('front.defenseIndustrySubCategory.list2', $item->link) }}"> {{$item->title}} </a>
                                                     </h4>
                                                     <p class="count">

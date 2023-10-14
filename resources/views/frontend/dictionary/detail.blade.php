@@ -1,5 +1,11 @@
 @extends('frontend.master')
 @section('content')
+    <style>
+        .tag-link:hover {
+            background-color: #749f43;
+            color: white;
+        }
+    </style>
     <!-- Start Main -->
     <main>
         <!-- theme-switch-box -->
@@ -55,20 +61,21 @@
                                 <ul>
                                     <li>
                                         <span class="rt-meta">
-                                            <i class="far fa-calendar-alt icon"></i>
-                                            {{ $data->created_at->translatedFormat('d M Y') }}
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="rt-meta">
                                             <i class="fa fa-user icon"></i>
                                             {{ $data->Author->name }} {{ $data->Author->surname }}
                                         </span>
                                     </li>
                                     <li>
                                         <span class="rt-meta">
+                                            <i class="far fa-calendar-alt icon"></i>
+                                            {{ $data->created_at->translatedFormat('d M Y') }}
+                                        </span>
+                                    </li>
+
+                                    <li>
+                                        <span class="rt-meta">
                                             <i class="far fa-clock icon"></i>
-                                            {{ $data->read_time }}
+                                            {{ $data->read_time }} DK
                                         </span>
                                     </li>
 
@@ -105,7 +112,7 @@
                                         </li>
                                         <li>
                                             <a class="tw" target="_blank" href="https://twitter.com/">
-                                                <i class="social-icon fab fa-twitter"></i>
+                                                <i style="color:black" class="fa-brands fa-square-x-twitter twitter"></i>
                                             </a>
                                         </li>
                                         <li>
@@ -128,7 +135,7 @@
                             </div>
 
                             <!-- strat psot body -->
-                            <div class="post-body justify-between" style="text-align: justify; margin-bottom:3%" >
+                            <div class="post-body justify-between" style="text-align: justify; margin-bottom:3%">
 
                                 {!! $data->description !!}
 
@@ -144,7 +151,7 @@
                                             <div class="tag-list">
 
                                                 @foreach ($data->seo_key as $key)
-                                                    <a  class="tag-link"> {{ $key }} </a>
+                                                    <a class="tag-link"> {{ $key }} </a>
                                                 @endforeach
                                             </div>
 
@@ -219,7 +226,7 @@
                                                     <li>
                                                         <span class="rt-meta">
                                                             <i class="far fa-clock icon"></i>
-                                                            {{$item->read_time}}
+                                                            {{ $item->read_time }} DK
                                                         </span>
                                                     </li>
 
@@ -249,8 +256,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-               // sidebar title limitation
-            -------------------------------*/
+                   // sidebar title limitation
+                -------------------------------*/
         // Select all tags with class .sidebar_restricted_category_title
         $('.sidebar_restricted_category_title').each(function() {
             var content = $(this).text().trim(); // get the content of a tag

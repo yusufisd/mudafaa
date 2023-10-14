@@ -1,6 +1,12 @@
 @extends('frontend.master')
 @section('content')
     <!-- Start Main -->
+    <style>
+        .pagination>li>a,
+        .pagination>li>span {
+            color: rgb(26, 159, 26);
+        }
+    </style>
     <main>
         <!-- theme-switch-box -->
         <div class="theme-switch-box-mobile-wrap">
@@ -45,10 +51,12 @@
 
                             <div id="ss_container" class="row gutter-24">
                                 <div class="search-box">
-                                    <form action="{{route('front.dictionary.searchPost')}}" method="GET" class="form search-form-box">
+                                    <form action="{{ route('front.dictionary.searchPost') }}" method="GET"
+                                        class="form search-form-box">
                                         @csrf
                                         <div class="form-group">
-                                            <input type="text" name="search" value="{{request()->search ?? ''}}" id="search" placeholder="Ara..." required
+                                            <input type="text" name="search" value="{{ request()->search ?? '' }}"
+                                                id="search" placeholder="Ara..." required
                                                 class="form-control rt-search-control">
                                             <button type="submit" class="search-submit">
                                                 <i class="fas fa-search"></i>
@@ -59,7 +67,7 @@
 
                                 <div class="post_meta">
                                     <ul class="nav nav-pills" id="pills-tab" role="tablist">
-                                        @foreach($alphabets as $alp)
+                                        @foreach ($alphabets as $alp)
                                             <li class="nav-item">
                                                 <a class="nav-link"
                                                     href="{{ route('front.dictionary.list', ['id' => $alp]) }}">{{ $alp }}</a>
@@ -75,7 +83,8 @@
                                     <div class="col-md-4 wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
                                         <div class="rt-post-overlay rt-post-overlay-md layout-6">
                                             <div class="post-img">
-                                                <a href="{{ route('front.dictionary.detail', $item->link) }}" class="img-link">
+                                                <a href="{{ route('front.dictionary.detail', $item->link) }}"
+                                                    class="img-link">
                                                     <img src="/{{ $item->image }}" alt="{{ $item->title }}" width="900"
                                                         height="600">
                                                 </a>
@@ -92,17 +101,18 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="fa fa-user"></i>
-                                                                @if(isset($item->Author))
-                                                                <a href="#" class="name">
-                                                                    {{ $item->Author->name }} {{ $item->Author->surname }}
-                                                                </a>
+                                                                @if (isset($item->Author))
+                                                                    <a href="#" class="name">
+                                                                        {{ $item->Author->name }}
+                                                                        {{ $item->Author->surname }}
+                                                                    </a>
                                                                 @endif
                                                             </span>
                                                         </li>
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-clock icon"></i>
-                                                                {{ $item->read_time }}
+                                                                {{ $item->read_time }} DK
                                                             </span>
                                                         </li>
 
@@ -112,22 +122,11 @@
                                         </div>
                                     </div>
                                 @endforeach
-
-
-                                <div class="col-12 ad-banner-img wow fadeInUp mb--40 mt--40" data-wow-delay="600ms"
-                                    data-wow-duration="800ms">
-                                    <a href="#">
-                                        <img src="/assets/frontend/media/gallery/ad-banner_5.jpg" alt="ad-banner"
-                                            width="960" height="150">
-                                    </a>
-                                </div>
-
-
                             </div>
 
                             <!-- end inner row -->
 
-                            <div style="margin-left: 45%">
+                            <div style="margin-left: 45%; margin-top:5%">
                                 {{ $data->links() }}
                             </div>
 

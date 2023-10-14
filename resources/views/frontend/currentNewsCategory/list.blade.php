@@ -1,6 +1,12 @@
 @extends('frontend.master')
 @section('content')
     <!-- Start Main -->
+    <style>
+        .pagination>li>a,
+        .pagination>li>span {
+            color: rgb(26, 159, 26); // use your own color here
+        }
+    </style>
     <main>
         <!-- theme-switch-box -->
         <div class="theme-switch-box-mobile-wrap">
@@ -92,7 +98,7 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-eye icon"></i>
-                                                                {{ ($item->view_counter) }}
+                                                                {{ $item->view_counter }}
                                                             </span>
                                                         </li>
                                                         <li>
@@ -169,6 +175,40 @@
 
                             <div class="d-none d-md-block sidebar-wrap mb--40">
                                 <h2 class="rt-section-heading style-2 mb--30">
+                                    <span class="rt-section-text"> {{ __('message.kategoriler') }} </span>
+                                    <span class="rt-section-dot"></span>
+                                    <span class="rt-section-line"></span>
+                                </h2>
+                                <ul class="rt-categories">
+
+                                    @foreach ($sub_categories as $item)
+                                        <li>
+                                            <a href="{{ route('front.currentNewsCategory.list', $item->link) }}"
+                                                data-bg-image="/{{ $item->image }}">
+                                                <span class="cat-name"> {{ $item->title }} </span>
+                                                <span class="count">{{ $item->adet() }}</span>
+                                            </a>
+                                        </li>
+                                    @endforeach
+
+                                </ul>
+                            </div>
+                            <!-- end slidebar wrap  -->
+
+
+
+                            <div class="sidebar-wrap mb--40">
+                                <div class="ad-banner-img">
+                                    <a href="#">
+                                        <img src="/assets/frontend/media/gallery/ad-post_5.jpg" alt="ad-banner"
+                                            width="301" height="270">
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- end slidebar wrap  -->
+
+                            <div class="d-none d-md-block sidebar-wrap mb--40">
+                                <h2 class="rt-section-heading style-2 mb--30">
                                     <span class="rt-section-text"> {{ __('message.popüler haberler') }} </span>
                                     <span class="rt-section-dot"></span>
                                     <span class="rt-section-line"></span>
@@ -211,38 +251,6 @@
                             </div>
                             <!-- end slidebar wrap  -->
 
-                            <div class="sidebar-wrap mb--40">
-                                <div class="ad-banner-img">
-                                    <a href="#">
-                                        <img src="/assets/frontend/media/gallery/ad-post_5.jpg" alt="ad-banner"
-                                            width="301" height="270">
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- end slidebar wrap  -->
-
-                            <div class="d-none d-md-block sidebar-wrap mb--40">
-                                <h2 class="rt-section-heading style-2 mb--30">
-                                    <span class="rt-section-text"> {{ __('message.kategoriler') }} </span>
-                                    <span class="rt-section-dot"></span>
-                                    <span class="rt-section-line"></span>
-                                </h2>
-                                <ul class="rt-categories">
-
-                                    @foreach ($sub_categories as $item)
-                                        <li>
-                                            <a href="{{ route('front.currentNewsCategory.list', $item->link) }}"
-                                                data-bg-image="/{{ $item->image }}">
-                                                <span class="cat-name"> {{ $item->title }} </span>
-                                                <span class="count">{{ $item->adet() }}</span>
-                                            </a>
-                                        </li>
-                                    @endforeach
-
-                                </ul>
-                            </div>
-                            <!-- end slidebar wrap  -->
-
                             <div class="d-none d-md-block sidebar-wrap mb--40">
                                 <div class="subscribe-box-style-1" data-bg-image="media/elements/elm_3.png">
                                     <div class="subscribe-content">
@@ -251,7 +259,7 @@
                                         </h3>
                                         <p>
                                             {{ __('message.Ulusal ve global savunma ile ilgili gündemden daha hızlı haberdar olmak
-                                                                                                                                    istiyorsanız, Milli Müdafaa e-posta listesine kayıt olun!') }}
+                                                                                                                                                                                istiyorsanız, Milli Müdafaa e-posta listesine kayıt olun!') }}
                                         </p>
                                         <form action="#" class="rt-contact-form subscribe-form rt-form">
                                             <div class="rt-form-group">
@@ -276,12 +284,9 @@
                                     <span class="rt-section-line"></span>
                                 </h2>
                                 <div class="tag-list">
-                                        
-                                    @foreach ($name->seo_key as $item)
-                                        
-                                        
-                                    <a href="#" class="tag-link"> {{($item)}} </a>
 
+                                    @foreach ($name->seo_key as $item)
+                                        <a href="#" class="tag-link"> {{ $item }} </a>
                                     @endforeach
 
                                 </div>
@@ -307,8 +312,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                    // limit by device width
-                    -------------------------------*/
+                        // limit by device width
+                        -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
 

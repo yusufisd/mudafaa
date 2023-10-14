@@ -90,6 +90,9 @@ return [
     "sözlük" => "Dictionary",
     "kullanıcı" => "User",
     "hakkımızda" => "About",
+    "Üzgünüz... Sayfa Bulunamadı!" => "Sorry... Page Not Found",
+    "Aradığınız sayfa bulunamadı." => "The page you are looking for is not found.",
+    "ANA SAYFAYA DÖN" => "BACK TO HOMEPAGE",
 
 
 ];
