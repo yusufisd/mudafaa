@@ -19,9 +19,10 @@
             padding: 2%;
             margin-left: 2%
         }
-        .tag-link:hover{
-            background-color:#749f43;
-            color:white;
+
+        .tag-link:hover {
+            background-color: #749f43;
+            color: white;
         }
     </style>
 @endsection
@@ -92,7 +93,14 @@
                                             {{ $data->created_at->translatedFormat('d M Y') }}
                                         </span>
                                     </li>
-
+                                    @if ($data->created_at != $data->updated_at)
+                                        <li>
+                                            <span class="rt-meta">
+                                                <b> {{ __('message.son güncelleme') }} :</b>
+                                                {{ $data->updated_at->translatedFormat('d M Y H:i') }}
+                                            </span>
+                                        </li>
+                                    @endif
                                     <li>
                                         <span class="rt-meta">
                                             <i class="far fa-clock icon"></i>
@@ -412,7 +420,7 @@
                                         </div>
                                         <div class="post-content">
                                             <a href="{{ route('front.defenseIndustryCategory.list', $item->GeneralCategory->link) }}"
-                                                class="rt-cat-primary ">{{ substr($item->GeneralCategory->title,0,20) }}...</a>
+                                                class="rt-cat-primary">{{ substr($item->GeneralCategory->title, 0, 20) }}...</a>
                                             <h3 class="post-title">
                                                 <a href="{{ route('front.defenseIndustryContent.detail', $item->link) }}">
                                                     {{ $item->title }}
@@ -461,8 +469,8 @@
 @section('script')
     <script>
         /*--------------------------------
-                                       // sidebar title limitation
-                                    -------------------------------*/
+                                                   // sidebar title limitation
+                                                -------------------------------*/
         // Select all tags with class .sidebar_restricted_category_title
         $('.sidebar_restricted_category_title').each(function() {
             var content = $(this).text().trim(); // get the content of a tag

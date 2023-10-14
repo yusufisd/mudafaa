@@ -56,9 +56,8 @@
                                                 <th> Ad Soyad <i class="fa fa-sort ms-3"></i></th>
                                                 <th> Email <i class="fa fa-sort ms-3"></i></th>
                                                 <th> Yorum <i class="fa fa-sort ms-3"></i></th>
-                                                <th> İçerik <i class="fa fa-sort ms-3"></i></th>
                                                 <th> Durum <i class="fa fa-sort ms-3"></i></th>
-                                                <th> Ayar <i class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center"> Ayar <i class="fa fa-sort ms-3"></i></th>
                                                 <th> {{ __('message.işlem') }} <i class="fa fa-sort ms-3"></i></th>
                                             </tr>
                                         </thead>
@@ -75,8 +74,7 @@
                                                     </td>
                                                     <td> {{ $item->full_name }} </td>
                                                     <td> {{ $item->email }} </td>
-                                                    <td> {{ substr($item->comment, 0, 30) }}... </td>
-                                                    <td> {{ substr($item->Product->title, 0, 30) }}... </td>
+                                                    <td> {{ $item->comment }} </td>
                                                     <td>
                                                         @if ($item->status == 0)
                                                             <span style="color:orange;"><b>BEKLİYOR</b></span>
@@ -87,7 +85,7 @@
                                                         @endif
                                                     </td>
 
-                                                    <td>
+                                                    <td style="text-align: center">
                                                         <div
                                                             class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
                                                             <input class="form-check-input w-50px h-25px" type="checkbox"
