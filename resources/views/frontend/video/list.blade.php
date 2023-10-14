@@ -69,7 +69,7 @@
                                         <div class="post-content">
                                            
                                             <h4 class="post-title">
-                                                <a href="https://mudafaa.test/guncel-haber/altay-tanki-seri-uretime-hazir"
+                                                <a href="{{ route('front.video.detail',$item->link) }}"
                                                     class="restricted_title_2">
                                                     {{ $item->title }}
                                                 </a>

@@ -22,8 +22,8 @@ class VideoController extends Controller
         return view('frontend.video.list',compact('categories'));
     }
 
-    public function detail($id){
-        $data = Video::findOrFail($id);
+    public function detail($link){
+        $data = Video::where('link',$link)->first();
         return view('frontend.video.detail',compact('data'));
     }
 }

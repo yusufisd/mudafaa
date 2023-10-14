@@ -21,6 +21,8 @@ return new class extends Migration
             $table->integer('category_id');
             $table->integer('author');
             $table->string('youtube');
+            $table->integer('read_time')->default(2);
+            $table->integer('view_counter')->default(0);
             $table->string('seo_title');
             $table->string('seo_description');
             $table->string('seo_key');

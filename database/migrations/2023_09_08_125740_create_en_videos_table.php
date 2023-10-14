@@ -22,6 +22,8 @@ return new class extends Migration
             $table->date('live_date');
             $table->integer('category_id');
             $table->integer('author');
+            $table->integer('read_time')->default(2);
+            $table->integer('view_counter')->default(0);
             $table->string('seo_description');
             $table->string('seo_key');
             $table->integer('status')->default(1);

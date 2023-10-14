@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('author');
             $table->date('live_date');
             $table->string('seo_title');
+            $table->integer('read_time')->default(2);
             $table->string('seo_description');
             $table->string('seo_key');
             $table->integer('status')->default(1);

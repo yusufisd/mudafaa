@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('en_dictionaries', function (Blueprint $table) {
-            $table->integer('read_time')->default(2);
-            
+        Schema::create('en_company_titles', function (Blueprint $table) {
+            $table->id();
+            $table->string('icon');
+            $table->string('title');
+            $table->string('description');
+            $table->integer('company_id');
+            $table->timestamps();
         });
     }
 
@@ -22,9 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('en_dictionaries', function (Blueprint $table) {
-            $table->integer('read_time');
-            
-        });
+        Schema::dropIfExists('en_company_titles');
     }
 };

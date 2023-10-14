@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('link');
             $table->string('author');
             $table->date('live_date');
+            $table->integer('read_time')->default(2);
             $table->string('seo_title');
             $table->string('seo_description');
             $table->string('seo_key');

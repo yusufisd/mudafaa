@@ -8,7 +8,9 @@ use App\Models\CompanyCategory;
 use App\Models\CompanyImage;
 use App\Models\CompanyModel;
 use App\Models\CompanyTitle;
+use App\Models\EnCompanyAddress;
 use App\Models\EnCompanyModel;
+use App\Models\EnCompanyTitle;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\DB;
@@ -57,8 +59,6 @@ class CompanyModelController extends Controller
                 'company_icon' => 'required',
                 'company_title' => 'required',
                 'company_description' => 'required',
-                'gorseller_queue' => 'required',
-                'gorseller_image' => 'required',
             ],
             [
                 'category' => 'category required',
@@ -75,8 +75,6 @@ class CompanyModelController extends Controller
                 'company_icon' => 'company_icon required',
                 'company_title' => 'company_title required',
                 'company_description' => 'company_description required',
-                'gorseller_queue' => 'gorseller_queue required',
-                'gorseller_image' => 'gorseller_image required',
             ],
         );
 
@@ -136,41 +134,68 @@ class CompanyModelController extends Controller
         }
         $new_company_en->save();
 
-        for ($i = 0; $i < count($request->address_title); $i++) {
-            $new_adres = new CompanyAddress();
-            $new_adres->title = $request->address_title[$i];
-            $new_adres->address = $request->address_address[$i];
-            $new_adres->phone = $request->address_phone[$i];
-            $new_adres->email = $request->address_email[$i];
-            $new_adres->map = $request->address_map[$i];
-            $new_adres->website = $request->address_website[$i];
-            $new_adres->company_id = $new_company->id;
-            $new_adres->save();
-        }
-
-        for ($i = 0; $i < count($request->company_icon); $i++) {
-            $new_title = new CompanyTitle();
-            $new_title->title = $request->company_title[$i];
-            $new_title->icon = $request->company_icon[$i];
-            $new_title->description = $request->company_description[$i];
-            $new_title->company_id = $new_company->id;
-            $new_title->save();
-        }
-
-        for ($i = 0; $i < count($request->gorseller_image); $i++) {
-            $new_image = new CompanyImage();
-            if ($request->file('gorseller_image')[$i] != null) {
-                $image = $request->file('image');
-                $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-                $save_url = 'assets/uploads/companyImage/' . $image_name;
-                Image::make($image)
-                    ->resize(960, 520)
-                    ->save($save_url);
-                $new_image->image = $save_url;
+        if ($request->address_title[0] != null) {
+            for ($i = 0; $i < count($request->address_title); $i++) {
+                $new_adres = new CompanyAddress();
+                $new_adres->title = $request->address_title[$i];
+                $new_adres->address = $request->address_address[$i];
+                $new_adres->phone = $request->address_phone[$i];
+                $new_adres->email = $request->address_email[$i];
+                $new_adres->map = $request->address_map[$i];
+                $new_adres->website = $request->address_website[$i];
+                $new_adres->company_id = $new_company->id;
+                $new_adres->save();
             }
-            $new_image->queue = $request->gorseller_queue[$i];
-            $new_image->company_id = $new_company->id;
-            $new_image->save();
+        }
+        if ($request->address_title_en[0] != null) {
+            for ($i = 0; $i < count($request->address_title_en); $i++) {
+                $new_adres = new EnCompanyAddress();
+                $new_adres->title = $request->address_title[$i];
+                $new_adres->address = $request->address_address[$i];
+                $new_adres->phone = $request->address_phone[$i];
+                $new_adres->email = $request->address_email[$i];
+                $new_adres->map = $request->address_map[$i];
+                $new_adres->website = $request->address_website[$i];
+                $new_adres->company_id = $new_company->id;
+                $new_adres->save();
+            }
+        }
+        if ($request->company_icon[0] != null) {
+            for ($i = 0; $i < count($request->company_icon); $i++) {
+                $new_title = new CompanyTitle();
+                $new_title->title = $request->company_title[$i];
+                $new_title->icon = $request->company_icon[$i];
+                $new_title->description = $request->company_description[$i];
+                $new_title->company_id = $new_company->id;
+                $new_title->save();
+            }
+        }
+        if ($request->company_icon_en[0] != null) {
+            for ($i = 0; $i < count($request->company_icon_en); $i++) {
+                $new_title = new EnCompanyTitle();
+                $new_title->title = $request->company_title[$i];
+                $new_title->icon = $request->company_icon[$i];
+                $new_title->description = $request->company_description[$i];
+                $new_title->company_id = $new_company->id;
+                $new_title->save();
+            }
+        }
+        if ($request->gorseller_image[0] != null) {
+            for ($i = 0; $i < count($request->gorseller_image); $i++) {
+                $new_image = new CompanyImage();
+                if ($request->file('gorseller_image')[$i] != null) {
+                    $image = $request->file('gorseller_image')[$i];
+                    $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+                    $save_url = 'assets/uploads/companyImage/' . $image_name;
+                    Image::make($image)
+                        ->resize(960, 520)
+                        ->save($save_url);
+                    $new_image->image = $save_url;
+                }
+                $new_image->queue = $request->gorseller_queue[$i];
+                $new_image->company_id = $new_company->id;
+                $new_image->save();
+            }
         }
         Alert::success('Firma Başarıyla Eklendi');
         return redirect()->route('admin.companyModel.list');
@@ -191,11 +216,13 @@ class CompanyModelController extends Controller
     {
         $categories = CompanyCategory::latest()->get();
         $adresler = CompanyAddress::where('company_id', $id)->get();
+        $adresler_en = EnCompanyAddress::where('company_id', $id)->get();
         $basliklar = CompanyTitle::where('company_id', $id)->get();
+        $basliklar_en = EnCompanyTitle::where('company_id', $id)->get();
         $gorseller = CompanyImage::where('company_id', $id)->get();
         $data_tr = CompanyModel::findOrFail($id);
         $data_en = EnCompanyModel::where('company_id', $id)->first();
-        return view('backend.companyModel.edit', compact('categories', 'adresler', 'basliklar', 'gorseller', 'data_tr', 'data_en'));
+        return view('backend.companyModel.edit', compact('categories', 'adresler', 'basliklar', 'gorseller', 'data_tr', 'data_en', 'basliklar_en', 'adresler_en'));
     }
 
     /**
@@ -219,12 +246,6 @@ class CompanyModelController extends Controller
                 'company_icon' => 'required',
                 'company_title' => 'required',
                 'company_description' => 'required',
-                'address_title' => 'required',
-                'address_address' => 'required',
-                'address_website' => 'required',
-                'address_map' => 'required',
-                'address_email' => 'required',
-                'address_phone' => 'required',
             ],
             [
                 'category' => 'category required',
@@ -241,12 +262,6 @@ class CompanyModelController extends Controller
                 'company_icon' => 'company_icon required',
                 'company_title' => 'company_title required',
                 'company_description' => 'company_description required',
-                'address_title' => 'address_title required',
-                'address_address' => 'address_address required',
-                'address_website' => 'address_website required',
-                'address_map' => 'address_map required',
-                'address_email' => 'address_email required',
-                'address_phone' => 'address_phone required',
             ],
         );
 
@@ -310,7 +325,7 @@ class CompanyModelController extends Controller
         }
         $new_company_en->save();
 
-        if ($request->address_title != null) {
+        if ($request->address_title[0] != null) {
             CompanyAddress::where('company_id', $id)->delete();
             for ($i = 0; $i < count($request->address_title); $i++) {
                 $new_adres = new CompanyAddress();
@@ -324,10 +339,35 @@ class CompanyModelController extends Controller
                 $new_adres->save();
             }
         }
+        if ($request->address_title_en[0] != null) {
+            EnCompanyAddress::where('company_id', $id)->delete();
+            for ($i = 0; $i < count($request->address_title_en); $i++) {
+                $new_adres = new EnCompanyAddress();
+                $new_adres->title = $request->address_title[$i];
+                $new_adres->address = $request->address_address[$i];
+                $new_adres->phone = $request->address_phone[$i];
+                $new_adres->email = $request->address_email[$i];
+                $new_adres->map = $request->address_map[$i];
+                $new_adres->website = $request->address_website[$i];
+                $new_adres->company_id = $new_company->id;
+                $new_adres->save();
+            }
+        }
 
-        if ($request->company_icon != null) {
+        if ($request->company_icon[0] != null) {
             CompanyTitle::where('company_id', $id)->delete();
             for ($i = 0; $i < count($request->company_icon); $i++) {
+                $new_title = new CompanyTitle();
+                $new_title->title = $request->company_title[$i];
+                $new_title->icon = $request->company_icon[$i];
+                $new_title->description = $request->company_description[$i];
+                $new_title->company_id = $new_company->id;
+                $new_title->save();
+            }
+        }
+        if ($request->company_icon_en[0] != null) {
+            EnCompanyTitle::where('company_id', $id)->delete();
+            for ($i = 0; $i < count($request->company_icon_en); $i++) {
                 $new_title = new CompanyTitle();
                 $new_title->title = $request->company_title[$i];
                 $new_title->icon = $request->company_icon[$i];
@@ -365,7 +405,7 @@ class CompanyModelController extends Controller
      */
     public function destroy($id)
     {
-        CompanyModel::where('id',$id)->delete();
+        CompanyModel::where('id', $id)->delete();
         Alert::success('Firma Başarıyla Silindi');
         return redirect()->route('admin.companyModel.list');
     }
