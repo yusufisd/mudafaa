@@ -14,7 +14,7 @@
                 <span class="theme-switch-box-mobile__theme-status"><i class="fas fa-cog"></i></span>
                 <label class="theme-switch-box-mobile__label" for="themeSwitchCheckboxMobile">
                     <input class="theme-switch-box-mobile__input" type="checkbox" name="themeSwitchCheckboxMobile"
-                        id="themeSwitchCheckboxMobile">
+                           id="themeSwitchCheckboxMobile">
                     <span class="theme-switch-box-mobile__main"></span>
                 </label>
                 <span class="theme-switch-box-mobile__theme-status"><i class="fas fa-moon"></i></span>
@@ -28,13 +28,11 @@
                 <nav class="rt-breadcrumb-wrap" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="{{ route('front.dictionary.list', ['id' => 2]) }}">
+                            <a href="{{ route('front.search') }}">
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">
-                            SS Sözlüğü
-                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ __('ara') }}</li>
                     </ol>
                 </nav>
             </div>
@@ -51,30 +49,17 @@
 
                             <div id="ss_container" class="row gutter-24">
                                 <div class="search-box">
-                                    <form action="{{ route('front.dictionary.list') }}" method="GET"
-                                        class="form search-form-box">
+                                    <form action="{{ route('front.search') }}" method="GET"
+                                          class="form search-form-box">
                                         <div class="form-group">
-                                            <input type="text" name="search" value="{{ request()->search ?? '' }}"
-                                                id="search" placeholder="Ara..." required
-                                                class="form-control rt-search-control">
+                                            <input type="text" name="s" value="{{ request()->s ?? '' }}"
+                                                   id="search" placeholder="Ara..." required
+                                                   class="form-control rt-search-control">
                                             <button type="submit" class="search-submit">
                                                 <i class="fas fa-search"></i>
                                             </button>
                                         </div>
                                     </form>
-                                </div>
-
-                                <div class="post_meta">
-                                    <ul class="nav nav-pills" id="pills-tab" role="tablist">
-                                        @foreach ($alphabets as $alp)
-                                            <li class="nav-item">
-                                                <a class="nav-link" style="background-color: {{ $letter == $alp ? 'rgba(23, 34, 43, 0.85); color:white' : '' }}"
-                                                    href="{{ route('front.dictionary.list', ['id' => $alp]) }}">{{ $alp }}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                    <ul class="nav nav-pills" id="pills-tab-mobile" role="tablist">
-                                    </ul>
                                 </div>
 
 
@@ -83,9 +68,9 @@
                                         <div class="rt-post-overlay rt-post-overlay-md layout-6">
                                             <div class="post-img">
                                                 <a href="{{ route('front.dictionary.detail', $item->link) }}"
-                                                    class="img-link">
+                                                   class="img-link">
                                                     <img src="/{{ $item->image }}" alt="{{ $item->title }}" width="900"
-                                                        height="600">
+                                                         height="600">
                                                 </a>
                                             </div>
                                             <div class="post-content">
@@ -126,7 +111,6 @@
                             <!-- end inner row -->
 
                             <div style="margin-left: 45%; margin-top:5%">
-                                {{ $data->links() }}
                             </div>
 
                             <!-- end rt-pagination-area -->

@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\ContentEmojiModel;
 use App\Models\Dialog;
+use App\Models\EmojiType;
 use App\Models\EnDialog;
 use App\Models\EnInterview;
 use App\Models\Interview;
 use App\Models\InterviewComment;
+use App\Models\PostType;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -31,27 +34,37 @@ class InterviewController extends Controller
             $keys = EnInterview::select('seo_key')->groupBy('id')->pluck('seo_key')->all();
         }
 
-
-        return view('frontend.interview.list', compact('data', 'populer_interview', 'keys'));
+        return view('frontend.interview.list', compact('data', 'populer_interview','keys'));
     }
 
     public function detail($id)
     {
         $locale = session('applocale') ?? config('app.fallback_locale');
         if ($locale  == "tr") {
-            $data = Interview::findOrFail($id);
-            $dialogs = Dialog::where('interview_id', $id)->get();
-            $next_data = Interview::find($id + 1);
-            $previous_data = Interview::find($id - 1);
+            $data = Interview::where('link', $id)->first();
+            $dialogs = Dialog::where('interview_id', $data->id)->get();
+            $next_data = Interview::where('id', '>' , $data->id)->first();
+            $previous_data = Interview::where('id', '<' , $data->id)->first();
             $other_interview = Interview::inRandomOrder()->get();
         }else{
-            $data = EnInterview::findOrFail($id);
+            $data = EnInterview::where('link', $id)->first();
             $dialogs = EnDialog::where('interview_id', $id)->get();
-            $next_data = EnInterview::find($id + 1);
-            $previous_data = EnInterview::find($id - 1);
+            $next_data = EnInterview::where('id', '>' , $data->id)->first();
+            $previous_data = EnInterview::where('id', '<' , $data->id)->first();
             $other_interview = EnInterview::inRandomOrder()->get();
         }
-        return view('frontend.interview.detail', compact('data', 'dialogs', 'next_data', 'previous_data', 'other_interview'));
+
+
+        $emojies = [
+            "love" => ContentEmojiModel::where('post_id', $data->id)->where('post_type', PostType::INTERVIEWS)->where('emoji_type', EmojiType::LOVE)->count(),
+            "dislike" => ContentEmojiModel::where('post_id', $data->id)->where('post_type', PostType::INTERVIEWS)->where('emoji_type', EmojiType::DISLIKE)->count(),
+            "clap" => ContentEmojiModel::where('post_id', $data->id)->where('post_type', PostType::INTERVIEWS)->where('emoji_type', EmojiType::CLAP)->count(),
+            "sad" => ContentEmojiModel::where('post_id', $data->id)->where('post_type', PostType::INTERVIEWS)->where('emoji_type', EmojiType::SAD)->count(),
+            "angry" => ContentEmojiModel::where('post_id', $data->id)->where('post_type', PostType::INTERVIEWS)->where('emoji_type', EmojiType::ANGRY)->count(),
+            "shocked" => ContentEmojiModel::where('post_id', $data->id)->where('post_type', PostType::INTERVIEWS)->where('emoji_type', EmojiType::SHOCKED)->count(),
+        ];
+
+        return view('frontend.interview.detail', compact('data', 'dialogs', 'emojies', 'next_data', 'previous_data', 'other_interview'));
     }
 
     public function addComment(Request $request, $id)

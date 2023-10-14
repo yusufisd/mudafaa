@@ -532,6 +532,11 @@ Route::middleware('lang')->group(function () {
         ->name('front.')
         ->group(function () {
             Route::get('/', [FrontendHomeController::class, 'index'])->name('home');
+            // SET EMOJI
+            Route::post('/setEmoji', [\App\Http\Controllers\Frontend\EmojiController::class, 'index'])->name('setEmoji');
+
+            // SEARCH
+            Route::get('/search', [\App\Http\Controllers\Frontend\SearchController::class, 'index'])->name('search');
 
             // CURRENT NEWS CATEGORY CONTROLLER
             Route::controller(FrontendCurrentNewsCategoryController::class)

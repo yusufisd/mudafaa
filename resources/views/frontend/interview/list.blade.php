@@ -69,7 +69,7 @@
                                     <div class="post-item wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
                                         <div class="rt-post post-md style-2 style-4  grid-meta">
                                             <div class="post-img">
-                                                <a href="{{ route('front.interview.detail', $item->id) }}">
+                                                <a href="{{ route('front.interview.detail', $item->link) }}">
                                                     <img src="/{{ $item->image }}" alt="post" width="696"
                                                         height="491">
                                                 </a>
@@ -77,7 +77,7 @@
                                             <div class="post-content">
 
                                                 <h3 class="post-title">
-                                                    <a href="{{ route('front.interview.detail', $item->id) }}"
+                                                    <a href="{{ route('front.interview.detail', $item->link) }}"
                                                         class="restricted_title">
                                                         {{ $item->title }}
                                                     </a>
@@ -108,7 +108,7 @@
                                                     </ul>
                                                 </div>
                                                 <div class="btn-wrap mt--25">
-                                                    <a href="{{ route('front.interview.detail', $item->id) }}" class="rt-read-more rt-button-animation-out">
+                                                    <a href="{{ route('front.interview.detail', $item->link) }}" class="rt-read-more rt-button-animation-out">
                                                         Daha Fazla Oku
                                                         <svg width="34px" height="16px" viewBox="0 0 34.53 16"
                                                             xml:space="preserve">
@@ -266,7 +266,6 @@
                                 </h2>
                                 <div class="tag-list">
                                     @foreach($keys as $key)
-                                        @dd($keys)
                                         @foreach(json_decode(json_encode($key)) as $tag)
                                             <a href="#" class="tag-link">{{ $tag }}</a>
                                         @endforeach

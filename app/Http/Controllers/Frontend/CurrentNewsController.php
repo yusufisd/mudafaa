@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\ContentEmojiModel;
 use App\Models\CurrentNews;
+use App\Models\EmojiType;
 use App\Models\EnCurrentNews;
+use App\Models\PostType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 
@@ -35,9 +38,15 @@ class CurrentNewsController extends Controller
             Cookie::queue(Cookie::make('readed', json_encode($readCheck), 30));
         }
 
+        $emojies = [
+            "love" => ContentEmojiModel::where('post_id', $data->id)->where('post_type', PostType::NEWS)->where('emoji_type', EmojiType::LOVE)->count(),
+            "dislike" => ContentEmojiModel::where('post_id', $data->id)->where('post_type', PostType::NEWS)->where('emoji_type', EmojiType::DISLIKE)->count(),
+            "clap" => ContentEmojiModel::where('post_id', $data->id)->where('post_type', PostType::NEWS)->where('emoji_type', EmojiType::CLAP)->count(),
+            "sad" => ContentEmojiModel::where('post_id', $data->id)->where('post_type', PostType::NEWS)->where('emoji_type', EmojiType::SAD)->count(),
+            "angry" => ContentEmojiModel::where('post_id', $data->id)->where('post_type', PostType::NEWS)->where('emoji_type', EmojiType::ANGRY)->count(),
+            "shocked" => ContentEmojiModel::where('post_id', $data->id)->where('post_type', PostType::NEWS)->where('emoji_type', EmojiType::SHOCKED)->count(),
+        ];
 
-
-
-        return view('frontend.currentNews.detail',compact('data','previous_data','next_data','other_news','four_news'));
+        return view('frontend.currentNews.detail',compact('data','emojies','previous_data','next_data','other_news','four_news'));
     }
 }

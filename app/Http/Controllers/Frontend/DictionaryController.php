@@ -9,8 +9,9 @@ use Illuminate\Http\Request;
 
 class DictionaryController extends Controller
 {
-    public function index($letter = null)
+    public function index(Request $request)
     {
+        $letter = $request->id;
         $local = \Session::get('applocale') ?? config('app.fallback_locale');
 
         $alphabets = [
@@ -38,20 +39,33 @@ class DictionaryController extends Controller
             "Z"
         ];
 
-        if ($local == 'tr') {
-            if ($letter != null) {
-                $data = Dictionary::where('title', 'LIKE',  $letter . '%')->paginate(6);
-            } else {
-                $data = Dictionary::latest()->paginate(12);
+        if (isset($request->search)){
+            $local = \Session::get('applocale');
+            if ($local == null) {
+                $local = config('app.fallback_locale');
             }
-        } elseif ($local == 'en') {
-            if ($letter != null) {
-                $data = EnDictionary::where('title', 'LIKE',  $letter . '%')->paginate(6);
-            } else {
-                $data = EnDictionary::latest()->paginate(12);
+
+            if ($local == 'tr') {
+                $data = Dictionary::where('title', 'like', "%".$request->search."%")->paginate(6);
+            } elseif ($local == 'en') {
+                $data = EnDictionary::where('title', 'like', "%".$request->search."%")->paginate(6);
+            }
+        }else {
+            if ($local == 'tr') {
+                if ($letter != null) {
+                    $data = Dictionary::where('title', 'LIKE', $letter . '%')->paginate(6);
+                } else {
+                    $data = Dictionary::latest()->paginate(12);
+                }
+            } elseif ($local == 'en') {
+                if ($letter != null) {
+                    $data = EnDictionary::where('title', 'LIKE', $letter . '%')->paginate(6);
+                } else {
+                    $data = EnDictionary::latest()->paginate(12);
+                }
             }
         }
-        return view('frontend.dictionary.list', compact('data', 'alphabets'));
+        return view('frontend.dictionary.list', compact('data', 'letter','alphabets'));
     }
 
     public function detail($id)
@@ -74,17 +88,7 @@ class DictionaryController extends Controller
 
     public function searchPost(Request $request)
     {
-        $local = \Session::get('applocale');
-        if ($local == null) {
-            $local = config('app.fallback_locale');
-        }
 
-        if ($local == 'tr') {
-            $data = Dictionary::where('title', 'like', "%".$request->search."%")->paginate(6);
-        } elseif ($local == 'en') {
-            $data = EnDictionary::where('title', 'like', "%".$request->search."%")->paginate(6);
-        }
-        return view('frontend.dictionary.list', compact('data'));
         dd($request->all());
     }
 }

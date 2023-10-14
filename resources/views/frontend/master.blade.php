@@ -199,7 +199,7 @@
                                                 <ul class="main-menu__dropdown">
 
                                                     @foreach (currentCats() as $item)
-                                                        <li><a  
+                                                        <li><a
                                                                 href="{{ route('front.currentNewsCategory.list', $item->link) }}">
                                                                 {{ $item->title }} </a></li>
                                                     @endforeach
@@ -552,8 +552,8 @@
         <!-- Start Search  -->
         <div id="template-search" class="template-search">
             <button type="button" class="close">×</button>
-            <form class="search-form">
-                <input type="search" value="" placeholder="Ara.." />
+            <form class="search-form" action="{{ route('front.search') }}">
+                <input type="search" value="" name="s" placeholder="Ara.." />
                 <button type="submit" class="search-btn btn-ghost style-1">
                     <i class="flaticon-search"></i>
                 </button>

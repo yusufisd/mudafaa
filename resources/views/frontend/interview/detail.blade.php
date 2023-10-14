@@ -289,105 +289,28 @@
                                 <!-- start commentator box -->
                                 <div class="commentator-box-style-1 mb--30">
                                     <div class="row justify-content-center mb--10">
+                                        @foreach($emojies as $emoji => $number)
                                         <div class="col-2 col-md-1">
                                             <div class="emoji_container">
-                                                <img id="emoji_heart_eye"
-                                                    src="https://millimudafaa.com/assets/img/begendim.png"
+                                                <img id="{{ $emoji }}"
+                                                    src="{{ asset('assets/' . $emoji . ".png") }}"
                                                     style="cursor: pointer; width:38px;">
                                             </div>
                                         </div>
-                                        <div class="col-2 col-md-1">
-                                            <div class="emoji_container">
-                                                <img id="emoji_dislike"
-                                                    src="https://millimudafaa.com/assets/img/begenmedim.png"
-                                                    style="cursor: pointer; width:38px;">
-                                            </div>
-                                        </div>
-                                        <div class="col-2 col-md-1">
-                                            <div class="emoji_container">
-                                                <img id="emoji_like"
-                                                    src="https://millimudafaa.com/assets/img/alkisladim.png"
-                                                    style="cursor: pointer; width:38px;">
-                                            </div>
-                                        </div>
-                                        <div class="col-2 col-md-1">
-                                            <div class="emoji_container">
-                                                <img id="emoji_sad" src="https://millimudafaa.com/assets/img/uzuldum.png"
-                                                    style="cursor: pointer; width:38px;">
-                                            </div>
-                                        </div>
-                                        <div class="col-2 col-md-1">
-                                            <div class="emoji_container">
-                                                <img id="emoji_angry"
-                                                    src="https://millimudafaa.com/assets/img/sinirlendim.png"
-                                                    style="cursor: pointer; width:38px;">
-                                            </div>
-                                        </div>
-                                        <div class="col-2 col-md-1">
-                                            <div class="emoji_container">
-                                                <img id="emoji_shocked"
-                                                    src="https://millimudafaa.com/assets/img/sasirdim.png"
-                                                    style="cursor: pointer; width:38px;">
-                                            </div>
-                                        </div>
-
-
+                                        @endforeach
                                     </div>
                                     <div class="row justify-content-center mb--50">
+                                        @foreach($emojies as $emoji => $number)
                                         <div class="col-2 col-md-1">
                                             <div class="emoji_container">
                                                 <div class="progress" role="progressbar" aria-label="Basic example"
                                                     aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                                    <div id="emoji_heart_eye_bar" class="progress-bar"
-                                                        style="width: 15%"></div>
+                                                    <div id="{{ $emoji }}_bar" class="progress-bar"
+                                                        style="width: {{ $number }}%"></div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-2 col-md-1">
-                                            <div class="emoji_container">
-                                                <div class="progress" role="progressbar" aria-label="Basic example"
-                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                                    <div id="emoji_dislike_bar" class="progress-bar" style="width: 2%">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-2 col-md-1">
-                                            <div class="emoji_container">
-                                                <div class="progress" role="progressbar" aria-label="Basic example"
-                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                                    <div id="emoji_like_bar" class="progress-bar" style="width: 25%">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-2 col-md-1">
-                                            <div class="emoji_container">
-                                                <div class="progress" role="progressbar" aria-label="Basic example"
-                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                                    <div id="emoji_sad_bar" class="progress-bar" style="width: 0%"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-2 col-md-1">
-                                            <div class="emoji_container">
-                                                <div class="progress" role="progressbar" aria-label="Basic example"
-                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                                    <div id="emoji_angry_bar" class="progress-bar" style="width: 1%">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-2 col-md-1">
-                                            <div class="emoji_container">
-                                                <div class="progress" role="progressbar" aria-label="Basic example"
-                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                                    <div id="emoji_shocked_bar" class="progress-bar" style="width: 16%">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
+                                        @endforeach
 
                                     </div>
                                     <div class="row mb--20">
@@ -728,12 +651,37 @@
         $('.emoji_container img').click(function(e) {
             e.preventDefault();
             var emoji_id = $(this)[0].id; //get the id of the printed emoji
+            $.ajax({
+                headers : {"X-CSRF-TOKEN" : "{{ csrf_token() }}"},
+                url : "{{ route('front.setEmoji') }}",
+                type : "post",
+                data : {
+                    "emoji_type" : emoji_id,
+                    "post_id" : "{{ $data->id }}",
+                    "post_type" : "interview",
+                },
+                dataType : "json",
+                success : function(response){
+                    if(response.status == "success"){
+                        var emoji_progress_bar = $("#" + emoji_id + "_bar").css('width'); //get width property of emoji's bar
+                        var intValue = parseInt(emoji_progress_bar, 10);
+                        intValue++; //increase the value
+                        $("#" + emoji_id + "_bar").css('width', intValue); //update the value
+                    }else{
+                        alert(response.message);
+                    }
+                }
+
+            })
             //The id of the bar is found by adding '_bar' to the id of the emoji
+            /*
             var emoji_progress_bar = $("#" + emoji_id + "_bar").css('width'); //get width property of emoji's bar
             var intValue = parseInt(emoji_progress_bar, 10);
             intValue++; //increase the value
             $("#" + emoji_id + "_bar").css('width', intValue); //update the value
+             */
         });
+
 
 
     </script>
