@@ -298,7 +298,7 @@
                                             <h4 class="block-tile mb--20">Popüler Etiketler:</h4>
                                             <div class="tag-list">
                                                 @foreach ($data->getKeys() as $key)
-                                                    <a href="{{ route('front.currentNews.tag_list', $key) }}"
+                                                    <a href="{{ route('front.defenseIndustryCategory.tag_list', $key) }}"
                                                         class="tag-link" style="text-transform: capitalize">
                                                         {{ $key }} </a>
                                                 @endforeach

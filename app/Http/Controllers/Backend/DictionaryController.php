@@ -23,7 +23,7 @@ class DictionaryController extends Controller
 {
     public function index()
     {
-        $data = Dictionary::latest()->get();
+        $data = Dictionary::orderBy('title','asc')->get();
         return view('backend.dictionary.list', compact('data'));
     }
 

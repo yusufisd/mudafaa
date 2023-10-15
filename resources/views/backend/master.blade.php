@@ -661,6 +661,19 @@
                                     <!--end:Menu link-->
                                 </div>
 
+                                <!--begin:Menu item-->
+                                <div class="menu-item">
+                                    <!--begin:Menu link-->
+                                    <a class="menu-link" href="{{ route('admin.contact.edit') }}">
+                                        <span class="menu-icon">
+                                            <i class="fa fa-newspaper" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="menu-title"> İletişim {{ __('message.yönetimi') }}
+                                        </span>
+                                    </a>
+                                    <!--end:Menu link-->
+                                </div>
+
                                 <div class="menu-item">
                                     <!--begin:Menu link-->
                                     <a class="menu-link" href="{{ route('admin.currentNews.list') }}">

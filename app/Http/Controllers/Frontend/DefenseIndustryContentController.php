@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\DefenseIndustry;
+use App\Models\DefenseIndustryCategory;
 use App\Models\DefenseIndustryContent;
+use App\Models\EnDefenseIndustryCategory;
 use App\Models\EnDefenseIndustryContent;
 use Illuminate\Http\Request;
 
@@ -28,4 +30,6 @@ class DefenseIndustryContentController extends Controller
 
         return view('frontend.defenseIndustry.detail',compact('data','previous_product','next_product','other_product'));
     }
+
+    
 }

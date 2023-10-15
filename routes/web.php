@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\CompanyCategoryController;
 use App\Http\Controllers\Backend\CompanyController;
 use App\Http\Controllers\Backend\CompanyModelController;
+use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\CountryController;
 use App\Http\Controllers\Backend\CurrentNewsCategoryController;
 use App\Http\Controllers\Backend\CurrentNewsController;
@@ -36,6 +37,8 @@ use App\Http\Controllers\Frontend\VideoController as FrontendVideoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\PageController as FrontendPageController;
+use App\Http\Controllers\Frontend\ContactController as FrontendContactController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -160,10 +163,10 @@ Route::middleware('lang')->group(function () {
                         ->name('destroy');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
 
-                    Route::get('/coklu-gorsel/{id?}','multipleImage')->name('multipleImage');
-                    Route::get('/coklu-gorsel-ekle/{id?}','multipleImage_add')->name('multipleImage_add');
-                    Route::post('/coklu-gorsel-ekle/{id?}','multipleImage_store')->name('multipleImage_store');
-                    Route::get('/coklu-gorsel-sil/{id?}','multipleImage_destroy')->name('multipleImage_destroy');
+                    Route::get('/coklu-gorsel/{id?}', 'multipleImage')->name('multipleImage');
+                    Route::get('/coklu-gorsel-ekle/{id?}', 'multipleImage_add')->name('multipleImage_add');
+                    Route::post('/coklu-gorsel-ekle/{id?}', 'multipleImage_store')->name('multipleImage_store');
+                    Route::get('/coklu-gorsel-sil/{id?}', 'multipleImage_destroy')->name('multipleImage_destroy');
                 });
 
             // SAVUNMA SANAYİ  CONTROLLER
@@ -190,7 +193,6 @@ Route::middleware('lang')->group(function () {
                         ->get('sil/{id?}', 'destroy')
                         ->name('destroy');
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
-
                 });
 
             // SAVUNMA SANAYİ KATEGORİ CONTROLLER
@@ -426,7 +428,6 @@ Route::middleware('lang')->group(function () {
                         ->get('sil/{id?}', 'destroy')
                         ->name('destroy');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
-
                 });
 
             // FİRMA  CONTROLLER
@@ -528,6 +529,15 @@ Route::middleware('lang')->group(function () {
                     Route::get('/duzenle/{id?}', 'edit')->name('edit');
                     Route::post('/duzenle/{id?}', 'update')->name('update');
                 });
+
+            // iletişim
+            Route::controller(ContactController::class)
+                ->prefix('iletisim')
+                ->name('contact.')
+                ->group(function () {
+                    Route::get('/duzenle', 'edit')->name('edit');
+                    Route::post('/duzenle', 'update')->name('update');
+                });
         });
 
     Route::prefix('/')
@@ -563,15 +573,16 @@ Route::middleware('lang')->group(function () {
                 ->name('defenseIndustryCategory.')
                 ->group(function () {
                     Route::get('/{id?}', 'index')->name('list');
+                    Route::get('etiket/{id?}', 'tag_list')->name('tag_list');
                 });
 
-                // DEFENSE INDUSTRY CATEGORY2 CONTROLLER
+            // DEFENSE INDUSTRY CATEGORY2 CONTROLLER
             Route::controller(FrontendDefenseIndustryCategoryController::class)
-            ->prefix('savunma-sanayi-alt-kategorisi')
-            ->name('defenseIndustrySubCategory.')
-            ->group(function () {
-                Route::get('/{id?}', 'sub_category_index')->name('list2');
-            });
+                ->prefix('savunma-sanayi-alt-kategorisi')
+                ->name('defenseIndustrySubCategory.')
+                ->group(function () {
+                    Route::get('/{id?}', 'sub_category_index')->name('list2');
+                });
 
             // DEFENSE INDUSTRY CONTENT CONTROLLER
             Route::controller(FrontendDefenseIndustryContentController::class)
@@ -599,6 +610,7 @@ Route::middleware('lang')->group(function () {
                 ->name('video.')
                 ->group(function () {
                     Route::get('liste', 'index')->name('list');
+                    Route::get('etiket/{tag?}', 'tag_list')->name('tag_list');
                     Route::get('kategori/{link?}', 'category_list')->name('category_list');
                     Route::get('detay/{id?}', 'detail')->name('detail');
                 });
@@ -628,6 +640,7 @@ Route::middleware('lang')->group(function () {
                 ->name('dictionary.')
                 ->group(function () {
                     Route::get('liste/{id?}', 'index')->name('list');
+                    Route::get('etiket/{title?}', 'tag_list')->name('tag_list');
                     Route::get('detay/{id?}', 'detail')->name('detail');
                     Route::get('ara/{id?}', 'searchPost')->name('searchPost');
                 });
@@ -657,12 +670,14 @@ Route::middleware('lang')->group(function () {
                     Route::get('/', 'detail')->name('detail');
                 });
 
-                // PAGE CONTROLLER
+            // PAGE CONTROLLER
             Route::controller(FrontendPageController::class)
-            ->prefix('sayfalar')
-            ->name('page.')
-            ->group(function () {
-                Route::get('/detay/{id?}', 'detail')->name('detail');
-            });
+                ->prefix('sayfalar')
+                ->name('page.')
+                ->group(function () {
+                    Route::get('/detay/{id?}', 'detail')->name('detail');
+                });
+
+            Route::get('iletisim',[FrontendContactController::class,'contact'])->name('contact');
         });
 });

@@ -450,7 +450,7 @@
                                                     </a>
                                                 </li>
                                                 <li class="widget-list-item">
-                                                    <a href="contact.html" class="widget-list-link">
+                                                    <a href="{{ route('front.contact') }}" class="widget-list-link">
                                                         İletişim
                                                     </a>
                                                 </li>

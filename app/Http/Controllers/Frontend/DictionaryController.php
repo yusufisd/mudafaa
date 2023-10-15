@@ -55,13 +55,13 @@ class DictionaryController extends Controller
                 if ($letter != null) {
                     $data = Dictionary::where('title', 'LIKE', $letter . '%')->paginate(6);
                 } else {
-                    $data = Dictionary::latest()->paginate(12);
+                    $data = Dictionary::orderBy('title','asc')->paginate(12);
                 }
             } elseif ($local == 'en') {
                 if ($letter != null) {
                     $data = EnDictionary::where('title', 'LIKE', $letter . '%')->paginate(6);
                 } else {
-                    $data = EnDictionary::latest()->paginate(12);
+                    $data = EnDictionary::orderBy('title','asc')->paginate(12);
                 }
             }
         }
@@ -90,5 +90,22 @@ class DictionaryController extends Controller
     {
 
         dd($request->all());
+    }
+
+    public function tag_list($title){
+
+        $local = \Session::get('applocale');
+        if ($local == null) {
+            $local = config('app.fallback_locale');
+        }
+        if ($local == 'tr') {
+            $data = Dictionary::where('seo_key', 'LIKE' , '%'.$title.'%')->get();
+            
+        } elseif ($local == 'en') {
+            $data = EnDictionary::where('seo_key', 'LIKE' , '%'.$title.'%')->get();
+        }
+
+
+        return view('frontend.dictionary.tag_list',compact('data'));
     }
 }

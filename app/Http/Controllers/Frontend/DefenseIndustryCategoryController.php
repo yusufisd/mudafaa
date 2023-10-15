@@ -47,4 +47,22 @@ class DefenseIndustryCategoryController extends Controller
         return view('frontend.defenseIndustryCategory.list',compact('data','contents_first','defense'));
 
     }
+
+    public function tag_list($title){
+
+        $local = \Session::get('applocale');
+        if ($local == null) {
+            $local = config('app.fallback_locale');
+        }
+        if ($local == 'tr') {
+            $datas = DefenseIndustryContent::where('seo_key', 'LIKE' , '%'.$title.'%')->paginate(10);
+            $data = DefenseIndustryCategory::inRandomOrder()->take(6)->get();
+            
+        } elseif ($local == 'en') {
+            $datas = DefenseIndustryContent::where('seo_key', 'LIKE' , '%'.$title.'%')->paginate(10);
+            $data = EnDefenseIndustryCategory::inRandomOrder()->take(6)->get();
+        }
+
+        return view('frontend.defenseIndustry.tag_list',compact('datas','data'));
+    }
 }

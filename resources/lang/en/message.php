@@ -93,6 +93,10 @@ return [
     "Üzgünüz... Sayfa Bulunamadı!" => "Sorry... Page Not Found",
     "Aradığınız sayfa bulunamadı." => "The page you are looking for is not found.",
     "ANA SAYFAYA DÖN" => "BACK TO HOMEPAGE",
+    "SİZE NASIL YARDIMCI OLABİLİRİZ" => "How can we help you?",
+    "İletişim" => "Contact",
+    "Mesaj Bırakın" => "Leave a message",
+    "Kişisel Verilerin Korunması Hakkında Aydınlatma Metnini okudum, onay veriyorum." => "I have read the Clarification Text on the Protection of Personal Data and I give my consent.",
 
 
 ];

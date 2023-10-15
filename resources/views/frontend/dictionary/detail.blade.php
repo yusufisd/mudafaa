@@ -165,11 +165,10 @@
                                             <h4 class="block-tile mb--20">Popüler Etiketler:</h4>
                                             <div class="tag-list">
 
-                                                @foreach ($data->seo_key as $key)
-                                                    <a class="tag-link"
-                                                        style="text-transform: capitalize; text-decoration:none">
-                                                        {{ $key }} </a>
-                                                @endforeach
+                                                @foreach ($data->getKeys() as $item)
+                                                        <a href="{{ route('front.dictionary.tag_list',$item) }}" class="tag-link"
+                                                            style="text-transform: capitalize"> {{ $item }} </a>
+                                                    @endforeach
                                             </div>
 
                                         </div>

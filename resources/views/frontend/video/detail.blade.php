@@ -160,13 +160,18 @@
                                     <div class="row gutter-30">
                                         <div class="col-xl-7 col-lg-6">
                                             <div class="conent-block">
-                                                <h4 class="block-tile mb--20">Popüler Etiketler:</h4>
+                                                <h4 class="block-tile mb--20"> {{ __('message.popüler etiketler') }} :
+                                                </h4>
                                                 <div class="tag-list">
-                                                    <a href="#" class="tag-link">Güzel</a>
-                                                    <a href="#" class="tag-link">Seyahat</a>
-                                                    <a href="#" class="tag-link">Teknoloji</a>
-                                                    <a href="#" class="tag-link">Siyaset</a>
+
+                                                    @foreach ($data->getKeys() as $item)
+                                                        <a href="{{ route('front.video.tag_list',$item) }}" class="tag-link"
+                                                            style="text-transform: capitalize"> {{ $item }} </a>
+                                                    @endforeach
+
+
                                                 </div>
+                                            </div>
                                             </div>
                                         </div>
                                         <div class="col-xl-5 col-lg-6 d-flex justify-content-start justify-content-lg-end">

@@ -91,6 +91,10 @@ return [
     "Üzgünüz... Sayfa Bulunamadı!" => "Üzgünüz... Sayfa Bulunamadı!",
     "Aradığınız sayfa bulunamadı." => "Aradığınız sayfa bulunamadı.",
     "ANA SAYFAYA DÖN" => "ANA SAYFAYA DÖN",
+    "SİZE NASIL YARDIMCI OLABİLİRİZ" => "SİZE NASIL YARDIMCI OLABİLİRİZ",
+    "İletişim" => "İletişim",
+    "Mesaj Bırakın" => "Mesaj Bırakın",
+    "Kişisel Verilerin Korunması Hakkında Aydınlatma Metnini okudum, onay veriyorum." => "Kişisel Verilerin Korunması Hakkında Aydınlatma Metni'ni okudum, onay veriyorum.",
 
 
 ];

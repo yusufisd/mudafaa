@@ -35,6 +35,8 @@ class DictionaryImport implements ToCollection, WithStartRow
                     $keys_tr = trim($row[4]);
                     $keys_en = trim($row[5]);
 
+                    
+
                     $dict = new Dictionary();
                     $dict->title = $row[0];
                     $dict->description = $row[2];

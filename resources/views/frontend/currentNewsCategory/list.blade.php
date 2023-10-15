@@ -288,7 +288,7 @@
                                 <div class="tag-list">
 
                                     @foreach ($name->getKeys() as $item)
-                                        <a href="#" class="tag-link" style="text-transform: capitalize"> {{ $item }} </a>
+                                        <a href="{{ route('front.currentNews.tag_list',$item) }}" class="tag-link" style="text-transform: capitalize"> {{ $item }} </a>
                                     @endforeach
 
                                 </div>
