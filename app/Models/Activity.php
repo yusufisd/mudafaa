@@ -12,7 +12,6 @@ class Activity extends Model
     use HasFactory, SoftDeletes;
     protected $guarded = [];
     protected $casts = [
-        'seo_key' => 'array',
         'start_time' => 'datetime'
     ];
 

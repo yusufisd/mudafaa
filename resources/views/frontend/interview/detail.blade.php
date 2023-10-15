@@ -217,12 +217,12 @@
 
                                                 <div class="tag-list">
 
-                                                    @foreach (($data->seo_key) as $item)
-                                                        
+                                                    @foreach ($data->getKeys() as $item)
+
                                                     <a href="#" class="tag-link"> {{ $item }} </a>
-                                                    
+
                                                     @endforeach
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>
@@ -606,7 +606,7 @@
                                     <span class="rt-section-line"></span>
                                 </h2>
                                 <div class="tag-list">
-                                    @foreach (json_decode(json_encode($data->seo_key)) as $xkey)
+                                    @foreach ($data->getKeys() as $xkey)
                                         <a href="#" class="tag-link">{{ $xkey }}</a>
                                     @endforeach
                                 </div>

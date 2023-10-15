@@ -286,7 +286,7 @@
                                 </h2>
                                 <div class="tag-list">
                                     @foreach($keys as $key)
-                                        @foreach(json_decode(json_encode($key)) as $tag)
+                                        @foreach(explode(',',$key) as $tag)
                                             <a href="#" class="tag-link">{{ $tag }}</a>
                                         @endforeach
                                     @endforeach

@@ -1,5 +1,11 @@
 @extends('backend.master')
 @section('content')
+    <style>
+        .datarow {
+            margin-top: 10px;
+            border-top: 1px solid gray;
+        }
+    </style>
     <!--begin::Content wrapper-->
     <div class="d-flex flex-column flex-column-fluid">
         <!--begin::Toolbar-->
@@ -672,7 +678,7 @@
                                                             </div>
                                                             <div class="row mb-6">
                                                                 <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
-                                                                    <span class="required"> Cevap</span>
+                                                                    <span class="required">Cevap</span>
                                                                 </label>
                                                                 <div class="col-lg-10 fv-row">
                                                                     <input type="text"
@@ -692,6 +698,7 @@
                                                     <div id="asd" class="tab-pane fade show active">
                                                         @foreach ($dialog_tr as $ktr => $item)
                                                         <div id="show_item">
+                                                            <input type="hidden" id="has_dialog_tr" value="{{ count($dialog_tr) }}">
                                                             <div class="container" style=" padding:2%;" role="tabpanel">
                                                                 <div class="row mb-6">
                                                                     <div class="col-md-6">
@@ -730,7 +737,7 @@
                                                                     <div class="col-lg-10 fv-row">
                                                                         <input type="text"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            name="soru_tr[]" id="" value="{{ $item->soru }}">
+                                                                            name="soru_tr[]" id="{{ $ktr == 0 ? 'first_quest' : '' }}" value="{{ $item->soru }}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mb-6">
@@ -741,7 +748,7 @@
                                                                     <div class="col-lg-10 fv-row">
                                                                         <input type="text"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            name="cevap_tr[]" id="" value="{{ $item->cevap }}">
+                                                                            name="cevap_tr[]" id="{{ $ktr == 0 ? 'first_answer' : '' }}" value="{{ $item->cevap }}">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -832,6 +839,7 @@
                                                                                 class="col-lg-4 col-form-label fw-bold fs-6 ps-5">
                                                                                 <span class="required"> Soran Kişi</span>
                                                                             </label>
+                                                                            <input type="hidden" id="has_dialog_en" value="{{ count($dialog_tr) }}">
                                                                             <div class="col-lg-8 fv-row">
                                                                                 <input type="text"
                                                                                     class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
@@ -857,12 +865,12 @@
                                                                 <div class="row mb-6">
                                                                     <label
                                                                         class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
-                                                                        <span class="required"> Soru</span>
+                                                                        <span class="required">Soru</span>
                                                                     </label>
                                                                     <div class="col-lg-10 fv-row">
                                                                         <input type="text"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            name="soru_en[]" id="" value="{{ $item->soru }}">
+                                                                            name="soru_en[]" id="{{ $ken == 0 ? 'first_quest_en' : '' }}" value="{{ $item->soru }}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mb-6">
@@ -873,7 +881,7 @@
                                                                     <div class="col-lg-10 fv-row">
                                                                         <input type="text"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            name="cevap_en[]" id="" value="{{ $item->cevap }}">
+                                                                            name="cevap_en[]" id="{{ $ken == 0 ? 'first_answer_en' : '' }}" value="{{ $item->cevap }}">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1036,9 +1044,17 @@
                 e.preventDefault();
                 let soran = $("#soranTr").val();
                 let cevaplayan = $("#cevapTr").val();
-                $("#show_item").append(' <div id="show_item" class="py-12">\
-                                    <div class=" container" style=" padding:2%;"\
-                                        role="tabpanel">\
+                let fQuestion  = $("#first_quest").val();
+                let fAnswer    = $("#first_answer").val();
+                let hasDialog  = $("#has_dialog_tr");
+                if(hasDialog != undefined && hasDialog.val() > 0){
+                    $("#first_quest").val("");
+                    $("#first_answer").val("");
+                }
+
+                $("#show_item").append(' <div id="show_item">\
+                                    <div class="datarow" style=" padding:2%;"\
+                                        role="tabpanel ">\
                                         <div class="row mb-6">\
                                             <div class="col-md-6">\
                                                 <div class="row mb-6">\
@@ -1073,7 +1089,7 @@
                                             <div class="col-lg-10 fv-row">\
                                                 <input type="text"\
                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                    name="soru_tr[]" id="">\
+                                                    name="soru_tr[]" id="" value="' + fQuestion +'">\
                                             </div>\
                                         </div>\
                                         <div class="row mb-6">\
@@ -1083,14 +1099,14 @@
                                             <div class="col-lg-10 fv-row">\
                                                 <input type="text"\
                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                    name="cevap_tr[]" id="">\
+                                                    name="cevap_tr[]" id="" value="' + fAnswer +'">\
                                             </div>\
                                         </div>\
                                         <div class="ekle" style="text-align:center">\
                                     <button type="button"\
                                         class="btn btn-danger delete_item_buton">SİL</button>\
                                 </div>\
-                            </div><hr>');
+                            </div>');
             });
 
             $(document).on('click', '.delete_item_buton', function(e) {
@@ -1105,10 +1121,17 @@
         $(document).ready(function() {
             $(".add_item_buton2").click(function(e) {
                 e.preventDefault();
-                let soran = $("#soranTr").val();
-                let cevaplayan = $("#cevapTr").val();
-                $("#show_item2").append('<div id="show_item2" class="py-12">\
-                                    <div  role="tabpanel" style=" padding:2%;">\
+                let soran = $("#soranEn").val();
+                let cevaplayan = $("#cevapEn").val();
+                let fQuestion  = $("#first_quest_en").val();
+                let fAnswer    = $("#first_answer_en").val();
+                let hasDialog  = $("#has_dialog_en");
+                if(hasDialog != undefined && hasDialog.val() > 0){
+                    $("#first_quest_en").val("");
+                    $("#first_answer_en").val("");
+                }
+                $("#show_item2").append('<div id="show_item2" >\
+                                    <div class="datarow" role="tabpanel " style=" padding:2%;">\
                                         <div class="row mb-6">\
                                             <div class="col-md-6">\
                                                 <div class="row mb-6">\
@@ -1143,7 +1166,7 @@
                                             <div class="col-lg-10 fv-row">\
                                                 <input type="text"\
                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                    name="soru_en[]" id="">\
+                                                    name="soru_en[]" id="" value="' + fQuestion +'">\
                                             </div>\
                                         </div>\
                                         <div class="row mb-6">\
@@ -1153,7 +1176,7 @@
                                             <div class="col-lg-10 fv-row">\
                                                 <input type="text"\
                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                    name="cevap_en[]" id="">\
+                                                    name="cevap_en[]" id="" value="' + fAnswer +'">\
                                             </div>\
                                         </div>\
                                     <div class="ekle" style="text-align:center">\
@@ -1162,7 +1185,7 @@
                                     </div>\
                                 </div>\
                                     </div>\
-                                </div><hr>');
+                                </div>');
             });
 
             $(document).on('click', '.delete_item_buton2', function(e) {

@@ -25,13 +25,13 @@ class InterviewController extends Controller
             $populer_interview = Interview::inRandomOrder()
                 ->take(4)
                 ->get();
-            $keys = Interview::select('seo_key')->groupBy('id')->pluck('seo_key')->all();
+            $keys = Interview::select('seo_key', 'view_counter')->orderBy('view_counter', 'desc')->groupBy('id')->pluck('seo_key')->take(5)->toArray();
         }else{
             $data = EnInterview::latest()->get();
             $populer_interview = EnInterview::inRandomOrder()
                 ->take(4)
                 ->get();
-            $keys = EnInterview::select('seo_key')->groupBy('id')->pluck('seo_key')->all();
+            $keys = EnInterview::select('seo_key', 'view_counter')->orderBy('view_counter', 'desc')->groupBy('id')->pluck('seo_key')->take(5)->toArray();
         }
 
         return view('frontend.interview.list', compact('data', 'populer_interview','keys'));

@@ -9,9 +9,6 @@ class CurrentNews extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $casts = [
-        'tags' => 'array',
-    ];
 
     public function Category()
     {

@@ -124,7 +124,7 @@ class ActivityController extends Controller
             foreach ($veri_en as $v) {
                 $merge_en[] = $v->value;
             }
-            $merge = implode(',', $merge_en);
+            $merge_en = implode(',', $merge_en);
 
 
             $new = new Activity();
@@ -401,7 +401,7 @@ class ActivityController extends Controller
         try {
             DB::beginTransaction();
             $data = Activity::findOrFail($id);
-            
+
             EnActivity::where('activity_id', $id)->delete();
             $data->delete();
 

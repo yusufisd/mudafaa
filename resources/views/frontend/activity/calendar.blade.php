@@ -3,10 +3,16 @@
 
 @section('content')
     <style>
-        .fc .fc-daygrid-event-harness{
+        .current_activity{
             position: absolute;
-            z-index: 999;
-
+            z-index: 9999;
+        }
+        .fc-daygrid-event-harness{
+            position: relative;
+            z-index: 9999;
+        }
+        .relative {
+            position: relative !important;
         }
     </style>
     <!-- Start Main -->
@@ -84,7 +90,18 @@
 @section('script')
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
     <script src="{{asset('/assets/frontend/js/fullCalendar.js')}}"></script>
+    <script>
+        $(".fc-daygrid-event-harness").mouseenter(() {
+            $(this).addClass()
+        })
+            e.target.classlist.add('')
+        }
 
+        function upActivity(e){
+            console.log('ok');
+            e.target.classlist.remove('current_activity')
+        }
+    </script>
 
     <script>
         function generateUrlSearch(cat) {
@@ -140,6 +157,7 @@
                     backgroundColor : '{{ $event->Category->color_code }}',
                     color: '{{ $event->Category->color_code }}',
                     url : "#",
+                    className : "relative"
                 },
                 @endforeach
                 ],
@@ -148,5 +166,6 @@
 
             calendar.render();
         });
-    </script>
+
+        </script>
 @endsection

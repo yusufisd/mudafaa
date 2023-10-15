@@ -361,45 +361,50 @@ class CompanyModelController extends Controller
             $new_adres->save();
         }
 
-        if ($request->company_icon[0] != null) {
-            CompanyTitle::where('company_id', $id)->delete();
-            for ($i = 0; $i < count($request->company_icon); $i++) {
-                $new_title = new CompanyTitle();
-                $new_title->title = $request->company_title[$i];
-                $new_title->icon = $request->company_icon[$i];
-                $new_title->description = $request->company_description[$i];
-                $new_title->company_id = $new_company->id;
-                $new_title->save();
-            }
+        CompanyTitle::where('company_id', $id)->delete();
+        for ($i = 0; $i < count($request->company_icon); $i++) {
+            if ($request->company_title[$i] == null ) continue;
+            $new_title = new CompanyTitle();
+            $new_title->title = $request->company_title[$i];
+            $new_title->icon = $request->company_icon[$i];
+            $new_title->description = $request->company_description[$i];
+            $new_title->company_id = $new_company->id;
+            $new_title->save();
         }
-        if ($request->company_icon_en[0] != null) {
-            EnCompanyTitle::where('company_id', $id)->delete();
-            for ($i = 0; $i < count($request->company_icon_en); $i++) {
-                $new_title = new CompanyTitle();
-                $new_title->title = $request->company_title[$i];
-                $new_title->icon = $request->company_icon[$i];
-                $new_title->description = $request->company_description[$i];
-                $new_title->company_id = $new_company->id;
-                $new_title->save();
-            }
+        EnCompanyTitle::where('company_id', $id)->delete();
+        for ($i = 0; $i < count($request->company_icon_en); $i++) {
+            if ($request->company_title_en[$i] == null ) continue;
+            $new_title = new EnCompanyTitle();
+            $new_title->title = $request->company_title_en[$i];
+            $new_title->icon = $request->company_icon_en[$i];
+            $new_title->description = $request->company_description_en[$i];
+            $new_title->company_id = $new_company->id;
+            $new_title->save();
         }
 
-        if ($request->gorseller_image != null) {
-            CompanyImage::where('company_id', $id)->delete();
+        CompanyImage::where('company_id', $id)->whereNotIn('id', $request->image_id ?? [])->delete();
+        if (isset($request->gorseller_image)) {
             for ($i = 0; $i < count($request->gorseller_image); $i++) {
+                if ($request->gorseller_image[$i] == null) continue;
                 $new_image = new CompanyImage();
-                if ($request->file('gorseller_image')[$i] != null) {
-                    $image = $request->file('image');
-                    $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-                    $save_url = 'assets/uploads/companyImage/' . $image_name;
-                    Image::make($image)
-                        ->resize(960, 520)
-                        ->save($save_url);
-                    $new_image->image = $save_url;
-                }
+                $image = $request->gorseller_image[$i];
+                $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+                $save_url = 'assets/uploads/companyImage/' . $image_name;
+                Image::make($image)
+                    ->resize(960, 520)
+                    ->save($save_url);
+                $new_image->image = $save_url;
                 $new_image->queue = $request->gorseller_queue[$i];
                 $new_image->company_id = $new_company->id;
                 $new_image->save();
+            }
+        }
+
+        if (isset($request->gorseller_queue) && count($request->gorseller_queue)){
+            foreach ($request->gorseller_queue as $id => $queue) {
+                CompanyImage::where('id', $id)->update([
+                    "queue" => $queue
+                ]);
             }
         }
 

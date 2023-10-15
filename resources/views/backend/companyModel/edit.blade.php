@@ -681,36 +681,62 @@
                                         </div>
 
                                         <div class="tab-pane fade container" id="gorseller" role="tabpanel"><br>
-
-                                            @foreach ($gorseller as $item)
-                                                <div class="row" style="padding: 1%" id="show_item3">
-                                                    <div class="col-md-2" style="text-align:center">
+                                            @if(count($gorseller) <= 0)
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="col-lg-11 fv-row">
+                                                            <input type="file"
+                                                                   class="form-control form-control-lg mb-lg-0 mb-3 w-full"
+                                                                   name="gorseller_image[]" id="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <div class="col-lg-11 fv-row">
+                                                            <input type="number" placeholder="Sıralama"
+                                                                   class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                   name="gorseller_queue[]" value="1"
+                                                                   id="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <button style="width:90px"
+                                                                class="btn btn-primary add_item_buton3">EKLE</button>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                            @foreach ($gorseller as $gkey => $item)
+                                                <div class="row" style="padding: 1%">
+                                                    <div class="col-md-4" style="text-align:center">
                                                         <img src="/{{ $item->image }}"
-                                                            style="width: 100px; border-radius:15px" alt="">
+                                                            style="width: 150px; border-radius:15px" alt="">
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="col-lg-11 fv-row">
                                                             <input type="file"
                                                                 class="form-control form-control-lg mb-lg-0 mb-3 w-full"
                                                                 name="gorseller_image[]" id="">
+                                                            <input type="hidden" name="image_id[]" value="{{ $item->id}}">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="col-lg-11 fv-row">
                                                             <input type="number" placeholder="Sıralama"
                                                                 class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                name="gorseller_queue[]" value="{{ $item->queue }}"
+                                                                name="gorseller_queue[{{ $item->id }}]" value="{{ $item->queue }}"
                                                                 id="">
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-2">
-                                                        <button style="width:100px"
-                                                            class="btn btn-danger delete_item_buton3">SİL</button>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <button style="width:90px"
-                                                            class="btn btn-primary add_item_buton3">EKLE</button>
-                                                    </div>
+                                                    @if($gkey == 0)
+                                                        <div class="col-md-2">
+                                                            <button style="width:90px"
+                                                                    class="btn btn-primary add_item_buton3">EKLE</button>
+                                                        </div>
+                                                    @else
+                                                        <div class="col-md-2">
+                                                            <button style="width:100px"
+                                                                    class="btn btn-danger delete_item_buton3">SİL</button>
+                                                        </div>
+                                                    @endif
                                                 </div>
                                             @endforeach
 
@@ -1565,25 +1591,26 @@
         $(document).ready(function() {
             $(".add_item_buton3").click(function(e) {
                 e.preventDefault();
-                $("#show_item3").append('<div class="row pt-10" style="margin-left:0"  id="show_item3">\
-                                                                                        <div class="col-md-5">\
-                                                                                            <div class="col-lg-11 fv-row">\
-                                                                                                <input type="file"\
-                                                                                                    class="form-control w-full form-control-lg  mb-3 mb-lg-0"\
-                                                                                                    name="gorseller_image[]" id="">\
-                                                                                            </div>\
-                                                                                        </div>\
-                                                                                        <div class="col-md-5">\
-                                                                                            <div class="col-lg-11 fv-row">\
-                                                                                                <input type="number" placeholder="Sıralama"\
-                                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                                                                    name="gorseller_queue[]" id="">\
-                                                                                            </div>\
-                                                                                        </div>\
-                                                                                        <div class="col-md-2" style="text-align:right;padding-right:0">\
-                                                                                            <button style="width:100px" class="btn btn-danger delete_item_buton3">SİL</button>\
-                                                                                        </div>\
-                                                                                    </div>');
+                $("#gorseller").append(
+                    '<div class="row pt-10" style="margin-left:0">\
+                        <div class="col-md-5">\
+                            <div class="col-lg-11 fv-row">\
+                                <input type="file"\
+                                    class="form-control w-full form-control-lg  mb-3 mb-lg-0"\
+                                    name="gorseller_image[]" id="">\
+                            </div>\
+                        </div>\
+                        <div class="col-md-5">\
+                            <div class="col-lg-11 fv-row">\
+                                <input type="number" placeholder="Sıralama"\
+                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                    name="gorseller_queue[]" id="">\
+                            </div>\
+                        </div>\
+                        <div class="col-md-2" style="padding-right:0">\
+                            <button style="width:100px" class="btn btn-danger delete_item_buton3">SİL</button>\
+                        </div>\
+                    </div>');
             });
 
             $(document).on('click', '.delete_item_buton3', function(e) {
