@@ -26,4 +26,10 @@ class VideoController extends Controller
         $data = Video::where('link',$link)->first();
         return view('frontend.video.detail',compact('data'));
     }
+
+    public function category_list($link){
+        $cat = VideoCategory::where('link',$link)->first();
+        $data = Video::where('category_id',$cat->id)->get();
+        return view('frontend.videoCategory.list',compact('data','cat'));
+    }
 }

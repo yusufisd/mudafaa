@@ -111,7 +111,7 @@
                                                         <div
                                                             class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
                                                             <input class="form-check-input w-50px h-25px" type="checkbox"
-                                                                id="blog_status_1"
+                                                                id="status"
                                                                 onchange="change_status({{ $item->id }})"
                                                                 {{ $item->status == 1 ? 'checked' : '' }}>
                                                             <label class="form-check-label" for="blog_status_1"></label>
@@ -159,7 +159,7 @@
 @section('script')
     <script>
         function change_status(d) {
-            window.location.href = "{{ route('admin.defenseIndustryCategory.change_status') }}/" + d
+            window.location.href = "{{ route('admin.video.change_status') }}/" + d
         }
         function destroy(d) {
             Swal.fire({

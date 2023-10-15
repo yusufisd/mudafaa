@@ -22,5 +22,9 @@ class Video extends Model
         return $this->hasOne(VideoCategory::class,'id','category_id');
     }
 
+    public function getKeys(){
+        return explode(',', $this->seo_key);
+    }
+
     
 }

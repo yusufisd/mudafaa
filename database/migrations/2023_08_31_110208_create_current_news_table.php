@@ -23,7 +23,6 @@ return new class extends Migration
             $table->integer('read_time')->default(3);
             $table->longText('short_description');
             $table->longText('description');
-            $table->string('tags');
             $table->integer('status')->default(1);
             $table->string('link');
             $table->string('seo_title');

@@ -614,7 +614,7 @@
                                                                             id="activity_seo_keywords_tr"
                                                                             name="activity_seo_keywords_tr[]"
                                                                             required class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            value="{{ json_encode($data_tr->seo_key) }}" />
+                                                                            value="{{ json_encode($data_tr->getKeys()) }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -690,7 +690,7 @@
                                                                             id="activity_seo_keywords_en"
                                                                             name="activity_seo_keywords_en[]"
                                                                             required class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            value="{{ json_encode($data_en->seo_key) }}" />
+                                                                            value="{{ json_encode($data_en->getKeys()) }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>

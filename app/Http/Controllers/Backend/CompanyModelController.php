@@ -83,12 +83,16 @@ class CompanyModelController extends Controller
         foreach ($veri as $v) {
             $merge[] = $v->value;
         }
+        $merge = implode(',', $merge);
+
 
         $veri_en = json_decode(json_decode(json_encode($request->seo_key_en[0])));
         $merge_en = [];
         foreach ($veri_en as $v) {
             $merge_en[] = $v->value;
         }
+        $merge_en = implode(',', $merge_en);
+
 
         $new_company = new CompanyModel();
         $new_company->category = $request->category;
@@ -134,31 +138,30 @@ class CompanyModelController extends Controller
         }
         $new_company_en->save();
 
-        if ($request->address_title[0] != null) {
-            for ($i = 0; $i < count($request->address_title); $i++) {
-                $new_adres = new CompanyAddress();
-                $new_adres->title = $request->address_title[$i];
-                $new_adres->address = $request->address_address[$i];
-                $new_adres->phone = $request->address_phone[$i];
-                $new_adres->email = $request->address_email[$i];
-                $new_adres->map = $request->address_map[$i];
-                $new_adres->website = $request->address_website[$i];
-                $new_adres->company_id = $new_company->id;
-                $new_adres->save();
-            }
+        for ($i = 0; $i < count($request->address_title); $i++) {
+            if($request->address_title[$i] == null ) continue;
+            $new_adres = new CompanyAddress();
+            $new_adres->title = $request->address_title[$i];
+            $new_adres->address = $request->address_address[$i];
+            $new_adres->phone = $request->address_phone[$i];
+            $new_adres->email = $request->address_email[$i];
+            $new_adres->map = $request->address_map[$i];
+            $new_adres->website = $request->address_website[$i];
+            $new_adres->company_id = $new_company->id;
+            $new_adres->save();
         }
-        if ($request->address_title_en[0] != null) {
-            for ($i = 0; $i < count($request->address_title_en); $i++) {
-                $new_adres = new EnCompanyAddress();
-                $new_adres->title = $request->address_title[$i];
-                $new_adres->address = $request->address_address[$i];
-                $new_adres->phone = $request->address_phone[$i];
-                $new_adres->email = $request->address_email[$i];
-                $new_adres->map = $request->address_map[$i];
-                $new_adres->website = $request->address_website[$i];
-                $new_adres->company_id = $new_company->id;
-                $new_adres->save();
-            }
+
+        for ($i = 0; $i < count($request->address_title_en); $i++) {
+            if($request->address_title_en[$i] == null ) continue;
+            $new_adres = new EnCompanyAddress();
+            $new_adres->title = $request->address_title_en[$i];
+            $new_adres->address = $request->address_address_en[$i];
+            $new_adres->phone = $request->address_phone_en[$i];
+            $new_adres->email = $request->address_email_en[$i];
+            $new_adres->map = $request->address_map_en[$i];
+            $new_adres->website = $request->address_website_en[$i];
+            $new_adres->company_id = $new_company->id;
+            $new_adres->save();
         }
         if ($request->company_icon[0] != null) {
             for ($i = 0; $i < count($request->company_icon); $i++) {
@@ -180,7 +183,7 @@ class CompanyModelController extends Controller
                 $new_title->save();
             }
         }
-        if ($request->gorseller_image[0] != null) {
+        if ($request->gorseller_image != null) {
             for ($i = 0; $i < count($request->gorseller_image); $i++) {
                 $new_image = new CompanyImage();
                 if ($request->file('gorseller_image')[$i] != null) {
@@ -270,12 +273,15 @@ class CompanyModelController extends Controller
         foreach ($veri as $v) {
             $merge[] = $v->value;
         }
+        $merge = implode(',', $merge);
 
         $veri_en = json_decode(json_decode(json_encode($request->seo_key_en[0])));
         $merge_en = [];
         foreach ($veri_en as $v) {
             $merge_en[] = $v->value;
         }
+        $merge_en = implode(',', $merge_en);
+
 
         $new_company = CompanyModel::findOrFail($id);
         $new_company->category = $request->category;
@@ -325,33 +331,34 @@ class CompanyModelController extends Controller
         }
         $new_company_en->save();
 
-        if ($request->address_title[0] != null) {
-            CompanyAddress::where('company_id', $id)->delete();
-            for ($i = 0; $i < count($request->address_title); $i++) {
-                $new_adres = new CompanyAddress();
-                $new_adres->title = $request->address_title[$i];
-                $new_adres->address = $request->address_address[$i];
-                $new_adres->phone = $request->address_phone[$i];
-                $new_adres->email = $request->address_email[$i];
-                $new_adres->map = $request->address_map[$i];
-                $new_adres->website = $request->address_website[$i];
-                $new_adres->company_id = $new_company->id;
-                $new_adres->save();
-            }
+        CompanyAddress::where('company_id', $new_company->id)->delete();
+        EnCompanyAddress::where('company_id', $new_company->id)->delete();
+
+
+        for ($i = 0; $i < count($request->address_title); $i++) {
+            if($request->address_title[$i] == null ) continue;
+            $new_adres = new CompanyAddress();
+            $new_adres->title = $request->address_title[$i];
+            $new_adres->address = $request->address_address[$i];
+            $new_adres->phone = $request->address_phone[$i];
+            $new_adres->email = $request->address_email[$i];
+            $new_adres->map = $request->address_map[$i];
+            $new_adres->website = $request->address_website[$i];
+            $new_adres->company_id = $new_company->id;
+            $new_adres->save();
         }
-        if ($request->address_title_en[0] != null) {
-            EnCompanyAddress::where('company_id', $id)->delete();
-            for ($i = 0; $i < count($request->address_title_en); $i++) {
-                $new_adres = new EnCompanyAddress();
-                $new_adres->title = $request->address_title[$i];
-                $new_adres->address = $request->address_address[$i];
-                $new_adres->phone = $request->address_phone[$i];
-                $new_adres->email = $request->address_email[$i];
-                $new_adres->map = $request->address_map[$i];
-                $new_adres->website = $request->address_website[$i];
-                $new_adres->company_id = $new_company->id;
-                $new_adres->save();
-            }
+
+        for ($i = 0; $i < count($request->address_title_en); $i++) {
+            if($request->address_title_en[$i] == null ) continue;
+            $new_adres = new EnCompanyAddress();
+            $new_adres->title = $request->address_title_en[$i];
+            $new_adres->address = $request->address_address_en[$i];
+            $new_adres->phone = $request->address_phone_en[$i];
+            $new_adres->email = $request->address_email_en[$i];
+            $new_adres->map = $request->address_map_en[$i];
+            $new_adres->website = $request->address_website_en[$i];
+            $new_adres->company_id = $new_company->id;
+            $new_adres->save();
         }
 
         if ($request->company_icon[0] != null) {

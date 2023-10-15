@@ -1,4 +1,6 @@
 @extends('frontend.master')
+@section('title','Videolar')
+
 @section('content')
     <!-- Start Main -->
     <main>
@@ -48,7 +50,7 @@
                                 </h2>
 
                                 <div>
-                                    <h6><a href="#">{{ __('message.tümünü gör')}}</a></h6>
+                                    <h6><a href="{{ route('front.video.category_list',$cat->link) }}">{{ __('message.tümünü gör')}}</a></h6>
                                 </div>
                             </div>
                             <!-- end titile-wrapper -->
@@ -61,7 +63,7 @@
                                 <div class="slide-item">
                                     <div class="rt-post-grid grid-meta">
                                         <div class="post-img">
-                                            <a href="#">
+                                            <a href="{{ route('front.video.detail',$item->link) }}">
                                                 <img src="/{{ $item->image }}" alt="post" width="551"
                                                     height="431">
                                             </a>

@@ -1,4 +1,6 @@
 @extends('frontend.master')
+@section('title',$defense->title)
+
 @section('content')
     <!-- Start Main -->
     <style>

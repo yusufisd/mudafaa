@@ -1,4 +1,6 @@
 @extends('frontend.master')
+@section('title',$data->title)
+
 @section('css')
     <style>
         @media (min-width: 769px) {

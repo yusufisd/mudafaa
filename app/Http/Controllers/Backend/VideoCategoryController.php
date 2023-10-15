@@ -85,12 +85,16 @@ class VideoCategoryController extends Controller
             foreach ($veri as $v) {
                 $merge[] = $v->value;
             }
+            $merge = implode(',', $merge);
+
 
             $veri_en = json_decode(json_decode(json_encode($request->seo_key_en[0])));
             $merge_en = [];
             foreach ($veri_en as $v) {
                 $merge_en[] = $v->value;
             }
+            $merge_en = implode(',', $merge_en);
+
 
             $new = new VideoCategory();
             $new->title = $request->name_tr;
@@ -180,41 +184,59 @@ class VideoCategoryController extends Controller
         try {
             DB::beginTransaction();
 
+            $veri = json_decode(json_decode(json_encode($request->seo_key_tr[0])));
+            $merge = [];
+            foreach ($veri as $v) {
+                $merge[] = $v->value;
+            }
+            $merge = implode(',', $merge);
+
+
+            $veri_en = json_decode(json_decode(json_encode($request->seo_key_en[0])));
+            $merge_en = [];
+            foreach ($veri_en as $v) {
+                $merge_en[] = $v->value;
+            }
+            $merge_en = implode(',', $merge_en);
+
+
             $new = VideoCategory::findOrFail($id);
             $new->title = $request->name_tr;
-            $new->description = $request->short_description_tr;
             $new->link = $request->link_tr;
             $new->seo_title = $request->seo_title_tr;
             $new->seo_description = $request->seo_description_tr;
-            $new->seo_key = $request->seo_key_tr;
             $new->queue = $request->queue;
-            if (!isset($request->seo_statu_tr)) {
-                $new->seo_statu = 0;
+            $new->seo_key = $merge;
+            if (!isset($request->status_tr)) {
+                $new->status = 0;
+            }else{
+                $new->status = 1;
             }
             $new->save();
 
             $news_en = EnVideoCategory::where('category_id', $id)->first();
             $news_en->title = $request->name_en;
-            $news_en->description = $request->short_description_en;
             $news_en->link = $request->link_en;
+            $news_en->queue = $request->queue;
             $news_en->category_id = $new->id;
             $news_en->seo_title = $request->seo_title_en;
             $news_en->seo_description = $request->seo_description_en;
-            $news_en->seo_key = $request->seo_key_en;
-            $news_en->save();
-            if (!isset($request->seo_statu_en)) {
-                $news_en->seo_statu = 0;
+            $news_en->seo_key = $merge_en;
+            if (!isset($request->status_en)) {
+                $news_en->status = 0;
+            }else{
+                $news_en->status = 1;
             }
             $news_en->save();
 
-            logKayit(['Video Kategori Yönetimi ', 'Video kategori eklendi']);
-            Alert::success('Video Kategori Başarıyla Eklendi');
+            logKayit(['Video Kategori Yönetimi ', 'Video kategori düzenlendi']);
+            Alert::success('Video Kategori Başarıyla Düzenlendi');
             DB::commit();
         } catch (Throwable $e) {
             DB::rollBack();
 
-            logKayit(['Video Kategori Yönetimi ', 'Video Kategori eklemede hata', 0]);
-            Alert::error('Video Kategori Eklemede Hata');
+            logKayit(['Video Kategori Yönetimi ', 'Video Kategori Düzenlemede Hata', 0]);
+            Alert::error('Video Kategori Düzenlemede Hata');
             throw ValidationException::withMessages([
                 'error' => 'Tüm alanların doldurulması zorunludur.',
             ]);

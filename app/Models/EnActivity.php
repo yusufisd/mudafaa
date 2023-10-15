@@ -19,5 +19,8 @@ class EnActivity extends Model
         return $this->hasOne(ActivityCategory::class, 'id', 'category');
     }
 
+    public function getKeys(){
+        return explode(',', $this->seo_key);
+    }
 
 }

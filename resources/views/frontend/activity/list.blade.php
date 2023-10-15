@@ -1,4 +1,5 @@
 @extends('frontend.master')
+@section('title','Etkinlik')
 @section('content')
     <!-- Start Main -->
     <main>

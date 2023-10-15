@@ -25,6 +25,7 @@ class DefenseIndustryCategoryImport implements ToCollection, WithStartRow
     public function collection(Collection $rows)
     {
         foreach ($rows as $row) {
+
             if ($row[0] != null) {
                 if ($row->filter()->isNotEmpty()) {
                     $defense_link_tr = Str::slug($row[1]);

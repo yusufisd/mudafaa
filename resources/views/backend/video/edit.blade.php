@@ -37,6 +37,14 @@
             <div id="kt_app_content" class="app-content flex-column-fluid">
                 <!--begin::Content container-->
                 <div id="kt_app_content_container" class="app-container container-fluid">
+
+                    @if($errors->any())
+                        @foreach ($errors->all() as $e)
+                            <div class="alert alert-danger">
+                                {{ $e }}
+                            </div>
+                        @endforeach
+                    @endif
                     <!--begin::Row-->
                     <div class="row g-5 g-xl-8">
                         <!--begin::Col-->
@@ -280,7 +288,7 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Url</label>
+                                                                        class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Link</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10">
@@ -289,18 +297,14 @@
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <div class="row">
-                                                                                    <div class="col-lg-10">
+                                                                                    <div class="col-lg-12">
                                                                                         <input type="text"
                                                                                             name="link_tr"
                                                                                             id="activity_url_tr"
                                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                             value="{{$data_tr->link}}" />
                                                                                     </div>
-                                                                                    <div class="col-lg-2">
-                                                                                        <button type="button"
-                                                                                            class="btn btn-outline btn-outline-success w-100"
-                                                                                            id="activity_detail_url_btn_tr">URL ÜRET</button>
-                                                                                    </div>
+                                                                                    
 
                                                                                 </div>
                                                                             </div>
@@ -399,7 +403,7 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Url</label>
+                                                                        class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Link</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10">
@@ -408,18 +412,14 @@
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <div class="row">
-                                                                                    <div class="col-lg-10">
+                                                                                    <div class="col-lg-12">
                                                                                         <input type="text"
                                                                                             name="link_en"
                                                                                             id="activity_url_en"
                                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                             value="{{$data_en->link}}" />
                                                                                     </div>
-                                                                                    <div class="col-lg-2">
-                                                                                        <button type="button"
-                                                                                            class="btn btn-outline btn-outline-success w-100"
-                                                                                            id="activity_detail_url_btn_tr">URL ÜRET</button>
-                                                                                    </div>
+                                                                                    
 
                                                                                 </div>
                                                                             </div>
@@ -529,7 +529,7 @@
                                                                             id="activity_seo_keywords_tr"
                                                                             name="seo_key_tr[]"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                            value="{{json_encode($data_tr->seo_key)}}" />
+                                                                            value="{{ json_encode($data_tr->getKeys()) }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -601,7 +601,7 @@
                                                                             id="activity_seo_keywords_en"
                                                                             name="seo_key_en[]"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                            value="{{json_encode($data_en->seo_key)}}" />
+                                                                            value="{{ json_encode($data_en->getKeys()) }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>

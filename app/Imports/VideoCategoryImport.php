@@ -25,8 +25,8 @@ class VideoCategoryImport implements ToCollection, WithStartRow
         foreach ($rows as $row) {
             if ($row[0] != null) {
                 if ($row->filter()->isNotEmpty()) {
-                    $keys = explode(',', ($row[3]));
-                    $keys_tr = explode(',', ($row[4]));
+                    $keys = trim($row[3]);
+                    $keys_tr = trim($row[4]);
 
 
                     $tr = VideoCategory::create([

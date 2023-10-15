@@ -71,12 +71,16 @@ class VideoController extends Controller
             foreach ($veri as $v) {
                 $merge[] = $v->value;
             }
+            $merge = implode(',', $merge);
+
 
             $veri_en = json_decode(json_decode(json_encode($request->seo_key_en[0])));
             $merge_en = [];
             foreach ($veri_en as $v) {
                 $merge_en[] = $v->value;
             }
+            $merge_en = implode(',', $merge_en);
+
 
             $news = new Video();
             $news->category_id = $request->category;
@@ -183,12 +187,16 @@ class VideoController extends Controller
             foreach ($veri as $v) {
                 $merge[] = $v->value;
             }
+            $merge = implode(',', $merge);
+
 
             $veri_en = json_decode(json_decode(json_encode($request->seo_key_en[0])));
             $merge_en = [];
             foreach ($veri_en as $v) {
                 $merge_en[] = $v->value;
             }
+            $merge_en = implode(',', $merge_en);
+
 
             $news = Video::findOrFail($id);
             $news->category_id = $request->category;
@@ -284,25 +292,25 @@ class VideoController extends Controller
     {
         try {
             DB::beginTransaction();
-            $data = CurrentNewsCategory::findOrFail($id);
-            $data_en = EnCurrentNewsCategory::where('category_id', $id)->first();
+            $data = Video::findOrFail($id);
+            $data_en = EnVideo::where('video_id', $id)->first();
             $data_en->status = !$data->status;
             $data_en->save();
             $data->status = !$data->status;
             $data->save();
-            logKayit(['Güncel Haber Kategori', 'Haber kategori durumu değiştirildi']);
+            logKayit(['Video Yönetimi ', 'Video statüsü değiştirildi.']);
             Alert::success('Durum Başarıyla Değiştirildi');
             DB::commit();
         } catch (Throwable $e) {
             DB::rollBack();
 
-            logKayit(['Güncel Haber Kategori', 'Kategori durumu değiştirmede hata', 0]);
+            logKayit(['Video Yönetimi ', 'Video durum değiştirmede hata', 0]);
             Alert::error('Durum Değiştirmede Hata');
             throw ValidationException::withMessages([
                 'error' => 'Tüm alanların doldurulması zorunludur.',
             ]);
         }
-        return redirect()->route('admin.currentNewsCategory.list');
+        return redirect()->route('admin.video.list');
     }
 
 }

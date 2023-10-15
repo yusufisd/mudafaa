@@ -1,4 +1,6 @@
 @extends('frontend.master')
+@section('title','Sözlük')
+
 @section('content')
     <!-- Start Main -->
     <style>

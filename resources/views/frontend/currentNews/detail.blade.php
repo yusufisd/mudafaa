@@ -1,4 +1,6 @@
 @extends('frontend.master')
+@section('title',$data->title)
+
 @section('content')
     <!-- Start Main -->
     <style>
@@ -241,8 +243,8 @@
                                                 </h4>
                                                 <div class="tag-list">
 
-                                                    @foreach ($data->seo_key as $item)
-                                                        <a href="#" class="tag-link"
+                                                    @foreach ($data->getKeys() as $item)
+                                                        <a href="{{ route('front.currentNews.tag_list',$item) }}" class="tag-link"
                                                             style="text-transform: capitalize"> {{ $item }} </a>
                                                     @endforeach
 
@@ -742,8 +744,8 @@
                                 </h2>
                                 <div class="tag-list">
 
-                                    @foreach ($data->seo_key as $key)
-                                        <a href="#" class="tag-link" style="text-transform: capitalize">
+                                    @foreach ($data->getKeys() as $key)
+                                        <a href="{{ route('front.currentNews.tag_list',$key) }}" class="tag-link" style="text-transform: capitalize">
                                             {{ $key }} </a>
                                     @endforeach
 

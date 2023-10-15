@@ -1,6 +1,44 @@
 @extends('frontend.master')
+@section('title',$data->title)
+
 @section('content')
     <!-- Start Main -->
+    <style>
+        .social-connection li:nth-child(2) a {
+            background-image: -webkit-gradient(linear, right top, left top, from(#56c3f0), to(#13a4e7));
+            background-image: linear-gradient(-90deg, #909fa5 0%, #151616 100%);
+            background-image: -ms-linear-gradient(-90deg, #56c3f0 0%, #13a4e7 100%);
+        }
+
+        .social-connection li:nth-child(5) a {
+            border-radius: 3px;
+            background-image: -webkit-gradient(linear, right top, left top, from(#f43079), to(#f7679d));
+            background-image: linear-gradient(-90deg, #5579ad 0%, #1a6be1 100%);
+            background-image: -ms-linear-gradient(-90deg, #f43079 0%, #f7679d 100%);
+        }
+
+        .post-body {
+            color: #000;
+        }
+
+        .post-body:first-letter {
+            float: left;
+            font-weight: bold;
+            font-size: 10px;
+            font-size: 4rem;
+            line-height: 20px;
+            line-height: 2rem;
+            height: 4rem;
+            text-transform: uppercase;
+            padding: 2%;
+            margin-left: 2%
+        }
+
+        .tag-link:hover {
+            background-color: #749f43;
+            color: white;
+        }
+    </style>
     <main>
         <!-- theme-switch-box -->
         <div class="theme-switch-box-mobile-wrap">
@@ -69,7 +107,8 @@
                                         <li>
                                             <span class="rt-meta">
                                                 <i class="fa fa-user"></i>
-                                                <a href="author.html" class="name">Milli Müdafaa</a>
+                                                <a href="author.html" class="name"> {{ $data->Author->name }}
+                                                    {{ $data->Author->surname }} </a>
                                             </span>
                                         </li>
                                         <li>
@@ -87,13 +126,13 @@
                                         <li>
                                             <span class="rt-meta">
                                                 <i class="far fa-clock icon"></i>
-                                                2 Dk.
+                                                {{ $data->read_time }}
                                             </span>
                                         </li>
                                         <li>
                                             <span class="rt-meta">
                                                 <i class="far fa-eye icon"></i>
-                                                3,250
+                                                {{ $data->view_counter }}
                                             </span>
                                         </li>
                                     </ul>
@@ -133,7 +172,9 @@
 
                                                 @foreach ($dialogs as $item)
                                                     <div class="single-content">
-                                                        <h3 class="title report_title"><span class="text--gray">{{ $item->soran }} :</span> {{ $item->soru }} <i class="fas fa-question" style="vertical-align: text-top; color:#3b4022;"></i></h3>
+                                                        <h3 class="title report_title"><i class="fas fa-question"
+                                                                style="vertical-align: text-top; color:#3b4022;"></i><span>
+                                                                {{ $item->soru }} </h3>
                                                         <figure class="rt-blockquote-area">
                                                             <blockquote class="rt-blockquote">
                                                                 <h4>
@@ -166,25 +207,29 @@
 
                                 </div>
                                 <!-- end post body -->
-
                                 <!-- start social-share-box-2 -->
                                 <div class="social-share-box-2 mb--40">
                                     <div class="row gutter-30">
                                         <div class="col-xl-7 col-lg-6">
                                             <div class="conent-block">
                                                 <h4 class="block-tile mb--20">Popüler Etiketler:</h4>
+
+
                                                 <div class="tag-list">
-                                                    <a href="#" class="tag-link">Güzel</a>
-                                                    <a href="#" class="tag-link">Seyahat</a>
-                                                    <a href="#" class="tag-link">Teknoloji</a>
-                                                    <a href="#" class="tag-link">Siyaset</a>
+
+                                                    @foreach (($data->seo_key) as $item)
+                                                        
+                                                    <a href="#" class="tag-link"> {{ $item }} </a>
+                                                    
+                                                    @endforeach
+                                                    
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-xl-5 col-lg-6 d-flex justify-content-start justify-content-lg-end">
                                             <div class="conent-block">
                                                 <h4 class="block-tile mb--20">Paylaş:</h4>
-                                                <ul class="social-share-style-1 ">
+                                                <ul class="social-share-style-1">
                                                     <li>
                                                         <a class="fb" target="_blank"
                                                             href="https://www.facebook.com/">
@@ -192,8 +237,9 @@
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a class="tw" target="_blank" href="https://twitter.com/">
-                                                            <i class="social-icon fab fa-twitter"></i>
+                                                        <a class="tw" style="background-color: black" target="_blank"
+                                                            href="https://twitter.com/">
+                                                            <i class="fa-brands fa-square-x-twitter twitter"></i>
                                                         </a>
                                                     </li>
                                                     <li>
@@ -203,8 +249,8 @@
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a class="dr" target="_blank" href="https://dribbble.com/">
-                                                            <i class="social-icon fab fa-dribbble"></i>
+                                                        <a class="fb" target="_blank" href="https://linkedin.com/">
+                                                            <i class="social-icon fab fa-linkedin"></i>
                                                         </a>
                                                     </li>
                                                     <li>
@@ -244,7 +290,8 @@
                                                     </div>
                                                     <div class="content">
                                                         <h4 class="title">
-                                                            <a href="{{ route('front.interview.detail', $data->id - 1) }}">
+                                                            <a
+                                                                href="{{ route('front.interview.detail', $data->id - 1) }}">
                                                                 {{ $previous_data->title }}
                                                             </a>
                                                         </h4>
@@ -269,7 +316,8 @@
                                                     </div>
                                                     <div class="content">
                                                         <h4 class="title">
-                                                            <a href="{{ route('front.interview.detail', $data->id + 1) }}">
+                                                            <a
+                                                                href="{{ route('front.interview.detail', $data->id + 1) }}">
                                                                 {{ $next_data->title }}
                                                             </a>
                                                         </h4>
@@ -289,69 +337,68 @@
                                 <!-- start commentator box -->
                                 <div class="commentator-box-style-1 mb--30">
                                     <div class="row justify-content-center mb--10">
-                                        @foreach($emojies as $emoji => $number)
-                                        <div class="col-2 col-md-1">
-                                            <div class="emoji_container">
-                                                <img id="{{ $emoji }}"
-                                                    src="{{ asset('assets/' . $emoji . ".png") }}"
-                                                    style="cursor: pointer; width:38px;">
+                                        @foreach ($emojies as $emoji => $number)
+                                            <div class="col-2 col-md-1">
+                                                <div class="emoji_container">
+                                                    <img id="{{ $emoji }}"
+                                                        src="{{ asset('assets/' . $emoji . '.png') }}"
+                                                        style="cursor: pointer; width:38px;">
+                                                </div>
                                             </div>
-                                        </div>
                                         @endforeach
                                     </div>
                                     <div class="row justify-content-center mb--50">
-                                        @foreach($emojies as $emoji => $number)
-                                        <div class="col-2 col-md-1">
-                                            <div class="emoji_container">
-                                                <div class="progress" role="progressbar" aria-label="Basic example"
-                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                                    <div id="{{ $emoji }}_bar" class="progress-bar"
-                                                        style="width: {{ $number }}%"></div>
+                                        @foreach ($emojies as $emoji => $number)
+                                            <div class="col-2 col-md-1">
+                                                <div class="emoji_container">
+                                                    <div class="progress" role="progressbar" aria-label="Basic example"
+                                                        aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                                        <div id="{{ $emoji }}_bar" class="progress-bar"
+                                                            style="width: {{ $number }}%"></div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
                                         @endforeach
 
                                     </div>
                                     <div class="row mb--20">
-                                        <h5>Yorumlar ({{$data->commentCount()}}) </h5>
+                                        <h5>Yorumlar ({{ $data->commentCount() }}) </h5>
                                     </div>
 
                                     @foreach ($data->comments() as $item)
-
-
-                                    <div class="comment_container">
-                                        <div class="row">
-                                            <div class="d-none d-md-block col-md-3 mb-3">
-                                                <div class="commentator-img">
-                                                    <img src="{{ asset('assets/sabit.png') }}"
-                                                        alt="commentator-img_1" width="170" height="170">
+                                        <div class="comment_container">
+                                            <div class="row">
+                                                <div class="d-none d-md-block col-md-3 mb-3">
+                                                    <div class="commentator-img">
+                                                        <img src="{{ asset('assets/sabit.png') }}"
+                                                            alt="commentator-img_1" width="170" height="170">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <div class="commentator-content">
+                                                        <h3 class="commentator-name"> {{ $item->full_name }} </h3>
+                                                        <p class="user-desc">
+                                                            {{ $item->comment }}
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-9">
-                                                <div class="commentator-content">
-                                                    <h3 class="commentator-name"> {{$item->full_name }} </h3>
-                                                    <p class="user-desc">
-                                                        {{$item->comment}}
-                                                    </p>
+                                            <div class="row justify-content-end">
+                                                <div class="col-md-4">
+                                                    <span class="comment_span mx-2"><i class="fas fa-pencil-alt"></i>
+                                                        Cevap
+                                                        Yaz </span>
+                                                    <span class="comment_span mx-2"><i class="far fa-thumbs-up icon"></i>
+                                                        0</span>
+                                                    <span class="comment_span mx-2"><i
+                                                            class="far fa-thumbs-down icon"></i>
+                                                        0</span>
                                                 </div>
+
                                             </div>
                                         </div>
-                                        <div class="row justify-content-end">
-                                            <div class="col-md-4">
-                                                <span class="mx-2 comment_span"><i class="fas fa-pencil-alt"></i> Cevap
-                                                    Yaz </span>
-                                                <span class="mx-2 comment_span"><i class="far fa-thumbs-up icon"></i>
-                                                    0</span>
-                                                <span class="mx-2 comment_span"><i class="far fa-thumbs-down icon"></i>
-                                                    0</span>
-                                            </div>
 
-                                        </div>
-                                    </div>
-
-                                    <hr class="dropdown-divider my-5">
-
+                                        <hr class="dropdown-divider my-5">
                                     @endforeach
 
 
@@ -363,7 +410,8 @@
 
                                 <!-- start blog-post-comment -->
                                 <div class="blog-post-comment mb--50">
-                                    <form action="{{route('front.interview.addComment',$data->id)}}" method="POST" class=" comments-form-style-1">
+                                    <form action="{{ route('front.interview.addComment', $data->id) }}" method="POST"
+                                        class="comments-form-style-1">
                                         @csrf
                                         <div class="row">
                                             <div class="col-xl-6">
@@ -415,7 +463,7 @@
                                 <!-- start related-post-box -->
                                 <div class="related-post-box">
                                     <div class="titile-wrapper mb--40">
-                                        <h2 class="rt-section-heading mb-0 flex-grow-1 me-3">
+                                        <h2 class="rt-section-heading flex-grow-1 mb-0 me-3">
                                             <span class="rt-section-text">Diğer Röportajlar </span>
                                             <span class="rt-section-dot"></span>
                                             <span class="rt-section-line"></span>
@@ -436,7 +484,8 @@
                                                     <div class="slide-item">
                                                         <div class="rt-post-grid grid-meta">
                                                             <div class="post-img">
-                                                                <a href="{{ route('front.interview.detail', $item->id) }}">
+                                                                <a
+                                                                    href="{{ route('front.interview.detail', $item->id) }}">
                                                                     <img src="/{{ $item->image }}" alt="post"
                                                                         width="551" height="431">
                                                                 </a>
@@ -477,7 +526,7 @@
                     </div>
                     <!-- end col-->
 
-                    <div class="col-xl-3 col-lg-8 mx-auto sticky-coloum-item">
+                    <div class="col-xl-3 col-lg-8 sticky-coloum-item mx-auto">
                         <div class="rt-sidebar sticky-wrap">
 
                             <div class="d-none d-md-block sidebar-wrap mb--40">
@@ -509,9 +558,12 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://twitter.com/millimudafaacom">
-                                            <i class="fab fa-twitter twitter"></i>
-                                            <span class="text"><span>20,751</span> Takipçi</span>
+                                        <a class="tw" style="background-color: black!important" target="_blank"
+                                            href="https://twitter.com/">
+                                            <i style="background-color: black"
+                                                class="fa-brands fa-square-x-twitter twitter"></i>
+                                            <span class="text"><span>15,985</span> Takipçi</span>
+
                                         </a>
                                     </li>
                                     <li>
@@ -554,8 +606,8 @@
                                     <span class="rt-section-line"></span>
                                 </h2>
                                 <div class="tag-list">
-                                    @foreach(json_decode(json_encode($data->seo_key)) as $xkey)
-                                    <a href="#" class="tag-link">{{ $xkey }}</a>
+                                    @foreach (json_decode(json_encode($data->seo_key)) as $xkey)
+                                        <a href="#" class="tag-link">{{ $xkey }}</a>
                                     @endforeach
                                 </div>
                             </div>
@@ -580,8 +632,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-               // sidebar title limitation
-            -------------------------------*/
+                       // sidebar title limitation
+                    -------------------------------*/
         // Select all tags with class .sidebar_restricted_category_title
         $('.sidebar_restricted_category_title').each(function() {
             var content = $(this).text().trim(); // get the content of a tag
@@ -652,22 +704,25 @@
             e.preventDefault();
             var emoji_id = $(this)[0].id; //get the id of the printed emoji
             $.ajax({
-                headers : {"X-CSRF-TOKEN" : "{{ csrf_token() }}"},
-                url : "{{ route('front.setEmoji') }}",
-                type : "post",
-                data : {
-                    "emoji_type" : emoji_id,
-                    "post_id" : "{{ $data->id }}",
-                    "post_type" : "interview",
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
                 },
-                dataType : "json",
-                success : function(response){
-                    if(response.status == "success"){
-                        var emoji_progress_bar = $("#" + emoji_id + "_bar").css('width'); //get width property of emoji's bar
+                url: "{{ route('front.setEmoji') }}",
+                type: "post",
+                data: {
+                    "emoji_type": emoji_id,
+                    "post_id": "{{ $data->id }}",
+                    "post_type": "interview",
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response.status == "success") {
+                        var emoji_progress_bar = $("#" + emoji_id + "_bar").css(
+                            'width'); //get width property of emoji's bar
                         var intValue = parseInt(emoji_progress_bar, 10);
                         intValue++; //increase the value
                         $("#" + emoji_id + "_bar").css('width', intValue); //update the value
-                    }else{
+                    } else {
                         alert(response.message);
                     }
                 }
@@ -681,10 +736,5 @@
             $("#" + emoji_id + "_bar").css('width', intValue); //update the value
              */
         });
-
-
-
     </script>
-
-
 @endsection

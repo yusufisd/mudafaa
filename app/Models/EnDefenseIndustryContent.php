@@ -41,4 +41,8 @@ class EnDefenseIndustryContent extends Model
         return CountryList::whereIn('id',$this->countries ?? [])->get();
     }
 
+    public function getKeys(){
+        return explode(',', $this->seo_key);
+    }
+
 }

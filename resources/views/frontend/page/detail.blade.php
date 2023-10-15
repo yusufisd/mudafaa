@@ -1,4 +1,6 @@
 @extends('frontend.master')
+@section('title', $data->title )
+
 @section('content')
     <!-- Start Main -->
     <main>

@@ -32,8 +32,8 @@ class DictionaryImport implements ToCollection, WithStartRow
                     $link_tr = Str::slug($row[0]);
                     $link_en = Str::slug($row[1]);
 
-                    $keys_tr = explode(',', trim($row[4]));
-                    $keys_en = explode(',', trim($row[5]));
+                    $keys_tr = trim($row[4]);
+                    $keys_en = trim($row[5]);
 
                     $dict = new Dictionary();
                     $dict->title = $row[0];

@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\ContentEmojiModel;
 use App\Models\CurrentNews;
+use App\Models\CurrentNewsCategory;
 use App\Models\EmojiType;
 use App\Models\EnCurrentNews;
+use App\Models\EnCurrentNewsCategory;
 use App\Models\PostType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
@@ -48,5 +50,29 @@ class CurrentNewsController extends Controller
         ];
 
         return view('frontend.currentNews.detail',compact('data','emojies','previous_data','next_data','other_news','four_news'));
+    }
+
+    public function tag_list($title){
+
+        $local = \Session::get('applocale');
+        if ($local == null) {
+            $local = config('app.fallback_locale');
+        }
+        if ($local == 'tr') {
+            $datas = CurrentNews::where('seo_key', 'LIKE' , '%'.$title.'%')->paginate(10);
+            $sub_categories = CurrentNewsCategory::latest()
+                ->take(7)
+                ->get();
+            $other_news = CurrentNews::where('status', 1)->latest()->take(6)->get();
+        } elseif ($local == 'en') {
+            $datas = EnCurrentNews::where('seo_key', 'LIKE' , '%'.$title.'%')->paginate(10);
+            $sub_categories = EnCurrentNewsCategory::latest()
+                ->take(7)
+                ->get();
+            $other_news = EnCurrentNews::latest()->take(6)->get();
+        }
+
+        $datas = CurrentNews::where('seo_key', 'LIKE' , '%'. $title. '%')->paginate(10);
+        return view('frontend.currentNews.tag_list',compact('datas','sub_categories','other_news'));
     }
 }

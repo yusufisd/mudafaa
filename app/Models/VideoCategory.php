@@ -24,4 +24,8 @@ class VideoCategory extends Model
         }
         return $data;
     }
+
+    public function getKeys(){
+        return explode(',', $this->seo_key);
+    }
 }

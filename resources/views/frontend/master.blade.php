@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Milli Müdafaa | Ana Sayfa </title>
+    <title> Milli Müdafaa | @yield('title') </title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/frontend/media/favicon.png') }}">
@@ -221,7 +221,7 @@
 
                                                 </ul>
                                             </li>
-                                            <li class="{{ Route::is('front.defenseIndustryCategory.list') || Route::is('front.activity.list') || Route::is('front.activity.detail') ? 'active' : '' }}" >
+                                            <li class="{{ Route::is('front.activity.detail') || Route::is('front.activity.list') || Route::is('front.activity.detail') ? 'active' : '' }}" >
                                                 <a class="animation" href="{{ route('front.activity.list') }}">
                                                     {{ __('message.etkinlikler') }} </a>
                                             </li>

@@ -32,8 +32,8 @@ class InterviewImport implements ToCollection, WithStartRow
                     $read_time_tr = (int)(round((str_word_count($row[4]))/200));
                     $read_time_en = (int)(round((str_word_count($row[5]))/200));
 
-                    $keys_tr = explode(',', trim($row[38]));
-                    $keys_en = explode(',', trim($row[39]));
+                    $keys_tr = trim($row[38]);
+                    $keys_en = trim($row[39]);
 
 
                     $interview = new Interview();

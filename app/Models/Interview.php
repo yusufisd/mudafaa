@@ -26,4 +26,8 @@ class Interview extends Model
         return InterviewComment::where('post_id',$this->id)->where('status',1)->get();
     }
 
+    public function getKeys(){
+        return explode(',', $this->seo_key);
+    }
+
 }

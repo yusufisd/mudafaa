@@ -95,12 +95,14 @@ class CurrentNewsController extends Controller
         foreach ($veri as $v) {
             $merge[] = $v->value;
         }
+        $merge = implode(',', $merge);
 
         $veri_en = json_decode(json_decode(json_encode($request->activity_seo_keywords_en[0])));
         $merge_en = [];
         foreach ($veri_en as $v) {
             $merge_en[] = $v->value;
         }
+        $merge_en = implode(',', $merge_en);
 
         $read_time_tr = (int) round(str_word_count($request->tinymce_activity_detail_tr) / 200);
         $read_time_en = (int) round(str_word_count($request->tinymce_activity_detail_en) / 200);
@@ -251,12 +253,16 @@ class CurrentNewsController extends Controller
             foreach ($veri as $v) {
                 $merge[] = $v->value;
             }
+            $merge = implode(',', $merge);
+
 
             $veri_en = json_decode(json_decode(json_encode($request->activity_seo_keywords_en[0])));
             $merge_en = [];
             foreach ($veri_en as $v) {
                 $merge_en[] = $v->value;
             }
+            $merge_en = implode(',', $merge_en);
+
 
             $read_time_tr = (int) round(str_word_count($request->tinymce_activity_detail_tr) / 200);
             $read_time_en = (int) round(str_word_count($request->tinymce_activity_detail_en) / 200);
@@ -304,6 +310,7 @@ class CurrentNewsController extends Controller
             }
 
             $news->save();
+
 
             $news_en = EnCurrentNews::where('currentNews_id', $id)->first();
             $news_en->author_id = $request->author;

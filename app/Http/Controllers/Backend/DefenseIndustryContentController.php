@@ -104,12 +104,16 @@ class DefenseIndustryContentController extends Controller
         foreach ($veri as $v) {
             $merge[] = $v->value;
         }
+        $merge = implode(',', $merge);
+
 
         $veri_en = json_decode(json_decode(json_encode($request->seo_key_en[0])));
         $merge_en = [];
         foreach ($veri_en as $v) {
             $merge_en[] = $v->value;
         }
+        $merge_en = implode(',', $merge_en);
+
 
         $new->category_id = $request->category;
         $new->defense_id = $genel_id->defense_id;
@@ -263,12 +267,16 @@ class DefenseIndustryContentController extends Controller
         foreach ($veri as $v) {
             $merge[] = $v->value;
         }
+        $merge = implode(',', $merge);
+
 
         $veri_en = json_decode(json_decode(json_encode($request->seo_key_en[0])));
         $merge_en = [];
         foreach ($veri_en as $v) {
             $merge_en[] = $v->value;
         }
+        $merge_en = implode(',', $merge_en);
+
 
         $new = DefenseIndustryContent::findOrFail($id);
         $new->category_id = $request->category;
@@ -324,6 +332,7 @@ class DefenseIndustryContentController extends Controller
         $new_en->defense_id = $genel_id->defense_id;
         $new_en->category_id = $request->category;
         $new_en->title = $request->name_en;
+        $new_en->read_time = $read_time_en;
         $new_en->short_description = $request->short_description_en;
         $new_en->description = $request->description_en;
         $new_en->content_id = $new->id;
@@ -385,9 +394,6 @@ class DefenseIndustryContentController extends Controller
         try {
             DB::beginTransaction();
             $data = DefenseIndustryContent::findOrFail($id);
-            $data_en = EnDefenseIndustryContent::where('defense_id', $id)->first();
-            $data_en->status = !$data->status;
-            $data_en->save();
             $data->status = !$data->status;
             $data->save();
             logKayit(['Savunma Sanayi', 'İçerik durumu değiştirildi']);

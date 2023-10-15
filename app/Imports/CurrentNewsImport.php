@@ -29,8 +29,8 @@ class CurrentNewsImport implements ToCollection, WithStartRow
                     $link_tr = Str::slug($row[2]);
                     $link_en = Str::slug($row[3]);
 
-                    $keys_tr = explode(',', trim($row[10]));
-                    $keys_en = explode(',', trim($row[11]));
+                    $keys_tr = trim($row[10]);
+                    $keys_en = trim($row[11]);
                     
                     $slug_cat = Str::slug($row[1]);
                     $cat_tr = CurrentNewsCategory::where('link', 'like' , "%".$slug_cat."%" )->first();
@@ -44,7 +44,6 @@ class CurrentNewsImport implements ToCollection, WithStartRow
                     $news->author_id = 1;
                     $news->live_time = date('Y-m-d', strtotime($row[8]));
                     $news->title = $row[2];
-                    $news->tags = $keys_tr;
                     $news->read_time = $read_time_tr;
                     $news->short_description = $row[4];
                     $news->description = $row[6];
@@ -60,7 +59,6 @@ class CurrentNewsImport implements ToCollection, WithStartRow
                     $news_en->author_id = 1;
                     $news_en->currentNews_id = $news->id;
                     $news_en->title = $row[3];
-                    $news_en->tags = $keys_en;
                     $news->read_time = $read_time_en;
                     $news_en->short_description = $row[5];
                     $news_en->description = $row[7];
@@ -68,7 +66,7 @@ class CurrentNewsImport implements ToCollection, WithStartRow
                     $news_en->image = 'assets/uploads/currentNews/haber-gorsel/'.$row[12];
                     $news_en->seo_title = $row[3];
                     $news_en->seo_description = trim($row[5]);
-                    $news_en->seo_key = $keys_tr;
+                    $news_en->seo_key = $keys_en;
                     $news_en->save();
 
                     

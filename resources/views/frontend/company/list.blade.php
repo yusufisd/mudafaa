@@ -1,6 +1,15 @@
 @extends('frontend.master')
+@section('title','Firmalar')
+
 @section('content')
     <!-- Start Main -->
+
+    <style>
+        .rt-cart-item .item-img::after {
+            background-color: rgba(var(--color-black-rgb), 0.2);
+            border-radius: var(--border-radius-xs);
+        }
+    </style>
     <main>
         <!-- theme-switch-box -->
         <div class="theme-switch-box-mobile-wrap">
@@ -37,42 +46,43 @@
 
         <!-- start rt-sidebar-section-layout-2 -->
         <section class="rt-sidebar-section-layout-2">
-            <div class="container sticky-coloum-wrap">
+            <div class="sticky-coloum-wrap container">
                 <div class="row gutter-40 sticky-coloum-wrap">
                     <div class="col-xl-9 sticky-coloum-item">
                         <div class="rt-left-sidebar-sapcer-5">
 
-                            <div class="ad-banner-img mb--40 wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
+                            <div class="ad-banner-img wow fadeInUp mb--40" data-wow-delay="100ms" data-wow-duration="800ms">
                                 <a href="#">
-                                    <img src="/assets/frontend/media/gallery/ad-banner_5.jpg" alt="ad-banner" width="960" height="150">
+                                    <img src="/assets/frontend/media/gallery/ad-banner_5.jpg" alt="ad-banner" width="960"
+                                        height="150">
                                 </a>
                             </div>
 
                             <div class="row gutter-24">
 
                                 @foreach ($data as $item)
-                                <div class="col-md-4 wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
-                                    <div class="cat-item">
-                                        <div class="rt-cart-item">
-                                            <a href="{{route('front.company.detail',$item->id . "-" . \Illuminate\Support\Str::slug($item->title))}}">
-                                                <div class="item-img">
-                                                    <img src="/{{$item->image}}"  alt="cat-slider"
-                                                        width="696" height="491">
-                                                </div>
-                                            </a>
+                                    <div class="col-md-4 wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
+                                        <div class="cat-item">
+                                            <div class="rt-cart-item" style="background-color: white!important">
+                                                <a
+                                                    href="{{ route('front.company.detail', $item->id . '-' . \Illuminate\Support\Str::slug($item->title)) }}">
+                                                    <div class="item-img">
+                                                        <img src="/{{ $item->image }}" alt="cat-slider" width="696"
+                                                            height="491">
+                                                    </div>
+                                                </a>
+                                            </div>
                                         </div>
+                                        <!-- end cat item -->
                                     </div>
-                                    <!-- end cat item -->
-                                </div>
-                                <!-- end inner col -->
-
+                                    <!-- end inner col -->
                                 @endforeach
 
 
                             </div>
                             <!-- end inner row -->
 
-                            <div class="ad-banner-img mt--40 mb--40 wow fadeInUp" data-wow-delay="100ms"
+                            <div class="ad-banner-img wow fadeInUp mb--40 mt--40" data-wow-delay="100ms"
                                 data-wow-duration="800ms">
                                 <a href="#">
                                     <img src="/assets/frontend/media/gallery/ad-banner_5.jpg" alt="ad-banner" width="960"
@@ -86,7 +96,7 @@
                     </div>
                     <!-- end col-->
 
-                    <div class="col-xl-3 col-lg-8 mx-auto sticky-coloum-item">
+                    <div class="col-xl-3 col-lg-8 sticky-coloum-item mx-auto">
                         <div class="rt-sidebar sticky-wrap">
 
                             <div class="sidebar-wrap mb--40">
@@ -98,18 +108,16 @@
                                 <ul class="rt-categories">
 
                                     @foreach ($categories as $item)
-
-                                    <li>
-                                        <a href="gaming.html" data-bg-image="/{{$item->image}}">
-                                            <span class="cat-name">
-                                                <i class="fas fa-list"
-                                                    style="border-right: 2px solid;width: 27px;padding-right: 4px;padding-left: 0px;height: 16px;"></i>
-                                                 {{$item->name}}
-                                            </span>
-                                            <span class="count"> {{$item->companyCount()}} </span>
-                                        </a>
-                                    </li>
-
+                                        <li>
+                                            <a href="gaming.html" data-bg-image="/{{ $item->image }}">
+                                                <span class="cat-name">
+                                                    <i class="fas fa-list"
+                                                        style="border-right: 2px solid;width: 27px;padding-right: 4px;padding-left: 0px;height: 16px;"></i>
+                                                    {{ $item->name }}
+                                                </span>
+                                                <span class="count"> {{ $item->companyCount() }} </span>
+                                            </a>
+                                        </li>
                                     @endforeach
 
 
@@ -120,8 +128,8 @@
                             <div class="sidebar-wrap mb--40">
                                 <div class="ad-banner-img">
                                     <a href="#">
-                                        <img src="/assets/frontend/media/gallery/sports-ad_3.jpg" alt="ad-banner" width="310"
-                                            height="425">
+                                        <img src="/assets/frontend/media/gallery/sports-ad_3.jpg" alt="ad-banner"
+                                            width="310" height="425">
                                     </a>
                                 </div>
                             </div>

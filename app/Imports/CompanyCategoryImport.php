@@ -26,8 +26,8 @@ class CompanyCategoryImport implements ToCollection, WithStartRow
         foreach ($rows as $row) {
             if ($row[0] != null) {
                 if ($row->filter()->isNotEmpty()) {
-                    $keys = explode(',', ($row[3]));
-                    $keys_tr = explode(',', ($row[4]));
+                    $keys = ($row[3]);
+                    $keys_tr = ($row[4]);
 
 
                     $tr = CompanyCategory::create([

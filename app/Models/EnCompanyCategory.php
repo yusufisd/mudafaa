@@ -13,4 +13,8 @@ class EnCompanyCategory extends Model
         'seo_key' => 'array',
     ];
     protected $guarded = [];
+
+    public function getKeys(){
+        return explode(',', $this->seo_key);
+    }
 }

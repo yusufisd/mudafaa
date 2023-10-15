@@ -1,8 +1,24 @@
 @extends('frontend.master')
+@section('title',$data->title)
+
 @section('css')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
 @endsection
 @section('content')
+    <style>
+        .social-connection li:nth-child(2) a {
+            background-image: -webkit-gradient(linear, right top, left top, from(#56c3f0), to(#13a4e7));
+            background-image: linear-gradient(-90deg, #909fa5 0%, #151616 100%);
+            background-image: -ms-linear-gradient(-90deg, #56c3f0 0%, #13a4e7 100%);
+        }
+
+        .social-connection li:nth-child(5) a {
+            border-radius: 3px;
+            background-image: -webkit-gradient(linear, right top, left top, from(#f43079), to(#f7679d));
+            background-image: linear-gradient(-90deg, #5579ad 0%, #1a6be1 100%);
+            background-image: -ms-linear-gradient(-90deg, #f43079 0%, #f7679d 100%);
+        }
+    </style>
     <!-- Start Main -->
     <main>
         <!-- theme-switch-box -->
@@ -97,8 +113,7 @@
                                     @foreach ($images as $item)
                                         <div class="col-md-4">
                                             <a data-fancybox="gallery" href="/{{ $item->image }}">
-                                                <img src="/{{ $item->image }}" style="width: 100%;"
-                                                    alt="Resim 3">
+                                                <img src="/{{ $item->image }}" style="width: 100%;" alt="Resim 3">
                                             </a>
                                         </div>
                                     @endforeach
@@ -146,21 +161,21 @@
                                                             <h6>Adres</h6>
                                                             <p class="rt-teta">
                                                                 <i class="fas fa-home icon"></i>
-                                                                {{$item->address}}
+                                                                {{ $item->address }}
                                                             </p>
                                                         </li>
                                                         <li>
                                                             <h6>E-Posta</h6>
                                                             <p class="rt-teta">
                                                                 <i class="fas fa-envelope icon"></i>
-                                                                {{$item->email}}
+                                                                {{ $item->email }}
                                                             </p>
                                                         </li>
                                                         <li>
                                                             <h6>Telefon</h6>
                                                             <p class="rt-teta">
                                                                 <i class="fas fa-phone icon"></i>
-                                                                {{$item->phone}}
+                                                                {{ $item->phone }}
                                                             </p>
 
                                                         </li>
@@ -168,15 +183,13 @@
                                                             <h6>Web Site</h6>
                                                             <p class="rt-teta">
                                                                 <i class="fas fa-globe icon"></i>
-                                                                {{$item->website}}
+                                                                {{ $item->website }}
                                                             </p>
                                                         </li>
                                                     </ul>
                                                 </div>
                                                 <div class="col-lg-6 grid-adress">
-                                                    <iframe
-                                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3057.811030038286!2d32.76457571578375!3d39.96797747942001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d34bc3fbee31f3%3A0x7dabfd5babe0f38e!2zQXNlbHNhbiBHZW5lbCBNw7xkw7xybMO8aw!5e0!3m2!1str!2str!4v1645201234609!5m2!1str!2str"
-                                                        class="iframe-map" allowfullscreen=""></iframe>
+                                                    {{ $item->map }}
                                                 </div>
 
                                             </div>
@@ -219,9 +232,12 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://twitter.com/millimudafaacom">
-                                            <i class="fab fa-twitter twitter"></i>
-                                            <span class="text"><span>20,751</span> Takipçi</span>
+                                        <a class="tw" style="background-color: black!important" target="_blank"
+                                            href="https://twitter.com/">
+                                            <i style="background-color: black"
+                                                class="fa-brands fa-square-x-twitter twitter"></i>
+                                            <span class="text"><span>15,985</span> Takipçi</span>
+
                                         </a>
                                     </li>
                                     <li>
@@ -287,20 +303,19 @@
     <!-- End Main -->
 @endsection
 @section('script')
-
-<!-- Fancybox CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
-<script>
-    // Open slider on clicking pictures
-    var galleryImages = document.querySelectorAll('.gallery a');
-    galleryImages.forEach(function(image, index) {
-        image.addEventListener('click', function() {
-            image.setAttribute('data-fancybox',
-                'gallery'); // This line makes the gallery share the same group
-            image.click();
+    <!-- Fancybox CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    <script>
+        // Open slider on clicking pictures
+        var galleryImages = document.querySelectorAll('.gallery a');
+        galleryImages.forEach(function(image, index) {
+            image.addEventListener('click', function() {
+                image.setAttribute('data-fancybox',
+                    'gallery'); // This line makes the gallery share the same group
+                image.click();
+            });
         });
-    });
-</script>
+    </script>
     <!-- Fancybox CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
     <script>

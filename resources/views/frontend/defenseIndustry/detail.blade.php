@@ -1,4 +1,6 @@
 @extends('frontend.master')
+@section('title', $data->title)
+
 @section('css')
     <!-- Fancybox CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
@@ -295,9 +297,11 @@
                                         <div class="conent-block">
                                             <h4 class="block-tile mb--20">Popüler Etiketler:</h4>
                                             <div class="tag-list">
-                                                @foreach ($data->seo_key as $key)
+                                                @foreach ($data->getKeys() as $key)
+                                                    <a href="{{ route('front.currentNews.tag_list', $key) }}"
+                                                        class="tag-link" style="text-transform: capitalize">
+                                                        {{ $key }} </a>
                                                 @endforeach
-                                                <a href="#" class="tag-link" style="text-transform: capitalize"> {{ $key }} </a>
                                             </div>
                                         </div>
                                     </div>
@@ -469,8 +473,8 @@
 @section('script')
     <script>
         /*--------------------------------
-                                                   // sidebar title limitation
-                                                -------------------------------*/
+                                                       // sidebar title limitation
+                                                    -------------------------------*/
         // Select all tags with class .sidebar_restricted_category_title
         $('.sidebar_restricted_category_title').each(function() {
             var content = $(this).text().trim(); // get the content of a tag

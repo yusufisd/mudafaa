@@ -1,6 +1,22 @@
 @extends('frontend.master')
+@section('title', $data->title )
+
 @section('content')
     <!-- Start Main -->
+    <style>
+        .social-connection li:nth-child(2) a {
+            background-image: -webkit-gradient(linear, right top, left top, from(#56c3f0), to(#13a4e7));
+            background-image: linear-gradient(-90deg, #909fa5 0%, #151616 100%);
+            background-image: -ms-linear-gradient(-90deg, #56c3f0 0%, #13a4e7 100%);
+        }
+
+        .social-connection li:nth-child(5) a {
+            border-radius: 3px;
+            background-image: -webkit-gradient(linear, right top, left top, from(#f43079), to(#f7679d));
+            background-image: linear-gradient(-90deg, #5579ad 0%, #1a6be1 100%);
+            background-image: -ms-linear-gradient(-90deg, #f43079 0%, #f7679d 100%);
+        }
+    </style>
     <main>
         <!-- theme-switch-box -->
         <div class="theme-switch-box-mobile-wrap">
@@ -27,12 +43,12 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="videos.html">
-                                Videolar
+                            <a href="{{ route('front.video.category_list',$data->Category->link) }}">
+                                {{ $data->Category->title }}
                             </a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            Video Detay
+                            {{ $data->title }}
                         </li>
                     </ol>
                 </nav>
@@ -47,13 +63,15 @@
                     <div class="col-12">
                         <div class="rt-post-overlay rt-post-overlay-xl single-post-overlay">
                             <div class="post-img">
-                                <a href="" class="img-link">
+                                <a class="img-link">
                                     <img src="/{{ $data->image }}" alt="post-ex_7" width="1320" height="620">
                                 </a>
-                                <a href="http://www.youtube.com/watch?v=1iIZeIy7TqM"
+                                @if($data->youtube != null)
+                                <a href="{{ $data->youtube }}"
                                     class="play-btn play-btn-white_xl rt-play-over md-right">
                                     <i class="fas fa-play"></i>
                                 </a>
+                                @endif
                             </div>
                             <div class="post-content">
                                 <h2 class="post-title">
@@ -91,7 +109,7 @@
                                         <li>
                                             <span class="rt-meta">
                                                 <i class="far fa-eye icon"></i>
-                                                {{ $data->view_count }}
+                                                {{ $data->view_counter }}
                                             </span>
                                         </li>
                                     </ul>
@@ -161,18 +179,20 @@
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a class="tw" target="_blank" href="https://twitter.com/">
-                                                            <i class="social-icon fab fa-twitter"></i>
+                                                        <a class="tw" style="background-color: black" target="_blank"
+                                                            href="https://twitter.com/">
+                                                            <i class="fa-brands fa-square-x-twitter twitter"></i>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a class="yu" target="_blank" href="https://www.youtube.com/">
+                                                        <a class="yu" target="_blank"
+                                                            href="https://www.youtube.com/">
                                                             <i class="social-icon fab fa-youtube"></i>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a class="dr" target="_blank" href="https://dribbble.com/">
-                                                            <i class="social-icon fab fa-dribbble"></i>
+                                                        <a class="fb" target="_blank" href="https://linkedin.com/">
+                                                            <i class="social-icon fab fa-linkedin"></i>
                                                         </a>
                                                     </li>
                                                     <li>
@@ -741,9 +761,12 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://twitter.com/millimudafaacom">
-                                            <i class="fab fa-twitter twitter"></i>
-                                            <span class="text"><span>20,751</span> Takipçi</span>
+                                        <a class="tw" style="background-color: black!important" target="_blank"
+                                            href="https://twitter.com/">
+                                            <i style="background-color: black"
+                                                class="fa-brands fa-square-x-twitter twitter"></i>
+                                            <span class="text"><span>15,985</span> Takipçi</span>
+
                                         </a>
                                     </li>
                                     <li>

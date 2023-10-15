@@ -1,4 +1,6 @@
 @extends('frontend.master')
+@section('title',$name->title)
+
 @section('content')
     <!-- Start Main -->
     <style>
@@ -285,7 +287,7 @@
                                 </h2>
                                 <div class="tag-list">
 
-                                    @foreach ($name->seo_key as $item)
+                                    @foreach ($name->getKeys() as $item)
                                         <a href="#" class="tag-link" style="text-transform: capitalize"> {{ $item }} </a>
                                     @endforeach
 

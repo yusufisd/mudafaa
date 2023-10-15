@@ -50,5 +50,8 @@ class DefenseIndustryContent extends Model
         return count($data->multiple_image);
     }
 
+    public function getKeys(){
+        return explode(',', $this->seo_key);
+    }
    
 }

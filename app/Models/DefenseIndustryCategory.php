@@ -21,4 +21,8 @@ class DefenseIndustryCategory extends Model
     public function defense(){
         return $this->hasOne(DefenseIndustry::class,'id','defense_id');
     }
+
+    public function getKeys(){
+        return explode(',', $this->seo_key);
+    }
 }

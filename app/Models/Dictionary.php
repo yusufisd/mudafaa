@@ -18,4 +18,8 @@ class Dictionary extends Model
     public function Author(){
         return $this->hasOne(UserModel::class,'id','author');
     }
+
+    public function getKeys(){
+        return explode(',', $this->seo_key);
+    }
 }

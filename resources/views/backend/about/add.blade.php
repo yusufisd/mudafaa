@@ -427,7 +427,7 @@
                                                                             id="activity_seo_keywords_tr"
                                                                             name="activity_seo_keywords_tr[]"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            value="{{ $data_tr != null ? json_encode($data_tr->seo_key) : '' }}" />
+                                                                            value="{{ $data_tr != null ? {{ json_encode($data_tr->getKeys()) }} : '' }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>

@@ -7497,7 +7497,7 @@ video {
   transition: all 1s ease;
 }
 .rt-cart-item .item-img::after {
-  background-color: rgba(var(--color-black-rgb), 0.7);
+  background-color: rgba(var(--color-black-rgb), 0.2);
   border-radius: var(--border-radius-xs);
 }
 .rt-cart-item .item-content {

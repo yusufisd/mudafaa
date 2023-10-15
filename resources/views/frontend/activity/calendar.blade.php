@@ -1,4 +1,6 @@
 @extends('frontend.master')
+@section('title','Etkinlik Takvimi')
+
 @section('content')
     <style>
         .fc .fc-daygrid-event-harness{

@@ -1,4 +1,5 @@
 @extends('frontend.master')
+@section('title','Anasayfa')
 @section('css')
     <style>
         #story_container .swiper-container {
@@ -63,7 +64,7 @@
                         <div class="rt-post post-sm style-1">
                             <div class="post-img">
                                 <a href="{{ route('front.currentNews.detail', $variable->link) }}">
-                                    <img style="object-fit:cover"
+                                    <img style="object-fit:cover!important"
                                         src="{{ $variable->mobil_image != null ? $variable->mobil_image : '/media/gallery/post-sm_1.jpg' }}"
                                         alt="post" width="100" height="100">
                                 </a>
@@ -1092,7 +1093,7 @@
 
                         <div class="rt-post-overlay rt-post-overlay-lg layout-6">
                             <div class="post-img">
-                                <a href="single-post1.html" class="img-link">
+                                <a href="{{ route('front.video.detail',$item->link) }}" class="img-link">
                                     <img src="{{ $item->image }}" alt="post-xl_31" width="900" height="600">
                                 </a>
                                 <a href="{{ $item->youtube }}" class="play-btn play-btn-transparent right-top">
@@ -1100,10 +1101,10 @@
                                 </a>
                             </div>
                             <div class="post-content">
-                                <a href="gaming.html" class="mission restricted_category_title">
+                                <a href="{{ route('front.video.category_list',$item->Category->link) }}" class="mission restricted_category_title">
                                     {{ $item->Category->title }} </a>
                                 <h3 class="post-title">
-                                    <a href="single-post1.html" class="section_6_restricted_title">
+                                    <a href="{{ route('front.video.detail',$item->link) }}" class="section_6_restricted_title">
                                         {{ $item->title }}
                                     </a>
                                 </h3>

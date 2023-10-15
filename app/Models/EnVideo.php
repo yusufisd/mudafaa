@@ -21,4 +21,8 @@ class EnVideo extends Model
     public function Category(){
         return $this->hasOne(VideoCategory::class,'id','category_id');
     }
+
+    public function getKeys(){
+        return explode(',', $this->seo_key);
+    }
 }

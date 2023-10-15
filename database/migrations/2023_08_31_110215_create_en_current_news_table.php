@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('mobil_image')->nullable();
             $table->integer('category_id');
             $table->integer('author_id');
-            $table->string('tags');
             $table->integer('status')->default(1);
             $table->string('link');
             $table->string('seo_title');

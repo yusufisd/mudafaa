@@ -11,10 +11,13 @@ class CompanyModel extends Model
     use HasFactory,SoftDeletes;
     protected $guarded = [];
     protected $casts = [
-        "seo_key" => "array",
     ];
 
     public function Category(){
         return $this->hasOne(CompanyCategory::class,'id','category');
+    }
+
+    public function getKeys(){
+        return explode(',', $this->seo_key);
     }
 }

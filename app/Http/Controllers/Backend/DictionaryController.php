@@ -88,12 +88,16 @@ class DictionaryController extends Controller
             foreach ($veri as $v) {
                 $merge[] = $v->value;
             }
+            $merge = implode(',', $merge);
+            
 
             $veri_en = json_decode(json_decode(json_encode($request->seo_key_en[0])));
             $merge_en = [];
             foreach ($veri_en as $v) {
                 $merge_en[] = $v->value;
             }
+            $merge_en = implode(',', $merge_en);
+
             $new = new Dictionary();
 
             $new->author = $request->author;
@@ -214,12 +218,16 @@ class DictionaryController extends Controller
         foreach ($veri as $v) {
             $merge[] = $v->value;
         }
+        $merge = implode(',', $merge);
+
 
         $veri_en = json_decode(json_decode(json_encode($request->seo_key_en[0])));
         $merge_en = [];
         foreach ($veri_en as $v) {
             $merge_en[] = $v->value;
         }
+        $merge_en = implode(',', $merge_en);
+
 
         $new->author = $request->author;
         $new->live_date = $request->live_date;

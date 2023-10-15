@@ -425,6 +425,8 @@ Route::middleware('lang')->group(function () {
                     Route::middleware('per:video_delete')
                         ->get('sil/{id?}', 'destroy')
                         ->name('destroy');
+                    Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
+
                 });
 
             // FİRMA  CONTROLLER
@@ -552,6 +554,7 @@ Route::middleware('lang')->group(function () {
                 ->name('currentNews.')
                 ->group(function () {
                     Route::get('/{id?}', 'detail')->name('detail');
+                    Route::get('etiket/{title?}', 'tag_list')->name('tag_list');
                 });
 
             // DEFENSE INDUSTRY CATEGORY CONTROLLER
@@ -596,6 +599,7 @@ Route::middleware('lang')->group(function () {
                 ->name('video.')
                 ->group(function () {
                     Route::get('liste', 'index')->name('list');
+                    Route::get('kategori/{link?}', 'category_list')->name('category_list');
                     Route::get('detay/{id?}', 'detail')->name('detail');
                 });
 

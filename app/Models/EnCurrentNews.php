@@ -10,7 +10,6 @@ class EnCurrentNews extends Model
     use HasFactory;
     protected $guarded = [];
     protected $casts = [
-        "seo_key" => "array",
         "tags" => "array",
     ];
 
@@ -50,5 +49,9 @@ class EnCurrentNews extends Model
             ->where('post_id', $this->id)
             ->where('status', 1)
             ->get();
+    }
+
+    public function getKeys(){
+        return explode(',', $this->seo_key);
     }
 }

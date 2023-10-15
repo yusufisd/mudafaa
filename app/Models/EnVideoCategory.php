@@ -24,4 +24,8 @@ class EnVideoCategory extends Model
         }
         return $data;
     }
+
+    public function getKeys(){
+        return explode(',', $this->seo_key);
+    }
 }
