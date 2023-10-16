@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Activity;
 use App\Models\ActivityCategory;
 use App\Models\CountryList;
-use App\Models\EnAbout;
 use App\Models\EnActivity;
 use App\Models\EnActivityCategory;
 use Carbon\Carbon;
@@ -28,66 +27,53 @@ class ActivityController extends Controller
                 ->orderBy('start_time', 'asc')
                 ->take(4)
                 ->get();
-            $cat1_name = ActivityCategory::where('id', 1)->first();
-            $cat2_name = ActivityCategory::where('id', 2)->first();
-            $cat3_name = ActivityCategory::where('id', 3)->first();
-            $cat1_activites = Activity::where('category', 1)
-                ->take(4)
-                ->get();
-            $cat3_activites = Activity::where('category', 3)
-                ->take(4)
-                ->get();
-            $cat2_activites = Activity::where('category', 2)
-                ->take(4)
-                ->get();
+            $activity_category = ActivityCategory::orderBy('queue','asc')->get();
             $categories = ActivityCategory::get();
             $countries = CountryList::get();
         } elseif ($local == 'en') {
-            $coming_activity = Activity::where('start_time', '<', $now)
+            $coming_activity = EnActivity::where('start_time', '<', $now)
                 ->orderBy('start_time', 'asc')
                 ->take(4)
                 ->get();
-            $cat1_name = EnActivityCategory::where('id', 1)->first();
-            $cat2_name = EnActivityCategory::where('id', 2)->first();
-            $cat3_name = EnActivityCategory::where('id', 3)->first();
-            $cat1_activites = EnActivity::where('category', 1)
-                ->take(4)
-                ->get();
-            $cat3_activites = EnActivity::where('category', 3)
-                ->take(4)
-                ->get();
-            $cat2_activites = EnActivity::where('category', 2)
-                ->take(4)
-                ->get();
+            $activity_category = EnActivityCategory::orderBy('queue','asc')->get();
             $categories = EnActivityCategory::get();
             $countries = CountryList::get();
         }
 
-        return view('frontend.activity.list', compact('coming_activity', 'cat1_activites', 'cat2_activites', 'cat3_activites', 'cat1_name', 'cat2_name', 'cat3_name', 'categories', 'countries'));
+        return view('frontend.activity.list', compact('coming_activity', 'activity_category', 'categories', 'countries'));
     }
 
     public function detail($id)
     {
+
         $local = \Session::get('applocale');
         if ($local == null) {
             $local = config('app.fallback_locale');
         }
 
         if ($local == 'tr') {
-            $data = Activity::findOrFail($id);
+            $data = Activity::where('link',$id)->first();
             $other_activity = Activity::inRandomOrder()->get();
 
         } elseif ($local == 'en') {
-            $data = EnActivity::where('activity_id',$id);
+            $data = EnActivity::where('link',$id)->first();
             $other_activity = EnActivity::inRandomOrder()->get();
+        }
+        // OKUMA KONTRLÜ
+        $readCheck = json_decode(\Illuminate\Support\Facades\Cookie::get('activity')) ?? [];
+        if (!in_array($data->id, $readCheck)){
+            $data->view_counter = $data->view_counter + 1;
+            $data->save();
+            $readCheck[] = $data->id;
+            \Illuminate\Support\Facades\Cookie::queue(\Illuminate\Support\Facades\Cookie::make('activity', json_encode($readCheck), 30));
         }
         return view('frontend.activity.detail', compact('data', 'other_activity'));
     }
 
     public function categoryDetail($id)
     {
-        $cat = ActivityCategory::findOrFail($id);
-        $data = Activity::where('category', $id)->get();
+        $cat = ActivityCategory::where('link',$id)->first();
+        $data = Activity::where('category', $cat->id)->get();
         return view('frontend.activity.category.detail', compact('data', 'cat'));
     }
 

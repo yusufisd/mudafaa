@@ -9,10 +9,23 @@ class CurrentNews extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    protected $casts = [
+        "category_id" => "array"
+    ];
 
     public function Category()
     {
-        return $this->hasOne(CurrentNewsCategory::class, 'id', 'category_id');
+        $data = CurrentNewsCategory::whereIn('id',$this->category_id)->get();
+        return $data;
+    }
+
+    public function Category2(){
+        $data = CurrentNewsCategory::whereIn('id',$this->category_id)->get();
+        $liste = [];
+        foreach($data as $item){
+            array_push($liste,$item->title);
+        }
+        return $liste;
     }
 
     public function Author()

@@ -78,8 +78,8 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{ route('front.currentNewsCategory.list', $data->Category->link) }}">
-                                {{ $data->Category->title }}
+                            <a href="{{ route('front.currentNewsCategory.list', $data->Category()[0]->link) }}">
+                                {{ $data->Category()[0]->title }}
                             </a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
@@ -105,9 +105,14 @@
 
                                 <!-- start post header -->
                                 <div class="post-header drop-cap">
+
+                                    @foreach ($data->Category() as $Category)
+                                        
                                     <span class="rt-cat-primary"
-                                        style="background-color: {{ $data->Category->color_code != null ? $data->Category->color_code : '' }}">
-                                        {{ $data->Category->title }} </span>
+                                        style="background-color: {{ $Category->color_code != null ? $Category->color_code : '' }}">
+                                        {{ $Category->title }} </span>
+                                    @endforeach
+
                                     <h2 class="title">
                                         {{ $data->title }}
                                     </h2>
@@ -237,7 +242,7 @@
                                 <!-- start social-share-box-2 -->
                                 <div class="social-share-box-2 mb--20">
                                     <div class="row gutter-30">
-                                        <div class="col-xl-7 col-lg-6">
+                                        <div class="col-xl-12 col-lg-12">
                                             <div class="conent-block">
                                                 <h4 class="block-tile mb--20"> {{ __('message.popüler etiketler') }} :
                                                 </h4>
@@ -555,11 +560,12 @@
                                                                         width="551" height="431">
                                                                 </a>
                                                             </div>
+                                                            @if(isset($single->Category()[0]))
                                                             <div class="post-content">
-                                                                <a style="background-color: {{ $single->Category->color_code != null ? $single->Category->color_code : '' }}"
-                                                                    href="{{ route('front.currentNewsCategory.list', $single->Category->link) }}"
+                                                                <a style="background-color: {{ $single->Category()[0]->color_code != null ? $single->Category()[0]->color_code : '' }}"
+                                                                    href="{{ route('front.currentNewsCategory.list', $single->Category()[0]->link) }}"
                                                                     class="rt-cat-primary sidebar_restricted_category_title">
-                                                                    {{ $single->Category->title }} </a>
+                                                                    {{ $single->Category()[0]->title }} </a>
                                                                 <h4 class="post-title">
                                                                     <a href="{{ route('front.currentNews.detail', $single->link) }}"
                                                                         class="restricted_title_2">
@@ -578,6 +584,7 @@
                                                                     </ul>
                                                                 </div>
                                                             </div>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
@@ -688,10 +695,10 @@
                                                     </a>
                                                 </div>
                                                 <div class="post-content ms-4">
-                                                    <a style="background-color: {{ $item->Category->color_code != null ? $item->Category->color_code : '' }}"
-                                                        href="{{ route('front.currentNewsCategory.list', $item->Category->link) }}"
+                                                    <a style="background-color: {{ $item->Category()[0]->color_code != null ? $item->Category()[0]->color_code : '' }}"
+                                                        href="{{ route('front.currentNewsCategory.list', $item->Category()[0]->link) }}"
                                                         class="rt-cat-primary sidebar_restricted_category_title">
-                                                        {{ $item->Category->title }} </a>
+                                                        {{ $item->Category()[0]->title }} </a>
                                                     <h4 class="post-title">
                                                         <a href="{{ route('front.currentNews.detail', $item->link) }}"
                                                             class="sidebar_restricted_title">

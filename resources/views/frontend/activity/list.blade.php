@@ -163,14 +163,14 @@
                                     <div class="col-md-4">
                                         <div class="rt-post-grid grid-meta">
                                             <div class="post-img">
-                                                <a href="{{ route('front.activity.detail', $item->id) }}">
+                                                <a href="{{ route('front.activity.detail', $item->link) }}">
                                                     <img src="/{{ $item->image }}" alt="post" width="551"
                                                         height="431">
                                                 </a>
                                             </div>
                                             <div class="post-content">
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <a href="{{ route('front.activity.categoryDetail', $item->Category->id) }}"
+                                                    <a href="{{ route('front.activity.categoryDetail', $item->Category->link) }}"
                                                         class="rt-cat-primary restricted_category_title">
                                                         {{ $item->Category->title }} </a>
                                                     <h6 class="rt-news-cat-normal text-danger mx-2">
@@ -179,7 +179,7 @@
                                                     </h6>
                                                 </div>
                                                 <h4 class="post-title">
-                                                    <a href="{{ route('front.activity.detail', $item->id) }}">
+                                                    <a href="{{ route('front.activity.detail', $item->link) }}">
                                                         {{ $item->title }}
                                                     </a>
                                                 </h4>
@@ -201,7 +201,7 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-eye icon"></i>
-                                                                25
+                                                                {{ $item->view_counter }}
                                                             </span>
                                                         </li>
                                                     </ul>
@@ -222,19 +222,21 @@
                     </div>
                     <!-- end related-post-box -->
                 </div>
+
+                @foreach ($activity_category as $data)
+                    
                 <div class="row mb--50">
                     <!-- start related-post-box -->
                     <div class="related-post-box">
                         <div class="titile-wrapper mb--40">
                             <h2 class="rt-section-heading flex-grow-1 mb-0 me-3">
-                                <span class="rt-section-text restricted_section_title"> {{ $cat1_name->title ?? ''}} </span>
+                                <span class="rt-section-text restricted_section_title"> {{ $data->title }} </span>
                                 <span class="rt-section-dot"></span>
                                 <span class="rt-section-line"></span>
                             </h2>
 
                             <div>
-                                <h6><a href="{{ route('front.activity.categoryDetail', $cat1_name->id ?? 1) }}">Tümünü Gör</a>
-                                </h6>
+                                <h6><a href="{{ route('front.activity.categoryDetail',$data->link) }}">Tümünü Gör</a></h6>
                             </div>
                         </div>
                         <!-- end titile-wrapper -->
@@ -242,21 +244,21 @@
                         <div class="rt-post-slider-style-5">
                             <div class="row">
 
-                                @foreach ($cat1_activites as $item)
+                                @foreach ($data->hasActivity() as $item)
                                     <div class="col-md-4">
                                         <div class="rt-post-grid grid-meta">
                                             <div class="post-img">
-                                                <a href="{{ route('front.activity.detail', $item->id) }}">
+                                                <a href="{{ route('front.activity.detail', $item->link) }}">
                                                     <img src="/{{ $item->image }}" alt="post" width="551"
                                                         height="431">
                                                 </a>
                                             </div>
                                             <div class="post-content">
-                                                <a href="{{ route('front.activity.categoryDetail', $item->Category->id) }}"
+                                                <a href="{{ route('front.activity.categoryDetail', $item->Category->link) }}"
                                                     class="rt-cat-primary sidebar_restricted_category_title">
                                                     {{ $item->Category->title }} </a>
                                                 <h4 class="post-title">
-                                                    <a href="{{ route('front.activity.detail', $item->id) }}">
+                                                    <a href="{{ route('front.activity.detail', $item->link) }}">
                                                         {{ $item->title }}
                                                     </a>
                                                 </h4>
@@ -278,7 +280,7 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-eye icon"></i>
-                                                                25
+                                                                {{ $item->view_counter }}
                                                             </span>
                                                         </li>
                                                     </ul>
@@ -301,6 +303,9 @@
                     </div>
                     <!-- end related-post-box -->
                 </div>
+
+                @endforeach
+
 
                 <div class="ad-banner-img mb--40">
                     <a href="#">
@@ -309,158 +314,7 @@
                     </a>
                 </div>
 
-                <div class="row mb--50">
-                    <!-- start related-post-box -->
-                    <div class="related-post-box">
-                        <div class="titile-wrapper mb--40">
-                            <h2 class="rt-section-heading flex-grow-1 mb-0 me-3">
-                                <span class="rt-section-text restricted_section_title">{{ $cat2_name->title ?? '' }} </span>
-                                <span class="rt-section-dot"></span>
-                                <span class="rt-section-line"></span>
-                            </h2>
-
-                            <div>
-                                <h6><a href="{{ route('front.activity.categoryDetail', $cat2_name->id ?? 1) }}">Tümünü Gör</a>
-                                </h6>
-                            </div>
-                        </div>
-                        <!-- end titile-wrapper -->
-
-                        <div class="rt-post-slider-style-5">
-                            <div class="row">
-
-                                @foreach ($cat2_activites as $item)
-                                    <div class="col-md-4">
-                                        <div class="rt-post-grid grid-meta">
-                                            <div class="post-img">
-                                                <a href="{{ route('front.activity.detail', $item->id) }}">
-                                                    <img src="/{{ $item->image }}" alt="post" width="551"
-                                                        height="431">
-                                                </a>
-                                            </div>
-                                            <div class="post-content">
-                                                <a href="{{ route('front.activity.categoryDetail', $item->Category->id) }}"
-                                                    class="rt-cat-primary sidebar_restricted_category_title">
-                                                    {{ $item->Category->title }} </a>
-                                                <h4 class="post-title">
-                                                    <a href="{{ route('front.activity.detail', $item->id) }}">
-                                                        {{ $item->title }}
-                                                    </a>
-                                                </h4>
-                                                <div class="post-meta">
-                                                    <ul>
-                                                        <li>
-                                                            <span class="rt-meta">
-                                                                <i class="far fa-calendar-alt icon"></i>
-                                                                {{ substr($item->start_time, 8, 2) }}-{{ substr($item->start_time, 5, 2) }}-{{ substr($item->start_time, 0, 4) }}
-                                                                - {{ substr($item->start_time, 10, 6) }}
-                                                            </span>
-                                                        </li>
-                                                        <li>
-                                                            <span class="rt-meta">
-                                                                <i class="fas fa-map-marker-alt icon"></i>
-                                                                {{ $item->Country->name }}
-                                                            </span>
-                                                        </li>
-                                                        <li>
-                                                            <span class="rt-meta">
-                                                                <i class="far fa-eye icon"></i>
-                                                                25
-                                                            </span>
-                                                        </li>
-                                                    </ul>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- end item -->
-                                @endforeach
-
-                            </div>
-                            <!-- end row -->
-                        </div>
-                        <!-- end rt-post-slider-style-5  -->
-
-                    </div>
-                    <!-- end related-post-box -->
-                </div>
-                <div class="row mb--50">
-                    <!-- start related-post-box -->
-                    <div class="related-post-box">
-                        <div class="titile-wrapper mb--40">
-                            <h2 class="rt-section-heading flex-grow-1 mb-0 me-3">
-                                <span class="rt-section-text restricted_section_title"> {{ $cat3_name->title ?? '' }} </span>
-                                <span class="rt-section-dot"></span>
-                                <span class="rt-section-line"></span>
-                            </h2>
-
-                            <div>
-                                <h6><a href="{{ route('front.activity.categoryDetail', $cat3_name->id ?? 1) }}">Tümünü Gör</a>
-                                </h6>
-                            </div>
-                        </div>
-                        <!-- end titile-wrapper -->
-
-                        <div class="rt-post-slider-style-5">
-                            <div class="row">
-
-                                @foreach ($cat3_activites as $item)
-                                    <div class="col-md-4">
-                                        <div class="rt-post-grid grid-meta">
-                                            <div class="post-img">
-                                                <a href="{{ route('front.activity.detail', $item->id) }}">
-                                                    <img src="/{{ $item->image }}" alt="post" width="551"
-                                                        height="431">
-                                                </a>
-                                            </div>
-                                            <div class="post-content">
-                                                <a href="{{ route('front.activity.categoryDetail', $item->Category->id) }}"
-                                                    class="rt-cat-primary sidebar_restricted_category_title">
-                                                    {{ $item->Category->title }} </a>
-                                                <h4 class="post-title">
-                                                    <a href="{{ route('front.activity.detail', $item->id) }}">
-                                                        {{ $item->title }}
-                                                    </a>
-                                                </h4>
-                                                <div class="post-meta">
-                                                    <ul>
-                                                        <li>
-                                                            <span class="rt-meta">
-                                                                <i class="far fa-calendar-alt icon"></i>
-                                                                {{ substr($item->start_time, 8, 2) }}-{{ substr($item->start_time, 5, 2) }}-{{ substr($item->start_time, 0, 4) }}
-                                                                - {{ substr($item->start_time, 10, 6) }}
-                                                            </span>
-                                                        </li>
-                                                        <li>
-                                                            <span class="rt-meta">
-                                                                <i class="fas fa-map-marker-alt icon"></i>
-                                                                {{ $item->Country->name }}
-                                                            </span>
-                                                        </li>
-                                                        <li>
-                                                            <span class="rt-meta">
-                                                                <i class="far fa-eye icon"></i>
-                                                                25
-                                                            </span>
-                                                        </li>
-                                                    </ul>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- end item -->
-                                @endforeach
-
-                            </div>
-                            <!-- end row -->
-                        </div>
-                        <!-- end rt-post-slider-style-5  -->
-
-                    </div>
-                    <!-- end related-post-box -->
-                </div>
+       
             </div>
         </div>
         <!-- End single-post-banner -->

@@ -28,6 +28,15 @@ class DefenseIndustryContentController extends Controller
             $other_product = EnDefenseIndustryContent::inRandomOrder()->get();
         }
 
+        // OKUMA KONTRLÜ
+        $readCheck = json_decode(\Illuminate\Support\Facades\Cookie::get('defense')) ?? [];
+        if (!in_array($data->id, $readCheck)){
+            $data->view_counter = $data->view_counter + 1;
+            $data->save();
+            $readCheck[] = $data->id;
+            \Illuminate\Support\Facades\Cookie::queue(\Illuminate\Support\Facades\Cookie::make('defense', json_encode($readCheck), 30));
+        }
+
         return view('frontend.defenseIndustry.detail',compact('data','previous_product','next_product','other_product'));
     }
 

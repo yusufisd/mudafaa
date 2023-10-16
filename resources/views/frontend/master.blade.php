@@ -225,20 +225,20 @@
                                                 <a class="animation" href="{{ route('front.activity.list') }}">
                                                     {{ __('message.etkinlikler') }} </a>
                                             </li>
-                                            <li class="{{ Route::is('front.interview.list') || Route::is('front.interview.detail') || Route::is('front.activity.detail') ? 'active' : '' }}" >
+                                            <li class="{{ Route::is('front.interview.list') || Route::is('front.interview.detail') ? 'active' : '' }}" >
                                                 <a class="animation" href="{{ route('front.interview.list') }}">
                                                     {{ __('message.röportajlar') }} </a>
                                             </li>
-                                            <li class="{{ Route::is('front.company.list') || Route::is('front.company.detail') || Route::is('front.activity.detail') ? 'active' : '' }}" >
+                                            <li class="{{ Route::is('front.company.list') || Route::is('front.company.detail') ? 'active' : '' }}" >
                                                 <a class="animation" href="{{ route('front.company.list') }}">
                                                     {{ __('message.firmalar') }} </a>
                                             </li>
-                                            <li class="{{ Route::is('front.dictionary.list') || Route::is('front.dictionary.detail') || Route::is('front.activity.detail') ? 'active' : '' }}" >
+                                            <li class="{{ Route::is('front.dictionary.list') || Route::is('front.dictionary.detail') ? 'active' : '' }}" >
                                                 <a class="animation" href="{{ route('front.dictionary.list') }}">
                                                     {{ __('message.ss sözlüğü') }}
                                                 </a>
                                             </li>
-                                            <li class="{{ Route::is('front.video.list') || Route::is('front.video.detail') || Route::is('front.activity.detail') ? 'active' : '' }}" >
+                                            <li class="{{ Route::is('front.video.list') || Route::is('front.video.detail') ? 'active' : '' }}" >
                                                 <a class="animation" href="{{ route('front.video.list') }}">
                                                     {{ __('message.videolar') }} </a>
                                             </li>
@@ -465,7 +465,7 @@
                                                     </a>
                                                 </li>
                                                 <li class="widget-list-item">
-                                                    <a href="archive.html" class="widget-list-link">
+                                                    <a href="{{ route('front.archive.index') }}" class="widget-list-link">
                                                         Arşiv
                                                     </a>
                                                 </li>

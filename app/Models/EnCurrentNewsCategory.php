@@ -15,7 +15,7 @@ class EnCurrentNewsCategory extends Model
     ];
 
     public function adet(){
-        return EnCurrentNews::where('category_id',$this->id)->count();
+        return EnCurrentNews::where('status', 1)->whereJsonContains('category_id', $this->id)->count();
     }
     public function getKeys(){
         return explode(',', $this->seo_key);

@@ -177,17 +177,18 @@
                                                         <span class="required"> {{ __('message.menşei') }} </span>
                                                     </label>
                                                     <!--end::Label-->
+                                                   
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10 fv-row">
                                                         <select name="origin[]" aria-label="Seçiniz" data-control="select2"
-                                                            data-placeholder="Seçiniz..."
+                                                            data-placeholder="Seçiniz..." 
                                                             class="form-select form-select-solid form-select-lg fw-semibold"
                                                             multiple>
                                                             <option value="">Seçiniz...</option>
 
                                                             @foreach ($countries as $item)
                                                                 <option
-                                                                    {{ in_array($item->id, $data_tr->companies) != false ? 'selected' : '' }}
+                                                                    {{ in_array($item->id, $data_tr->countries) != false ? 'selected' : '' }}
                                                                     value="{{ $item->id }}"> <p style="text-transform: capitalize"> {{ $item->name }} </p>
                                                                 </option>
                                                             @endforeach

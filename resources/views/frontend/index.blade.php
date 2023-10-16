@@ -1,5 +1,5 @@
 @extends('frontend.master')
-@section('title','Anasayfa')
+@section('title', 'Anasayfa')
 @section('css')
     <style>
         #story_container .swiper-container {
@@ -36,10 +36,10 @@
                                 <img style="height: 100%" src="{{ $variable->mobil_image }}" alt="slide-1">
                             </a>
                             <div class="swiper-content">
-                                @if ($variable->Category != null)
-                                    <a href="{{ route('front.currentNewsCategory.list', $variable->Category->link) }}"
-                                        style="background-color: {{ $variable->Category->color_code != null ? $variable->Category->color_code : '#749f43' }}"
-                                        class="rt-cat-primary restricted_story_title">{{ $variable->Category->title }}</a>
+                                @if ($variable->Category()[0] != null)
+                                    <a href="{{ route('front.currentNewsCategory.list', $variable->Category()[0]->link) }}"
+                                        style="background-color: {{ $variable->Category()[0]->color_code != null ? $variable->Category()[0]->color_code : '#749f43' }}"
+                                        class="rt-cat-primary restricted_story_title">{{ $variable->Category()[0]->title }}</a>
                                 @endif
                             </div>
                         </div>
@@ -70,13 +70,11 @@
                                 </a>
                             </div>
                             <div class="post-content ms-4">
-                                @if ($variable->Category != null)
-                                    <a href="{{ route('front.currentNewsCategory.list', $variable->Category->link) }}"
-                                        style="background-color: {{ $variable->Category->color_code != null ? $variable->Category->color_code : '#749f43' }}"
+                                    <a href="{{ route('front.currentNewsCategory.list', $variable->Category()[0]->link) }}"
+                                        style="background-color: {{ $variable->Category()[0]->color_code != null ? $variable->Category()[0]->color_code : '#749f43' }}"
                                         class="rt-cat-primary restricted_category_title">
-                                        {{ $variable->Category->title }}
+                                        {{ $variable->Category()[0]->title }}
                                     </a>
-                                @endif
                                 <h3 class="post-title">
                                     <a href="{{ route('front.currentNews.detail', $variable->link) }}"
                                         class="top_restricted_title">
@@ -119,13 +117,14 @@
                             </a>
                         </div>
                         <div class="post-content">
-                            @if($tek_haber->Category != null)
-                            <a href="{{ route('front.currentNewsCategory.list', $tek_haber->Category->link) }}"
-                                style="background-color: {{ $tek_haber->Category->color_code != null ? $tek_haber->Category->color_code : '#749f43' }}"
+
+                            <a href="{{ route('front.currentNewsCategory.list', $tek_haber->Category()[0]->link) }}"
+                                style="background-color: {{ $tek_haber->Category()[0]->color_code != null ? $tek_haber->Category()[0]->color_code : '#749f43' }}"
                                 class="tr-america restricted_category_title">
-                                {{ $tek_haber->Category->title }}
+                                {{ $tek_haber->Category()[0]->title }}
                             </a>
-                            @endif
+
+
                             <h3 class="post-title">
                                 <a href="{{ route('front.currentNews.detail', $tek_haber->link) }}"
                                     class="section_2_title_style_1">
@@ -177,13 +176,14 @@
                                         </a>
                                     </div>
                                     <div class="post-content">
-                                        @if ($item->Category != null)
-                                            <a href="{{ route('front.currentNewsCategory.list', $item->Category->link) }}"
-                                                style="background-color: {{ $item->Category->color_code != null ? $item->Category->color_code : '#749f43' }}"
+                                        @foreach ($item->Category() as $Category)
+                                            <a href="{{ route('front.currentNewsCategory.list', $Category->link) }}"
+                                                style="background-color: {{ $Category->color_code != null ? $Category->color_code : '#749f43' }}"
                                                 class="tr-europe restricted_category_title">
-                                                {{ $item->Category->title }}
+                                                {{ $Category->title }}
                                             </a>
-                                        @endif
+                                        @endforeach
+
 
                                         <h4 class="post-title">
                                             <a href="{{ route('front.currentNews.detail', $item->link) }}"
@@ -263,6 +263,7 @@
                         </div>
                         <!-- end featured-tab-title -->
 
+
                         <div class="tab-content" id="myTabContent-2">
                             <div class="tab-pane tab-item animated fadeInUp show active" id="menu-1" role="tabpanel"
                                 aria-labelledby="menu-11-tab">
@@ -279,10 +280,14 @@
                                                 </a>
                                             </div>
                                             <div class="post-content">
-                                                <a href="{{ route('front.currentNewsCategory.list', $ilk_kategori_icerigi->Category->link) }}"
-                                                    style="background-color: {{ $ilk_kategori_icerigi->Category->color_code != null ? $ilk_kategori_icerigi->Category->color_code : '#749f43' }}"
+                                                @foreach ($ilk_kategori_icerigi->Category() as $Category)
+                                                    
+                                                <a href="{{ route('front.currentNewsCategory.list', $Category->link) }}"
+                                                    style="background-color: {{ $Category->color_code != null ? $Category->color_code : '#749f43' }}"
                                                     class="music restricted_category_title">
-                                                    {{ $ilk_kategori_icerigi->Category->title }} </a>
+                                                    {{ $Category->title }} </a>
+                                                @endforeach
+
                                                 <h3 class="post-title">
                                                     <a href="{{ route('front.currentNews.detail', $ilk_kategori_icerigi->link) }}"
                                                         class="section_4_title_style_1">
@@ -415,6 +420,7 @@
 
                                 </div>
                             </div>
+
 
                             <div class="tab-pane tab-item animated fadeInUp" id="menu-2" role="tabpanel"
                                 aria-labelledby="menu-22-tab">
@@ -559,32 +565,31 @@
                             <div class="tab-pane tab-item animated fadeInUp" id="menu-3" role="tabpanel"
                                 aria-labelledby="menu-33-tab">
                                 <div class="row gutter-24">
+                                    @if ($ucuncu_kategori_icerigi != null)
+
 
                                     <div class="col-xl-4 col-lg-6">
                                         <div class="rt-post-overlay rt-post-overlay-md">
                                             <div class="post-img">
-                                                @if($ucuncu_kategori_icerigi != null)
-                                                <a href="{{ route('front.currentNews.detail', $ucuncu_kategori_icerigi->link) }}"
-                                                    class="img-link">
-                                                    <img src="/{{ $ucuncu_kategori_icerigi->image }}" alt="post-xl-3"
-                                                        width="900" height="600">
-                                                </a>
-                                                @endif
+                                                    <a href="{{ route('front.currentNews.detail', $ucuncu_kategori_icerigi->link) }}"
+                                                        class="img-link">
+                                                        <img src="/{{ $ucuncu_kategori_icerigi->image }}" alt="post-xl-3"
+                                                            width="900" height="600">
+                                                    </a>
                                             </div>
                                             <div class="post-content">
-                                                @if($ucuncu_kategori_icerigi != null)
-                                                <a href="{{ route('front.currentNewsCategory.list', $ucuncu_kategori_icerigi->Category->link) }}"
-                                                    style="background-color: {{ $ucuncu_kategori_icerigi->Category->color_code != null ? $ucuncu_kategori_icerigi->Category->color_code : '#749f43' }}"
-                                                    class="music restricted_category_title">
-                                                    {{ $ucuncu_kategori_icerigi->Category->title }} </a>
-                                                    @endif
+                                                @if ($ucuncu_kategori_icerigi != null)
+                                                    <a href="{{ route('front.currentNewsCategory.list', $ucuncu_kategori_icerigi->Category()[0]->link) }}"
+                                                        style="background-color: {{ $ucuncu_kategori_icerigi->Category()[0]->color_code != null ? $ucuncu_kategori_icerigi->Category()[0]->color_code : '#749f43' }}"
+                                                        class="music restricted_category_title">
+                                                        {{ $ucuncu_kategori_icerigi->Category()[0]->title }} </a>
+                                                @endif
                                                 <h3 class="post-title">
-                                                @if($ucuncu_kategori_icerigi != null)
-
-                                                    <a href="{{ route('front.currentNews.detail', $ucuncu_kategori_icerigi->link) }}"
-                                                        class="section_4_title_style_2">
-                                                        {{ $ucuncu_kategori_icerigi->title }}
-                                                    </a>
+                                                    @if ($ucuncu_kategori_icerigi != null)
+                                                        <a href="{{ route('front.currentNews.detail', $ucuncu_kategori_icerigi->link) }}"
+                                                            class="section_4_title_style_2">
+                                                            {{ $ucuncu_kategori_icerigi->title }}
+                                                        </a>
                                                     @endif
                                                 </h3>
 
@@ -608,6 +613,8 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endif
+
                                     <!-- end col -->
 
                                     <div class="col-xl-4 col-lg-6">
@@ -768,7 +775,7 @@
                                         <li>
                                             <span class="rt-meta">
                                                 <i class="far fa-calendar-alt icon"></i>
-                                                {{ $item->start_time->translatedFormat('d M Y') }}
+                                                {{ $item->start_time }}
                                             </span>
                                         </li>
                                         <li>
@@ -824,9 +831,11 @@
                                     </a>
                                 </div>
                                 <div class="post-content">
-                                    <a href="{{ route('front.currentNewsCategory.list', $populer_haber_first->Category->link) }}"
-                                        style="background-color: {{ $populer_haber_first->Category->color_code != null ? $populer_haber_first->Category->color_code : '#749f43' }}"
-                                        class="world"> {{ $populer_haber_first->Category->title }} </a>
+                                    @if($populer_haber_first->Category() != null)
+                                    <a href="{{ route('front.currentNewsCategory.list', $populer_haber_first->Category()[0]->link) }}"
+                                        style="background-color: {{ $populer_haber_first->Category()[0]->color_code != null ? $populer_haber_first->Category()[0]->color_code : '#749f43' }}"
+                                        class="world"> {{ $populer_haber_first->Category()[0]->title }} </a>
+                                    @endif
                                     <h3 class="post-title">
                                         <a href="{{ route('front.currentNews.detail', $populer_haber_first->link) }}"
                                             class="restricted_title">
@@ -898,9 +907,23 @@
                                                 </a>
                                             </div>
                                             <div class="post-content">
-                                                <a href="{{ route('front.currentNewsCategory.list', $item->Category->link) }}"
-                                                    style="background-color: {{ $item->Category->color_code != null ? $item->Category->color_code : '#749f43' }}"
-                                                    class="tr-america restricted_category_title">{{ $item->Category->title }}</a>
+                                                <?php
+                                                    $a = 0;
+                                                ?>
+
+                                                @foreach ($item->Category() as $Category)
+
+                                                <?php 
+                                                    if(++$a == 3) break;
+
+                                                ?>
+                                                    
+                                                <a href="{{ route('front.currentNewsCategory.list', $Category->link) }}"
+                                                    style="background-color: {{ $Category->color_code != null ? $Category->color_code : '#749f43' }}"
+                                                    class="tr-america restricted_category_title">{{ $Category->title }}</a>
+
+                                                @endforeach
+
                                                 <h3 class="post-title">
                                                     <a href="{{ route('front.currentNews.detail', $item->link) }}"
                                                         class="title_style_2">
@@ -1071,7 +1094,7 @@
                         </h2>
 
                         <div class="mb-2">
-                            <a href="videos.html" class="rt-read-more-white rt-button-animation-out">
+                            <a href="{{ route('front.video.list') }}" class="rt-read-more-white rt-button-animation-out">
                                 {{ __('message.tümünü gör') }}
                                 <svg width="34px" height="16px" viewBox="0 0 34.53 16" xml:space="preserve">
                                     <rect class="rt-button-line" y="7.6" width="34" height=".4">
@@ -1093,7 +1116,7 @@
 
                         <div class="rt-post-overlay rt-post-overlay-lg layout-6">
                             <div class="post-img">
-                                <a href="{{ route('front.video.detail',$item->link) }}" class="img-link">
+                                <a href="{{ route('front.video.detail', $item->link) }}" class="img-link">
                                     <img src="{{ $item->image }}" alt="post-xl_31" width="900" height="600">
                                 </a>
                                 <a href="{{ $item->youtube }}" class="play-btn play-btn-transparent right-top">
@@ -1101,10 +1124,12 @@
                                 </a>
                             </div>
                             <div class="post-content">
-                                <a href="{{ route('front.video.category_list',$item->Category->link) }}" class="mission restricted_category_title">
+                                <a href="{{ route('front.video.category_list', $item->Category->link) }}"
+                                    class="mission restricted_category_title">
                                     {{ $item->Category->title }} </a>
                                 <h3 class="post-title">
-                                    <a href="{{ route('front.video.detail',$item->link) }}" class="section_6_restricted_title">
+                                    <a href="{{ route('front.video.detail', $item->link) }}"
+                                        class="section_6_restricted_title">
                                         {{ $item->title }}
                                     </a>
                                 </h3>
@@ -1147,7 +1172,7 @@
                         </h2>
 
                         <div>
-                            <h6><a href="reports_list.html"> {{ __('message.tümünü gör') }} </a></h6>
+                            <h6><a href="{{ route('front.interview.list') }}"> {{ __('message.tümünü gör') }} </a></h6>
                         </div>
                     </div>
                     <!-- end titile-wrapper -->
@@ -1246,8 +1271,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                                                           // limit by device width
-                                                           -------------------------------*/
+                                                                   // limit by device width
+                                                                   -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
 

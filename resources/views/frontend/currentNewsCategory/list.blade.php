@@ -49,7 +49,7 @@
                 <div class="search-box">
                     <form action="#" class="form search-form-box">
                         <div class="form-group">
-                            <input type="text" name="sarch" id="search" placeholder="ARA..."
+                            <input type="text" name="search" id="search" placeholder="ARA..." value="{{ request()->search }}"
                                 class="form-control rt-search-control">
                             <button type="submit" class="search-submit">
                                 <i class="fas fa-search"></i>
@@ -70,9 +70,13 @@
                                     <div class="post-item wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
                                         <div class="rt-post post-md style-9 grid-meta">
                                             <div class="post-content">
-                                                <a href="{{ route('front.currentNewsCategory.list', $item->Category->link) }}"
-                                                    style="background-color: {{ $item->Category->color_code != null ? $item->Category->color_code : '' }}"
-                                                    class="rt-cat-primary">{{ $item->Category->title }}</a>
+                                                @foreach ($item->Category() as $Category)
+                                                    
+                                                <a href="{{ route('front.currentNewsCategory.list', $Category->link) }}"
+                                                    style="background-color: {{ $Category->color_code != null ? $Category->color_code : '' }}"
+                                                    class="rt-cat-primary">{{ $Category->title }}</a>
+                                                @endforeach
+
                                                 <h3 class="post-title">
                                                     <a href="{{ route('front.currentNews.detail', $item->link) }}"
                                                         class="restricted_title">
@@ -145,9 +149,7 @@
 
                             </div>
 
-                            <div class="d-flex justify-content-center" style="padding:10%">
-                                {{ $datas->links() }}
-                            </div>
+                           
 
                             <div class="items-center" style="padding:15%">
                             </div>
@@ -164,7 +166,7 @@
                                 <div class="search-box">
                                     <form action="#" class="form search-form-box">
                                         <div class="form-group">
-                                            <input type="text" name="sarch" id="search" placeholder="ARA..."
+                                            <input type="text" name="search" id="search" placeholder="ARA..." value="{{ request()->search }}"
                                                 class="form-control rt-search-control">
                                             <button type="submit" class="search-submit">
                                                 <i class="fas fa-search"></i>
@@ -221,10 +223,11 @@
                                         <div class="col-6">
                                             <div class="rt-post-grid post-grid-md grid-meta">
                                                 <div class="post-content">
-                                                    <a href="{{ route('front.currentNewsCategory.list', $item->Category->link) }}"
-                                                        style="background-color: {{ $item->Category->color_code != null ? $item->Category->color_code : '' }}"
+                                                    
+                                                    <a href="{{ route('front.currentNewsCategory.list', $item->Category()[0]->link) }}"
+                                                        style="background-color: {{ $item->Category()[0]->color_code != null ? $item->Category()[0]->color_code : '' }}"
                                                         class="rt-cat-primary sidebar_restricted_category_title">
-                                                        {{ $item->Category->title }}
+                                                        {{ $item->Category()[0]->title }}
                                                     </a>
                                                     <div class="post-img mb-2">
                                                         <a href="{{ route('front.currentNews.detail', $item->link) }}">
@@ -298,12 +301,15 @@
                         </div>
                         <!-- end rt-sidebar -->
                     </div>
-                    <!-- end col -->
-
                 </div>
+                <!-- end col -->
+                    <div style="margin-left: 45%; margin-top:5%">
+                        {{ $datas->links() }}
+                    </div>
                 <!-- end row  -->
             </div>
             <!-- end container -->
+            
         </section>
         <!-- end rt-sidebar-section-layout-2 -->
 

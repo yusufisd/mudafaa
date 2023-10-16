@@ -70,9 +70,13 @@
                                     <div class="post-item wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
                                         <div class="rt-post post-md style-9 grid-meta">
                                             <div class="post-content">
-                                                <a href="{{ route('front.currentNewsCategory.list', $item->Category->link) }}"
-                                                    style="background-color: {{ $item->Category->color_code != null ? $item->Category->color_code : '' }}"
-                                                    class="rt-cat-primary">{{ $item->Category->title }}</a>
+                                                @foreach ($item->Category() as $Category)
+                                                    
+                                                <a href="{{ route('front.currentNewsCategory.list', $Category->link) }}"
+                                                    style="background-color: {{ $Category->color_code != null ? $Category->color_code : '' }}"
+                                                    class="rt-cat-primary">{{ $Category->title }}</a>
+                                                @endforeach
+
                                                 <h3 class="post-title">
                                                     <a href="{{ route('front.currentNews.detail', $item->link) }}"
                                                         class="restricted_title">
@@ -221,10 +225,10 @@
                                         <div class="col-6">
                                             <div class="rt-post-grid post-grid-md grid-meta">
                                                 <div class="post-content">
-                                                    <a href="{{ route('front.currentNewsCategory.list', $item->Category->link) }}"
-                                                        style="background-color: {{ $item->Category->color_code != null ? $item->Category->color_code : '' }}"
+                                                    <a href="{{ route('front.currentNewsCategory.list', $item->Category()[0]->link) }}"
+                                                        style="background-color: {{ $item->Category()[0]->color_code != null ? $item->Category()[0]->color_code : '' }}"
                                                         class="rt-cat-primary sidebar_restricted_category_title">
-                                                        {{ $item->Category->title }}
+                                                        {{ $item->Category()[0]->title }}
                                                     </a>
                                                     <div class="post-img mb-2">
                                                         <a href="{{ route('front.currentNews.detail', $item->link) }}">

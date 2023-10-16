@@ -46,15 +46,15 @@
                             <ul class="about-img-gallery-list">
                                 <li>
                                     <img class="wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="800ms"
-                                        src="/{{$data->image1 != null ? $data->image1 : 'media/about/about-img_1.jpg'}}" alt="about-img_1" width="551" height="630">
+                                        src="/{{isset($data->image1) ? $data->image1 : 'assets/frontend/media/about/about-img_1.jpg'}}" alt="about-img_1" width="551" height="630">
                                 </li>
                                 <li>
                                     <img class="wow fadeInRight" data-wow-delay="500ms" data-wow-duration="800ms"
-                                        src="/{{$data->image2 != null ? $data->image2 : 'media/about/about-img_2.jpg'}}" alt="about-img_2" width="551" height="555">
+                                        src="/{{isset($data->image2) ? $data->image2 : 'assets/frontend/media/about/about-img_2.jpg'}}" alt="about-img_2" width="551" height="555">
                                 </li>
                                 <li>
                                     <img class="wow fadeInUp" data-wow-delay="700ms" data-wow-duration="800ms"
-                                        src="/{{$data->image3 != null ? $data->image3 : 'media/about/about-img_3.jpg'}}" alt="about-img_3" width="551" height="320">
+                                        src="/{{isset($data->image3) ? $data->image3 : 'assets/frontend/media/about/about-img_3.jpg'}}" alt="about-img_3" width="551" height="320">
                                 </li>
                             </ul>
                             <ul class="shape-list">
@@ -72,9 +72,19 @@
                             <div class="rt-section-heading-style-2 mb-0">
                                 <span class="sub-title">Bİz Kİmİz</span>
                                 <h2 class="heading-tilte">
-                                    {{$data->title}}
+                                    {{$data->title ?? '25+ Yıldan Fazla Süredir Gerçek Haberler Sunuyoruz'}}
                                   </h2> 
+                                  @if(isset($data->description))
                                 {!!$data->description!!}
+                                @else
+                                Milli Müdafaa; başta Türk savunma sanayii olmak üzere, sektöre ilişkin tüm haberleri, Türk Silahlı Kuvvetlerinin ve dünya ordularının çeşitli teknolojilerini, güncel bilgileri, yeni çıkan ürün tanıtım yazılarını, makale ve söyleşilerini, gerçekleşen röportajlarını yayınlayan sektörün haber platformudur.
+
+                                Milli Gücümüzün farkındalığını ve gelişen küresel teknolojiye yön veren Türk Savunma Sanayisinin her kesimden bireylerin yeniliğin ve gelişimini takip edip bilinçlendirmeye yönelik, güncel tüm askeri malzeme, teçhizat, tesis ve malzemelerin araştırma ve geliştirme, mühendislik servis hizmet ve üretimi hakkında tüm bilgilerin paylaşıldığı Türk yerli Savunma Sanayi hedef kitlesine savunma sanayi rehberi oluşturmaktadır.
+                                
+                                Amacımız; Okuyucularımızın sektörel her haberden bilgi sahibi olmalarını ve haberlere kolaylıkla ulaşmalarını sağlamaktır.
+                                
+                                Milli Müdafaa olarak; en güncel ve doğru haberleri, hızlı, anlaşılır ve içeriği zengin haliyle paylaşmak öncelikli hedefimizdir.
+                                @endif
                             </div>
                         </div>
                     </div>

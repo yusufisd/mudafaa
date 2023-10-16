@@ -13,7 +13,7 @@ class CurrentNewsCategory extends Model
     protected $casts = [];
 
     public function adet(){
-        return CurrentNews::where('status', 1)->where('category_id',$this->id)->count();
+        return CurrentNews::where('status', 1)->whereJsonContains('category_id', $this->id)->count();
     }
     
     public function getKeys(){

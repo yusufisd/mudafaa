@@ -97,9 +97,8 @@
                                                     </div>
                                                 </th>
                                                 <th>{{ __('message.görsel') }}<i class="fa fa-sort ms-3"></i></th>
-                                                <th>{{ __('message.yazar') }}<i class="fa fa-sort ms-3"></i></th>
                                                 <th>{{ __('message.başlık') }}<i class="fa fa-sort ms-3"></i></th>
-                                                <th>{{ __('message.kategori') }}<i class="fa fa-sort ms-3"></i></th>
+                                                <th style="width: 300px">{{ __('message.kategori') }}<i class="fa fa-sort ms-3"></i></th>
                                                 <th class="text-center">{{ __('message.manşet') }}<i
                                                         class="fa fa-sort ms-3"></i></th>
                                                 <th class="pe-7 text-center">{{ __('message.durum') }}<i
@@ -112,6 +111,7 @@
 
 
                                             @foreach ($data as $item)
+                                            
                                                 <tr class="align-middle">
                                                     <td>
                                                         <div
@@ -124,9 +124,8 @@
                                                         <img src="/{{ $item->image }}" class="w-75px ms-n1"
                                                             alt="">
                                                     </td>
-                                                    <td> {{ $item->Author->name }} {{ $item->Author->surname }} </td>
                                                     <td> {{ substr($item->title, 0, 30) }}... </td>
-                                                    <td> {{ $item->Category->title ?? '-' }} </td>
+                                                    <td style="width: 300px"> {{ implode('-',$item->Category2()) }} </td>
                                                     <td>
                                                         <div
                                                             class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">

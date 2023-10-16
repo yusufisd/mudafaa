@@ -59,7 +59,7 @@ class DefenseIndustryCategoryController extends Controller
             $data = DefenseIndustryCategory::inRandomOrder()->take(6)->get();
             
         } elseif ($local == 'en') {
-            $datas = DefenseIndustryContent::where('seo_key', 'LIKE' , '%'.$title.'%')->paginate(10);
+            $datas = EnDefenseIndustryContent::where('seo_key', 'LIKE' , '%'.$title.'%')->paginate(10);
             $data = EnDefenseIndustryCategory::inRandomOrder()->take(6)->get();
         }
 

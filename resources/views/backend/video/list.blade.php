@@ -120,7 +120,11 @@
 
                                                     <td class="text-center">
 
-
+                                                        <a href="{{ route('admin.video.commentList', $item->id) }}">
+                                                            <button type="button" class="btn btn-primary px-4 py-2">
+                                                                Yorumlar ({{ $item->AdminCommentCount() }})
+                                                            </button>
+                                                        </a>
                                                         <a href="{{ route('admin.video.edit', $item->id) }}"
                                                             class="px-2 btn btn-icon btn-bg-light btn-active-color-secondary btn-sm me-1"
                                                             title="Düzenle">

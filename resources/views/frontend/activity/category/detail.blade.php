@@ -1,5 +1,5 @@
 @extends('frontend.master')
-@section('title',$cat->title)
+@section('title',$cat->title ?? 'Etkinlik')
 
 @section('content')
     <!-- Start Main -->
@@ -47,14 +47,14 @@
                                     <div class="col-md-4">
                                         <div class="rt-post-grid grid-meta">
                                             <div class="post-img">
-                                                <a href="{{ route('front.activity.detail', $item->id) }}">
+                                                <a href="{{ route('front.activity.detail', $item->link) }}">
                                                     <img src="/{{ $item->image }}" alt="post" width="551"
                                                         height="431">
                                                 </a>
                                             </div>
                                             <div class="post-content">
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <a href="{{route('front.activity.categoryDetail',$item->Category->id)}}"
+                                                    <a href="{{route('front.activity.categoryDetail',$item->Category->link)}}"
                                                         class="rt-cat-primary restricted_category_title">
                                                         {{ $item->Category->title }} </a>
                                                     <h6 class="rt-news-cat-normal text-danger mx-2">
@@ -63,7 +63,7 @@
                                                     </h6>
                                                 </div>
                                                 <h4 class="post-title">
-                                                    <a href="{{ route('front.activity.detail', $item->id) }}">
+                                                    <a href="{{ route('front.activity.detail', $item->link) }}">
                                                         {{ $item->title }}
                                                     </a>
                                                 </h4>

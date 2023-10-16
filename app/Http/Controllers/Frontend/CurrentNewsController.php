@@ -22,13 +22,13 @@ class CurrentNewsController extends Controller
             $data = CurrentNews::where('link',$id)->first();;
             $previous_data = CurrentNews::where('id', '<',$data->id)->where('status', 1)->latest()->first();
             $next_data = CurrentNews::where('id', '>', $data->id)->where('status', 1)->first();
-            $other_news = CurrentNews::where('category_id',$data->category_id)->where('status', 1)->get();
+            $other_news = CurrentNews::inRandomOrder()->where('status', 1)->get();
             $four_news = CurrentNews::orderBy('view_counter', 'desc')->where('status', 1)->take(4)->get();
         }else{
             $data = EnCurrentNews::where('link',$id)->first();;
             $previous_data = EnCurrentNews::where('id', '<',$data->id)->where('status', 1)->latest()->first();
             $next_data = EnCurrentNews::where('id', '>', $data->id)->where('status', 1)->first();
-            $other_news = EnCurrentNews::where('category_id',$data->category_id)->where('status', 1)->get();
+            $other_news = EnCurrentNews::inRandomOrder()->where('status', 1)->get();
             $four_news = EnCurrentNews::orderBy('view_counter', 'desc')->where('status', 1)->take(4)->get();
         }
         // OKUMA KONTRLÜ
@@ -72,7 +72,6 @@ class CurrentNewsController extends Controller
             $other_news = EnCurrentNews::latest()->take(6)->get();
         }
 
-        $datas = CurrentNews::where('seo_key', 'LIKE' , '%'. $title. '%')->paginate(10);
         return view('frontend.currentNews.tag_list',compact('datas','sub_categories','other_news'));
     }
 }

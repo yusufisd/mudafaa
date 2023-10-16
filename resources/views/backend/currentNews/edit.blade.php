@@ -124,13 +124,13 @@
                                                         <span class="required">Kategori</span>
                                                     </label>
                                                     <div class="col-lg-10 fv-row">
-                                                        <select name="category" aria-label="Seçiniz" data-control="select2"
-                                                            data-placeholder="Seçiniz..."
-                                                            class="form-select form-select-solid form-select-lg fw-semibold">
+                                                        <select name="category[]" aria-label="Seçiniz"
+                                                            data-control="select2" data-placeholder="Seçiniz..." multiple
+                                                            class="select2-selection select2-selection--multiple form-select form-select-solid form-select-lg fw-semibold">
                                                             <option value="">Seçiniz...</option>
                                                             @foreach ($categories as $cat)
                                                                 <option
-                                                                    {{ $cat->id == $data_tr->category_id ? 'selected' : '' }}
+                                                                    {{ in_array($cat->id,$data_tr->category_id) ? 'selected' : '' }}
                                                                     value="{{ $cat->id }}">
                                                                     {{ $cat->title }}
                                                                 </option>

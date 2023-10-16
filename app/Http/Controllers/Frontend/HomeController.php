@@ -37,9 +37,29 @@ class HomeController extends Controller
             $second_cat = CurrentNewsCategory::whereNot('id',$first_cat->id)->orderBy('id','asc')->first();
             $third_cat = CurrentNewsCategory::whereNot('id',$first_cat->id)->whereNot('id',$second_cat->id)->first();
 
+            $data = CurrentNews::get();
+            foreach($data as $item){
+                if(in_array($first_cat->id,$item->category_id)){
+                    $ilk_kategori_icerigi = $item;
+                }
+                break;
+            }
+
+            foreach($data as $item){
+                if(in_array($second_cat->id,$item->category_id)){
+                    $ikinci_kategori_icerigi = $item;
+                    break;
+                }
+            }
+
+            foreach($data as $item){
+                if(in_array($third_cat->id,$item->category_id)){
+                    $ucuncu_kategori_icerigi = $item;
+                    break;
+                }
+            }
+
             $ilk_kategori_icerikleri = CurrentNews::where('category_id',$first_cat->id)->whereNot('id',1)->get();
-            $ilk_kategori_icerigi = CurrentNews::where('category_id',$first_cat->id)->latest()->first();
-            $ikinci_kategori_icerigi = CurrentNews::where('category_id',$second_cat->id)->latest()->first();
             $ucuncu_kategori_icerigi = CurrentNews::where('category_id',$third_cat->id)->latest()->first();
             $cat1_news1 = CurrentNews::where('category_id',$first_cat->id)->orderBy('id','asc')->take(3)->get();
             $cat1_news2 = CurrentNews::where('category_id',$first_cat->id)->orderBy('id','desc')->take(3)->get();
@@ -67,10 +87,33 @@ class HomeController extends Controller
             $iki_haber = EnCurrentNews::inRandomOrder()->take(2)->get();
             $tek_haber = EnCurrentNews::inRandomOrder()->first();
             $uc_kategori = EnCurrentNewsCategory::orderBy('id','asc')->take(3)->get();
+
+            $first_cat = EnCurrentNewsCategory::orderBy('id','asc')->first();
+            $second_cat = EnCurrentNewsCategory::whereNot('id',$first_cat->id)->orderBy('id','asc')->first();
+            $third_cat = EnCurrentNewsCategory::whereNot('id',$first_cat->id)->whereNot('id',$second_cat->id)->first();
+
+            $data = EnCurrentNews::get();
+            foreach($data as $item){
+                if(in_array($first_cat->id,$item->category_id)){
+                    $ilk_kategori_icerigi = $item;
+                }
+                break;
+            }
+
+            foreach($data as $item){
+                if(in_array($second_cat->id,$item->category_id)){
+                    $ikinci_kategori_icerigi = $item;
+                    break;
+                }
+            }
+
+            foreach($data as $item){
+                if(in_array($third_cat->id,$item->category_id)){
+                    $ucuncu_kategori_icerigi = $item;
+                    break;
+                }
+            }
             $ilk_kategori_icerikleri = EnCurrentNews::where('category_id',1)->whereNot('id',1)->get();
-            $ilk_kategori_icerigi = EnCurrentNews::where('category_id',1)->latest()->first();
-            $ikinci_kategori_icerigi = EnCurrentNews::where('category_id',2)->latest()->first();
-            $ucuncu_kategori_icerigi = EnCurrentNews::where('category_id',3)->latest()->first();
             $cat1_news1 = EnCurrentNews::where('category_id',1)->orderBy('id','asc')->take(3)->get();
             $cat1_news2 = EnCurrentNews::where('category_id',1)->orderBy('id','desc')->take(3)->get();
             $cat2_news1 = EnCurrentNews::where('category_id',2)->orderBy('id','asc')->take(3)->get();

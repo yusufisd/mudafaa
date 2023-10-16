@@ -17,4 +17,9 @@ class ActivityCategory extends Model
     public function getKeys(){
         return explode(',', $this->seo_key);
     }
+
+    public function hasActivity(){
+        $data = Activity::where('category',$this->id)->take(4)->get();
+        return $data;
+    }
 }

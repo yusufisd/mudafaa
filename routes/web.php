@@ -24,6 +24,7 @@ use App\Http\Controllers\Backend\VideoCategoryController;
 use App\Http\Controllers\Backend\VideoController;
 use App\Http\Controllers\Frontend\AboutController as FrontendAboutController;
 use App\Http\Controllers\Frontend\ActivityController as FrontendActivityController;
+use App\Http\Controllers\Frontend\ArchiveController;
 use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\CompanyController as FrontendCompanyController;
 use App\Http\Controllers\Frontend\CurrentNewsCategoryController as FrontendCurrentNewsCategoryController;
@@ -428,6 +429,10 @@ Route::middleware('lang')->group(function () {
                         ->get('sil/{id?}', 'destroy')
                         ->name('destroy');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
+                    Route::get('yorumlar/{id?}', 'commentList')
+                        ->name('commentList');
+                    Route::get('yorum-statu/{id?}', 'changeCommentStatus')->name('changeCommentStatus');
+                    Route::get('yorum-sil/{id?}', 'commentDestroy')->name('commentDestroy');
                 });
 
             // FİRMA  CONTROLLER
@@ -613,6 +618,9 @@ Route::middleware('lang')->group(function () {
                     Route::get('etiket/{tag?}', 'tag_list')->name('tag_list');
                     Route::get('kategori/{link?}', 'category_list')->name('category_list');
                     Route::get('detay/{id?}', 'detail')->name('detail');
+                    Route::post('yorum-ekle/{id?}', 'commentStore')->name('commentStore');
+                    Route::post('alt-yorum-ekle/{id?}', 'sub_commentStore')->name('sub_commentStore');
+
                 });
 
             // YORUM CONTROLLER
@@ -677,6 +685,15 @@ Route::middleware('lang')->group(function () {
                 ->group(function () {
                     Route::get('/detay/{id?}', 'detail')->name('detail');
                 });
+
+                // Archive CONTROLLER
+            Route::controller(ArchiveController::class)
+            ->prefix('arsiv')
+            ->name('archive.')
+            ->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('/filter', 'filterArchive')->name('filterArchive');
+            });
 
             Route::get('iletisim',[FrontendContactController::class,'contact'])->name('contact');
         });

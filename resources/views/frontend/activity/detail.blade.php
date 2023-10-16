@@ -50,7 +50,7 @@
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
                             <span class="rt-text-truncate">
-                                Etkinlik Detay
+                                {{ $data->title }}
                             </span>
                         </li>
                     </ol>
@@ -65,7 +65,7 @@
                 <div class="row">
                     <div class="col-xl-9 col-lg-10 mx-auto">
                         <div class="single-post-content">
-                            <span class="fashion">{{$data->Category->title}}</span>
+                            <span style="background-color: #749f43" class="fashion">{{$data->Category->title}}</span>
                             <h2 class="post-title">
                                 {{$data->title}}
                             </h2>
@@ -126,7 +126,7 @@
                                         </li>
                                         <li>
                                             <a class="tw" target="_blank" href="https://twitter.com/">
-                                                <i class="social-icon fab fa-twitter"></i>
+                                                <i style="color: black" class="fa-brands fa-square-x-twitter twitter"></i>
                                             </a>
                                         </li>
                                         <li>
@@ -158,11 +158,16 @@
                                     <div class="col-xl-7 col-lg-6">
                                         <div class="conent-block">
                                             <h4 class="block-tile mb--20">Popüler Etiketler:</h4>
+
                                             <div class="tag-list">
-                                                <a href="#" class="tag-link">Güzel</a>
-                                                <a href="#" class="tag-link">Seyahat</a>
-                                                <a href="#" class="tag-link">Teknoloji</a>
-                                                <a href="#" class="tag-link">Siyaset</a>
+
+                                                @foreach ($data->getKeys() as $item)
+                                                    
+                                                <a href="#" class="tag-link"> {{ $item }} </a>
+
+                                                @endforeach
+
+                                              
                                             </div>
                                         </div>
                                     </div>
@@ -298,16 +303,16 @@
                             <div class="slide-item">
                                 <div class="rt-post-grid grid-meta">
                                     <div class="post-img">
-                                        <a href="{{ route('front.activity.detail', $item->id) }}">
+                                        <a href="{{ route('front.activity.detail', $item->link) }}">
                                             <img src="/{{$item->image}}" alt="post" width="551"
                                                 height="431">
                                         </a>
                                     </div>
                                     <div class="post-content">
-                                        <a href="{{route('front.activity.categoryDetail',$item->Category->id)}}"
+                                        <a href="{{route('front.activity.categoryDetail',$item->Category->link)}}"
                                             class="rt-cat-primary sidebar_restricted_category_title">{{ $item->Category->title }}</a>
                                         <h3 class="post-title">
-                                            <a href="{{ route('front.activity.detail', $item->id) }}">
+                                            <a href="{{ route('front.activity.detail', $item->link) }}">
                                                 {{$item->title}}
                                             </a>
                                         </h3>

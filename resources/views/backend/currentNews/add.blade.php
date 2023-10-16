@@ -75,21 +75,21 @@
 
 
                                                 <div class="row mb-6">
-                                                    <label class="col-lg-2 col-form-label  fw-bold fs-6 ps-5">Görsel
+                                                    <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">Görsel
                                                         <br><span style="font-weight:normal">( 960px - 520px)</span></label>
                                                     <div class="col-lg-10">
-                                                        <input  type="file" required class="form-control" name="image"
+                                                        <input type="file" required class="form-control" name="image"
                                                             id="">
                                                     </div>
                                                 </div>
 
                                                 <div class="row mb-6">
-                                                    <label class="col-lg-2 col-form-label  fw-bold fs-6 ps-5">Hikaye
+                                                    <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">Hikaye
                                                         Görseli <br><span style="font-weight:normal">( 311px -
                                                             75px)</span></label>
                                                     <div class="col-lg-10">
-                                                        <input  type="file" required class="form-control" name="mobil_image"
-                                                            id="">
+                                                        <input type="file" required class="form-control"
+                                                            name="mobil_image" id="">
                                                     </div>
                                                 </div>
 
@@ -99,9 +99,9 @@
                                                         <span class="">Kategori</span>
                                                     </label>
                                                     <div class="col-lg-10 fv-row">
-                                                        <select name="category" aria-label="Seçiniz"
-                                                            data-placeholder="Seçiniz..."
-                                                            class="form-select form-select-solid form-select-lg fw-semibold">
+                                                        <select name="category[]" aria-label="Seçiniz"
+                                                            data-control="select2" data-placeholder="Seçiniz..." multiple
+                                                            class="select2-selection select2-selection--multiple form-select form-select-solid form-select-lg fw-semibold">
                                                             <option value="">Seçiniz...</option>
                                                             @foreach ($categories as $cat)
                                                                 <option value="{{ $cat->id }}"> {{ $cat->title }}
@@ -165,8 +165,9 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input  type="date" name="activity_on_location_tr"
-                                                                            required class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                        <input type="date" name="activity_on_location_tr"
+                                                                            required
+                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="{{ substr($now, 0, 10) }}" />
                                                                     </div>
                                                                     <!--end::Col-->
@@ -213,7 +214,7 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label  fw-bold fs-6 ps-5">Başlık</label>
+                                                                        class="col-lg-2 col-form-label fw-bold fs-6 ps-5">Başlık</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10">
@@ -221,11 +222,11 @@
                                                                         <div class="row">
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
-                                                                                <input  type="text"
+                                                                                <input type="text"
                                                                                     name="activity_name_tr"
                                                                                     onchange="create_slug_tr()"
-                                                                                    id="activity_name_tr"
-                                                                                    required class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                    id="activity_name_tr" required
+                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                     value="" />
                                                                             </div>
                                                                             <!--end::Col-->
@@ -243,8 +244,8 @@
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10 fv-row">
-                                                                        <textarea name="activity_summary_tr"  id="ozet_tr" onchange="create_ozet_tr()"
-                                                                            required class="form-control form-control-lg form-control-solid" value=""></textarea>
+                                                                        <textarea name="activity_summary_tr" id="ozet_tr" onchange="create_ozet_tr()" required
+                                                                            class="form-control form-control-lg form-control-solid" value=""></textarea>
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -260,7 +261,7 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row mb-5 ps-5">
 
-                                                                        <textarea id="editor"  name="tinymce_activity_detail_tr" class="tox-target ckeditor">
+                                                                        <textarea id="editor" name="tinymce_activity_detail_tr" class="tox-target ckeditor">
                                                                         </textarea>
 
 
@@ -275,7 +276,7 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label  fw-bold fs-6 ps-5">Url</label>
+                                                                        class="col-lg-2 col-form-label fw-bold fs-6 ps-5">Url</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10">
@@ -285,10 +286,10 @@
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <div class="row">
                                                                                     <div class="col-lg-12">
-                                                                                        <input  type="text"
+                                                                                        <input type="text"
                                                                                             name="activity_url_tr"
-                                                                                            id="activity_url_tr"
-                                                                                            required class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                            id="activity_url_tr" required
+                                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                             value="" />
                                                                                     </div>
 
@@ -316,7 +317,7 @@
                                                                     <div class="col-lg-4 d-flex align-items-center">
                                                                         <div
                                                                             class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                            <input  class="form-check-input w-50px h-25px"
+                                                                            <input class="form-check-input w-50px h-25px"
                                                                                 type="checkbox" name="manset_tr"
                                                                                 id="allowactivity_detail_tr"
                                                                                 checked="checked" />
@@ -338,7 +339,7 @@
                                                                     <div class="col-lg-4 d-flex align-items-center">
                                                                         <div
                                                                             class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                            <input  class="form-check-input w-50px h-25px"
+                                                                            <input class="form-check-input w-50px h-25px"
                                                                                 type="checkbox" name="status_tr"
                                                                                 id="allowactivity_detail_tr"
                                                                                 checked="checked" />
@@ -360,7 +361,7 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label  fw-bold fs-6 ps-5">Başlık</label>
+                                                                        class="col-lg-2 col-form-label fw-bold fs-6 ps-5">Başlık</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10">
@@ -368,11 +369,11 @@
                                                                         <div class="row">
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
-                                                                                <input  type="text"
+                                                                                <input type="text"
                                                                                     name="activity_name_en"
                                                                                     id="activity_name_en"
-                                                                                    onchange="create_slug_en()"
-                                                                                    required class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                    onchange="create_slug_en()" required
+                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                     value="" />
                                                                             </div>
                                                                             <!--end::Col-->
@@ -390,8 +391,8 @@
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10 fv-row">
-                                                                        <textarea name="activity_summary_en"  id="ozet_en" onchange="create_ozet_en()"
-                                                                            required class="form-control form-control-lg form-control-solid" value=""></textarea>
+                                                                        <textarea name="activity_summary_en" id="ozet_en" onchange="create_ozet_en()" required
+                                                                            class="form-control form-control-lg form-control-solid" value=""></textarea>
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -407,7 +408,7 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row mb-5 ps-5">
 
-                                                                        <textarea id="editor2"  name="tinymce_activity_detail_en" class="tox-target ckeditor">
+                                                                        <textarea id="editor2" name="tinymce_activity_detail_en" class="tox-target ckeditor">
                                                                         </textarea>
                                                                     </div>
                                                                     <!--end::Col-->
@@ -420,7 +421,7 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label  fw-bold fs-6 ps-5">Url</label>
+                                                                        class="col-lg-2 col-form-label fw-bold fs-6 ps-5">Url</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10">
@@ -430,10 +431,10 @@
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <div class="row">
                                                                                     <div class="col-lg-12">
-                                                                                        <input  type="text"
+                                                                                        <input type="text"
                                                                                             name="activity_url_en"
-                                                                                            id="activity_url_en"
-                                                                                            required class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                            id="activity_url_en" required
+                                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                             value="" />
                                                                                     </div>
 
@@ -461,7 +462,7 @@
                                                                     <div class="col-lg-4 d-flex align-items-center">
                                                                         <div
                                                                             class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                            <input  class="form-check-input w-50px h-25px"
+                                                                            <input class="form-check-input w-50px h-25px"
                                                                                 type="checkbox" name="manset_en"
                                                                                 id="allowactivity_detail_tr"
                                                                                 checked="checked" />
@@ -483,7 +484,7 @@
                                                                     <div class="col-lg-4 d-flex align-items-center">
                                                                         <div
                                                                             class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                            <input  class="form-check-input w-50px h-25px"
+                                                                            <input class="form-check-input w-50px h-25px"
                                                                                 type="checkbox" name="status_en"
                                                                                 id="allowactivity_detail_tr"
                                                                                 checked="checked" />
@@ -541,9 +542,9 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input  type="text" name="activity_seo_title_tr"
-                                                                            id="activity_seo_title_tr"
-                                                                            required class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                        <input type="text" name="activity_seo_title_tr"
+                                                                            id="activity_seo_title_tr" required
+                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="" />
                                                                     </div>
                                                                     <!--end::Col-->
@@ -561,8 +562,8 @@
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
                                                             <div class="col-lg-10 fv-row">
-                                                                <textarea name="activity_seo_description_tr"  id="seo_description_tr"
-                                                                    required class="form-control form-control-lg form-control-solid" value=""></textarea>
+                                                                <textarea name="activity_seo_description_tr" id="seo_description_tr" required
+                                                                    class="form-control form-control-lg form-control-solid" value=""></textarea>
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -580,10 +581,10 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input  type="text"
+                                                                        <input type="text"
                                                                             id="activity_seo_keywords_tr"
-                                                                            name="activity_seo_keywords_tr[]"
-                                                                            required class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                            name="activity_seo_keywords_tr[]" required
+                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="" />
                                                                     </div>
                                                                     <!--end::Col-->
@@ -617,9 +618,9 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input  type="text" name="activity_seo_title_en"
-                                                                            id="activity_seo_title_en"
-                                                                            required class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                        <input type="text" name="activity_seo_title_en"
+                                                                            id="activity_seo_title_en" required
+                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="" />
                                                                     </div>
                                                                     <!--end::Col-->
@@ -637,8 +638,8 @@
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
                                                             <div class="col-lg-10 fv-row">
-                                                                <textarea name="activity_seo_description_en"  id="seo_description_en"
-                                                                    required class="form-control form-control-lg form-control-solid" value=""></textarea>
+                                                                <textarea name="activity_seo_description_en" id="seo_description_en" required
+                                                                    class="form-control form-control-lg form-control-solid" value=""></textarea>
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -656,10 +657,10 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input  type="text"
+                                                                        <input type="text"
                                                                             id="activity_seo_keywords_en"
-                                                                            name="activity_seo_keywords_en[]"
-                                                                            required class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                            name="activity_seo_keywords_en[]" required
+                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="" />
                                                                     </div>
                                                                     <!--end::Col-->
@@ -691,7 +692,7 @@
                     <!--end::Row-->
 
                     <div class="right" style="text-align: right">
-                        <button type="submit" class="btn btn-primary" > {{ __('message.kaydet') }} </button>
+                        <button type="submit" class="btn btn-primary"> {{ __('message.kaydet') }} </button>
                     </div>
 
                 </div>

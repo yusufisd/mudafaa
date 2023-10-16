@@ -54,6 +54,14 @@ class InterviewController extends Controller
             $other_interview = EnInterview::inRandomOrder()->get();
         }
 
+        // OKUMA KONTRLÜ
+        $readCheck = json_decode(\Illuminate\Support\Facades\Cookie::get('interview')) ?? [];
+        if (!in_array($data->id, $readCheck)){
+            $data->view_counter = $data->view_counter + 1;
+            $data->save();
+            $readCheck[] = $data->id;
+            \Illuminate\Support\Facades\Cookie::queue(\Illuminate\Support\Facades\Cookie::make('interview', json_encode($readCheck), 30));
+        }
 
         $emojies = [
             "love" => ContentEmojiModel::where('post_id', $data->id)->where('post_type', PostType::INTERVIEWS)->where('emoji_type', EmojiType::LOVE)->count(),

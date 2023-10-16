@@ -11,6 +11,7 @@ use App\Models\EnVideo;
 use App\Models\UserModel;
 use App\Models\Video;
 use App\Models\VideoCategory;
+use App\Models\VideoComment;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -311,6 +312,38 @@ class VideoController extends Controller
             ]);
         }
         return redirect()->route('admin.video.list');
+    }
+
+    public function commentList($id)
+    {
+        $list = VideoComment::where('is_post',1)->where('post_id', $id)->get()->toArray();
+        $data = [];
+        foreach($list as $item){
+            $data = VideoComment::where('is_post',0)->where('post_id',$item["id"])->get()->toArray();
+
+        }
+        $data = array_merge($data, $list);
+
+        return view('backend.video.comments.list', compact('data'));
+    }
+
+    public function changeCommentStatus($id)
+    {
+        $data = VideoComment::findOrFail($id);
+        $data->update([
+            'status' => !$data->status,
+        ]);
+        Alert::success('Yorum Statüsü Değiştixrildi');
+        return redirect()->back();
+    }
+
+    public function commentDestroy($id)
+    {
+        $data = VideoComment::findOrFail($id);
+        VideoComment::where('is_post',0)->where('post_id',$id)->delete();
+        $data->delete();
+        Alert::success('Yorum Silindi');
+        return redirect()->back();
     }
 
 }

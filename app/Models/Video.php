@@ -26,5 +26,28 @@ class Video extends Model
         return explode(',', $this->seo_key);
     }
 
+    public function CommentCount()
+    {
+        return VideoComment::where('is_post', 1)
+            ->where('post_id', $this->id)
+            ->where('status', 1)
+            ->count();
+    }
+
+    public function AdminCommentCount()
+    {
+        return VideoComment::where('is_post', 1)
+            ->where('post_id', $this->id)
+            ->count();
+    }
+
+    public function comments()
+    {
+        return VideoComment::where('is_post', 1)
+            ->where('post_id', $this->id)
+            ->where('status', 1)
+            ->get();
+    }
+
     
 }
