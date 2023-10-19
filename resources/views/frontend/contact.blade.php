@@ -138,8 +138,7 @@
                             <div class="form-check mb-3">
                                 <input class="form-check-input" type="checkbox" name="check" id="check_1">
                                 <label class="form-check-label" for="check_1">
-                                    <a href="empty.html">
-                                        {{ ('message.Kişisel Verilerin Korunması Hakkında Aydınlatma Metnini okudum, onay veriyorum.') }}
+                                    {{ ('message.Kişisel Verilerin Korunması Hakkında Aydınlatma Metnini okudum, onay veriyorum.') }}
                                 </label>
                             </div>
                             <button type="submit" class="submit-btn">Gönder</button>

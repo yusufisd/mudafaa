@@ -10,7 +10,8 @@ class CurrentNews extends Model
     use HasFactory;
     protected $guarded = [];
     protected $casts = [
-        "category_id" => "array"
+        "category_id" => "array",
+
     ];
 
     public function Category()

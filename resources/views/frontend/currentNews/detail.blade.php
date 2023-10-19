@@ -128,7 +128,7 @@
                                             <li>
                                                 <span class="rt-meta">
                                                     <i class="far fa-calendar-alt icon"></i>
-                                                    {{ $data->created_at->translatedFormat('d M Y H:i') }}
+                                                    {{ $data->live_time }}
                                                     @if ($data->created_at != $data->updated_at)
                                                         | <b> {{ __('message.son güncelleme') }} :</b>
                                                         {{ $data->updated_at->translatedFormat('d M Y H:i') }}

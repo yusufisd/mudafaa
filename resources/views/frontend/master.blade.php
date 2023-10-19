@@ -445,7 +445,7 @@
                                             <!-- <h3 class="footer-widget-title">Diğer</h3> -->
                                             <ul class="widget-list cat-list">
                                                 <li class="widget-list-item">
-                                                    <a href="tag.html" class="widget-list-link">
+                                                    <a href="{{ route('front.kunye') }}" class="widget-list-link">
                                                         Künye
                                                     </a>
                                                 </li>

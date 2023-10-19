@@ -17,6 +17,7 @@ use App\Http\Controllers\Backend\DefenseIndustryController;
 use App\Http\Controllers\Backend\DictionaryController;
 use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\InterviewController;
+use App\Http\Controllers\Backend\KunyeController;
 use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
@@ -39,7 +40,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\PageController as FrontendPageController;
 use App\Http\Controllers\Frontend\ContactController as FrontendContactController;
-
+use App\Http\Controllers\Frontend\KunyeController as FrontendKunyeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -535,6 +536,20 @@ Route::middleware('lang')->group(function () {
                     Route::post('/duzenle/{id?}', 'update')->name('update');
                 });
 
+                // kunye CONTROLLER
+            Route::controller(KunyeController::class)
+            ->prefix('kunye')
+            ->name('kunye.')
+            ->middleware('auth:admin')
+            ->group(function () {
+                Route::get('/', 'list')->name('list');
+                Route::get('/ekle', 'create')->name('add');
+                Route::post('/ekle', 'store')->name('store');
+                Route::get('/duzenle/{id?}', 'edit')->name('edit');
+                Route::post('/duzenle/{id?}', 'update')->name('update');
+                Route::get('/sil/{id?}', 'destroy')->name('destroy');
+            });
+
             // iletişim
             Route::controller(ContactController::class)
                 ->prefix('iletisim')
@@ -696,5 +711,6 @@ Route::middleware('lang')->group(function () {
             });
 
             Route::get('iletisim',[FrontendContactController::class,'contact'])->name('contact');
+            Route::get('kunye',[FrontendKunyeController::class,'index'])->name('kunye');
         });
 });
