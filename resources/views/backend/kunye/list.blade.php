@@ -15,7 +15,7 @@
                 <div class="page-title d-flex flex-column justify-content-center me-3 flex-wrap">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-primary fw-bold fs-3 flex-column justify-content-center my-0">
-                        {{ __('message.kunye') }}  </h1>
+                        {{ __('message.künye') }}  </h1>
                     <!--end::Title-->
                 </div>
                 
@@ -53,7 +53,7 @@
                                                         rx="1" fill="currentColor" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon--> {{ __('message.kunye') }} {{ __('message.ekle') }} </a>
+                                            <!--end::Svg Icon--> {{ __('message.künye') }} {{ __('message.ekle') }} </a>
                                         <!--end::Add user-->
                                     </div>
                                     <!--end::Toolbar-->

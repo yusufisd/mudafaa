@@ -50,8 +50,8 @@ class KunyeController extends Controller
         $data->save();
         
         $data_en = new EnKunye();
-        $data_en->title = $request->title_tr;
-        $data_en->description = $request->description_tr;
+        $data_en->title = $request->title_en;
+        $data_en->description = $request->description_en;
         $data_en->save();
 
         Alert::success('İçerik başarıyla eklendi');
@@ -90,8 +90,8 @@ class KunyeController extends Controller
         $data->save();
         
         $data_en = EnKunye::findOrFail($id);
-        $data_en->title = $request->title_tr;
-        $data_en->description = $request->description_tr;
+        $data_en->title = $request->title_en;
+        $data_en->description = $request->description_en;
         $data_en->save();
 
         Alert::success('İçerik başarıyla düzenlendi');

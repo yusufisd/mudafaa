@@ -95,7 +95,10 @@ return [
     "İletişim" => "İletişim",
     "Mesaj Bırakın" => "Mesaj Bırakın",
     "Kişisel Verilerin Korunması Hakkında Aydınlatma Metnini okudum, onay veriyorum." => "Kişisel Verilerin Korunması Hakkında Aydınlatma Metni'ni okudum, onay veriyorum.",
-
+    "sosyal medya ayarları" => "Sosyal Medya Ayarları",
+    "künye" => "Künye",
+    "mesaj" => "Mesaj",
+    "iletişim" => "İletişim",
 
 ];
 ?>

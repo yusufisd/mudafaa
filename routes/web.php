@@ -20,6 +20,7 @@ use App\Http\Controllers\Backend\InterviewController;
 use App\Http\Controllers\Backend\KunyeController;
 use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\RoleController;
+use App\Http\Controllers\Backend\SocialMediaController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\VideoCategoryController;
 use App\Http\Controllers\Backend\VideoController;
@@ -557,6 +558,12 @@ Route::middleware('lang')->group(function () {
                 ->group(function () {
                     Route::get('/duzenle', 'edit')->name('edit');
                     Route::post('/duzenle', 'update')->name('update');
+                });
+
+                // SOSYAL MEDYA
+                Route::controller(SocialMediaController::class)->prefix('sosyal-medya')->name('social.')->group(function(){
+                    Route::get('/','list')->name('list');
+                    Route::post('/duzenle','update')->name('update');
                 });
         });
 
