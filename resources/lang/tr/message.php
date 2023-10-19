@@ -99,6 +99,9 @@ return [
     "künye" => "Künye",
     "mesaj" => "Mesaj",
     "iletişim" => "İletişim",
+    "anket" => "Anket",
+    "soru" => "Soru",
+
 
 ];
 ?>

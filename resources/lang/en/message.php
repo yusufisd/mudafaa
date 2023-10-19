@@ -101,6 +101,8 @@ return [
     "künye" => "Publisher",
     "mesaj" => "Message",
     "iletişim" => "Contact",
+    "anket" => "Survey",
+    "soru" => "Question",
 
 
 ];

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\ActivityCategoryController;
 use App\Http\Controllers\Backend\ActivityController;
+use App\Http\Controllers\Backend\AnketController;
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\CompanyCategoryController;
 use App\Http\Controllers\Backend\CompanyController;
@@ -564,6 +565,16 @@ Route::middleware('lang')->group(function () {
                 Route::controller(SocialMediaController::class)->prefix('sosyal-medya')->name('social.')->group(function(){
                     Route::get('/','list')->name('list');
                     Route::post('/duzenle','update')->name('update');
+                });
+
+                // ANKET YÖNETİM
+                Route::controller(AnketController::class)->prefix('anket')->name('anket.')->group(function(){
+                    Route::get('/','list')->name('list');
+                    Route::get('/ekle', 'create')->name('add');
+                    Route::post('/ekle', 'store')->name('store');
+                    Route::get('/duzenle/{id?}', 'edit')->name('edit');
+                    Route::post('/duzenle/{id?}', 'update')->name('update');
+                    Route::get('/sil/{id?}', 'destroy')->name('destroy');
                 });
         });
 
