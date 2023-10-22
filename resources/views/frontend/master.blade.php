@@ -108,28 +108,28 @@
                                     <div class="social-wrap d-none d-xl-block">
                                         <ul class="rt-top-social">
                                             <li>
-                                                <a href="https://www.facebook.com/millimudafaacom" target="_blank">
+                                                <a href="https://www.facebook.com/{{ (SocialMedia()->facebook != null ? SocialMedia()->facebook : '') }}" target="_blank">
                                                     <i class="fab fa-facebook-f"></i>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="https://twitter.com/millimudafaacom" target="_blank">
+                                                <a href="https://twitter.com/{{ (SocialMedia()->twitter != null ? SocialMedia()->twitter : '') }}" target="_blank">
                                                     <img src="/assets/x.png" style="width: 13px" alt="">
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="https://www.instagram.com/millimudafaacom" target="_blank">
+                                                <a href="https://www.instagram.com/{{ (SocialMedia()->instagram != null ? SocialMedia()->instagram : '') }}" target="_blank">
                                                     <i class="fab fa-instagram"></i>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="https://www.youtube.com/channel/UC6uGHKEHHGh08sTWjhBrG9A"
+                                                <a href="https://www.youtube.com/channel/{{ (SocialMedia()->youtube != null ? SocialMedia()->youtube : '') }}"
                                                     target="_blank">
                                                     <i class="fab fa-youtube"></i>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="https://www.linkedin.com/company/milli-m%C3%BCdafaa/"
+                                                <a href="https://www.linkedin.com/company/{{ (SocialMedia()->linkedin != null ? SocialMedia()->linkedin : '') }}"
                                                     target="_blank">
                                                     <i class="fab fa-linkedin-in"></i>
                                                 </a>
@@ -363,31 +363,31 @@
                                     </p>
                                     <ul class="footer-social gutter-15">
                                         <li class="social-item">
-                                            <a href="https://www.facebook.com/millimudafaacom" class="social-link"
+                                            <a href="https://www.facebook.com/{{ (SocialMedia()->facebook != null ? SocialMedia()->facebook : '') }}" class="social-link"
                                                 target="_blank">
                                                 <i class="fab fa-facebook-f"></i>
                                             </a>
                                         </li>
                                         <li class="social-item">
-                                            <a href="https://twitter.com/millimudafaacom" class="social-link"
+                                            <a href="https://twitter.com/{{ (SocialMedia()->twitter != null ? SocialMedia()->twitter : '') }}" class="social-link"
                                                 target="_blank">
                                                 <i class="fab fa-x-twitter"></i>
                                             </a>
                                         </li>
                                         <li class="social-item">
-                                            <a href="https://www.instagram.com/millimudafaacom" class="social-link"
+                                            <a href="https://www.instagram.com/{{ (SocialMedia()->instagram != null ? SocialMedia()->instagram : '') }}" class="social-link"
                                                 target="_blank">
                                                 <i class="fab fa-instagram"></i>
                                             </a>
                                         </li>
                                         <li class="social-item">
-                                            <a href="https://www.youtube.com/channel/UC6uGHKEHHGh08sTWjhBrG9A"
+                                            <a href="https://www.youtube.com/channel/{{ (SocialMedia()->youtube != null ? SocialMedia()->youtube : '') }}"
                                                 class="social-link" target="_blank">
                                                 <i class="fab fa-youtube youtube"></i>
                                             </a>
                                         </li>
                                         <li class="social-item">
-                                            <a href="https://www.linkedin.com/company/milli-m%C3%BCdafaa/"
+                                            <a href="https://www.linkedin.com/company/{{ (SocialMedia()->linkedin != null ? SocialMedia()->linkedin : '') }}"
                                                 class="social-link" target="_blank">
                                                 <i class="fab fa-linkedin-in"></i>
                                             </a>

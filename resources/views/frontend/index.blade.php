@@ -24,6 +24,7 @@
     </style>
 @endsection
 @section('content')
+
     <!-- story -->
     <div class="d-block d-md-none mt--30" data-bg-image="media/elements/element_1.png">
         <div id="story_container" class="container">
@@ -33,7 +34,7 @@
                     @foreach ($cats as $variable)
                         <div class="swiper-slide">
                             <a href="{{ route('front.currentNews.detail', $variable->link) }}">
-                                <img style="height: 100%" src="{{ $variable->mobil_image }}" alt="slide-1">
+                                <img style="height: 100%" src="{{ $variable->mobil_image != null ? $variable->mobil_image : $variable->image }}" alt="slide-1">
                             </a>
                             <div class="swiper-content">
                                 @if ($variable->Category()[0] != null)
@@ -65,7 +66,7 @@
                             <div class="post-img">
                                 <a href="{{ route('front.currentNews.detail', $variable->link) }}">
                                     <img style="object-fit:cover!important"
-                                        src="{{ $variable->mobil_image != null ? $variable->mobil_image : '/media/gallery/post-sm_1.jpg' }}"
+                                        src="{{ $variable->mobil_image != null ? $variable->mobil_image : $variable->image }}"
                                         alt="post" width="100" height="100">
                                 </a>
                             </div>
@@ -148,7 +149,7 @@
                                     </li>
                                     <li>
                                         <span class="rt-meta">
-                                            <i class="far fa-eye icon"></i>
+                                            <i class="fa-solid fa-eye "></i>
                                             {{ $tek_haber->view_counter }}
                                         </span>
                                     </li>
@@ -209,7 +210,7 @@
                                                 </li>
                                                 <li>
                                                     <span class="rt-meta">
-                                                        <i class="far fa-eye icon"></i>
+                                                        <i class="fa-solid fa-eye "></i>
                                                         {{ $item->view_counter }}
                                                     </span>
                                                 </li>
@@ -314,7 +315,7 @@
                                                         </li>
                                                         <li>
                                                             <span class="rt-meta">
-                                                                <i class="far fa-eye icon"></i>
+                                                                <i class="fa-solid fa-eye "></i>
                                                                 {{ $item->view_counter }}
                                                             </span>
                                                         </li>
@@ -362,7 +363,7 @@
                                                                 {{ $item->created_at->translatedFormat('d M Y') }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
-                                                                <i class="far fa-eye icon"></i>
+                                                                <i class="fa-solid fa-eye "></i>
                                                                 {{ $item->view_counter }}
                                                             </span>
                                                         </div>
@@ -405,7 +406,7 @@
                                                                 {{ $item->created_at->translatedFormat('d M Y') }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
-                                                                <i class="far fa-eye icon"></i>
+                                                                <i class="fa-solid fa-eye "></i>
                                                                 {{ $item->view_counter }}
                                                             </span>
                                                         </div>
@@ -496,10 +497,10 @@
                                                             </h4>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ $item->created_at->translatedFormat('d M Y') }}
+                                                                {{ $item->live_time->translatedFormat('d M Y') }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
-                                                                <i class="far fa-eye icon"></i>
+                                                                <i class="fa-solid fa-eye "></i>
                                                                 {{ $item->view_counter }}
                                                             </span>
                                                         </div>
@@ -541,7 +542,7 @@
                                                                 {{ $item->created_at->translatedFormat('d M Y') }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
-                                                                <i class="far fa-eye icon"></i>
+                                                                <i class="fa-solid fa-eye "></i>
                                                                 {{ $item->view_counter }}
                                                             </span>
                                                         </div>
@@ -647,7 +648,7 @@
                                                                 {{ $item->created_at->translatedFormat('d M Y') }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
-                                                                <i class="far fa-eye icon"></i>
+                                                                <i class="fa-solid fa-eye "></i>
                                                                 {{ $item->view_counter }}
                                                             </span>
                                                         </div>
@@ -691,7 +692,7 @@
                                                                 {{ $item->created_at->translatedFormat('d M Y') }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
-                                                                <i class="far fa-eye icon"></i>
+                                                                <i class="fa-solid fa-eye "></i>
                                                                 {{ $item->view_counter }}
                                                             </span>
                                                         </div>
@@ -775,7 +776,7 @@
                                         <li>
                                             <span class="rt-meta">
                                                 <i class="far fa-calendar-alt icon"></i>
-                                                {{ $item->start_time }}
+                                                {{ $item->start_time->translatedFormat('d M Y') }}
                                             </span>
                                         </li>
                                         <li>
@@ -786,7 +787,7 @@
                                         </li>
                                         <li>
                                             <span class="rt-meta">
-                                                <i class="far fa-eye icon"></i>
+                                                <i class="fa-solid fa-eye "></i>
                                                 {{ $item->view_counter }}
                                             </span>
                                         </li>
@@ -864,7 +865,7 @@
                                             </li>
                                             <li>
                                                 <span class="rt-meta">
-                                                    <i class="far fa-eye icon"></i>
+                                                    <i class="fa-solid fa-eye "></i>
                                                     {{ $populer_haber_first->view_counter }}
                                                 </span>
                                             </li>
@@ -940,7 +941,7 @@
                                                     {{ $item->created_at->translatedFormat('d M Y') }}
                                                 </span>
                                                 <span class="rt-meta">
-                                                    <i class="far fa-eye icon"></i>
+                                                    <i class="fa-solid fa-eye "></i>
                                                     {{ $item->view_counter }}
                                                 </span>
                                             </div>

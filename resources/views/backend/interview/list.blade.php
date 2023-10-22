@@ -143,10 +143,12 @@
                                                     </td>
 
                                                     <td style="text-align: center">
-                                                        <a href="#"
-                                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 px-2"
-                                                            title="Görüntüle">
-                                                            <i class="fa-solid fa-eye fs-3"></i>
+                                                        <a href="{{ route('admin.interview.commentList', $item->id) }}"
+                                                            style="border:solid; border-radius:5px;padding:3%; border-color:lightgray;margin:3%">
+                                                            <i class="fa-solid fa-comment fa-xl"></i>
+                                                            <span style="color: gray">
+                                                                {{ $item->commentCount() }}
+                                                            </span>
                                                         </a>
                                                         <a href="{{route('admin.interview.edit',$item->id)}}"
                                                             class="btn btn-icon btn-bg-light btn-active-color-secondary btn-sm me-1 px-2"

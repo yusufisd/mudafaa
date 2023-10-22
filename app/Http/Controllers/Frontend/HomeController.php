@@ -113,13 +113,16 @@ class HomeController extends Controller
                     break;
                 }
             }
-            $ilk_kategori_icerikleri = EnCurrentNews::where('category_id',1)->whereNot('id',1)->get();
-            $cat1_news1 = EnCurrentNews::where('category_id',1)->orderBy('id','asc')->take(3)->get();
-            $cat1_news2 = EnCurrentNews::where('category_id',1)->orderBy('id','desc')->take(3)->get();
-            $cat2_news1 = EnCurrentNews::where('category_id',2)->orderBy('id','asc')->take(3)->get();
-            $cat2_news2 = EnCurrentNews::where('category_id',2)->orderBy('id','desc')->take(3)->get();
-            $cat3_news1 = EnCurrentNews::where('category_id',3)->orderBy('id','asc')->take(3)->get();
-            $cat3_news2 = EnCurrentNews::where('category_id',3)->orderBy('id','desc')->take(3)->get();
+
+            
+            $ilk_kategori_icerikleri = EnCurrentNews::where('category_id',$first_cat->id)->whereNot('id',1)->get();
+            $cat1_news1 = EnCurrentNews::where('category_id',$first_cat->id)->orderBy('id','asc')->take(3)->get();
+            $cat1_news2 = EnCurrentNews::where('category_id',$first_cat->id)->orderBy('id','desc')->take(3)->get();
+            $cat2_news1 = EnCurrentNews::where('category_id',$second_cat->id)->orderBy('id','asc')->take(3)->get();
+            $cat2_news2 = EnCurrentNews::where('category_id',$second_cat->id)->orderBy('id','desc')->take(3)->get();
+            $cat3_news1 = EnCurrentNews::where('category_id',$third_cat->id)->orderBy('id','asc')->take(3)->get();
+            $cat3_news2 = EnCurrentNews::where('category_id',$third_cat->id)->orderBy('id','desc')->take(3)->get();
+            
 
             $activity = EnActivity::latest()->take(4)->get();
 

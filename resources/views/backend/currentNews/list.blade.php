@@ -98,7 +98,8 @@
                                                 </th>
                                                 <th>{{ __('message.görsel') }}<i class="fa fa-sort ms-3"></i></th>
                                                 <th>{{ __('message.başlık') }}<i class="fa fa-sort ms-3"></i></th>
-                                                <th style="width: 300px">{{ __('message.kategori') }}<i class="fa fa-sort ms-3"></i></th>
+                                                <th style="width: 300px">{{ __('message.kategori') }}<i
+                                                        class="fa fa-sort ms-3"></i></th>
                                                 <th class="text-center">{{ __('message.manşet') }}<i
                                                         class="fa fa-sort ms-3"></i></th>
                                                 <th class="pe-7 text-center">{{ __('message.durum') }}<i
@@ -111,7 +112,6 @@
 
 
                                             @foreach ($data as $item)
-                                            
                                                 <tr class="align-middle">
                                                     <td>
                                                         <div
@@ -125,7 +125,7 @@
                                                             alt="">
                                                     </td>
                                                     <td> {{ substr($item->title, 0, 30) }}... </td>
-                                                    <td style="width: 300px"> {{ implode('-',$item->Category2()) }} </td>
+                                                    <td style="width: 300px"> {{ implode('-', $item->Category2()) }} </td>
                                                     <td>
                                                         <div
                                                             class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
@@ -147,10 +147,12 @@
                                                         </div>
                                                     </td>
                                                     <td class="text-center">
-                                                        <a href="{{ route('admin.currentNews.commentList', $item->id) }}">
-                                                            <button type="button" class="btn btn-primary px-4 py-2">
-                                                                Yorumlar ({{ $item->AdminCommentCount() }})
-                                                            </button>
+                                                        <a href="{{ route('admin.currentNews.commentList', $item->id) }}"
+                                                            style="border:solid; border-radius:5px;padding:3%; border-color:lightgray;margin:3%">
+                                                            <i class="fa-solid fa-comment fa-xl"></i>
+                                                            <span style="color: gray">
+                                                                {{ $item->AdminCommentCount() }}
+                                                            </span>
                                                         </a>
                                                         <a href="{{ route('admin.currentNews.edit', $item->id) }}"
                                                             class="btn btn-icon btn-bg-light btn-active-color-secondary btn-sm me-1 px-2"

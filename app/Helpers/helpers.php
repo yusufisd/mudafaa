@@ -9,6 +9,7 @@ use App\Models\EnDefenseIndustry;
 use App\Models\EnPage;
 use App\Models\LogModel;
 use App\Models\Page;
+use App\Models\SocialMedia;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -83,5 +84,10 @@ function sayfalar(){
     } elseif ($local == 'en') {
         $data = EnPage::latest()->get();
     }
+    return $data;
+}
+
+function SocialMedia(){
+    $data = SocialMedia::latest()->first();
     return $data;
 }

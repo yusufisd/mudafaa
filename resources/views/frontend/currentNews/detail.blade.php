@@ -128,7 +128,7 @@
                                             <li>
                                                 <span class="rt-meta">
                                                     <i class="far fa-calendar-alt icon"></i>
-                                                    {{ $data->live_time }}
+                                                    {{ $data->live_time->translatedFormat('d M Y') }}
                                                     @if ($data->created_at != $data->updated_at)
                                                         | <b> {{ __('message.son güncelleme') }} :</b>
                                                         {{ $data->updated_at->translatedFormat('d M Y H:i') }}
@@ -137,19 +137,19 @@
                                             </li>
                                             <li>
                                                 <span class="rt-meta">
-                                                    <i class="far fa-comments icon"></i>
+                                                    <i class="fa-solid fa-comments"></i>
                                                     {{ $data->CommentCount() }}
                                                 </span>
                                             </li>
                                             <li>
                                                 <span class="rt-meta">
-                                                    <i class="far fa-clock icon"></i>
+                                                    <i class="fa-solid fa-clock"></i>
                                                     {{ $data->read_time }} DK
                                                 </span>
                                             </li>
                                             <li>
                                                 <span class="rt-meta">
-                                                    <i class="far fa-eye icon"></i>
+                                                    <i class="fa-solid fa-eye "></i>
                                                     {{ $data->view_counter }}
                                                 </span>
                                             </li>
@@ -900,7 +900,7 @@
             var emoji_id = $(this)[0].id; //get the id of the printed emoji
             $.ajax({
                 headers : {"X-CSRF-TOKEN" : "{{ csrf_token() }}"},
-                url : "{{ route('front.setEmoji') }}",
+                url : "/setEmoji",
                 type : "post",
                 data : {
                     "emoji_type" : emoji_id,

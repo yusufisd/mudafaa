@@ -220,7 +220,7 @@
                                                     @endif
                                                     <div class="post-img mb-2">
                                                         <a href="">
-                                                            <img src="/assets/frontend/media/gallery/post-grid-md_1.jpg"
+                                                            <img src="/{{ $item->image }}"
                                                                 alt="post" width="343" height="250">
                                                         </a>
                                                     </div>
@@ -231,7 +231,7 @@
                                                     </h4>
                                                     <span class="rt-meta">
                                                         <i class="far fa-calendar-alt icon"></i>
-                                                        {{ $item->created_at->translatedFormat('d M Y') }}
+                                                        {{ $item->live_time }}
                                                     </span>
                                                 </div>
                                             </div>

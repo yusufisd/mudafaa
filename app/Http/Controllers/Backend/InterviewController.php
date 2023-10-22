@@ -10,6 +10,7 @@ use App\Models\Interview;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
 use App\Models\EnInterview;
+use App\Models\InterviewComment;
 use Carbon\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
@@ -336,5 +337,29 @@ class InterviewController extends Controller
 
         Alert::success('Başarılı');
         return back();
+    }
+
+    public function commentList($id)
+    {
+        $data = InterviewComment::where('post_id', $id)->get();
+        return view('backend.currentNews.comments.list', compact('data'));
+    }
+
+    public function changeCommentStatus($id)
+    {
+        $data = InterviewComment::findOrFail($id);
+        $data->update([
+            'status' => !$data->status,
+        ]);
+        Alert::success('Yorum Statüsü Değiştirildi');
+        return redirect()->back();
+    }
+
+    public function commentDestroy($id)
+    {
+        $data = InterviewComment::findOrFail($id);
+        $data->delete();
+        Alert::success('Yorum Silindi');
+        return redirect()->back();
     }
 }

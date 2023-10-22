@@ -353,6 +353,11 @@ Route::middleware('lang')->group(function () {
                         ->name('destroy');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
+                    Route::get('yorumlar/{id?}', 'commentList')
+                        ->name('commentList');
+                    Route::get('yorum-statu/{id?}', 'changeCommentStatus')->name('changeCommentStatus');
+                    Route::get('yorum-sil/{id?}', 'commentDestroy')->name('commentDestroy');
+                    Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
                 });
 
             // SÖZLÜK  CONTROLLER

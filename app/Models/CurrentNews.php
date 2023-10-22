@@ -11,6 +11,7 @@ class CurrentNews extends Model
     protected $guarded = [];
     protected $casts = [
         "category_id" => "array",
+        "live_time" => 'datetime'
 
     ];
 
