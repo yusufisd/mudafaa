@@ -707,7 +707,7 @@
                 headers: {
                     "X-CSRF-TOKEN": "{{ csrf_token() }}"
                 },
-                url: "{{ route('front.setEmoji') }}",
+                url: "/setEmoji",
                 type: "post",
                 data: {
                     "emoji_type": emoji_id,
