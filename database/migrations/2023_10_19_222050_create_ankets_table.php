@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('ankets', function (Blueprint $table) {
             $table->id();
             $table->longText('question');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

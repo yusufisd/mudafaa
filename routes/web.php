@@ -27,6 +27,7 @@ use App\Http\Controllers\Backend\VideoCategoryController;
 use App\Http\Controllers\Backend\VideoController;
 use App\Http\Controllers\Frontend\AboutController as FrontendAboutController;
 use App\Http\Controllers\Frontend\ActivityController as FrontendActivityController;
+use App\Http\Controllers\Frontend\AnketController as FrontendAnketController;
 use App\Http\Controllers\Frontend\ArchiveController;
 use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\CompanyController as FrontendCompanyController;
@@ -733,7 +734,14 @@ Route::middleware('lang')->group(function () {
                 Route::get('/filter', 'filterArchive')->name('filterArchive');
             });
 
+            // anket frontend
+            Route::controller(FrontendAnketController::class)->prefix('anket')->name('anket.')->group(function(){
+                Route::post('ekle','anketStore')->name('store');
+            });
+
             Route::get('iletisim',[FrontendContactController::class,'contact'])->name('contact');
             Route::get('kunye',[FrontendKunyeController::class,'index'])->name('kunye');
+
+
         });
 });

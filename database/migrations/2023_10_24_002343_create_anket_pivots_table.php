@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('en_ankets', function (Blueprint $table) {
+        Schema::create('anket_pivots', function (Blueprint $table) {
             $table->id();
-            $table->longText('question');
-            $table->string('image')->nullable();
-            $table->integer('anket_id');
+            $table->integer('question_id');
+            $table->integer('answer_id');
+            $table->string('ip');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('en_ankets');
+        Schema::dropIfExists('anket_pivots');
     }
 };

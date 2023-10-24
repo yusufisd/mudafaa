@@ -79,7 +79,9 @@
                                                             value="1" />
                                                     </div>
                                                 </th>
-                                                <th style="text-align: center"> {{ __('message.başlık') }} <i
+                                                <th style="text-align: center"> Görsel  <i
+                                                    class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center"> Anket  <i
                                                         class="fa fa-sort ms-3"></i></th>
                                                 <th style="text-align: center"> {{ __('message.işlem') }} <i
                                                         class="fa fa-sort ms-3"></i></th>
@@ -96,14 +98,17 @@
                                                                 value="1" />
                                                         </div>
                                                     </td>
-                                                    <td style="text-align: center"> {{ $item->title }} </td>
+                                                    <td style="text-align: center"> 
+                                                        <img src="/{{ $item->image }}" style="width: 150px; border-radius:10px" alt="">
+                                                    </td>
+                                                    <td style="text-align: center"> {{ $item->question }} </td>
                                                     <td style="text-align: center">
                                                         <a href="#"
                                                             class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 px-2"
                                                             title="Görüntüle">
                                                             <i class="fa-solid fa-eye fs-3"></i>
                                                         </a>
-                                                        <a href="{{ route('admin.defenseIndustry.edit', $item->id) }}"
+                                                        <a href="{{ route('admin.anket.edit', $item->id) }}"
                                                             class="btn btn-icon btn-bg-light btn-active-color-secondary btn-sm me-1 px-2"
                                                             title="Düzenle">
                                                             <i class="fa-regular fa-pen-to-square fs-3"></i>

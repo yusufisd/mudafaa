@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Activity;
+use App\Models\Anket;
+use App\Models\Answer;
 use App\Models\CurrentNews;
 use App\Models\CurrentNewsCategory;
 use App\Models\EnActivity;
@@ -76,7 +78,9 @@ class HomeController extends Controller
             $videos = Video::latest()->take(4)->get();
 
             $interview = Interview::latest()->take(4)->get();
+            
 
+            $anket = Anket::inRandomOrder()->first();
 
 
         } elseif ($local == 'en') {
@@ -133,10 +137,10 @@ class HomeController extends Controller
 
             $interview = EnInterview::latest()->take(4)->get();
 
-
+            $anket = Anket::inRandomOrder()->first();
 
         }
-        return view('frontend.index', compact('cats','iki_haber','tek_haber','uc_kategori','ilk_kategori_icerikleri','ilk_kategori_icerigi','ucuncu_kategori_icerigi','cat1_news1','cat1_news2','cat2_news1','cat2_news2','cat3_news1','cat3_news2','ikinci_kategori_icerigi','activity','populer_haber_first','populer_haber_three','videos','interview'));
+        return view('frontend.index', compact('cats','iki_haber','tek_haber','uc_kategori','ilk_kategori_icerikleri','ilk_kategori_icerigi','ucuncu_kategori_icerigi','cat1_news1','cat1_news2','cat2_news1','cat2_news2','cat3_news1','cat3_news2','ikinci_kategori_icerigi','activity','populer_haber_first','populer_haber_three','videos','interview','anket'));
 
     }
 }

@@ -31,7 +31,7 @@
         </div>
         <!--end::Toolbar-->
         <!--begin::Content-->
-        <form action="{{ route('admin.anket.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.anket.update',$data_tr->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div id="kt_app_content" class="app-content flex-column-fluid">
@@ -62,6 +62,19 @@
                                             <!--begin::Form-->
                                             <!--begin::Card body-->
                                             <div class="card-body px-3 py-9">
+
+                                                <div class="container">
+                                                    <div class="row mb-10">
+                                                        <div class="col-md-1">
+                                                            <label
+                                                            class="col-form-label required fw-bold fs-6 ps-5">
+                                                            Görsel </label>
+                                                        </div>
+                                                        <div class="col-md-11">
+                                                            <input type="file" class="form-control" name="image" id="">
+                                                        </div>
+                                                    </div>
+                                                </div>
 
 
                                                 <!--end::Input group-->
@@ -123,7 +136,7 @@
                                                                         <div class="row" style="margin-top:15%">
                                                                             <div class="col-md-6">
                                                                                 <input type="radio" id="answer_tr_a"
-                                                                                    name="is_true"
+                                                                                    name="is_true" value="a"
                                                                                     style="height:20px; width:20px; vertical-align: middle;">
                                                                             </div>
                                                                             <div class="col-md-6">
@@ -146,7 +159,7 @@
                                                                         <div class="row" style="margin-top:15%">
                                                                             <div class="col-md-6">
                                                                                 <input type="radio" id="answer_tr_b"
-                                                                                    name="is_true"
+                                                                                    name="is_true"  value="b"
                                                                                     style="height:20px; width:20px; vertical-align: middle;">
                                                                             </div>
                                                                             <div class="col-md-6">
@@ -168,7 +181,7 @@
                                                                         <div class="row" style="margin-top:15%">
                                                                             <div class="col-md-6">
                                                                                 <input type="radio" id="answer_tr_c"
-                                                                                    name="is_true"
+                                                                                    name="is_true" value="c"
                                                                                     style="height:20px; width:20px; vertical-align: middle;">
                                                                             </div>
                                                                             <div class="col-md-6">
@@ -190,7 +203,7 @@
                                                                         <div class="row" style="margin-top:15%">
                                                                             <div class="col-md-6">
                                                                                 <input type="radio" id="answer_tr_d"
-                                                                                    name="is_true"
+                                                                                    name="is_true" value="d"
                                                                                     style="height:20px; width:20px; vertical-align: middle;">
                                                                             </div>
                                                                             <div class="col-md-6">
@@ -212,7 +225,7 @@
                                                                         <div class="row" style="margin-top:15%">
                                                                             <div class="col-md-6">
                                                                                 <input type="radio" id="answer_tr_e"
-                                                                                    name="is_true"
+                                                                                    name="is_true" value="e"
                                                                                     style="height:20px; width:20px; vertical-align: middle;">
                                                                             </div>
                                                                             <div class="col-md-6">
@@ -252,7 +265,7 @@
                                                                         <div class="row">
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
-                                                                                <textarea required name="question" class="form-control form-control-lg form-control-solid mb-lg-0 mb-3" id=""
+                                                                                <textarea required name="question_en" class="form-control form-control-lg form-control-solid mb-lg-0 mb-3" id=""
                                                                                     cols="30" rows="2"></textarea>
                                                                             </div>
                                                                             <!--end::Col-->
@@ -268,7 +281,7 @@
                                                                         <div class="row" style="margin-top:15%">
                                                                             <div class="col-md-6">
                                                                                 <input type="radio" id="is_true"
-                                                                                    name="is_true"
+                                                                                    name="is_true_en" value="a"
                                                                                     style="height:20px; width:20px; vertical-align: middle;">
                                                                             </div>
                                                                             <div class="col-md-6">
@@ -281,7 +294,7 @@
                                                                     <div class="col-md-11">
                                                                         <input type="text" required
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            name="" id="">
+                                                                            name="answer_en_a" id="">
                                                                     </div>
                                                                 </div>
 
@@ -291,7 +304,7 @@
                                                                         <div class="row" style="margin-top:15%">
                                                                             <div class="col-md-6">
                                                                                 <input type="radio" id="is_true"
-                                                                                    name="is_true"
+                                                                                    name="is_true_en" value="b"
                                                                                     style="height:20px; width:20px; vertical-align: middle;">
                                                                             </div>
                                                                             <div class="col-md-6">
@@ -304,7 +317,7 @@
                                                                     <div class="col-md-11">
                                                                         <input type="text" required
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            name="" id="">
+                                                                            name="answer_en_b" id="">
                                                                     </div>
                                                                 </div>
 
@@ -313,7 +326,7 @@
                                                                         <div class="row" style="margin-top:15%">
                                                                             <div class="col-md-6">
                                                                                 <input type="radio" id="is_true"
-                                                                                    name="is_true"
+                                                                                    name="is_true_en" value="c"
                                                                                     style="height:20px; width:20px; vertical-align: middle;">
                                                                             </div>
                                                                             <div class="col-md-6">
@@ -326,7 +339,7 @@
                                                                     <div class="col-md-11">
                                                                         <input type="text" required
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            name="" id="">
+                                                                            name="answer_en_c" id="">
                                                                     </div>
                                                                 </div>
 
@@ -335,7 +348,7 @@
                                                                         <div class="row" style="margin-top:15%">
                                                                             <div class="col-md-6">
                                                                                 <input type="radio" id="is_true"
-                                                                                    name="is_true"
+                                                                                    name="is_true_en" value="d"
                                                                                     style="height:20px; width:20px; vertical-align: middle;">
                                                                             </div>
                                                                             <div class="col-md-6">
@@ -348,7 +361,7 @@
                                                                     <div class="col-md-11">
                                                                         <input type="text" required
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            name="" id="">
+                                                                            name="answer_en_d" id="">
                                                                     </div>
                                                                 </div>
 
@@ -357,7 +370,7 @@
                                                                         <div class="row" style="margin-top:15%">
                                                                             <div class="col-md-6">
                                                                                 <input type="radio" id="is_true"
-                                                                                    name="is_true"
+                                                                                    name="is_true_en" value="e"
                                                                                     style="height:20px; width:20px; vertical-align: middle;">
                                                                             </div>
                                                                             <div class="col-md-6">
@@ -370,7 +383,7 @@
                                                                     <div class="col-md-11">
                                                                         <input type="text" required
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            name="" id="">
+                                                                            name="answer_en_e" id="">
                                                                     </div>
                                                                 </div>
 

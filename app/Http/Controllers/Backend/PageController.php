@@ -73,8 +73,8 @@ class PageController extends Controller
         $data_en->page_id = $data->id;
         $data_en->description = $request->description_en;
         $data_en->link = $request->link_en;
-        if ($request->file('image') != null) {
-            $image = $request->file('image');
+        if ($request->file('image_en') != null) {
+            $image = $request->file('image_en');
             $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
             $save_url = 'assets/uploads/pages/' . $image_name;
             Image::make($image)

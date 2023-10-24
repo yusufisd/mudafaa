@@ -10,4 +10,9 @@ class Anket extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function cevaplar(){
+        $data = Answer::where('question_id',$this->id)->orderBy('id','asc')->get();
+        return $data;
+    }
 }

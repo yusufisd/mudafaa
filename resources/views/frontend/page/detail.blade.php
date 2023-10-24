@@ -45,7 +45,7 @@
                         <div class="rt-post-overlay rt-post-overlay-xl single-post-overlay">
                             <div class="post-img">
                                 <a href="" class="img-link">
-                                    <img src="media/gallery/post-ex_7.jpg" alt="post-ex_7" width="1320" height="620">
+                                    <img src="/{{ $data->image }}" alt="post-ex_7" width="1320" height="620">
                                 </a>
                             </div>
                         </div>

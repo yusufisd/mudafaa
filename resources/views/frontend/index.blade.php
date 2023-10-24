@@ -34,7 +34,9 @@
                     @foreach ($cats as $variable)
                         <div class="swiper-slide">
                             <a href="{{ route('front.currentNews.detail', $variable->link) }}">
-                                <img style="height: 100%" src="{{ $variable->mobil_image != null ? $variable->mobil_image : $variable->image }}" alt="slide-1">
+                                <img style="height: 100%"
+                                    src="{{ $variable->mobil_image != null ? $variable->mobil_image : $variable->image }}"
+                                    alt="slide-1">
                             </a>
                             <div class="swiper-content">
                                 @if ($variable->Category()[0] != null)
@@ -71,11 +73,11 @@
                                 </a>
                             </div>
                             <div class="post-content ms-4">
-                                    <a href="{{ route('front.currentNewsCategory.list', $variable->Category()[0]->link) }}"
-                                        style="background-color: {{ $variable->Category()[0]->color_code != null ? $variable->Category()[0]->color_code : '#749f43' }}"
-                                        class="rt-cat-primary restricted_category_title">
-                                        {{ $variable->Category()[0]->title }}
-                                    </a>
+                                <a href="{{ route('front.currentNewsCategory.list', $variable->Category()[0]->link) }}"
+                                    style="background-color: {{ $variable->Category()[0]->color_code != null ? $variable->Category()[0]->color_code : '#749f43' }}"
+                                    class="rt-cat-primary restricted_category_title">
+                                    {{ $variable->Category()[0]->title }}
+                                </a>
                                 <h3 class="post-title">
                                     <a href="{{ route('front.currentNews.detail', $variable->link) }}"
                                         class="top_restricted_title">
@@ -149,7 +151,7 @@
                                     </li>
                                     <li>
                                         <span class="rt-meta">
-                                            <i class="fa-solid fa-eye "></i>
+                                            <i class="fa-solid fa-eye"></i>
                                             {{ $tek_haber->view_counter }}
                                         </span>
                                     </li>
@@ -210,7 +212,7 @@
                                                 </li>
                                                 <li>
                                                     <span class="rt-meta">
-                                                        <i class="fa-solid fa-eye "></i>
+                                                        <i class="fa-solid fa-eye"></i>
                                                         {{ $item->view_counter }}
                                                     </span>
                                                 </li>
@@ -282,11 +284,10 @@
                                             </div>
                                             <div class="post-content">
                                                 @foreach ($ilk_kategori_icerigi->Category() as $Category)
-                                                    
-                                                <a href="{{ route('front.currentNewsCategory.list', $Category->link) }}"
-                                                    style="background-color: {{ $Category->color_code != null ? $Category->color_code : '#749f43' }}"
-                                                    class="music restricted_category_title">
-                                                    {{ $Category->title }} </a>
+                                                    <a href="{{ route('front.currentNewsCategory.list', $Category->link) }}"
+                                                        style="background-color: {{ $Category->color_code != null ? $Category->color_code : '#749f43' }}"
+                                                        class="music restricted_category_title">
+                                                        {{ $Category->title }} </a>
                                                 @endforeach
 
                                                 <h3 class="post-title">
@@ -315,7 +316,7 @@
                                                         </li>
                                                         <li>
                                                             <span class="rt-meta">
-                                                                <i class="fa-solid fa-eye "></i>
+                                                                <i class="fa-solid fa-eye"></i>
                                                                 {{ $item->view_counter }}
                                                             </span>
                                                         </li>
@@ -363,7 +364,7 @@
                                                                 {{ $item->created_at->translatedFormat('d M Y') }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
-                                                                <i class="fa-solid fa-eye "></i>
+                                                                <i class="fa-solid fa-eye"></i>
                                                                 {{ $item->view_counter }}
                                                             </span>
                                                         </div>
@@ -406,7 +407,7 @@
                                                                 {{ $item->created_at->translatedFormat('d M Y') }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
-                                                                <i class="fa-solid fa-eye "></i>
+                                                                <i class="fa-solid fa-eye"></i>
                                                                 {{ $item->view_counter }}
                                                             </span>
                                                         </div>
@@ -500,7 +501,7 @@
                                                                 {{ $item->live_time->translatedFormat('d M Y') }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
-                                                                <i class="fa-solid fa-eye "></i>
+                                                                <i class="fa-solid fa-eye"></i>
                                                                 {{ $item->view_counter }}
                                                             </span>
                                                         </div>
@@ -542,7 +543,7 @@
                                                                 {{ $item->created_at->translatedFormat('d M Y') }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
-                                                                <i class="fa-solid fa-eye "></i>
+                                                                <i class="fa-solid fa-eye"></i>
                                                                 {{ $item->view_counter }}
                                                             </span>
                                                         </div>
@@ -569,51 +570,51 @@
                                     @if ($ucuncu_kategori_icerigi != null)
 
 
-                                    <div class="col-xl-4 col-lg-6">
-                                        <div class="rt-post-overlay rt-post-overlay-md">
-                                            <div class="post-img">
+                                        <div class="col-xl-4 col-lg-6">
+                                            <div class="rt-post-overlay rt-post-overlay-md">
+                                                <div class="post-img">
                                                     <a href="{{ route('front.currentNews.detail', $ucuncu_kategori_icerigi->link) }}"
                                                         class="img-link">
                                                         <img src="/{{ $ucuncu_kategori_icerigi->image }}" alt="post-xl-3"
                                                             width="900" height="600">
                                                     </a>
-                                            </div>
-                                            <div class="post-content">
-                                                @if ($ucuncu_kategori_icerigi != null)
-                                                    <a href="{{ route('front.currentNewsCategory.list', $ucuncu_kategori_icerigi->Category()[0]->link) }}"
-                                                        style="background-color: {{ $ucuncu_kategori_icerigi->Category()[0]->color_code != null ? $ucuncu_kategori_icerigi->Category()[0]->color_code : '#749f43' }}"
-                                                        class="music restricted_category_title">
-                                                        {{ $ucuncu_kategori_icerigi->Category()[0]->title }} </a>
-                                                @endif
-                                                <h3 class="post-title">
-                                                    @if ($ucuncu_kategori_icerigi != null)
-                                                        <a href="{{ route('front.currentNews.detail', $ucuncu_kategori_icerigi->link) }}"
-                                                            class="section_4_title_style_2">
-                                                            {{ $ucuncu_kategori_icerigi->title }}
-                                                        </a>
-                                                    @endif
-                                                </h3>
-
-                                                <div class="post-meta">
-                                                    <ul>
-                                                        <li>
-                                                            <span class="rt-meta">
-                                                                <i class="fa fa-user"></i> <a
-                                                                    class="name">{{ $ucuncu_kategori_icerigi->Author->name }}</a>
-                                                            </span>
-                                                        </li>
-                                                        <li>
-                                                            <span class="rt-meta">
-                                                                <i class="far fa-calendar-alt icon"></i>
-                                                                {{ substr($ucuncu_kategori_icerigi->created_at, 0, 10) }}
-                                                            </span>
-                                                        </li>
-                                                    </ul>
                                                 </div>
+                                                <div class="post-content">
+                                                    @if ($ucuncu_kategori_icerigi != null)
+                                                        <a href="{{ route('front.currentNewsCategory.list', $ucuncu_kategori_icerigi->Category()[0]->link) }}"
+                                                            style="background-color: {{ $ucuncu_kategori_icerigi->Category()[0]->color_code != null ? $ucuncu_kategori_icerigi->Category()[0]->color_code : '#749f43' }}"
+                                                            class="music restricted_category_title">
+                                                            {{ $ucuncu_kategori_icerigi->Category()[0]->title }} </a>
+                                                    @endif
+                                                    <h3 class="post-title">
+                                                        @if ($ucuncu_kategori_icerigi != null)
+                                                            <a href="{{ route('front.currentNews.detail', $ucuncu_kategori_icerigi->link) }}"
+                                                                class="section_4_title_style_2">
+                                                                {{ $ucuncu_kategori_icerigi->title }}
+                                                            </a>
+                                                        @endif
+                                                    </h3>
 
+                                                    <div class="post-meta">
+                                                        <ul>
+                                                            <li>
+                                                                <span class="rt-meta">
+                                                                    <i class="fa fa-user"></i> <a
+                                                                        class="name">{{ $ucuncu_kategori_icerigi->Author->name }}</a>
+                                                                </span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="rt-meta">
+                                                                    <i class="far fa-calendar-alt icon"></i>
+                                                                    {{ substr($ucuncu_kategori_icerigi->created_at, 0, 10) }}
+                                                                </span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
                                     @endif
 
                                     <!-- end col -->
@@ -648,7 +649,7 @@
                                                                 {{ $item->created_at->translatedFormat('d M Y') }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
-                                                                <i class="fa-solid fa-eye "></i>
+                                                                <i class="fa-solid fa-eye"></i>
                                                                 {{ $item->view_counter }}
                                                             </span>
                                                         </div>
@@ -692,7 +693,7 @@
                                                                 {{ $item->created_at->translatedFormat('d M Y') }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
-                                                                <i class="fa-solid fa-eye "></i>
+                                                                <i class="fa-solid fa-eye"></i>
                                                                 {{ $item->view_counter }}
                                                             </span>
                                                         </div>
@@ -787,7 +788,7 @@
                                         </li>
                                         <li>
                                             <span class="rt-meta">
-                                                <i class="fa-solid fa-eye "></i>
+                                                <i class="fa-solid fa-eye"></i>
                                                 {{ $item->view_counter }}
                                             </span>
                                         </li>
@@ -832,10 +833,10 @@
                                     </a>
                                 </div>
                                 <div class="post-content">
-                                    @if($populer_haber_first->Category() != null)
-                                    <a href="{{ route('front.currentNewsCategory.list', $populer_haber_first->Category()[0]->link) }}"
-                                        style="background-color: {{ $populer_haber_first->Category()[0]->color_code != null ? $populer_haber_first->Category()[0]->color_code : '#749f43' }}"
-                                        class="world"> {{ $populer_haber_first->Category()[0]->title }} </a>
+                                    @if ($populer_haber_first->Category() != null)
+                                        <a href="{{ route('front.currentNewsCategory.list', $populer_haber_first->Category()[0]->link) }}"
+                                            style="background-color: {{ $populer_haber_first->Category()[0]->color_code != null ? $populer_haber_first->Category()[0]->color_code : '#749f43' }}"
+                                            class="world"> {{ $populer_haber_first->Category()[0]->title }} </a>
                                     @endif
                                     <h3 class="post-title">
                                         <a href="{{ route('front.currentNews.detail', $populer_haber_first->link) }}"
@@ -865,7 +866,7 @@
                                             </li>
                                             <li>
                                                 <span class="rt-meta">
-                                                    <i class="fa-solid fa-eye "></i>
+                                                    <i class="fa-solid fa-eye"></i>
                                                     {{ $populer_haber_first->view_counter }}
                                                 </span>
                                             </li>
@@ -909,20 +910,20 @@
                                             </div>
                                             <div class="post-content">
                                                 <?php
-                                                    $a = 0;
+                                                $a = 0;
                                                 ?>
 
                                                 @foreach ($item->Category() as $Category)
-
-                                                <?php 
-                                                    if(++$a == 3) break;
-
-                                                ?>
+                                                    <?php
+                                                    if (++$a == 3) {
+                                                        break;
+                                                    }
                                                     
-                                                <a href="{{ route('front.currentNewsCategory.list', $Category->link) }}"
-                                                    style="background-color: {{ $Category->color_code != null ? $Category->color_code : '#749f43' }}"
-                                                    class="tr-america restricted_category_title">{{ $Category->title }}</a>
+                                                    ?>
 
+                                                    <a href="{{ route('front.currentNewsCategory.list', $Category->link) }}"
+                                                        style="background-color: {{ $Category->color_code != null ? $Category->color_code : '#749f43' }}"
+                                                        class="tr-america restricted_category_title">{{ $Category->title }}</a>
                                                 @endforeach
 
                                                 <h3 class="post-title">
@@ -941,7 +942,7 @@
                                                     {{ $item->created_at->translatedFormat('d M Y') }}
                                                 </span>
                                                 <span class="rt-meta">
-                                                    <i class="fa-solid fa-eye "></i>
+                                                    <i class="fa-solid fa-eye"></i>
                                                     {{ $item->view_counter }}
                                                 </span>
                                             </div>
@@ -971,76 +972,42 @@
                             <div class="rt-post-grid">
                                 <div class="post-img">
                                     <a href="single-post1.html" class="img-link">
-                                        <img src="assets/frontend/media/gallery/travel-md_8.jpg" alt="post"
-                                            width="492" height="340">
+                                        <img src="/{{ $anket->image != null ? $anket->image : 'media/gallery/travel-md_8.jpg' }}"
+                                            alt="post" width="492" height="340">
                                     </a>
                                 </div>
                                 <div class="post-content">
                                     <h3 class="post-title">
                                         <a href="single-post1.html">
-                                            Bayraktar TB2 SİHA gökyüzünde kaç saat uçuş yaparak en uzun süre görev yapan
-                                            milli hava aracı oldu.
+                                            {{ $anket->question }}
                                         </a>
                                     </h3>
                                 </div>
                                 <form class="vote-status-box">
+
+                                    @foreach ($anket->cevaplar() as $cevap)
+                                        
+
                                     <div class="vote-status-box-item">
                                         <div class="radio-box">
-                                            <input type="radio" name="vote" id="vote200">
-                                            <label class="custom-radio-circle" for="vote200"></label>
-                                            <label for="vote200">200.000</label>
+                                            <input type="radio" value="{{ $cevap->answer }}" name="vote" id="{{ $cevap->id }}">
+                                            <label class="custom-radio-circle" for="{{ $cevap->id }}"></label>
+                                            <label for="{{ $cevap->id }}">{{ $cevap->answer }}</label>
                                         </div>
                                         <div class="percent-box">
-                                            <span class="vote-percent" data-vote-percent="6">6</span>%
+                                            <span class="vote-percent" data-vote-percent="{{ $cevap->katilim() }}">{{ $cevap->katilim() }}</span>%
                                         </div>
                                     </div>
-                                    <div class="vote-status-box-item">
-                                        <div class="radio-box">
-                                            <input type="radio" name="vote" id="vote300">
-                                            <label class="custom-radio-circle" for="vote300"></label>
-                                            <label for="vote300">300.000</label>
-                                        </div>
-                                        <div class="percent-box">
-                                            <span class="vote-percent" data-vote-percent="4">4</span>%
-                                        </div>
-                                    </div>
-                                    <div class="vote-status-box-item">
-                                        <div class="radio-box">
-                                            <input type="radio" name="vote" id="vote400">
-                                            <label class="custom-radio-circle" for="vote400"></label>
-                                            <label for="vote400">400.000</label>
-                                        </div>
-                                        <div class="percent-box">
-                                            <span class="vote-percent" data-vote-percent="20">20</span>%
-                                        </div>
-                                    </div>
-                                    <div class="vote-status-box-item">
-                                        <div class="radio-box">
-                                            <input type="radio" name="vote" id="vote500">
-                                            <label class="custom-radio-circle" for="vote500"></label>
-                                            <label for="vote500">500.000</label>
-                                        </div>
-                                        <div class="percent-box">
-                                            <span class="vote-percent" data-vote-percent="50">50</span>%
-                                        </div>
-                                    </div>
-                                    <div class="vote-status-box-item">
-                                        <div class="radio-box">
-                                            <input type="radio" name="vote" id="vote600">
-                                            <label class="custom-radio-circle" for="vote600"></label>
-                                            <label for="vote600">600.000</label>
-                                        </div>
-                                        <div class="percent-box">
-                                            <span class="vote-percent" data-vote-percent="10">10</span>%
-                                        </div>
-                                    </div>
+
+                                    @endforeach
+
+                                   
                                     <button id="submit_survey_btn" class="rt-submit-btn">
                                         Gönder
                                     </button>
                                 </form>
                             </div>
                         </div>
-                        <!-- end slidebar wrap  -->
                     </div>
                 </div>
                 <!-- end col -->
@@ -1095,7 +1062,8 @@
                         </h2>
 
                         <div class="mb-2">
-                            <a href="{{ route('front.video.list') }}" class="rt-read-more-white rt-button-animation-out">
+                            <a href="{{ route('front.video.list') }}"
+                                class="rt-read-more-white rt-button-animation-out">
                                 {{ __('message.tümünü gör') }}
                                 <svg width="34px" height="16px" viewBox="0 0 34.53 16" xml:space="preserve">
                                     <rect class="rt-button-line" y="7.6" width="34" height=".4">
@@ -1272,8 +1240,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                                                                   // limit by device width
-                                                                   -------------------------------*/
+                                                                       // limit by device width
+                                                                       -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
 
@@ -1644,6 +1612,34 @@
                 }
             }
         });
+
+        function anket() {
+            var soru_id = document.getElementById('question_id').value;
+            var cevap = document.getElementByClassname('vote').value;
+            console.log(soru_id);
+            $.ajax({
+
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                },
+                url: "/anket/ekle",
+                type: "post",
+                request: {
+                    "question_id": soru_id,
+                    "cevap": $cevapi
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response.status == "success") {
+                        console.log(data);
+                    } else {
+                        alert(response.message);
+                    }
+                }
+
+            })
+
+        }
 
 
         var swiper = new Swiper('#story_container .swiper-container', {

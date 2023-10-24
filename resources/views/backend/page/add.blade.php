@@ -56,32 +56,12 @@
                                 <!--end::Header-->
                                 <!--begin::Body-->
                                 <div class="card-body py-5">
-                                    <!--begin::Tab-->
-                                    <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" data-bs-toggle="tab"
-                                                href="#tab_activity_detay">Detay</a>
-                                        </li>
-                                        
-                                    </ul>
+                                    
 
                                     <div class="tab-content" id="TabContent_1">
                                         <div class="tab-pane fade show active" id="tab_activity_detay" role="tabpanel">
-                                            <!--begin::Form-->
-                                            <!--begin::Card body-->
                                             <div class="card-body px-3 py-9">
-                                                <!--begin::Input group-->
-                                                <div class="row mb-6">
-                                                    <!--begin::Label-->
-                                                    <label class="col-lg-2 col-form-label required ps-5 fw-bold fs-6">Görsel <span style="font-weight:normal">( 960px - 520px)</span></label> 
-                                                    <!--end::Label-->
-                                                    <!--begin::Col-->
-                                                    <div class="col-lg-10">
-                                                        <input type="file" class="form-control" name="image"
-                                                            id="">
-                                                    </div>
-                                                    <!--end::Col-->
-                                                </div>
+                                                
 
                                                 <div class="row mb-6">
                                                     <label
@@ -134,6 +114,15 @@
                                                             <!--begin::Card body-->
                                                             <div class="card-body px-0 py-9">
                                                                 <!--begin::Input group-->
+
+                                                                <div class="row mb-6">
+                                                                    <label class="col-lg-2 col-form-label required ps-5 fw-bold fs-6">Görsel <span style="font-weight:normal">( 960px - 520px)</span></label> 
+                                                                    <div class="col-lg-10">
+                                                                        <input type="file" class="form-control" name="image"
+                                                                            id="">
+                                                                    </div>
+                                                                </div>
+
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
@@ -244,6 +233,16 @@
                                                             <!--begin::Card body-->
                                                             <div class="card-body px-0 py-9">
                                                                 <!--begin::Input group-->
+
+                                                                <div class="row mb-6">
+                                                                    <label class="col-lg-2 col-form-label required ps-5 fw-bold fs-6">Görsel <span style="font-weight:normal">( 960px - 520px)</span></label> 
+                                                                    <div class="col-lg-10">
+                                                                        <input type="file" class="form-control" name="image_en"
+                                                                            id="">
+                                                                    </div>
+                                                                </div>
+
+
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
