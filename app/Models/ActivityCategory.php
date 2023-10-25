@@ -19,7 +19,18 @@ class ActivityCategory extends Model
     }
 
     public function hasActivity(){
-        $data = Activity::where('category',$this->id)->take(4)->get();
+        $local = \Session::get('applocale');
+        if ($local == null) {
+            $local = config('app.fallback_locale');
+        }
+
+        if ($local == 'tr') {
+            $data = Activity::where('category',$this->id)->take(4)->get();
+
+        } elseif ($local == 'en') {
+            $data = EnActivity::where('category',$this->id)->take(4)->get();
+
+        }
         return $data;
     }
 }

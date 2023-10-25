@@ -53,14 +53,8 @@ class ActivityController extends Controller
                 'category' => 'required',
                 'author' => 'required',
                 'website' => 'required',
-                'ticket' => 'required',
-                'user_form' => 'required',
                 'start_date' => 'required',
                 'finish_date' => 'required',
-                'adres' => 'required',
-                'map' => 'required',
-                'email' => 'required',
-                'phone' => 'required',
                 'name_tr' => 'required',
                 'short_description_tr' => 'required',
                 'description_tr' => 'required',
@@ -77,20 +71,13 @@ class ActivityController extends Controller
                 'seo_title_en' => 'required',
                 'seo_description_en' => 'required',
                 'seo_key_en' => 'required',
-                'image' => 'required',
             ],
             [
                 'category.required' => 'category required',
                 'author.required' => 'author required',
                 'website.required' => 'website required',
-                'ticket.required' => 'ticket required',
-                'user_form.required' => 'user_form required',
                 'start_date.required' => 'start_date required',
                 'finish_date.required' => 'finish_date required',
-                'adres.required' => 'adres required',
-                'map.required' => 'map required',
-                'email.required' => 'email required',
-                'phone.required' => 'phone required',
                 'name_tr.required' => 'name_tr required',
                 'short_description_tr.required' => 'short_description_tr required',
                 'description_tr.required' => 'description_tr required',
@@ -107,11 +94,9 @@ class ActivityController extends Controller
                 'seo_title_en.required' => 'seo_title_en required',
                 'seo_description_en.required' => 'seo_description_en required',
                 'seo_key_en.required' => 'seo_key_en required',
-                'image.required' => 'image required',
             ],
         );
-        try {
-            DB::beginTransaction();
+
 
             $veri = json_decode(json_decode(json_encode($request->seo_key_tr[0])));
             $merge = [];
@@ -139,6 +124,8 @@ class ActivityController extends Controller
             $new->finish_time = $request->finish_date;
             $new->country_id = $request->country;
             $new->city = $request->city;
+            $new->start_clock = $request->start_clock;
+            $new->finish_clock = $request->finish_clock;
             $new->address = $request->adres;
             $new->phone = $request->phone;
             $new->email = $request->email;
@@ -176,7 +163,8 @@ class ActivityController extends Controller
             $new_en->seo_description = $request->seo_description_en;
             $new_en->seo_key = $merge_en;
             $new_en->activity_id = $new->id;
-
+            $new->start_clock = $request->start_clock;
+            $new->finish_clock = $request->finish_clock;
             $new_en->website = $request->website;
             $new_en->ticket_link = $request->ticket;
             $new_en->subscribe_form = $request->user_form;
@@ -206,14 +194,7 @@ class ActivityController extends Controller
             logKayit(['Etkinlik Yönetimi', 'Etkinlik başarıyla eklendi']);
             Alert::success('Etkinlik Eklendi');
             DB::commit();
-        } catch (Throwable $e) {
-            DB::rollBack();
-            logKayit(['Etkinlik Yönetimi', 'Etkinlik eklemede hata', 0]);
-            Alert::error('Etkinlik Düzenlemede Hata');
-            throw ValidationException::withMessages([
-                'error' => 'Tüm alanların doldurulması zorunludur.',
-            ]);
-        }
+        
         return redirect()->route('admin.activity.list');
     }
 
@@ -241,9 +222,6 @@ class ActivityController extends Controller
                 'user_form' => 'required',
                 'start_date' => 'required',
                 'finish_date' => 'required',
-                'adres' => 'required',
-                'map' => 'required',
-                'email' => 'required',
                 'phone' => 'required',
                 'name_tr' => 'required',
                 'short_description_tr' => 'required',
@@ -270,9 +248,6 @@ class ActivityController extends Controller
                 'user_form.required' => 'user_form required',
                 'start_date.required' => 'start_date required',
                 'finish_date.required' => 'finish_date required',
-                'adres.required' => 'adres required',
-                'map.required' => 'map required',
-                'email.required' => 'email required',
                 'phone.required' => 'phone required',
                 'name_tr.required' => 'name_tr required',
                 'short_description_tr.required' => 'short_description_tr required',
@@ -319,6 +294,8 @@ class ActivityController extends Controller
             $new->city = $request->city;
             $new->address = $request->adres;
             $new->phone = $request->phone;
+            $new->start_clock = $request->start_clock;
+            $new->finish_clock = $request->finish_clock;
             $new->email = $request->email;
             $new->map = $request->map;
             $new->website = $request->website;
@@ -354,7 +331,8 @@ class ActivityController extends Controller
             $new_en->seo_description = $request->seo_description_en;
             $new_en->seo_key = $merge_en;
             $new_en->activity_id = $new->id;
-
+            $new->start_clock = $request->start_clock;
+            $new->finish_clock = $request->finish_clock;
             $new_en->website = $request->website;
             $new_en->ticket_link = $request->ticket;
             $new_en->subscribe_form = $request->user_form;

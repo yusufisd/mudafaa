@@ -108,7 +108,7 @@
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <input type="text" name="title_tr"
-                                                                                    id="title_tr" id="title_tr" value="{{ $data->title ?? '' }}"
+                                                                                    id="title_tr" id="title_tr" 
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                     value="" />
                                                                             </div>
@@ -162,7 +162,7 @@
                                                                                 <input type="text" name="phone_tr"
                                                                                     id="title_tr" 
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="{{ $data->phone ?? '' }}" />
+                                                                                     />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -186,7 +186,7 @@
                                                                                 <input type="text" name="email_tr"
                                                                                     id="title_tr" id="title_tr" 
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="{{ $data->email ?? '' }}" />
+                                                                                     />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -210,7 +210,7 @@
                                                                                 <input type="text" name="website_tr"
                                                                                     id="title_tr" id="title_tr"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="{{ $data->website ?? '' }}" />
+                                                                                     />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -234,7 +234,7 @@
                                                                                 <input type="text" name="address_tr"
                                                                                     id="title_tr" id="title_tr"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="{{ $data->address ?? '' }}" />
+                                                                                     />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -258,7 +258,7 @@
                                                                                 <input type="text" name="harita_tr"
                                                                                     id="title_tr" id="title_tr"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="{{ $data->map ?? '' }}" />
+                                                                                     />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -288,7 +288,7 @@
                                                                                 <input type="text" name="title_en"
                                                                                     id="title_tr" id="title_tr"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="{{ $data_en->title ?? '' }}" />
+                                                                                     />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -340,7 +340,7 @@
                                                                                 <input type="text" name="phone_en"
                                                                                     id="title_tr" 
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="{{ $data_en->phone ?? '' }}" />
+                                                                                     />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -364,7 +364,7 @@
                                                                                 <input type="text" name="email_en"
                                                                                     id="title_tr" 
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="{{ $data_en->email ?? '' }}" />
+                                                                                     />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -388,7 +388,7 @@
                                                                                 <input type="text" name="website_en"
                                                                                     id="title_tr" 
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="{{ $data_en->website ?? '' }}" />
+                                                                                     />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -412,7 +412,7 @@
                                                                                 <input type="text" name="address_en"
                                                                                     id="title_tr" 
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="{{ $data_en->address ?? '' }}" />
+                                                                                     />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -436,7 +436,7 @@
                                                                                 <input type="text" name="harita_en"
                                                                                     id="title_tr" id="title_tr"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="{{ $data_en->map ?? '' }}" />
+                                                                                     />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>

@@ -107,33 +107,43 @@
                                     </div>
                                     <div class="social-wrap d-none d-xl-block">
                                         <ul class="rt-top-social">
+                                            @if(SocialMedia())
                                             <li>
                                                 <a href="https://www.facebook.com/{{ (SocialMedia()->facebook != null ? SocialMedia()->facebook : '') }}" target="_blank">
                                                     <i class="fab fa-facebook-f"></i>
                                                 </a>
                                             </li>
+                                            @endif
+                                            @if(SocialMedia())
                                             <li>
                                                 <a href="https://twitter.com/{{ (SocialMedia()->twitter != null ? SocialMedia()->twitter : '') }}" target="_blank">
                                                     <img src="/assets/x.png" style="width: 13px" alt="">
                                                 </a>
                                             </li>
+                                            @endif
+                                            @if(SocialMedia())
                                             <li>
                                                 <a href="https://www.instagram.com/{{ (SocialMedia()->instagram != null ? SocialMedia()->instagram : '') }}" target="_blank">
                                                     <i class="fab fa-instagram"></i>
                                                 </a>
                                             </li>
+                                            @endif
+                                            @if(SocialMedia())
                                             <li>
                                                 <a href="https://www.youtube.com/channel/{{ (SocialMedia()->youtube != null ? SocialMedia()->youtube : '') }}"
                                                     target="_blank">
                                                     <i class="fab fa-youtube"></i>
                                                 </a>
                                             </li>
+                                            @endif
+                                            @if(SocialMedia())
                                             <li>
                                                 <a href="https://www.linkedin.com/company/{{ (SocialMedia()->linkedin != null ? SocialMedia()->linkedin : '') }}"
                                                     target="_blank">
                                                     <i class="fab fa-linkedin-in"></i>
                                                 </a>
                                             </li>
+                                            @endif
 
                                         </ul>
                                     </div>
@@ -362,36 +372,46 @@
                                         {{ __('message.Sitede yayınlanan yazı, haber, video ve fotoğrafların tüm hakları Dada İst Ajans a aittir. Kaynak gösterilerek dahi olsa izin alınmadan alıntı yapılamaz') }}
                                     </p>
                                     <ul class="footer-social gutter-15">
+                                        @if(SocialMedia())
                                         <li class="social-item">
                                             <a href="https://www.facebook.com/{{ (SocialMedia()->facebook != null ? SocialMedia()->facebook : '') }}" class="social-link"
                                                 target="_blank">
                                                 <i class="fab fa-facebook-f"></i>
                                             </a>
                                         </li>
+                                        @endif
+                                        @if(SocialMedia())
                                         <li class="social-item">
                                             <a href="https://twitter.com/{{ (SocialMedia()->twitter != null ? SocialMedia()->twitter : '') }}" class="social-link"
                                                 target="_blank">
                                                 <i class="fab fa-x-twitter"></i>
                                             </a>
                                         </li>
+                                        @endif
+                                        @if(SocialMedia())
                                         <li class="social-item">
                                             <a href="https://www.instagram.com/{{ (SocialMedia()->instagram != null ? SocialMedia()->instagram : '') }}" class="social-link"
                                                 target="_blank">
                                                 <i class="fab fa-instagram"></i>
                                             </a>
                                         </li>
+                                        @endif
+                                        @if(SocialMedia())
                                         <li class="social-item">
                                             <a href="https://www.youtube.com/channel/{{ (SocialMedia()->youtube != null ? SocialMedia()->youtube : '') }}"
                                                 class="social-link" target="_blank">
                                                 <i class="fab fa-youtube youtube"></i>
                                             </a>
                                         </li>
+                                        @endif
+                                        @if(SocialMedia())
                                         <li class="social-item">
                                             <a href="https://www.linkedin.com/company/{{ (SocialMedia()->linkedin != null ? SocialMedia()->linkedin : '') }}"
                                                 class="social-link" target="_blank">
                                                 <i class="fab fa-linkedin-in"></i>
                                             </a>
                                         </li>
+                                        @endif
                                     </ul>
                                     <ul class="footer-social mt--20">
                                         <li>

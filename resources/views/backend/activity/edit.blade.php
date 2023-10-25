@@ -171,7 +171,7 @@
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
                                                             <label class="col-lg-4 col-form-label fw-bold fs-6 ps-5">
-                                                                <span class="required"> Online Bilet</span>
+                                                                <span class=""> Online Bilet</span>
                                                             </label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
@@ -188,7 +188,7 @@
                                                             <!--begin::Label-->
                                                             <label
                                                                 class="col-lg-4 col-form-label fw-bold fs-6 ps-5 text-end">
-                                                                <span class="required"> Katılımcı Formu</span>
+                                                                <span class=""> Katılımcı Formu</span>
                                                             </label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
@@ -208,16 +208,20 @@
                                                     <div class="col-md-6">
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
-                                                            <label class="col-lg-4 col-form-label fw-bold fs-6 ps-5">
+                                                            <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">
                                                                 <span class="required"> Başlangıç</span>
                                                             </label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
-                                                            <div class="col-lg-8 fv-row">
-                                                                <input type="datetime-local"
-                                                                    value="{{ $data_tr->start_time }}"
-                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                    name="start_date" id="">
+                                                            <div class="col-lg-5 fv-row">
+                                                                <input required type="date"
+                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                    name="start_date" value="{{ $data_tr->start_time }}" id="">
+                                                            </div>
+                                                            <div class="col-lg-3 fv-row">
+                                                                <input required type="time"
+                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                    name="start_clock" value="{{ $data_tr->start_clock }}" id="">
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -226,16 +230,20 @@
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
                                                             <label
-                                                                class="col-lg-4 col-form-label fw-bold fs-6 ps-5 text-end">
+                                                                class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">
                                                                 <span class="required"> Bitiş</span>
                                                             </label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
-                                                            <div class="col-lg-8 fv-row">
-                                                                <input type="datetime-local"
-                                                                    value="{{ $data_tr->finish_time }}"
-                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                    name="finish_date" id="">
+                                                            <div class="col-lg-5 fv-row">
+                                                                <input required type="date"
+                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                    name="finish_date" value="{{ $data_tr->finish_time }}" id="">
+                                                            </div>
+                                                            <div class="col-lg-3 fv-row">
+                                                                <input required type="time"
+                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                    name="finish_clock" value="{{ $data_tr->finish_clock }}" id="">
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -296,7 +304,7 @@
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
                                                             <label class="col-lg-4 col-form-label fw-bold fs-6 ps-5">
-                                                                <span class="required"> Adres</span>
+                                                                <span class=""> Adres</span>
                                                             </label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
@@ -313,7 +321,7 @@
                                                             <!--begin::Label-->
                                                             <label
                                                                 class="col-lg-4 col-form-label fw-bold fs-6 ps-5 text-end">
-                                                                <span class="required"> Harita </span>
+                                                                <span class=""> Harita </span>
                                                             </label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
@@ -332,7 +340,7 @@
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
                                                             <label class="col-lg-4 col-form-label fw-bold fs-6 ps-5">
-                                                                <span class="required"> Email</span>
+                                                                <span class=""> Email</span>
                                                             </label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
@@ -349,7 +357,7 @@
                                                             <!--begin::Label-->
                                                             <label
                                                                 class="col-lg-4 col-form-label fw-bold fs-6 ps-5 text-end">
-                                                                <span class="required"> Telefon </span>
+                                                                <span class=""> Telefon </span>
                                                             </label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->

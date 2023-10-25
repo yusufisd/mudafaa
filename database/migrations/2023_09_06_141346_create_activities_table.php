@@ -12,27 +12,29 @@ return new class extends Migration {
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('title');
             $table->integer('category');
             $table->integer('author');
-            $table->string('short_description');
+            $table->longText('short_description');
             $table->longText('description');
             $table->string('link');
             $table->string('ticket_link')->nullable();
             $table->string('subscribe_form')->nullable();
-            $table->timestamp('start_time')->useCurrent();
-            $table->timestamp('finish_time')->useCurrent();
+            $table->date('start_time');
+            $table->time('start_clock')->nullable();
+            $table->date('finish_time');
+            $table->time('finish_clock')->nullable();
             $table->integer('country_id');
-            $table->string('city');
-            $table->string('address');
-            $table->string('phone');
-            $table->string('email');
+            $table->string('city')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
             $table->integer('status')->default(1);
             $table->string('website')->nullable();
             $table->string('map')->nullable();
             $table->string('seo_title');
-            $table->string('seo_description');
+            $table->longText('seo_description');
             $table->string('seo_key');
             $table->integer('view_counter')->default(0);
             $table->softDeletes();

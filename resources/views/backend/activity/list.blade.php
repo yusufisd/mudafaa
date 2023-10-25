@@ -119,14 +119,13 @@
                                                 </th>
                                                 <th style="text-align: center"> {{ __('message.görsel') }} <i
                                                         class="fa fa-sort ms-3"></i></th>
-                                                <th style="text-align: center"> {{ __('message.başlık') }} <i
+                                                <th style="text-align: start"> {{ __('message.başlık') }} <i
                                                         class="fa fa-sort ms-3"></i></th>
                                                 <th style="text-align: center"> {{ __('message.kategori') }} <i
                                                         class="fa fa-sort ms-3"></i></th>
-                                                <th style="text-align: center"> Ülke <i class="fa fa-sort ms-3"></i></th>
-                                                <th style="text-align: center"> Şehir <i class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center"> Konum <i class="fa fa-sort ms-3"></i></th>
                                                 <th style="text-align: center"> Durum <i class="fa fa-sort ms-3"></i></th>
-                                                <th style="text-align: center"> {{ __('message.işlem') }} <i
+                                                <th style="text-align: center;width:200px"> {{ __('message.işlem') }} <i
                                                         class="fa fa-sort ms-3"></i></th>
                                             </tr>
                                         </thead>
@@ -148,11 +147,10 @@
                                                             style="width:100px; border-radius:5%" alt="">
                                                     </td>
 
-                                                    <td style="text-align: center"> {{ $item->title }} </td>
+                                                    <td > {{ $item->title }} </td>
                                                     <td style="text-align: center"> {{ $item->Category->title ?? '-' }}
                                                     </td>
-                                                    <td style="text-align: center"> {{ $item->Country->name }} </td>
-                                                    <td style="text-align: center"> {{ $item->city }} </td>
+                                                    <td style="text-align: center"> {{ $item->Country->name }} / {{ $item->city }} </td>
                                                     <td style="text-align: center">
                                                         <div
                                                             class="form-check form-check-solid form-switch form-check-custom fv-row">

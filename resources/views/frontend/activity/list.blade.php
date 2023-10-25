@@ -145,13 +145,13 @@
                     <div class="related-post-box">
                         <div class="titile-wrapper mb--40">
                             <h2 class="rt-section-heading flex-grow-1 mb-0 me-3">
-                                <span class="rt-section-text restricted_section_title">Yaklaşan Etkinlikler </span>
+                                <span class="rt-section-text restricted_section_title"> {{ __('message.yaklaşan etkinlikler') }} </span>
                                 <span class="rt-section-dot"></span>
                                 <span class="rt-section-line"></span>
                             </h2>
 
                             <div>
-                                <h6><a href="fair_list.html">Tümünü Gör</a></h6>
+                                <h6><a href="fair_list.html"> {{ __('message.tümünü gör') }} </a></h6>
                             </div>
                         </div>
                         <!-- end titile-wrapper -->
@@ -236,7 +236,7 @@
                             </h2>
 
                             <div>
-                                <h6><a href="{{ route('front.activity.categoryDetail',$data->link) }}">Tümünü Gör</a></h6>
+                                <h6><a href="{{ route('front.activity.categoryDetail',$data->link) }}"> {{ __('message.tümünü gör') }} </a></h6>
                             </div>
                         </div>
                         <!-- end titile-wrapper -->

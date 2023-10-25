@@ -122,7 +122,6 @@
         <!-- end container -->
     </section>
     <!-- end feature-section-style-1  -->
-
     <!-- start main post section style 1 -->
     <section class="d-none d-md-block rt-main-post-section main-post-section-style-1 section-padding">
         <div class="container">

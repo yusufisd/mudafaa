@@ -17,28 +17,27 @@ class ContactController extends Controller
         } else {
             $data = '';
         }
-        if(EnContactModel::latest()->first() != null){
+        if (EnContactModel::latest()->first() != null) {
             $data_en = EnContactModel::latest()->first();
-        }else{
-            $data_en = "";
+        } else {
+            $data_en = '';
         }
-        if(EnContactModel::latest()->first() != null)
-        return view('backend.contact.add',compact('data','data_en'));
+        return view('backend.contact.add', compact('data', 'data_en'));
     }
 
-    public function update(Request $request){
-        if(ContactModel::latest()->first() != null){
+    public function update(Request $request)
+    {
+        if (ContactModel::latest()->first() != null) {
             $data = ContactModel::latest()->first();
-        }else{
+        } else {
             $data = new ContactModel();
         }
 
-        if(EnContactModel::latest()->first() != null){
+        if (EnContactModel::latest()->first() != null) {
             $data_en = EnContactModel::latest()->first();
-        }else{
+        } else {
             $data_en = new EnContactModel();
         }
-
 
         $data->title = $request->title_tr;
         $data->description = $request->description_tr;
@@ -48,7 +47,6 @@ class ContactController extends Controller
         $data->address = $request->address_tr;
         $data->map = $request->harita_tr;
         $data->save();
-
 
         $data_en->title = $request->title_en;
         $data_en->description = $request->description_en;

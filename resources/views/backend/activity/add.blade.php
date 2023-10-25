@@ -85,7 +85,7 @@
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10">
 
-                                                        <input required type="file" class="form-control" name="image"
+                                                        <input  type="file" class="form-control" name="image"
                                                             accept=".png, .jpg, .jpeg" />
 
                                                     </div>
@@ -202,10 +202,15 @@
                                                             </label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
-                                                            <div class="col-lg-8 fv-row">
-                                                                <input required type="datetime-local"
+                                                            <div class="col-lg-5 fv-row">
+                                                                <input required type="date"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                     name="start_date" id="">
+                                                            </div>
+                                                            <div class="col-lg-3 fv-row">
+                                                                <input required type="time"
+                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                    name="start_clock" id="">
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -219,10 +224,15 @@
                                                             </label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
-                                                            <div class="col-lg-8 fv-row">
-                                                                <input required type="datetime-local"
+                                                            <div class="col-lg-5 fv-row">
+                                                                <input required type="date"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                     name="finish_date" id="">
+                                                            </div>
+                                                            <div class="col-lg-3 fv-row">
+                                                                <input required type="time"
+                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                    name="finish_clock" id="">
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -281,12 +291,12 @@
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
                                                             <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">
-                                                                <span class="required"> Adres</span>
+                                                                <span class=""> Adres</span>
                                                             </label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
                                                             <div class="col-lg-8 fv-row">
-                                                                <input required type="text"
+                                                                <input  type="text"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                     name="adres" id="">
                                                             </div>
@@ -298,12 +308,12 @@
                                                             <!--begin::Label-->
                                                             <label
                                                                 class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">
-                                                                <span class="required"> Harita </span>
+                                                                <span class=""> Harita </span>
                                                             </label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
                                                             <div class="col-lg-8 fv-row">
-                                                                <input required type="text"
+                                                                <input  type="text"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                     name="map" id="">
                                                             </div>
@@ -317,12 +327,12 @@
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
                                                             <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">
-                                                                <span class="required"> Email</span>
+                                                                <span class=""> Email</span>
                                                             </label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
                                                             <div class="col-lg-8 fv-row">
-                                                                <input required type="text"
+                                                                <input  type="text"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                     name="email" id="">
                                                             </div>
@@ -334,12 +344,12 @@
                                                             <!--begin::Label-->
                                                             <label
                                                                 class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">
-                                                                <span class="required"> Telefon </span>
+                                                                <span class=""> Telefon </span>
                                                             </label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
                                                             <div class="col-lg-8 fv-row">
-                                                                <input required type="text"
+                                                                <input  type="text"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                     name="phone" id="">
                                                             </div>

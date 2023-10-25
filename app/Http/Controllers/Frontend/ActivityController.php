@@ -27,7 +27,7 @@ class ActivityController extends Controller
                 ->orderBy('start_time', 'asc')
                 ->take(4)
                 ->get();
-            $activity_category = ActivityCategory::orderBy('queue','asc')->get();
+            $activity_category = ActivityCategory::orderBy('queue', 'asc')->get();
             $categories = ActivityCategory::get();
             $countries = CountryList::get();
         } elseif ($local == 'en') {
@@ -35,7 +35,7 @@ class ActivityController extends Controller
                 ->orderBy('start_time', 'asc')
                 ->take(4)
                 ->get();
-            $activity_category = EnActivityCategory::orderBy('queue','asc')->get();
+            $activity_category = EnActivityCategory::orderBy('queue', 'asc')->get();
             $categories = EnActivityCategory::get();
             $countries = CountryList::get();
         }
@@ -52,16 +52,15 @@ class ActivityController extends Controller
         }
 
         if ($local == 'tr') {
-            $data = Activity::where('link',$id)->first();
+            $data = Activity::where('link', $id)->first();
             $other_activity = Activity::inRandomOrder()->get();
-
         } elseif ($local == 'en') {
-            $data = EnActivity::where('link',$id)->first();
+            $data = EnActivity::where('link', $id)->first();
             $other_activity = EnActivity::inRandomOrder()->get();
         }
         // OKUMA KONTRLÜ
         $readCheck = json_decode(\Illuminate\Support\Facades\Cookie::get('activity')) ?? [];
-        if (!in_array($data->id, $readCheck)){
+        if (!in_array($data->id, $readCheck)) {
             $data->view_counter = $data->view_counter + 1;
             $data->save();
             $readCheck[] = $data->id;
@@ -72,8 +71,19 @@ class ActivityController extends Controller
 
     public function categoryDetail($id)
     {
-        $cat = ActivityCategory::where('link',$id)->first();
-        $data = Activity::where('category', $cat->id)->get();
+        $local = \Session::get('applocale');
+        if ($local == null) {
+            $local = config('app.fallback_locale');
+        }
+
+        if ($local == 'tr') {
+            $cat = ActivityCategory::where('link', $id)->first();
+            $data = Activity::where('category', $cat->id)->get();
+        } elseif ($local == 'en') {
+            $cat = EnActivityCategory::where('link', $id)->first();
+            $data = EnActivity::where('category', $cat->id)->get();
+        }
+
         return view('frontend.activity.category.detail', compact('data', 'cat'));
     }
 
@@ -198,13 +208,16 @@ class ActivityController extends Controller
         }
     }
 
-    public function calendar(Request $request){
-        if (isset($request->category)){
-            $events = Activity::where('category', $request->category)->latest()->get();
-        }else{
+    public function calendar(Request $request)
+    {
+        if (isset($request->category)) {
+            $events = Activity::where('category', $request->category)
+                ->latest()
+                ->get();
+        } else {
             $events = Activity::latest()->get();
         }
         $categories = ActivityCategory::all();
-        return view('frontend.activity.calendar',compact('events', 'categories'));
+        return view('frontend.activity.calendar', compact('events', 'categories'));
     }
 }

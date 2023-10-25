@@ -14,6 +14,22 @@
                 min-width: 500px;
             }
         }
+        .post-body:first-letter {
+            float: left;
+            font-weight: bold;
+            font-size: 10px;
+            font-size: 4rem;
+            line-height: 20px;
+            line-height: 2rem;
+            height: 4rem;
+            text-transform: uppercase;
+            padding: 2%;
+            margin-left: 2%
+        }
+        .tag-link:hover {
+            background-color: #749f43;
+            color: white;
+        }
     </style>
 @endsection
 @section('content')
@@ -155,7 +171,7 @@
                             <!-- start social-share-box-2 -->
                             <div class="social-share-box-2 mb--40">
                                 <div class="row gutter-30">
-                                    <div class="col-xl-7 col-lg-6">
+                                    <div class="col-xl-12 col-lg-12">
                                         <div class="conent-block">
                                             <h4 class="block-tile mb--20">Popüler Etiketler:</h4>
 
@@ -163,7 +179,7 @@
 
                                                 @foreach ($data->getKeys() as $item)
                                                     
-                                                <a href="#" class="tag-link"> {{ $item }} </a>
+                                                <a href="#" class="tag-link" style="text-transform: capitalize"> {{ $item }} </a>
 
                                                 @endforeach
 
