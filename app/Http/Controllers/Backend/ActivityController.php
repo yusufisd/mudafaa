@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Imports\ActivityImport;
 use App\Models\Activity;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -15,6 +16,7 @@ use App\Models\CountryList;
 use App\Models\EnActivity;
 use App\Models\EnActivityCategory;
 use App\Models\UserModel;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ActivityController extends Controller
 {
@@ -443,5 +445,13 @@ class ActivityController extends Controller
             ]);
         }
         return redirect()->route('admin.activity.list');
+    }
+
+    public function ice_aktar(Request $request)
+    {
+        Excel::import(new ActivityImport(), $request->file('ice_aktar')->store('temp'));
+
+        Alert::success('Başarılı');
+        return back();
     }
 }

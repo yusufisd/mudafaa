@@ -18,6 +18,25 @@
                         {{ __('message.etkinlik') }} {{ __('message.listesi') }} </h1>
                     <!--end::Title-->
                 </div>
+                <div class="" style="display: flex">
+                    <div id="goster" class="col-md-8" style="display:none">
+                        <form action="{{ route('admin.activity.ice_aktar') }}" method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <input type="file" class="form-control" name="ice_aktar" id="">
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="submit" class="btn btn-primary" id="">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="gizle">
+                        <button class="btn btn-primary" onclick="iceri_aktar()" type="button"> Aktar</button>
+                    </div>
+                </div>
                 <!--end::Page title-->
             </div>
             <!--end::Toolbar container-->
@@ -46,8 +65,8 @@
                                             <span class="svg-icon svg-icon-2">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <rect opacity="0.5" x="11.364" y="20.364" width="16"
-                                                        height="2" rx="1" transform="rotate(-90 11.364 20.364)"
+                                                    <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2"
+                                                        rx="1" transform="rotate(-90 11.364 20.364)"
                                                         fill="currentColor" />
                                                     <rect x="4.36396" y="11.364" width="16" height="2"
                                                         rx="1" fill="currentColor" />
@@ -65,8 +84,8 @@
                                             <span class="svg-icon svg-icon-2">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <rect opacity="0.5" x="11.364" y="20.364" width="16"
-                                                        height="2" rx="1" transform="rotate(-90 11.364 20.364)"
+                                                    <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2"
+                                                        rx="1" transform="rotate(-90 11.364 20.364)"
                                                         fill="currentColor" />
                                                     <rect x="4.36396" y="11.364" width="16" height="2"
                                                         rx="1" fill="currentColor" />
@@ -138,8 +157,8 @@
                                                         <div
                                                             class="form-check form-check-solid form-switch form-check-custom fv-row">
                                                             <input class="form-check-input w-50px h-25px" type="checkbox"
-                                                                onchange="change_status({{ $item->id }})" id="blog_status_1"
-                                                                name="status_tr"
+                                                                onchange="change_status({{ $item->id }})"
+                                                                id="blog_status_1" name="status_tr"
                                                                 {{ $item->status == 1 ? 'checked' : '' }} />
                                                             <label class="form-check-label"
                                                                 for="allowblog_detail_tr"></label>
@@ -157,7 +176,7 @@
                                                             title="Düzenle">
                                                             <i class="fa-regular fa-pen-to-square fs-3"></i>
                                                         </a>
-                                                        <a onclick="destroy({{$item->id}})"
+                                                        <a onclick="destroy({{ $item->id }})"
                                                             class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1 px-2"
                                                             data-bs-toggle="modal" data-bs-target="#delete_modal"
                                                             title="Sil">
@@ -191,6 +210,10 @@
     <script>
         function change_status(d) {
             window.location.href = "{{ route('admin.activity.change_status') }}/" + d
+        }
+
+        function iceri_aktar() {
+            $('#goster').toggle('fast');
         }
 
         function destroy(d) {

@@ -327,6 +327,8 @@ Route::middleware('lang')->group(function () {
                         ->get('sil/{id?}', 'destroy')
                         ->name('destroy');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
+                    Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
+
                 });
 
             // RÖPORTAJ  CONTROLLER

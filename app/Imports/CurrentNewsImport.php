@@ -69,7 +69,7 @@ class CurrentNewsImport implements ToCollection, WithStartRow
                     $news_en->author_id = 1;
                     $news_en->currentNews_id = $news->id;
                     $news_en->title = $row[3];
-                    $news->read_time = $read_time_en;
+                    $news_en->read_time = $read_time_en;
                     $news_en->short_description = $row[5];
                     $news_en->description = $row[7];
                     $news_en->link = $link_en;
