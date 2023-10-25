@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('image');
             $table->string('mobil_image')->nullable();
             $table->integer('author_id');
-            $table->integer('category_id');
+            $table->string('category_id');
             $table->string('title');
             $table->integer('headline')->default(1);
             $table->integer('read_time')->default(3);

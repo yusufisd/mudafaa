@@ -86,7 +86,7 @@
                                             <div class="post-img">
                                                 <a href="{{ route('front.dictionary.detail', $item->link) }}"
                                                     class="img-link">
-                                                    <img src="/{{ $item->image }}" alt="{{ $item->title }}" width="900"
+                                                    <img src="/{{ $item->image == null ? 'media/gallery/post-xl_31.jpg' : $item->image }}" alt="{{ $item->title }}" width="900"
                                                         height="600">
                                                 </a>
                                             </div>

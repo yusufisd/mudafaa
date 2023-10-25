@@ -120,18 +120,19 @@
                                         <li>
                                             <span class="rt-meta">
                                                 <i class="far fa-comments icon"></i>
-                                                250
+                                                
+                                                {{ $data->commentCount() }}
                                             </span>
                                         </li>
                                         <li>
                                             <span class="rt-meta">
                                                 <i class="far fa-clock icon"></i>
-                                                {{ $data->read_time }}
+                                                {{ $data->read_time }} DK
                                             </span>
                                         </li>
                                         <li>
                                             <span class="rt-meta">
-                                                <i class="far fa-eye icon"></i>
+                                                <i class="fa-solid fa-eye"></i>
                                                 {{ $data->view_counter }}
                                             </span>
                                         </li>

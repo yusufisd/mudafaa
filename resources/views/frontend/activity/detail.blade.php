@@ -76,7 +76,7 @@
         <!-- End inner page Banner -->
 
         <!-- Start single-post-banner -->
-        <div class="single-post-banner rt-gradient-overaly" data-bg-image="/{{$data->image}}">
+        <div class="single-post-banner rt-gradient-overaly" data-bg-image="/{{ $data->image == null ? 'media/banner/banner_3.jpg' : $data->image }}">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-9 col-lg-10 mx-auto">
@@ -164,7 +164,7 @@
                                 </div>
                             </div>
                             <!-- strat post body -->
-                            <div class="post-body mb--40 " style="text-align: justify">
+                            <div class="post-body mb--40 " style="text-align: justify; color:black">
                                 {!!$data->description!!}
                             </div><br><br><br><br>
                             <!-- end post body -->
@@ -320,7 +320,7 @@
                                 <div class="rt-post-grid grid-meta">
                                     <div class="post-img">
                                         <a href="{{ route('front.activity.detail', $item->link) }}">
-                                            <img src="/{{$item->image}}" alt="post" width="551"
+                                            <img src="/{{ $item->image == null ? 'media/gallery/post-md_42.jpg' : $item->image }}" alt="post" width="551"
                                                 height="431">
                                         </a>
                                     </div>
@@ -349,8 +349,8 @@
                                                 </li>
                                                 <li>
                                                     <span class="rt-meta">
-                                                        <i class="far fa-eye icon"></i>
-                                                        25
+                                                        <i class="fa-solid fa-eye"></i>
+                                                        {{ $item->view_counter }}
                                                     </span>
                                                 </li>
                                             </ul>

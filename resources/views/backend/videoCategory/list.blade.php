@@ -100,7 +100,7 @@
                                                             value="1" />
                                                     </div>
                                                 </th>
-                                                <th style="text-align: center"> {{ __('message.başlık') }} <i
+                                                <th style="text-align: start"> {{ __('message.başlık') }} <i
                                                         class="fa fa-sort ms-3"></i></th>
                                                 <th style="text-align: center"> {{ __('message.sıralama') }} <i
                                                         class="fa fa-sort ms-3"></i></th>
@@ -122,7 +122,7 @@
                                                         </div>
                                                     </td>
 
-                                                    <td style="text-align: center"> {{ $item->title }} </td>
+                                                    <td style="text-align: start"> {{ $item->title }} </td>
                                                     <td style="text-align: center"> {{ $item->queue }} </td>
                                                     <td style="text-align: center">
                                                         <div

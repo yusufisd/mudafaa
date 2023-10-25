@@ -10,7 +10,6 @@ class EnAbout extends Model
     use HasFactory;
     protected $guarded = [];
     protected $casts = [
-        'seo_key' => 'array',
     ];
 
     public function getKeys(){

@@ -110,7 +110,7 @@
                                                                                 <input type="text" name="title_tr"
                                                                                     id="title_tr" id="title_tr" 
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="" />
+                                                                                    value="{{ $data->title ?? '' }}" />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -160,7 +160,7 @@
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <input type="text" name="phone_tr"
-                                                                                    id="title_tr" 
+                                                                                    id="title_tr" value="{{ $data->phone ?? '' }}"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                      />
                                                                             </div>
@@ -184,7 +184,7 @@
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <input type="text" name="email_tr"
-                                                                                    id="title_tr" id="title_tr" 
+                                                                                    id="title_tr" id="title_tr"  value="{{ $data->email ?? '' }}"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                      />
                                                                             </div>
@@ -208,7 +208,7 @@
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <input type="text" name="website_tr"
-                                                                                    id="title_tr" id="title_tr"
+                                                                                    id="title_tr" id="title_tr" value="{{ $data->website ?? '' }}"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                      />
                                                                             </div>
@@ -232,7 +232,7 @@
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <input type="text" name="address_tr"
-                                                                                    id="title_tr" id="title_tr"
+                                                                                    id="title_tr" id="title_tr" value="{{ $data->address ?? '' }}"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                      />
                                                                             </div>
@@ -256,7 +256,7 @@
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <input type="text" name="harita_tr"
-                                                                                    id="title_tr" id="title_tr"
+                                                                                    id="title_tr" id="title_tr" value="{{ $data->map ?? '' }}"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                      />
                                                                             </div>
@@ -286,7 +286,7 @@
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <input type="text" name="title_en"
-                                                                                    id="title_tr" id="title_tr"
+                                                                                    id="title_tr" id="title_tr" value="{{ $data_en->title ?? '' }}"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                      />
                                                                             </div>
@@ -338,7 +338,7 @@
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <input type="text" name="phone_en"
-                                                                                    id="title_tr" 
+                                                                                    id="title_tr" value="{{ $data_en->phone ?? '' }}"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                      />
                                                                             </div>
@@ -362,7 +362,7 @@
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <input type="text" name="email_en"
-                                                                                    id="title_tr" 
+                                                                                    id="title_tr"  value="{{ $data_en->email ?? '' }}"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                      />
                                                                             </div>
@@ -386,7 +386,7 @@
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <input type="text" name="website_en"
-                                                                                    id="title_tr" 
+                                                                                    id="title_tr" value="{{ $data_en->website ?? '' }}"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                      />
                                                                             </div>
@@ -410,7 +410,7 @@
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <input type="text" name="address_en"
-                                                                                    id="title_tr" 
+                                                                                    id="title_tr" value="{{ $data_en->address ?? '' }}"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                      />
                                                                             </div>
@@ -434,7 +434,7 @@
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <input type="text" name="harita_en"
-                                                                                    id="title_tr" id="title_tr"
+                                                                                    id="title_tr" id="title_tr" value="{{ $data_en->map ?? '' }}"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                      />
                                                                             </div>

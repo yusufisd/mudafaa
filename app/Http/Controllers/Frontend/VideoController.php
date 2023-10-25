@@ -36,11 +36,14 @@ class VideoController extends Controller
             if(!$data) return redirect("/");
             $onceki = Video::where('id','<',$data->id)->first();
             $sonraki = Video::where('id','>',$data->id)->first();
+            $other = Video::whereNot('link',$link)->get();
                 
         } else {
             $data = EnVideo::where('link', $link)->first();
             $onceki = EnVideo::where('id','<',$data->id)->first();
             $sonraki = EnVideo::where('id','>',$data->id)->first();
+            $other = EnVideo::whereNot('link',$link)->get();
+
         }
 
         $emojies = [
@@ -79,7 +82,7 @@ class VideoController extends Controller
             \Illuminate\Support\Facades\Cookie::queue(\Illuminate\Support\Facades\Cookie::make('video', json_encode($readCheck), 30));
         }
 
-        return view('frontend.video.detail', compact('data', 'emojies','onceki','sonraki'));
+        return view('frontend.video.detail', compact('data', 'emojies','onceki','sonraki','other'));
     }
 
     public function category_list($link)

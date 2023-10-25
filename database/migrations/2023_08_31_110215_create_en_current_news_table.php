@@ -20,7 +20,7 @@ return new class extends Migration
             $table->longText('description');
             $table->string('image');
             $table->string('mobil_image')->nullable();
-            $table->integer('category_id');
+            $table->string('category_id');
             $table->integer('author_id');
             $table->integer('status')->default(1);
             $table->string('link');

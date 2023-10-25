@@ -39,6 +39,7 @@ class HomeController extends Controller
             $second_cat = CurrentNewsCategory::whereNot('id',$first_cat->id)->orderBy('id','asc')->first();
             $third_cat = CurrentNewsCategory::whereNot('id',$first_cat->id)->whereNot('id',$second_cat->id)->first();
 
+
             $data = CurrentNews::get();
             foreach($data as $item){
                 if(in_array($first_cat->id,$item->category_id)){
@@ -46,6 +47,7 @@ class HomeController extends Controller
                 }
                 break;
             }
+
 
             foreach($data as $item){
                 if(in_array($second_cat->id,$item->category_id)){
@@ -61,14 +63,14 @@ class HomeController extends Controller
                 }
             }
 
+
             $ilk_kategori_icerikleri = CurrentNews::where('category_id',$first_cat->id)->whereNot('id',1)->get();
-            $ucuncu_kategori_icerigi = CurrentNews::where('category_id',$third_cat->id)->latest()->first();
-            $cat1_news1 = CurrentNews::where('category_id',$first_cat->id)->orderBy('id','asc')->take(3)->get();
-            $cat1_news2 = CurrentNews::where('category_id',$first_cat->id)->orderBy('id','desc')->take(3)->get();
-            $cat2_news1 = CurrentNews::where('category_id',$second_cat->id)->orderBy('id','asc')->take(3)->get();
-            $cat2_news2 = CurrentNews::where('category_id',$second_cat->id)->orderBy('id','desc')->take(3)->get();
-            $cat3_news1 = CurrentNews::where('category_id',$third_cat->id)->orderBy('id','asc')->take(3)->get();
-            $cat3_news2 = CurrentNews::where('category_id',$third_cat->id)->orderBy('id','desc')->take(3)->get();
+            $cat1_news1 = CurrentNews::whereJsonContains('category_id',$first_cat->id)->orderBy('id','asc')->take(3)->get();
+            $cat1_news2 = CurrentNews::whereJsonContains('category_id',$first_cat->id)->orderBy('id','desc')->take(3)->get();
+            $cat2_news1 = CurrentNews::whereJsonContains('category_id',$second_cat->id)->orderBy('id','asc')->take(3)->get();
+            $cat2_news2 = CurrentNews::whereJsonContains('category_id',$second_cat->id)->orderBy('id','desc')->take(3)->get();
+            $cat3_news1 = CurrentNews::whereJsonContains('category_id',$third_cat->id)->orderBy('id','asc')->take(3)->get();
+            $cat3_news2 = CurrentNews::whereJsonContains('category_id',$third_cat->id)->orderBy('id','desc')->take(3)->get();
 
             $activity = Activity::latest()->take(4)->get();
 
@@ -96,6 +98,7 @@ class HomeController extends Controller
             $second_cat = EnCurrentNewsCategory::whereNot('id',$first_cat->id)->orderBy('id','asc')->first();
             $third_cat = EnCurrentNewsCategory::whereNot('id',$first_cat->id)->whereNot('id',$second_cat->id)->first();
 
+
             $data = EnCurrentNews::get();
             foreach($data as $item){
                 if(in_array($first_cat->id,$item->category_id)){
@@ -120,12 +123,12 @@ class HomeController extends Controller
 
 
             $ilk_kategori_icerikleri = EnCurrentNews::where('category_id',$first_cat->id)->whereNot('id',1)->get();
-            $cat1_news1 = EnCurrentNews::where('category_id',$first_cat->id)->orderBy('id','asc')->take(3)->get();
-            $cat1_news2 = EnCurrentNews::where('category_id',$first_cat->id)->orderBy('id','desc')->take(3)->get();
-            $cat2_news1 = EnCurrentNews::where('category_id',$second_cat->id)->orderBy('id','asc')->take(3)->get();
-            $cat2_news2 = EnCurrentNews::where('category_id',$second_cat->id)->orderBy('id','desc')->take(3)->get();
-            $cat3_news1 = EnCurrentNews::where('category_id',$third_cat->id)->orderBy('id','asc')->take(3)->get();
-            $cat3_news2 = EnCurrentNews::where('category_id',$third_cat->id)->orderBy('id','desc')->take(3)->get();
+            $cat1_news1 = EnCurrentNews::whereJsonContains('category_id',$first_cat->id)->orderBy('id','asc')->take(3)->get();
+            $cat1_news2 = EnCurrentNews::whereJsonContains('category_id',$first_cat->id)->orderBy('id','desc')->take(3)->get();
+            $cat2_news1 = EnCurrentNews::whereJsonContains('category_id',$second_cat->id)->orderBy('id','asc')->take(3)->get();
+            $cat2_news2 = EnCurrentNews::whereJsonContains('category_id',$second_cat->id)->orderBy('id','desc')->take(3)->get();
+            $cat3_news1 = EnCurrentNews::whereJsonContains('category_id',$third_cat->id)->orderBy('id','asc')->take(3)->get();
+            $cat3_news2 = EnCurrentNews::whereJsonContains('category_id',$third_cat->id)->orderBy('id','desc')->take(3)->get();
 
 
             $activity = EnActivity::latest()->take(4)->get();

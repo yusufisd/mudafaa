@@ -364,10 +364,10 @@
                                                             </a>
                                                         </div>
                                                         <div class="post-content">
-                                                            <a href="{{ route('front.currentNewsCategory.list', $item->Category->link) }}"
-                                                                style="background-color: {{ $item->Category->color_code != null ? $item->Category->color_code : '#749f43' }}"
+                                                            <a href="{{ route('front.currentNewsCategory.list', $item->Category()[0]->link) }}"
+                                                                style="background-color: {{ $item->Category()[0]->color_code != null ? $item->Category()[0]->color_code : '#749f43' }}"
                                                                 class="rt-cat-primary restricted_category_title">
-                                                                {{ $item->Category->title }} </a>
+                                                                {{ $item->Category()[0]->title }} </a>
                                                             <h4 class="post-title">
                                                                 <a href="{{ route('front.currentNews.detail', $item->link) }}"
                                                                     class="section_4_title_style_2">
@@ -408,9 +408,9 @@
                                                             </a>
                                                         </div>
                                                         <div class="post-content">
-                                                            <a href="{{ route('front.currentNewsCategory.list', $item->Category->link) }}"
-                                                                style="background-color: {{ $item->Category->color_code != null ? $item->Category->color_code : '#749f43' }}"
-                                                                class="rt-cat-primary restricted_category_title">{{ $item->Category->title }}</a>
+                                                            <a href="{{ route('front.currentNewsCategory.list', $item->Category()[0]->link) }}"
+                                                                style="background-color: {{ $item->Category()[0]->color_code != null ? $item->Category()[0]->color_code : '#749f43' }}"
+                                                                class="rt-cat-primary restricted_category_title">{{ $item->Category()[0]->title }}</a>
                                                             <h4 class="post-title">
                                                                 <a href="{{ route('front.currentNews.detail', $item->link) }}"
                                                                     class="section_4_title_style_2">
@@ -500,10 +500,10 @@
                                                             </a>
                                                         </div>
                                                         <div class="post-content">
-                                                            @if ($item->Category != null)
-                                                                <a href="{{ route('front.currentNewsCategory.list', $item->Category->link) }}"
-                                                                    style="background-color: {{ $item->Category->color_code != null ? $item->Category->color_code : '#749f43' }}"
-                                                                    class="rt-cat-primary restricted_category_title">{{ $item->Category->title }}</a>
+                                                            @if ($item->Category()[0] != null)
+                                                                <a href="{{ route('front.currentNewsCategory.list', $item->Category()[0]->link) }}"
+                                                                    style="background-color: {{ $item->Category()[0]->color_code != null ? $item->Category()[0]->color_code : '#749f43' }}"
+                                                                    class="rt-cat-primary restricted_category_title">{{ $item->Category()[0]->title }}</a>
                                                             @endif
                                                             <h4 class="post-title">
                                                                 <a href="{{ route('front.currentNews.detail', $item->link) }}"
@@ -542,10 +542,10 @@
                                                             </a>
                                                         </div>
                                                         <div class="post-content">
-                                                            @if ($item->Category != null)
-                                                                <a href="{{ route('front.currentNewsCategory.list', $item->Category->link) }}"
-                                                                    style="background-color: {{ $item->Category->color_code != null ? $item->Category->color_code : '#749f43' }}"
-                                                                    class="rt-cat-primary restricted_category_title">{{ $item->Category->title }}</a>
+                                                            @if ($item->Category()[0] != null)
+                                                                <a href="{{ route('front.currentNewsCategory.list', $item->Category()[0]->link) }}"
+                                                                    style="background-color: {{ $item->Category()[0]->color_code != null ? $item->Category()[0]->color_code : '#749f43' }}"
+                                                                    class="rt-cat-primary restricted_category_title">{{ $item->Category()[0]->title }}</a>
                                                             @endif
                                                             <h4 class="post-title">
                                                                 <a href="{{ route('front.currentNews.detail', $item->link) }}"
@@ -649,10 +649,10 @@
                                                             </a>
                                                         </div>
                                                         <div class="post-content">
-                                                            <a href="{{ route('front.currentNewsCategory.list', $item->Category->link) }}"
-                                                                style="background-color: {{ $item->Category->color_code != null ? $item->Category->color_code : '#749f43' }}"
+                                                            <a href="{{ route('front.currentNewsCategory.list', $item->Category()[0]->link) }}"
+                                                                style="background-color: {{ $item->Category()[0]->color_code != null ? $item->Category()[0]->color_code : '#749f43' }}"
                                                                 class="rt-cat-primary restricted_category_title">
-                                                                {{ $item->Category->title }} </a>
+                                                                {{ $item->Category()[0]->title }} </a>
                                                             <h4 class="post-title">
                                                                 <a href="{{ route('front.currentNews.detail', $item->link) }}"
                                                                     class="section_4_title_style_2">
@@ -693,10 +693,10 @@
                                                             </a>
                                                         </div>
                                                         <div class="post-content">
-                                                            <a href="{{ route('front.currentNewsCategory.list', $item->Category->link) }}"
-                                                                style="background-color: {{ $item->Category->color_code != null ? $item->Category->color_code : '#749f43' }}"
+                                                            <a href="{{ route('front.currentNewsCategory.list', $item->Category()[0]->link) }}"
+                                                                style="background-color: {{ $item->Category()[0]->color_code != null ? $item->Category()[0]->color_code : '#749f43' }}"
                                                                 class="rt-cat-primary restricted_category_title">
-                                                                {{ $item->Category->title }} </a>
+                                                                {{ $item->Category()[0]->title }} </a>
                                                             <h4 class="post-title">
                                                                 <a href="{{ route('front.currentNews.detail', $item->link) }}"
                                                                     class="section_4_title_style_2">
@@ -769,7 +769,7 @@
                         <div class="rt-post-grid grid-meta">
                             <div class="post-img">
                                 <a href="fair_detail.html">
-                                    <img src="{{ $item->image }}" alt="post" width="551" height="431">
+                                    <img src="/{{ $item->image == null ? 'media/gallery/post-md_42.jpg' : $item->image }}" alt="post" width="551" height="431">
                                 </a>
                             </div>
                             <div class="post-content">
@@ -984,6 +984,7 @@
                                 <span class="rt-section-dot"></span>
                                 <span class="rt-section-line"></span>
                             </h2>
+                            @if($anket)
                             <div class="rt-post-grid">
                                 <div class="post-img">
                                     <a href="single-post1.html" class="img-link">
@@ -1024,6 +1025,9 @@
                                     @endif
                                 </form>
                             </div>
+                            @else
+                            <p>Anket bulunamadı</p>
+                            @endif
                         </div>
                     </div>
                 </div>

@@ -31,8 +31,9 @@
         </div>
         <!--end::Toolbar-->
         <!--begin::Content-->
-        <form action="{{ route('admin.anket.update',$data_tr->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.anket.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
+        
 
             <div id="kt_app_content" class="app-content flex-column-fluid">
                 <!--begin::Content container-->

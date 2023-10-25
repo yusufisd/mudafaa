@@ -116,12 +116,12 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-clock icon"></i>
-                                                                {{ $item->read_time }}
+                                                                {{ $item->read_time }} DK
                                                             </span>
                                                         </li>
                                                         <li>
                                                             <span class="rt-meta">
-                                                                <i class="far fa-eye icon"></i>
+                                                                <i class="fa-solid fa-eye"></i>
                                                                 {{ $item->view_counter }}
                                                             </span>
                                                         </li>

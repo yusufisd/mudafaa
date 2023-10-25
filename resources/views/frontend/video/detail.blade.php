@@ -68,10 +68,10 @@
                     <div class="col-12">
                         <div class="rt-post-overlay rt-post-overlay-xl single-post-overlay">
                             <div class="post-img">
-                                <a href="" class="img-link">
+                                <a href="{{ $data->youtube }}" class="img-link">
                                     <img src="/{{ $data->image }}" alt="post-ex_7" width="1320" height="620">
                                 </a>
-                                <a href="http://www.youtube.com/watch?v=1iIZeIy7TqM"
+                                <a href="{{ $data->youtube }}"
                                     class="play-btn play-btn-white_xl rt-play-over md-right">
                                     <i class="fas fa-play"></i>
                                 </a>
@@ -469,15 +469,20 @@
                                     <div class="swiper-container rt-post-slider-style-5">
                                         <div class="swiper-wrapper">
 
+
+                                            @foreach ($other as $item)
+
+                                            
+                                                
                                             <div class="swiper-slide">
                                                 <div class="slide-item">
                                                     <div class="rt-post-grid grid-meta">
                                                         <div class="post-img">
-                                                            <a href="">
-                                                                <img src="media/gallery/post-md_42.jpg" alt="post"
+                                                            <a href="{{ $item->youtube }}">
+                                                                <img src="/{{ $item->image }}" alt="post"
                                                                     width="551" height="431">
                                                             </a>
-                                                            <a href="http://www.youtube.com/watch?v=1iIZeIy7TqM"
+                                                            <a href="{{ $item->youtube }}"
                                                                 class="play-btn play-btn-white_lg rt-play-over">
                                                                 <i class="fas fa-play"></i>
                                                             </a>
@@ -486,96 +491,8 @@
                                                 </div>
                                             </div>
 
-                                            <!-- end swiper slide -->
-                                            <div class="swiper-slide">
-                                                <div class="slide-item">
-                                                    <div class="rt-post-grid grid-meta">
-                                                        <div class="post-img">
-                                                            <a href="">
-                                                                <img src="media/gallery/post-md_43.jpg" alt="post"
-                                                                    width="551" height="431">
-                                                            </a>
-                                                            <a href="http://www.youtube.com/watch?v=1iIZeIy7TqM"
-                                                                class="play-btn play-btn-white_lg rt-play-over">
-                                                                <i class="fas fa-play"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- end swiper slide -->
-
-                                            <div class="swiper-slide">
-                                                <div class="slide-item">
-                                                    <div class="rt-post-grid grid-meta">
-                                                        <div class="post-img">
-                                                            <a href="">
-                                                                <img src="media/gallery/post-md_44.jpg" alt="post"
-                                                                    width="551" height="431">
-                                                            </a>
-                                                            <a href="http://www.youtube.com/watch?v=1iIZeIy7TqM"
-                                                                class="play-btn play-btn-white_lg rt-play-over">
-                                                                <i class="fas fa-play"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- end swiper slide -->
-
-                                            <div class="swiper-slide">
-                                                <div class="slide-item">
-                                                    <div class="rt-post-grid grid-meta">
-                                                        <div class="post-img">
-                                                            <a href="">
-                                                                <img src="media/gallery/post-md_45.jpg" alt="post"
-                                                                    width="551" height="431">
-                                                            </a>
-                                                            <a href="http://www.youtube.com/watch?v=1iIZeIy7TqM"
-                                                                class="play-btn play-btn-white_lg rt-play-over">
-                                                                <i class="fas fa-play"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- end swiper slide -->
-
-                                            <div class="swiper-slide">
-                                                <div class="slide-item">
-                                                    <div class="rt-post-grid grid-meta">
-                                                        <div class="post-img">
-                                                            <a href="">
-                                                                <img src="media/gallery/post-md_46.jpg" alt="post"
-                                                                    width="551" height="431">
-                                                            </a>
-                                                            <a href="http://www.youtube.com/watch?v=1iIZeIy7TqM"
-                                                                class="play-btn play-btn-white_lg rt-play-over">
-                                                                <i class="fas fa-play"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- end swiper slide -->
-
-                                            <div class="swiper-slide">
-                                                <div class="slide-item">
-                                                    <div class="rt-post-grid grid-meta">
-                                                        <div class="post-img">
-                                                            <a href="">
-                                                                <img src="media/gallery/post-md_47.jpg" alt="post"
-                                                                    width="551" height="431">
-                                                            </a>
-                                                            <a href="http://www.youtube.com/watch?v=1iIZeIy7TqM"
-                                                                class="play-btn play-btn-white_lg rt-play-over">
-                                                                <i class="fas fa-play"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- end swiper slide -->
+                                            @endforeach
+                                          
 
 
                                         </div>

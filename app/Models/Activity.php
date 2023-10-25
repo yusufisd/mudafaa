@@ -11,7 +11,9 @@ class Activity extends Model
 {
     use HasFactory, SoftDeletes;
     protected $guarded = [];
-    protected $casts = [];
+    protected $casts = [
+        "start_time" => 'datetime'
+    ];
 
     public function Category()
     {

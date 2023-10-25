@@ -47,7 +47,7 @@ class InterviewImport implements ToCollection, WithStartRow
                     $interview->read_time = $read_time_tr;
                     $interview->link = $slug_tr;
                     $interview->live_time = date('Y-m-d', strtotime($row[40]));
-                    $interview->image = 'assets/uploads/interview/'.$row[41];
+                    $interview->image = 'assets/uploads/interview/roportaj/'.$row[41];
                     $interview->save();
 
 

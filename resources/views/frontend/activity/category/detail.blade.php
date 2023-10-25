@@ -48,7 +48,7 @@
                                         <div class="rt-post-grid grid-meta">
                                             <div class="post-img">
                                                 <a href="{{ route('front.activity.detail', $item->link) }}">
-                                                    <img src="/{{ $item->image }}" alt="post" width="551"
+                                                    <img src="/{{ $item->image == null ? 'media/gallery/post-md_42.jpg' : $item->image }}" alt="post" width="551"
                                                         height="431">
                                                 </a>
                                             </div>
