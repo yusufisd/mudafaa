@@ -1022,10 +1022,6 @@
                                         <button id="submitAnket" type="button" class="rt-submit-btn">
                                             Gönder
                                         </button>
-                                    @else
-                                        <button id="votedAnket" type="button" class="rt-submit-btn">
-                                            Cevap Gönderildi
-                                        </button>
                                     @endif
                                 </form>
                             </div>
@@ -1635,8 +1631,7 @@
 
         // submit_survey_btn
         $('#submitAnket').on("click", function(e) {
-            $("#submitAnket").prop('id', 'okanket');
-            $("#submitAnket").html("Cevap Gönderildi");
+            $("#submitAnket").remove();
 
             let anket  = $("#anket").val();
             let answer = 'okx';
