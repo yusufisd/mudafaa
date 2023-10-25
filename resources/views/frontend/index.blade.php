@@ -21,7 +21,23 @@
         #story_container .swiper-content {
             margin-top: 0.5rem;
         }
+
+        .trueAnswer {
+            background-color: #749f43 !important;
+            z-index: 999 !important;
+        }
+
+        .falseAnswer {
+            background-color: #a43939 !important;
+            z-index: 999 !important;
+        }
+
+        .selectedAnswer {
+            background-color: #e17f10 !important;
+            z-index: 999 !important;
+        }
     </style>
+
 @endsection
 @section('content')
 
@@ -30,7 +46,7 @@
         <div id="story_container" class="container">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-
+                    @if(count($cats))
                     @foreach ($cats as $variable)
                         <div class="swiper-slide">
                             <a href="{{ route('front.currentNews.detail', $variable->link) }}">
@@ -47,7 +63,7 @@
                             </div>
                         </div>
                     @endforeach
-
+                    @endifŒ
 
                 </div>
             </div>
@@ -918,7 +934,7 @@
                                                     if (++$a == 3) {
                                                         break;
                                                     }
-                                                    
+
                                                     ?>
 
                                                     <a href="{{ route('front.currentNewsCategory.list', $Category->link) }}"
@@ -984,13 +1000,15 @@
                                     </h3>
                                 </div>
                                 <form class="vote-status-box">
-
+                                    <input id="anket" type="hidden" value="{{ $anket->id }}">
                                     @foreach ($anket->cevaplar() as $cevap)
-                                        
 
-                                    <div class="vote-status-box-item">
+
+                                    <div class="vote-status-box-item box-{{ $cevap->id }} {{ $anket->isVoted() != null ? ($anket->isVoted()->answer_id == $cevap->id ? ($cevap->is_true ? 'trueAnswer' : 'falseAnswer')  : ($cevap->is_true ? 'trueAnswer' : '')) : '' }}" onclick="selectOpt({{ $cevap->id }})">
                                         <div class="radio-box">
-                                            <input type="radio" value="{{ $cevap->answer }}" name="vote" id="{{ $cevap->id }}">
+                                            <input type="radio"
+                                                   {{ $anket->isVoted() != null && $anket->isVoted()->answer_id == $cevap->id ? 'checked' : '' }}
+                                                   class="aknetOpts" value="{{ $cevap->answer }}" name="vote" id="{{ $cevap->id }}">
                                             <label class="custom-radio-circle" for="{{ $cevap->id }}"></label>
                                             <label for="{{ $cevap->id }}">{{ $cevap->answer }}</label>
                                         </div>
@@ -1000,11 +1018,15 @@
                                     </div>
 
                                     @endforeach
-
-                                   
-                                    <button id="submit_survey_btn" class="rt-submit-btn">
-                                        Gönder
-                                    </button>
+                                    @if($anket->isVoted() == null)
+                                        <button id="submitAnket" type="button" class="rt-submit-btn">
+                                            Gönder
+                                        </button>
+                                    @else
+                                        <button id="votedAnket" type="button" class="rt-submit-btn">
+                                            Cevap Gönderildi
+                                        </button>
+                                    @endif
                                 </form>
                             </div>
                         </div>
@@ -1585,59 +1607,10 @@
         });
 
 
-        // submit_survey_btn
-        $('#submit_survey_btn').one("click", function(e) {
-            e.preventDefault();
-            e.currentTarget.hidden = true;
-            const selectedRadio = $('input[name="vote"]:checked');
-            console.log(selectedRadio);
-            if (selectedRadio) {
-                var selectedId = selectedRadio[0].id;
-                if (selectedId === 'vote400') {
-                    console.log(selectedRadio.closest('.vote-status-box-item'));
-                    selectedRadio.closest('.vote-status-box-item').css({
-                        "background": "#749f43",
-                        "z-index": "999"
-                    })
-                } else {
-                    console.log(selectedRadio.closest('.vote-status-box-item'));
-                    selectedRadio.closest('.vote-status-box-item').css({
-                        "background": "#db4242",
-                        "z-index": "999"
-                    });
-                    $('input#vote400').closest('.vote-status-box-item').css({
-                        "background": "#749f43",
-                        "z-index": "999"
-                    });
-                }
-            }
-        });
-
         function anket() {
             var soru_id = document.getElementById('question_id').value;
             var cevap = document.getElementByClassname('vote').value;
             console.log(soru_id);
-            $.ajax({
-
-                headers: {
-                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
-                },
-                url: "/anket/ekle",
-                type: "post",
-                request: {
-                    "question_id": soru_id,
-                    "cevap": $cevapi
-                },
-                dataType: "json",
-                success: function(response) {
-                    if (response.status == "success") {
-                        console.log(data);
-                    } else {
-                        alert(response.message);
-                    }
-                }
-
-            })
 
         }
 
@@ -1650,5 +1623,66 @@
                 prevEl: '.swiper-button-prev',
             },
         });
+
+        function selectOpt(id){
+            $(".aknetOpts").each(() => {
+                $(this).prop('checked', false);
+            });
+            $("#" + id).prop('checked', true);
+        }
+    </script>
+    <script>
+
+        // submit_survey_btn
+        $('#submitAnket').on("click", function(e) {
+            $("#submitAnket").prop('id', 'okanket');
+            $("#submitAnket").html("Cevap Gönderildi");
+
+            let anket  = $("#anket").val();
+            let answer = 'okx';
+            let options = $(".aknetOpts");
+            let selectedRadio = "";
+            for(var i = 0; i < options.length; i++){
+                if(options[i].checked == true){
+                    answer = options[i].id;
+                    selectedRadio = options[i];
+                }
+            }
+
+            if(answer != ''){
+                answer = parseInt(answer);
+                $.ajax({
+                    headers: {
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                    },
+                    url: "{{ env('APP_URL') }}/anket/ekle",
+                    type: "post",
+                    data: {
+                        "question_id": anket,
+                        "cevap": answer
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.status == "success") {
+                            console.log(response.true_answer, answer);
+                            console.log(response.true_answer == answer);
+                            if(response.true_answer == answer){
+                                $(".box-" + answer).addClass("trueAnswer");
+                            }else{
+                                $(".box-" + response.true_answer).addClass('trueAnswer');
+                                $(".box-" + answer ).addClass('falseAnswer');
+                            }
+                        } else {
+                            alert(response.message);
+                        }
+
+                    }
+
+                })
+
+            }
+
+        });
+
     </script>
 @endsection

@@ -78,7 +78,7 @@ class HomeController extends Controller
             $videos = Video::latest()->take(4)->get();
 
             $interview = Interview::latest()->take(4)->get();
-            
+
 
             $anket = Anket::inRandomOrder()->first();
 
@@ -118,7 +118,7 @@ class HomeController extends Controller
                 }
             }
 
-            
+
             $ilk_kategori_icerikleri = EnCurrentNews::where('category_id',$first_cat->id)->whereNot('id',1)->get();
             $cat1_news1 = EnCurrentNews::where('category_id',$first_cat->id)->orderBy('id','asc')->take(3)->get();
             $cat1_news2 = EnCurrentNews::where('category_id',$first_cat->id)->orderBy('id','desc')->take(3)->get();
@@ -126,7 +126,7 @@ class HomeController extends Controller
             $cat2_news2 = EnCurrentNews::where('category_id',$second_cat->id)->orderBy('id','desc')->take(3)->get();
             $cat3_news1 = EnCurrentNews::where('category_id',$third_cat->id)->orderBy('id','asc')->take(3)->get();
             $cat3_news2 = EnCurrentNews::where('category_id',$third_cat->id)->orderBy('id','desc')->take(3)->get();
-            
+
 
             $activity = EnActivity::latest()->take(4)->get();
 

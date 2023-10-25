@@ -3,15 +3,39 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Anket;
 use App\Models\AnketPivot;
 use App\Models\Answer;
+use App\Models\EnAnket;
+use App\Models\EnAnswer;
 use Illuminate\Http\Request;
 
 class AnketController extends Controller
 {
-    public function anketStore($request)
+    public function anketStore(Request $request)
     {
-        $cevap = Answer::where('question_id',$request->question_id)->where('answer',$request->cevap)->first();
+        $locale = session('applocale') ?? config('app.fallback_locale');
+        if ($locale == "tr"){
+            $check = Anket::find($request->question_id);
+            $cevap = Answer::find($request->cevap);
+            $true_answer = Answer::where('question_id', $request->question_id)->where('is_true', 1)->first();
+        }else{
+            $check = EnAnket::find($request->question_id);
+            $cevap = EnAnswer::find($request->cevap);
+            $true_answer = EnAnswer::where('question_id', $request->question_id)->where('is_true', 1)->first();
+        }
+
+        if(!$check){
+            return response()->json(["status" => "error", "message" => "Anket bulunamadı"]);
+        }
+        if (!$cevap){
+            return response()->json(["status" => "error", "message" => "Cevap bulunumadı"]);
+        }
+        if (!$true_answer){
+            return response()->json(["status" => "error", "message" => "Doğru cevap bulunumadı"]);
+        }
+
+
         $ip = 0;
         if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
             $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
@@ -19,12 +43,18 @@ class AnketController extends Controller
             $ip = $_SERVER['REMOTE_ADDR'];
         }
 
-        $pivot = AnketPivot::create([
-            "question_id" => $request->question_id,
-            "answer_id" => $cevap->id,
-            "ip" => $ip,
-        ]);
+        $pivotCheck = AnketPivot::where('question_id', $request->question_id)
+            ->where('ip', $ip)->first();
 
-        return $pivot;
+        if (!$pivotCheck){
+            $pivot = AnketPivot::create([
+                "question_id" => $request->question_id,
+                "answer_id" => $cevap->id,
+                "ip" => $ip,
+            ]);
+            return response()->json(["status" => "success", "true_answer" => $true_answer->id]);
+        }
+
+        return response()->json(["status" => "error", "message" => "zaten cevapladınız"]);
     }
 }

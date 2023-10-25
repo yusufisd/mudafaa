@@ -15,4 +15,14 @@ class Anket extends Model
         $data = Answer::where('question_id',$this->id)->orderBy('id','asc')->get();
         return $data;
     }
+
+    public function isVoted(){
+        $ip = 0;
+        if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        return AnketPivot::where('ip', $ip)->where('question_id', $this->id)->first();
+    }
 }
