@@ -47,6 +47,7 @@ class DictionaryImport implements ToCollection, WithStartRow
                     $dict->seo_description = $row[0];
                     $dict->live_date = $now;
                     $dict->author = 1;
+                    $dict->image = 'assets/uploads/dictionary/sozluk/' . $row[6];
                     $dict->save();
 
                     $dict_en = new EnDictionary();
@@ -59,6 +60,7 @@ class DictionaryImport implements ToCollection, WithStartRow
                     $dict_en->seo_description = $row[1];
                     $dict_en->live_date = $now;
                     $dict_en->author = 1;
+                    $dict_en->image = 'assets/uploads/dictionary/sozluk/' . $row[6];
                     $dict_en->dictionary_id = $dict->id;
                     $dict_en->save();
                 }
