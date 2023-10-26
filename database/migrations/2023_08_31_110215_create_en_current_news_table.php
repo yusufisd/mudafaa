@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('en_current_news', function (Blueprint $table) {
             $table->id();
+            $table->date('live_time');
             $table->string('title');
             $table->integer('headline')->default(1);
             $table->integer('read_time')->default(3);
@@ -28,7 +29,6 @@ return new class extends Migration
             $table->longText('seo_description');
             $table->string('seo_key');
             $table->integer('view_counter')->default(0);
-            $table->integer('seo_statu')->default(1);
             $table->integer('currentNews_id');
             $table->timestamps();
         });

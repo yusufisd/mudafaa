@@ -73,6 +73,7 @@ class CurrentNewsImport implements ToCollection, WithStartRow
                     $news_en->short_description = $row[5];
                     $news_en->description = $row[7];
                     $news_en->link = $link_en;
+                    $news_en->live_time = date("Y-m-d H:i:s", \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[8])->getTimestamp());
                     $news_en->image = 'assets/uploads/currentNews/haber-gorsel/' . $row[12];
                     $news_en->seo_title = $row[3];
                     $news_en->seo_description = trim($row[5]);

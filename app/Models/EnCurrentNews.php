@@ -10,7 +10,8 @@ class EnCurrentNews extends Model
     use HasFactory;
     protected $guarded = [];
     protected $casts = [
-        "category_id" => "array"
+        "category_id" => "array",
+        "live_time" => 'datetime'
     ];
 
     public function Category()
