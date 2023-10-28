@@ -14,7 +14,7 @@
     <meta property="og:title" content="@yield('stitle')">
     <meta property="og:description" content="@yield('sdescription')">
     <meta property="og:image" content="@yield('simage')">
-
+    <meta name="robots" content="index, follow">
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/frontend/media/favicon.png') }}">
