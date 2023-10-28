@@ -184,7 +184,7 @@
                                                     </li>
                                                     <li>
                                                         <a class="tw" style="background-color: black" target="_blank"
-                                                            href="https://twitter.com/">
+                                                            href="https://twitter.com/intent/tweet?text={{ request()->url() }}">
                                                             <i class="fa-brands fa-square-x-twitter twitter"></i>
                                                         </a>
                                                     </li>
