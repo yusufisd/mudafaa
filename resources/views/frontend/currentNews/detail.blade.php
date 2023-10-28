@@ -188,22 +188,12 @@
                                                             <i class="fa-brands fa-square-x-twitter twitter"></i>
                                                         </a>
                                                     </li>
-                                                    <li>
-                                                        <a class="yu" target="_blank" href="https://www.youtube.com/">
-                                                            <i class="social-icon fab fa-youtube"></i>
-                                                        </a>
-                                                    </li>
+                                                    
                                                     <li>
                                                         <a class="fb" target="_blank" href="https://linkedin.com/sharing/share-offsite/?url={{ request()->url() }}">
                                                             <i class="social-icon fab fa-linkedin"></i>
                                                         </a>
                                                     </li>
-                                                    <li>
-                                                        <a class="dw" target="_blank" href="https://cloud.google.com/">
-                                                            <i class="social-icon fas fa-cloud"></i>
-                                                        </a>
-                                                    </li>
-
                                                     <li>
                                                         <a class="wh" target="_blank" href="https://web.whatsapp.com/send?text={{ $data->title }} {{ request()->url() }}">
                                                             <i class="social-icon fab fa-whatsapp"></i>

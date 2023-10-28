@@ -1,5 +1,10 @@
 @extends('frontend.master')
-@section('title',$data->title)
+@section('title', $data->title)
+@section('meta-title', $data->title)
+@section('description', $data->short_description)
+@section('simage', asset($data->image))
+@section('stitle', $data->title)
+@section('sdescription', $data->short_description)
 
 @section('css')
     <style>
@@ -14,6 +19,7 @@
                 min-width: 500px;
             }
         }
+
         .post-body:first-letter {
             float: left;
             font-weight: bold;
@@ -26,6 +32,7 @@
             padding: 2%;
             margin-left: 2%
         }
+
         .tag-link:hover {
             background-color: #749f43;
             color: white;
@@ -76,39 +83,41 @@
         <!-- End inner page Banner -->
 
         <!-- Start single-post-banner -->
-        <div class="single-post-banner rt-gradient-overaly" data-bg-image="/{{ $data->image == null ? 'media/banner/banner_3.jpg' : $data->image }}">
+        <div class="single-post-banner rt-gradient-overaly"
+            data-bg-image="/{{ $data->image == null ? 'media/banner/banner_3.jpg' : $data->image }}">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-9 col-lg-10 mx-auto">
                         <div class="single-post-content">
-                            <span style="background-color: #749f43" class="fashion">{{$data->Category->title}}</span>
+                            <span style="background-color: #749f43" class="fashion">{{ $data->Category->title }}</span>
                             <h2 class="post-title">
-                                {{$data->title}}
+                                {{ $data->title }}
                             </h2>
                             <div class="post-meta">
                                 <ul>
                                     <li>
                                         <span class="rt-meta">
                                             <i class="far fa-calendar-alt icon"></i>
-                                            {{substr($data->start_time,8,2)}} - {{(substr($data->start_time,5,2))}} - {{substr($data->start_time,0,4)}}
+                                            {{ substr($data->start_time, 8, 2) }} - {{ substr($data->start_time, 5, 2) }} -
+                                            {{ substr($data->start_time, 0, 4) }}
                                         </span>
                                     </li>
                                     <li>
                                         <span class="rt-meta">
                                             <i class="fas fa-clock icon"></i>
-                                            {{substr($data->start_time,11,5)}} - {{substr($data->finish_time,11,5)}}
+                                            {{ substr($data->start_time, 11, 5) }} - {{ substr($data->finish_time, 11, 5) }}
                                         </span>
                                     </li>
                                     <li>
                                         <span class="rt-meta">
                                             <i class="fas fa-map-marker-alt icon"></i>
-                                            {{$data->Country->name}} / {{$data->city}}
+                                            {{ $data->Country->name }} / {{ $data->city }}
                                         </span>
                                     </li>
                                     <li>
                                         <span class="rt-meta">
                                             <i class="fas fa-handshake icon"></i>
-                                            {{$data->address}}
+                                            {{ $data->address }}
                                         </span>
                                     </li>
                                 </ul>
@@ -136,36 +145,24 @@
 
                                     <ul class="social-share-style-7">
                                         <li>
-                                            <a class="fb" target="_blank" href="https://www.facebook.com/">
+                                            <a class="fb" target="_blank"
+                                                href="https://www.facebook.com/sharer/sharer.php?u={{ request()->url() }}&text={{ $data->title }}">
                                                 <i class="social-icon fab fa-facebook-f"></i>
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="tw" target="_blank" href="https://twitter.com/">
+                                            <a class="tw" target="_blank"
+                                                href="https://twitter.com/intent/tweet?text={{ $data->title }}&url={{ request()->url() }}">
                                                 <i style="color: black" class="fa-brands fa-square-x-twitter twitter"></i>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a class="yu" target="_blank" href="https://www.youtube.com/">
-                                                <i class="social-icon fab fa-youtube"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="dr" target="_blank" href="https://dribbble.com/">
-                                                <i class="social-icon fab fa-dribbble"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="dw" target="_blank" href="https://cloud.google.com/">
-                                                <i class="social-icon fas fa-cloud"></i>
-                                            </a>
-                                        </li>
+
                                     </ul>
                                 </div>
                             </div>
                             <!-- strat post body -->
-                            <div class="post-body mb--40 " style="text-align: justify; color:black">
-                                {!!$data->description!!}
+                            <div class="post-body mb--40" style="text-align: justify; color:black">
+                                {!! $data->description !!}
                             </div><br><br><br><br>
                             <!-- end post body -->
                             <!-- start social-share-box-2 -->
@@ -178,12 +175,11 @@
                                             <div class="tag-list">
 
                                                 @foreach ($data->getKeys() as $item)
-                                                    
-                                                <a href="#" class="tag-link" style="text-transform: capitalize"> {{ $item }} </a>
-
+                                                    <a href="#" class="tag-link" style="text-transform: capitalize">
+                                                        {{ $item }} </a>
                                                 @endforeach
 
-                                              
+
                                             </div>
                                         </div>
                                     </div>
@@ -194,24 +190,24 @@
                             <div class="single-content mb--20">
                                 <div class="row">
                                     <ul id="fair_links">
-                                        @if($data->ticket_link != null)
-                                        <li>
-                                            <h3>
-                                                <a href="{{$data->ticket_link}}">
-                                                    Online Bilet <i class="fas fa-angle-double-right"></i>
-                                                </a>
-                                            </h3>
-                                        </li>
+                                        @if ($data->ticket_link != null)
+                                            <li>
+                                                <h3>
+                                                    <a href="{{ $data->ticket_link }}">
+                                                        Online Bilet <i class="fas fa-angle-double-right"></i>
+                                                    </a>
+                                                </h3>
+                                            </li>
                                         @endif
 
-                                        @if($data->subscribe_form != null)
-                                        <li>
-                                            <h3>
-                                                <a href="{{$data->subscribe_form}}">
-                                                    Katılımcı Başvuru Formu <i class="fas fa-angle-double-right"></i>
-                                                </a>
-                                            </h3>
-                                        </li>
+                                        @if ($data->subscribe_form != null)
+                                            <li>
+                                                <h3>
+                                                    <a href="{{ $data->subscribe_form }}">
+                                                        Katılımcı Başvuru Formu <i class="fas fa-angle-double-right"></i>
+                                                    </a>
+                                                </h3>
+                                            </li>
                                         @endif
                                     </ul>
                                 </div>
@@ -234,35 +230,35 @@
                                                 <h6>Adres</h6>
                                                 <p class="rt-teta">
                                                     <i class="fas fa-home icon"></i>
-                                                    {{$data->address}} / {{$data->city}}
+                                                    {{ $data->address }} / {{ $data->city }}
                                                 </p>
                                             </li>
                                             <li>
                                                 <h6>E-Posta</h6>
                                                 <p class="rt-teta">
                                                     <i class="fas fa-envelope icon"></i>
-                                                    {{$data->email}}
+                                                    {{ $data->email }}
                                                 </p>
                                             </li>
                                             <li>
                                                 <h6>Telefon</h6>
                                                 <p class="rt-teta">
                                                     <i class="fas fa-phone icon"></i>
-                                                    {{$data->phone}}
+                                                    {{ $data->phone }}
                                                 </p>
-                                                
+
                                             </li>
                                             <li>
                                                 <h6>Web Site</h6>
                                                 <p class="rt-teta">
                                                     <i class="fas fa-globe icon"></i>
-                                                   {{$data->website}}
+                                                    {{ $data->website }}
                                                 </p>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="col-lg-6 grid-adress">
-                                        {{$data->map}}
+                                        {{ $data->map }}
                                     </div>
 
                                 </div>
@@ -271,8 +267,8 @@
 
                             <div class="ad-banner-img mb--40">
                                 <a href="#">
-                                    <img src="/assets/frontend/media/gallery/ad-banner_5.jpg" alt="ad-banner" width="960"
-                                        height="150">
+                                    <img src="/assets/frontend/media/gallery/ad-banner_5.jpg" alt="ad-banner"
+                                        width="960" height="150">
                                 </a>
                             </div>
 
@@ -294,7 +290,7 @@
                     <div class="col-12">
                         <div class="titile-wrapper mb--30">
 
-                            <h2 class="rt-section-heading mb-0 flex-grow-1 me-3">
+                            <h2 class="rt-section-heading flex-grow-1 mb-0 me-3">
                                 <span class="rt-section-text">Diğer Etkinlikler </span>
                                 <span class="rt-section-dot"></span>
                                 <span class="rt-section-line"></span>
@@ -313,58 +309,54 @@
                     <div class="swiper-wrapper">
 
                         @foreach ($other_activity as $item)
-                            
-
-                        <div class="swiper-slide">
-                            <div class="slide-item">
-                                <div class="rt-post-grid grid-meta">
-                                    <div class="post-img">
-                                        <a href="{{ route('front.activity.detail', $item->link) }}">
-                                            <img src="/{{ $item->image == null ? 'media/gallery/post-md_42.jpg' : $item->image }}" alt="post" width="551"
-                                                height="431">
-                                        </a>
-                                    </div>
-                                    <div class="post-content">
-                                        <a href="{{route('front.activity.categoryDetail',$item->Category->link)}}"
-                                            class="rt-cat-primary sidebar_restricted_category_title">{{ $item->Category->title }}</a>
-                                        <h3 class="post-title">
+                            <div class="swiper-slide">
+                                <div class="slide-item">
+                                    <div class="rt-post-grid grid-meta">
+                                        <div class="post-img">
                                             <a href="{{ route('front.activity.detail', $item->link) }}">
-                                                {{$item->title}}
+                                                <img src="/{{ $item->image == null ? 'media/gallery/post-md_42.jpg' : $item->image }}"
+                                                    alt="post" width="551" height="431">
                                             </a>
-                                        </h3>
-                                        <div class="post-meta">
-                                            <ul>
-                                                <li>
-                                                    <span class="rt-meta">
-                                                        <i class="far fa-calendar-alt icon"></i>
-                                                        {{ substr($item->start_time, 8, 2) }}-{{ substr($item->start_time, 5, 2) }}-{{ substr($item->start_time, 0, 4) }}
-                                                                
-                                                    </span>
-                                                </li>
-                                                <li>
-                                                    <span class="rt-meta">
-                                                        <i class="fas fa-map-marker-alt icon"></i>
-                                                        {{ $item->Country->name }}
-                                                    </span>
-                                                </li>
-                                                <li>
-                                                    <span class="rt-meta">
-                                                        <i class="fa-solid fa-eye"></i>
-                                                        {{ $item->view_counter }}
-                                                    </span>
-                                                </li>
-                                            </ul>
+                                        </div>
+                                        <div class="post-content">
+                                            <a href="{{ route('front.activity.categoryDetail', $item->Category->link) }}"
+                                                class="rt-cat-primary sidebar_restricted_category_title">{{ $item->Category->title }}</a>
+                                            <h3 class="post-title">
+                                                <a href="{{ route('front.activity.detail', $item->link) }}">
+                                                    {{ $item->title }}
+                                                </a>
+                                            </h3>
+                                            <div class="post-meta">
+                                                <ul>
+                                                    <li>
+                                                        <span class="rt-meta">
+                                                            <i class="far fa-calendar-alt icon"></i>
+                                                            {{ substr($item->start_time, 8, 2) }}-{{ substr($item->start_time, 5, 2) }}-{{ substr($item->start_time, 0, 4) }}
 
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="rt-meta">
+                                                            <i class="fas fa-map-marker-alt icon"></i>
+                                                            {{ $item->Country->name }}
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="rt-meta">
+                                                            <i class="fa-solid fa-eye"></i>
+                                                            {{ $item->view_counter }}
+                                                        </span>
+                                                    </li>
+                                                </ul>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-
                         @endforeach
 
-                    
+
 
                     </div>
                     <!-- end swiper wrapper -->

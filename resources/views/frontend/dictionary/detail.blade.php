@@ -1,5 +1,10 @@
 @extends('frontend.master')
-@section('title',$data->title)
+@section('title', $data->title)
+@section('meta-title', $data->title)
+@section('description', $data->short_description)
+@section('simage', asset($data->image))
+@section('stitle', $data->title)
+@section('sdescription', $data->short_description)
 
 @section('content')
     <style>
@@ -121,30 +126,18 @@
 
                                     <ul class="social-share-style-7">
                                         <li>
-                                            <a class="fb" target="_blank" href="https://www.facebook.com/">
+                                            <a class="fb" target="_blank"
+                                                href="https://www.facebook.com/sharer/sharer.php?u={{ request()->url() }}&text={{ $data->title }}">
                                                 <i class="social-icon fab fa-facebook-f"></i>
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="tw" target="_blank" href="https://twitter.com/">
+                                            <a class="tw" target="_blank"
+                                                href="https://twitter.com/intent/tweet?text={{ $data->title }}&url={{ request()->url() }}">
                                                 <i style="color:black" class="fa-brands fa-square-x-twitter twitter"></i>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a class="yu" target="_blank" href="https://www.youtube.com/">
-                                                <i class="social-icon fab fa-youtube"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="dr" target="_blank" href="https://dribbble.com/">
-                                                <i class="social-icon fab fa-dribbble"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="dw" target="_blank" href="https://cloud.google.com/">
-                                                <i class="social-icon fas fa-cloud"></i>
-                                            </a>
-                                        </li>
+                                       
                                     </ul>
                                 </div>
                             </div>
@@ -166,9 +159,10 @@
                                             <div class="tag-list">
 
                                                 @foreach ($data->getKeys() as $item)
-                                                        <a href="{{ route('front.dictionary.tag_list',$item) }}" class="tag-link"
-                                                            style="text-transform: capitalize"> {{ $item }} </a>
-                                                    @endforeach
+                                                    <a href="{{ route('front.dictionary.tag_list', $item) }}"
+                                                        class="tag-link" style="text-transform: capitalize">
+                                                        {{ $item }} </a>
+                                                @endforeach
                                             </div>
 
                                         </div>
@@ -220,8 +214,8 @@
                                     <div class="rt-post-grid grid-meta">
                                         <div class="post-img">
                                             <a href="{{ route('front.dictionary.detail', $item->link) }}">
-                                                <img src="/{{ $item->image == null ? 'media/gallery/post-xl_31.jpg' : $item->image }}" alt="post" width="551"
-                                                    height="431">
+                                                <img src="/{{ $item->image == null ? 'media/gallery/post-xl_31.jpg' : $item->image }}"
+                                                    alt="post" width="551" height="431">
                                             </a>
                                         </div>
                                         <div class="post-content">
@@ -272,8 +266,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                       // sidebar title limitation
-                    -------------------------------*/
+                               // sidebar title limitation
+                            -------------------------------*/
         // Select all tags with class .sidebar_restricted_category_title
         $('.sidebar_restricted_category_title').each(function() {
             var content = $(this).text().trim(); // get the content of a tag

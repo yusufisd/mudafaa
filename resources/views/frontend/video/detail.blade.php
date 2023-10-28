@@ -1,5 +1,10 @@
 @extends('frontend.master')
 @section('title', $data->title)
+@section('meta-title',$data->title)
+@section('description',$data->short_description)
+@section('simage', asset($data->image))
+@section('stitle',$data->title)
+@section('sdescription',$data->short_description)
 
 @section('content')
     <!-- Start Main -->
@@ -166,36 +171,25 @@
                                                 <h4 class="block-tile mb--20">Paylaş:</h4>
                                                 <ul class="social-share-style-1">
                                                     <li>
-                                                        <a class="fb" target="_blank" href="https://www.facebook.com/">
+                                                        <a class="fb" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ request()->url() }}&text={{ $data->title }}">
                                                             <i class="social-icon fab fa-facebook-f"></i>
                                                         </a>
                                                     </li>
                                                     <li>
                                                         <a class="tw" style="background-color: black" target="_blank"
-                                                            href="https://twitter.com/">
+                                                        href="https://twitter.com/intent/tweet?text={{ $data->title }}&url={{ request()->url() }}">
                                                             <i
                                                                 class="social-icon fab fa-brands fa-square-x-twitter twitter"></i>
                                                         </a>
                                                     </li>
+                                                    
                                                     <li>
-                                                        <a class="yu" target="_blank" href="https://www.youtube.com/">
-                                                            <i class="social-icon fab fa-youtube"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="fb" target="_blank" href="https://linkedin.com/">
+                                                        <a class="fb" target="_blank" href="https://linkedin.com/sharing/share-offsite/?url={{ request()->url() }}">
                                                             <i class="social-icon fab fa-linkedin"></i>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a class="dw" target="_blank" href="https://cloud.google.com/">
-                                                            <i class="social-icon fas fa-cloud"></i>
-                                                        </a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a class="wh" target="_blank"
-                                                            href="https://www.whatsapp.com/">
+                                                        <a class="wh" target="_blank" href="https://web.whatsapp.com/send?text={{ $data->title }} {{ request()->url() }}">
                                                             <i class="social-icon fab fa-whatsapp"></i>
                                                         </a>
                                                     </li>
