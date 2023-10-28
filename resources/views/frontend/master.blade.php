@@ -10,9 +10,9 @@
     <meta name="title" content="@yield('meta-title')" />
     <meta name="keywords" content="@yield('keywords')" />
     <meta name="description" content="@yield('description')" />
-    <meta prperty="og.image" content="@yield('og.image')" />
-    <meta prperty="og.title" content="@yield('og.meta-title')" />
-    <meta prperty="og.description" content="@yield('og.description')" />
+    <meta property="og:image" content="@yield('og.image')" />
+    <meta property="og:title" content="@yield('og.meta-title')" />
+    <meta property="og:description" content="@yield('og.description')" />
 
 
 
