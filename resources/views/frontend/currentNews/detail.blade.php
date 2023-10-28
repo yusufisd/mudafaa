@@ -178,13 +178,13 @@
                                                 
 
                                                     <li>
-                                                        <a class="fb" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ request()->url() }}">
+                                                        <a class="fb" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ request()->url() }}&text={{ $data->title }}">
                                                             <i class="social-icon fab fa-facebook-f"></i>
                                                         </a>
                                                     </li>
                                                     <li>
                                                         <a class="tw" style="background-color: black" target="_blank"
-                                                            href="https://twitter.com/intent/tweet?text={{ request()->url() }}">
+                                                            href="https://twitter.com/intent/tweet?text={{ $data->title }}&url={{ request()->url() }}">
                                                             <i class="fa-brands fa-square-x-twitter twitter"></i>
                                                         </a>
                                                     </li>
