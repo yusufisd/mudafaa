@@ -194,7 +194,7 @@
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a class="fb" target="_blank" href="https://linkedin.com/">
+                                                        <a class="fb" target="_blank" href="https://linkedin.com/sharing/share-offsite/?url={{ request()->url() }}">
                                                             <i class="social-icon fab fa-linkedin"></i>
                                                         </a>
                                                     </li>
