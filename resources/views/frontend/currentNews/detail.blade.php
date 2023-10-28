@@ -205,7 +205,7 @@
                                                     </li>
 
                                                     <li>
-                                                        <a class="wh" target="_blank" href="https://www.whatsapp.com/">
+                                                        <a class="wh" target="_blank" href="https://web.whatsapp.com/send?text={{ $data->title }} {{ request()->url() }}">
                                                             <i class="social-icon fab fa-whatsapp"></i>
                                                         </a>
                                                     </li>
