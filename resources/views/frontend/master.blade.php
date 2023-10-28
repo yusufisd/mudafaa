@@ -10,10 +10,10 @@
     <meta name="title" content="@yield('meta-title')" />
     <meta name="keywords" content="@yield('keywords')" />
     <meta name="description" content="@yield('description')" />
-    <meta property="og:image" content="@yield('og.image')" />
-    <meta property="og:title" content="@yield('og.meta-title')" />
-    <meta property="og:description" content="@yield('og.description')" />
 
+    <meta property="og:title" content="@yield('stitle')">
+    <meta property="og:description" content="@yield('sdescription')">
+    <meta property="og:image" content="@yield('simage')">
 
 
     <!-- Favicon -->
@@ -39,8 +39,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer" />
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"
         integrity="sha512-WW8/jxkELe2CAiE4LvQfwm1rajOS8PHasCCx+knHG0gBHt8EXxS6T6tJRTGuDQVnluuAvMxWF4j8SNFDKceLFg=="
@@ -115,42 +114,45 @@
                                     </div>
                                     <div class="social-wrap d-none d-xl-block">
                                         <ul class="rt-top-social">
-                                            @if(SocialMedia())
-                                            <li>
-                                                <a href="https://www.facebook.com/{{ (SocialMedia()->facebook != null ? SocialMedia()->facebook : '') }}" target="_blank">
-                                                    <i class="fab fa-facebook-f"></i>
-                                                </a>
-                                            </li>
+                                            @if (SocialMedia())
+                                                <li>
+                                                    <a href="https://www.facebook.com/{{ SocialMedia()->facebook != null ? SocialMedia()->facebook : '' }}"
+                                                        target="_blank">
+                                                        <i class="fab fa-facebook-f"></i>
+                                                    </a>
+                                                </li>
                                             @endif
-                                            @if(SocialMedia())
-                                            <li>
-                                                <a href="https://twitter.com/{{ (SocialMedia()->twitter != null ? SocialMedia()->twitter : '') }}" target="_blank">
-                                                    <img src="/assets/x.png" style="width: 13px" alt="">
-                                                </a>
-                                            </li>
+                                            @if (SocialMedia())
+                                                <li>
+                                                    <a href="https://twitter.com/{{ SocialMedia()->twitter != null ? SocialMedia()->twitter : '' }}"
+                                                        target="_blank">
+                                                        <img src="/assets/x.png" style="width: 13px" alt="">
+                                                    </a>
+                                                </li>
                                             @endif
-                                            @if(SocialMedia())
-                                            <li>
-                                                <a href="https://www.instagram.com/{{ (SocialMedia()->instagram != null ? SocialMedia()->instagram : '') }}" target="_blank">
-                                                    <i class="fab fa-instagram"></i>
-                                                </a>
-                                            </li>
+                                            @if (SocialMedia())
+                                                <li>
+                                                    <a href="https://www.instagram.com/{{ SocialMedia()->instagram != null ? SocialMedia()->instagram : '' }}"
+                                                        target="_blank">
+                                                        <i class="fab fa-instagram"></i>
+                                                    </a>
+                                                </li>
                                             @endif
-                                            @if(SocialMedia())
-                                            <li>
-                                                <a href="https://www.youtube.com/channel/{{ (SocialMedia()->youtube != null ? SocialMedia()->youtube : '') }}"
-                                                    target="_blank">
-                                                    <i class="fab fa-youtube"></i>
-                                                </a>
-                                            </li>
+                                            @if (SocialMedia())
+                                                <li>
+                                                    <a href="https://www.youtube.com/channel/{{ SocialMedia()->youtube != null ? SocialMedia()->youtube : '' }}"
+                                                        target="_blank">
+                                                        <i class="fab fa-youtube"></i>
+                                                    </a>
+                                                </li>
                                             @endif
-                                            @if(SocialMedia())
-                                            <li>
-                                                <a href="https://www.linkedin.com/company/{{ (SocialMedia()->linkedin != null ? SocialMedia()->linkedin : '') }}"
-                                                    target="_blank">
-                                                    <i class="fab fa-linkedin-in"></i>
-                                                </a>
-                                            </li>
+                                            @if (SocialMedia())
+                                                <li>
+                                                    <a href="https://www.linkedin.com/company/{{ SocialMedia()->linkedin != null ? SocialMedia()->linkedin : '' }}"
+                                                        target="_blank">
+                                                        <i class="fab fa-linkedin-in"></i>
+                                                    </a>
+                                                </li>
                                             @endif
 
                                         </ul>
@@ -211,7 +213,8 @@
                                                 <a class="animation" href="{{ route('front.home') }}"><i
                                                         class="fa fa-home fa-md"></i></a>
                                             </li>
-                                            <li class="main-menu__nav_sub list {{ Route::is('front.currentNewsCategory.list') || Route::is('front.currentNews.detail') ? 'active' : '' }}" >
+                                            <li
+                                                class="main-menu__nav_sub list {{ Route::is('front.currentNewsCategory.list') || Route::is('front.currentNews.detail') ? 'active' : '' }}">
                                                 <a class="animation" href="javascript:void(0)">
                                                     {{ __('message.güncel haberler') }} </a>
                                                 <ul class="main-menu__dropdown">
@@ -225,7 +228,8 @@
 
                                                 </ul>
                                             </li>
-                                            <li class="main-menu__nav_sub list {{ Route::is('front.defenseIndustryCategory.list') || Route::is('front.defenseIndustryContent.detail') || Route::is('front.defenseIndustrySubCategory.list2') ? 'active' : '' }}" >
+                                            <li
+                                                class="main-menu__nav_sub list {{ Route::is('front.defenseIndustryCategory.list') || Route::is('front.defenseIndustryContent.detail') || Route::is('front.defenseIndustrySubCategory.list2') ? 'active' : '' }}">
                                                 <a class="animation" href="javascript:void(0)">
                                                     {{ __('message.savunma sanayi') }} </a>
                                                 <ul class="main-menu__dropdown">
@@ -239,24 +243,29 @@
 
                                                 </ul>
                                             </li>
-                                            <li class="{{ Route::is('front.activity.detail') || Route::is('front.activity.list') || Route::is('front.activity.detail') ? 'active' : '' }}" >
+                                            <li
+                                                class="{{ Route::is('front.activity.detail') || Route::is('front.activity.list') || Route::is('front.activity.detail') ? 'active' : '' }}">
                                                 <a class="animation" href="{{ route('front.activity.list') }}">
                                                     {{ __('message.etkinlikler') }} </a>
                                             </li>
-                                            <li class="{{ Route::is('front.interview.list') || Route::is('front.interview.detail') ? 'active' : '' }}" >
+                                            <li
+                                                class="{{ Route::is('front.interview.list') || Route::is('front.interview.detail') ? 'active' : '' }}">
                                                 <a class="animation" href="{{ route('front.interview.list') }}">
                                                     {{ __('message.röportajlar') }} </a>
                                             </li>
-                                            <li class="{{ Route::is('front.company.list') || Route::is('front.company.detail') ? 'active' : '' }}" >
+                                            <li
+                                                class="{{ Route::is('front.company.list') || Route::is('front.company.detail') ? 'active' : '' }}">
                                                 <a class="animation" href="{{ route('front.company.list') }}">
                                                     {{ __('message.firmalar') }} </a>
                                             </li>
-                                            <li class="{{ Route::is('front.dictionary.list') || Route::is('front.dictionary.detail') ? 'active' : '' }}" >
+                                            <li
+                                                class="{{ Route::is('front.dictionary.list') || Route::is('front.dictionary.detail') ? 'active' : '' }}">
                                                 <a class="animation" href="{{ route('front.dictionary.list') }}">
                                                     {{ __('message.ss sözlüğü') }}
                                                 </a>
                                             </li>
-                                            <li class="{{ Route::is('front.video.list') || Route::is('front.video.detail') ? 'active' : '' }}" >
+                                            <li
+                                                class="{{ Route::is('front.video.list') || Route::is('front.video.detail') ? 'active' : '' }}">
                                                 <a class="animation" href="{{ route('front.video.list') }}">
                                                     {{ __('message.videolar') }} </a>
                                             </li>
@@ -380,45 +389,45 @@
                                         {{ __('message.Sitede yayınlanan yazı, haber, video ve fotoğrafların tüm hakları Dada İst Ajans a aittir. Kaynak gösterilerek dahi olsa izin alınmadan alıntı yapılamaz') }}
                                     </p>
                                     <ul class="footer-social gutter-15">
-                                        @if(SocialMedia())
-                                        <li class="social-item">
-                                            <a href="https://www.facebook.com/{{ (SocialMedia()->facebook != null ? SocialMedia()->facebook : '') }}" class="social-link"
-                                                target="_blank">
-                                                <i class="fab fa-facebook-f"></i>
-                                            </a>
-                                        </li>
+                                        @if (SocialMedia())
+                                            <li class="social-item">
+                                                <a href="https://www.facebook.com/{{ SocialMedia()->facebook != null ? SocialMedia()->facebook : '' }}"
+                                                    class="social-link" target="_blank">
+                                                    <i class="fab fa-facebook-f"></i>
+                                                </a>
+                                            </li>
                                         @endif
-                                        @if(SocialMedia())
-                                        <li class="social-item">
-                                            <a href="https://twitter.com/{{ (SocialMedia()->twitter != null ? SocialMedia()->twitter : '') }}" class="social-link"
-                                                target="_blank">
-                                                <i class="fab fa-x-twitter"></i>
-                                            </a>
-                                        </li>
+                                        @if (SocialMedia())
+                                            <li class="social-item">
+                                                <a href="https://twitter.com/{{ SocialMedia()->twitter != null ? SocialMedia()->twitter : '' }}"
+                                                    class="social-link" target="_blank">
+                                                    <i class="fab fa-x-twitter"></i>
+                                                </a>
+                                            </li>
                                         @endif
-                                        @if(SocialMedia())
-                                        <li class="social-item">
-                                            <a href="https://www.instagram.com/{{ (SocialMedia()->instagram != null ? SocialMedia()->instagram : '') }}" class="social-link"
-                                                target="_blank">
-                                                <i class="fab fa-instagram"></i>
-                                            </a>
-                                        </li>
+                                        @if (SocialMedia())
+                                            <li class="social-item">
+                                                <a href="https://www.instagram.com/{{ SocialMedia()->instagram != null ? SocialMedia()->instagram : '' }}"
+                                                    class="social-link" target="_blank">
+                                                    <i class="fab fa-instagram"></i>
+                                                </a>
+                                            </li>
                                         @endif
-                                        @if(SocialMedia())
-                                        <li class="social-item">
-                                            <a href="https://www.youtube.com/channel/{{ (SocialMedia()->youtube != null ? SocialMedia()->youtube : '') }}"
-                                                class="social-link" target="_blank">
-                                                <i class="fab fa-youtube youtube"></i>
-                                            </a>
-                                        </li>
+                                        @if (SocialMedia())
+                                            <li class="social-item">
+                                                <a href="https://www.youtube.com/channel/{{ SocialMedia()->youtube != null ? SocialMedia()->youtube : '' }}"
+                                                    class="social-link" target="_blank">
+                                                    <i class="fab fa-youtube youtube"></i>
+                                                </a>
+                                            </li>
                                         @endif
-                                        @if(SocialMedia())
-                                        <li class="social-item">
-                                            <a href="https://www.linkedin.com/company/{{ (SocialMedia()->linkedin != null ? SocialMedia()->linkedin : '') }}"
-                                                class="social-link" target="_blank">
-                                                <i class="fab fa-linkedin-in"></i>
-                                            </a>
-                                        </li>
+                                        @if (SocialMedia())
+                                            <li class="social-item">
+                                                <a href="https://www.linkedin.com/company/{{ SocialMedia()->linkedin != null ? SocialMedia()->linkedin : '' }}"
+                                                    class="social-link" target="_blank">
+                                                    <i class="fab fa-linkedin-in"></i>
+                                                </a>
+                                            </li>
                                         @endif
                                     </ul>
                                     <ul class="footer-social mt--20">
@@ -493,7 +502,8 @@
                                                     </a>
                                                 </li>
                                                 <li class="widget-list-item">
-                                                    <a href="{{ route('front.archive.index') }}" class="widget-list-link">
+                                                    <a href="{{ route('front.archive.index') }}"
+                                                        class="widget-list-link">
                                                         Arşiv
                                                     </a>
                                                 </li>
