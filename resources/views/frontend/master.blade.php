@@ -7,12 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> Milli Müdafaa | @yield('title') </title>
-    <meta name="title" content="@yield('meta-title', 'Milli müdaafa')" />
-    <meta name="keywords" content="@yield('keywords', 'milli, müdafa, sanayii, savunma')" />
-    <meta name="description" content="@yield('description', 'milli müdaafa haber sitesi, savunma sanayii bilgileri')" />
-    <meta name="og.title" content="@yield('og.meta-title', 'Milli müdaafa')" />
-    <meta name="og.image" content="@yield('og.image', 'milli, müdafa, sanayii, savunma')" />
-    <meta name="og.description" content="@yield('og.description', 'milli müdaafa haber sitesi, savunma sanayii bilgileri')" />
+    <meta name="title" content="@yield('meta-title')" />
+    <meta name="keywords" content="@yield('keywords')" />
+    <meta name="description" content="@yield('description')" />
+    <meta name="og.title" content="@yield('og.meta-title')" />
+    <meta name="og.image" content="@yield('og.image')" />
+    <meta name="og.description" content="@yield('og.description')" />
 
 
 
