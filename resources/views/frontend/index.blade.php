@@ -852,7 +852,7 @@
                                     </a>
                                 </div>
                                 <div class="post-content">
-                                    @if ($populer_haber_first->Category() != null)
+                                    @if ($populer_haber_first->Category()[0] != null)
                                         <a href="{{ route('front.currentNewsCategory.list', $populer_haber_first->Category()[0]->link) }}"
                                             style="background-color: {{ $populer_haber_first->Category()[0]->color_code != null ? $populer_haber_first->Category()[0]->color_code : '#749f43' }}"
                                             class="world"> {{ $populer_haber_first->Category()[0]->title }} </a>

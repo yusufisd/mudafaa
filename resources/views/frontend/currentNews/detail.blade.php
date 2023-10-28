@@ -178,7 +178,7 @@
                                                 
 
                                                     <li>
-                                                        <a class="fb" target="_blank" href="{{ $share['facebook'] }}">
+                                                        <a class="fb" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ request()->url() }}">
                                                             <i class="social-icon fab fa-facebook-f"></i>
                                                         </a>
                                                     </li>
