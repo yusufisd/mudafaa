@@ -57,10 +57,12 @@
                                                     <a href="{{route('front.activity.categoryDetail',$item->Category->link)}}"
                                                         class="rt-cat-primary restricted_category_title">
                                                         {{ $item->Category->title }} </a>
-                                                    <h6 class="rt-news-cat-normal text-danger mx-2">
-                                                        <i class="far fa-clock icon"></i>
-                                                        1 gün, 20 saat , 15 dk.
-                                                    </h6>
+                                                    @if($item->sayac_yil() || $item->sayac_ay() || $item->sayac_gun())
+                                                        <h6 class="rt-news-cat-normal text-danger mx-2">
+                                                            <i class="far fa-clock icon"></i>
+                                                            {{ $item->sayac_yil() ?? ' ' }} {{ $item->sayac_ay() ?? ' ' }} {{ $item->sayac_gun() ?? ' ' }}
+                                                        </h6>
+                                                   @endif
                                                 </div>
                                                 <h4 class="post-title">
                                                     <a href="{{ route('front.activity.detail', $item->link) }}">

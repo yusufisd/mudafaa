@@ -46,23 +46,23 @@
         <div id="story_container" class="container">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    @if(count($cats))
-                    @foreach ($cats as $variable)
-                        <div class="swiper-slide">
-                            <a href="{{ route('front.currentNews.detail', $variable->link) }}">
-                                <img style="height: 100%"
-                                    src="{{ $variable->mobil_image != null ? $variable->mobil_image : $variable->image }}"
-                                    alt="slide-1">
-                            </a>
-                            <div class="swiper-content">
-                                @if ($variable->Category()[0] != null)
-                                    <a href="{{ route('front.currentNewsCategory.list', $variable->Category()[0]->link) }}"
-                                        style="background-color: {{ $variable->Category()[0]->color_code != null ? $variable->Category()[0]->color_code : '#749f43' }}"
-                                        class="rt-cat-primary restricted_story_title">{{ $variable->Category()[0]->title }}</a>
-                                @endif
+                    @if (count($cats))
+                        @foreach ($cats as $variable)
+                            <div class="swiper-slide">
+                                <a href="{{ route('front.currentNews.detail', $variable->link) }}">
+                                    <img style="height: 100%"
+                                        src="{{ $variable->mobil_image != null ? $variable->mobil_image : $variable->image }}"
+                                        alt="slide-1">
+                                </a>
+                                <div class="swiper-content">
+                                    @if ($variable->Category()[0] != null)
+                                        <a href="{{ route('front.currentNewsCategory.list', $variable->Category()[0]->link) }}"
+                                            style="background-color: {{ $variable->Category()[0]->color_code != null ? $variable->Category()[0]->color_code : '#749f43' }}"
+                                            class="rt-cat-primary restricted_story_title">{{ $variable->Category()[0]->title }}</a>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
                     @endifŒ
 
                 </div>
@@ -769,17 +769,21 @@
                         <div class="rt-post-grid grid-meta">
                             <div class="post-img">
                                 <a href="fair_detail.html">
-                                    <img src="/{{ $item->image == null ? 'media/gallery/post-md_42.jpg' : $item->image }}" alt="post" width="551" height="431">
+                                    <img src="/{{ $item->image == null ? 'media/gallery/post-md_42.jpg' : $item->image }}"
+                                        alt="post" width="551" height="431">
                                 </a>
                             </div>
                             <div class="post-content">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <a href="graphics.html" class="rt-cat-primary restricted_category_title">
                                         {{ substr($item->Category->title, 0, 10) }} ...</a>
-                                    <h6 class="rt-news-cat-normal text-danger mx-2">
-                                        <i class="far fa-clock icon"></i>
-                                        1 gün, 20 saat , 15 dk.
-                                    </h6>
+                                    @if ($item->sayac_yil() || $item->sayac_ay() || $item->sayac_gun())
+                                        <h6 class="rt-news-cat-normal text-danger mx-2">
+                                            <i class="far fa-clock icon"></i>
+                                            {{ $item->sayac_yil() ?? ' ' }} {{ $item->sayac_ay() ?? ' ' }}
+                                            {{ $item->sayac_gun() ?? ' ' }}
+                                        </h6>
+                                    @endif
                                 </div>
 
                                 <h4 class="post-title">
@@ -933,7 +937,7 @@
                                                     if (++$a == 3) {
                                                         break;
                                                     }
-
+                                                    
                                                     ?>
 
                                                     <a href="{{ route('front.currentNewsCategory.list', $Category->link) }}"
@@ -984,49 +988,50 @@
                                 <span class="rt-section-dot"></span>
                                 <span class="rt-section-line"></span>
                             </h2>
-                            @if($anket)
-                            <div class="rt-post-grid">
-                                <div class="post-img">
-                                    <a href="single-post1.html" class="img-link">
-                                        <img src="/{{ $anket->image != null ? $anket->image : 'media/gallery/travel-md_8.jpg' }}"
-                                            alt="post" width="492" height="340">
-                                    </a>
-                                </div>
-                                <div class="post-content">
-                                    <h3 class="post-title">
-                                        <a href="single-post1.html">
-                                            {{ $anket->question }}
+                            @if ($anket)
+                                <div class="rt-post-grid">
+                                    <div class="post-img">
+                                        <a href="single-post1.html" class="img-link">
+                                            <img src="/{{ $anket->image != null ? $anket->image : 'media/gallery/travel-md_8.jpg' }}"
+                                                alt="post" width="492" height="340">
                                         </a>
-                                    </h3>
-                                </div>
-                                <form class="vote-status-box">
-                                    <input id="anket" type="hidden" value="{{ $anket->id }}">
-                                    @foreach ($anket->cevaplar() as $cevap)
-
-
-                                    <div class="vote-status-box-item box-{{ $cevap->id }} {{ $anket->isVoted() != null ? ($anket->isVoted()->answer_id == $cevap->id ? ($cevap->is_true ? 'trueAnswer' : 'falseAnswer')  : ($cevap->is_true ? 'trueAnswer' : '')) : '' }}" onclick="selectOpt({{ $cevap->id }})">
-                                        <div class="radio-box">
-                                            <input type="radio"
-                                                   {{ $anket->isVoted() != null && $anket->isVoted()->answer_id == $cevap->id ? 'checked' : '' }}
-                                                   class="aknetOpts" value="{{ $cevap->answer }}" name="vote" id="{{ $cevap->id }}">
-                                            <label class="custom-radio-circle" for="{{ $cevap->id }}"></label>
-                                            <label for="{{ $cevap->id }}">{{ $cevap->answer }}</label>
-                                        </div>
-                                        <div class="percent-box">
-                                            <span class="vote-percent" data-vote-percent="{{ $cevap->katilim() }}">{{ $cevap->katilim() }}</span>%
-                                        </div>
                                     </div>
-
-                                    @endforeach
-                                    @if($anket->isVoted() == null)
-                                        <button id="submitAnket" type="button" class="rt-submit-btn">
-                                            Gönder
-                                        </button>
-                                    @endif
-                                </form>
-                            </div>
+                                    <div class="post-content">
+                                        <h3 class="post-title">
+                                            <a href="single-post1.html">
+                                                {{ $anket->question }}
+                                            </a>
+                                        </h3>
+                                    </div>
+                                    <form class="vote-status-box">
+                                        <input id="anket" type="hidden" value="{{ $anket->id }}">
+                                        @foreach ($anket->cevaplar() as $cevap)
+                                            <div class="vote-status-box-item box-{{ $cevap->id }} {{ $anket->isVoted() != null ? ($anket->isVoted()->answer_id == $cevap->id ? ($cevap->is_true ? 'trueAnswer' : 'falseAnswer') : ($cevap->is_true ? 'trueAnswer' : '')) : '' }}"
+                                                onclick="selectOpt({{ $cevap->id }})">
+                                                <div class="radio-box">
+                                                    <input type="radio"
+                                                        {{ $anket->isVoted() != null && $anket->isVoted()->answer_id == $cevap->id ? 'checked' : '' }}
+                                                        class="aknetOpts" value="{{ $cevap->answer }}" name="vote"
+                                                        id="{{ $cevap->id }}">
+                                                    <label class="custom-radio-circle"
+                                                        for="{{ $cevap->id }}"></label>
+                                                    <label for="{{ $cevap->id }}">{{ $cevap->answer }}</label>
+                                                </div>
+                                                <div class="percent-box">
+                                                    <span class="vote-percent"
+                                                        data-vote-percent="{{ $cevap->katilim() }}">{{ $cevap->katilim() }}</span>%
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                        @if ($anket->isVoted() == null)
+                                            <button id="submitAnket" type="button" class="rt-submit-btn">
+                                                Gönder
+                                            </button>
+                                        @endif
+                                    </form>
+                                </div>
                             @else
-                            <p>Anket bulunamadı</p>
+                                <p>Anket bulunamadı</p>
                             @endif
                         </div>
                     </div>
@@ -1261,8 +1266,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                                                                       // limit by device width
-                                                                       -------------------------------*/
+                                                                           // limit by device width
+                                                                           -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
 
@@ -1623,7 +1628,7 @@
             },
         });
 
-        function selectOpt(id){
+        function selectOpt(id) {
             $(".aknetOpts").each(() => {
                 $(this).prop('checked', false);
             });
@@ -1631,23 +1636,22 @@
         }
     </script>
     <script>
-
         // submit_survey_btn
         $('#submitAnket').on("click", function(e) {
             $("#submitAnket").remove();
 
-            let anket  = $("#anket").val();
+            let anket = $("#anket").val();
             let answer = 'okx';
             let options = $(".aknetOpts");
             let selectedRadio = "";
-            for(var i = 0; i < options.length; i++){
-                if(options[i].checked == true){
+            for (var i = 0; i < options.length; i++) {
+                if (options[i].checked == true) {
                     answer = options[i].id;
                     selectedRadio = options[i];
                 }
             }
 
-            if(answer != ''){
+            if (answer != '') {
                 answer = parseInt(answer);
                 $.ajax({
                     headers: {
@@ -1664,11 +1668,11 @@
                         if (response.status == "success") {
                             console.log(response.true_answer, answer);
                             console.log(response.true_answer == answer);
-                            if(response.true_answer == answer){
+                            if (response.true_answer == answer) {
                                 $(".box-" + answer).addClass("trueAnswer");
-                            }else{
+                            } else {
                                 $(".box-" + response.true_answer).addClass('trueAnswer');
-                                $(".box-" + answer ).addClass('falseAnswer');
+                                $(".box-" + answer).addClass('falseAnswer');
                             }
                         } else {
                             alert(response.message);
@@ -1681,6 +1685,5 @@
             }
 
         });
-
     </script>
 @endsection

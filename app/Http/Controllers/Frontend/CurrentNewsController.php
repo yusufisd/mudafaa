@@ -12,6 +12,8 @@ use App\Models\EnCurrentNewsCategory;
 use App\Models\PostType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use Jorenvh\Share\Share;
+use Illuminate\Support\Facades\URL;
 
 class CurrentNewsController extends Controller
 {
@@ -49,7 +51,20 @@ class CurrentNewsController extends Controller
             "shocked" => ContentEmojiModel::where('post_id', $data->id)->where('post_type', PostType::NEWS)->where('emoji_type', EmojiType::SHOCKED)->count(),
         ];
 
-        return view('frontend.currentNews.detail',compact('data','emojies','previous_data','next_data','other_news','four_news'));
+
+        $share = \Share::page(
+            URL::to('/').'/referral-register?ref='.$data->link,
+            'Paylaş',
+        )
+        ->facebook()
+        ->twitter()
+        ->linkedin()
+        ->facebook()
+        ->whatsapp()->getRawLinks();
+
+        
+
+        return view('frontend.currentNews.detail',compact('data','emojies','previous_data','next_data','other_news','four_news','share'));
     }
 
     public function tag_list($title){

@@ -2,6 +2,7 @@
 @section('title',$data->title)
 
 @section('content')
+
     <!-- Start Main -->
     <style>
         .post-body {
@@ -46,6 +47,7 @@
     </style>
     <main>
         <!-- theme-switch-box -->
+
         <div class="theme-switch-box-mobile-wrap">
             <div class="theme-switch-box-mobile">
                 <span class="theme-switch-box-mobile__theme-status"><i class="fas fa-cog"></i></span>
@@ -93,6 +95,8 @@
         </div>
         <!-- End inner page Banner -->
 
+       
+    
         <!-- start rt-sidebar-section-layout-2 -->
         <section class="rt-sidebar-section-layout-2">
             <div class="container">
@@ -164,9 +168,12 @@
                                                         Paylaş: 1,509
                                                     </span>
                                                 </div>
+
                                                 <ul class="social-share-style-1 mb--10">
+                                                
+
                                                     <li>
-                                                        <a class="fb" target="_blank" href="https://www.facebook.com/">
+                                                        <a class="fb" target="_blank" href="{{ $share['facebook'] }}">
                                                             <i class="social-icon fab fa-facebook-f"></i>
                                                         </a>
                                                     </li>
