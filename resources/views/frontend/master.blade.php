@@ -10,6 +10,11 @@
     <meta name="title" content="@yield('meta-title', 'Milli müdaafa')" />
     <meta name="keywords" content="@yield('keywords', 'milli, müdafa, sanayii, savunma')" />
     <meta name="description" content="@yield('description', 'milli müdaafa haber sitesi, savunma sanayii bilgileri')" />
+    <meta name="og.title" content="@yield('og.meta-title', 'Milli müdaafa')" />
+    <meta name="og.image" content="@yield('og.image', 'milli, müdafa, sanayii, savunma')" />
+    <meta name="og.description" content="@yield('og.description', 'milli müdaafa haber sitesi, savunma sanayii bilgileri')" />
+
+
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/frontend/media/favicon.png') }}">

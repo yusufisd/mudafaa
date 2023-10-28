@@ -2,6 +2,9 @@
 @section('title',$data->title ?? '')
 @section('meta-title',$data->title ?? '')
 @section('description',$data->short_description ?? '')
+@section('og.image',$data->image ?? '')
+@section('og.meta-title',$data->title ?? '')
+@section('og.description',$data->short_description ?? '')
 
 @section('content')
 
