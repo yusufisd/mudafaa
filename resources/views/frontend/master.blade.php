@@ -7,6 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> Milli Müdafaa | @yield('title') </title>
+    <meta name="title" content="@yield('meta-title', 'Milli müdaafa')" />
+    <meta name="keywords" content="@yield('keywords', 'milli, müdafa, sanayii, savunma')" />
+    <meta name="description" content="@yield('description', 'milli müdaafa haber sitesi, savunma sanayii bilgileri')" />
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/frontend/media/favicon.png') }}">
