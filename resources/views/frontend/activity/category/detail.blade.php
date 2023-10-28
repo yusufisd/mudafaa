@@ -31,7 +31,7 @@
                     <div class="related-post-box">
                         <div class="titile-wrapper mb--40">
                             <h2 class="rt-section-heading flex-grow-1 mb-0 me-3">
-                                <span class="rt-section-text restricted_section_title"> {{$cat->title ?? 'Arama sonuçları'}} </span>
+                                <span class="rt-section-text restricted_section_title">  {{$cat->title ?? 'Arama sonuçları'}} </span>
                                 <span class="rt-section-dot"></span>
                                 <span class="rt-section-line"></span>
                             </h2>

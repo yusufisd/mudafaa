@@ -13,7 +13,7 @@ class Activity extends Model
     use HasFactory, SoftDeletes;
     protected $guarded = [];
     protected $casts = [
-        "start_time" => 'datetime'
+        'start_time' => 'datetime',
     ];
 
     public function Category()
@@ -45,31 +45,40 @@ class Activity extends Model
         return explode(',', $this->seo_key);
     }
 
-
-    public function sayac_yil(){
+    public function sayac_yil()
+    {
         $now = Carbon::now();
         $say = Carbon::parse($this->start_time->format('Y-m-d'));
-        if($say > $now){
-            $fark = date_diff($say,$now);
-            return $fark->format('%y yıl');
+        if ($say > $now) {
+            $fark = date_diff($say, $now);
+
+            if ($fark->y > 0) {
+                return $fark->format('%y yıl');
+            }
         }
     }
 
-    public function sayac_ay(){
+    public function sayac_ay()
+    {
         $now = Carbon::now();
         $say = Carbon::parse($this->start_time->format('Y-m-d'));
-        if($say > $now){
-            $fark = date_diff($say,$now);
-            return $fark->format('%m ay');
+        if ($say > $now) {
+            $fark = date_diff($say, $now);
+            if ($fark->m > 0) {
+                return $fark->format('%m ay');
+            }
         }
     }
 
-    public function sayac_gun(){
+    public function sayac_gun()
+    {
         $now = Carbon::now();
         $say = Carbon::parse($this->start_time->format('Y-m-d'));
-        if($say > $now){
-            $fark = date_diff($say,$now);
-            return $fark->format('%d gün');
+        if ($say > $now) {
+            $fark = date_diff($say, $now);
+            if ($fark->d > 0) {
+                return $fark->format('%d gün');
+            }
         }
     }
 }

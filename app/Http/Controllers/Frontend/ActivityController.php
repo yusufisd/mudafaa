@@ -23,8 +23,7 @@ class ActivityController extends Controller
         }
 
         if ($local == 'tr') {
-            $coming_activity = Activity::where('start_time', '<', $now)
-                ->orderBy('start_time', 'asc')
+            $coming_activity = Activity::orderBy('start_time', 'desc')
                 ->take(4)
                 ->get();
             $activity_category = ActivityCategory::orderBy('queue', 'asc')->get();
@@ -45,7 +44,6 @@ class ActivityController extends Controller
 
     public function detail($id)
     {
-
         $local = \Session::get('applocale');
         if ($local == null) {
             $local = config('app.fallback_locale');
@@ -219,5 +217,25 @@ class ActivityController extends Controller
         }
         $categories = ActivityCategory::all();
         return view('frontend.activity.calendar', compact('events', 'categories'));
+    }
+
+    public function close_activity()
+    {
+        $now = Carbon::now();
+
+        $local = \Session::get('applocale');
+        if ($local == null) {
+            $local = config('app.fallback_locale');
+        }
+        if ($local == 'tr') {
+            $data = Activity::where('start_time', '>=', $now)
+                ->orderBy('start_time', 'desc')
+                ->get();
+        } elseif ($local == 'en') {
+            $data = EnActivity::where('start_time', '>=', $now)
+                ->orderBy('start_time', 'desc')
+                ->get();
+        }
+        return view('frontend.activity.category.detail', compact('data'));
     }
 }

@@ -1,10 +1,10 @@
 @extends('frontend.master')
-@section('title',$data->title)
-@section('meta-title',$data->title)
-@section('description',$data->short_description)
+@section('title', $data->title)
+@section('meta-title', $data->title)
+@section('description', $data->short_description)
 @section('simage', asset($data->image))
-@section('stitle',$data->title)
-@section('sdescription',$data->short_description)
+@section('stitle', $data->title)
+@section('sdescription', $data->short_description)
 
 @section('content')
 
@@ -100,8 +100,8 @@
         </div>
         <!-- End inner page Banner -->
 
-       
-    
+
+
         <!-- start rt-sidebar-section-layout-2 -->
         <section class="rt-sidebar-section-layout-2">
             <div class="container">
@@ -116,10 +116,9 @@
                                 <div class="post-header drop-cap">
 
                                     @foreach ($data->Category() as $Category)
-                                        
-                                    <span class="rt-cat-primary"
-                                        style="background-color: {{ $Category->color_code != null ? $Category->color_code : '' }}">
-                                        {{ $Category->title }} </span>
+                                        <span class="rt-cat-primary"
+                                            style="background-color: {{ $Category->color_code != null ? $Category->color_code : '' }}">
+                                            {{ $Category->title }} </span>
                                     @endforeach
 
                                     <h2 class="title">
@@ -158,7 +157,7 @@
                                             </li>
                                             <li>
                                                 <span class="rt-meta">
-                                                    <i class="fa-solid fa-eye "></i>
+                                                    <i class="fa-solid fa-eye"></i>
                                                     {{ $data->view_counter }}
                                                 </span>
                                             </li>
@@ -175,10 +174,11 @@
                                                 </div>
 
                                                 <ul class="social-share-style-1 mb--10">
-                                                
+
 
                                                     <li>
-                                                        <a class="fb" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ request()->url() }}&text={{ $data->title }}">
+                                                        <a class="fb" target="_blank"
+                                                            href="https://www.facebook.com/sharer/sharer.php?u={{ request()->url() }}&text={{ $data->title }}">
                                                             <i class="social-icon fab fa-facebook-f"></i>
                                                         </a>
                                                     </li>
@@ -188,14 +188,16 @@
                                                             <i class="fa-brands fa-square-x-twitter twitter"></i>
                                                         </a>
                                                     </li>
-                                                    
+
                                                     <li>
-                                                        <a class="fb" target="_blank" href="https://linkedin.com/sharing/share-offsite/?url={{ request()->url() }}">
+                                                        <a class="fb" target="_blank"
+                                                            href="https://linkedin.com/sharing/share-offsite/?url={{ request()->url() }}">
                                                             <i class="social-icon fab fa-linkedin"></i>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a class="wh" target="_blank" href="https://web.whatsapp.com/send?text={{ $data->title }} {{ request()->url() }}">
+                                                        <a class="wh" target="_blank"
+                                                            href="https://web.whatsapp.com/send?text={{ $data->title }} {{ request()->url() }}">
                                                             <i class="social-icon fab fa-whatsapp"></i>
                                                         </a>
                                                     </li>
@@ -205,16 +207,11 @@
                                         <div class="right-area">
                                             <ul class="social-share-style-1 layout-2 mb--10">
                                                 <li>
-                                                    <a target="_blank" href="https://www.facebook.com/">
+                                                    <a target="_blank"
+                                                        href="mailto:?subject={{ $data->title }}&body={{ $data->title }} {{ request()->url() }}">
                                                         <i class="social-icon fas fa-envelope"></i>
                                                     </a>
                                                 </li>
-                                                <li>
-                                                    <a target="_blank" href="https://twitter.com/">
-                                                        <i class="social-icon fas fa-print"></i>
-                                                    </a>
-                                                </li>
-
                                             </ul>
                                         </div>
                                     </div>
@@ -228,7 +225,7 @@
                                 <!-- end post-img -->
 
                                 <!-- strat psot body -->
-                                <div class="post-body" style="text-align: justify">
+                                <div class="post-body" id="contentToConvert" style="text-align: justify">
                                     {!! $data->description !!}
                                     <br><br>
                                     <div class="ad-banner-img mt--45 mb--40">
@@ -251,8 +248,9 @@
                                                 <div class="tag-list">
 
                                                     @foreach ($data->getKeys() as $item)
-                                                        <a href="{{ route('front.currentNews.tag_list',$item) }}" class="tag-link"
-                                                            style="text-transform: capitalize"> {{ $item }} </a>
+                                                        <a href="{{ route('front.currentNews.tag_list', $item) }}"
+                                                            class="tag-link" style="text-transform: capitalize">
+                                                            {{ $item }} </a>
                                                     @endforeach
 
 
@@ -378,8 +376,7 @@
                                     <div class="row justify-content-center mb--10">
                                         <div class="col-2 col-md-1">
                                             <div class="emoji_container">
-                                                <img id="love"
-                                                    src="https://millimudafaa.com/assets/img/begendim.png"
+                                                <img id="love" src="https://millimudafaa.com/assets/img/begendim.png"
                                                     style="cursor: pointer; width:38px;">
                                             </div>
                                         </div>
@@ -412,8 +409,7 @@
                                         </div>
                                         <div class="col-2 col-md-1">
                                             <div class="emoji_container">
-                                                <img id="shocked"
-                                                    src="https://millimudafaa.com/assets/img/sasirdim.png"
+                                                <img id="shocked" src="https://millimudafaa.com/assets/img/sasirdim.png"
                                                     style="cursor: pointer; width:38px;">
                                             </div>
                                         </div>
@@ -421,16 +417,16 @@
 
                                     </div>
                                     <div class="row justify-content-center mb--50">
-                                        @foreach($emojies as $emoji => $number)
-                                        <div class="col-2 col-md-1">
-                                            <div class="emoji_container">
-                                                <div class="progress" role="progressbar" aria-label="Basic example"
-                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                                    <div id="{{ $emoji }}_bar" class="progress-bar"
-                                                        style="width: {{ $number }}%"></div>
+                                        @foreach ($emojies as $emoji => $number)
+                                            <div class="col-2 col-md-1">
+                                                <div class="emoji_container">
+                                                    <div class="progress" role="progressbar" aria-label="Basic example"
+                                                        aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                                        <div id="{{ $emoji }}_bar" class="progress-bar"
+                                                            style="width: {{ $number }}%"></div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
                                         @endforeach
                                     </div>
                                     <div class="row mb--20">
@@ -562,30 +558,31 @@
                                                                         width="551" height="431">
                                                                 </a>
                                                             </div>
-                                                            @if(isset($single->Category()[0]))
-                                                            <div class="post-content">
-                                                                <a style="background-color: {{ $single->Category()[0]->color_code != null ? $single->Category()[0]->color_code : '' }}"
-                                                                    href="{{ route('front.currentNewsCategory.list', $single->Category()[0]->link) }}"
-                                                                    class="rt-cat-primary sidebar_restricted_category_title">
-                                                                    {{ $single->Category()[0]->title }} </a>
-                                                                <h4 class="post-title">
-                                                                    <a href="{{ route('front.currentNews.detail', $single->link) }}"
-                                                                        class="restricted_title_2">
-                                                                        {{ $single->title }}
-                                                                    </a>
-                                                                </h4>
+                                                            @if (isset($single->Category()[0]))
+                                                                <div class="post-content">
+                                                                    <a style="background-color: {{ $single->Category()[0]->color_code != null ? $single->Category()[0]->color_code : '' }}"
+                                                                        href="{{ route('front.currentNewsCategory.list', $single->Category()[0]->link) }}"
+                                                                        class="rt-cat-primary sidebar_restricted_category_title">
+                                                                        {{ $single->Category()[0]->title }} </a>
+                                                                    <h4 class="post-title">
+                                                                        <a href="{{ route('front.currentNews.detail', $single->link) }}"
+                                                                            class="restricted_title_2">
+                                                                            {{ $single->title }}
+                                                                        </a>
+                                                                    </h4>
 
-                                                                <div class="post-meta">
-                                                                    <ul>
-                                                                        <li>
-                                                                            <span class="rt-meta">
-                                                                                <i class="far fa-calendar-alt icon"></i>
-                                                                                {{ $single->created_at->translatedFormat('d M Y') }}
-                                                                            </span>
-                                                                        </li>
-                                                                    </ul>
+                                                                    <div class="post-meta">
+                                                                        <ul>
+                                                                            <li>
+                                                                                <span class="rt-meta">
+                                                                                    <i
+                                                                                        class="far fa-calendar-alt icon"></i>
+                                                                                    {{ $single->created_at->translatedFormat('d M Y') }}
+                                                                                </span>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
                                                             @endif
                                                         </div>
                                                     </div>
@@ -754,7 +751,8 @@
                                 <div class="tag-list">
 
                                     @foreach ($data->getKeys() as $key)
-                                        <a href="{{ route('front.currentNews.tag_list',$key) }}" class="tag-link" style="text-transform: capitalize">
+                                        <a href="{{ route('front.currentNews.tag_list', $key) }}" class="tag-link"
+                                            style="text-transform: capitalize">
                                             {{ $key }} </a>
                                     @endforeach
 
@@ -778,11 +776,25 @@
     <!-- End Main -->
 @endsection
 @section('script')
+    <script>
+        function convertToPDF() {
+            const pdf = new jsPDF();
+
+            // Sayfa içeriği eklemek için HTML elementini seç
+            const content = document.getElementById('contentToConvert');
+
+            // jsPDF ile PDF'e dönüştür
+            pdf.fromHTML(content, 15, 15);
+
+            // PDF'i indir
+            pdf.save('converted.pdf');
+        }
+    </script>
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                                                                    // limit by device width
-                                                                    -------------------------------*/
+                                                                            // limit by device width
+                                                                            -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
 
@@ -901,22 +913,25 @@
             e.preventDefault();
             var emoji_id = $(this)[0].id; //get the id of the printed emoji
             $.ajax({
-                headers : {"X-CSRF-TOKEN" : "{{ csrf_token() }}"},
-                url : "/setEmoji",
-                type : "post",
-                data : {
-                    "emoji_type" : emoji_id,
-                    "post_id" : "{{ $data->id }}",
-                    "post_type" : "news",
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
                 },
-                dataType : "json",
-                success : function(response){
-                    if(response.status == "success"){
-                        var emoji_progress_bar = $("#" + emoji_id + "_bar").css('width'); //get width property of emoji's bar
+                url: "/setEmoji",
+                type: "post",
+                data: {
+                    "emoji_type": emoji_id,
+                    "post_id": "{{ $data->id }}",
+                    "post_type": "news",
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response.status == "success") {
+                        var emoji_progress_bar = $("#" + emoji_id + "_bar").css(
+                            'width'); //get width property of emoji's bar
                         var intValue = parseInt(emoji_progress_bar, 10);
                         intValue++; //increase the value
                         $("#" + emoji_id + "_bar").css('width', intValue); //update the value
-                    }else{
+                    } else {
                         alert(response.message);
                     }
                 }
@@ -932,4 +947,3 @@
         });
     </script>
 @endsection
-

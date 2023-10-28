@@ -153,7 +153,8 @@
                             </h2>
 
                             <div>
-                                <h6><a href="fair_list.html"> {{ __('message.tümünü gör') }} </a></h6>
+                                <h6><a href="{{ route('front.activity.close_activity') }}"> {{ __('message.tümünü gör') }}
+                                    </a></h6>
                             </div>
                         </div>
                         <!-- end titile-wrapper -->
@@ -175,12 +176,13 @@
                                                     <a href="{{ route('front.activity.categoryDetail', $item->Category->link) }}"
                                                         class="rt-cat-primary restricted_category_title">
                                                         {{ $item->Category->title }} </a>
-                                                        @if($item->sayac_yil() || $item->sayac_ay() || $item->sayac_gun())
+                                                    @if ($item->sayac_yil() || $item->sayac_ay() || $item->sayac_gun())
                                                         <h6 class="rt-news-cat-normal text-danger mx-2">
                                                             <i class="far fa-clock icon"></i>
-                                                            {{ $item->sayac_yil() ?? ' ' }} {{ $item->sayac_ay() ?? ' ' }} {{ $item->sayac_gun() ?? ' ' }}
+                                                            {{ $item->sayac_yil() ?? ' ' }} {{ $item->sayac_ay() ?? ' ' }}
+                                                            {{ $item->sayac_gun() ?? ' ' }}
                                                         </h6>
-                                                   @endif
+                                                    @endif
                                                 </div>
                                                 <h4 class="post-title">
                                                     <a href="{{ route('front.activity.detail', $item->link) }}">
@@ -261,6 +263,13 @@
                                                     <a href="{{ route('front.activity.categoryDetail', $item->Category->link) }}"
                                                         class="rt-cat-primary sidebar_restricted_category_title">
                                                         {{ $item->Category->title }} </a>
+                                                    @if ($item->sayac_yil() || $item->sayac_ay() || $item->sayac_gun())
+                                                        <h6 class="rt-news-cat-normal text-danger mx-2">
+                                                            <i class="far fa-clock icon"></i>
+                                                            {{ $item->sayac_yil() ?? ' ' }} {{ $item->sayac_ay() ?? ' ' }}
+                                                            {{ $item->sayac_gun() ?? ' ' }}
+                                                        </h6>
+                                                    @endif
                                                     <h4 class="post-title">
                                                         <a href="{{ route('front.activity.detail', $item->link) }}">
                                                             {{ $item->title }}
@@ -329,8 +338,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                    // limit by device width
-                    -------------------------------*/
+                            // limit by device width
+                            -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
 

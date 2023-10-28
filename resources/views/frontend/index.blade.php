@@ -1179,13 +1179,13 @@
                     <div class="col-xl-3 col-md-6 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="800ms">
                         <div class="rt-post-grid grid-meta">
                             <div class="post-img">
-                                <a href="single-post1.html">
+                                <a href="{{ route('front.interview.detail',$item->link) }}">
                                     <img src="{{ $item->image }}" alt="post" width="551" height="431">
                                 </a>
                             </div>
                             <div class="post-content">
                                 <h3 class="post-title">
-                                    <a href="single-post1.html" class="title_style_2">
+                                    <a href="{{ route('front.interview.detail',$item->link) }}" class="title_style_2">
                                         {{ $item->title }}
                                     </a>
                                 </h3>

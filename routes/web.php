@@ -328,7 +328,6 @@ Route::middleware('lang')->group(function () {
                         ->name('destroy');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
-
                 });
 
             // RÖPORTAJ  CONTROLLER
@@ -356,8 +355,7 @@ Route::middleware('lang')->group(function () {
                         ->name('destroy');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
-                    Route::get('yorumlar/{id?}', 'commentList')
-                        ->name('commentList');
+                    Route::get('yorumlar/{id?}', 'commentList')->name('commentList');
                     Route::get('yorum-statu/{id?}', 'changeCommentStatus')->name('changeCommentStatus');
                     Route::get('yorum-sil/{id?}', 'commentDestroy')->name('commentDestroy');
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
@@ -440,8 +438,7 @@ Route::middleware('lang')->group(function () {
                         ->get('sil/{id?}', 'destroy')
                         ->name('destroy');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
-                    Route::get('yorumlar/{id?}', 'commentList')
-                        ->name('commentList');
+                    Route::get('yorumlar/{id?}', 'commentList')->name('commentList');
                     Route::get('yorum-statu/{id?}', 'changeCommentStatus')->name('changeCommentStatus');
                     Route::get('yorum-sil/{id?}', 'commentDestroy')->name('commentDestroy');
                 });
@@ -546,19 +543,19 @@ Route::middleware('lang')->group(function () {
                     Route::post('/duzenle/{id?}', 'update')->name('update');
                 });
 
-                // kunye CONTROLLER
+            // kunye CONTROLLER
             Route::controller(KunyeController::class)
-            ->prefix('kunye')
-            ->name('kunye.')
-            ->middleware('auth:admin')
-            ->group(function () {
-                Route::get('/', 'list')->name('list');
-                Route::get('/ekle', 'create')->name('add');
-                Route::post('/ekle', 'store')->name('store');
-                Route::get('/duzenle/{id?}', 'edit')->name('edit');
-                Route::post('/duzenle/{id?}', 'update')->name('update');
-                Route::get('/sil/{id?}', 'destroy')->name('destroy');
-            });
+                ->prefix('kunye')
+                ->name('kunye.')
+                ->middleware('auth:admin')
+                ->group(function () {
+                    Route::get('/', 'list')->name('list');
+                    Route::get('/ekle', 'create')->name('add');
+                    Route::post('/ekle', 'store')->name('store');
+                    Route::get('/duzenle/{id?}', 'edit')->name('edit');
+                    Route::post('/duzenle/{id?}', 'update')->name('update');
+                    Route::get('/sil/{id?}', 'destroy')->name('destroy');
+                });
 
             // iletişim
             Route::controller(ContactController::class)
@@ -569,15 +566,21 @@ Route::middleware('lang')->group(function () {
                     Route::post('/duzenle', 'update')->name('update');
                 });
 
-                // SOSYAL MEDYA
-                Route::controller(SocialMediaController::class)->prefix('sosyal-medya')->name('social.')->group(function(){
-                    Route::get('/','list')->name('list');
-                    Route::post('/duzenle','update')->name('update');
+            // SOSYAL MEDYA
+            Route::controller(SocialMediaController::class)
+                ->prefix('sosyal-medya')
+                ->name('social.')
+                ->group(function () {
+                    Route::get('/', 'list')->name('list');
+                    Route::post('/duzenle', 'update')->name('update');
                 });
 
-                // ANKET YÖNETİM
-                Route::controller(AnketController::class)->prefix('anket')->name('anket.')->group(function(){
-                    Route::get('/','list')->name('list');
+            // ANKET YÖNETİM
+            Route::controller(AnketController::class)
+                ->prefix('anket')
+                ->name('anket.')
+                ->group(function () {
+                    Route::get('/', 'list')->name('list');
                     Route::get('/ekle', 'create')->name('add');
                     Route::post('/ekle', 'store')->name('store');
                     Route::get('/duzenle/{id?}', 'edit')->name('edit');
@@ -644,6 +647,7 @@ Route::middleware('lang')->group(function () {
                 ->name('activity.')
                 ->group(function () {
                     Route::get('liste', 'index')->name('list');
+                    Route::get('yaklasan-etkinlikler', 'close_activity')->name('close_activity');
                     Route::get('detay/{id?}', 'detail')->name('detail');
                     Route::get('kategori-detay/{id?}', 'categoryDetail')->name('categoryDetail');
                     Route::post('etkinlik-ara', 'searchActivity')->name('searchActivity');
@@ -661,7 +665,6 @@ Route::middleware('lang')->group(function () {
                     Route::get('detay/{id?}', 'detail')->name('detail');
                     Route::post('yorum-ekle/{id?}', 'commentStore')->name('commentStore');
                     Route::post('alt-yorum-ekle/{id?}', 'sub_commentStore')->name('sub_commentStore');
-
                 });
 
             // YORUM CONTROLLER
@@ -727,23 +730,24 @@ Route::middleware('lang')->group(function () {
                     Route::get('/detay/{id?}', 'detail')->name('detail');
                 });
 
-                // Archive CONTROLLER
+            // Archive CONTROLLER
             Route::controller(ArchiveController::class)
-            ->prefix('arsiv')
-            ->name('archive.')
-            ->group(function () {
-                Route::get('/', 'index')->name('index');
-                Route::get('/filter', 'filterArchive')->name('filterArchive');
-            });
+                ->prefix('arsiv')
+                ->name('archive.')
+                ->group(function () {
+                    Route::get('/', 'index')->name('index');
+                    Route::get('/filter', 'filterArchive')->name('filterArchive');
+                });
 
             // anket frontend
-            Route::controller(FrontendAnketController::class)->prefix('anket')->name('anket.')->group(function(){
-                Route::post('ekle','anketStore')->name('store');
-            });
+            Route::controller(FrontendAnketController::class)
+                ->prefix('anket')
+                ->name('anket.')
+                ->group(function () {
+                    Route::post('ekle', 'anketStore')->name('store');
+                });
 
-            Route::get('iletisim',[FrontendContactController::class,'contact'])->name('contact');
-            Route::get('kunye',[FrontendKunyeController::class,'index'])->name('kunye');
-
-
+            Route::get('iletisim', [FrontendContactController::class, 'contact'])->name('contact');
+            Route::get('kunye', [FrontendKunyeController::class, 'index'])->name('kunye');
         });
 });
