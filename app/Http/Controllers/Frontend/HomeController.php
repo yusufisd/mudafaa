@@ -34,6 +34,13 @@ class HomeController extends Controller
             $tek_haber = CurrentNews::inRandomOrder()->first();
             $uc_kategori = CurrentNewsCategory::orderBy('id','asc')->take(3)->get();
 
+            
+            if($tek_haber->Category() == null){
+                while($tek_haber->Category() == null){
+                    $tek_haber = CurrentNews::inRandomOrder()->first();
+                }
+            }
+
 
             $first_cat = CurrentNewsCategory::orderBy('id','asc')->first();
             $second_cat = CurrentNewsCategory::whereNot('id',$first_cat->id)->orderBy('id','asc')->first();
@@ -77,6 +84,12 @@ class HomeController extends Controller
             $populer_haber_first = CurrentNews::inRandomOrder()->take(1)->first();
             $populer_haber_three = CurrentNews::inRandomOrder()->take(3)->get();
 
+            if($populer_haber_first->Category() == null){
+                while($populer_haber_first->Category() != null){
+                    $populer_haber_first = CurrentNews::inRandomOrder()->take(1)->first();
+                }
+            }
+
             $videos = Video::latest()->take(4)->get();
 
             $interview = Interview::latest()->take(4)->get();
@@ -93,6 +106,12 @@ class HomeController extends Controller
             $iki_haber = EnCurrentNews::inRandomOrder()->take(2)->get();
             $tek_haber = EnCurrentNews::inRandomOrder()->first();
             $uc_kategori = EnCurrentNewsCategory::orderBy('id','asc')->take(3)->get();
+
+            if($tek_haber->Category() == null){
+                while($tek_haber->Category() == null){
+                    $tek_haber = EnCurrentNews::inRandomOrder()->first();
+                }
+            }
 
             $first_cat = EnCurrentNewsCategory::orderBy('id','asc')->first();
             $second_cat = EnCurrentNewsCategory::whereNot('id',$first_cat->id)->orderBy('id','asc')->first();
@@ -135,6 +154,12 @@ class HomeController extends Controller
 
             $populer_haber_first = EnCurrentNews::inRandomOrder()->take(1)->first();
             $populer_haber_three = EnCurrentNews::inRandomOrder()->take(3)->get();
+
+            if($populer_haber_first->Category() == null){
+                while($populer_haber_first->Category() != null){
+                    $populer_haber_first = EnCurrentNews::inRandomOrder()->take(1)->first();
+                }
+            }
 
             $videos = EnVideo::latest()->take(4)->get();
 

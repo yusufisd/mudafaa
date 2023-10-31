@@ -122,13 +122,44 @@ Route::middleware('lang')->group(function () {
                         ->name('destroy');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
                     Route::get('manset-degistir/{id?}', 'change_headline')->name('change_headline');
-                    Route::middleware('per:currentNews_list')
-                        ->get('yorumlar/{id?}', 'commentList')
-                        ->name('commentList');
+                    Route::middleware('per:currentNews_list')->get('yorumlar/{id?}', 'commentList')->name('commentList');
+                    Route::middleware('per:currentNews_list')->get('yorumlar/ek/{id?}', 'comment_commentList')->name('comment_commentList');
                     Route::get('yorum-statu/{id?}', 'changeCommentStatus')->name('changeCommentStatus');
                     Route::get('yorum-sil/{id?}', 'commentDestroy')->name('commentDestroy');
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
                 });
+
+                // RÖPORTAJ  CONTROLLER
+            Route::controller(InterviewController::class)
+            ->prefix('roportaj')
+            ->name('interview.')
+            ->group(function () {
+                Route::middleware('per:interview_add')
+                    ->get('ekle', 'create')
+                    ->name('add');
+                Route::middleware('per:interview_add')
+                    ->post('ekle', 'store')
+                    ->name('store');
+                Route::middleware('per:interview_list')
+                    ->get('liste', 'index')
+                    ->name('list');
+                Route::middleware('per:interview_edit')
+                    ->get('duzenle/{id?}', 'edit')
+                    ->name('edit');
+                Route::middleware('per:interview_edit')
+                    ->post('guncelle/{id?}', 'update')
+                    ->name('update');
+                Route::middleware('per:interview_delete')
+                    ->get('sil/{id?}', 'destroy')
+                    ->name('destroy');
+                Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
+                Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
+                Route::get('yorumlar/{id?}', 'commentList')->name('commentList');
+                Route::get('yorumlar/ek/{id?}', 'comment_commentList')->name('comment_commentList');
+                Route::get('yorum-statu/{id?}', 'changeCommentStatus')->name('changeCommentStatus');
+                Route::get('yorum-sil/{id?}', 'commentDestroy')->name('commentDestroy');
+                Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
+            });
 
             // USER CONTROLLER
             Route::controller(UserController::class)
@@ -330,36 +361,7 @@ Route::middleware('lang')->group(function () {
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
                 });
 
-            // RÖPORTAJ  CONTROLLER
-            Route::controller(InterviewController::class)
-                ->prefix('roportaj')
-                ->name('interview.')
-                ->group(function () {
-                    Route::middleware('per:interview_add')
-                        ->get('ekle', 'create')
-                        ->name('add');
-                    Route::middleware('per:interview_add')
-                        ->post('ekle', 'store')
-                        ->name('store');
-                    Route::middleware('per:interview_list')
-                        ->get('liste', 'index')
-                        ->name('list');
-                    Route::middleware('per:interview_edit')
-                        ->get('duzenle/{id?}', 'edit')
-                        ->name('edit');
-                    Route::middleware('per:interview_edit')
-                        ->post('guncelle/{id?}', 'update')
-                        ->name('update');
-                    Route::middleware('per:interview_delete')
-                        ->get('sil/{id?}', 'destroy')
-                        ->name('destroy');
-                    Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
-                    Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
-                    Route::get('yorumlar/{id?}', 'commentList')->name('commentList');
-                    Route::get('yorum-statu/{id?}', 'changeCommentStatus')->name('changeCommentStatus');
-                    Route::get('yorum-sil/{id?}', 'commentDestroy')->name('commentDestroy');
-                    Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
-                });
+            
 
             // SÖZLÜK  CONTROLLER
             Route::controller(DictionaryController::class)
@@ -750,4 +752,10 @@ Route::middleware('lang')->group(function () {
             Route::get('iletisim', [FrontendContactController::class, 'contact'])->name('contact');
             Route::get('kunye', [FrontendKunyeController::class, 'index'])->name('kunye');
         });
+});
+
+Route::get('test',function(){
+    $data = "https://www.instagram.com/millimudafaacom/?__a=1";
+    $data = file_get_contents($data);
+    return $data;
 });

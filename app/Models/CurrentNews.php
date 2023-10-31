@@ -55,6 +55,10 @@ class CurrentNews extends Model
             ->count();
     }
 
+
+
+   
+
     public function comments()
     {
         return Comment::where('is_post', 1)

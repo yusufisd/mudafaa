@@ -18,6 +18,10 @@ class Interview extends Model
         return $this->hasOne(UserModel::class,'id','author');
     }
 
+    public function adminCommentCount(){
+        return InterviewComment::where('post_id',$this->id)->count();
+    }
+
     public function commentCount(){
         return InterviewComment::where('post_id',$this->id)->where('status',1)->count();
     }
@@ -28,6 +32,15 @@ class Interview extends Model
 
     public function getKeys(){
         return explode(',', $this->seo_key);
+    }
+
+
+    public function CommentCommentsCount(){
+        return InterviewComment::where('is_post',0)->where('post_id',$this->id)->count();
+    }
+
+    public function CommentComments(){
+        return InterviewComment::where('is_post',0)->where('post_id',$this->id)->get();
     }
 
 }

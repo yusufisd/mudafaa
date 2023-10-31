@@ -15,27 +15,8 @@
                 <div class="page-title d-flex flex-column justify-content-center me-3 flex-wrap">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-primary fw-bold fs-3 flex-column justify-content-center my-0">
-                        {{__('message.röportaj')}} {{ __('message.listesi') }} </h1>
+                        {{ __('message.güncel') }} {{ __('message.haber') }} Yorumları </h1>
                     <!--end::Title-->
-                </div>
-                <div class="" style="display: flex">
-                    <div id="goster" class="col-md-8" style="display:none">
-                        <form action="{{ route('admin.interview.ice_aktar') }}" method="POST"
-                            enctype="multipart/form-data">
-                            @csrf
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <input type="file" class="form-control" name="ice_aktar" id="">
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="submit" class="btn btn-primary" id="">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div id="gizle">
-                        <button class="btn btn-primary" onclick="iceri_aktar()" type="button"> Aktar</button>
-                    </div>
                 </div>
                 <!--end::Page title-->
             </div>
@@ -54,32 +35,6 @@
                         <div class="card card-flush h-xl-100 mb-xl-8 mb-5">
                             <!--begin::Card header-->
                             <div class="card-header border-0 pt-6">
-                                <!--begin::Card toolbar-->
-                                <div class="card-toolbar gap-3">
-                                    <!--begin::Toolbar-->
-                                    <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
-                                        <!--begin::Add user-->
-                                        <a type="button" class="btn btn-outline btn-outline-success"
-                                            href="{{ route('admin.interview.add') }}">
-                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
-                                            <span class="svg-icon svg-icon-2">
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect opacity="0.5" x="11.364" y="20.364" width="16"
-                                                        height="2" rx="1" transform="rotate(-90 11.364 20.364)"
-                                                        fill="currentColor" />
-                                                    <rect x="4.36396" y="11.364" width="16" height="2"
-                                                        rx="1" fill="currentColor" />
-                                                </svg>
-                                            </span>
-                                            <!--end::Svg Icon--> {{__('message.röportaj')}} {{ __('message.ekle') }} </a>
-                                        <!--end::Add user-->
-                                    </div>
-
-
-                                </div>
-                                <!--end::Card toolbar-->
-
 
                             </div>
                             <!--end::Card header-->
@@ -98,63 +53,51 @@
                                                             value="1" />
                                                     </div>
                                                 </th>
-                                                <th style="text-align: center"> {{ __('message.görsel') }} <i
-                                                        class="fa fa-sort ms-3"></i></th>
-                                                <th style="text-align: center"> {{ __('message.başlık') }} <i
-                                                        class="fa fa-sort ms-3"></i></th>
-                                                <th style="text-align: center"> {{ __('message.yazar') }} <i
-                                                        class="fa fa-sort ms-3"></i></th>
-                                                <th style="text-align: center"> {{ __('message.durum') }} <i
-                                                        class="fa fa-sort ms-3"></i></th>
-                                                <th style="text-align: center"> {{ __('message.işlem') }} <i
-                                                        class="fa fa-sort ms-3"></i></th>
+                                                <th> Ad Soyad <i class="fa fa-sort ms-3"></i></th>
+                                                <th> Email <i class="fa fa-sort ms-3"></i></th>
+                                                <th> Yorum <i class="fa fa-sort ms-3"></i></th>
+                                                <th> Durum <i class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center"> Ayar <i class="fa fa-sort ms-3"></i></th>
+                                                <th> {{ __('message.işlem') }} <i class="fa fa-sort ms-3"></i></th>
                                             </tr>
                                         </thead>
                                         <tbody>
 
                                             @foreach ($data as $item)
                                                 <tr class="align-middle">
-
-                                                    <td style="text-align: center">
+                                                    <td>
                                                         <div
                                                             class="form-check form-check-sm form-check-custom form-check-solid">
                                                             <input class="form-check-input my-input" type="checkbox"
                                                                 value="1" />
                                                         </div>
                                                     </td>
-
-                                                    <td style="text-align: center">
-                                                        <img src="/{{ $item->image }}"
-                                                            style="width:100px; border-radius:5%" alt="">
+                                                    <td> {{ $item->full_name }} </td>
+                                                    <td> {{ $item->email }} </td>
+                                                    <td> {{ $item->comment }} </td>
+                                                    <td>
+                                                        @if ($item->status == 0)
+                                                            <span style="color:orange;"><b>BEKLİYOR</b></span>
+                                                        @elseif ($item->status == 1)
+                                                            <span style="color:lightgreen;"><b>ONAYLANDI</b></span>
+                                                        @elseif ($item->status == 2)
+                                                            <span style="color:red;"><b>REDDEDİLDİ</b></span>
+                                                        @endif
                                                     </td>
 
-                                                    <td style="text-align: center"> {{ substr($item->title,0,50) }}... </td>
-                                                    <td style="text-align: center; text-transform:capitalize"> {{ $item->Author->name }}
-                                                        {{ $item->Author->surname }} </td>
-                                                    <td>
+                                                    <td style="text-align: center">
                                                         <div
                                                             class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
                                                             <input class="form-check-input w-50px h-25px" type="checkbox"
-                                                                id="blog_status_1"
-                                                                onchange="change_status({{ $item->id }})"
+                                                                id="blog_status_1" onclick="gonder({{$item->id}})"
+                                                                
                                                                 {{ $item->status == 1 ? 'checked' : '' }}>
                                                             <label class="form-check-label" for="blog_status_1"></label>
                                                         </div>
-                                                    </td>
 
-                                                    <td style="text-align: center">
-                                                        <a href="{{ route('admin.interview.commentList', $item->id) }}"
-                                                            style="border:solid; border-radius:5px;padding:3%; border-color:lightgray;margin:3%">
-                                                            <i class="fa-solid fa-comment fa-xl"></i>
-                                                            <span style="color: gray">
-                                                                {{ $item->adminCommentCount() }}
-                                                            </span>
-                                                        </a>
-                                                        <a href="{{route('admin.interview.edit',$item->id)}}"
-                                                            class="btn btn-icon btn-bg-light btn-active-color-secondary btn-sm me-1 px-2"
-                                                            title="Düzenle">
-                                                            <i class="fa-regular fa-pen-to-square fs-3"></i>
-                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        
                                                         <a onclick="destroy({{ $item->id }})"
                                                             class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1 px-2"
                                                             data-bs-toggle="modal" data-bs-target="#delete_modal"
@@ -164,7 +107,6 @@
                                                     </td>
                                                 </tr>
                                             @endforeach
-
 
                                         </tbody>
                                     </table>
@@ -187,13 +129,13 @@
 @endsection
 @section('script')
     <script>
-        function iceri_aktar() {
-            $('#goster').toggle('fast');
-        }
-    </script>
-    <script>
+        
         function change_status(d) {
-            window.location.href = "{{ route('admin.interview.change_status') }}/" + d;
+            window.location.href = "{{ route('admin.currentNewsCategory.change_status') }}/" + d
+        }
+
+        function gonder(d) {
+            window.location.href = "{{ route('admin.currentNews.changeCommentStatus') }}/" + d
         }
 
         function destroy(d) {
@@ -207,7 +149,7 @@
                 confirmButtonText: 'Evet, sil!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "{{ route('admin.interview.destroy') }}/" + d;
+                    window.location.href = "{{ route('admin.currentNews.commentDestroy') }}/" + d;
                 }
             })
         }

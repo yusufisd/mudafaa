@@ -342,7 +342,7 @@ class InterviewController extends Controller
     public function commentList($id)
     {
         $data = InterviewComment::where('post_id', $id)->get();
-        return view('backend.currentNews.comments.list', compact('data'));
+        return view('backend.interview.comments.list', compact('data'));
     }
 
     public function changeCommentStatus($id)
@@ -361,5 +361,11 @@ class InterviewController extends Controller
         $data->delete();
         Alert::success('Yorum Silindi');
         return redirect()->back();
+    }
+
+    public function comment_commentList($id)
+    {
+        $data = InterviewComment::where('is_post',0)->where('post_id', $id)->get();
+        return view('backend.interview.comments.comments.list', compact('data'));
     }
 }

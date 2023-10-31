@@ -41,12 +41,13 @@ class CommentController extends Controller
             "comment.required" => "Yorum alanı boş bırakılamaz",
         ]);
 
+
         $new = new Comment();
         $new->full_name = $request->full_name;
         $new->email = $request->email;
         $new->comment = $request->comment;
         $new->comment = $request->comment;
-        $new->post_id = $test;
+        $new->post_id = $request->parent_comment;
         $new->is_post = 0;
         $new->save();
 

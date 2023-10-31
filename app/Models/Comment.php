@@ -13,5 +13,13 @@ class Comment extends Model
     public function Product(){
         return $this->hasOne(CurrentNews::class,'id','post_id');
     }
+
+    public function CommentCommentsCount(){
+        return Comment::where('is_post',0)->where('post_id',$this->id)->count();
+    }
+
+    public function CommentComments(){
+        return Comment::where('is_post',0)->where('post_id',$this->id)->get();
+    }
 }
  

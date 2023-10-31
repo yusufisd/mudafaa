@@ -440,8 +440,14 @@ class CurrentNewsController extends Controller
 
     public function commentList($id)
     {
-        $data = Comment::where('post_id', $id)->get();
+        $data = Comment::where('is_post',1)->where('post_id', $id)->get();
         return view('backend.currentNews.comments.list', compact('data'));
+    }
+
+    public function comment_commentList($id)
+    {
+        $data = Comment::where('is_post',0)->where('post_id', $id)->get();
+        return view('backend.currentNews.comments.comments.list', compact('data'));
     }
 
     public function changeCommentStatus($id)

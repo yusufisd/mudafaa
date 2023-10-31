@@ -97,7 +97,13 @@
 
                                                     </td>
                                                     <td>
-                                                        
+                                                        <a href="{{ route('admin.interview.comment_commentList', $item->id) }}"
+                                                            style="border:solid; border-radius:5px;padding:3%; border-color:lightgray;margin:3%">
+                                                            <i class="fa-solid fa-comment fa-xl"></i>
+                                                            <span style="color: gray">
+                                                                {{ $item->CommentCommentsCount() }}
+                                                            </span>
+                                                        </a>
                                                         <a onclick="destroy({{ $item->id }})"
                                                             class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1 px-2"
                                                             data-bs-toggle="modal" data-bs-target="#delete_modal"

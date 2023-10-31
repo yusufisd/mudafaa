@@ -442,6 +442,9 @@
                                                             alt="commentator-img_1" width="170" height="170">
                                                     </div>
                                                 </div>
+
+                                                <input type="hidden" id="com_id" value="{{ $item->id }}" name="">
+
                                                 <div class="col-md-9">
                                                     <div class="commentator-content">
                                                         <h3 class="commentator-name"> {{ $item->full_name }} </h3>
@@ -463,7 +466,39 @@
                                                 </div>
 
                                             </div>
+
+
+                                            @foreach ($item->CommentComments() as $comment)
+                                                
+                                            <div class="comment_container">
+                                                <div class="row">
+                                                    <div class="col-md-2"></div>
+                                                    <div class="d-none d-md-block col-md-3 mb-3">
+                                                        <div class="commentator-img">
+                                                            <img src="{{ asset('assets/sabit.png') }}"
+                                                                alt="commentator-img_1" width="170" height="170">
+                                                        </div>
+                                                    </div>
+    
+                                                    <input type="hidden" id="com_id" value="{{ $comment->id }}" name="">
+    
+                                                    <div class="col-md-7">
+                                                        <div class="commentator-content">
+                                                            <h3 class="commentator-name"> {{ $comment->full_name }} </h3>
+                                                            <p class="user-desc">
+                                                                {{ $comment->comment }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            @endforeach
+
+
                                         </div>
+
+
 
                                         <hr class="dropdown-divider my-5">
                                     @endforeach
@@ -855,16 +890,18 @@
         -------------------------------*/
         // Clicking the reply link
         $('.comment_span').one("click", function(e) {
+            const com_id = document.getElementById("com_id").value;
             e.preventDefault();
             // Create reply field
             var replyField = $(
+                
                 '<form action="{{ route('front.comment.storeComment', $item->id) }}" method="POST" class="rt-contact-form comments-form-style-1">' +
                 '@csrf' +
                 '<div class="row">' +
                 '<div class="col-xl-6">' +
                 '<div class="rt-form-group">' +
                 '<label for="name"> {{ __('message.ad soyad') }} *</label>' +
-                '<input type="text" name="name" id="name" class="form-control" data-error="Bu alan zorunludur" required>' +
+                '<input type="text" name="full_name" id="name" class="form-control" data-error="Bu alan zorunludur" required>' +
                 '<div class="help-block with-errors"></div>' +
                 '</div>' +
                 '</div>' +
@@ -875,6 +912,7 @@
                 '<div class="help-block with-errors"></div>' +
                 '</div>' +
                 '</div>' +
+                '<input type="hidden" name="parent_comment" id="com_id2">' +
                 '<div class="col-12">' +
                 '<div class="rt-form-group">' +
                 '<label for="comment">{{ __('message.yorum') }} *</label>' +
@@ -903,6 +941,8 @@
                 '</form>'
             );
             $(this).parent().parent().parent().append(replyField); // Add below comment
+            document.getElementById('com_id2').value = com_id;
+
         });
 
 
