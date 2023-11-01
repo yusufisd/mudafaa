@@ -150,7 +150,6 @@ class HomeController extends Controller
             }
 
 
-            $ilk_kategori_icerikleri = EnCurrentNews::where('category_id',$first_cat->id)->whereNot('id',1)->get();
             $cat1_news1 = EnCurrentNews::whereJsonContains('category_id',$first_cat->id)->orderBy('id','asc')->take(3)->get();
             $cat1_news2 = EnCurrentNews::whereJsonContains('category_id',$first_cat->id)->orderBy('id','desc')->take(3)->get();
             $cat2_news1 = EnCurrentNews::whereJsonContains('category_id',$second_cat->id)->orderBy('id','asc')->take(3)->get();
@@ -177,7 +176,7 @@ class HomeController extends Controller
             $anket = Anket::inRandomOrder()->first();
 
         }
-        return view('frontend.index', compact('cats','iki_haber','tek_haber','uc_kategori','ilk_kategori_icerikleri','ilk_kategori_icerigi','ucuncu_kategori_icerigi','cat1_news1','cat1_news2','cat2_news1','cat2_news2','cat3_news1','cat3_news2','ikinci_kategori_icerigi','activity','populer_haber_first','populer_haber_three','videos','interview','anket'));
+        return view('frontend.index', compact('cats','iki_haber','tek_haber','uc_kategori','ilk_kategori_icerigi','ucuncu_kategori_icerigi','cat1_news1','cat1_news2','cat2_news1','cat2_news2','cat3_news1','cat3_news2','ikinci_kategori_icerigi','activity','populer_haber_first','populer_haber_three','videos','interview','anket'));
 
     }
 }

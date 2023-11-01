@@ -103,7 +103,7 @@
                                 </h3>
                                 <span class="rt-meta">
                                     <i class="far fa-calendar-alt icon"></i>
-                                    {{ $variable->created_at->translatedFormat('d M Y') }}
+                                    {{ $variable->live_time->translatedFormat('d M Y') }}
                                 </span>
                             </div>
                         </div>
@@ -162,7 +162,7 @@
                                     <li>
                                         <span class="rt-meta">
                                             <i class="far fa-calendar-alt icon"></i>
-                                            {{ $tek_haber->created_at->translatedFormat('d M Y') }}
+                                            {{ $tek_haber->live_time->translatedFormat('d M Y') }}
                                         </span>
                                     </li>
                                     <li>
@@ -223,7 +223,7 @@
                                                 <li>
                                                     <span class="rt-meta">
                                                         <i class="far fa-calendar-alt icon"></i>
-                                                        {{ $item->created_at->translatedFormat('d M Y') }}
+                                                        {{ $item->live_time->translatedFormat('d M Y') }}
                                                     </span>
                                                 </li>
                                                 <li>
@@ -377,7 +377,7 @@
                                                             </h4>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ $item->created_at->translatedFormat('d M Y') }}
+                                                                {{ $item->live_time->translatedFormat('d M Y') }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
                                                                 <i class="fa-solid fa-eye"></i>
@@ -420,7 +420,7 @@
                                                             </h4>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ $item->created_at->translatedFormat('d M Y') }}
+                                                                {{ $item->live_time->translatedFormat('d M Y') }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
                                                                 <i class="fa-solid fa-eye"></i>
@@ -491,6 +491,8 @@
                                         <div class="post-grid-md-list gutter-24">
 
                                             @foreach ($cat2_news1 as $item)
+                                            <br>
+
                                                 <div class="item">
                                                     <div class="rt-post post-md style-8">
                                                         <div class="post-img">

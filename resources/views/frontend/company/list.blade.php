@@ -6,7 +6,7 @@
 
     <style>
         .rt-cart-item .item-img::after {
-            background-color: rgba(var(--color-black-rgb), 0.2);
+            background-color: rgba(var(--color-white-rgb), 0);
             border-radius: var(--border-radius-xs);
         }
     </style>
@@ -67,8 +67,8 @@
                                                 <a
                                                     href="{{ route('front.company.detail', $item->id . '-' . \Illuminate\Support\Str::slug($item->title)) }}">
                                                     <div class="item-img">
-                                                        <img src="/{{ $item->image }}" alt="cat-slider" width="696"
-                                                            height="491">
+                                                        <img src="/{{ $item->image }}" style="width: 170px;height:170px" alt="cat-slider">
+                                                            
                                                     </div>
                                                 </a>
                                             </div>

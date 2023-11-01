@@ -684,7 +684,7 @@ Route::middleware('lang')->group(function () {
                 ->name('interview.')
                 ->group(function () {
                     Route::get('liste', 'index')->name('list');
-                    Route::get('detay/{id?}', 'detail')->name('detail');
+                    Route::get('/{id?}', 'detail')->name('detail');
                     Route::post('yorum-ekle/{id?}', 'addComment')->name('addComment');
                 });
 
@@ -695,7 +695,7 @@ Route::middleware('lang')->group(function () {
                 ->group(function () {
                     Route::get('liste/{id?}', 'index')->name('list');
                     Route::get('etiket/{title?}', 'tag_list')->name('tag_list');
-                    Route::get('detay/{id?}', 'detail')->name('detail');
+                    Route::get('/{id?}', 'detail')->name('detail');
                     Route::get('ara/{id?}', 'searchPost')->name('searchPost');
                 });
 
@@ -705,7 +705,7 @@ Route::middleware('lang')->group(function () {
                 ->name('company.')
                 ->group(function () {
                     Route::get('liste', 'index')->name('list');
-                    Route::get('detay/{id?}', 'detail')->name('detail');
+                    Route::get('/{id?}', 'detail')->name('detail');
                 });
 
             // ABOUT CONTROLLER
