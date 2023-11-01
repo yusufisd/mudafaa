@@ -650,7 +650,7 @@ Route::middleware('lang')->group(function () {
                 ->group(function () {
                     Route::get('liste', 'index')->name('list');
                     Route::get('yaklasan-etkinlikler', 'close_activity')->name('close_activity');
-                    Route::get('detay/{id?}', 'detail')->name('detail');
+                    Route::get('/{id?}', 'detail')->name('detail');
                     Route::get('kategori-detay/{id?}', 'categoryDetail')->name('categoryDetail');
                     Route::post('etkinlik-ara', 'searchActivity')->name('searchActivity');
                     Route::get('etkinlik-takvimi', 'calendar')->name('calendar');
@@ -726,18 +726,17 @@ Route::middleware('lang')->group(function () {
 
             // PAGE CONTROLLER
             Route::controller(FrontendPageController::class)
-                ->prefix('sayfalar')
                 ->name('page.')
                 ->group(function () {
-                    Route::get('/detay/{id?}', 'detail')->name('detail');
+                    Route::get('/{id?}', 'detail')->name('detail');
                 });
 
             // Archive CONTROLLER
             Route::controller(ArchiveController::class)
-                ->prefix('arsiv')
+                ->prefix('haber')
                 ->name('archive.')
                 ->group(function () {
-                    Route::get('/', 'index')->name('index');
+                    Route::get('/arsiv', 'index')->name('index');
                     Route::get('/filter', 'filterArchive')->name('filterArchive');
                 });
 

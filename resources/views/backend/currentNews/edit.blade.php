@@ -197,7 +197,7 @@
                                                                         <input type="date"
                                                                             name="activity_on_location_tr"
                                                                             required class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            value="{{ $data_tr->live_time }}" />
+                                                                            value="{{ $data_tr->live_time->format('Y-m-d') }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>

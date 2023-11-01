@@ -103,7 +103,7 @@ return [
     "iletişim" => "Contact",
     "anket" => "Survey",
     "soru" => "Question",
-
+    "Ulusal ve global savunma ile ilgili gündemden daha hızlı haberdar olmak istiyorsanız, Milli Müdafaa e-posta listesine kayıt olun!" => "If you want to be informed faster about the national and global defense agenda, sign up for the Milli Müdafaa mailing list!",
 
 ];
 ?>

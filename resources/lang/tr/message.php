@@ -101,6 +101,7 @@ return [
     "iletişim" => "İletişim",
     "anket" => "Anket",
     "soru" => "Soru",
+    "Ulusal ve global savunma ile ilgili gündemden daha hızlı haberdar olmak istiyorsanız, Milli Müdafaa e-posta listesine kayıt olun!" => "Ulusal ve global savunma ile ilgili gündemden daha hızlı haberdar olmak istiyorsanız, Milli Müdafaa e-posta listesine kayıt olun!",
 
 
 ];

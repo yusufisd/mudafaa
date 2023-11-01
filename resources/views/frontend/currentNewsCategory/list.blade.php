@@ -263,8 +263,7 @@
                                             {{ __('message.Haber Bültenimize Abone Ol') }}
                                         </h3>
                                         <p>
-                                            {{ __('message.Ulusal ve global savunma ile ilgili gündemden daha hızlı haberdar olmak
-                                                                                                                                                                                istiyorsanız, Milli Müdafaa e-posta listesine kayıt olun!') }}
+                                            {{ __('message.Ulusal ve global savunma ile ilgili gündemden daha hızlı haberdar olmak istiyorsanız, Milli Müdafaa e-posta listesine kayıt olun!') }}
                                         </p>
                                         <form action="#" class="rt-contact-form subscribe-form rt-form">
                                             <div class="rt-form-group">

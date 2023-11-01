@@ -15,9 +15,9 @@ class PageController extends Controller
             $local = config('app.fallback_locale');
         }
         if ($local == 'tr') {
-            $data = Page::findOrFail($id);
+            $data = Page::where('link',$id)->first();
         } elseif ($local == 'en') {
-            $data = EnPage::where('page_id',$id)->first();
+            $data = EnPage::where('link',$id)->first();
         }
 
         return view('frontend.page.detail',compact('data'));

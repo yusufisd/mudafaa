@@ -194,8 +194,7 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ substr($item->start_time, 8, 2) }}-{{ substr($item->start_time, 5, 2) }}-{{ substr($item->start_time, 0, 4) }}
-                                                                - {{ substr($item->start_time, 10, 6) }}
+                                                                {{ $item->start_time->translatedFormat('d M Y') }} / {{ $item->start_clock }}
                                                             </span>
                                                         </li>
                                                         <li>
@@ -280,8 +279,7 @@
                                                             <li>
                                                                 <span class="rt-meta">
                                                                     <i class="far fa-calendar-alt icon"></i>
-                                                                    {{ substr($item->start_time, 8, 2) }}-{{ substr($item->start_time, 5, 2) }}-{{ substr($item->start_time, 0, 4) }}
-                                                                    - {{ substr($item->start_time, 10, 6) }}
+                                                                    {{ $item->start_time->translatedFormat('d M Y') }} / {{ $item->start_clock }}
                                                                 </span>
                                                             </li>
                                                             <li>

@@ -47,6 +47,7 @@
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     @if (count($cats))
+
                         @foreach ($cats as $variable)
                             <div class="swiper-slide">
                                 <a href="{{ route('front.currentNews.detail', $variable->link) }}">
@@ -63,7 +64,7 @@
                                 </div>
                             </div>
                         @endforeach
-                    @endifŒ
+                    @endif
 
                 </div>
             </div>

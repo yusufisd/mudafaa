@@ -64,8 +64,24 @@ class ArchiveController extends Controller
         }
 
         $etiketler = CurrentNews::orderBy('view_counter','desc')->first();
+
+        $min_date = CurrentNews::orderBy('live_time','asc')->first()->live_time->format('Y');
+        $max_date = CurrentNews::orderBy('live_time','desc')->first()->live_time->format('Y');
+
+        $dates = [];
+        for($y = $min_date; $y<= $max_date; $y++){
+            $datas = [$y];
+            for($i = 1; $i<=12; $i++){
+                $icerik = CurrentNews::whereYear('live_time',$y)->whereMonth('live_time', '=', $i)->first();
+                if($icerik == null){ continue;} 
+                array_push($datas,$i);
+            }
+            array_push($dates,$datas);
+        }
+
+        $dates = array_reverse($dates);
        
         
-        return view('frontend.archive',compact('data','top_news','cats','etiketler'));
+        return view('frontend.archive',compact('data','top_news','cats','etiketler', 'dates', 'min_date','max_date'));
     }
 }

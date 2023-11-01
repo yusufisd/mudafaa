@@ -51,6 +51,8 @@ class ActivityImport implements ToCollection, WithStartRow
                     $activity->phone = $row[9] ?? '';
                     $activity->title = $row[10];
                     $activity->link = $link_tr;
+                    $activity->start_clock = '09:00';
+                    $activity->finish_clock = '21:00';
                     $activity->category = $cat_tr->id;
                     $activity->author = 1;
                     $activity->short_description = $row[12];
@@ -72,6 +74,8 @@ class ActivityImport implements ToCollection, WithStartRow
                     $activity_en->phone = $row[9] ?? '';
                     $activity_en->title = $row[11];
                     $activity_en->link = $link_en;
+                    $activity_en->start_clock = '09:00';
+                    $activity_en->finish_clock = '21:00';
                     $activity_en->category = $cat_tr->id;
                     $activity_en->author = 1;
                     $activity_en->short_description = $row[13];

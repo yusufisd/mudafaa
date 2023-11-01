@@ -471,7 +471,7 @@
 
                                                 @foreach (sayfalar() as $item)
                                                     <li class="widget-list-item">
-                                                        <a href="{{ route('front.page.detail', $item->id) }}"
+                                                        <a href="{{ route('front.page.detail', $item->link) }}"
                                                             class="widget-list-link">
                                                             {{ $item->title }}
                                                         </a>

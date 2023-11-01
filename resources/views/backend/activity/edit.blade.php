@@ -216,7 +216,7 @@
                                                             <div class="col-lg-5 fv-row">
                                                                 <input required type="date"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                    name="start_date" value="{{ $data_tr->start_time }}" id="">
+                                                                    name="start_date" value="{{ $data_tr->start_time->format('Y-m-d') }}" id="">
                                                             </div>
                                                             <div class="col-lg-3 fv-row">
                                                                 <input required type="time"

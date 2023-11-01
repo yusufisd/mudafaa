@@ -26,7 +26,7 @@ class HomeController extends Controller
             $local = config('app.fallback_locale');
         }
         if ($local == 'tr') {
-            $cats = CurrentNews::latest()
+            $cats = CurrentNews::orderBy('id','asc')->where('headline',1)->where('status',1)
                 ->take(4)
                 ->get();
 
@@ -72,8 +72,8 @@ class HomeController extends Controller
 
 
             $ilk_kategori_icerikleri = CurrentNews::where('category_id',$first_cat->id)->whereNot('id',1)->get();
-            $cat1_news1 = CurrentNews::whereJsonContains('category_id',$first_cat->id)->orderBy('id','asc')->take(3)->get();
-            $cat1_news2 = CurrentNews::whereJsonContains('category_id',$first_cat->id)->orderBy('id','desc')->take(3)->get();
+            $cat1_news1 = CurrentNews::whereJsonContains('category_id',$first_cat->id)->where('status',1)->orderBy('id','asc')->take(3)->get();
+            $cat1_news2 = CurrentNews::whereJsonContains('category_id',$first_cat->id)->where('status',1)->orderBy('id','desc')->take(3)->get();
             $cat2_news1 = CurrentNews::whereJsonContains('category_id',$second_cat->id)->orderBy('id','asc')->take(3)->get();
             $cat2_news2 = CurrentNews::whereJsonContains('category_id',$second_cat->id)->orderBy('id','desc')->take(3)->get();
             $cat3_news1 = CurrentNews::whereJsonContains('category_id',$third_cat->id)->orderBy('id','asc')->take(3)->get();
@@ -99,7 +99,7 @@ class HomeController extends Controller
 
 
         } elseif ($local == 'en') {
-            $cats = EnCurrentNews::latest()
+            $cats = EnCurrentNews::orderBy('id','asc')->where('headline',1)->where('status',1)
                 ->take(4)
                 ->get();
 

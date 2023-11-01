@@ -58,7 +58,6 @@ class PageController extends Controller
             $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
             $save_url = 'assets/uploads/pages/' . $image_name;
             Image::make($image)
-                ->resize(960, 520)
                 ->save($save_url);
             $data->image = $save_url;
         }
@@ -78,7 +77,6 @@ class PageController extends Controller
             $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
             $save_url = 'assets/uploads/pages/' . $image_name;
             Image::make($image)
-                ->resize(960, 520)
                 ->save($save_url);
             $data_en->image = $save_url;
         }
@@ -132,7 +130,6 @@ class PageController extends Controller
             $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
             $save_url = 'assets/uploads/pages/' . $image_name;
             Image::make($image)
-                ->resize(960, 520)
                 ->save($save_url);
             $data->image = $save_url;
         }
@@ -154,7 +151,6 @@ class PageController extends Controller
             $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
             $save_url = 'assets/uploads/pages/' . $image_name;
             Image::make($image)
-                ->resize(960, 520)
                 ->save($save_url);
             $data_en->image = $save_url;
         }

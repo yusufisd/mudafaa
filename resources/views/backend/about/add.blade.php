@@ -94,7 +94,7 @@
                                                             <label class="row col-form-label required fs-6 ps-5">Görsel 1 (
                                                                 960px-520px)</label>
                                                             <div class="col-md-10">
-                                                                <input required type="file" class="form-control"
+                                                                <input  type="file" class="form-control"
                                                                     name="image1" id="">
                                                             </div>
                                                         </div>
@@ -102,7 +102,7 @@
                                                             <label class="row col-form-label required fs-6 ps-5">Görsel 2 (
                                                                 960px-520px)</label>
                                                             <div class="col-md-10">
-                                                                <input required type="file" class="form-control"
+                                                                <input  type="file" class="form-control"
                                                                     name="image2" id="">
                                                             </div>
                                                         </div>
@@ -110,7 +110,7 @@
                                                             <label class="row col-form-label required fs-6 ps-5">Görsel 3 (
                                                                 960px-520px)</label>
                                                             <div class="col-md-10">
-                                                                <input required type="file" class="form-control"
+                                                                <input  type="file" class="form-control"
                                                                     name="image3" id="">
                                                             </div>
                                                         </div>
