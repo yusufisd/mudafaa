@@ -41,7 +41,7 @@ class AnketController extends Controller
         if ($request->file('image') != null) {
             $image = $request->file('image');
             $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-            $save_url = public_path('/assets/uploads/anket/' . $image_name);
+            $save_url = public_path('assets/uploads/anket/' . $image_name);
             Image::make($image)
                 ->resize(492, 340)
                 ->save($save_url);
@@ -71,7 +71,7 @@ class AnketController extends Controller
         if ($request->file('image') != null) {
             $image = $request->file('image');
             $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-            $save_url = public_path('/assets/uploads/anket/' . $image_name);
+            $save_url = public_path('assets/uploads/anket/' . $image_name);
             Image::make($image)
                 ->resize(492, 340)
                 ->save($save_url);
@@ -116,7 +116,7 @@ class AnketController extends Controller
         if ($request->file('image') != null) {
             $image = $request->file('image');
             $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-            $save_url = '/assets/uploads/anket/' . $image_name;
+            $save_url = 'assets/uploads/anket/' . $image_name;
             Image::make($image)
                 ->resize(492, 340)
                 ->save($save_url);
@@ -148,7 +148,7 @@ class AnketController extends Controller
         if ($request->file('image') != null) {
             $image = $request->file('image');
             $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-            $save_url = public_path('/assets/uploads/anket/' . $image_name);
+            $save_url = public_path('assets/uploads/anket/' . $image_name);
             Image::make($image)
                 ->resize(492, 340)
                 ->save($save_url);
