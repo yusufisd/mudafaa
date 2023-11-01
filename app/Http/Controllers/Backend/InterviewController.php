@@ -293,7 +293,7 @@ class InterviewController extends Controller
             }
         }
 
-        Alert::success('Röportaj eklendi');
+        Alert::success('Röportaj düzenlendi');
         return redirect()->route('admin.interview.list');
     }
 

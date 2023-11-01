@@ -726,7 +726,7 @@ Route::middleware('lang')->group(function () {
 
             // PAGE CONTROLLER
             Route::controller(FrontendPageController::class)
-                ->name('page.')
+                ->name('page.')->prefix('sayfa')
                 ->group(function () {
                     Route::get('/{id?}', 'detail')->name('detail');
                 });
