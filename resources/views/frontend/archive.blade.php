@@ -58,7 +58,7 @@
                                     <span class="rt-section-line"></span>
                                 </h2>
 
-                                
+
 
                                 <ul class="nav rt-tab-menu" id="myTab" role="tablist">
                                     <li class="menu-item" role="presentation" style="margin-right: 0.25rem;">
@@ -67,24 +67,10 @@
                                             @foreach ($dates as $date)
                                                 @foreach ($date as $key => $month)
                                                 @if($key == 0) @continue @endif
-                                                <option {{ request()->t == $date[0] . "-" . (strlen($month) == 1 ? "0". $month : $month)  ? 'selected' : '' }} value="{{ $date[0] . "-" .  $month }}">{{ (strlen($month) == 1 ? "0". $month : $month)  . "/" . $date[0] }}</option>
-    
+                                                <option {{ request()->t ==  $date[0] . "-" . $month ? 'selected' : '' }} value="{{ $date[0] . "-" .  $month }}">{{ (strlen($month) == 1 ? "0". $month : $month)  . "/" . $date[0] }}</option>
+
                                                 @endforeach
                                             @endforeach
-                                            <!-- 
-                                            <option {{ request()->t == "2023-06" ? 'selected' : '' }} value="2023-06">Haziran 2023</option>
-                                            <option {{ request()->t == "2023-05" ? 'selected' : '' }} value="2023-05">Mayıs 2023</option>
-                                            <option {{ request()->t == "2023-04" ? 'selected' : '' }} value="2023-04">Nisan 2023</option>
-                                            <option {{ request()->t == "2023-03" ? 'selected' : '' }} value="2023-03">Mart 2023</option>
-                                            <option {{ request()->t == "2023-02" ? 'selected' : '' }} value="2023-02">Şubat 2023</option>
-                                            <option {{ request()->t == "2023-01" ? 'selected' : '' }} value="2023-01">Ocak 2023</option>
-                                            <option {{ request()->t == "2022-12" ? 'selected' : '' }} value="2022-12">Aralık 2022</option>
-                                            <option {{ request()->t == "2022-11" ? 'selected' : '' }} value="2022-11">Kasım 2022</option>
-                                            <option {{ request()->t == "2022-10" ? 'selected' : '' }} value="2022-10">Ekim 2022</option>
-                                            <option {{ request()->t == "2022-09" ? 'selected' : '' }} value="2022-09">Eylül 2022</option>
-                                            <option {{ request()->t == "2022-08" ? 'selected' : '' }} value="2022-08">Ağustos 2022</option>
-                                            <option {{ request()->t == "2022-07" ? 'selected' : '' }} value="2022-07">Temmuz 2022</option>
-                                            -->
                                         </select>
                                     </li>
                                     <li class="menu-item" role="presentation">
@@ -242,7 +228,7 @@
                                                     </h4>
                                                     <span class="rt-meta">
                                                         <i class="far fa-calendar-alt icon"></i>
-                                                        {{ $item->live_time }}
+                                                            {{ $item->live_time->translatedFormat('d M Y') }}
                                                     </span>
                                                 </div>
                                             </div>
@@ -300,7 +286,7 @@
                                 <div class="tag-list">
 
                                     @foreach ($etiketler->getKeys() as $item)
-                                        
+
                                     <a href="{{ route('front.currentNews.tag_list',$item) }}" class="tag-link"> {{ $item }} </a>
 
                                     @endforeach
@@ -344,6 +330,6 @@
             })
             */
         }
-        
+
     </script>
 @endsection

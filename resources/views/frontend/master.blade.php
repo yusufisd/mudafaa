@@ -58,6 +58,10 @@
         .post-body > p {
             color: #464847 !important;
         }
+
+        .galleryitem{
+            max-height: 100px;
+        }
     </style>
 
     @yield('css')
@@ -537,37 +541,38 @@
                                     <div class="insta-gallery">
                                         <div class="galleryitem">
                                             <a href="https://www.instagram.com/">
-                                                <img src="/assets/frontend/media/gallery/ins-gallery_1.jpg"
+                                                <img src="/assets/insta1.png"
                                                     width="100" height="90" alt="gallery1">
-                                            </a>
+                                           </a>
                                         </div>
                                         <div class="galleryitem">
                                             <a href="https://www.instagram.com/">
-                                                <img src="/assets/frontend/media/gallery/ins-gallery_2.jpg"
+                                                <img src="/assets/insta2.png"
                                                     width="100" height="90" alt="gallery2">
                                             </a>
                                         </div>
                                         <div class="galleryitem">
                                             <a href="https://www.instagram.com/">
-                                                <img src="/assets/frontend/media/gallery/ins-gallery_3.jpg"
+                                                <img src="/assets/insta3.png"
                                                     width="100" height="90" alt="gallery3">
                                             </a>
                                         </div>
                                         <div class="galleryitem">
                                             <a href="https://www.instagram.com/">
-                                                <img src="/assets/frontend/media/gallery/ins-gallery_4.jpg"
+                                                <img src="/assets/insta4.png"
                                                     width="100" height="90" alt="gallery4">
                                             </a>
                                         </div>
                                         <div class="galleryitem">
                                             <a href="https://www.instagram.com/">
-                                                <img src="/assets/frontend/media/gallery/ins-gallery_5.jpg"
+                                                <img src="/assets/insta5.png"
                                                     width="100" height="90" alt="gallery5">
                                             </a>
                                         </div>
+
                                         <div class="galleryitem">
                                             <a href="https://www.instagram.com/">
-                                                <img src="/assets/frontend/media/gallery/ins-gallery_6.jpg"
+                                                <img src="/assets/insta6.png"
                                                     width="100" height="90" alt="gallery6">
                                             </a>
                                         </div>
