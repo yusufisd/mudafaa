@@ -148,7 +148,7 @@
 
                                 <!-- strat psot body -->
                                 <div class="post-body" style="text-align: justify;">
-                                    {!! $data->description !!}
+                                    {!! printDesc($data->description) !!}
                                 </div><br><br>
                                 <!-- end post body -->
 
@@ -182,7 +182,7 @@
                                                                 class="social-icon fab fa-brands fa-square-x-twitter twitter"></i>
                                                         </a>
                                                     </li>
-                                                    
+
                                                     <li>
                                                         <a class="fb" target="_blank" href="https://linkedin.com/sharing/share-offsite/?url={{ request()->url() }}">
                                                             <i class="social-icon fab fa-linkedin"></i>
@@ -466,8 +466,8 @@
 
                                             @foreach ($other as $item)
 
-                                            
-                                                
+
+
                                             <div class="swiper-slide">
                                                 <div class="slide-item">
                                                     <div class="rt-post-grid grid-meta">
@@ -486,7 +486,7 @@
                                             </div>
 
                                             @endforeach
-                                          
+
 
 
                                         </div>
@@ -679,7 +679,7 @@
             var emoji_progress_bar = $("#" + emoji_id + "_bar").css('width'); //get width property of emoji's bar
             var intValue = parseInt(emoji_progress_bar, 10);
             intValue++; //increase the value
-            $("#" + emoji_id + "_bar").css('width', intValue); //update the value  
+            $("#" + emoji_id + "_bar").css('width', intValue); //update the value
         });
     </script>
 @endsection

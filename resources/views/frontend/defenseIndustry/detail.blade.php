@@ -9,7 +9,7 @@
             color: #000;
         }
 
-        .post-body:first-letter {
+        .post-body:first-letter:first-child {
             float: left;
             font-weight: bold;
             font-size: 10px;
@@ -172,7 +172,7 @@
 
                             <!-- strat psot body -->
                             <div class="post-body" style="text-align: justify">
-                                {!! $data->description !!}
+                                {!! printDesc($data->description) !!}
                                 <br><br>
                                 <!-- ad banner -->
                                 <div class="ad-banner-img mt--45 mb--40">

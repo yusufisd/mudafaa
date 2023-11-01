@@ -20,7 +20,7 @@
             }
         }
 
-        .post-body:first-letter {
+        .post-body:first-letter:first-child {
             float: left;
             font-weight: bold;
             font-size: 10px;
@@ -162,7 +162,7 @@
                             </div>
                             <!-- strat post body -->
                             <div class="post-body mb--40" style="text-align: justify; color:black">
-                                {!! $data->description !!}
+                                {!! printDesc($data->description) !!}
                             </div><br><br><br><br>
                             <!-- end post body -->
                             <!-- start social-share-box-2 -->

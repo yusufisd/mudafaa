@@ -91,3 +91,10 @@ function SocialMedia(){
     $data = SocialMedia::latest()->first();
     return $data;
 }
+
+
+function printDesc($desc){
+    $desc = str_replace('<ol>', '<ol class="number_list">', $desc);
+    $desc = str_replace('<ul>', '<ul class="disc_list">', $desc);
+    return $desc;
+}

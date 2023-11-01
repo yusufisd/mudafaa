@@ -14,7 +14,7 @@
             color: #000;
         }
 
-        .post-body:first-letter {
+        .post-body:first-letter:first-child {
             float: left;
             font-weight: bold;
             font-size: 10px;
@@ -226,7 +226,7 @@
 
                                 <!-- strat psot body -->
                                 <div class="post-body" id="contentToConvert" style="text-align: justify">
-                                    {!! $data->description !!}
+                                    {!! printDesc($data->description) !!}
                                     <br><br>
                                     <div class="ad-banner-img mt--45 mb--40">
                                         <a href="#">
@@ -469,7 +469,7 @@
 
 
                                             @foreach ($item->CommentComments() as $comment)
-                                                
+
                                             <div class="comment_container">
                                                 <div class="row">
                                                     <div class="col-md-2"></div>
@@ -479,9 +479,9 @@
                                                                 alt="commentator-img_1" width="170" height="170">
                                                         </div>
                                                     </div>
-    
+
                                                     <input type="hidden" id="com_id" value="{{ $comment->id }}" name="">
-    
+
                                                     <div class="col-md-7">
                                                         <div class="commentator-content">
                                                             <h3 class="commentator-name"> {{ $comment->full_name }} </h3>
@@ -491,7 +491,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+
                                             </div>
                                             @endforeach
 
@@ -894,7 +894,7 @@
             e.preventDefault();
             // Create reply field
             var replyField = $(
-                
+
                 '<form action="{{ route('front.comment.storeComment', $item->id) }}" method="POST" class="rt-contact-form comments-form-style-1">' +
                 '@csrf' +
                 '<div class="row">' +

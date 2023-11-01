@@ -26,7 +26,7 @@
             color: #000;
         }
 
-        .post-body:first-letter {
+        .post-body:first-letter:first-child {
             float: left;
             font-weight: bold;
             font-size: 10px;
@@ -125,7 +125,7 @@
                                         <li>
                                             <span class="rt-meta">
                                                 <i class="far fa-comments icon"></i>
-                                                
+
                                                 {{ $data->commentCount() }}
                                             </span>
                                         </li>
@@ -166,7 +166,7 @@
 
                                 <!-- strat psot body -->
                                 <div class="post-body" style="text-align: justify">
-                                    {!! $data->description !!}
+                                    {!! printDesc($data->description) !!}
 
 
                                     <br><br>
@@ -247,7 +247,7 @@
                                                             <i class="fa-brands fa-square-x-twitter twitter"></i>
                                                         </a>
                                                     </li>
-                                                    
+
                                                     <li>
                                                         <a class="fb" target="_blank" href="https://linkedin.com/sharing/share-offsite/?url={{ request()->url() }}">
                                                             <i class="social-icon fab fa-linkedin"></i>

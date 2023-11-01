@@ -82,7 +82,7 @@
                                                         <b>
                                                             <span style="color: #749f43"> {{ $item->title }} : </span>
                                                         </b>
-                                                        &nbsp;{{ $item->description }}
+                                                        {!! printDesc($data->description) !!}
                                                     </li>
 
                                                 </ul>
@@ -96,7 +96,8 @@
                             </div>
 
                             <div class="mb--30" style="text-align: justify">
-                                {!! $data->description !!}
+                                {!! printDesc($data->description) !!}
+
                             </div>
 
                             <!-- end inner row -->

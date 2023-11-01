@@ -13,7 +13,7 @@
             color: white;
         }
 
-        .post-body:first-letter {
+        .post-body:first-letter:first-child {
             float: left;
             font-weight: bold;
             font-size: 10px;
@@ -137,16 +137,14 @@
                                                 <i style="color:black" class="fa-brands fa-square-x-twitter twitter"></i>
                                             </a>
                                         </li>
-                                       
+
                                     </ul>
                                 </div>
                             </div>
 
                             <!-- strat psot body -->
                             <div class="post-body justify-between" style="text-align: justify">
-
-                                {!! $data->description !!}
-
+                                {!! printDesc($data->description) !!}
                             </div>
                             <!-- end post body -->
 

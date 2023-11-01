@@ -66,8 +66,8 @@
                     <div class="col-12 sticky-coloum-item">
                         <!-- strat psot body -->
                         <div class="post-body" style="justify:between">
-                         
-                            {!!$data->description!!}
+
+                            {!! printDesc($data->description) !!}
 
                         </div>
                         <!-- end post body -->
