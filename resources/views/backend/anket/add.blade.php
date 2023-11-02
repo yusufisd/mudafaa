@@ -281,7 +281,7 @@
                                                                     <div class="col-md-1" style="text-align: end">
                                                                         <div class="row" style="margin-top:15%">
                                                                             <div class="col-md-6">
-                                                                                <input type="radio" id="is_true"
+                                                                                <input type="radio" id="answer_en_a"
                                                                                     name="is_true_en" value="a"
                                                                                     style="height:20px; width:20px; vertical-align: middle;">
                                                                             </div>
@@ -304,7 +304,7 @@
                                                                     <div class="col-md-1" style="text-align: end">
                                                                         <div class="row" style="margin-top:15%">
                                                                             <div class="col-md-6">
-                                                                                <input type="radio" id="is_true"
+                                                                                <input type="radio" id="answer_en_b"
                                                                                     name="is_true_en" value="b"
                                                                                     style="height:20px; width:20px; vertical-align: middle;">
                                                                             </div>
@@ -326,7 +326,7 @@
                                                                     <div class="col-md-1" style="text-align: end">
                                                                         <div class="row" style="margin-top:15%">
                                                                             <div class="col-md-6">
-                                                                                <input type="radio" id="is_true"
+                                                                                <input type="radio" id="answer_en_c"
                                                                                     name="is_true_en" value="c"
                                                                                     style="height:20px; width:20px; vertical-align: middle;">
                                                                             </div>
@@ -348,7 +348,7 @@
                                                                     <div class="col-md-1" style="text-align: end">
                                                                         <div class="row" style="margin-top:15%">
                                                                             <div class="col-md-6">
-                                                                                <input type="radio" id="is_true"
+                                                                                <input type="radio" id="answer_en_d"
                                                                                     name="is_true_en" value="d"
                                                                                     style="height:20px; width:20px; vertical-align: middle;">
                                                                             </div>
@@ -370,7 +370,7 @@
                                                                     <div class="col-md-1" style="text-align: end">
                                                                         <div class="row" style="margin-top:15%">
                                                                             <div class="col-md-6">
-                                                                                <input type="radio" id="is_true"
+                                                                                <input type="radio" id="answer_en_e"
                                                                                     name="is_true_en" value="e"
                                                                                     style="height:20px; width:20px; vertical-align: middle;">
                                                                             </div>

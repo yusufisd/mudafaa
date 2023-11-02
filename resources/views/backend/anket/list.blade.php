@@ -160,7 +160,7 @@
                 confirmButtonText: 'Evet, sil!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "{{ route('admin.defenseIndustry.destroy') }}/" + d;
+                    window.location.href = "{{ route('admin.anket.destroy') }}/" + d;
                 }
             })
         }

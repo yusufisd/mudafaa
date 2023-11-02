@@ -36,6 +36,8 @@ class AnketController extends Controller
      */
     public function store(Request $request)
     {
+
+        
         $question_tr = new Anket();
         $question_tr->question = $request->question_tr;
         if ($request->file('image') != null) {
@@ -81,7 +83,7 @@ class AnketController extends Controller
 
         foreach($list as $key){
             $answer = 'answer_en_'.$key;
-            if($request->is_true == $key){
+            if($request->is_true_en == $key){
                 $is_true = 1;
             }else{
                 $is_true = 0;
@@ -160,7 +162,7 @@ class AnketController extends Controller
 
         foreach($list as $key){
             $answer = 'answer_en_'.$key;
-            if($request->is_true == $key){
+            if($request->is_true_en == $key){
                 $is_true = 1;
             }else{
                 $is_true = 0;
@@ -176,8 +178,16 @@ class AnketController extends Controller
         return redirect()->route('admin.anket.list');
     }
 
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $data = Anket::findOrFail($id);
+        Answer::where('question_id',$id)->delete();
+        $en_anket = EnAnket::where('anket_id',$id)->first();
+        EnAnswer::where('question_id',$en_anket)->delete();
+        $en_anket->delete();
+        $data->delete();
+
+        Alert::success('Anket Başarıyla Silindi');
+        return redirect()->route('admin.anket.list');
     }
 }
