@@ -183,7 +183,7 @@ class AnketController extends Controller
         $data = Anket::findOrFail($id);
         Answer::where('question_id',$id)->delete();
         $en_anket = EnAnket::where('anket_id',$id)->first();
-        EnAnswer::where('question_id',$en_anket)->delete();
+        EnAnswer::where('question_id',$en_anket->id)->delete();
         $en_anket->delete();
         $data->delete();
 
