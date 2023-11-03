@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Throwable;
 use Illuminate\Validation\ValidationException;
 
+
 class CompanyController extends Controller
 {
     /**
@@ -172,4 +173,6 @@ class CompanyController extends Controller
         }
         return redirect()->route('admin.company.list');
     }
+
+    
 }

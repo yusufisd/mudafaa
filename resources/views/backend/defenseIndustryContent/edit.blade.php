@@ -112,7 +112,7 @@
                                                             @foreach ($categories as $item)
                                                                 <option
                                                                     {{ $data_tr->category_id == $item->id ? 'selected' : '' }}
-                                                                    value="{{ $item->id }}"> <p style="text-transform: capitalize">  {{ $item->title }} - {{$item->defense->title}} </p>
+                                                                    value="{{ $item->id }}"> <p style="text-transform: capitalize">  {{ $item->title ?? '' }} - {{$item->defense->title ?? ''}} </p>
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -205,19 +205,32 @@
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10 fv-row">
-                                                        <select name="author" aria-label="Seçiniz"
-                                                            data-control="select2" data-placeholder="Seçiniz..."
-                                                            class="form-select form-select-solid form-select-lg fw-semibold">
-                                                            <option value="">Seçiniz...</option>
+                                                        @if (Auth::guard('admin')->check())
+                                                            <select name="author" aria-label="Seçiniz"
+                                                                data-control="select2"
+                                                                data-placeholder="Seçiniz..."
+                                                                class="form-select form-select-solid form-select-lg fw-semibold">
+                                                                <option value="">Seçiniz...</option>
+                                                                @foreach ($users as $user)
+                                                                    <option {{ $user->id == $data_tr->author ? 'selected' : '' }} value="{{ $user->id }}">
+                                                                        {{ $user->name ?? '' }}
+                                                                        {{ $user->surname ?? '' }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        @endif
+                                                        @if (Auth::guard('user_model')->check())
+                                                            <input type="hidden" name="author" value="{{ AuthorUser()->id }}" id="">
+                                                            <select disabled name="author"
+                                                                aria-label="Seçiniz" data-control="select2"
+                                                                data-placeholder="Seçiniz..."
+                                                                class="form-select form-select-solid form-select-lg fw-semibold">
+                                                                <option selected
+                                                                    value="{{ AuthorUser()->id }}">
+                                                                    {{ AuthorUser()->name }}
+                                                                    {{ AuthorUser()->surname }} </option>
+                                                            </select>
+                                                        @endif
 
-                                                            @foreach ($users as $item)
-                                                                <option
-                                                                    {{ $data_tr->author == $item->id ? 'selected' : '' }}
-                                                                    value="{{ $item->id }}"> <p style="text-transform: capitalize">  {{ $item->name }} {{ $item->surname }} </p>
-                                                                </option>
-                                                            @endforeach
-
-                                                        </select>
                                                     </div>
                                                     <!--end::Col-->
                                                 </div>
@@ -278,10 +291,10 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label required fw-bold fs-6 ps-5">Başlık</label>
+                                                                        class="col-lg-1 col-form-label required fw-bold fs-6 ps-5">Başlık</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-10">
+                                                                    <div class="col-lg-11">
                                                                         <!--begin::Row-->
                                                                         <div class="row">
                                                                             <!--begin::Col-->
@@ -303,10 +316,10 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label fw-bold fs-6 ps-5">Özet</label>
+                                                                        class="col-lg-1 col-form-label fw-bold fs-6 ps-5">Özet</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-10 fv-row">
+                                                                    <div class="col-lg-11 fv-row">
                                                                         <textarea name="short_description_tr" id="short_description_tr" onchange="create_ozet_tr()"
                                                                             class="form-control form-control-lg form-control-solid" value="">{{ $data_tr->short_description }}</textarea>
                                                                     </div>
@@ -317,12 +330,12 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5">
+                                                                        class="col-lg-1 col-form-label fw-bold fs-6 mb-5 ps-5">
                                                                         <span>İçerik</span>
                                                                     </label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-12 fv-row mb-5 ps-5">
+                                                                    <div class="col-lg-11 fv-row mb-5 ps-5">
 
                                                                         <textarea id="editor" name="description_tr" class="tox-target ckeditor">{{ $data_tr->description }}</textarea>
 
@@ -335,10 +348,10 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Link</label>
+                                                                        class="col-lg-1 col-form-label ps-5 required fw-bold fs-6">Link</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-10">
+                                                                    <div class="col-lg-11">
                                                                         <!--begin::Row-->
                                                                         <div class="row">
                                                                             <!--begin::Col-->
@@ -392,10 +405,10 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label required fw-bold fs-6 ps-5">Başlık</label>
+                                                                        class="col-lg-1 col-form-label required fw-bold fs-6 ps-5">Başlık</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-10">
+                                                                    <div class="col-lg-11">
                                                                         <!--begin::Row-->
                                                                         <div class="row">
                                                                             <!--begin::Col-->
@@ -417,10 +430,10 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label fw-bold fs-6 ps-5">Özet</label>
+                                                                        class="col-lg-1 col-form-label fw-bold fs-6 ps-5">Özet</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-10 fv-row">
+                                                                    <div class="col-lg-11 fv-row">
                                                                         <textarea name="short_description_en" id="short_description_en" onchange="create_ozet_en()"
                                                                             class="form-control form-control-lg form-control-solid" value="">{{ $data_en->short_description }}</textarea>
                                                                     </div>
@@ -431,12 +444,12 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5">
+                                                                        class="col-lg-1 col-form-label fw-bold fs-6 mb-5 ps-5">
                                                                         <span>İçerik</span>
                                                                     </label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-12 fv-row mb-5 ps-5">
+                                                                    <div class="col-lg-11 fv-row mb-5 ps-5">
 
                                                                         <textarea id="editor2" name="description_en" class="tox-target ckeditor">{{ $data_en->description }}</textarea>
 
@@ -450,10 +463,10 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Link</label>
+                                                                        class="col-lg-1 col-form-label ps-5 required fw-bold fs-6">Link</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-10">
+                                                                    <div class="col-lg-11">
                                                                         <!--begin::Row-->
                                                                         <div class="row">
                                                                             <!--begin::Col-->

@@ -98,14 +98,13 @@
                                     <li>
                                         <span class="rt-meta">
                                             <i class="far fa-calendar-alt icon"></i>
-                                            {{ substr($data->start_time, 8, 2) }} - {{ substr($data->start_time, 5, 2) }} -
-                                            {{ substr($data->start_time, 0, 4) }}
+                                            {{ $data->start_time->translatedFormat('d M Y') }}
                                         </span>
                                     </li>
                                     <li>
                                         <span class="rt-meta">
                                             <i class="fas fa-clock icon"></i>
-                                            {{ substr($data->start_time, 11, 5) }} - {{ substr($data->finish_time, 11, 5) }}
+                                            {{ substr($data->start_clock,0,5)}}
                                         </span>
                                     </li>
                                     <li>
@@ -258,7 +257,7 @@
                                         </ul>
                                     </div>
                                     <div class="col-lg-6 grid-adress">
-                                        {{ $data->map }}
+                                        {!! $data->map !!}
                                     </div>
 
                                 </div>
@@ -331,7 +330,7 @@
                                                     <li>
                                                         <span class="rt-meta">
                                                             <i class="far fa-calendar-alt icon"></i>
-                                                            {{ substr($item->start_time, 8, 2) }}-{{ substr($item->start_time, 5, 2) }}-{{ substr($item->start_time, 0, 4) }}
+                                                            {{ $item->start_time->translatedFormat('d M Y') }}
 
                                                         </span>
                                                     </li>

@@ -81,6 +81,14 @@ class AdminSeeder extends Seeder
             'page_edit',
             'page_delete',
             'page_list',
+            'anket_add',
+            'anket_edit',
+            'anket_delete',
+            'kunye_list',
+            'kunye_add',
+            'kunye_edit',
+            'kunye_delete',
+            'kunye_list',
         ];
 
         $role_name = 'ADMIN';

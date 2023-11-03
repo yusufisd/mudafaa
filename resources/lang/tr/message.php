@@ -102,7 +102,8 @@ return [
     "anket" => "Anket",
     "soru" => "Soru",
     "Ulusal ve global savunma ile ilgili gündemden daha hızlı haberdar olmak istiyorsanız, Milli Müdafaa e-posta listesine kayıt olun!" => "Ulusal ve global savunma ile ilgili gündemden daha hızlı haberdar olmak istiyorsanız, Milli Müdafaa e-posta listesine kayıt olun!",
-
+    "Savunma sanayii ve teknolojideki en güncel haberler ve analizler doğrudan e-posta kutunuza gelsin. Bilgiye bir adım daha yakın olun. E-posta adresinizi aşağıya girerek bültenimize abone olabilirsiniz." => "Savunma sanayii ve teknolojideki en güncel haberler ve analizler doğrudan e-posta kutunuza gelsin. Bilgiye bir adım daha yakın olun. E-posta adresinizi aşağıya girerek bültenimize abone olabilirsiniz.",
+    "Abone ol" => "Abone ol"
 
 ];
 ?>

@@ -261,20 +261,23 @@ class ActivityController extends Controller
                 'seo_key_en.required' => 'seo_key_en required',
             ],
         );
-        try {
-            DB::beginTransaction();
+        
 
             $veri = json_decode(json_decode(json_encode($request->seo_key_tr[0])));
             $merge = [];
             foreach ($veri as $v) {
                 $merge[] = $v->value;
             }
+            $merge = implode(',', $merge);
+
 
             $veri_en = json_decode(json_decode(json_encode($request->seo_key_en[0])));
             $merge_en = [];
             foreach ($veri_en as $v) {
                 $merge_en[] = $v->value;
             }
+            $merge_en = implode(',', $merge_en);
+
 
             $new = Activity::findOrFail($id);
             $new->category = $request->category;
@@ -325,8 +328,8 @@ class ActivityController extends Controller
             $new_en->seo_description = $request->seo_description_en;
             $new_en->seo_key = $merge_en;
             $new_en->activity_id = $new->id;
-            $new->start_clock = $request->start_clock;
-            $new->finish_clock = $request->finish_clock;
+            $new_en->start_clock = $request->start_clock;
+            $new_en->finish_clock = $request->finish_clock;
             $new_en->website = $request->website;
             $new_en->ticket_link = $request->ticket;
             $new_en->subscribe_form = $request->user_form;
@@ -349,21 +352,14 @@ class ActivityController extends Controller
                 $new_en->image = $save_url;
             }
             if (!isset($request->status_en)) {
-                $new->status = 0;
+                $new_en->status = 0;
             }
             $new_en->save();
 
             logKayit(['Etkinlik Yönetimi', 'Etkinlik düzenlendi']);
             Alert::success('Etkinlik Düzenlendi');
             DB::commit();
-        } catch (Throwable $e) {
-            DB::rollBack();
-            logKayit(['Etkinlik Yönetimi', 'Etkinlik düzenlemede hata', 0]);
-            Alert::error('Etkinlik Düzenlemede Hata');
-            throw ValidationException::withMessages([
-                'error' => 'Bir hata oluştu. Lütfen daha sonra tekrar deneyin.',
-            ]);
-        }
+        
         return redirect()->route('admin.activity.list');
     }
 

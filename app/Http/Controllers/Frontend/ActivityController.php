@@ -23,19 +23,19 @@ class ActivityController extends Controller
         }
 
         if ($local == 'tr') {
-            $coming_activity = Activity::orderBy('start_time', 'desc')
+            $coming_activity = Activity::where('status',1)->orderBy('start_time', 'desc')
                 ->take(4)
                 ->get();
-            $activity_category = ActivityCategory::orderBy('queue', 'asc')->get();
-            $categories = ActivityCategory::get();
+            $activity_category = ActivityCategory::where('status',1)->orderBy('queue', 'asc')->get();
+            $categories = ActivityCategory::where('status',1)->get();
             $countries = CountryList::get();
         } elseif ($local == 'en') {
-            $coming_activity = EnActivity::where('start_time', '<', $now)
+            $coming_activity = EnActivity::where('status',1)->where('start_time', '<', $now)
                 ->orderBy('start_time', 'asc')
                 ->take(4)
                 ->get();
-            $activity_category = EnActivityCategory::orderBy('queue', 'asc')->get();
-            $categories = EnActivityCategory::get();
+            $activity_category = EnActivityCategory::where('status',1)->orderBy('queue', 'asc')->get();
+            $categories = EnActivityCategory::where('status',1)->get();
             $countries = CountryList::get();
         }
 
@@ -76,146 +76,52 @@ class ActivityController extends Controller
 
         if ($local == 'tr') {
             $cat = ActivityCategory::where('link', $id)->first();
-            $data = Activity::where('category', $cat->id)->get();
+            $data = Activity::where('status',1)->where('category', $cat->id)->get();
         } elseif ($local == 'en') {
             $cat = EnActivityCategory::where('link', $id)->first();
-            $data = EnActivity::where('category', $cat->id)->get();
+            $data = EnActivity::where('status',1)->where('category', $cat->id)->get();
         }
 
         return view('frontend.activity.category.detail', compact('data', 'cat'));
     }
 
-    public function searchActivity(Request $request)
-    {
+    public function searchActivity(Request $request){
+
+        $data = Activity::where('status',1)->get();
         if ($request->ay != null) {
-            if ($request->yil != null) {
-                if ($request->kategori != null) {
-                    if ($request->konum != null) {
-                        $cat = '';
-
-                        $data = Activity::whereMonth('start_time', '=', $request->ay)
-                            ->whereYear('start_time', $request->yil)
-                            ->where('category', $request->kategori)
-                            ->where('country_id', $request->konum)
-                            ->get();
-                        return view('frontend.activity.category.detail', compact('data', 'cat'));
-                    }
-                    $cat = '';
-
-                    $data = Activity::whereMonth('start_time', '=', $request->ay)
-                        ->whereYear('start_time', $request->yil)
-                        ->where('category', $request->kategori)
-                        ->get();
-                    return view('frontend.activity.category.detail', compact('data', 'cat'));
-                }
-                $cat = '';
-
-                $data = Activity::whereMonth('start_time', '=', $request->ay)
-                    ->whereYear('start_time', $request->yil)
-                    ->get();
-                return view('frontend.activity.category.detail', compact('data', 'cat'));
-            }
-
-            if ($request->kategori != null) {
-                if ($request->konum != null) {
-                    $cat = '';
-
-                    $data = Activity::whereMonth('start_time', '=', $request->ay)
-                        ->whereYear('start_time', $request->yil)
-                        ->where('category', $request->kategori)
-                        ->where('country_id', $request->konum)
-                        ->get();
-                    return view('frontend.activity.category.detail', compact('data', 'cat'));
-                }
-                $cat = '';
-
-                $data = Activity::whereMonth('start_time', '=', $request->ay)
-                    ->whereYear('start_time', $request->yil)
-                    ->where('category', $request->kategori)
-                    ->get();
-                return view('frontend.activity.category.detail', compact('data', 'cat'));
-            }
-
-            if ($request->konum != null) {
-                $cat = '';
-
-                $data = Activity::whereMonth('start_time', '=', $request->ay)
-                    ->whereYear('start_time', $request->yil)
-                    ->where('category', $request->kategori)
-                    ->where('country_id', $request->konum)
-                    ->get();
-                return view('frontend.activity.category.detail', compact('data', 'cat'));
-            }
-            $cat = '';
-
-            $data = Activity::whereMonth('start_time', '=', $request->ay)->get();
-            return view('frontend.activity.category.detail', compact('data', 'cat'));
+            $data = Activity::where('status',1)->whereMonth('start_time', '=', $request->ay)->get();
         }
         if ($request->yil != null) {
-            if ($request->kategori != null) {
-                if ($request->konum != null) {
-                    $cat = '';
+            $data = Activity::where('status',1)->whereYear('start_time', $request->yil)->get();
 
-                    $data = Activity::whereYear('start_time', $request->yil)
-                        ->where('category', $request->kategori)
-                        ->where('country_id', $request->konum)
-                        ->get();
-                    return view('frontend.activity.category.detail', compact('data', 'cat'));
-                }
-                $cat = '';
-
-                $data = Activity::whereYear('start_time', $request->yil)
-                    ->where('category', $request->kategori)
-                    ->get();
-                return view('frontend.activity.category.detail', compact('data', 'cat'));
-            }
-
-            if ($request->konum != null) {
-                $cat = '';
-
-                $data = Activity::whereYear('start_time', $request->yil)
-                    ->where('category', $request->kategori)
-                    ->where('country_id', $request->konum)
-                    ->get();
-                return view('frontend.activity.category.detail', compact('data', 'cat'));
-            }
-            $cat = '';
-
-            $data = Activity::whereYear('start_time', $request->yil)->get();
-            return view('frontend.activity.category.detail', compact('data', 'cat'));
         }
         if ($request->kategori != null) {
-            if ($request->konum != null) {
-                $cat = '';
+            $data = Activity::where('status',1)->where('category', $request->kategori)->get();
 
-                $data = Activity::where('category', $request->kategori)
-                    ->where('country_id', $request->konum)
-                    ->get();
-                return view('frontend.activity.category.detail', compact('data', 'cat'));
-            }
-            $cat = '';
-
-            $data = Activity::where('category', $request->kategori)->get();
-            return view('frontend.activity.category.detail', compact('data', 'cat'));
         }
         if ($request->konum != null) {
-            $cat = '';
+            $data = Activity::where('status',1)->where('country_id', $request->konum)->get();
 
-            $data = Activity::where('country_id', $request->konum)->get();
-            return view('frontend.activity.category.detail', compact('data', 'cat'));
         }
+        if($request->search != null){
+            $data = Activity::where('status',1)->where('title','like','%'.$request->search.'%')->get();
+        }
+        $cat = '';
+        return view('frontend.activity.category.detail', compact('data', 'cat'));
+
     }
 
+    
     public function calendar(Request $request)
     {
         if (isset($request->category)) {
-            $events = Activity::where('category', $request->category)
+            $events = Activity::where('status',1)->where('category', $request->category)
                 ->latest()
                 ->get();
         } else {
-            $events = Activity::latest()->get();
+            $events = Activity::where('status',1)->latest()->get();
         }
-        $categories = ActivityCategory::all();
+        $categories = ActivityCategory::where('status',1)->all();
         return view('frontend.activity.calendar', compact('events', 'categories'));
     }
 

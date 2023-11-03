@@ -9,26 +9,23 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use Illuminate\Support\Str;
 
-
 class CompanyCategoryImport implements ToCollection, WithStartRow
 {
     /**
-    * @param Collection $collection
-    */
+     * @param Collection $collection
+     */
     public function startRow(): int
     {
         return 2;
     }
-
 
     public function collection(Collection $rows)
     {
         foreach ($rows as $row) {
             if ($row[0] != null) {
                 if ($row->filter()->isNotEmpty()) {
-                    $keys = ($row[3]);
-                    $keys_tr = ($row[4]);
-
+                    $keys = $row[3];
+                    $keys_tr = $row[4];
 
                     $tr = CompanyCategory::create([
                         'name' => $row[1],
@@ -37,7 +34,7 @@ class CompanyCategoryImport implements ToCollection, WithStartRow
                         'seo_title' => $row[1],
                         'seo_description' => $row[1],
                         'seo_key' => $keys,
-                        'image' => 'assets/uploads/companyCategory/firma-kategori/'.$row[6],
+                        'image' => 'assets/uploads/companyCategory/firma-kategori/' . $row[6],
                     ]);
 
                     EnCompanyCategory::create([
@@ -48,7 +45,7 @@ class CompanyCategoryImport implements ToCollection, WithStartRow
                         'seo_title' => $row[2],
                         'seo_description' => $row[2],
                         'seo_key' => $keys_tr,
-                        'image' => 'assets/uploads/companyCategory/firma-kategori/'.$row[6],
+                        'image' => 'assets/uploads/companyCategory/firma-kategori/' . $row[6],
                     ]);
                 }
             } else {

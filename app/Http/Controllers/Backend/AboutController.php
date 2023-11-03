@@ -59,12 +59,14 @@ class AboutController extends Controller
             foreach ($veri as $v) {
                 $merge[] = $v->value;
             }
+            $merge = implode(',', $merge);
 
             $veri_en = json_decode(json_decode(json_encode($request->activity_seo_keywords_en[0])));
             $merge_en = [];
             foreach ($veri_en as $v) {
                 $merge_en[] = $v->value;
             }
+            $merge_en = implode(',', $merge_en);
 
             $data = new About();
             $data->title = $request->activity_name_tr;
@@ -103,11 +105,11 @@ class AboutController extends Controller
             $data->save();
 
             $data_en = new EnAbout();
-            $data_en->title = $request->activity_name_tr;
-            $data_en->link = $request->activity_url_tr;
-            $data_en->description = $request->tinymce_activity_detail_tr;
-            $data_en->seo_title = $request->activity_seo_title_tr;
-            $data_en->seo_description = $request->activity_seo_description_tr;
+            $data_en->title = $request->activity_name_en;
+            $data_en->link = $request->activity_url_en;
+            $data_en->description = $request->tinymce_activity_detail_en;
+            $data_en->seo_title = $request->activity_seo_title_en;
+            $data_en->seo_description = $request->activity_seo_description_en;
             $data_en->seo_key = $merge_en;
             if ($request->file('image1') != null) {
                 $image = $request->file('image1');
@@ -141,18 +143,20 @@ class AboutController extends Controller
             FacadesAlert::success('Hakkımızda Düzenlendi');
             return redirect()->route('admin.about.add');
         } else {
-
             $veri = json_decode(json_decode(json_encode($request->activity_seo_keywords_tr[0])));
             $merge = [];
             foreach ($veri as $v) {
                 $merge[] = $v->value;
             }
+            $merge = implode(',', $merge);
 
             $veri_en = json_decode(json_decode(json_encode($request->activity_seo_keywords_en[0])));
             $merge_en = [];
             foreach ($veri_en as $v) {
                 $merge_en[] = $v->value;
             }
+            $merge_en = implode(',', $merge_en);
+
             $data = About::latest()->first();
             $data->title = $request->activity_name_tr;
             $data->link = $request->activity_url_tr;
@@ -191,11 +195,11 @@ class AboutController extends Controller
 
             $data_en = EnAbout::latest()->first();
 
-            $data_en->title = $request->activity_name_tr;
-            $data_en->link = $request->activity_url_tr;
-            $data_en->description = $request->tinymce_activity_detail_tr;
-            $data_en->seo_title = $request->activity_seo_title_tr;
-            $data_en->seo_description = $request->activity_seo_description_tr;
+            $data_en->title = $request->activity_name_en;
+            $data_en->link = $request->activity_url_en;
+            $data_en->description = $request->tinymce_activity_detail_en;
+            $data_en->seo_title = $request->activity_seo_title_en;
+            $data_en->seo_description = $request->activity_seo_description_en;
             $data_en->seo_key = $merge_en;
             if ($request->file('image1') != null) {
                 $image = $request->file('image1');

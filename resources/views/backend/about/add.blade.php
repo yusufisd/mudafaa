@@ -152,10 +152,10 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label required fw-bold fs-6 ps-5">Başlık</label>
+                                                                        class="col-lg-1 col-form-label required fw-bold fs-6 ps-5">Başlık</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-10">
+                                                                    <div class="col-lg-11">
                                                                         <!--begin::Row-->
                                                                         <div class="row">
                                                                             <!--begin::Col-->
@@ -181,12 +181,12 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5">
+                                                                        class="col-lg-1 col-form-label fw-bold fs-6 mb-5 ps-5">
                                                                         <span>İçerik</span>
                                                                     </label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-12 fv-row mb-5 ps-5">
+                                                                    <div class="col-lg-11 fv-row mb-5 ps-5">
 
                                                                         <textarea id="editor" name="tinymce_activity_detail_tr" class="tox-target ckeditor"> {{ $data_tr->description ?? '' }} </textarea>
 
@@ -209,10 +209,10 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label required fw-bold fs-6 ps-5">Link</label>
+                                                                        class="col-lg-1 col-form-label required fw-bold fs-6 ps-5">Link</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-10">
+                                                                    <div class="col-lg-11">
                                                                         <!--begin::Row-->
                                                                         <div class="row">
                                                                             <!--begin::Col-->
@@ -252,10 +252,10 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label required fw-bold fs-6 ps-5">Başlık</label>
+                                                                        class="col-lg-1 col-form-label required fw-bold fs-6 ps-5">Başlık</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-10">
+                                                                    <div class="col-lg-11">
                                                                         <!--begin::Row-->
                                                                         <div class="row">
                                                                             <!--begin::Col-->
@@ -281,12 +281,12 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5">
+                                                                        class="col-lg-1 col-form-label fw-bold fs-6 mb-5 ps-5">
                                                                         <span>İçerik</span>
                                                                     </label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-12 fv-row mb-5 ps-5">
+                                                                    <div class="col-lg-11 fv-row mb-5 ps-5">
 
                                                                         <textarea id="editor2" name="tinymce_activity_detail_en" class="tox-target ckeditor"> {{ $data_en->description ?? '' }} </textarea>
                                                                     </div>
@@ -304,10 +304,10 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label required fw-bold fs-6 ps-5">Link</label>
+                                                                        class="col-lg-1 col-form-label required fw-bold fs-6 ps-5">Link</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-10">
+                                                                    <div class="col-lg-11">
                                                                         <!--begin::Row-->
                                                                         <div class="row">
                                                                             <!--begin::Col-->
@@ -427,7 +427,7 @@
                                                                             id="activity_seo_keywords_tr"
                                                                             name="activity_seo_keywords_tr[]"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            value="{{ json_encode($data_tr->getKeys()) }}" />
+                                                                            value="{{ isset($data_tr->seo_key) ? json_encode($data_tr->getKeys()) : '' }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -504,7 +504,7 @@
                                                                             id="activity_seo_keywords_en"
                                                                             name="activity_seo_keywords_en[]"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            value="{{ json_encode($data_en->getKeys()) }}" />
+                                                                            value="{{ isset($data_tr->seo_key) ? json_encode($data_en->getKeys()) : '' }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -622,11 +622,6 @@
         var input2 = document.querySelector("#activity_seo_keywords_en");
         new Tagify(input2);
 
-        var input3 = document.querySelector("#etiket_tr");
-        new Tagify(input3);
-
-        var input4 = document.querySelector("#etiket_en");
-        new Tagify(input4);
 
         $(document).ready(function() {
             tinymce.init({

@@ -75,24 +75,36 @@
                                                 </div>
 
                                                 <div class="row mb-6">
-                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
-                                                        {{ __('message.kapak') }} {{ __('message.görsel') }} <br><span>
-                                                            (1920px - 2880px) </span></label>
-                                                    <div class="col-lg-10">
-                                                        <input required type="file" class="form-control" name="image"
-                                                            accept=".png, .jpg, .jpeg" />
+                                                    
+                                                    <div class="input">
+                                                        <div class="row">
+                                                            <div class="col-md-6 row">
+                                                                <div class="col-md-4">
+                                                                    <label class="col-form-label fw-bold fs-6 ps-5">{{ __('message.kapak') }} {{ __('message.görsel') }} 
+                                                                        <br>
+                                                                        <span style="font-weight:normal">(1920px - 2880px)</span></label>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <input type="file"  class="form-control col-lg-8"
+                                                                        name="image" id="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 row">
+                                                                <div class="col-md-4">
+                                                                    <label class="col-form-label fw-bold fs-6 ps-5">Çoklu {{ __('message.görsel') }}
+                                                                        <br>
+                                                                        <span style="font-weight:normal">(1920px - 2880px)</span></label>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <input type="file"  class="form-control col-lg-8"
+                                                                        name="multiple_image[]" multiple id="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
 
-                                                <div class="row mb-6">
-                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
-                                                        Çoklu {{ __('message.görsel') }} <br><span>
-                                                            (1920px - 2880px) </span></label>
-                                                    <div class="col-lg-10">
-                                                        <input required type="file" class="form-control" name="multiple_image[]" multiple
-                                                            accept=".png, .jpg, .jpeg" />
-                                                    </div>
-                                                </div>
+                                                
 
                                                 <div class="row mb-6">
                                                     <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
@@ -105,7 +117,7 @@
                                                             <option value="">Seçiniz...</option>
 
                                                             @foreach ($categories as $item)
-                                                                <option value="{{ $item->id }}"> {{ $item->title }} - {{$item->defense->title}}
+                                                                <option value="{{ $item->id }}"> {{ $item->title ?? '' }} - {{$item->defense->title ?? ''}}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -192,17 +204,32 @@
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10 fv-row">
-                                                        <select required name="author" aria-label="Seçiniz" data-control="select2"
-                                                            data-placeholder="Seçiniz..."
-                                                            class="form-select form-select-solid form-select-lg fw-semibold">
-                                                            <option value="">Seçiniz...</option>
+                                                        @if (Auth::guard('admin')->check())
+                                                            <select name="author" aria-label="Seçiniz"
+                                                                data-control="select2"
+                                                                data-placeholder="Seçiniz..."
+                                                                class="form-select form-select-solid form-select-lg fw-semibold">
+                                                                <option value="">Seçiniz...</option>
+                                                                @foreach ($users as $user)
+                                                                    <option value="{{ $user->id }}">
+                                                                        {{ $user->name ?? '' }}
+                                                                        {{ $user->surname ?? '' }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        @endif
+                                                        @if (Auth::guard('user_model')->check())
+                                                            <input type="hidden" name="author" value="{{ AuthorUser()->id }}" id="">
+                                                            <select disabled name="author"
+                                                                aria-label="Seçiniz" data-control="select2"
+                                                                data-placeholder="Seçiniz..."
+                                                                class="form-select form-select-solid form-select-lg fw-semibold">
+                                                                <option selected
+                                                                    value="{{ AuthorUser()->id }}">
+                                                                    {{ AuthorUser()->name }}
+                                                                    {{ AuthorUser()->surname }} </option>
+                                                            </select>
+                                                        @endif
 
-                                                            @foreach ($users as $item) 
-                                                                <option value="{{ $item->id }}"> <p style="text-transform: capitalize"> {{ $item->name }} {{ $item->surname }} </p>
-                                                                </option>
-                                                            @endforeach
-
-                                                        </select>
                                                     </div>
                                                     <!--end::Col-->
                                                 </div>
@@ -262,10 +289,10 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Başlık</label>
+                                                                        class="col-lg-1 col-form-label ps-5 required fw-bold fs-6">Başlık</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-10">
+                                                                    <div class="col-lg-11">
                                                                         <!--begin::Row-->
                                                                         <div class="row">
                                                                             <!--begin::Col-->
@@ -287,10 +314,10 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Özet</label>
+                                                                        class="col-lg-1 col-form-label ps-5 fw-bold fs-6 required">Özet</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-10 fv-row">
+                                                                    <div class="col-lg-11 fv-row">
                                                                         <textarea name="short_description_tr" id="short_description_tr" onchange="create_ozet_tr()"
                                                                             class="form-control form-control-lg form-control-solid" value=""></textarea>
                                                                     </div>
@@ -301,12 +328,12 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5">
+                                                                        class="col-lg-1 col-form-label fw-bold fs-6 mb-5 ps-5 required">
                                                                         <span>İçerik</span>
                                                                     </label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-12 fv-row mb-5 ps-5">
+                                                                    <div class="col-lg-11 fv-row mb-5 ps-5">
 
                                                                         <textarea id="editor" name="description_tr" class="tox-target ckeditor"></textarea>
 
@@ -320,10 +347,10 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Link</label>
+                                                                        class="col-lg-1 col-form-label ps-5 required fw-bold fs-6">Link</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-10">
+                                                                    <div class="col-lg-11">
                                                                         <!--begin::Row-->
                                                                         <div class="row">
                                                                             <!--begin::Col-->
@@ -375,10 +402,10 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Başlık</label>
+                                                                        class="col-lg-1 col-form-label ps-5 required fw-bold fs-6">Başlık</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-10">
+                                                                    <div class="col-lg-11">
                                                                         <!--begin::Row-->
                                                                         <div class="row">
                                                                             <!--begin::Col-->
@@ -400,10 +427,10 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Özet</label>
+                                                                        class="col-lg-1 col-form-label ps-5 fw-bold fs-6 required">Özet</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-10 fv-row">
+                                                                    <div class="col-lg-11 fv-row">
                                                                         <textarea name="short_description_en" id="short_description_en" onchange="create_ozet_en()"
                                                                             class="form-control form-control-lg form-control-solid" value=""></textarea>
                                                                     </div>
@@ -414,12 +441,12 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5">
+                                                                        class="col-lg-1 col-form-label fw-bold fs-6 mb-5 ps-5 required">
                                                                         <span>İçerik</span>
                                                                     </label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-12 fv-row mb-5 ps-5">
+                                                                    <div class="col-lg-11 fv-row mb-5 ps-5">
 
                                                                         <textarea id="editor2" name="description_en" class="tox-target ckeditor"></textarea>
 
@@ -433,10 +460,10 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label ps-5 required fw-bold fs-6">Link</label>
+                                                                        class="col-lg-1 col-form-label ps-5 required fw-bold fs-6 required">Link</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-10">
+                                                                    <div class="col-lg-11">
                                                                         <!--begin::Row-->
                                                                         <div class="row">
                                                                             <!--begin::Col-->

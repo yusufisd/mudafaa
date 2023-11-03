@@ -43,13 +43,13 @@
                     <div class="col-xl-6 col-lg-6 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="800ms">
                         <div class="contact-wrap-area-1">
 
-                            <div class="rt-section-heading-style-2">
+                            <div style="text-align: justify" class="rt-section-heading-style-2">
                                 <span class="sub-title">{{ __('message.SİZE NASIL YARDIMCI OLABİLİRİZ') }}</span>
                                 <h2 class="heading-tilte">
                                     {{ $datas->title }}
                                 </h2>
-                                <p>
-                                    {{ $datas->description }}
+                                <p >
+                                    {!! $datas->description !!}
                                 </p>
                             </div>
 

@@ -131,8 +131,8 @@
 
                                                     <td>
                                                         <p style="text-transform: capitalize">
-                                                            {{ $item->GeneralCategory->title }} /
-                                                            {{ $item->Category->title }} </p>
+                                                            {{ $item->GeneralCategory->title ?? '' }} /
+                                                            {{ $item->Category->title ?? '' }} </p>
                                                     </td>
                                                     <td>
                                                         <div

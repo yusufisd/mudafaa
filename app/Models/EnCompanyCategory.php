@@ -17,4 +17,8 @@ class EnCompanyCategory extends Model
     public function getKeys(){
         return explode(',', $this->seo_key);
     }
+
+    public function companyCount(){
+        return CompanyModel::where('category',$this->id)->count();
+    }
 }

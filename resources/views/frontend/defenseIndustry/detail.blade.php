@@ -54,17 +54,21 @@
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
-                        <li class="breadcrumb-item">
-                            <a href="{{ route('front.defenseIndustryCategory.list', $data->GeneralCategory->link) }}">
-                                {{ $data->GeneralCategory->title }}
-                            </a>
-                        </li>
+                        @if ($data->GeneralCategory->link != null)
+                            <li class="breadcrumb-item">
+                                <a href="{{ route('front.defenseIndustryCategory.list', $data->GeneralCategory->link) }}">
+                                    {{ $data->GeneralCategory->title }}
+                                </a>
+                            </li>
+                        @endif
 
-                        <li class="breadcrumb-item" aria-current="page">
-                            <span class="rt-text-truncate">
-                                {{ $data->Category->title }}
-                            </span>
-                        </li>
+                        @if ($data->Category->title != null)
+                            <li class="breadcrumb-item" aria-current="page">
+                                <span class="rt-text-truncate">
+                                    {{ $data->Category->title }}
+                                </span>
+                            </li>
+                        @endif
 
                         <li class="breadcrumb-item active" aria-current="page">
                             <span class="rt-text-truncate">
@@ -423,8 +427,10 @@
                                             </a>
                                         </div>
                                         <div class="post-content">
-                                            <a href="{{ route('front.defenseIndustryCategory.list', $item->GeneralCategory->link) }}"
-                                                class="rt-cat-primary">{{ substr($item->GeneralCategory->title, 0, 20) }}...</a>
+                                            @if (isset($item->GeneralCategory->link))
+                                                <a href="{{ route('front.defenseIndustryCategory.list', $item->GeneralCategory->link) }}"
+                                                    class="rt-cat-primary">{{ substr($item->GeneralCategory->title, 0, 20) }}...</a>
+                                            @endif
                                             <h3 class="post-title">
                                                 <a href="{{ route('front.defenseIndustryContent.detail', $item->link) }}">
                                                     {{ $item->title }}
@@ -473,8 +479,8 @@
 @section('script')
     <script>
         /*--------------------------------
-                                                       // sidebar title limitation
-                                                    -------------------------------*/
+                                                           // sidebar title limitation
+                                                        -------------------------------*/
         // Select all tags with class .sidebar_restricted_category_title
         $('.sidebar_restricted_category_title').each(function() {
             var content = $(this).text().trim(); // get the content of a tag

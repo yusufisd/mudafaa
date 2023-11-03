@@ -1003,6 +1003,75 @@
                         <!--end::Col-->
                     </div>
                     <!--end::Row-->
+
+                    <div class="row g-5 g-xl-8">
+                        <!--begin::Col-->
+                        <div class="col-xl-12 mb-xl-8 mb-5">
+                            <div class="card card-flush h-xl-100 mb-xl-8 mb-5">
+                                <!--begin::Body-->
+                                <div class="card-body py-5">
+                                    <!--begin::Table container-->
+                                    <div class="table-responsive">
+                                        <table id="payment_management_table"
+                                            class="table-striped table-row-bordered gy-5 gs-7 table">
+                                            <thead>
+                                                <tr class="fw-bold fs-6 text-gray-800">
+                                                    <th class="w-60"> Anket
+                                                        {{ __('message.yönetimi') }} </th>
+                                                    <th class="w-10 text-center">Görüntüleme</th>
+                                                    <th class="w-10 text-center">Ekleme</th>
+                                                    <th class="w-10 text-center">Düzenleme</th>
+                                                    <th class="w-10 text-center">Silme</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <tr>
+                                                    <td>Anket</td>
+                                                    <td>
+                                                        <div
+                                                            class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center justify-content-center">
+                                                            <input class="form-check-input w-50px h-25px" type="checkbox"
+                                                                id="anket" name="anket" />
+                                                            <label class="form-check-label" for="anket_list"></label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div
+                                                            class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
+                                                            <input class="form-check-input w-50px h-25px" type="checkbox"
+                                                                id="anket_add" name="anket_add" />
+                                                            <label class="form-check-label" for="anket_add"></label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div
+                                                            class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
+                                                            <input class="form-check-input w-50px h-25px" type="checkbox"
+                                                                id="anket_edit" name="anket_edit" />
+                                                            <label class="form-check-label" for="anket_edit"></label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div
+                                                            class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
+                                                            <input class="form-check-input w-50px h-25px" type="checkbox"
+                                                                id="anket_delete" name="anket_delete" />
+                                                            <label class="form-check-label" for="anket_delete"></label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!--end::Table container-->
+                                </div>
+                                <!--begin::Body-->
+                            </div>
+                        </div>
+                        <!--end::Col-->
+                    </div>
                     <div class="right" style="text-align: right">
                         <button type="submit" class="btn btn-primary">EKLE</button>
                     </div>

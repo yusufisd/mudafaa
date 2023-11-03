@@ -20,7 +20,24 @@
                     <!--end::Title-->
                 </div>
                 <!--end::Page title-->
-
+                <div class="" style="display: flex">
+                    <div id="goster" class="col-md-8" style="display:none">
+                        <form action="{{ route('admin.companyModel.ice_aktar') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <input type="file" class="form-control" name="ice_aktar" id="">
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="submit" class="btn btn-primary" id="">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="gizle">
+                        <button class="btn btn-primary" onclick="iceri_aktar()" type="button"> Aktar</button>
+                    </div>
+                </div>
             </div>
             <!--end::Toolbar container-->
         </div>
@@ -176,6 +193,10 @@
                     window.location.href = "{{ route('admin.companyModel.destroy') }}/" + d;
                 }
             })
+        }
+
+        function iceri_aktar() {
+            $('#goster').toggle('fast');
         }
 
     </script>

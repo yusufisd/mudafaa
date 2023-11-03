@@ -29,6 +29,7 @@ use App\Http\Controllers\Frontend\AboutController as FrontendAboutController;
 use App\Http\Controllers\Frontend\ActivityController as FrontendActivityController;
 use App\Http\Controllers\Frontend\AnketController as FrontendAnketController;
 use App\Http\Controllers\Frontend\ArchiveController;
+use App\Http\Controllers\Frontend\AuthorController;
 use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\CompanyController as FrontendCompanyController;
 use App\Http\Controllers\Frontend\CurrentNewsCategoryController as FrontendCurrentNewsCategoryController;
@@ -305,6 +306,7 @@ Route::middleware('lang')->group(function () {
                     Route::middleware('per:company_delete')
                         ->get('sil/{id?}', 'destroy')
                         ->name('destroy');
+
                 });
 
             // ETKİNLİK KATEGORİSİ CONTROLLER
@@ -469,6 +471,8 @@ Route::middleware('lang')->group(function () {
                         ->get('sil/{id?}', 'destroy')
                         ->name('destroy');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
+                    Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
+
                 });
 
             // FİRMA KATEGORİ CONTROLLER
@@ -549,14 +553,13 @@ Route::middleware('lang')->group(function () {
             Route::controller(KunyeController::class)
                 ->prefix('kunye')
                 ->name('kunye.')
-                ->middleware('auth:admin')
                 ->group(function () {
-                    Route::get('/', 'list')->name('list');
-                    Route::get('/ekle', 'create')->name('add');
-                    Route::post('/ekle', 'store')->name('store');
-                    Route::get('/duzenle/{id?}', 'edit')->name('edit');
-                    Route::post('/duzenle/{id?}', 'update')->name('update');
-                    Route::get('/sil/{id?}', 'destroy')->name('destroy');
+                    Route::middleware('per:kunye_list')->get('/', 'list')->name('list');
+                    Route::middleware('per:kunye_add')->get('/ekle', 'create')->name('add');
+                    Route::middleware('per:kunye_add')->post('/ekle', 'store')->name('store');
+                    Route::middleware('per:kunye_edit')->get('/duzenle/{id?}', 'edit')->name('edit');
+                    Route::middleware('per:kunye_edit')->post('/duzenle/{id?}', 'update')->name('update');
+                    Route::middleware('per:kunye_delete')->get('/sil/{id?}', 'destroy')->name('destroy');
                 });
 
             // iletişim
@@ -582,12 +585,12 @@ Route::middleware('lang')->group(function () {
                 ->prefix('anket')
                 ->name('anket.')
                 ->group(function () {
-                    Route::get('/', 'list')->name('list');
-                    Route::get('/ekle', 'create')->name('add');
-                    Route::post('/ekle', 'store')->name('store');
-                    Route::get('/duzenle/{id?}', 'edit')->name('edit');
-                    Route::post('/duzenle/{id?}', 'update')->name('update');
-                    Route::get('/sil/{id?}', 'destroy')->name('destroy');
+                    Route::middleware('per:anket_list')->get('/', 'list')->name('list');
+                    Route::middleware('per:anket_add')->get('/ekle', 'create')->name('add');
+                    Route::middleware('per:anket_add')->post('/ekle', 'store')->name('store');
+                    Route::middleware('per:anket_edit')->get('/duzenle/{id?}', 'edit')->name('edit');
+                    Route::middleware('per:anket_edit')->post('/duzenle/{id?}', 'update')->name('update');
+                    Route::middleware('per:anket_delete')->get('/sil/{id?}', 'destroy')->name('destroy');
                 });
         });
 
@@ -750,7 +753,12 @@ Route::middleware('lang')->group(function () {
 
             Route::get('iletisim', [FrontendContactController::class, 'contact'])->name('contact');
             Route::get('kunye', [FrontendKunyeController::class, 'index'])->name('kunye');
+
+            // yazar detay
+            Route::get('yazar/{id?}',[AuthorController::class,'detail'])->name('author.detail');
         });
+
+        
 });
 
 Route::get('test',function(){

@@ -180,7 +180,7 @@
         function destroy(d) {
             Swal.fire({
                 title: 'Emin misiniz?',
-                text: "Seçtiğiniz içerik silinecek!",
+                text: "Seçtiğiniz kategoriye ait içerikler de silinecek!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',

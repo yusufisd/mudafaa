@@ -137,12 +137,13 @@
                         </div>
                         <div class="post-content">
 
+                            @if(isset($tek_haber->Category()[0]))
                             <a href="{{ route('front.currentNewsCategory.list', $tek_haber->Category()[0]->link) }}"
                                 style="background-color: {{ $tek_haber->Category()[0]->color_code != null ? $tek_haber->Category()[0]->color_code : '#749f43' }}"
                                 class="tr-america restricted_category_title">
                                 {{ $tek_haber->Category()[0]->title }}
                             </a>
-
+                            @endif
 
                             <h3 class="post-title">
                                 <a href="{{ route('front.currentNews.detail', $tek_haber->link) }}"
@@ -223,7 +224,7 @@
                                                 <li>
                                                     <span class="rt-meta">
                                                         <i class="far fa-calendar-alt icon"></i>
-                                                        {{ $item->live_time->translatedFormat('d M Y') }}
+                                                        {{ $item->live_time->translatedFormat('d M Y') ?? '' }}
                                                     </span>
                                                 </li>
                                                 <li>
@@ -317,11 +318,9 @@
                                                     <ul>
                                                         <li>
                                                             <span class="rt-meta">
-                                                                <i class="fa fa-user"></i> <a href=""
-                                                                    class="name">
-                                                                    {{ $ilk_kategori_icerigi->Author->name }}
-                                                                    {{ $ilk_kategori_icerigi->Author->surname }}
-                                                                </a>
+                                                                <i class="fa fa-user"></i>
+                                                                <a href="{{ route('front.author.detail',$ilk_kategori_icerigi->Author->id) }}" class="name">{{ $ilk_kategori_icerigi->Author->name }}
+                                                                    {{ $ilk_kategori_icerigi->Author->surname }}</a>
                                                             </span>
                                                         </li>
                                                         <li>
@@ -465,11 +464,9 @@
                                                     <ul>
                                                         <li>
                                                             <span class="rt-meta">
-                                                                <i class="fa fa-user"></i> <a href=""
-                                                                    class="name">
-                                                                    {{ $ikinci_kategori_icerigi->Author->name }}
-                                                                    {{ $ikinci_kategori_icerigi->Author->surname }}
-                                                                </a>
+                                                                <i class="fa fa-user"></i>
+                                                                <a href="{{ route('front.author.detail',$ikinci_kategori_icerigi->Author->id) }}" class="name">{{ $ikinci_kategori_icerigi->Author->name }}
+                                                                    {{ $ikinci_kategori_icerigi->Author->surname }}</a>
                                                             </span>
                                                         </li>
                                                         <li>
@@ -491,7 +488,6 @@
                                         <div class="post-grid-md-list gutter-24">
 
                                             @foreach ($cat2_news1 as $item)
-                                            <br>
 
                                                 <div class="item">
                                                     <div class="rt-post post-md style-8">
@@ -617,14 +613,15 @@
                                                         <ul>
                                                             <li>
                                                                 <span class="rt-meta">
-                                                                    <i class="fa fa-user"></i> <a
-                                                                        class="name">{{ $ucuncu_kategori_icerigi->Author->name }}</a>
+                                                                    <i class="fa fa-user"></i>
+                                                                    <a href="{{ route('front.author.detail',$ucuncu_kategori_icerigi->Author->id) }}" class="name">{{ $ucuncu_kategori_icerigi->Author->name }}
+                                                                        {{ $ucuncu_kategori_icerigi->Author->surname }}</a>
                                                                 </span>
                                                             </li>
                                                             <li>
                                                                 <span class="rt-meta">
                                                                     <i class="far fa-calendar-alt icon"></i>
-                                                                    {{ substr($ucuncu_kategori_icerigi->created_at, 0, 10) }}
+                                                                    {{ $ucuncu_kategori_icerigi->live_time->format('d M Y') }}
                                                                 </span>
                                                             </li>
                                                         </ul>
@@ -771,15 +768,17 @@
                     <div class="col-xl-3 col-md-6 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="800ms">
                         <div class="rt-post-grid grid-meta">
                             <div class="post-img">
-                                <a href="fair_detail.html">
+                                <a href="{{ route('front.activity.detail', $item->link) }}">
                                     <img src="/{{ $item->image == null ? 'media/gallery/post-md_42.jpg' : $item->image }}"
                                         alt="post" width="551" height="431">
                                 </a>
                             </div>
                             <div class="post-content">
                                 <div class="d-flex justify-content-between align-items-center">
+                                    @if($item->Category != null)
                                     <a href="graphics.html" class="rt-cat-primary restricted_category_title">
                                         {{ substr($item->Category->title, 0, 10) }} ...</a>
+                                        @endif
                                     @if ($item->sayac_yil() || $item->sayac_ay() || $item->sayac_gun())
                                         <h6 class="rt-news-cat-normal text-danger mx-2">
                                             <i class="far fa-clock icon"></i>
@@ -790,7 +789,7 @@
                                 </div>
 
                                 <h4 class="post-title">
-                                    <a href="fair_detail.html" class="title_style_2">
+                                    <a href="{{ route('front.activity.detail', $item->link) }}" class="title_style_2">
                                         {{ $item->title }}
                                     </a>
                                 </h4>
@@ -874,10 +873,9 @@
                                         <ul>
                                             <li>
                                                 <span class="rt-meta">
-                                                    <i class="fa fa-user"></i> <a href="" class="name">
-                                                        {{ $populer_haber_first->Author->name }}
-                                                        {{ $populer_haber_first->Author->surname }}
-                                                    </a>
+                                                    <i class="fa fa-user"></i>
+                                                    <a href="{{ route('front.author.detail',$populer_haber_first->Author->id) }}" class="name">{{ $populer_haber_first->Author->name }}
+                                                        {{ $populer_haber_first->Author->surname }}</a>
                                                 </span>
                                             </li>
                                             <li>
@@ -954,10 +952,10 @@
                                                         {{ $item->title }}
                                                     </a>
                                                 </h3>
-                                                <span class="rt-meta me-2">
-                                                    <i class="fa fa-user"></i> <a href="" class="name">
-                                                        {{ $item->Author->name }} {{ $item->Author->surname }}
-                                                    </a>
+                                                <span class="rt-meta">
+                                                    <i class="fa fa-user"></i>
+                                                    <a href="{{ route('front.author.detail',$item->Author->id) }}" class="name">{{ $item->Author->name }}
+                                                        {{ $item->Author->surname }}</a>
                                                 </span>
                                                 <span class="rt-meta me-2">
                                                     <i class="far fa-calendar-alt icon"></i>
@@ -1232,7 +1230,7 @@
                 <div class="col-lg-4 align-self-end wow fadeInLeft d-none d-lg-block" data-wow-delay="300ms"
                     data-wow-duration="800ms">
                     <div class="subscribe-img bouncing-bubble-animation">
-                        <img src="assets/frontend/media/gallery/subscrible-img_1.png" alt="subscrible" width="401"
+                        <img src="/assets/haber-bulten.webp" alt="subscrible" width="401"
                             height="327">
                     </div>
                 </div>
@@ -1240,14 +1238,14 @@
 
                 <div class="col-lg-6 align-self-center wow fadeInRight" data-wow-delay="600ms" data-wow-duration="800ms">
                     <div class="rt-subscribe-box">
-                        <h3 class="title">
-                            En İyi Haberleri Size Direk Olarak Ulaştıralım!
-                        </h3>
+                        <h4 style="font-size:20px" >
+                            {{ __('message.Savunma sanayii ve teknolojideki en güncel haberler ve analizler doğrudan e-posta kutunuza gelsin. Bilgiye bir adım daha yakın olun. E-posta adresinizi aşağıya girerek bültenimize abone olabilirsiniz.') }}
+                        </h4>
                         <form action="#" class="rt-contact-form subscribe-form-style-2">
                             <div class="rt-subs-group">
                                 <input type="email" name="email" id="email_2" class="subscribe-form"
                                     placeholder="E-posta" data-error="E-posta alanı zorunludur" required>
-                                <button type="submit" class="subscribe-btn">Abone Ol </button>
+                                <button type="submit" class="subscribe-btn"> {{ __('message.Abone ol') }} </button>
                                 <div class="form-response"></div>
                             </div>
                         </form>

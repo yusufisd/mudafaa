@@ -10,12 +10,16 @@ use App\Models\EnPage;
 use App\Models\LogModel;
 use App\Models\Page;
 use App\Models\SocialMedia;
+use App\Models\UserModel;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 function logKayit($id)
 {
     $auth = Auth::guard('admin')->user();
+    if($auth == null){
+        $auth = Auth::guard('user_model')->user();
+    }
     $log = new LogModel();
     $log->title = $id[0];
     $log->description = $id[1];
@@ -59,9 +63,9 @@ function headline()
     $local = \Session::get('applocale') ?? config('app.fallback_locale');
 
     if ($local == 'tr') {
-        $cats = CurrentNews::where('headline', 1)->get();
+        $cats = CurrentNews::where('headline', 1)->where('status',1)->get();
     } elseif ($local == 'en') {
-        $cats = EnCurrentNews::where('headline', 1)->get();
+        $cats = EnCurrentNews::where('headline', 1)->where('status',1)->get();
     }
     return $cats;
 }
@@ -97,4 +101,22 @@ function printDesc($desc){
     $desc = str_replace('<ol>', '<ol class="number_list">', $desc);
     $desc = str_replace('<ul>', '<ul class="disc_list">', $desc);
     return $desc;
+}
+
+
+function AuthorUser(){
+    $data = Auth::guard('user_model')->user();
+    $user = UserModel::where('email',$data->email)->first();
+    return $user;
+}
+
+function most_popular_new(){
+    $local = \Session::get('applocale') ?? config('app.fallback_locale');
+
+    if ($local == 'tr') {
+        $data = CurrentNews::orderBy('view_counter','desc')->where('status',1)->first();
+    } elseif ($local == 'en') {
+        $data = EnCurrentNews::orderBy('view_counter','desc')->where('status',1)->first();
+    }
+    return $data;
 }

@@ -150,12 +150,23 @@ class HomeController extends Controller
             }
 
 
-            $cat1_news1 = EnCurrentNews::whereJsonContains('category_id',$first_cat->id)->orderBy('id','asc')->take(3)->get();
-            $cat1_news2 = EnCurrentNews::whereJsonContains('category_id',$first_cat->id)->orderBy('id','desc')->take(3)->get();
-            $cat2_news1 = EnCurrentNews::whereJsonContains('category_id',$second_cat->id)->orderBy('id','asc')->take(3)->get();
-            $cat2_news2 = EnCurrentNews::whereJsonContains('category_id',$second_cat->id)->orderBy('id','desc')->take(3)->get();
-            $cat3_news1 = EnCurrentNews::whereJsonContains('category_id',$third_cat->id)->orderBy('id','asc')->take(3)->get();
-            $cat3_news2 = EnCurrentNews::whereJsonContains('category_id',$third_cat->id)->orderBy('id','desc')->take(3)->get();
+            $cat1_news1 = EnCurrentNews::whereJsonContains('category_id',$first_cat->id)->where('status',1)->whereNot('id',$ilk_kategori_icerigi->id)->orderBy('id','asc')->take(3);
+            $cat1_news_ids = $cat1_news1->pluck('id')->all();
+            $cat1_news1 = $cat1_news1->get();
+            $cat1_news2 = EnCurrentNews::whereJsonContains('category_id',$first_cat->id)->where('status',1)->orderBy('id','asc')->whereNot('id',$ilk_kategori_icerigi->id)->whereNotIn('id',$cat1_news_ids)->take(3)->get();
+
+
+            $cat2_news1 = EnCurrentNews::whereJsonContains('category_id',$second_cat->id)->where('status',1)->whereNot('id',$ikinci_kategori_icerigi->id)->orderBy('id','asc')->take(3);
+            $cat2_news_ids = $cat2_news1->pluck('id')->all();
+            $cat2_news1 = $cat2_news1->get();
+            $cat2_news2 = EnCurrentNews::whereJsonContains('category_id',$second_cat->id)->where('status',1)->orderBy('id','asc')->whereNot('id',$ikinci_kategori_icerigi->id)->whereNotIn('id',$cat2_news_ids)->take(3)->get();
+
+            
+            $cat3_news1 = EnCurrentNews::whereJsonContains('category_id',$third_cat->id)->where('status',1)->whereNot('id',$ucuncu_kategori_icerigi->id)->orderBy('id','asc')->take(3);
+            $cat3_news_ids = $cat3_news1->pluck('id')->all();
+            $cat3_news1 = $cat3_news1->get();
+            $cat3_news2 = EnCurrentNews::whereJsonContains('category_id',$third_cat->id)->where('status',1)->orderBy('id','asc')->whereNot('id',$ucuncu_kategori_icerigi->id)->whereNotIn('id',$cat3_news_ids)->take(3)->get();
+
 
 
             $activity = EnActivity::latest()->take(4)->get();

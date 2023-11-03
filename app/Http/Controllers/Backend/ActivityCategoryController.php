@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Imports\ActivityCategoryImport;
+use App\Models\Activity;
 use App\Models\ActivityCategory;
+use App\Models\EnActivity;
 use App\Models\EnActivityCategory;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -88,7 +90,7 @@ class ActivityCategoryController extends Controller
             foreach ($veri_en as $v) {
                 $merge_en[] = $v->value;
             }
-            $merge = implode(',', $merge_en);
+            $merge_en = implode(',', $merge_en);
 
 
             $category = new ActivityCategory();
@@ -253,30 +255,38 @@ class ActivityCategoryController extends Controller
      */
     public function destroy($id)
     {
-        try {
-            DB::beginTransaction();
+       
+
             $data = ActivityCategory::findOrFail($id);
-            $son_id = ActivityCategory::orderBy('queue', 'desc')->first()->queue;
-            for ($i = $data->queue + 1; $i <= $son_id; $i++) {
+
+            Activity::where('category',$data->id)->delete();
+
+            $son_queue = ActivityCategory::orderBy('queue', 'desc')->first()->queue;
+            for ($i = $data->queue + 1; $i <= $son_queue; $i++) {
                 $item = ActivityCategory::where('queue', $i)->first();
                 $item->queue = $item->queue - 1;
                 $item->save();
             }
-            EnActivityCategory::where('activity_id', $id)->delete();
-            $data->delete();
 
-            logKayit(['Etkinlik Kategori', 'Haber kategorisi silindi']);
+
+
+            $data_en = EnActivityCategory::where('activity_id', $id)->first();
+
+            EnActivity::where('category',$data_en->id)->delete();
+
+            $son_queue_en = EnActivityCategory::orderBy('queue','desc')->first()->queue;
+            for($i = $data_en->queue+1; $i <= $son_queue_en; $i++){
+                $item_en = EnActivityCategory::where('queue',$i)->first();
+                $item_en->queue = $item_en->queue - 1;
+                $item_en->save();
+            }
+            $data->delete();
+            $data_en->delete();
+
+            logKayit(['Etkinlik Kategori', 'Etkinlik kategorisi silindi']);
             Alert::success('Etkinlik Kategorisi Silindi');
             DB::commit();
-        } catch (Throwable $e) {
-            DB::rollBack();
-
-            logKayit(['Etkinlik Kategori', 'Kategori silmede hata', 0]);
-            Alert::error('Kategori Silmede Hata');
-            throw ValidationException::withMessages([
-                'error' => 'Tüm alanların doldurulması zorunludur.',
-            ]);
-        }
+        
         return redirect()->route('admin.activityCategory.list');
     }
 

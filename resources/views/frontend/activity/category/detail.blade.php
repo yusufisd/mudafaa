@@ -74,8 +74,7 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ substr($item->start_time, 8, 2) }}-{{ substr($item->start_time, 5, 2) }}-{{ substr($item->start_time, 0, 4) }}
-                                                                - {{ substr($item->start_time, 10, 6) }}
+                                                                {{ $item->start_time->format('d M Y') }}
                                                             </span>
                                                         </li>
                                                         <li>
@@ -86,8 +85,8 @@
                                                         </li>
                                                         <li>
                                                             <span class="rt-meta">
-                                                                <i class="far fa-eye icon"></i>
-                                                                25
+                                                                <i class="fa-solid fa-eye"></i>
+                                                                {{ $item->view_counter }}
                                                             </span>
                                                         </li>
                                                     </ul>

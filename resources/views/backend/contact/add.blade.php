@@ -133,7 +133,7 @@
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <div class="row">
                                                                                     <div class="col-lg-12">
-                                                                                        <textarea name="description_tr" class="form-control form-control-solid mb-3 mb-lg-0" id="" cols="30" rows="5"> {{ $data->description ?? '' }} </textarea>
+                                                                                        <textarea name="description_tr" class="form-control form-control-solid mb-3 mb-lg-0" id="editor" cols="30" rows="5"> {{ $data->description ?? '' }} </textarea>
                                                                                     </div>
                                                                                     
 
@@ -311,7 +311,7 @@
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <div class="row">
                                                                                     <div class="col-lg-12">
-                                                                                        <textarea name="description_en" class="form-control form-control-solid mb-3 mb-lg-0" id="" cols="30" rows="5">{{ $data_en->description ?? '' }}</textarea>
+                                                                                        <textarea name="description_en" class="form-control form-control-solid mb-3 mb-lg-0" id="editor2" cols="30" rows="5">{{ $data_en->description ?? '' }}</textarea>
                                                                                     </div>
                                                                                     
 
@@ -522,6 +522,22 @@
 
             return str;
         };
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+            ClassicEditor
+            .create(document.querySelector('#editor2'))
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
     </script>
     <script>
         var input1 = document.querySelector("#seo_key_tr");

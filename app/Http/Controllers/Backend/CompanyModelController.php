@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\DB;
 use Throwable;
 use Illuminate\Validation\ValidationException;
 use RealRashid\SweetAlert\Facades\Alert;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\CompanyImport;
+
 
 class CompanyModelController extends Controller
 {
@@ -443,5 +446,13 @@ class CompanyModelController extends Controller
             ]);
         }
         return redirect()->route('admin.companyModel.list');
+    }
+
+    public function ice_aktar(Request $request)
+    {
+        Excel::import(new CompanyImport(), $request->file('ice_aktar')->store('temp'));
+
+        Alert::success('Başarılı');
+        return back();
     }
 }

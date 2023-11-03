@@ -84,11 +84,13 @@
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
+                        @if(($data->category_id != null))
                         <li class="breadcrumb-item">
                             <a href="{{ route('front.currentNewsCategory.list', $data->Category()[0]->link) }}">
                                 {{ $data->Category()[0]->title }}
                             </a>
                         </li>
+                        @endif
                         <li class="breadcrumb-item active" aria-current="page">
                             <span class="rt-text-truncate">
                                 {{ $data->title }}
@@ -129,7 +131,7 @@
                                             <li>
                                                 <span class="rt-meta">
                                                     <i class="fa fa-user"></i>
-                                                    <a href="#" class="name">{{ $data->Author->name }}
+                                                    <a href="{{ route('front.author.detail',$data->Author->id) }}" class="name">{{ $data->Author->name }}
                                                         {{ $data->Author->surname }}</a>
                                                 </span>
                                             </li>
@@ -264,14 +266,14 @@
                                 <!-- start author box -->
                                 <div class="author-box-style-1 mb--35">
                                     <div class="author-img">
-                                        <img src="{{ asset('assets/sabit.png') }}" alt="author-img_1" width="170"
+                                        <img src="/assets/author-img_1.jpg" alt="author-img_1" width="170"
                                             height="170">
                                     </div>
                                     <div class="author-content">
                                         <h3 class="author-name"> {{ $data->Author->name }} {{ $data->Author->surname }}
                                         </h3>
                                         <p class="user-desc">
-                                            {{ substr($data->Author->description, 0, 270) }}
+                                            {{ substr($data->Author->description, 0, 270) }}...
                                         </p>
                                         <ul class="social-style-5">
 

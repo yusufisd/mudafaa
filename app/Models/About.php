@@ -11,6 +11,7 @@ class About extends Model
     protected $guarded = [];
 
 
+
     public function getKeys()
     {
         return explode(',', $this->seo_key);
