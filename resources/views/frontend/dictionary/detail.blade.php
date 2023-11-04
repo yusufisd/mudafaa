@@ -8,12 +8,16 @@
 
 @section('content')
     <style>
+        .post-body {
+            color: #464847;
+        }
+
         .tag-link:hover {
             background-color: #749f43;
             color: white;
         }
 
-        .post-body:first-letter:first-child {
+        .post-body:intial-letter {
             float: left;
             font-weight: bold;
             font-size: 10px;
@@ -264,8 +268,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                               // sidebar title limitation
-                            -------------------------------*/
+                                   // sidebar title limitation
+                                -------------------------------*/
         // Select all tags with class .sidebar_restricted_category_title
         $('.sidebar_restricted_category_title').each(function() {
             var content = $(this).text().trim(); // get the content of a tag

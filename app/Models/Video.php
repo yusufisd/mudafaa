@@ -12,6 +12,7 @@ class Video extends Model
     protected $guarded = [];
     protected $casts = [
         "seo_key" => "array",
+        "live_date" => "datetime"
     ];
 
     public function Author(){

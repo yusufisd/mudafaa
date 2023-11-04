@@ -20,7 +20,7 @@
             }
         }
 
-        .post-body:first-letter:first-child {
+        .post-body:intial-letter {
             float: left;
             font-weight: bold;
             font-size: 10px;

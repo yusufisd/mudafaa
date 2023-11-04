@@ -70,11 +70,19 @@
                                     <div class="post-item wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
                                         <div class="rt-post post-md style-9 grid-meta">
                                             <div class="post-content">
+                                                <?php
+                                                $no = 0;
+                                                ?>
                                                 @foreach ($item->Category() as $Category)
                                                     
+                                                @if($no != 3)
+                                                <?php 
+                                                $no++;
+                                                ?>
                                                 <a href="{{ route('front.currentNewsCategory.list', $Category->link) }}"
                                                     style="background-color: {{ $Category->color_code != null ? $Category->color_code : '' }}"
                                                     class="rt-cat-primary">{{ $Category->title }}</a>
+                                                @endif
                                                 @endforeach
 
                                                 <h3 class="post-title">
@@ -98,7 +106,7 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ $item->created_at->translatedFormat('d M Y') }}
+                                                                {{ $item->live_time->translatedFormat('d M Y') }}
                                                             </span>
                                                         </li>
                                                         <li>
@@ -107,12 +115,7 @@
                                                                 {{ $item->view_counter }}
                                                             </span>
                                                         </li>
-                                                        <li>
-                                                            <span class="rt-meta">
-                                                                <i class="fas fa-share-alt icon"></i>
-                                                                50
-                                                            </span>
-                                                        </li>
+                                                        
                                                     </ul>
                                                 </div>
                                                 <div class="btn-wrap mt--25">
@@ -241,10 +244,12 @@
                                                             {{ $item->title }}
                                                         </a>
                                                     </h4>
+                                                    @if(isset($item->live_time))
                                                     <span class="rt-meta">
                                                         <i class="far fa-calendar-alt icon"></i>
-                                                        {{ $item->created_at->translatedFormat('d M Y') }}
+                                                        {{ $item->live_time->translatedFormat('d M Y') }}
                                                     </span>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>

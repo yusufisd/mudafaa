@@ -10,7 +10,9 @@ class Interview extends Model
 {
     use HasFactory,SoftDeletes;
     protected $casts = [
-        "seo_key" => "array"
+        "seo_key" => "array",
+        "live_time" => 'datetime'
+
     ];
     protected $guarded = [];
 

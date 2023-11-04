@@ -1,8 +1,13 @@
 @extends('frontend.master')
-@section('title', $data->title )
+@section('title', $data->title)
 
 @section('content')
     <!-- Start Main -->
+    <style>
+        .post-body {
+            color: #464847;
+        }
+    </style>
     <main>
         <!-- theme-switch-box -->
         <div class="theme-switch-box-mobile-wrap">
@@ -24,12 +29,12 @@
                 <nav class="rt-breadcrumb-wrap" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="{{route('front.home')}}">
+                            <a href="{{ route('front.home') }}">
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            {{$data->title}}
+                            {{ $data->title }}
                         </li>
                     </ol>
                 </nav>
@@ -37,7 +42,6 @@
         </div>
         <!-- End inner page Banner -->
 
-        <!-- start single-post-overlay area -->
         <div class="section-padding pb-0">
             <div class="container">
                 <div class="row">
@@ -45,7 +49,8 @@
                         <div class="rt-post-overlay rt-post-overlay-xl single-post-overlay">
                             <div class="post-img">
                                 <a href="" class="img-link">
-                                    <img src="/{{ $data->image }}" alt="post-ex_7" width="1320" height="620">
+                                    <img src="/{{ $data->image }}" alt="post-ex_7" style="height:320px!important"
+                                        width="1320">
                                 </a>
                             </div>
                         </div>
@@ -57,7 +62,6 @@
             </div>
             <!-- end container -->
         </div>
-        <!-- end single-post-overlay area -->
 
         <!-- start rt-sidebar-section-layout-2 -->
         <section class="rt-sidebar-section-layout-2">

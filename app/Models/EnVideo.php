@@ -11,7 +11,9 @@ class EnVideo extends Model
     use HasFactory,SoftDeletes;
     protected $guarded = [];
     protected $casts = [
-        "seo_key" => "array"
+        "seo_key" => "array",
+        "live_date" => "datetime"
+
     ];
 
     public function Author(){

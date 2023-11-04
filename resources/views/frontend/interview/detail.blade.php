@@ -23,10 +23,10 @@
         }
 
         .post-body {
-            color: #000;
+            color: #464847;
         }
 
-        .post-body:first-letter:first-child {
+        .post-body:intial-letter {
             float: left;
             font-weight: bold;
             font-size: 10px;

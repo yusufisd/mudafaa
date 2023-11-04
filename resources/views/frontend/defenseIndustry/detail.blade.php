@@ -6,10 +6,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
     <style>
         .post-body {
-            color: #000;
+            color: #464847;
         }
 
-        .post-body:first-letter:first-child {
+        .post-body:intial-letter {
             float: left;
             font-weight: bold;
             font-size: 10px;

@@ -11,10 +11,10 @@
     <!-- Start Main -->
     <style>
         .post-body {
-            color: #000;
+            color: #464847;
         }
 
-        .post-body:first-letter:first-child {
+        .post-body:initial-letter {
             float: left;
             font-weight: bold;
             font-size: 10px;
@@ -84,12 +84,12 @@
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
-                        @if(($data->category_id != null))
-                        <li class="breadcrumb-item">
-                            <a href="{{ route('front.currentNewsCategory.list', $data->Category()[0]->link) }}">
-                                {{ $data->Category()[0]->title }}
-                            </a>
-                        </li>
+                        @if ($data->category_id != null)
+                            <li class="breadcrumb-item">
+                                <a href="{{ route('front.currentNewsCategory.list', $data->Category()[0]->link) }}">
+                                    {{ $data->Category()[0]->title }}
+                                </a>
+                            </li>
                         @endif
                         <li class="breadcrumb-item active" aria-current="page">
                             <span class="rt-text-truncate">
@@ -131,7 +131,8 @@
                                             <li>
                                                 <span class="rt-meta">
                                                     <i class="fa fa-user"></i>
-                                                    <a href="{{ route('front.author.detail',$data->Author->id) }}" class="name">{{ $data->Author->name }}
+                                                    <a href="{{ route('front.author.detail', $data->Author->id) }}"
+                                                        class="name">{{ $data->Author->name }}
                                                         {{ $data->Author->surname }}</a>
                                                 </span>
                                             </li>
@@ -227,7 +228,7 @@
                                 <!-- end post-img -->
 
                                 <!-- strat psot body -->
-                                <div class="post-body" id="contentToConvert" style="text-align: justify">
+                                <div class="post-body" id="contentToConvert" style="text-align: justify;">
                                     {!! printDesc($data->description) !!}
                                     <br><br>
                                     <div class="ad-banner-img mt--45 mb--40">
@@ -445,7 +446,8 @@
                                                     </div>
                                                 </div>
 
-                                                <input type="hidden" id="com_id" value="{{ $item->id }}" name="">
+                                                <input type="hidden" id="com_id" value="{{ $item->id }}"
+                                                    name="">
 
                                                 <div class="col-md-9">
                                                     <div class="commentator-content">
@@ -471,30 +473,32 @@
 
 
                                             @foreach ($item->CommentComments() as $comment)
+                                                <div class="comment_container">
+                                                    <div class="row">
+                                                        <div class="col-md-2"></div>
+                                                        <div class="d-none d-md-block col-md-3 mb-3">
+                                                            <div class="commentator-img">
+                                                                <img src="{{ asset('assets/sabit.png') }}"
+                                                                    alt="commentator-img_1" width="170"
+                                                                    height="170">
+                                                            </div>
+                                                        </div>
 
-                                            <div class="comment_container">
-                                                <div class="row">
-                                                    <div class="col-md-2"></div>
-                                                    <div class="d-none d-md-block col-md-3 mb-3">
-                                                        <div class="commentator-img">
-                                                            <img src="{{ asset('assets/sabit.png') }}"
-                                                                alt="commentator-img_1" width="170" height="170">
+                                                        <input type="hidden" id="com_id" value="{{ $comment->id }}"
+                                                            name="">
+
+                                                        <div class="col-md-7">
+                                                            <div class="commentator-content">
+                                                                <h3 class="commentator-name"> {{ $comment->full_name }}
+                                                                </h3>
+                                                                <p class="user-desc">
+                                                                    {{ $comment->comment }}
+                                                                </p>
+                                                            </div>
                                                         </div>
                                                     </div>
 
-                                                    <input type="hidden" id="com_id" value="{{ $comment->id }}" name="">
-
-                                                    <div class="col-md-7">
-                                                        <div class="commentator-content">
-                                                            <h3 class="commentator-name"> {{ $comment->full_name }} </h3>
-                                                            <p class="user-desc">
-                                                                {{ $comment->comment }}
-                                                            </p>
-                                                        </div>
-                                                    </div>
                                                 </div>
-
-                                            </div>
                                             @endforeach
 
 
@@ -830,8 +834,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                                                                            // limit by device width
-                                                                            -------------------------------*/
+                                                                                    // limit by device width
+                                                                                    -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
 

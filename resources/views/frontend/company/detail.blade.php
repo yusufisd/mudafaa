@@ -1,11 +1,15 @@
 @extends('frontend.master')
-@section('title',$data->title)
+@section('title', $data->title)
 
 @section('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
 @endsection
 @section('content')
     <style>
+        .post-body {
+            color: #464847;
+        }
+
         .social-connection li:nth-child(2) a {
             background-image: -webkit-gradient(linear, right top, left top, from(#56c3f0), to(#13a4e7));
             background-image: linear-gradient(-90deg, #909fa5 0%, #151616 100%);

@@ -98,7 +98,7 @@
                                 <h3 class="post-title">
                                     <a href="{{ route('front.currentNews.detail', $variable->link) }}"
                                         class="top_restricted_title">
-                                        {{ $variable->title }}
+                                        {{ $variable->title }} 
                                     </a>
                                 </h3>
                                 <span class="rt-meta">
@@ -172,12 +172,7 @@
                                             {{ $tek_haber->view_counter }}
                                         </span>
                                     </li>
-                                    <li>
-                                        <span class="rt-meta">
-                                            <i class="fas fa-share-alt icon"></i>
-                                            50
-                                        </span>
-                                    </li>
+                                    
                                 </ul>
                             </div>
                         </div>
@@ -233,12 +228,7 @@
                                                         {{ $item->view_counter }}
                                                     </span>
                                                 </li>
-                                                <li>
-                                                    <span class="rt-meta">
-                                                        <i class="fas fa-share-alt icon"></i>
-                                                        50
-                                                    </span>
-                                                </li>
+                                                
                                             </ul>
                                         </div>
                                     </div>
@@ -326,21 +316,16 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ $item->created_at->translatedFormat('d M Y') }}
+                                                                {{ $ilk_kategori_icerigi->live_time->translatedFormat('d M Y') }}
                                                             </span>
                                                         </li>
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="fa-solid fa-eye"></i>
-                                                                {{ $item->view_counter }}
+                                                                {{ $ilk_kategori_icerigi->view_counter }}
                                                             </span>
                                                         </li>
-                                                        <li>
-                                                            <span class="rt-meta">
-                                                                <i class="fas fa-share-alt icon"></i>
-                                                                50
-                                                            </span>
-                                                        </li>
+                                                        
                                                     </ul>
                                                 </div>
 
@@ -472,7 +457,7 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ $ikinci_kategori_icerigi->created_at->translatedFormat('d M Y') }}
+                                                                {{ $ikinci_kategori_icerigi->live_time->translatedFormat('d M Y') }}
                                                             </span>
                                                         </li>
                                                     </ul>
@@ -488,7 +473,6 @@
                                         <div class="post-grid-md-list gutter-24">
 
                                             @foreach ($cat2_news1 as $item)
-
                                                 <div class="item">
                                                     <div class="rt-post post-md style-8">
                                                         <div class="post-img">
@@ -554,7 +538,7 @@
                                                             </h4>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ $item->created_at->translatedFormat('d M Y') }}
+                                                                {{ $item->live_time->translatedFormat('d M Y') }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
                                                                 <i class="fa-solid fa-eye"></i>
@@ -661,7 +645,7 @@
                                                             </h4>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ $item->created_at->translatedFormat('d M Y') }}
+                                                                {{ $item->live_time->translatedFormat('d M Y') }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
                                                                 <i class="fa-solid fa-eye"></i>
@@ -705,7 +689,7 @@
                                                             </h4>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ $item->created_at->translatedFormat('d M Y') }}
+                                                                {{ $item->live_time->translatedFormat('d M Y') }}
                                                             </span>
                                                             <span class="rt-meta ms-2">
                                                                 <i class="fa-solid fa-eye"></i>
@@ -762,7 +746,7 @@
                     <!-- end titile-wrapper -->
                 </div>
             </div>
-            <div class="row gutter-24">
+            <div class="row gutter-24 justify-content-center">
 
                 @foreach ($activity as $item)
                     <div class="col-xl-3 col-md-6 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="800ms">
@@ -854,7 +838,7 @@
                                     </a>
                                 </div>
                                 <div class="post-content">
-                                    @if ($populer_haber_first->Category() != null)
+                                    @if ($populer_haber_first->Category()[0] != null)
                                         <a href="{{ route('front.currentNewsCategory.list', $populer_haber_first->Category()[0]->link) }}"
                                             style="background-color: {{ $populer_haber_first->Category()[0]->color_code != null ? $populer_haber_first->Category()[0]->color_code : '#749f43' }}"
                                             class="world"> {{ $populer_haber_first->Category()[0]->title }} </a>
@@ -881,7 +865,7 @@
                                             <li>
                                                 <span class="rt-meta">
                                                     <i class="far fa-calendar-alt icon"></i>
-                                                    {{ $populer_haber_first->created_at->translatedFormat('d M Y') }}
+                                                    {{ $populer_haber_first->live_time->translatedFormat('d M Y') }}
                                                 </span>
                                             </li>
                                             <li>
@@ -890,12 +874,7 @@
                                                     {{ $populer_haber_first->view_counter }}
                                                 </span>
                                             </li>
-                                            <li>
-                                                <span class="rt-meta">
-                                                    <i class="fas fa-share-alt icon"></i>
-                                                    50
-                                                </span>
-                                            </li>
+                                            
                                         </ul>
                                     </div>
                                     <div class="btn-wrap mt--25">
@@ -959,7 +938,7 @@
                                                 </span>
                                                 <span class="rt-meta me-2">
                                                     <i class="far fa-calendar-alt icon"></i>
-                                                    {{ $item->created_at->translatedFormat('d M Y') }}
+                                                    {{ $item->live_time->translatedFormat('d M Y') }}
                                                 </span>
                                                 <span class="rt-meta">
                                                     <i class="fa-solid fa-eye"></i>
@@ -1082,7 +1061,7 @@
 
                     <div class="mb--30 d-flex align-items-center justify-content-between flex-wrap">
                         <h2 class="rt-section-heading flex-grow-1 white-style mb-2 me-3">
-                            <span class="rt-section-text restricted_section_title"> {{ __('message.popüler videolar') }}
+                            <span class="rt-section-text restricted_section_title"> MM Video
                             </span>
                             <span class="d-none d-md-block rt-section-dot"></span>
                             <span class="d-none d-md-block rt-section-line"></span>
@@ -1120,7 +1099,7 @@
                                 </a>
                             </div>
                             <div class="post-content">
-                                <a href="{{ route('front.video.category_list', $item->Category->link) }}"
+                                <a style="background-color:#749f43" href="{{ route('front.video.category_list', $item->Category->link) }}"
                                     class="mission restricted_category_title">
                                     {{ $item->Category->title }} </a>
                                 <h3 class="post-title">
@@ -1134,7 +1113,7 @@
                                         <li>
                                             <span class="rt-meta">
                                                 <i class="far fa-calendar-alt icon"></i>
-                                                {{ $item->created_at->translatedFormat('d M Y') }}
+                                                {{ $item->live_date->translatedFormat('d M Y') }}
                                             </span>
                                         </li>
                                     </ul>
@@ -1174,7 +1153,7 @@
                     <!-- end titile-wrapper -->
                 </div>
             </div>
-            <div class="row gutter-24">
+            <div class="row gutter-24 justify-content-center">
 
                 @foreach ($interview as $item)
                     <div class="col-xl-3 col-md-6 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="800ms">
@@ -1203,7 +1182,7 @@
                                         <li>
                                             <span class="rt-meta">
                                                 <i class="far fa-calendar-alt icon"></i>
-                                                {{ $item->created_at->translatedFormat('d M Y') }}
+                                                {{ $item->live_time->translatedFormat('d M Y') }}
                                             </span>
                                         </li>
                                     </ul>

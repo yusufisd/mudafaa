@@ -1,14 +1,18 @@
 @extends('frontend.master')
 @section('title', $data->title)
-@section('meta-title',$data->title)
-@section('description',$data->short_description)
+@section('meta-title', $data->title)
+@section('description', $data->short_description)
 @section('simage', asset($data->image))
-@section('stitle',$data->title)
-@section('sdescription',$data->short_description)
+@section('stitle', $data->title)
+@section('sdescription', $data->short_description)
 
 @section('content')
     <!-- Start Main -->
     <style>
+        .post-body {
+            color: #464847;
+        }
+
         .social-connection li:nth-child(2) a {
             background-image: -webkit-gradient(linear, right top, left top, from(#56c3f0), to(#13a4e7));
             background-image: linear-gradient(-90deg, #909fa5 0%, #151616 100%);
@@ -76,8 +80,7 @@
                                 <a href="{{ $data->youtube }}" class="img-link">
                                     <img src="/{{ $data->image }}" alt="post-ex_7" width="1320" height="620">
                                 </a>
-                                <a href="{{ $data->youtube }}"
-                                    class="play-btn play-btn-white_xl rt-play-over md-right">
+                                <a href="{{ $data->youtube }}" class="play-btn play-btn-white_xl rt-play-over md-right">
                                     <i class="fas fa-play"></i>
                                 </a>
                             </div>
@@ -171,25 +174,28 @@
                                                 <h4 class="block-tile mb--20">Paylaş:</h4>
                                                 <ul class="social-share-style-1">
                                                     <li>
-                                                        <a class="fb" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ request()->url() }}&text={{ $data->title }}">
+                                                        <a class="fb" target="_blank"
+                                                            href="https://www.facebook.com/sharer/sharer.php?u={{ request()->url() }}&text={{ $data->title }}">
                                                             <i class="social-icon fab fa-facebook-f"></i>
                                                         </a>
                                                     </li>
                                                     <li>
                                                         <a class="tw" style="background-color: black" target="_blank"
-                                                        href="https://twitter.com/intent/tweet?text={{ $data->title }}&url={{ request()->url() }}">
+                                                            href="https://twitter.com/intent/tweet?text={{ $data->title }}&url={{ request()->url() }}">
                                                             <i
                                                                 class="social-icon fab fa-brands fa-square-x-twitter twitter"></i>
                                                         </a>
                                                     </li>
 
                                                     <li>
-                                                        <a class="fb" target="_blank" href="https://linkedin.com/sharing/share-offsite/?url={{ request()->url() }}">
+                                                        <a class="fb" target="_blank"
+                                                            href="https://linkedin.com/sharing/share-offsite/?url={{ request()->url() }}">
                                                             <i class="social-icon fab fa-linkedin"></i>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a class="wh" target="_blank" href="https://web.whatsapp.com/send?text={{ $data->title }} {{ request()->url() }}">
+                                                        <a class="wh" target="_blank"
+                                                            href="https://web.whatsapp.com/send?text={{ $data->title }} {{ request()->url() }}">
                                                             <i class="social-icon fab fa-whatsapp"></i>
                                                         </a>
                                                     </li>
@@ -210,14 +216,14 @@
                                             @if ($onceki != null)
                                                 <div class="next-prev-wrap">
                                                     <div class="item-icon">
-                                                        <a href="{{ route('front.video.detail',$sonraki->link) }}">
+                                                        <a href="{{ route('front.video.detail', $sonraki->link) }}">
                                                             <i class="fas fa-chevron-left"></i>
                                                             Önceki Video
                                                         </a>
                                                     </div>
                                                     <div class="content">
                                                         <h4 class="title">
-                                                            <a href="{{ route('front.video.detail',$sonraki->link) }}">
+                                                            <a href="{{ route('front.video.detail', $sonraki->link) }}">
                                                                 {{ $onceki->title }}
                                                             </a>
                                                         </h4>
@@ -235,14 +241,14 @@
                                             @if ($sonraki != null)
                                                 <div class="next-prev-wrap next-wrap">
                                                     <div class="item-icon">
-                                                        <a href="{{ route('front.video.detail',$sonraki->link) }}">
+                                                        <a href="{{ route('front.video.detail', $sonraki->link) }}">
                                                             Sonrakİ Vİdeo
                                                             <i class="fas fa-chevron-right"></i>
                                                         </a>
                                                     </div>
                                                     <div class="content">
                                                         <h4 class="title">
-                                                            <a href="{{ route('front.video.detail',$sonraki->link) }}">
+                                                            <a href="{{ route('front.video.detail', $sonraki->link) }}">
                                                                 {{ $sonraki->title }}
                                                             </a>
                                                         </h4>
@@ -465,26 +471,22 @@
 
 
                                             @foreach ($other as $item)
-
-
-
-                                            <div class="swiper-slide">
-                                                <div class="slide-item">
-                                                    <div class="rt-post-grid grid-meta">
-                                                        <div class="post-img">
-                                                            <a href="{{ $item->youtube }}">
-                                                                <img src="/{{ $item->image }}" alt="post"
-                                                                    width="551" height="431">
-                                                            </a>
-                                                            <a href="{{ $item->youtube }}"
-                                                                class="play-btn play-btn-white_lg rt-play-over">
-                                                                <i class="fas fa-play"></i>
-                                                            </a>
+                                                <div class="swiper-slide">
+                                                    <div class="slide-item">
+                                                        <div class="rt-post-grid grid-meta">
+                                                            <div class="post-img">
+                                                                <a href="{{ $item->youtube }}">
+                                                                    <img src="/{{ $item->image }}" alt="post"
+                                                                        width="551" height="431">
+                                                                </a>
+                                                                <a href="{{ $item->youtube }}"
+                                                                    class="play-btn play-btn-white_lg rt-play-over">
+                                                                    <i class="fas fa-play"></i>
+                                                                </a>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-
                                             @endforeach
 
 
@@ -616,8 +618,8 @@
     <!-- EXTRA -->
     <script>
         /*--------------------------------
-                          // clicking the reply button
-                       -------------------------------*/
+                              // clicking the reply button
+                           -------------------------------*/
         // Clicking the reply link
         function setCommentId(id) {
             var replyField = $(
