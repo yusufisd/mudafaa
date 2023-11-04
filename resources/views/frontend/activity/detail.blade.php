@@ -8,6 +8,10 @@
 
 @section('css')
     <style>
+        .post-body {
+            color: #464847;
+        }
+
         @media (min-width: 769px) {
             .li_first {
                 min-width: 400px;
@@ -104,7 +108,7 @@
                                     <li>
                                         <span class="rt-meta">
                                             <i class="fas fa-clock icon"></i>
-                                            {{ substr($data->start_clock,0,5)}}
+                                            {{ substr($data->start_clock, 0, 5) }}
                                         </span>
                                     </li>
                                     <li>
@@ -160,7 +164,7 @@
                                 </div>
                             </div>
                             <!-- strat post body -->
-                            <div class="post-body mb--40" style="text-align: justify; color:black">
+                            <div class="post-body mb--40" style="text-align: justify;">
                                 {!! printDesc($data->description) !!}
                             </div><br><br><br><br>
                             <!-- end post body -->
