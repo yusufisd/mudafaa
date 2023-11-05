@@ -134,6 +134,8 @@
         //let event_items = JSON.parse(jsonStrWithoutNewlines || null);
         //console.log(event_items)
 
+    </script>
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
 
@@ -150,14 +152,14 @@
                 events: [
                 @foreach($events as $event)
                 {
-                    id: "{{ $event->id }}",
-                    title : "{{ $event->title }}",
-                    start: "{{ $event->start_time }}",
-                    end : "{{ $event->finish_time }}",
-                    backgroundColor : '{{ $event->Category->color_code }}',
-                    color: '{{ $event->Category->color_code }}',
-                    url : "#",
-                    className : "relative"
+                    id: "{{ $event->id }}".replace('\n',''),
+                    title : "{{ $event->title }}".replace('\n',''),
+                    start: "{{ $event->start_time }}".replace('\n',''),
+                    end : "{{ $event->finish_time }}".replace('\n',''),
+                    backgroundColor : '{{ $event->Category->color_code }}'.replace('\n',''),
+                    color: '{{ $event->Category->color_code }}'.replace('\n',''),
+                    url : "#".replace('\n',''),
+                    className : "relative".replace('\n',''),
                 },
                 @endforeach
                 ],

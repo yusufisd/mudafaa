@@ -96,6 +96,8 @@ Route::middleware('lang')->group(function () {
                         ->name('destroy');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
+                    Route::get('disa-aktar', 'disa_aktar')->name('disa_aktar');
+
                 });
 
             // CURRENT NEWS CONTROLLER
@@ -128,6 +130,7 @@ Route::middleware('lang')->group(function () {
                     Route::get('yorum-statu/{id?}', 'changeCommentStatus')->name('changeCommentStatus');
                     Route::get('yorum-sil/{id?}', 'commentDestroy')->name('commentDestroy');
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
+                    Route::get('disa-aktar', 'disa_aktar')->name('disa_aktar');
                 });
 
                 // RÖPORTAJ  CONTROLLER
@@ -154,12 +157,13 @@ Route::middleware('lang')->group(function () {
                     ->get('sil/{id?}', 'destroy')
                     ->name('destroy');
                 Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
-                Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
                 Route::get('yorumlar/{id?}', 'commentList')->name('commentList');
                 Route::get('yorumlar/ek/{id?}', 'comment_commentList')->name('comment_commentList');
                 Route::get('yorum-statu/{id?}', 'changeCommentStatus')->name('changeCommentStatus');
                 Route::get('yorum-sil/{id?}', 'commentDestroy')->name('commentDestroy');
                 Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
+                Route::get('disa-aktar', 'disa_aktar')->name('disa_aktar');
+
             });
 
             // USER CONTROLLER
@@ -230,6 +234,8 @@ Route::middleware('lang')->group(function () {
                         ->get('sil/{id?}', 'destroy')
                         ->name('destroy');
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
+                    Route::get('disa-aktar', 'disa_aktar')->name('disa_aktar');
+
                 });
 
             // SAVUNMA SANAYİ KATEGORİ CONTROLLER
@@ -334,6 +340,8 @@ Route::middleware('lang')->group(function () {
                         ->name('destroy');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
+                    Route::get('disa-aktar', 'disa_aktar')->name('disa_aktar');
+
                 });
 
             // ETKİNLİK  CONTROLLER
@@ -361,6 +369,8 @@ Route::middleware('lang')->group(function () {
                         ->name('destroy');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
+                    Route::get('disa-aktar', 'disa_aktar')->name('disa_aktar');
+
                 });
 
             
@@ -389,6 +399,7 @@ Route::middleware('lang')->group(function () {
                         ->get('sil/{id?}', 'destroy')
                         ->name('destroy');
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
+                    Route::get('disa-aktar', 'disa_aktar')->name('disa_aktar');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
                 });
 
@@ -416,6 +427,8 @@ Route::middleware('lang')->group(function () {
                         ->get('sil/{id?}', 'destroy')
                         ->name('destroy');
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
+                    Route::get('disa-aktar', 'disa_aktar')->name('disa_aktar');
+
                 });
 
             // VİDEO  CONTROLLER
@@ -472,6 +485,8 @@ Route::middleware('lang')->group(function () {
                         ->name('destroy');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
+                    Route::get('disa-aktar', 'disa_aktar')->name('disa_aktar');
+
 
                 });
 
@@ -499,6 +514,8 @@ Route::middleware('lang')->group(function () {
                         ->get('sil/{id?}', 'destroy')
                         ->name('destroy');
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
+                    Route::get('disa-aktar', 'disa_aktar')->name('disa_aktar');
+
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
                 });
 
@@ -656,7 +673,7 @@ Route::middleware('lang')->group(function () {
                     Route::get('/{id?}', 'detail')->name('detail');
                     Route::get('kategori-detay/{id?}', 'categoryDetail')->name('categoryDetail');
                     Route::post('etkinlik-ara', 'searchActivity')->name('searchActivity');
-                    Route::get('etkinlik-takvimi', 'calendar')->name('calendar');
+                    Route::get('/guncel/takvim', 'calendar')->name('calendar');
                 });
 
             // VİDEO CONTROLLER

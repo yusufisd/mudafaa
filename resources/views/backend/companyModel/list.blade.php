@@ -20,22 +20,29 @@
                     <!--end::Title-->
                 </div>
                 <!--end::Page title-->
-                <div class="" style="display: flex">
+                <div class="gap-5" style="display: flex" style="text-align: right!important">
                     <div id="goster" class="col-md-8" style="display:none">
-                        <form action="{{ route('admin.companyModel.ice_aktar') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.companyModel.ice_aktar') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
-                            <div class="row">
+                            <div class="row" >
                                 <div class="col-md-8">
                                     <input type="file" class="form-control" name="ice_aktar" id="">
                                 </div>
-                                <div class="col-md-4">
-                                    <input type="submit" class="btn btn-primary" id="">
+                                <div class="col-md-2">
+                                    <input type="submit" class="btn-sm btn btn-primary" id="">
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div id="gizle">
-                        <button class="btn btn-primary" onclick="iceri_aktar()" type="button"> Aktar</button>
+                        <button class="btn-sm btn btn-primary" onclick="iceri_aktar()" type="button"> Aktar</button>
+                    </div>
+                    <div>
+                        <a href="{{ route('admin.companyModel.disa_aktar') }}">
+                            <button style="position:initial;background-color:blue" class="btn-sm btn btn-info"
+                                type="button"> Örnek Excel</button>
+                        </a>
                     </div>
                 </div>
             </div>

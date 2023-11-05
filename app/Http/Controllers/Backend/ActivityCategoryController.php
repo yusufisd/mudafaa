@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Exports\ActivityCategoryExport;
 use App\Http\Controllers\Controller;
 use App\Imports\ActivityCategoryImport;
 use App\Models\Activity;
@@ -321,5 +322,9 @@ class ActivityCategoryController extends Controller
 
         Alert::success('Başarılı');
         return back();
+    }
+
+    public function disa_aktar(){
+        return Excel::download(new ActivityCategoryExport, 'activityCategory.xlsx');
     }
 }

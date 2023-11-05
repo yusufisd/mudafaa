@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Exports\VideoExport;
 use App\Http\Controllers\Controller;
 use App\Imports\VideoCategoryImport;
 use App\Models\CurrentNews;
@@ -273,5 +274,9 @@ class VideoCategoryController extends Controller
 
         Alert::success('Başarılı');
         return back();
+    }
+
+    public function disa_aktar(){
+        return Excel::download(new VideoExport, 'video.xlsx');
     }
 }

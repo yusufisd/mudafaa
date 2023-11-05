@@ -962,7 +962,7 @@
 
                 <div class="col-xl-3 col-lg-8 mx-auto">
                     <div class="rt-sidebar" style="margin-top: 1.2vh;">
-                        <div class="sidebar-wrap voting-wrap">
+                        <div class="sidebar-wrap ">
                             <h2 class="rt-section-heading style-2 mb--30">
                                 <span class="rt-section-text restricted_section_title">Anket</span>
                                 <span class="rt-section-dot"></span>

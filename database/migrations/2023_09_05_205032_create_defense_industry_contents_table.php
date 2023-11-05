@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('image');
-            $table->longText('multiple_image');
+            $table->longText('multiple_image')->nullable();
             $table->integer('category_id');
             $table->integer('defense_id');
-            $table->longText('countries');
-            $table->longText('companies');
-            $table->longText('origin');
+            $table->longText('countries')->nullable();
+            $table->longText('companies')->nullable();
+            $table->longText('origin')->nullable();
             $table->string('link');
             $table->integer('read_time')->default(3);
             $table->integer('national')->default(1);

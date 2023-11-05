@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Exports\CompanyCategoryExport;
 use App\Http\Controllers\Controller;
 use App\Imports\CompanyCategoryImport;
 use App\Models\CompanyCategory;
@@ -287,5 +288,9 @@ class CompanyCategoryController extends Controller
 
         Alert::success('Başarılı');
         return back();
+    }
+
+    public function disa_aktar(){
+        return Excel::download(new CompanyCategoryExport, 'companyCategory.xlsx');
     }
 }

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('queue');
             $table->integer('status')->default(1);
             $table->string('seo_title');
-            $table->string('seo_description');
+            $table->string('seo_description')->nullable();
             $table->string('seo_key');
             $table->softDeletes();
             $table->timestamps();

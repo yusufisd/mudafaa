@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Exports\CurrentNewsExport;
 use App\Http\Controllers\Controller;
 use App\Imports\CurrentNewsImport;
 use App\Models\Comment;
@@ -48,7 +49,6 @@ class CurrentNewsController extends Controller
         $request->validate(
             [
                 'image' => 'required',
-                'mobil_image' => 'required',
                 'activity_name_en' => 'required',
                 'activity_summary_en' => 'required',
                 'tinymce_activity_detail_en' => 'required',
@@ -69,7 +69,6 @@ class CurrentNewsController extends Controller
             ],
             [
                 'image.required' => 'Görsel boş bırakılamaz',
-                'mobil_image.required' => 'Hikaye görseli boş bırakılamaz',
                 'activity_name_en' => 'Başlık (İNGİLİZCE) boş bırakılamaz',
                 'activity_summary_en' => 'Kısa açıklama (İNGİLİZCE) boş bırakılamaz',
                 'tinymce_activity_detail_en' => 'İçerik (İNGİLİZCE) boş bırakılamaz',
@@ -474,5 +473,9 @@ class CurrentNewsController extends Controller
 
         Alert::success('Başarılı');
         return back();
+    }
+
+    public function disa_aktar(){
+        return Excel::download(new CurrentNewsExport, 'currentNews.xlsx');
     }
 }

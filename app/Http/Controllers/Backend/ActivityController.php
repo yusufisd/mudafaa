@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Exports\ActivityExport;
 use App\Http\Controllers\Controller;
 use App\Imports\ActivityImport;
 use App\Models\Activity;
@@ -52,16 +53,11 @@ class ActivityController extends Controller
             [
                 'category' => 'required',
                 'author' => 'required',
-                'website' => 'required',
-                'start_date' => 'required',
-                'finish_date' => 'required',
                 'name_tr' => 'required',
                 'short_description_tr' => 'required',
                 'description_tr' => 'required',
                 'link_tr' => 'required',
                 'name_en' => 'required',
-                'country' => 'required',
-                'city' => 'required',
                 'short_description_en' => 'required',
                 'description_en' => 'required',
                 'link_en' => 'required',
@@ -75,16 +71,11 @@ class ActivityController extends Controller
             [
                 'category.required' => 'category required',
                 'author.required' => 'author required',
-                'website.required' => 'website required',
-                'start_date.required' => 'start_date required',
-                'finish_date.required' => 'finish_date required',
                 'name_tr.required' => 'name_tr required',
                 'short_description_tr.required' => 'short_description_tr required',
                 'description_tr.required' => 'description_tr required',
                 'link_tr.required' => 'link_tr required',
                 'name_en.required' => 'name_en required',
-                'country.required' => 'country required',
-                'city.required' => 'city required',
                 'short_description_en.required' => 'short_description_en required',
                 'description_en.required' => 'description_en required',
                 'link_en.required' => 'link_en required',
@@ -421,5 +412,9 @@ class ActivityController extends Controller
 
         Alert::success('Başarılı');
         return back();
+    }
+
+    public function disa_aktar(){
+        return Excel::download(new ActivityExport, 'activity.xlsx');
     }
 }

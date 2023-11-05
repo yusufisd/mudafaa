@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Exports\InterviewExport;
 use App\Http\Controllers\Controller;
 use App\Imports\InterviewImport;
 use App\Models\Dialog;
@@ -367,5 +368,9 @@ class InterviewController extends Controller
     {
         $data = InterviewComment::where('is_post',0)->where('post_id', $id)->get();
         return view('backend.interview.comments.comments.list', compact('data'));
+    }
+
+    public function disa_aktar(){
+        return Excel::download(new InterviewExport, 'interview.xlsx');
     }
 }

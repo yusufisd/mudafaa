@@ -21,11 +21,11 @@ return new class extends Migration {
             $table->string('link');
             $table->string('ticket_link')->nullable();
             $table->string('subscribe_form')->nullable();
-            $table->date('start_time');
+            $table->date('start_time')->nullable();
             $table->time('start_clock')->nullable();
-            $table->date('finish_time');
+            $table->date('finish_time')->nullable();
             $table->time('finish_clock')->nullable();
-            $table->integer('country_id');
+            $table->integer('country_id')->nullable();
             $table->string('city')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();

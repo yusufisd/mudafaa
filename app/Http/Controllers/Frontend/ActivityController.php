@@ -121,7 +121,7 @@ class ActivityController extends Controller
         } else {
             $events = Activity::where('status',1)->latest()->get();
         }
-        $categories = ActivityCategory::where('status',1)->all();
+        $categories = ActivityCategory::where('status',1)->get();
         return view('frontend.activity.calendar', compact('events', 'categories'));
     }
 

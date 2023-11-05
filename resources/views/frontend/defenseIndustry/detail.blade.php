@@ -110,7 +110,7 @@
                                     <li>
                                         <span class="rt-meta">
                                             <i class="far fa-clock icon"></i>
-                                            {{ $data->read_time }} DK
+                                            {{ $data->read_time == 0 ? '1' : $data->read_time }} DK
                                         </span>
                                     </li>
                                     <li>

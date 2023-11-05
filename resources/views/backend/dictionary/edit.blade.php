@@ -84,9 +84,11 @@
                                                 <!--begin::Input group-->
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
-                                                    <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
-                                                        {{ __('message.görsel') }} (1920px -
-                                                        2880px) </label>
+                                                    <label class=" required col-lg-2 col-form-label fw-bold fs-6 ps-5 ">
+                                                        {{ __('message.görsel') }}  <br>
+                                                        <span style="font-weight:normal">(1920px -2880px)</span>
+                                                    
+                                                    </label>
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10">
@@ -198,10 +200,10 @@
                                                             <div class="row mb-6">
                                                                 <!--begin::Label-->
                                                                 <label
-                                                                    class="col-lg-2 col-form-label required fw-bold fs-6 ps-5">Başlık</label>
+                                                                    class="col-lg-1 col-form-label required fw-bold fs-6 ps-5">Başlık</label>
                                                                 <!--end::Label-->
                                                                 <!--begin::Col-->
-                                                                <div class="col-lg-10">
+                                                                <div class="col-lg-11">
                                                                     <!--begin::Row-->
                                                                     <div class="row">
                                                                         <!--begin::Col-->
@@ -223,12 +225,12 @@
                                                             <div class="row mb-6">
                                                                 <!--begin::Label-->
                                                                 <label
-                                                                    class="col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5">
+                                                                    class="col-lg-1 col-form-label fw-bold fs-6 mb-5 ps-5">
                                                                     <span>İçerik</span>
                                                                 </label>
                                                                 <!--end::Label-->
                                                                 <!--begin::Col-->
-                                                                <div class="col-lg-12 fv-row mb-5 ps-5">
+                                                                <div class="col-lg-11 fv-row mb-5 ps-5">
 
                                                                     <textarea id="editor" name="short_description_tr" class="tox-target ckeditor"> {{ $data_tr->description }} </textarea>
 
@@ -240,10 +242,10 @@
                                                             <div class="row mb-6">
                                                                 <!--begin::Label-->
                                                                 <label
-                                                                    class="col-lg-2 col-form-label required fw-bold fs-6 ps-5">Link</label>
+                                                                    class="col-lg-1 col-form-label required fw-bold fs-6 ps-5">Link</label>
                                                                 <!--end::Label-->
                                                                 <!--begin::Col-->
-                                                                <div class="col-lg-10">
+                                                                <div class="col-lg-11">
                                                                     <!--begin::Row-->
                                                                     <div class="row">
                                                                         <!--begin::Col-->
@@ -294,10 +296,10 @@
                                                             <div class="row mb-6">
                                                                 <!--begin::Label-->
                                                                 <label
-                                                                    class="col-lg-2 col-form-label required fw-bold fs-6 ps-5">Başlık</label>
+                                                                    class="col-lg-1 col-form-label required fw-bold fs-6 ps-5">Başlık</label>
                                                                 <!--end::Label-->
                                                                 <!--begin::Col-->
-                                                                <div class="col-lg-10">
+                                                                <div class="col-lg-11">
                                                                     <!--begin::Row-->
                                                                     <div class="row">
                                                                         <!--begin::Col-->
@@ -320,12 +322,12 @@
                                                             <div class="row mb-6">
                                                                 <!--begin::Label-->
                                                                 <label
-                                                                    class="col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5">
+                                                                    class="col-lg-1 col-form-label fw-bold fs-6 mb-5 ps-5">
                                                                     <span>İçerik</span>
                                                                 </label>
                                                                 <!--end::Label-->
                                                                 <!--begin::Col-->
-                                                                <div class="col-lg-12 fv-row mb-5 ps-5">
+                                                                <div class="col-lg-11 fv-row mb-5 ps-5">
 
                                                                     <textarea id="editor2" name="short_description_en" class="tox-target ckeditor">{{ $data_en->description }}</textarea>
 
@@ -336,10 +338,10 @@
                                                             <div class="row mb-6">
                                                                 <!--begin::Label-->
                                                                 <label
-                                                                    class="col-lg-2 col-form-label required fw-bold fs-6 ps-5">Link</label>
+                                                                    class="col-lg-1 col-form-label required fw-bold fs-6 ps-5">Link</label>
                                                                 <!--end::Label-->
                                                                 <!--begin::Col-->
-                                                                <div class="col-lg-10">
+                                                                <div class="col-lg-11">
                                                                     <!--begin::Row-->
                                                                     <div class="row">
                                                                         <!--begin::Col-->

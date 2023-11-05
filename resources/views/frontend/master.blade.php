@@ -540,38 +540,38 @@
                                     <h3 class="footer-widget-title">Instagram</h3>
                                     <div class="insta-gallery">
                                         <div class="galleryitem">
-                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia()->instagram != null ? SocialMedia()->instagram : '' }}">
+                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia() != null ? (SocailMedia()->instagram != null ? SocialMedia()->instagram : '') : '' }}">
                                                 <img src="/assets/insta1.png"
                                                     width="100" height="90" alt="gallery1">
                                            </a>
                                         </div>
                                         <div class="galleryitem">
-                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia()->instagram != null ? SocialMedia()->instagram : '' }}">
+                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia() != null ? (SocailMedia()->instagram != null ? SocialMedia()->instagram : '') : '' }}">
                                                 <img src="/assets/insta2.png"
                                                     width="100" height="90" alt="gallery2">
                                             </a>
                                         </div>
                                         <div class="galleryitem">
-                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia()->instagram != null ? SocialMedia()->instagram : '' }}">
+                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia() != null ? (SocailMedia()->instagram != null ? SocialMedia()->instagram : '') : '' }}">
                                                 <img src="/assets/insta3.png"
                                                     width="100" height="90" alt="gallery3">
                                             </a>
                                         </div>
                                         <div class="galleryitem">
-                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia()->instagram != null ? SocialMedia()->instagram : '' }}">
+                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia() != null ? (SocailMedia()->instagram != null ? SocialMedia()->instagram : '') : '' }}">
                                                 <img src="/assets/insta4.png"
                                                     width="100" height="90" alt="gallery4">
                                             </a>
                                         </div>
                                         <div class="galleryitem">
-                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia()->instagram != null ? SocialMedia()->instagram : '' }}">
+                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia() != null ? (SocailMedia()->instagram != null ? SocialMedia()->instagram : '') : '' }}">
                                                 <img src="/assets/insta5.png"
                                                     width="100" height="90" alt="gallery5">
                                             </a>
                                         </div>
 
                                         <div class="galleryitem">
-                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia()->instagram != null ? SocialMedia()->instagram : '' }}">
+                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia() != null ? (SocailMedia()->instagram != null ? SocialMedia()->instagram : '') : '' }}">
                                                 <img src="/assets/insta6.png"
                                                     width="100" height="90" alt="gallery6">
                                             </a>

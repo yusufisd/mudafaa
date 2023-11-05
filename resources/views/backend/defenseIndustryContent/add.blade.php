@@ -128,12 +128,12 @@
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
                                                     <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
-                                                        <span class="required"> {{ __('message.ülkeler') }} </span>
+                                                        <span class=""> {{ __('message.ülkeler') }} </span>
                                                     </label>
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10 fv-row">
-                                                        <select required name="countries[]" aria-label="Seçiniz"
+                                                        <select  name="countries[]" aria-label="Seçiniz"
                                                             data-control="select2" data-placeholder="Seçiniz..."
                                                             class="form-select form-select-solid form-select-lg fw-semibold"
                                                             multiple>
@@ -150,13 +150,13 @@
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
                                                     <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
-                                                        <span class="required"> {{ __('message.üretici') }}
+                                                        <span class=""> {{ __('message.üretici') }}
                                                             {{ __('message.firmalar') }} </span>
                                                     </label>
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10 fv-row">
-                                                        <select required name="company[]" aria-label="Seçiniz" data-control="select2"
+                                                        <select  name="company[]" aria-label="Seçiniz" data-control="select2"
                                                             data-placeholder="Seçiniz..."
                                                             class="form-select form-select-solid form-select-lg fw-semibold"
                                                             multiple>
@@ -175,12 +175,12 @@
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
                                                     <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
-                                                        <span class="required"> {{ __('message.menşei') }} </span>
+                                                        <span class=""> {{ __('message.menşei') }} </span>
                                                     </label>
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10 fv-row">
-                                                        <select required name="origin[]" aria-label="Seçiniz" data-control="select2"
+                                                        <select  name="origin[]" aria-label="Seçiniz" data-control="select2"
                                                             data-placeholder="Seçiniz..."
                                                             class="form-select form-select-solid form-select-lg fw-semibold"
                                                             multiple>
@@ -199,7 +199,7 @@
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
                                                     <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
-                                                        <span class="required"> {{ __('message.yazar') }} </span>
+                                                        <span class=""> {{ __('message.yazar') }} </span>
                                                     </label>
                                                     <!--end::Label-->
                                                     <!--begin::Col-->

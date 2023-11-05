@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Exports\DictionaryExport;
 use App\Http\Controllers\Controller;
 use App\Imports\DictionaryImport;
 use App\Models\CurrentNews;
@@ -338,5 +339,9 @@ class DictionaryController extends Controller
 
         Alert::success('Başarılı');
         return back();
+    }
+
+    public function disa_aktar(){
+        return Excel::download(new DictionaryExport, 'dictionary.xlsx');
     }
 }

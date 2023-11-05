@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Exports\CurrentNewsCategoryExport;
 use App\Http\Controllers\Controller;
 use App\Imports\CurrentNewsCategoryImport;
 use App\Models\CurrentNewsCategory;
@@ -308,5 +309,9 @@ class CurrentNewsCategoryController extends Controller
 
         Alert::success('Başarılı');
         return back();
+    }
+
+    public function disa_aktar(){
+        return Excel::download(new CurrentNewsCategoryExport, 'currentNewsCategory.xlsx');
     }
 }

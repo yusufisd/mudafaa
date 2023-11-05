@@ -632,7 +632,7 @@
                                 <!--begin:Menu item-->
                                 <div data-kt-menu-trigger="click" class="menu-item here show">
                                     <!--begin:Menu link-->
-                                    <a class="menu-link" href="">
+                                    <a class="menu-link" href="{{ route('admin.index') }}">
                                         <span class="menu-icon">
                                             <i class="fa fa-home" aria-hidden="true"></i>
                                         </span>
@@ -647,56 +647,6 @@
                                     <h6 class="text-white">Genel</h6>
                                 </div>
 
-                                <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention">
-                                    <span class="menu-link">
-                                        <span class="menu-icon">
-                                            <i class="fa fa-cogs" aria-hidden="true"></i>
-                                        </span>
-                                        <span class="menu-title">Genel Ayarlar</span>
-                                        <span class="menu-arrow"></span>
-                                    </span>
-                                    <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown px-2 py-4 w-200px mh-75 overflow-auto" style="">
-                                        <div class="menu-item">
-                                            <a class="menu-link" href="{{ route('admin.about.add') }}">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title">{{ __('message.hakkımızda') }} {{ __('message.yönetimi') }}</span>
-                                            </a>
-                                        </div>
-                                        <div class="menu-item">
-                                            <a class="menu-link" href="{{ route('admin.contact.edit') }}">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title"> {{ __('message.iletişim') }} {{ __('message.yönetimi') }}</span>
-                                            </a>
-                                        </div>
-                                        <div class="menu-item">
-                                            <a class="menu-link" href="{{ route('admin.kunye.list') }}">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title"> {{ __('message.künye') }} {{ __('message.yönetimi') }} </span>
-                                            </a>
-                                        </div>
-                                        <div class="menu-item">
-                                            <a class="menu-link" href="{{ route('admin.social.list') }}">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title">{{ __('message.sosyal medya ayarları') }}</span>
-                                            </a>
-                                        </div>
-                                        
-                                        
-                                    </div>
-                                </div>
-
-
-                                
-
-                             
 
                                 <div class="menu-item">
                                     <a class="menu-link" href="{{ route('admin.currentNews.list') }}">
@@ -807,6 +757,52 @@
 
                                 @endif
                                 <!--end:Menu item-->
+
+                                <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention">
+                                    <span class="menu-link">
+                                        <span class="menu-icon">
+                                            <i class="fa fa-cogs" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="menu-title">Genel Ayarlar</span>
+                                        <span class="menu-arrow"></span>
+                                    </span>
+                                    <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown px-2 py-4 w-200px mh-75 overflow-auto" style="">
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="{{ route('admin.about.add') }}">
+                                                <span class="menu-bullet">
+                                                    <span class="bullet bullet-dot"></span>
+                                                </span>
+                                                <span class="menu-title">{{ __('message.hakkımızda') }} {{ __('message.yönetimi') }}</span>
+                                            </a>
+                                        </div>
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="{{ route('admin.contact.edit') }}">
+                                                <span class="menu-bullet">
+                                                    <span class="bullet bullet-dot"></span>
+                                                </span>
+                                                <span class="menu-title"> {{ __('message.iletişim') }} {{ __('message.yönetimi') }}</span>
+                                            </a>
+                                        </div>
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="{{ route('admin.kunye.list') }}">
+                                                <span class="menu-bullet">
+                                                    <span class="bullet bullet-dot"></span>
+                                                </span>
+                                                <span class="menu-title"> {{ __('message.künye') }} {{ __('message.yönetimi') }} </span>
+                                            </a>
+                                        </div>
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="{{ route('admin.social.list') }}">
+                                                <span class="menu-bullet">
+                                                    <span class="bullet bullet-dot"></span>
+                                                </span>
+                                                <span class="menu-title">{{ __('message.sosyal medya ayarları') }}</span>
+                                            </a>
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                </div>
 
                                 <hr>
 

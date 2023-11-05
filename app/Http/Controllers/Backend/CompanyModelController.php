@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Exports\CompanyExport;
 use App\Http\Controllers\Controller;
 use App\Models\CompanyAddress;
 use App\Models\CompanyCategory;
@@ -110,7 +111,7 @@ class CompanyModelController extends Controller
             $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
             $save_url = 'assets/uploads/companyModel/' . $image_name;
             Image::make($image)
-                ->resize(960, 520)
+                ->resize(300, 300)
                 ->save($save_url);
             $new_company->image = $save_url;
         }
@@ -132,7 +133,7 @@ class CompanyModelController extends Controller
             $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
             $save_url = 'assets/uploads/companyModel/' . $image_name;
             Image::make($image)
-                ->resize(960, 520)
+                ->resize(300, 300)
                 ->save($save_url);
             $new_company_en->image = $save_url;
         }
@@ -299,7 +300,7 @@ class CompanyModelController extends Controller
             $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
             $save_url = 'assets/uploads/companyModel/' . $image_name;
             Image::make($image)
-                ->resize(960, 520)
+                ->resize(300, 300)
                 ->save($save_url);
             $new_company->image = $save_url;
         }
@@ -323,7 +324,7 @@ class CompanyModelController extends Controller
             $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
             $save_url = 'assets/uploads/companyModel/' . $image_name;
             Image::make($image)
-                ->resize(960, 520)
+                ->resize(300, 300)
                 ->save($save_url);
             $new_company_en->image = $save_url;
         }
@@ -454,5 +455,9 @@ class CompanyModelController extends Controller
 
         Alert::success('Başarılı');
         return back();
+    }
+
+    public function disa_aktar(){
+        return Excel::download(new CompanyExport, 'company.xlsx');
     }
 }

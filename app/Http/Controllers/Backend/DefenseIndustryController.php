@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Exports\DefenseIndustryCategoryExport;
 use App\Http\Controllers\Controller;
 use App\Imports\DefenseIndustryCategoryImport;
 use App\Models\DefenseIndustry;
@@ -177,5 +178,9 @@ class DefenseIndustryController extends Controller
 
         Alert::success('Başarılı');
         return back();
+    }
+
+    public function disa_aktar(){
+        return Excel::download(new DefenseIndustryCategoryExport, 'defenseIndustryCategory.xlsx');
     }
 }

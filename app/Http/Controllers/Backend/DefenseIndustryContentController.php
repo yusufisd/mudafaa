@@ -50,10 +50,6 @@ class DefenseIndustryContentController extends Controller
         $request->validate(
             [
                 'category' => 'required',
-                'countries' => 'required',
-                'company' => 'required',
-                'origin' => 'required',
-                'author' => 'required',
                 'name_tr' => 'required',
                 'short_description_tr' => 'required',
                 'description_tr' => 'required',
@@ -72,10 +68,6 @@ class DefenseIndustryContentController extends Controller
             ],
             [
                 'category.required' => 'Kategori boş bırakılamaz',
-                'countries.required' => 'Ülke boş bırakılamaz',
-                'company.required' => 'Firma boş bırakılamaz',
-                'origin.required' => 'Menşei boş bırakılamaz',
-                'author.required' => 'Yazar boş bırakılamaz',
                 'name_tr.required' => 'Başlık (TR) boş bırakılamaz',
                 'short_description_tr.required' => 'Kısa açıklama (TR) boş bırakılamaz',
                 'description_tr.required' => 'İçerik (TR) boş bırakılamaz',
@@ -216,10 +208,6 @@ class DefenseIndustryContentController extends Controller
         $request->validate(
             [
                 'category' => 'required',
-                'countries' => 'required',
-                'company' => 'required',
-                'origin' => 'required',
-                'author' => 'required',
                 'name_tr' => 'required',
                 'short_description_tr' => 'required',
                 'description_tr' => 'required',
@@ -237,10 +225,6 @@ class DefenseIndustryContentController extends Controller
             ],
             [
                 'category.required' => 'Kategori boş bırakılamaz',
-                'countries.required' => 'Ülke boş bırakılamaz',
-                'company.required' => 'Firma boş bırakılamaz',
-                'origin.required' => 'Menşei boş bırakılamaz',
-                'author.required' => 'Yazar boş bırakılamaz',
                 'name_tr.required' => 'Başlık (TR) boş bırakılamaz',
                 'short_description_tr.required' => 'Kısa açıklama (TR) boş bırakılamaz',
                 'description_tr.required' => 'İçerik (TR) boş bırakılamaz',

@@ -254,7 +254,7 @@
                                                                                     onchange="create_slug_tr()"
                                                                                     id="activity_name_tr" required
                                                                                     class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                    value="" />
+                                                                                    value="{{ old('activity_name_tr') }}" />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -272,7 +272,7 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-11 fv-row">
                                                                         <textarea name="activity_summary_tr" id="ozet_tr" onchange="create_ozet_tr()" required
-                                                                            class="form-control form-control-lg form-control-solid" value=""></textarea>
+                                                                            class="form-control form-control-lg form-control-solid" value="" >{{ old('activity_summary_tr') }}</textarea>
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -288,7 +288,7 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-11 fv-row mb-5 ps-5">
 
-                                                                        <textarea id="editor" name="tinymce_activity_detail_tr" class="tox-target ckeditor"></textarea>
+                                                                        <textarea id="editor"  name="tinymce_activity_detail_tr" class="tox-target ckeditor">{{ old('tinymce_activity_detail_tr') }}</textarea>
 
                                                                     </div>
                                                                     <!--end::Col-->
@@ -312,7 +312,7 @@
                                                                                             name="activity_url_tr"
                                                                                             id="activity_url_tr" required
                                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                            value="" />
+                                                                                            value="{{ old('activity_url_tr') }}" />
                                                                                     </div>
 
 
@@ -396,7 +396,7 @@
                                                                                     id="activity_name_en"
                                                                                     onchange="create_slug_en()" required
                                                                                     class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                    value="" />
+                                                                                    value="{{ old('activity_name_en') }}" />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -414,7 +414,7 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-11 fv-row">
                                                                         <textarea name="activity_summary_en" id="ozet_en" onchange="create_ozet_en()" required
-                                                                            class="form-control form-control-lg form-control-solid" value=""></textarea>
+                                                                            class="form-control form-control-lg form-control-solid" >{{ old('activity_summary_en') }}</textarea>
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -429,7 +429,7 @@
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-11 fv-row mb-5 ps-5">
-                                                                        <textarea id="editor2" name="tinymce_activity_detail_en" class="tox-target ckeditor"></textarea>
+                                                                        <textarea id="editor2" name="tinymce_activity_detail_en" class="tox-target ckeditor">{{ old('tinymce_activity_detail_en') }}</textarea>
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -453,7 +453,7 @@
                                                                                             name="activity_url_en"
                                                                                             id="activity_url_en" required
                                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                            value="" />
+                                                                                            value="{{ old('activity_url_en') }}" />
                                                                                     </div>
 
 
@@ -563,7 +563,7 @@
                                                                         <input type="text" name="activity_seo_title_tr"
                                                                             id="activity_seo_title_tr" required
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            value="" />
+                                                                            value="{{ old('activity_seo_title_tr') }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -581,7 +581,7 @@
                                                             <!--begin::Col-->
                                                             <div class="col-lg-10 fv-row">
                                                                 <textarea name="activity_seo_description_tr" id="seo_description_tr" required
-                                                                    class="form-control form-control-lg form-control-solid" value=""></textarea>
+                                                                    class="form-control form-control-lg form-control-solid" value="">{{ old('activity_seo_description_tr') }}</textarea>
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -603,7 +603,7 @@
                                                                             id="activity_seo_keywords_tr"
                                                                             name="activity_seo_keywords_tr[]" required
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            value="" />
+                                                                            value="{{ old('activity_seo_keywords_tr[]') }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -639,7 +639,7 @@
                                                                         <input type="text" name="activity_seo_title_en"
                                                                             id="activity_seo_title_en" required
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            value="" />
+                                                                            value="{{ old('activity_seo_title_en') }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -657,7 +657,7 @@
                                                             <!--begin::Col-->
                                                             <div class="col-lg-10 fv-row">
                                                                 <textarea name="activity_seo_description_en" id="seo_description_en" required
-                                                                    class="form-control form-control-lg form-control-solid" value=""></textarea>
+                                                                    class="form-control form-control-lg form-control-solid" value="">{{ old('activity_seo_description_en') }}</textarea>
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -679,7 +679,7 @@
                                                                             id="activity_seo_keywords_en"
                                                                             name="activity_seo_keywords_en[]" required
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            value="" />
+                                                                            value="{{ old('activity_seo_keywords_en[]') }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
