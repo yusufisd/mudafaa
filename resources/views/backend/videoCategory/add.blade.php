@@ -576,10 +576,10 @@
         };
 
         var input1 = document.querySelector("#blog_seo_keywords_tr");
-        new Tagify(input1);
+        new Tagify(input1,{ maxTags:5});
 
         var input2 = document.querySelector("#blog_seo_keywords_en");
-        new Tagify(input2);
+        new Tagify(input2,{ maxTags:5});
 
    
 

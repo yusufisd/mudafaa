@@ -55,6 +55,7 @@ class DefenseIndustryContentController extends Controller
                 'description_tr' => 'required',
                 'link_tr' => 'required',
                 'name_en' => 'required',
+                'author' => 'required',
                 'short_description_en' => 'required',
                 'description_en' => 'required',
                 'link_en' => 'required',
@@ -73,6 +74,7 @@ class DefenseIndustryContentController extends Controller
                 'description_tr.required' => 'İçerik (TR) boş bırakılamaz',
                 'link_tr.required' => 'Link (TR) boş bırakılamaz',
                 'name_en.required' => 'Başlık (EN) boş bırakılamaz',
+                'author' => 'Yazar (EN) boş bırakılamaz',
                 'short_description_en.required' => 'Kısa açıklama (EN) boş bırakılamaz',
                 'description_en.required' => 'Açıklama (EN) boş bırakılamaz',
                 'link_en.required' => 'Link (EN) boş bırakılamaz',
@@ -114,9 +116,9 @@ class DefenseIndustryContentController extends Controller
         $new->description = $request->description_tr;
         $new->read_time = $read_time_tr;
         $new->seo_title = $request->seo_title_tr;
+        $new->link = $request->link_tr;
         $new->countries = $request->countries;
         $new->companies = $request->company;
-        $new->link = $request->link_tr;
         $new->origin = $request->origin;
         $new->author = $request->author;
         $new->seo_description = $request->seo_description_tr;
@@ -156,7 +158,11 @@ class DefenseIndustryContentController extends Controller
         $new_en->defense_id = $genel_id->defense_id;
         $new_en->category_id = $request->category;
         $new_en->title = $request->name_en;
-        $new->read_time = $read_time_en;
+        $new_en->read_time = $read_time_en;
+        $new_en->countries = $request->countries;
+        $new_en->companies = $request->company;
+        $new_en->origin = $request->origin;
+        $new_en->author = $request->author;
         $new_en->short_description = $request->short_description_en;
         $new_en->description = $request->description_en;
         $new_en->content_id = $new->id;

@@ -628,7 +628,7 @@
                                                                         <div class="col-lg-8 fv-row">
                                                                             <input type="text"
                                                                                 class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                name="soran_tr[]" id="questioner">
+                                                                                name="soran_tr[]" onkeyup="setToEn('questioner')" id="questioner">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -641,7 +641,7 @@
                                                                         <div class="col-lg-8 fv-row">
                                                                             <input type="text"
                                                                                 class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                name="cevaplayan_tr[]" id="answered">
+                                                                                name="cevaplayan_tr[]" onkeyup="setToEn('answered')" id="answered">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -677,8 +677,8 @@
                                                 </div>
                                                 <div id="dsa" class="tab-pane fade">
                                                     <div id="show_item2">
-                                                        <div class=" container" role="tabpanel"
-                                                            style=" padding:2%; ">
+                                                        <div class="container" role="tabpanel"
+                                                            style=" padding:2%; margin-top:20px">
                                                             <div class="row mb-6">
                                                                 <div class="col-md-6">
                                                                     <div class="row mb-6">
@@ -729,6 +729,7 @@
                                                             </div>
                                                         </div>
                                                         <button type="button" style="display: flex; margin: auto"
+                                                        id="main_add_en"
                                                                 class="btn btn-primary add_item_buton2">EKLE</button>
                                                     </div><br>
 
@@ -790,6 +791,11 @@
     <script src="../assets/plugins/custom/tinymce/langs/tr.js"></script>
 
     <script>
+
+        function setToEn(p){
+            $("#" + p + "_en").val($("#" + p).val());
+        }
+
         var slug = function(str) {
             str = str.replace(/^\s+|\s+$/g, ''); // trim
             str = str.toLowerCase();
@@ -836,16 +842,12 @@
 
 
         var input1 = document.querySelector("#blog_seo_keywords_tr");
-        new Tagify(input1);
+        new Tagify(input1,{ maxTags:5});
 
         var input2 = document.querySelector("#blog_seo_keywords_en");
-        new Tagify(input2);
+        new Tagify(input2,{ maxTags:5});
 
-        var input3 = document.querySelector("#etiket_tr");
-        new Tagify(input3);
-
-        var input4 = document.querySelector("#etiket_en");
-        new Tagify(input4);
+       
 
         $(document).ready(function() {
             tinymce.init({
@@ -881,7 +883,7 @@
                 let answered = $("#answered").val();
                 e.preventDefault();
                 $("#show_item").append(' <div id="show_item" class="py-12">\
-                    <div class=" container" style=" padding-top:10%; padding-bottom:10%; border-top: 1px solid black; "\
+                    <div class="mt-4 container" style=" padding-top:10%; padding-bottom:10%; border-top: 1px solid black; "\
                         role="tabpanel">\
                         <div class="row mb-6">\
                             <div class="col-md-6">\
@@ -947,12 +949,16 @@
     </script>
     <script>
         $(document).ready(function() {
-            $(".add_item_buton2").click(function(e) {
+            $(document).on('click', '.add_item_buton2', function(e) {
+                let this_id = $(this).prop('id');
+                if(this_id != "main_add_en"){
+                    $(this).remove();
+                }
                 let questioner = $("#questioner_en").val();
                 let answered = $("#answered_en").val();
+                console.log("ok");
                 e.preventDefault();
-                $("#show_item2").append('<div id="show_item2" class="py-12">\
-                    <div  role="tabpanel" style=" padding-top:10%; padding-bottom:10%; border-top: 1px solid black;">\
+                $("#show_item2").append('<div  role="tabpanel" style="margin-top:10px; padding-top:10%; padding-bottom:10%; border-top: 1px solid black;">\
                         <div class="row mb-6">\
                             <div class="col-md-6">\
                                 <div class="row mb-6">\
@@ -1001,11 +1007,11 @@
                             </div>\
                         </div>\
                     <div class="ekle" style="text-align:center">\
+                        <button type="button" id="add_en" class="btn btn-success add_item_buton2">EKLE</button>\
                     <button type="button"\
                         class="btn btn-danger delete_item_buton2">SİL</button>\
                     </div>\
                 </div>\
-                    </div>\
                 </div>');
             });
 

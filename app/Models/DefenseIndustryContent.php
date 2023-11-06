@@ -46,8 +46,13 @@ class DefenseIndustryContent extends Model
     }
 
     public function ImageCounter(){
-        $data = DefenseIndustryContent::findOrFail($this->id);
-        return count($data->multiple_image);
+        $data = DefenseIndustryContent::find($this->id);
+        if($data->multiple_image == null){
+            return 0;
+        }else{
+            return count($data->multiple_image);
+
+        }
     }
 
     public function getKeys(){

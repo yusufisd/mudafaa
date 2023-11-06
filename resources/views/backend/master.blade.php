@@ -40,6 +40,11 @@
         .timeline-label:before {
             left: 81px !important;
         }
+        /*
+        .swal2-confirm, .swal2-styled{
+            background-color: rgb(20, 212, 20) !important;
+        }*/
+      
     </style>
     <!-- end:: Extra Style -->
 </head>
@@ -1040,7 +1045,6 @@
         // end: DataTable Scripts
     </script>
     
-
     <!--end:: extra js-->
 
     @yield('script')

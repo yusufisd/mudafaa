@@ -71,18 +71,23 @@
                                                 </h4>
                                                 <div class="post-meta">
                                                     <ul>
+                                                        @if($item->start_time)
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
                                                                 {{ $item->start_time->format('d M Y') }}
                                                             </span>
                                                         </li>
+                                                        @endif
+                                                        @if($item->Country)
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="fas fa-map-marker-alt icon"></i>
                                                                 {{ $item->Country->name }}
                                                             </span>
                                                         </li>
+                                                        @endif
+
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="fa-solid fa-eye"></i>

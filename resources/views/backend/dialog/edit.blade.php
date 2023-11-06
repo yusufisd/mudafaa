@@ -711,18 +711,7 @@
 
 
 
-        var input1 = document.querySelector("#activity_seo_keywords_tr");
-        new Tagify(input1);
-
-        var input2 = document.querySelector("#activity_seo_keywords_en");
-        new Tagify(input2);
-
-        var input3 = document.querySelector("#etiket_tr");
-        new Tagify(input3);
-
-        var input4 = document.querySelector("#etiket_en");
-        new Tagify(input4);
-
+      
         $(document).ready(function() {
             tinymce.init({
                 selector: "#tinymce_activity_detail_tr",

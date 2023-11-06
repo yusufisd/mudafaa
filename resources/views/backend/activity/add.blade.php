@@ -78,9 +78,10 @@
                                                 <!--begin::Input group-->
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
-                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
-                                                        {{ __('message.görsel') }} (1920px -
-                                                        2880px) </label>
+                                                    <label class="required col-lg-2 col-form-label ps-5 fw-bold fs-6">
+                                                        {{ __('message.görsel') }} <br>
+                                                        <span style="font-weight: normal">(1920px - 2880px)</span>
+                                                         </label>
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10">
@@ -144,12 +145,12 @@
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
                                                     <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
-                                                        <span class="required"> Website</span>
+                                                        <span class=""> Website</span>
                                                     </label>
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10 fv-row">
-                                                        <input required type="text"
+                                                        <input  type="text"
                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                             name="website" id="">
                                                     </div>
@@ -198,17 +199,17 @@
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
                                                             <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">
-                                                                <span class="required"> Başlangıç</span>
+                                                                <span class=""> Başlangıç</span>
                                                             </label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
                                                             <div class="col-lg-5 fv-row">
-                                                                <input required type="date"
+                                                                <input  type="date"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                     name="start_date" id="">
                                                             </div>
                                                             <div class="col-lg-3 fv-row">
-                                                                <input required type="time"
+                                                                <input  type="time"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                     name="start_clock" id="">
                                                             </div>
@@ -220,17 +221,17 @@
                                                             <!--begin::Label-->
                                                             <label
                                                                 class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">
-                                                                <span class="required"> Bitiş</span>
+                                                                <span class=""> Bitiş</span>
                                                             </label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
                                                             <div class="col-lg-5 fv-row">
-                                                                <input required type="date"
+                                                                <input  type="date"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                     name="finish_date" id="">
                                                             </div>
                                                             <div class="col-lg-3 fv-row">
-                                                                <input required type="time"
+                                                                <input  type="time"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                     name="finish_clock" id="">
                                                             </div>
@@ -245,7 +246,7 @@
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
                                                             <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">
-                                                                <span class="required"> Ülke</span>
+                                                                <span class=""> Ülke</span>
                                                             </label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
@@ -271,12 +272,12 @@
                                                             <!--begin::Label-->
                                                             <label
                                                                 class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">
-                                                                <span class="required"> Şehir</span>
+                                                                <span class=""> Şehir</span>
                                                             </label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
                                                             <div class="col-lg-8 fv-row">
-                                                                <input required type="text"
+                                                                <input  type="text"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                     name="city" id="">
                                                             </div>
@@ -890,10 +891,10 @@
 
 
         var input1 = document.querySelector("#blog_seo_keywords_tr");
-        new Tagify(input1);
+        new Tagify(input1,{ maxTags:5});
 
         var input2 = document.querySelector("#blog_seo_keywords_en");
-        new Tagify(input2);
+        new Tagify(input2,{ maxTags:5});
 
 
         $(document).ready(function() {

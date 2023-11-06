@@ -156,7 +156,7 @@
                                                     <td > {{ $item->title }} </td>
                                                     <td style="text-align: center"> {{ $item->Category->title ?? '-' }}
                                                     </td>
-                                                    <td style="text-align: center"> {{ $item->Country->name }} / {{ $item->city }} </td>
+                                                    <td style="text-align: center"> {{ $item->Country != null ? ($item->Country->name) : '-' }}  {{ $item->city != null ? '/ '. $item->city : '' }} </td>
                                                     <td style="text-align: center">
                                                         <div
                                                             class="form-check form-check-solid form-switch form-check-custom fv-row">

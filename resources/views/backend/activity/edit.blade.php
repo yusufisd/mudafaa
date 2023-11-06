@@ -209,17 +209,17 @@
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
                                                             <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">
-                                                                <span class="required"> Başlangıç</span>
+                                                                <span class=""> Başlangıç</span>
                                                             </label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
                                                             <div class="col-lg-5 fv-row">
-                                                                <input required type="date"
+                                                                <input  type="date"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                    name="start_date" value="{{ $data_tr->start_time->format('Y-m-d') }}" id="">
+                                                                    name="start_date" value="{{ $data_tr->start_time != null ? $data_tr->start_time->format('Y-m-d') : '' }}" id="">
                                                             </div>
                                                             <div class="col-lg-3 fv-row">
-                                                                <input required type="time"
+                                                                <input  type="time"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                     name="start_clock" value="{{ $data_tr->start_clock }}" id="">
                                                             </div>
@@ -231,17 +231,17 @@
                                                             <!--begin::Label-->
                                                             <label
                                                                 class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">
-                                                                <span class="required"> Bitiş</span>
+                                                                <span class=""> Bitiş</span>
                                                             </label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
                                                             <div class="col-lg-5 fv-row">
-                                                                <input required type="date"
+                                                                <input  type="date"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                     name="finish_date" value="{{ $data_tr->finish_time }}" id="">
                                                             </div>
                                                             <div class="col-lg-3 fv-row">
-                                                                <input required type="time"
+                                                                <input  type="time"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                     name="finish_clock" value="{{ $data_tr->finish_clock }}" id="">
                                                             </div>
@@ -256,7 +256,7 @@
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
                                                             <label class="col-lg-4 col-form-label fw-bold fs-6 ps-5">
-                                                                <span class="required"> Ülke</span>
+                                                                <span class=""> Ülke</span>
                                                             </label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
@@ -268,7 +268,7 @@
 
                                                                     @foreach ($countrylist as $item)
                                                                         <option
-                                                                            {{ $data_tr->Country->id == $item->id ? 'selected' : '' }}
+                                                                            {{ $data_tr->Country != null ?  ($data_tr->Country->id == $item->id ? 'selected' : '') : '' }}
                                                                             value="{{ $item->id }}">
                                                                             {{ $item->name }}
                                                                         </option>
@@ -284,7 +284,7 @@
                                                             <!--begin::Label-->
                                                             <label
                                                                 class="col-lg-4 col-form-label fw-bold fs-6 ps-5 text-end">
-                                                                <span class="required"> Şehir</span>
+                                                                <span class=""> Şehir</span>
                                                             </label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
@@ -899,10 +899,10 @@
 
 
         var input1 = document.querySelector("#blog_seo_keywords_tr");
-        new Tagify(input1);
+        new Tagify(input1,{ maxTags:5});
 
         var input2 = document.querySelector("#blog_seo_keywords_en");
-        new Tagify(input2);
+        new Tagify(input2,{ maxTags:5});
 
 
         $(document).ready(function() {

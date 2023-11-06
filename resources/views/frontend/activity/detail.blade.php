@@ -99,24 +99,30 @@
                             </h2>
                             <div class="post-meta">
                                 <ul>
-                                    <li>
-                                        <span class="rt-meta">
-                                            <i class="far fa-calendar-alt icon"></i>
-                                            {{ $data->start_time->translatedFormat('d M Y') }}
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="rt-meta">
-                                            <i class="fas fa-clock icon"></i>
-                                            {{ substr($data->start_clock, 0, 5) }}
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="rt-meta">
-                                            <i class="fas fa-map-marker-alt icon"></i>
-                                            {{ $data->Country->name }} / {{ $data->city }}
-                                        </span>
-                                    </li>
+                                    @if ($data->start_time)
+                                        <li>
+                                            <span class="rt-meta">
+                                                <i class="far fa-calendar-alt icon"></i>
+                                                {{ $data->start_time->translatedFormat('d M Y') }}
+                                            </span>
+                                        </li>
+                                    @endif
+                                    @if ($data->start_clock)
+                                        <li>
+                                            <span class="rt-meta">
+                                                <i class="fas fa-clock icon"></i>
+                                                {{ substr($data->start_clock, 0, 5) }}
+                                            </span>
+                                        </li>
+                                    @endif
+                                    @if ($data->Country)
+                                        <li>
+                                            <span class="rt-meta">
+                                                <i class="fas fa-map-marker-alt icon"></i>
+                                                {{ $data->Country->name }} / {{ $data->city }}
+                                            </span>
+                                        </li>
+                                    @endif
                                     <li>
                                         <span class="rt-meta">
                                             <i class="fas fa-handshake icon"></i>
@@ -215,7 +221,9 @@
                                     </ul>
                                 </div>
                             </div>
+                            @if($data->subscribe_form != null || $data->ticket_link != null)
                             <div class="border-with-spacer-1"></div>
+                            @endif
 
                             <div class="wrap mb--30">
                                 <div class="featured-tab-title">
@@ -229,39 +237,49 @@
                                 <div class="row gutter-30">
                                     <div class="col-lg-6 grid-adress">
                                         <ul class="contact_info">
-                                            <li>
-                                                <h6>Adres</h6>
-                                                <p class="rt-teta">
-                                                    <i class="fas fa-home icon"></i>
-                                                    {{ $data->address }} / {{ $data->city }}
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <h6>E-Posta</h6>
-                                                <p class="rt-teta">
-                                                    <i class="fas fa-envelope icon"></i>
-                                                    {{ $data->email }}
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <h6>Telefon</h6>
-                                                <p class="rt-teta">
-                                                    <i class="fas fa-phone icon"></i>
-                                                    {{ $data->phone }}
-                                                </p>
-
-                                            </li>
-                                            <li>
-                                                <h6>Web Site</h6>
-                                                <p class="rt-teta">
-                                                    <i class="fas fa-globe icon"></i>
-                                                    {{ $data->website }}
-                                                </p>
-                                            </li>
+                                            @if ($data->address != null)
+                                                <li>
+                                                    <h6>Adres</h6>
+                                                    <p class="rt-teta">
+                                                        <i class="fas fa-home icon"></i>
+                                                        {{ $data->address }} / {{ $data->city }}
+                                                    </p>
+                                                </li>
+                                            @endif
+                                            @if ($data->email != null)
+                                                <li>
+                                                    <h6>E-Posta</h6>
+                                                    <p class="rt-teta">
+                                                        <i class="fas fa-envelope icon"></i>
+                                                        {{ $data->email }}
+                                                    </p>
+                                                </li>
+                                            @endif
+                                            @if ($data->phone != null)
+                                                <li>
+                                                    <h6>Telefon</h6>
+                                                    <p class="rt-teta">
+                                                        <i class="fas fa-phone icon"></i>
+                                                        {{ $data->phone }}
+                                                    </p>
+                                                </li>
+                                            @endif
+                                            @if ($data->website != null)
+                                                <li>
+                                                    <h6>Web Site</h6>
+                                                    <p class="rt-teta">
+                                                        <i class="fas fa-globe icon"></i>
+                                                        {{ $data->website }}
+                                                    </p>
+                                                </li>
+                                            @endif
                                         </ul>
                                     </div>
-                                    <div class="col-lg-6 grid-adress">
-                                        {!! $data->map !!}
+                                    <div style="width:460px!important;height:300px!important"
+                                        class="col-lg-6 grid-adress">
+                                        <div style="overflow:hidden">
+                                            {!! $data->map !!}
+                                        </div>
                                     </div>
 
                                 </div>
@@ -331,23 +349,27 @@
                                             </h3>
                                             <div class="post-meta">
                                                 <ul>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-calendar-alt icon"></i>
-                                                            {{ $item->start_time->translatedFormat('d M Y') }}
+                                                    @if ($item->start_time)
+                                                        <li>
+                                                            <span class="rt-meta">
+                                                                <i class="far fa-calendar-alt icon"></i>
+                                                                {{ $item->start_time->translatedFormat('d M Y') }}
 
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="fas fa-map-marker-alt icon"></i>
-                                                            {{ $item->Country->name }}
-                                                        </span>
-                                                    </li>
+                                                            </span>
+                                                        </li>
+                                                    @endif
+                                                    @if ($item->Country)
+                                                        <li>
+                                                            <span class="rt-meta">
+                                                                <i class="fas fa-map-marker-alt icon"></i>
+                                                                {{ $item->Country->name }}
+                                                            </span>
+                                                        </li>
+                                                    @endif
                                                     <li>
                                                         <span class="rt-meta">
                                                             <i class="fa-solid fa-eye"></i>
-                                                            {{ $item->view_counter }}
+                                                            {{ $item->view_counter == 0 ? '1' : $item->view_counter }}
                                                         </span>
                                                     </li>
                                                 </ul>

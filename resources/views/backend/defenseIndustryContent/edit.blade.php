@@ -78,14 +78,15 @@
                                                 </div>
 
                                                 <div style="text-align: center; margin-bottom:3%">
-                                                <img style="width: 350px;border-radius:5%" src="/{{ $data_tr->image }}"
-                                                    alt="">
+                                                    <img style="width: 350px;border-radius:5%" src="/{{ $data_tr->image }}"
+                                                        alt="">
                                                 </div>
                                                 <div class="row mb-6">
 
                                                     <div class="row">
                                                         <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
-                                                            {{ __('message.kapak') }} {{ __('message.görsel') }} <br> (1920px -
+                                                            {{ __('message.kapak') }} {{ __('message.görsel') }} <br>
+                                                            (1920px -
                                                             2880px) </label>
                                                         <div class="col-lg-10">
 
@@ -104,15 +105,18 @@
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10 fv-row">
-                                                        <select name="category" aria-label="Seçiniz"
-                                                            data-control="select2" data-placeholder="Seçiniz..."
+                                                        <select name="category" aria-label="Seçiniz" data-control="select2"
+                                                            data-placeholder="Seçiniz..."
                                                             class="form-select form-select-solid form-select-lg fw-semibold">
                                                             <option value="">Seçiniz...</option>
 
                                                             @foreach ($categories as $item)
                                                                 <option
                                                                     {{ $data_tr->category_id == $item->id ? 'selected' : '' }}
-                                                                    value="{{ $item->id }}"> <p style="text-transform: capitalize">  {{ $item->title ?? '' }} - {{$item->defense->title ?? ''}} </p>
+                                                                    value="{{ $item->id }}">
+                                                                    <p style="text-transform: capitalize">
+                                                                        {{ $item->title ?? '' }} -
+                                                                        {{ $item->defense->title ?? '' }} </p>
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -123,7 +127,45 @@
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
                                                     <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
-                                                        <span class="required"> {{ __('message.ülkeler') }} </span>
+                                                        <span class="required"> {{ __('message.yazar') }} </span>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-10 fv-row">
+                                                        @if (Auth::guard('admin')->check())
+                                                            <select name="author" aria-label="Seçiniz"
+                                                                data-control="select2" data-placeholder="Seçiniz..."
+                                                                class="form-select form-select-solid form-select-lg fw-semibold">
+                                                                <option value="">Seçiniz...</option>
+                                                                @foreach ($users as $user)
+                                                                    <option
+                                                                        {{ $user->id == $data_tr->author ? 'selected' : '' }}
+                                                                        value="{{ $user->id }}">
+                                                                        {{ $user->name ?? '' }}
+                                                                        {{ $user->surname ?? '' }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        @endif
+                                                        @if (Auth::guard('user_model')->check())
+                                                            <input type="hidden" name="author"
+                                                                value="{{ AuthorUser()->id }}" id="">
+                                                            <select disabled name="author" aria-label="Seçiniz"
+                                                                data-control="select2" data-placeholder="Seçiniz..."
+                                                                class="form-select form-select-solid form-select-lg fw-semibold">
+                                                                <option selected value="{{ AuthorUser()->id }}">
+                                                                    {{ AuthorUser()->name }}
+                                                                    {{ AuthorUser()->surname }} </option>
+                                                            </select>
+                                                        @endif
+
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+
+                                                <div class="row mb-6">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
+                                                        <span class=""> {{ __('message.ülkeler') }} </span>
                                                     </label>
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
@@ -135,7 +177,7 @@
                                                             <option value="">Seçiniz...</option>
                                                             @foreach ($countries as $item)
                                                                 <option
-                                                                    {{ in_array($item->id, $data_tr->countries) ? 'selected' : '' }}
+                                                                    {{ $data_tr->countries != null ? (in_array($item->id, $data_tr->countries) ? 'selected' : '') : '' }}
                                                                     value="{{ $item->id }}">{{ $item->name }}
                                                                 </option>
                                                             @endforeach
@@ -147,7 +189,7 @@
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
                                                     <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
-                                                        <span class="required"> {{ __('message.üretici') }}
+                                                        <span class=""> {{ __('message.üretici') }}
                                                             {{ __('message.firmalar') }} </span>
                                                     </label>
                                                     <!--end::Label-->
@@ -174,22 +216,24 @@
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
                                                     <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
-                                                        <span class="required"> {{ __('message.menşei') }} </span>
+                                                        <span class=""> {{ __('message.menşei') }} </span>
                                                     </label>
                                                     <!--end::Label-->
-                                                   
+
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10 fv-row">
                                                         <select name="origin[]" aria-label="Seçiniz" data-control="select2"
-                                                            data-placeholder="Seçiniz..." 
+                                                            data-placeholder="Seçiniz..."
                                                             class="form-select form-select-solid form-select-lg fw-semibold"
                                                             multiple>
                                                             <option value="">Seçiniz...</option>
 
                                                             @foreach ($countries as $item)
                                                                 <option
-                                                                    {{ in_array($item->id, $data_tr->countries) != false ? 'selected' : '' }}
-                                                                    value="{{ $item->id }}"> <p style="text-transform: capitalize"> {{ $item->name }} </p>
+                                                                    {{ $data_tr->countries != null ? (in_array($item->id, $data_tr->countries) ? 'selected' : '') : '' }}
+                                                                    value="{{ $item->id }}">
+                                                                    <p style="text-transform: capitalize">
+                                                                        {{ $item->name }} </p>
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -197,43 +241,7 @@
                                                     <!--end::Col-->
                                                 </div>
 
-                                                <div class="row mb-6">
-                                                    <!--begin::Label-->
-                                                    <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
-                                                        <span class="required"> {{ __('message.yazar') }} </span>
-                                                    </label>
-                                                    <!--end::Label-->
-                                                    <!--begin::Col-->
-                                                    <div class="col-lg-10 fv-row">
-                                                        @if (Auth::guard('admin')->check())
-                                                            <select name="author" aria-label="Seçiniz"
-                                                                data-control="select2"
-                                                                data-placeholder="Seçiniz..."
-                                                                class="form-select form-select-solid form-select-lg fw-semibold">
-                                                                <option value="">Seçiniz...</option>
-                                                                @foreach ($users as $user)
-                                                                    <option {{ $user->id == $data_tr->author ? 'selected' : '' }} value="{{ $user->id }}">
-                                                                        {{ $user->name ?? '' }}
-                                                                        {{ $user->surname ?? '' }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        @endif
-                                                        @if (Auth::guard('user_model')->check())
-                                                            <input type="hidden" name="author" value="{{ AuthorUser()->id }}" id="">
-                                                            <select disabled name="author"
-                                                                aria-label="Seçiniz" data-control="select2"
-                                                                data-placeholder="Seçiniz..."
-                                                                class="form-select form-select-solid form-select-lg fw-semibold">
-                                                                <option selected
-                                                                    value="{{ AuthorUser()->id }}">
-                                                                    {{ AuthorUser()->name }}
-                                                                    {{ AuthorUser()->surname }} </option>
-                                                            </select>
-                                                        @endif
-
-                                                    </div>
-                                                    <!--end::Col-->
-                                                </div>
+                                                
 
                                                 <div class="card-footer d-flex justify-content-between px-0 py-6">
                                                     <!--begin::Input group-->
@@ -348,7 +356,7 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-1 col-form-label ps-5 required fw-bold fs-6">Link</label>
+                                                                        class="col-lg-1 col-form-label required fw-bold fs-6 ps-5">Link</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-11">
@@ -358,8 +366,8 @@
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <input type="text" name="link_tr"
                                                                                     id="link_tr"
-                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="{{$data_tr->link}}" />
+                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                    value="{{ $data_tr->link }}" />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -457,13 +465,13 @@
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
-                                                                
-                                                                
+
+
 
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-1 col-form-label ps-5 required fw-bold fs-6">Link</label>
+                                                                        class="col-lg-1 col-form-label required fw-bold fs-6 ps-5">Link</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-11">
@@ -473,8 +481,8 @@
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <input type="text" name="link_en"
                                                                                     id="link_en"
-                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="{{$data_en->link}}" />
+                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                    value="{{ $data_en->link }}" />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -609,7 +617,7 @@
                                                         <!--end::Input group-->
 
                                                     </div>
-                                                    
+
                                                 </div>
                                                 <div class="tab-pane fade" id="tab_seo_en" role="tabpanel">
                                                     <!--begin::Form-->
@@ -680,7 +688,7 @@
                                                         <!--end::Input group-->
 
                                                     </div>
-                                                   
+
                                                 </div>
                                             </div>
 
@@ -754,15 +762,15 @@
         }
 
         var input1 = document.querySelector("#blog_seo_keywords_tr");
-        new Tagify(input1);
+        new Tagify(input1,{ maxTags:5});
 
         var input2 = document.querySelector("#blog_seo_keywords_en");
-        new Tagify(input2);
+        new Tagify(input2,{ maxTags:5});
 
 
-       
 
-        
+
+
 
         $(document).ready(function() {
             tinymce.init({

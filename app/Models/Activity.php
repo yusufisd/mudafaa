@@ -48,6 +48,9 @@ class Activity extends Model
     public function sayac_yil()
     {
         $now = Carbon::now();
+        if($this->start_time == null){
+            return "";
+        }
         $say = Carbon::parse($this->start_time->format('Y-m-d'));
         if ($say > $now) {
             $fark = date_diff($say, $now);
@@ -61,6 +64,9 @@ class Activity extends Model
     public function sayac_ay()
     {
         $now = Carbon::now();
+        if($this->start_time == null){
+            return "";
+        }
         $say = Carbon::parse($this->start_time->format('Y-m-d'));
         if ($say > $now) {
             $fark = date_diff($say, $now);
@@ -73,6 +79,9 @@ class Activity extends Model
     public function sayac_gun()
     {
         $now = Carbon::now();
+        if($this->start_time == null){
+            return "";
+        }
         $say = Carbon::parse($this->start_time->format('Y-m-d'));
         if ($say > $now) {
             $fark = date_diff($say, $now);

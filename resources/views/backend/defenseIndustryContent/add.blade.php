@@ -128,6 +128,45 @@
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
                                                     <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
+                                                        <span class="required"> {{ __('message.yazar') }} </span>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-10 fv-row">
+                                                        @if (Auth::guard('admin')->check())
+                                                            <select required name="author" aria-label="Seçiniz"
+                                                                data-control="select2"
+                                                                data-placeholder="Seçiniz..."
+                                                                class="form-select form-select-solid form-select-lg fw-semibold">
+                                                                <option value="">Seçiniz...</option>
+                                                                @foreach ($users as $user)
+                                                                    <option value="{{ $user->id }}">
+                                                                        {{ $user->name ?? '' }}
+                                                                        {{ $user->surname ?? '' }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        @endif
+                                                        @if (Auth::guard('user_model')->check())
+                                                            <input type="hidden" name="author" value="{{ AuthorUser()->id }}" id="">
+                                                            <select disabled name="author"
+                                                                aria-label="Seçiniz" data-control="select2"
+                                                                data-placeholder="Seçiniz..."
+                                                                class="form-select form-select-solid form-select-lg fw-semibold">
+                                                                <option selected
+                                                                    value="{{ AuthorUser()->id }}">
+                                                                    {{ AuthorUser()->name }}
+                                                                    {{ AuthorUser()->surname }} </option>
+                                                            </select>
+                                                        @endif
+
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+
+
+                                                <div class="row mb-6">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
                                                         <span class=""> {{ __('message.ülkeler') }} </span>
                                                     </label>
                                                     <!--end::Label-->
@@ -196,44 +235,7 @@
                                                 </div>
 
 
-                                                <div class="row mb-6">
-                                                    <!--begin::Label-->
-                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
-                                                        <span class=""> {{ __('message.yazar') }} </span>
-                                                    </label>
-                                                    <!--end::Label-->
-                                                    <!--begin::Col-->
-                                                    <div class="col-lg-10 fv-row">
-                                                        @if (Auth::guard('admin')->check())
-                                                            <select name="author" aria-label="Seçiniz"
-                                                                data-control="select2"
-                                                                data-placeholder="Seçiniz..."
-                                                                class="form-select form-select-solid form-select-lg fw-semibold">
-                                                                <option value="">Seçiniz...</option>
-                                                                @foreach ($users as $user)
-                                                                    <option value="{{ $user->id }}">
-                                                                        {{ $user->name ?? '' }}
-                                                                        {{ $user->surname ?? '' }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        @endif
-                                                        @if (Auth::guard('user_model')->check())
-                                                            <input type="hidden" name="author" value="{{ AuthorUser()->id }}" id="">
-                                                            <select disabled name="author"
-                                                                aria-label="Seçiniz" data-control="select2"
-                                                                data-placeholder="Seçiniz..."
-                                                                class="form-select form-select-solid form-select-lg fw-semibold">
-                                                                <option selected
-                                                                    value="{{ AuthorUser()->id }}">
-                                                                    {{ AuthorUser()->name }}
-                                                                    {{ AuthorUser()->surname }} </option>
-                                                            </select>
-                                                        @endif
-
-                                                    </div>
-                                                    <!--end::Col-->
-                                                </div>
-
+                                                
                                                 <div class="card-footer d-flex justify-content-between py-6 px-0">
                                                     <!--begin::Input group-->
                                                     <div class="row mb-0">
@@ -301,7 +303,7 @@
                                                                                     id="name_tr"
                                                                                     onchange="create_slug_tr()"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="" />
+                                                                                    value="{{ old('name_tr') }}" />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -319,7 +321,7 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-11 fv-row">
                                                                         <textarea name="short_description_tr" id="short_description_tr" onchange="create_ozet_tr()"
-                                                                            class="form-control form-control-lg form-control-solid" value=""></textarea>
+                                                                            class="form-control form-control-lg form-control-solid" value="">{{ old('short_description_tr') }}</textarea>
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -335,7 +337,7 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-11 fv-row mb-5 ps-5">
 
-                                                                        <textarea id="editor" name="description_tr" class="tox-target ckeditor"></textarea>
+                                                                        <textarea id="editor" name="description_tr" class="tox-target ckeditor">{{ old('description_tr') }}</textarea>
 
 
                                                                     </div>
@@ -358,7 +360,7 @@
                                                                                 <input required type="text" name="link_tr"
                                                                                     id="link_tr"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="" />
+                                                                                    value="{{ old('link_tr') }}" />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -414,7 +416,7 @@
                                                                                     id="name_en"
                                                                                     onchange="create_slug_en()"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="" />
+                                                                                    value="{{ old('name_en') }}" />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -432,7 +434,7 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-11 fv-row">
                                                                         <textarea name="short_description_en" id="short_description_en" onchange="create_ozet_en()"
-                                                                            class="form-control form-control-lg form-control-solid" value=""></textarea>
+                                                                            class="form-control form-control-lg form-control-solid" value="">{{ old('short_description_en') }}</textarea>
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -448,7 +450,7 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-11 fv-row mb-5 ps-5">
 
-                                                                        <textarea id="editor2" name="description_en" class="tox-target ckeditor"></textarea>
+                                                                        <textarea id="editor2" name="description_en" class="tox-target ckeditor">{{ old('description_en') }}</textarea>
 
 
                                                                     </div>
@@ -471,7 +473,7 @@
                                                                                 <input required type="text" name="link_en"
                                                                                     id="link_en"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="" />
+                                                                                    value="{{ old('link_en') }}" />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -558,7 +560,7 @@
                                                                         <input required type="text" name="seo_title_tr"
                                                                             id="seo_title_tr"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                            value="" />
+                                                                            value="{{ old('seo_title_tr') }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -576,7 +578,7 @@
                                                             <!--begin::Col-->
                                                             <div class="col-lg-10 fv-row">
                                                                 <textarea name="seo_description_tr" id="seo_description_tr" class="form-control form-control-lg form-control-solid"
-                                                                    value=""></textarea>
+                                                                    value="">{{ old('seo_description_tr') }}</textarea>
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -633,7 +635,7 @@
                                                                         <input required type="text" name="seo_title_en"
                                                                             id="seo_title_en"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                            value="" />
+                                                                            value="{{ old('seo_title_en') }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -651,7 +653,7 @@
                                                             <!--begin::Col-->
                                                             <div class="col-lg-10 fv-row">
                                                                 <textarea name="seo_description_en" id="seo_description_en" class="form-control form-control-lg form-control-solid"
-                                                                    value=""></textarea>
+                                                                    value="">{{ old('seo_description_en') }}</textarea>
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -785,10 +787,10 @@
         };
 
         var input1 = document.querySelector("#blog_seo_keywords_tr");
-        new Tagify(input1);
+        new Tagify(input1,{ maxTags:5});
 
         var input2 = document.querySelector("#blog_seo_keywords_en");
-        new Tagify(input2);
+        new Tagify(input2,{ maxTags:5});
 
 
         
