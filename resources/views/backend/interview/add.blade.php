@@ -668,6 +668,7 @@
                                                             </div>
                                                         </div>
                                                         <button type="button"
+                                                            id="main_add_tr"
                                                                 class="btn btn-primary add_item_buton" style="margin: auto; display: flex">EKLE</button>
                                                     </div><br>
 
@@ -878,12 +879,15 @@
     </script>
     <script>
         $(document).ready(function() {
-            $(".add_item_buton").click(function(e) {
+            $(document).on('click', '.add_item_buton', function(e) {
+                let this_id = $(this).prop('id');
+                if(this_id != "main_add_tr"){
+                    $(this).remove();
+                }
                 let questioner = $("#questioner").val();
                 let answered = $("#answered").val();
                 e.preventDefault();
-                $("#show_item").append(' <div id="show_item" class="py-12">\
-                    <div class="mt-4 container" style=" padding-top:10%; padding-bottom:10%; border-top: 1px solid black; "\
+                $("#show_item").append('<div class="mt-4 container" style=" padding-top:10%; padding-bottom:10%; border-top: 1px solid black; "\
                         role="tabpanel">\
                         <div class="row mb-6">\
                             <div class="col-md-6">\
@@ -933,9 +937,10 @@
                             </div>\
                         </div>\
                         <div class="ekle" style="text-align:center">\
+                        <button type="button" id="add_en" class="btn btn-success add_item_buton">EKLE</button>\
                     <button type="button"\
                         class="btn btn-danger delete_item_buton">SİL</button>\
-                </div>\
+                    </div>\
             </div>');
             });
 

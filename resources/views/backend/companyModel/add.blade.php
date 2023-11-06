@@ -164,11 +164,11 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label required fw-bold fs-6 ps-5">
+                                                                        class="col-lg-1 col-form-label required fw-bold fs-6 ps-5">
                                                                         {{ __('message.başlık') }} </label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-10">
+                                                                    <div class="col-lg-11">
                                                                         <!--begin::Row-->
                                                                         <div class="row">
                                                                             <!--begin::Col-->
@@ -177,7 +177,7 @@
                                                                                     id="title_tr" id="title_tr"
                                                                                     onchange="create_slug_tr()"
                                                                                     class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                    value="" />
+                                                                                    value="{{ old('title_tr') }}" />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -190,14 +190,14 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-12 required col-form-label fw-bold fs-6 mb-5 ps-5">
+                                                                        class="col-lg-1 required col-form-label fw-bold fs-6 mb-5 ps-5">
                                                                         <span>İçerik</span>
                                                                     </label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-12 fv-row mb-5 ps-5">
+                                                                    <div class="col-lg-11 fv-row mb-5 ps-5">
 
-                                                                        <textarea id="editor" name="description_tr" class="tox-target ckeditor"></textarea>
+                                                                        <textarea id="editor" name="description_tr" class="tox-target ckeditor">{{ old('description_tr') }}</textarea>
 
 
                                                                     </div>
@@ -242,10 +242,10 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label required fw-bold fs-6 ps-5">Başlık</label>
+                                                                        class="col-lg-1 col-form-label required fw-bold fs-6 ps-5">Başlık</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-10">
+                                                                    <div class="col-lg-11">
                                                                         <!--begin::Row-->
                                                                         <div class="row">
                                                                             <!--begin::Col-->
@@ -254,7 +254,7 @@
                                                                                     name="title_en" id="title_en"
                                                                                     onchange="create_slug_en()"
                                                                                     class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                    value="" />
+                                                                                    value="{{ old('title_en') }}" />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -267,14 +267,14 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5">
+                                                                        class=" required col-lg-1 col-form-label fw-bold fs-6 mb-5 ps-5">
                                                                         <span>İçerik</span>
                                                                     </label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-12 fv-row mb-5 ps-5">
+                                                                    <div class="col-lg-11 fv-row mb-5 ps-5">
 
-                                                                        <textarea id="editor2" name="description_en" class="tox-target ckeditor"></textarea>
+                                                                        <textarea id="editor2" name="description_en" class="tox-target ckeditor">{{ old('description_en') }}</textarea>
 
 
                                                                     </div>
@@ -363,7 +363,7 @@
                                                                         <input type="text" id="seo_title_tr"
                                                                             name="seo_title_tr"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            value="" />
+                                                                            value="{{ old('seo_title_tr') }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -381,7 +381,7 @@
                                                             <!--begin::Col-->
                                                             <div class="col-lg-10 fv-row">
                                                                 <textarea name="seo_description_tr" id="seo_description_tr" class="form-control form-control-lg form-control-solid"
-                                                                    value=""></textarea>
+                                                                    value="">{{ old('seo_description_tr') }}</textarea>
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -399,7 +399,7 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input type="text" name="seo_key_tr[]"
+                                                                        <input required type="text" name="seo_key_tr[]"
                                                                             id="seo_key_tr"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="" />
@@ -438,7 +438,7 @@
                                                                         <input type="text" name="seo_title_en"
                                                                             id="seo_title_en"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            value="" />
+                                                                            value="{{ old('seo_title_en') }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -456,7 +456,7 @@
                                                             <!--begin::Col-->
                                                             <div class="col-lg-10 fv-row">
                                                                 <textarea name="seo_descriptipn_en" id="seo_description_en" class="form-control form-control-lg form-control-solid"
-                                                                    value=""></textarea>
+                                                                    value="">{{ old('seo_descriptipn_en') }}</textarea>
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -474,7 +474,7 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input type="text" name="seo_key_en[]"
+                                                                        <input required type="text" name="seo_key_en[]"
                                                                             id="seo_key_en"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="" />
