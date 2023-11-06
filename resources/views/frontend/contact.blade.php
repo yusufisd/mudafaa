@@ -46,7 +46,7 @@
                             <div style="text-align: justify" class="rt-section-heading-style-2">
                                 <span class="sub-title">{{ __('message.SİZE NASIL YARDIMCI OLABİLİRİZ') }}</span>
                                 <h2 class="heading-tilte">
-                                    {{ $datas->title }}
+                                    {{ $datas->title ?? 'Başlık' }}
                                 </h2>
                                 <p >
                                     {!! $datas->description !!}
