@@ -105,6 +105,9 @@ return [
     "soru" => "Question",
     "Ulusal ve global savunma ile ilgili gündemden daha hızlı haberdar olmak istiyorsanız, Milli Müdafaa e-posta listesine kayıt olun!" => "If you want to be informed faster about the national and global defense agenda, sign up for the Milli Müdafaa mailing list!",
     "Savunma sanayii ve teknolojideki en güncel haberler ve analizler doğrudan e-posta kutunuza gelsin. Bilgiye bir adım daha yakın olun. E-posta adresinizi aşağıya girerek bültenimize abone olabilirsiniz." => "Receive the latest news and analyses in defense industry and technology directly to your inbox. Be one step closer to information. Enter your email address below to subscribe to our newsletter.",
-    "Abone ol" => "Subscribe"
+    "Abone ol" => "Subscribe",
+    "Milli Müdafa'nın güncel haberlerini takip etmek için E-posta adresiniz ile bültenimize kayıt olun." => "Sign up for our newsletter with your e-mail address to follow the latest news from Milli Müdafa.",
+    "Kişisel Verilerin İşlenmesi Aydınlatma Metni'ni okudum kabul ediyorum." => "I have read and accept the Clarification Text on Processing of Personal Data."
+
 ];
 ?>

@@ -46,6 +46,11 @@
         }*/
       
     </style>
+     <style>
+        i {
+            font-size: 18px !important;
+        }
+    </style>
     <!-- end:: Extra Style -->
 </head>
 <!--end::Head-->

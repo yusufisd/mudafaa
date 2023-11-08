@@ -20,7 +20,8 @@ use Illuminate\Validation\ValidationException;
 use RealRashid\SweetAlert\Facades\Alert;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\CompanyImport;
-
+use App\Models\CompanySubTitle;
+use App\Models\Icon;
 
 class CompanyModelController extends Controller
 {
@@ -38,8 +39,10 @@ class CompanyModelController extends Controller
      */
     public function create()
     {
+        $icons = Icon::latest()->get();
         $categories = CompanyCategory::latest()->get();
-        return view('backend.companyModel.add', compact('categories'));
+        $titles = CompanySubTitle::latest()->get();
+        return view('backend.companyModel.add', compact('categories','icons','titles'));
     }
 
     /**
@@ -47,6 +50,7 @@ class CompanyModelController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         $request->validate(
             [
                 'category' => 'required',

@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\CompanyCategoryController;
 use App\Http\Controllers\Backend\CompanyController;
 use App\Http\Controllers\Backend\CompanyModelController;
+use App\Http\Controllers\Backend\CompanySubTitle;
 use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\CountryController;
 use App\Http\Controllers\Backend\CurrentNewsCategoryController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\Backend\DefenseIndustryContentController;
 use App\Http\Controllers\Backend\DefenseIndustryController;
 use App\Http\Controllers\Backend\DictionaryController;
 use App\Http\Controllers\Backend\HomeController;
+use App\Http\Controllers\Backend\IconController;
 use App\Http\Controllers\Backend\InterviewController;
 use App\Http\Controllers\Backend\KunyeController;
 use App\Http\Controllers\Backend\PageController;
@@ -608,6 +610,32 @@ Route::middleware('lang')->group(function () {
                     Route::middleware('per:anket_edit')->get('/duzenle/{id?}', 'edit')->name('edit');
                     Route::middleware('per:anket_edit')->post('/duzenle/{id?}', 'update')->name('update');
                     Route::middleware('per:anket_delete')->get('/sil/{id?}', 'destroy')->name('destroy');
+                });
+
+                // Commpany iCON 
+                Route::controller(IconController::class)
+                ->prefix('icon')
+                ->name('companyIcon.')
+                ->group(function () {
+                    Route::get('/', 'list')->name('list');
+                    Route::get('/ekle', 'create')->name('add');
+                    Route::post('/ekle', 'store')->name('store');
+                    Route::get('/duzenle/{id?}', 'edit')->name('edit');
+                    Route::post('/duzenle/{id?}', 'update')->name('update');
+                    Route::get('/sil/{id?}', 'destroy')->name('destroy');
+                });
+
+                // Commpany iCON 
+                Route::controller(CompanySubTitle::class)
+                ->prefix('sirket-baslik')
+                ->name('companySubTitle.')
+                ->group(function () {
+                    Route::get('/', 'list')->name('list');
+                    Route::get('/ekle', 'create')->name('add');
+                    Route::post('/ekle', 'store')->name('store');
+                    Route::get('/duzenle/{id?}', 'edit')->name('edit');
+                    Route::post('/duzenle/{id?}', 'update')->name('update');
+                    Route::get('/sil/{id?}', 'destroy')->name('destroy');
                 });
         });
 
