@@ -735,12 +735,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="post-content ms-4">
-                                                    @if($item->Category())
-                                                    <a style="background-color: {{ $item->Category()[0]->color_code != null ? $item->Category()[0]->color_code : '' }}"
-                                                        href="{{ route('front.currentNewsCategory.list', $item->Category()[0]->link) }}"
-                                                        class="rt-cat-primary sidebar_restricted_category_title">
-                                                        {{ $item->Category()[0]->title }} </a>
-                                                    @endif
+                                                    
                                                     <h4 class="post-title">
                                                         <a href="{{ route('front.currentNews.detail', $item->link) }}"
                                                             class="sidebar_restricted_title">
