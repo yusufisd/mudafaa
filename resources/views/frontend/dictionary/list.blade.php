@@ -30,7 +30,7 @@
                 <nav class="rt-breadcrumb-wrap" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="{{ route('front.dictionary.list', ['id' => 2]) }}">
+                            <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.dictionary.list', ['id' => 2])) : (route('front.dictionary.list_en', ['id' => 2])) }}">
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
@@ -53,7 +53,7 @@
 
                             <div id="ss_container" class="row gutter-24">
                                 <div class="search-box">
-                                    <form action="{{ route('front.dictionary.list') }}" method="GET"
+                                    <form action="{{ \Session::get('applocale') == 'tr' ? (route('front.dictionary.list')) : (route('front.dictionary.list_en')) }}" method="GET"
                                         class="form search-form-box">
                                         <div class="form-group">
                                             <input type="text" name="search" value="{{ request()->search ?? '' }}"
@@ -71,7 +71,7 @@
                                         @foreach ($alphabets as $alp)
                                             <li class="nav-item">
                                                 <a class="nav-link" style="background-color: {{ $letter == $alp ? 'rgba(23, 34, 43, 0.85); color:white' : '' }}"
-                                                    href="{{ route('front.dictionary.list', ['id' => $alp]) }}">{{ $alp }}</a>
+                                                    href="{{ \Session::get('applocale') == 'tr' ? (route('front.dictionary.list', ['id' => $alp])) : (route('front.dictionary.list', ['id' => $alp])) }}">{{ $alp }}</a>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -84,7 +84,7 @@
                                     <div class="col-md-4 wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
                                         <div class="rt-post-overlay rt-post-overlay-md layout-6">
                                             <div class="post-img">
-                                                <a href="{{ route('front.dictionary.detail', $item->link) }}"
+                                                <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.dictionary.detail', $item->link)) : (route('front.dictionary.detail_en', $item->link)) }}"
                                                     class="img-link">
                                                     <img src="/{{ $item->image == null ? 'media/gallery/post-xl_31.jpg' : $item->image }}" alt="{{ $item->title }}" width="900"
                                                         height="600">
@@ -93,7 +93,7 @@
                                             <div class="post-content">
 
                                                 <h3 class="post-title">
-                                                    <a href="{{ route('front.dictionary.detail', $item->link) }}">
+                                                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.dictionary.detail', $item->link)) : (route('front.dictionary.detail_en', $item->link)) }}">
                                                         {{ $item->title }}
                                                     </a>
                                                 </h3>

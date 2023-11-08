@@ -79,14 +79,14 @@
                                                 <?php 
                                                 $no++;
                                                 ?>
-                                                <a href="{{ route('front.currentNewsCategory.list', $Category->link) }}"
+                                                <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNewsCategory.list', $Category->link)) : (route('front.currentNewsCategory.list_en', $Category->link)) }}"
                                                     style="background-color: {{ $Category->color_code != null ? $Category->color_code : '' }}"
                                                     class="rt-cat-primary">{{ $Category->title }}</a>
                                                 @endif
                                                 @endforeach
 
                                                 <h3 class="post-title">
-                                                    <a href="{{ route('front.currentNews.detail', $item->link) }}"
+                                                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNews.detail', $item->link)) : (route('front.currentNews.detail_en', $item->link)) }}"
                                                         class="restricted_title">
                                                         {{ $item->title }}
                                                     </a>
@@ -119,7 +119,7 @@
                                                     </ul>
                                                 </div>
                                                 <div class="btn-wrap mt--25">
-                                                    <a href="{{ route('front.currentNews.detail', $item->link) }}"
+                                                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNews.detail', $item->link)) : (route('front.currentNews.detail_en', $item->link)) }}"
                                                         class="rt-read-more qodef-button-animation-out">
                                                         {{ __('message.daha fazla oku') }}
                                                         <svg width="34px" height="16px" viewBox="0 0 34.53 16"
@@ -137,7 +137,7 @@
                                                 </div>
                                             </div>
                                             <div class="post-img">
-                                                <a href="{{ route('front.currentNews.detail', $item->link) }}">
+                                                <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNews.detail', $item->link)) : (route('front.currentNews.detail_en', $item->link)) }}">
                                                     <img style="object-fit: cover" src="/{{ $item->image }}"
                                                         alt="post" width="696" height="491">
                                                 </a>
@@ -190,7 +190,7 @@
 
                                     @foreach ($sub_categories as $item)
                                         <li>
-                                            <a href="{{ route('front.currentNewsCategory.list', $item->link) }}"
+                                            <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNewsCategory.list', $item->link)) : (route('front.currentNewsCategory.list_en', $item->link)) }}"
                                                 data-bg-image="/{{ $item->image }}">
                                                 <span class="cat-name"> {{ $item->title }} </span>
                                                 <span class="count">{{ $item->adet() }}</span>
@@ -227,19 +227,19 @@
                                             <div class="rt-post-grid post-grid-md grid-meta">
                                                 <div class="post-content">
                                                     
-                                                    <a href="{{ route('front.currentNewsCategory.list', $item->Category()[0]->link) }}"
+                                                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNewsCategory.list', $item->Category()[0]->link)) : (route('front.currentNewsCategory.list_en', $item->Category()[0]->link)) }}"
                                                         style="background-color: {{ $item->Category()[0]->color_code != null ? $item->Category()[0]->color_code : '' }}"
                                                         class="rt-cat-primary sidebar_restricted_category_title">
                                                         {{ $item->Category()[0]->title }}
                                                     </a>
                                                     <div class="post-img mb-2">
-                                                        <a href="{{ route('front.currentNews.detail', $item->link) }}">
+                                                        <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNews.detail', $item->link)) : (route('front.currentNews.detail_en', $item->link)) }}">
                                                             <img src="/{{ $item->image }}" alt="post"
                                                                 width="343" height="250">
                                                         </a>
                                                     </div>
                                                     <h4 class="post-title">
-                                                        <a href="{{ route('front.currentNews.detail', $item->link) }}"
+                                                        <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNews.detail', $item->link)) : (route('front.currentNews.detail_en', $item->link)) }}"
                                                             class="sidebar_restricted_title">
                                                             {{ $item->title }}
                                                         </a>

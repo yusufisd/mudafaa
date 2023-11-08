@@ -650,154 +650,131 @@ Route::middleware('lang')->group(function () {
             Route::get('/search', [\App\Http\Controllers\Frontend\SearchController::class, 'index'])->name('search');
 
             // CURRENT NEWS CATEGORY CONTROLLER
-            Route::controller(FrontendCurrentNewsCategoryController::class)
-                ->prefix('guncel-haber-kategorisi')
-                ->name('currentNewsCategory.')
-                ->group(function () {
-                    Route::get('/{id?}', 'index')->name('list');
-                });
+            Route::get('guncel-haber-kategorisi/{id?}',[FrontendCurrentNewsCategoryController::class,'index'])->name('currentNewsCategory.list');
+            Route::get('current-news-category/{id?}',[FrontendCurrentNewsCategoryController::class,'index'])->name('currentNewsCategory.list_en');
 
             // CURRENT NEWS  CONTROLLER
-            Route::controller(FrontendCurrentNewsController::class)
-                ->prefix('guncel-haber')
-                ->name('currentNews.')
-                ->group(function () {
-                    Route::get('/{id?}', 'detail')->name('detail');
-                    Route::get('etiket/{title?}', 'tag_list')->name('tag_list');
-                });
+            Route::get('guncel-haber/{id?}',[FrontendCurrentNewsController::class,'detail'])->name('currentNews.detail');
+            Route::get('current-news/{id?}',[FrontendCurrentNewsController::class,'detail'])->name('currentNews.detail_en');
+
+            Route::get('guncel-haber/etiket/{title?}',[FrontendCurrentNewsController::class,'tag_list'])->name('currentNews.tag_list');
+            Route::get('current-news/tag/{title?}',[FrontendCurrentNewsController::class,'tag_list'])->name('currentNews.tag_list_en');
 
             // DEFENSE INDUSTRY CATEGORY CONTROLLER
-            Route::controller(FrontendDefenseIndustryCategoryController::class)
-                ->prefix('savunma-sanayi-kategorisi')
-                ->name('defenseIndustryCategory.')
-                ->group(function () {
-                    Route::get('/{id?}', 'index')->name('list');
-                    Route::get('etiket/{id?}', 'tag_list')->name('tag_list');
-                });
+            Route::get('savunma-sanayi-kategorisi/{id?}',[FrontendDefenseIndustryCategoryController::class,'index'])->name('defenseIndustryCategory.list');
+            Route::get('savunma-sanayi-kategorisi/etiket/{id?}',[FrontendDefenseIndustryCategoryController::class,'tag_list'])->name('defenseIndustryCategory.tag_list');
+            Route::get('defense-industry-category/{id?}',[FrontendDefenseIndustryCategoryController::class,'index'])->name('defenseIndustryCategory.list_en');
+            Route::get('defense-industry-category/tag/{id?}',[FrontendDefenseIndustryCategoryController::class,'tag_list'])->name('defenseIndustryCategory.tag_list_en');
 
             // DEFENSE INDUSTRY CATEGORY2 CONTROLLER
-            Route::controller(FrontendDefenseIndustryCategoryController::class)
-                ->prefix('savunma-sanayi-alt-kategorisi')
-                ->name('defenseIndustrySubCategory.')
-                ->group(function () {
-                    Route::get('/{id?}', 'sub_category_index')->name('list2');
-                });
+            Route::get('savunma-sanayi-alt-kategorisi/{id?}',[FrontendDefenseIndustryCategoryController::class,'sub_category_index'])->name('defenseIndustrySubCategory.list2');
+            Route::get('defense-industry-sub-category/{id?}',[FrontendDefenseIndustryCategoryController::class,'sub_category_index'])->name('defenseIndustrySubCategory.list2_en');
 
             // DEFENSE INDUSTRY CONTENT CONTROLLER
-            Route::controller(FrontendDefenseIndustryContentController::class)
-                ->prefix('savunma-sanayi')
-                ->name('defenseIndustryContent.')
-                ->group(function () {
-                    Route::get('/{id?}', 'detail')->name('detail');
-                });
+            Route::get('savunma-sanayi/{id?]',[FrontendDefenseIndustryContentController::class,'detail'])->name('defenseIndustryContent.detail');
+            Route::get('defense-industry/{id?]',[FrontendDefenseIndustryContentController::class,'detail'])->name('defenseIndustryContent.detail_en');
 
             // ACTİVİYY CONTROLLER
-            Route::controller(FrontendActivityController::class)
-                ->prefix('etkinlik')
-                ->name('activity.')
-                ->group(function () {
-                    Route::get('liste', 'index')->name('list');
-                    Route::get('yaklasan-etkinlikler', 'close_activity')->name('close_activity');
-                    Route::get('/{id?}', 'detail')->name('detail');
-                    Route::get('kategori-detay/{id?}', 'categoryDetail')->name('categoryDetail');
-                    Route::post('etkinlik-ara', 'searchActivity')->name('searchActivity');
-                    Route::get('/guncel/takvim', 'calendar')->name('calendar');
+            Route::controller(FrontendActivityController::class)->name('activity.')->group(function () {
+                    Route::prefix('etkinlik')->group(function(){
+                        Route::get('/', 'index')->name('list');
+                        Route::get('/{id?}', 'detail')->name('detail');
+                        Route::get('yaklasan/etkinlikler', 'close_activity')->name('close_activity');
+                        Route::get('kategori-detay/{id?}', 'categoryDetail')->name('categoryDetail');
+                        Route::post('/ara', 'searchActivity')->name('searchActivity');
+                        Route::get('/takvim', 'calendar')->name('calendar');
+                    });
+                    Route::prefix('activity')->group(function(){
+                        Route::get('/', 'index')->name('list_en');
+                        Route::get('/{id?}', 'detail')->name('detail_en');
+                        Route::get('/upcoming/activites', 'close_activity')->name('close_activity_en');
+                        Route::get('/category/{id?}', 'categoryDetail')->name('categoryDetail_en');
+                        Route::get('/calendar', 'calendar')->name('calendar_en');
+                    });
                 });
 
             // VİDEO CONTROLLER
-            Route::controller(FrontendVideoController::class)
-                ->prefix('video')
-                ->name('video.')
-                ->group(function () {
-                    Route::get('liste', 'index')->name('list');
-                    Route::get('etiket/{tag?}', 'tag_list')->name('tag_list');
-                    Route::get('kategori/{link?}', 'category_list')->name('category_list');
-                    Route::get('detay/{id?}', 'detail')->name('detail');
-                    Route::post('yorum-ekle/{id?}', 'commentStore')->name('commentStore');
-                    Route::post('alt-yorum-ekle/{id?}', 'sub_commentStore')->name('sub_commentStore');
+            Route::controller(FrontendVideoController::class)->name('video.')->group(function () {
+                    Route::prefix('video')->group(function(){
+                        Route::get('/', 'index')->name('list');
+                        Route::get('etiket/{tag?}', 'tag_list')->name('tag_list');
+                        Route::get('tag/{tag?}', 'tag_list')->name('tag_list_en');
+                        Route::get('kategori/{link?}', 'category_list')->name('category_list');
+                        Route::get('category/{link?}', 'category_list')->name('category_list_en');
+                        Route::get('/{id?}', 'detail')->name('detail');
+                        Route::post('yorum-ekle/{id?}', 'commentStore')->name('commentStore');
+                        Route::post('alt-yorum-ekle/{id?}', 'sub_commentStore')->name('sub_commentStore');
+                    });
                 });
 
             // YORUM CONTROLLER
-            Route::controller(CommentController::class)
-                ->prefix('yorum')
-                ->name('comment.')
-                ->group(function () {
+            Route::controller(CommentController::class)->prefix('yorum')->name('comment.')->group(function () {
                     Route::post('ekle/{id?}', 'store')->name('store');
                     Route::post('ekle-yorum/{test?}', 'storeComment')->name('storeComment');
                 });
 
             // ROPÖRTAJ CONTROLLER
-            Route::controller(FrontendInterviewController::class)
-                ->prefix('roportaj')
-                ->name('interview.')
-                ->group(function () {
-                    Route::get('liste', 'index')->name('list');
+            Route::controller(FrontendInterviewController::class)->name('interview.')->group(function () {
+                Route::get('roportaj', 'index')->name('list');
+                Route::get('interview', 'index')->name('list_en');
+                Route::prefix('roportaj')->group(function(){
                     Route::get('/{id?}', 'detail')->name('detail');
                     Route::post('yorum-ekle/{id?}', 'addComment')->name('addComment');
+                    });
                 });
 
             // dictionary CONTROLLER
-            Route::controller(FrontendDictionaryController::class)
-                ->prefix('sozluk')
-                ->name('dictionary.')
-                ->group(function () {
-                    Route::get('liste/{id?}', 'index')->name('list');
-                    Route::get('etiket/{title?}', 'tag_list')->name('tag_list');
+            Route::controller(FrontendDictionaryController::class)->name('dictionary.')->group(function () {
+
+                Route::prefix('dictionary')->group(function(){
+                    Route::get('/', 'index')->name('list_en');
+                    Route::get('/{id?}', 'detail')->name('detail_en');
+                    Route::get('tag/{title?}', 'tag_list')->name('tag_list_en');
+                });
+
+                Route::prefix('sozluk')->group(function(){
+                    Route::get('/', 'index')->name('list');
                     Route::get('/{id?}', 'detail')->name('detail');
+                    Route::get('etiket/{title?}', 'tag_list')->name('tag_list');
                     Route::get('ara/{id?}', 'searchPost')->name('searchPost');
+                    });
                 });
 
             // COMPANY CONTROLLER
-            Route::controller(FrontendCompanyController::class)
-                ->prefix('firma')
-                ->name('company.')
-                ->group(function () {
-                    Route::get('liste', 'index')->name('list');
+            Route::controller(FrontendCompanyController::class)->name('company.')->group(function () {
+                Route::get('firma', 'index')->name('list');
+                Route::get('company', 'index')->name('list_en');
+                Route::prefix('firma')->group(function(){
                     Route::get('/{id?}', 'detail')->name('detail');
+                    });
                 });
 
             // ABOUT CONTROLLER
-            Route::controller(FrontendAboutController::class)
-                ->prefix('hakkimizda')
-                ->name('about.')
-                ->group(function () {
-                    Route::get('/', 'detail')->name('detail');
-                });
+            Route::get('/hakkimizda',[FrontendAboutController::class,'detail'])->name('about.detail');
+            Route::get('/about',[FrontendAboutController::class,'detail'])->name('about.detail_en');
 
-            // ABOUT CONTROLLER
-            Route::controller(FrontendAboutController::class)
-                ->prefix('hakkimizda')
-                ->name('about.')
-                ->group(function () {
-                    Route::get('/', 'detail')->name('detail');
-                });
-
-            // PAGE CONTROLLER
-            Route::controller(FrontendPageController::class)
-                ->name('page.')->prefix('sayfa')
-                ->group(function () {
-                    Route::get('/{id?}', 'detail')->name('detail');
-                });
+            Route::get('iletisim', [FrontendContactController::class, 'contact'])->name('contact');
+            Route::get('contact', [FrontendContactController::class, 'contact'])->name('contact_en');
+            Route::get('kunye', [FrontendKunyeController::class, 'index'])->name('kunye');
+            Route::get('publisher', [FrontendKunyeController::class, 'index'])->name('kunye_en');
+            
 
             // Archive CONTROLLER
-            Route::controller(ArchiveController::class)
-                ->prefix('haber')
-                ->name('archive.')
-                ->group(function () {
-                    Route::get('/arsiv', 'index')->name('index');
-                    Route::get('/filter', 'filterArchive')->name('filterArchive');
-                });
+            Route::get('haber-arsiv',[ArchiveController::class,'index'])->name('archive.index');
+            Route::get('news-archive',[ArchiveController::class,'index'])->name('archive.index_en');
+            Route::get('/filter',[ArchiveController::class,'filterArchive'])->name('archive.filterArchive');
+
+            // PAGE CONTROLLER
+            Route::controller(FrontendPageController::class)->name('page.')->prefix('sayfa')->group(function () {
+                Route::get('/{id?}', 'detail')->name('detail');
+            });
 
             // anket frontend
-            Route::controller(FrontendAnketController::class)
-                ->prefix('anket')
-                ->name('anket.')
-                ->group(function () {
+            Route::controller(FrontendAnketController::class)->prefix('anket')->name('anket.')->group(function () {
                     Route::post('ekle', 'anketStore')->name('store');
                 });
 
-            Route::get('iletisim', [FrontendContactController::class, 'contact'])->name('contact');
-            Route::get('kunye', [FrontendKunyeController::class, 'index'])->name('kunye');
+            
 
             // yazar detay
             Route::get('yazar/{id?}',[AuthorController::class,'detail'])->name('author.detail');

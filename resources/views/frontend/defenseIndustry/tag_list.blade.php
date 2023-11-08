@@ -75,14 +75,14 @@
                                 <div class="col-md-6 wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
                                     <div class="rt-post-overlay rt-post-overlay-md layout-6">
                                         <div class="post-img">
-                                            <a href="{{route('front.defenseIndustryContent.detail',$item->link)}}" class="img-link">
+                                            <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.defenseIndustryContent.detail',$item->link)) : (route('front.defenseIndustryContent.detail_en',$item->link))}}" class="img-link">
                                                 <img src="/{{$item->image}}" alt="post-xl_37" width="900"
                                                     height="600">
                                             </a>
                                         </div>
                                         <div class="post-content">
                                             <h3 class="post-title">
-                                                <a href="{{route('front.defenseIndustryContent.detail',$item->link)}}">
+                                                <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.defenseIndustryContent.detail',$item->link)) : (route('front.defenseIndustryContent.detail_en',$item->link))}}">
                                                     {{$item->title}}
                                                 </a>
                                             </h3>
@@ -160,7 +160,7 @@
                                                     height="491">
                                                 <div class="item-content">
                                                     <h4 class="title" style="font-size: 13px">
-                                                        <a href="{{ route('front.defenseIndustrySubCategory.list2', $item->link) }}"> {{$item->title}} </a>
+                                                        <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.defenseIndustrySubCategory.list2', $item->link)) : (route('front.defenseIndustrySubCategory.list2_en', $item->link)) }}"> {{$item->title}} </a>
                                                     </h4>
                                                     <p class="count">
                                                         <span class="anim-overflow"> ({{$item->adet()}}) </span>

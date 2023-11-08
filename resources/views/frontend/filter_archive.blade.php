@@ -4,11 +4,11 @@
         <div class="rt-post post-md style-9 grid-meta">
             <div class="post-content">
                 @if (isset($item->Category()[0]))
-                    <a href="{{ route('front.currentNewsCategory.list', $item->Category()[0]->link) }}"
+                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNewsCategory.list', $item->Category()[0]->link)) : (route('front.currentNewsCategory.list_en', $item->Category()[0]->link)) }}"
                         class="rt-cat-primary">{{ $item->Category()[0]->title }}</a>
                 @endif
                 <h3 class="post-title">
-                    <a href="{{ route('front.currentNews.detail', $item->link) }}"
+                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNews.detail', $item->link)) : (route('front.currentNews.detail_en', $item->link)) }}"
                         class="restricted_title">
                         {{ $item->title }}
                     </a>
@@ -37,16 +37,11 @@
                                 1050
                             </span>
                         </li>
-                        <li>
-                            <span class="rt-meta">
-                                <i class="fas fa-share-alt icon"></i>
-                                50
-                            </span>
-                        </li>
+                        
                     </ul>
                 </div>
                 <div class="btn-wrap mt--25">
-                    <a href="{{ route('front.currentNews.detail', $item->link) }}"
+                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNews.detail', $item->link)) : (route('front.currentNews.detail_en', $item->link)) }}"
                         class="rt-read-more qodef-button-animation-out">
                         {{ __('message.daha fazla oku') }}
                         <svg width="34px" height="16px" viewBox="0 0 34.53 16"
@@ -64,7 +59,7 @@
                 </div>
             </div>
             <div class="post-img">
-                <a href="{{ route('front.currentNews.detail', $item->link) }}">
+                <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNews.detail', $item->link)) : (route('front.currentNews.detail_en', $item->link)) }}">
                     <img src="/{{ $item->image != null ? $item->image : 'url (assets/frontend/media/gallery/post-lg_40.jpg)' }}"
                         alt="{{ $item->title }}" width="696" height="491">
                 </a>

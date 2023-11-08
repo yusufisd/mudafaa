@@ -86,7 +86,7 @@
                         </li>
                         @if ($data->category_id != null)
                             <li class="breadcrumb-item">
-                                <a href="{{ route('front.currentNewsCategory.list', $data->Category()[0]->link) }}">
+                                <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNewsCategory.list', $data->Category()[0]->link)) : (route('front.currentNewsCategory.list_en', $data->Category()[0]->link)) }}">
                                     {{ $data->Category()[0]->title }}
                                 </a>
                             </li>
@@ -320,7 +320,7 @@
                                                 <div class="next-prev-wrap">
                                                     <div class="item-icon">
                                                         <a
-                                                            href="{{ route('front.currentNews.detail', $previous_data->link) }}">
+                                                            href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNews.detail', $previous_data->link)) : (route('front.currentNews.detail_en', $previous_data->link)) }}">
                                                             <i class="fas fa-chevron-left"></i>
                                                             {{ __('message.önceki haber') }}
                                                         </a>
@@ -328,7 +328,7 @@
                                                     <div class="content">
                                                         <h4 class="title">
                                                             <a
-                                                                href="{{ route('front.currentNews.detail', $previous_data->link) }}">
+                                                                href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNews.detail', $previous_data->link)) : (route('front.currentNews.detail_en', $previous_data->link)) }}">
                                                                 {{ $previous_data->title }}
                                                             </a>
                                                         </h4>
@@ -348,7 +348,7 @@
                                                 <div class="next-prev-wrap next-wrap">
                                                     <div class="item-icon">
                                                         <a
-                                                            href="{{ route('front.currentNews.detail', $next_data->link) }}">
+                                                            href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNews.detail', $next_data->link)) : (route('front.currentNews.detail_en', $next_data->link)) }}">
                                                             {{ __('message.sonraki haber') }}
                                                             <i class="fas fa-chevron-right"></i>
                                                         </a>
@@ -356,7 +356,7 @@
                                                     <div class="content">
                                                         <h4 class="title">
                                                             <a
-                                                                href="{{ route('front.currentNews.detail', $next_data->link) }}">
+                                                                href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNews.detail', $next_data->link)) : (route('front.currentNews.detail_en', $next_data->link)) }}">
                                                                 {{ $next_data->title }}
                                                             </a>
                                                         </h4>
@@ -593,7 +593,7 @@
                                                         <div class="rt-post-grid grid-meta">
                                                             <div class="post-img">
                                                                 <a
-                                                                    href="{{ route('front.currentNews.detail', $single->link) }}">
+                                                                    href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNews.detail', $single->link)) : (route('front.currentNews.detail_en', $single->link)) }}">
                                                                     <img style="object-fit:cover"
                                                                         src="/{{ $single->image }}" alt="post"
                                                                         width="551" height="431">
@@ -602,11 +602,11 @@
                                                             @if (isset($single->Category()[0]))
                                                                 <div class="post-content">
                                                                     <a style="background-color: {{ $single->Category()[0]->color_code != null ? $single->Category()[0]->color_code : '' }}"
-                                                                        href="{{ route('front.currentNewsCategory.list', $single->Category()[0]->link) }}"
+                                                                        href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNewsCategory.list', $single->Category()[0]->link)) : (route('front.currentNewsCategory.list_en', $single->Category()[0]->link)) }}"
                                                                         class="rt-cat-primary sidebar_restricted_category_title">
                                                                         {{ $single->Category()[0]->title }} </a>
                                                                     <h4 class="post-title">
-                                                                        <a href="{{ route('front.currentNews.detail', $single->link) }}"
+                                                                        <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNews.detail', $single->link)) : (route('front.currentNews.detail_en', $single->link)) }}"
                                                                             class="restricted_title_2">
                                                                             {{ $single->title }}
                                                                         </a>
@@ -729,7 +729,7 @@
                                         <div class="item">
                                             <div class="rt-post post-sm style-1">
                                                 <div class="post-img">
-                                                    <a href="{{ route('front.currentNews.detail', $item->link) }}">
+                                                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNews.detail', $item->link)) : (route('front.currentNews.detail_en', $item->link)) }}">
                                                         <img style="object-fit:cover" src="/{{ $item->image }}"
                                                             alt="post" width="100" height="100">
                                                     </a>
@@ -737,7 +737,7 @@
                                                 <div class="post-content ms-4">
                                                     
                                                     <h4 class="post-title">
-                                                        <a href="{{ route('front.currentNews.detail', $item->link) }}"
+                                                        <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNews.detail', $item->link)) : (route('front.currentNews.detail_en', $item->link)) }}"
                                                             class="sidebar_restricted_title">
                                                             {{ $item->title }}
                                                         </a>

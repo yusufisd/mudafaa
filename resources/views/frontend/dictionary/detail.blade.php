@@ -57,7 +57,7 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{ route('front.dictionary.list') }}">
+                            <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.dictionary.list')) : (route('front.dictionary.list_en')) }}">
                                 SS Sözlüğü
                             </a>
                         </li>
@@ -215,7 +215,7 @@
                                 <div class="slide-item">
                                     <div class="rt-post-grid grid-meta">
                                         <div class="post-img">
-                                            <a href="{{ route('front.dictionary.detail', $item->link) }}">
+                                            <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.dictionary.detail', $item->link)) : (route('front.dictionary.detail_en', $item->link)) }}">
                                                 <img src="/{{ $item->image == null ? 'media/gallery/post-xl_31.jpg' : $item->image }}"
                                                     alt="post" width="551" height="431">
                                             </a>
@@ -223,7 +223,7 @@
                                         <div class="post-content">
 
                                             <h3 class="post-title">
-                                                <a href="{{ route('front.dictionary.detail', $item->link) }}">
+                                                <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.dictionary.detail', $item->link)) : (route('front.dictionary.detail_en', $item->link)) }}">
                                                     {{ $item->title }}
                                                 </a>
                                             </h3>

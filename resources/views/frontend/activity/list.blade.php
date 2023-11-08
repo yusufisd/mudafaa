@@ -166,14 +166,14 @@
                                     <div class="col-md-4">
                                         <div class="rt-post-grid grid-meta">
                                             <div class="post-img">
-                                                <a href="{{ route('front.activity.detail', $item->link) }}">
+                                                <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.activity.detail', $item->link)) : (route('front.activity.detail_en', $item->link)) }}">
                                                     <img src="/{{ $item->image == null ? 'media/gallery/post-md_42.jpg' : $item->image }}"
                                                         alt="post" width="551" height="431">
                                                 </a>
                                             </div>
                                             <div class="post-content">
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <a href="{{ route('front.activity.categoryDetail', $item->Category->link) }}"
+                                                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.activity.categoryDetail', $item->Category->link)) : (route('front.activity.categoryDetail_en', $item->Category->link)) }}"
                                                         class="rt-cat-primary restricted_category_title">
                                                         {{ $item->Category->title }} </a>
                                                     @if ($item->sayac_yil() || $item->sayac_ay() || $item->sayac_gun())
@@ -185,7 +185,7 @@
                                                     @endif
                                                 </div>
                                                 <h4 class="post-title">
-                                                    <a href="{{ route('front.activity.detail', $item->link) }}">
+                                                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.activity.detail', $item->link)) : (route('front.activity.detail_en', $item->link)) }}">
                                                         {{ $item->title }}
                                                     </a>
                                                 </h4>
@@ -240,7 +240,7 @@
                                 </h2>
 
                                 <div>
-                                    <h6><a href="{{ route('front.activity.categoryDetail', $data->link) }}">
+                                    <h6><a href="{{ \Session::get('applocale') == 'tr' ? (route('front.activity.categoryDetail', $data->link)) : (route('front.activity.categoryDetail_en', $data->link)) }}">
                                             {{ __('message.tümünü gör') }} </a></h6>
                                 </div>
                             </div>
@@ -253,13 +253,13 @@
                                         <div class="col-md-4">
                                             <div class="rt-post-grid grid-meta">
                                                 <div class="post-img">
-                                                    <a href="{{ route('front.activity.detail', $item->link) }}">
+                                                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.activity.detail', $item->link)) : (route('front.activity.detail_en', $item->link)) }}">
                                                         <img src="/{{ $item->image == null ? 'media/gallery/post-md_42.jpg' : $item->image }}"
                                                             alt="post" width="551" height="431">
                                                     </a>
                                                 </div>
                                                 <div class="post-content">
-                                                    <a href="{{ route('front.activity.categoryDetail', $item->Category->link) }}"
+                                                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.activity.categoryDetail', $item->Category->link)) : (route('front.activity.categoryDetail_en', $item->Category->link)) }}"
                                                         class="rt-cat-primary sidebar_restricted_category_title">
                                                         {{ $item->Category->title }} </a>
                                                     @if ($item->sayac_yil() || $item->sayac_ay() || $item->sayac_gun())
@@ -270,7 +270,7 @@
                                                         </h6>
                                                     @endif
                                                     <h4 class="post-title">
-                                                        <a href="{{ route('front.activity.detail', $item->link) }}">
+                                                        <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.activity.detail', $item->link)) : (route('front.activity.detail_en', $item->link)) }}">
                                                             {{ $item->title }}
                                                         </a>
                                                     </h4>

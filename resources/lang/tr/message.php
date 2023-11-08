@@ -105,7 +105,12 @@ return [
     "Savunma sanayii ve teknolojideki en güncel haberler ve analizler doğrudan e-posta kutunuza gelsin. Bilgiye bir adım daha yakın olun. E-posta adresinizi aşağıya girerek bültenimize abone olabilirsiniz." => "Savunma sanayii ve teknolojideki en güncel haberler ve analizler doğrudan e-posta kutunuza gelsin. Bilgiye bir adım daha yakın olun. E-posta adresinizi aşağıya girerek bültenimize abone olabilirsiniz.",
     "Abone ol" => "Abone ol",
     "Milli Müdafa'nın güncel haberlerini takip etmek için E-posta adresiniz ile bültenimize kayıt olun." => "Milli Müdafa'nın güncel haberlerini takip etmek için E-posta adresiniz ile bültenimize kayıt olun.",
-    "Kişisel Verilerin İşlenmesi Aydınlatma Metni'ni okudum kabul ediyorum." => "Kişisel Verilerin İşlenmesi Aydınlatma Metni'ni okudum kabul ediyorum."
+    "Kişisel Verilerin İşlenmesi Aydınlatma Metni'ni okudum kabul ediyorum." => "Kişisel Verilerin İşlenmesi Aydınlatma Metni'ni okudum kabul ediyorum.",
+    "arşiv" => "Arşiv",
+    "tarih seçiniz" => "Tarih seçiniz",
+    "kategori seçiniz" => "Kategori seçiniz",
+    "Arama sonuçları" => "Arama sonuçları",
+
 
 
 ];

@@ -70,7 +70,7 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{ route('front.interview.list') }}">
+                            <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.interview.list')) : (route('front.interview.list_en')) }}">
                                 Röportajlar
                             </a>
                         </li>

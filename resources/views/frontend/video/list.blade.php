@@ -50,7 +50,7 @@
                                 </h2>
 
                                 <div>
-                                    <h6><a href="{{ route('front.video.category_list',$cat->link) }}">{{ __('message.tümünü gör')}}</a></h6>
+                                    <h6><a href="{{ \Session::get('applocale') == 'tr' ? (route('front.video.category_list',$cat->link)) : route('front.video.category_list_en',$cat->link) }}">{{ __('message.tümünü gör')}}</a></h6>
                                 </div>
                             </div>
                             <!-- end titile-wrapper -->

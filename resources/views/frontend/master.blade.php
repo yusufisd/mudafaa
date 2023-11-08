@@ -240,7 +240,7 @@
 
                                                     @foreach (currentCats() as $item)
                                                         <li><a
-                                                                href="{{ route('front.currentNewsCategory.list', $item->link) }}">
+                                                                href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNewsCategory.list', $item->link)) : (route('front.currentNewsCategory.list_en', $item->link)) }}">
                                                                 {{ $item->title }} </a></li>
                                                     @endforeach
 
@@ -255,7 +255,7 @@
 
                                                     @foreach (defenseIndustryCat() as $item)
                                                         <li><a
-                                                                href="{{ route('front.defenseIndustryCategory.list', $item->link) }}">
+                                                                href="{{ \Session::get('applocale') == 'tr' ? (route('front.defenseIndustryCategory.list', $item->link)) : (route('front.defenseIndustryCategory.list_en', $item->link)) }}">
                                                                 {{ $item->title }} </a>
                                                         </li>
                                                     @endforeach
@@ -264,22 +264,22 @@
                                             </li>
                                             <li
                                                 class="{{ Route::is('front.activity.detail') || Route::is('front.activity.list') || Route::is('front.activity.detail') ? 'active' : '' }}">
-                                                <a class="animation" href="{{ route('front.activity.list') }}">
+                                                <a class="animation" href="{{ \Session::get('applocale') == 'tr' ? (route('front.activity.list')) : (route('front.activity.list_en')) }}">
                                                     {{ __('message.etkinlikler') }} </a>
                                             </li>
                                             <li
                                                 class="{{ Route::is('front.interview.list') || Route::is('front.interview.detail') ? 'active' : '' }}">
-                                                <a class="animation" href="{{ route('front.interview.list') }}">
+                                                <a class="animation" href="{{ \Session::get('applocale') == 'tr' ? (route('front.interview.list')) : (route('front.interview.list_en')) }}">
                                                     {{ __('message.röportajlar') }} </a>
                                             </li>
                                             <li
                                                 class="{{ Route::is('front.company.list') || Route::is('front.company.detail') ? 'active' : '' }}">
-                                                <a class="animation" href="{{ route('front.company.list') }}">
+                                                <a class="animation" href="{{ \Session::get('applocale') == 'tr' ? (route('front.company.list')) : (route('front.company.list_en')) }}">
                                                     {{ __('message.firmalar') }} </a>
                                             </li>
                                             <li
                                                 class="{{ Route::is('front.dictionary.list') || Route::is('front.dictionary.detail') ? 'active' : '' }}">
-                                                <a class="animation" href="{{ route('front.dictionary.list') }}">
+                                                <a class="animation" href="{{ \Session::get('applocale') == 'tr' ? (route('front.dictionary.list')) : (route('front.dictionary.list_en')) }}">
                                                     {{ __('message.ss sözlüğü') }}
                                                 </a>
                                             </li>
@@ -348,7 +348,7 @@
                                         <ul class="main-menu__dropdown sub-menu">
                                             @foreach (currentCats() as $item)
                                                 <li><a
-                                                        href="{{ route('front.currentNewsCategory.list', $item->id) }}">
+                                                        href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNewsCategory.list', $item->id)) : (route('front.currentNewsCategory.list_en', $item->id)) }}">
                                                         {{ $item->title }} </a></li>
                                             @endforeach
                                         </ul>
@@ -360,20 +360,20 @@
                                         <ul class="main-menu__dropdown sub-menu">
                                             @foreach (defenseIndustryCat() as $item)
                                                 <li><a
-                                                        href="{{ route('front.defenseIndustryCategory.list', $item->id) }}">
+                                                        href="{{ \Session::get('applocale') == 'tr' ? (route('front.defenseIndustryCategory.list', $item->link)) : (route('front.defenseIndustryCategory.list_en', $item->link)) }}">
                                                         {{ $item->title }} </a>
                                                 </li>
                                             @endforeach
                                         </ul>
                                     </li>
-                                    <li><a class="animation" href="{{ route('front.activity.list') }}">
+                                    <li><a class="animation" href="{{ \Session::get('applocale') == 'tr' ? (route('front.activity.list')) : (route('front.activity.list_en')) }}">
                                             {{ __('message.etkinlikler') }} </a></li>
-                                    <li><a class="animation" href="{{ route('front.interview.list') }}">
+                                    <li><a class="animation" href="{{ \Session::get('applocale') == 'tr' ? (route('front.interview.list')) : (route('front.interview.list_en')) }}">
                                             {{ __('message.röportajlar') }} </a></li>
-                                    <li><a class="animation" href="{{ route('front.company.list') }}">
+                                    <li><a class="animation" href="{{ \Session::get('applocale') == 'tr' ? (route('front.company.list')) : (route('front.company.list_en')) }}">
                                             {{ __('message.firmalar') }} </a>
                                     </li>
-                                    <li><a class="animation" href="{{ route('front.dictionary.list') }}">
+                                    <li><a class="animation" href="{{ \Session::get('applocale') == 'tr' ? (route('front.dictionary.list')) : (route('front.dictionary.list_en')) }}">
                                             {{ __('message.ss sözlüğü') }} </a></li>
                                     <li><a class="animation" href="{{ route('front.video.list') }}">
                                             {{ __('message.videolar') }} </a></li>
@@ -479,7 +479,7 @@
                                             <!-- <h3 class="footer-widget-title">Diğer</h3> -->
                                             <ul class="widget-list cat-list">
                                                 <li class="widget-list-item">
-                                                    <a href="{{ route('front.about.detail') }}"
+                                                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.about.detail')) : (route('front.about.detail_en'))  }}"
                                                         class="widget-list-link">
                                                         {{ __('message.hakkımızda') }}
                                                     </a>
@@ -521,7 +521,7 @@
                                                     </a>
                                                 </li>
                                                 <li class="widget-list-item">
-                                                    <a href="{{ route('front.archive.index') }}"
+                                                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.archive.index')) : (route('front.archive.index_en')) }}"
                                                         class="widget-list-link">
                                                         Arşiv
                                                     </a>

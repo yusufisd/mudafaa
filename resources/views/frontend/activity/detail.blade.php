@@ -334,16 +334,16 @@
                                 <div class="slide-item">
                                     <div class="rt-post-grid grid-meta">
                                         <div class="post-img">
-                                            <a href="{{ route('front.activity.detail', $item->link) }}">
+                                            <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.activity.detail', $item->link)) : (route('front.activity.detail_en', $item->link)) }}">
                                                 <img src="/{{ $item->image == null ? 'media/gallery/post-md_42.jpg' : $item->image }}"
                                                     alt="post" width="551" height="431">
                                             </a>
                                         </div>
                                         <div class="post-content">
-                                            <a href="{{ route('front.activity.categoryDetail', $item->Category->link) }}"
+                                            <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.activity.categoryDetail', $item->Category->link)) : route('front.activity.categoryDetail_en', $item->Category->link) }}"
                                                 class="rt-cat-primary sidebar_restricted_category_title">{{ $item->Category->title }}</a>
                                             <h3 class="post-title">
-                                                <a href="{{ route('front.activity.detail', $item->link) }}">
+                                                <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.activity.detail', $item->link)) : (route('front.activity.detail_en', $item->link)) }}">
                                                     {{ $item->title }}
                                                 </a>
                                             </h3>

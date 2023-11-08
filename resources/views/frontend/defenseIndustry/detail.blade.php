@@ -56,7 +56,7 @@
                         </li>
                         @if ($data->GeneralCategory->link != null)
                             <li class="breadcrumb-item">
-                                <a href="{{ route('front.defenseIndustryCategory.list', $data->GeneralCategory->link) }}">
+                                <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.defenseIndustryCategory.list', $data->GeneralCategory->link)) : (route('front.defenseIndustryCategory.list_en', $data->GeneralCategory->link)) }}">
                                     {{ $data->GeneralCategory->title }}
                                 </a>
                             </li>
@@ -302,7 +302,7 @@
                                             <h4 class="block-tile mb--20">Popüler Etiketler:</h4>
                                             <div class="tag-list">
                                                 @foreach ($data->getKeys() as $key)
-                                                    <a href="{{ route('front.defenseIndustryCategory.tag_list', $key) }}"
+                                                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.defenseIndustryCategory.tag_list', $key)) : (route('front.defenseIndustryCategory.tag_list_en', $key)) }}"
                                                         class="tag-link" style="text-transform: capitalize">
                                                         {{ $key }} </a>
                                                 @endforeach
@@ -428,7 +428,7 @@
                                         </div>
                                         <div class="post-content">
                                             @if (isset($item->GeneralCategory->link))
-                                                <a href="{{ route('front.defenseIndustryCategory.list', $item->GeneralCategory->link) }}"
+                                                <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.defenseIndustryCategory.list', $item->GeneralCategory->link)) : (route('front.defenseIndustryCategory.list_en', $item->GeneralCategory->link)) }}"
                                                     class="rt-cat-primary">{{ substr($item->GeneralCategory->title, 0, 20) }}...</a>
                                             @endif
                                             <h3 class="post-title">

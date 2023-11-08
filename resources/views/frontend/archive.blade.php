@@ -37,7 +37,7 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            Arşiv
+                            {{ __('message.arşiv') }}
                         </li>
                     </ol>
                 </nav>
@@ -53,7 +53,7 @@
                         <div class="rt-left-sidebar-sapcer-5">
                             <div class="titile-wrapper mb--40">
                                 <h2 class="rt-section-heading flex-grow-1 mb-0 me-3">
-                                    <span class="rt-section-text">Arşiv </span>
+                                    <span class="rt-section-text">{{ __('message.arşiv') }} </span>
                                     <span class="rt-section-dot"></span>
                                     <span class="rt-section-line"></span>
                                 </h2>
@@ -63,7 +63,7 @@
                                 <ul class="nav rt-tab-menu" id="myTab" role="tablist">
                                     <li class="menu-item" role="presentation" style="margin-right: 0.25rem;">
                                         <select class="form-select form-select" aria-label="Default select example" id="time" onchange="select_cat()">
-                                            <option value="all" selected>Tarih Seçiniz</option>
+                                            <option value="all" selected>{{ __('message.tarih seçiniz') }}</option>
                                             @foreach ($dates as $date)
                                                 @foreach ($date as $key => $month)
                                                 @if($key == 0) @continue @endif
@@ -75,7 +75,7 @@
                                     </li>
                                     <li class="menu-item" role="presentation">
                                         <select onchange="select_cat()" class="form-select form-select" id="cat" aria-label="Default select example">
-                                            <option value="all">Kategori Seçiniz</option>
+                                            <option value="all">{{ __('message.kategori seçiniz') }}</option>
 
                                             @foreach ($cats as $cat)
                                                 <option {{ request()->c == $cat->id ? 'selected' : '' }} value="{{ $cat->id }}" > {{ $cat->title }} </option>
@@ -94,11 +94,11 @@
                                         <div class="rt-post post-md style-9 grid-meta">
                                             <div class="post-content">
                                                 @if (isset($item->Category()[0]))
-                                                    <a href="{{ route('front.currentNewsCategory.list', $item->Category()[0]->link) }}"
+                                                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNewsCategory.list', $item->Category()[0]->link)) : (route('front.currentNewsCategory.list_en', $item->Category()[0]->link)) }}"
                                                         class="rt-cat-primary">{{ $item->Category()[0]->title }}</a>
                                                 @endif
                                                 <h3 class="post-title">
-                                                    <a href="{{ route('front.currentNews.detail', $item->link) }}"
+                                                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNews.detail', $item->link)) : (route('front.currentNews.detail_en', $item->link)) }}"
                                                         class="restricted_title">
                                                         {{ $item->title }}
                                                     </a>
@@ -126,16 +126,11 @@
                                                                 {{ $item->view_counter }}
                                                             </span>
                                                         </li>
-                                                        <li>
-                                                            <span class="rt-meta">
-                                                                <i class="fas fa-share-alt icon"></i>
-                                                                50
-                                                            </span>
-                                                        </li>
+                                                        
                                                     </ul>
                                                 </div>
                                                 <div class="btn-wrap mt--25">
-                                                    <a href="{{ route('front.currentNews.detail', $item->link) }}"
+                                                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNews.detail', $item->link)) : (route('front.currentNews.detail_en', $item->link)) }}"
                                                         class="rt-read-more qodef-button-animation-out">
                                                         {{ __('message.daha fazla oku') }}
                                                         <svg width="34px" height="16px" viewBox="0 0 34.53 16"
@@ -153,7 +148,7 @@
                                                 </div>
                                             </div>
                                             <div class="post-img">
-                                                <a href="{{ route('front.currentNews.detail', $item->link) }}">
+                                                <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNews.detail', $item->link)) : (route('front.currentNews.detail_en', $item->link)) }}">
                                                     <img src="/{{ $item->image != null ? $item->image : 'url (assets/frontend/media/gallery/post-lg_40.jpg)' }}"
                                                         alt="{{ $item->title }}" width="696" height="491">
                                                 </a>
@@ -211,7 +206,7 @@
                                             <div class="rt-post-grid post-grid-md grid-meta">
                                                 <div class="post-content">
                                                     @if (isset($item->Category()[0]))
-                                                        <a href="{{ route('front.currentNewsCategory.list', $item->Category()[0]->link) }}"
+                                                        <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNewsCategory.list', $item->Category()[0]->link)) : (route('front.currentNewsCategory.list_en', $item->Category()[0]->link)) }}"
                                                             class="rt-cat-primary sidebar_restricted_category_title">
                                                             {{ $item->Category()[0]->title }} </a>
                                                     @endif
