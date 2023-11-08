@@ -735,7 +735,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="post-content ms-4">
-                                                    <a style="background-color: {{ $item->Category() != null ? ($item->Category()[0]->color_code != null ? $item->Category()[0]->color_code : '') : '' }}"
+                                                    <a style="background-color: {{ isset($item->Category()) ? ($item->Category()[0]->color_code != null ? $item->Category()[0]->color_code : '') : '' }}"
                                                         href="{{ route('front.currentNewsCategory.list', $item->Category()[0]->link) }}"
                                                         class="rt-cat-primary sidebar_restricted_category_title">
                                                         {{ $item->Category()[0]->title }} </a>
