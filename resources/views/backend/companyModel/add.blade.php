@@ -524,11 +524,8 @@
                                                 </li>
                                             </ul>
                                             <div class="test" style="margin:2%; text-align:right">
-                                                <a href="{{ route('admin.companyIcon.list') }}">
-                                                    <button type="button" style="color:white"
-                                                        class="btn btn-secondary btn-sm">İKONLAR</button>
-                                                </a>
-                                                <a href="{{ route('admin.companySubTitle.list') }}">
+                                                
+                                                <a href="{{ route('admin.titleIcon.list') }}">
                                                     <button type="button" style="color:white"
                                                         class="btn btn-secondary btn-sm">BAŞLIKLAR</button>
                                                 </a>
@@ -541,28 +538,20 @@
 
                                                     <div class="row ikonss" style="padding: 1%;margin-left:0; "
                                                         id="show_item">
-                                                        <div class="col-md-3"
-                                                            style="overflow-x:auto; height:50px; display:flex; justify-content:flex-start">
-                                                            @foreach ($icons as $icon)
-                                                                <input type="radio" name="company_icon[0]"
-                                                                    value="{{ $icon->id }}"
-                                                                    id="{{ $icon->id }}">
-                                                                    &nbsp;
-                                                                <label style="font-size:20px!important"
-                                                                    for="{{ $icon->id }}">{!! $icon->icon !!}</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                            @endforeach
-                                                        </div>
-                                                        <div class="col-md-4">
+
+                                                        
+                                                        
+                                                        <div class="col-md-5">
                                                             <div class="col-lg-11 fv-row">
-                                                                <select name="company_title[]" class="form-select form-control-solid mb-lg-0 mb-3" id="">
-                                                                    <option value="">Lütfen başlık seçin</option>
-                                                                    @foreach ($titles as $title)
-                                                                    <option value="{{ $title->id }}">{{ $title->title }}</option>
+                                                                <select name="company_title[]" class="form-select form-control-solid" id="">
+                                                                    <option value="">Lütfen seçin</option>
+                                                                    @foreach ($title_tr as $title)
+                                                                        <option value="{{ $title->id }}">{{ $title->title_tr }}</option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-6">
                                                             <div class="col-lg-11 fv-row">
                                                                 <input type="text" placeholder="Açıklama"
                                                                     class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
@@ -580,28 +569,19 @@
 
                                                     <div class="row" style="padding: 1%;margin-left:0"
                                                         id="show_item_en">
-                                                        <div class="col-md-3"
-                                                            style="overflow-x:auto; height:50px; display:flex; justify-content:flex-start">
-                                                            @foreach ($icons as $icon)
-                                                                <input type="radio" name="company_icon_en[0]"
-                                                                    value="{{ $icon->id }}"
-                                                                    id="{{ $icon->id }}">
-                                                                    &nbsp;
-                                                                <label style="font-size:20px!important"
-                                                                    for="{{ $icon->id }}">{!! $icon->icon !!}</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                            @endforeach
-                                                        </div>
-                                                        <div class="col-md-4">
+                                                        
+                                                        
+                                                        <div class="col-md-5">
                                                             <div class="col-lg-11 fv-row">
-                                                                <select name="company_title_en[]" class="form-select form-control-solid mb-lg-0 mb-3" id="">
-                                                                    <option value="">Lütfen başlık seçin</option>
-                                                                    @foreach ($titles as $title)
-                                                                    <option value="{{ $title->id }}">{{ $title->title }}</option>
+                                                                <select name="company_title_en[]" class="form-select form-control-solid" id="">
+                                                                    <option value="">Lütfen seçin</option>
+                                                                    @foreach ($title_tr as $title)
+                                                                        <option value="{{ $title->id }}">{{ $title->title_en }}</option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-6">
                                                             <div class="col-lg-11 fv-row">
                                                                 <input type="text" placeholder="Açıklama"
                                                                     class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
@@ -609,7 +589,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-1"
-                                                            style="text-align: right;padding-right:0;padding-left:0">
+                                                        style="text-align: right;padding-right:0;padding-left:0">
                                                             <button style="width:100%" style="text-align: right"
                                                                 class="btn btn-primary btn-sm add_item_buton_en">EKLE</button>
                                                         </div>
@@ -1011,34 +991,23 @@
     <script>
         $(document).ready(function() {
             $(".add_item_buton").click(function(e) {
-                let labels = '';
-                let rand = 0;
-                let index = document.getElementsByClassName('ikonss').length;
-                @foreach ($icons as $icon)
-                    index = document.getElementsByClassName('ikonss').length;
-                    rand = Math.floor(Math.random() * 1000);
-                    labels = labels + '<input type="radio" value="{{ $icon->id }}" name="company_icon['+ index +']" id="'+ index + "_" + rand +'"> &nbsp;\
-                            <label\
-                                for="' + index + "_" + rand + '">{!! $icon->icon !!}</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-                @endforeach
+                
                 e.preventDefault();
                 $("#show_item").append('<div class="row ikonss pt-10"  style="margin-left:0" id="show_item">\
-                    <div class="col-md-3" style="overflow-x:auto; height:50px; display:flex; justify-content:flex-start">'
-                        + labels + '</div>\
-                        <div class="col-md-4">\
+                    <div class="col-md-5">\
                         <div class="col-lg-11 fv-row">\
-                            <select name="company_title[]" class="form-select form-control-solid mb-lg-0 mb-3" id="">\
-                                <option value="">Lütfen başlık seçin</option>\
-                                @foreach ($titles as $title)\
-                                <option value="{{ $title->id }}">{{ $title->title }}</option>\
+                            <select name="company_title[]" class="form-select form-control-solid" id="">\
+                                <option value="">Lütfen seçin</option>\
+                                @foreach ($title_tr as $title)\
+                                    <option value="{{ $title->id }}">{{ $title->title_tr }}</option>\
                                 @endforeach\
                             </select>\
                         </div>\
                     </div>\
-                    <div class="col-md-4">\
+                    <div class="col-md-6">\
                         <div class="col-lg-11 fv-row">\
                             <input type="text" placeholder="Açıklama"\
-                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"\
                                 name="company_description[]" id="">\
                         </div>\
                     </div>\
@@ -1059,34 +1028,23 @@
     <script>
         $(document).ready(function() {
             $(".add_item_buton_en").click(function(e) {
-                let labels = '';
-                let rand = 0;
-                let index = document.getElementsByClassName('ikonss').length;
-                @foreach ($icons as $icon)
-                    index = document.getElementsByClassName('ikonss').length;
-                    rand = Math.floor(Math.random() * 1000);
-                    labels = labels + '<input type="radio" value="{{ $icon->id }}" name="company_icon_en['+ index +']" id="'+ index + "_" + rand +'"> &nbsp;\
-                            <label\
-                                for="' + index + "_" + rand + '">{!! $icon->icon !!}</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-                @endforeach
+                
                 e.preventDefault();
                 $("#show_item_en").append('<div class="row ikonss pt-10"  style="margin-left:0" id="show_item">\
-                    <div class="col-md-3" style="overflow-x:auto; height:50px; display:flex; justify-content:flex-start">'
-                        + labels + '</div>\
-                        <div class="col-md-4">\
+                    <div class="col-md-5">\
                         <div class="col-lg-11 fv-row">\
-                            <select name="company_title_en[]" class="form-select form-control-solid mb-lg-0 mb-3" id="">\
-                                <option value="">Lütfen başlık seçin</option>\
-                                @foreach ($titles as $title)\
-                                <option value="{{ $title->id }}">{{ $title->title }}</option>\
+                            <select name="company_title_en[]" class="form-select form-control-solid" id="">\
+                                <option value="">Lütfen seçin</option>\
+                                @foreach ($title_tr as $title)\
+                                    <option value="{{ $title->id }}">{{ $title->title_en }}</option>\
                                 @endforeach\
                             </select>\
                         </div>\
                     </div>\
-                    <div class="col-md-4">\
+                    <div class="col-md-6">\
                         <div class="col-lg-11 fv-row">\
                             <input type="text" placeholder="Açıklama"\
-                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"\
                                 name="company_description_en[]" id="">\
                         </div>\
                     </div>\

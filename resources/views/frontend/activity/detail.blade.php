@@ -2,7 +2,7 @@
 @section('title', $data->title)
 @section('meta-title', $data->title)
 @section('description', $data->short_description)
-@section('simage', asset($data->image))
+@section('simage', asset($data->image) ?? asset('assets/default_act.jpeg'))
 @section('stitle', $data->title)
 @section('sdescription', $data->short_description)
 
@@ -88,7 +88,7 @@
 
         <!-- Start single-post-banner -->
         <div class="single-post-banner rt-gradient-overaly"
-            data-bg-image="/{{ $data->image == null ? 'media/banner/banner_3.jpg' : $data->image }}">
+            data-bg-image="/{{ $data->image == null ? 'assets/default_act.jpeg' : $data->image }}">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-9 col-lg-10 mx-auto">
@@ -335,7 +335,7 @@
                                     <div class="rt-post-grid grid-meta">
                                         <div class="post-img">
                                             <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.activity.detail', $item->link)) : (route('front.activity.detail_en', $item->link)) }}">
-                                                <img src="/{{ $item->image == null ? 'media/gallery/post-md_42.jpg' : $item->image }}"
+                                                <img src="/{{ $item->image == null ? 'assets/default_act.jpeg' : $item->image }}"
                                                     alt="post" width="551" height="431">
                                             </a>
                                         </div>

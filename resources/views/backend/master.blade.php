@@ -661,7 +661,7 @@
                                 <div class="menu-item">
                                     <a class="menu-link" href="{{ route('admin.currentNews.list') }}">
                                         <span class="menu-icon">
-                                            <i class="fa fa-newspaper" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-newspaper"></i>
                                         </span>
                                         <span class="menu-title"> {{ __('message.güncel') }} {{ __('message.haber') }}
                                         </span>
@@ -671,7 +671,7 @@
                                 <div class="menu-item">
                                     <a class="menu-link" href="{{ route('admin.defenseIndustryContent.list') }}">
                                         <span class="menu-icon">
-                                            <i class="fa fa-text-width" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-shield-halved"></i>
                                         </span>
                                         <span class="menu-title"> {{ __('message.savunma') }} {{ __('message.sanayi') }}
                                         </span>
@@ -681,7 +681,7 @@
                                 <div class="menu-item">
                                     <a class="menu-link" href="{{ route('admin.activity.list') }}">
                                         <span class="menu-icon">
-                                            <i class="fa fa-bars" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-calendar-days"></i>
                                         </span>
                                         <span class="menu-title"> {{ __('message.etkinlik') }} {{ __('message.yönetimi') }}
                                         </span>
@@ -691,7 +691,7 @@
                                 <div class="menu-item">
                                     <a class="menu-link" href="{{ route('admin.interview.list') }}">
                                         <span class="menu-icon">
-                                            <i class="fa fa-text-width" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-clipboard-question"></i>
                                         </span>
                                         <span class="menu-title"> {{__('message.röportaj')}} {{ __('message.yönetimi') }}
                                         </span>
@@ -701,7 +701,7 @@
                                 <div class="menu-item">
                                     <a class="menu-link" href="{{ route('admin.dictionary.list') }}">
                                         <span class="menu-icon">
-                                            <i class="fa fa-text-width" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-book"></i>
                                         </span>
                                         <span class="menu-title"> {{__('message.sözlük')}} {{ __('message.yönetimi') }}
                                         </span>
@@ -711,7 +711,7 @@
                                 <div class="menu-item">
                                     <a class="menu-link" href="{{ route('admin.video.list') }}">
                                         <span class="menu-icon">
-                                            <i class="fa fa-text-width" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-video"></i>
                                         </span>
                                         <span class="menu-title"> Video {{ __('message.yönetimi') }}
                                         </span>
@@ -721,7 +721,7 @@
                                 <div class="menu-item">
                                     <a class="menu-link" href="{{ route('admin.companyModel.list') }}">
                                         <span class="menu-icon">
-                                            <i class="fa fa-text-width" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-building"></i>
                                         </span>
                                         <span class="menu-title"> {{__('message.firma')}} {{ __('message.yönetimi') }}
                                         </span>
@@ -730,9 +730,21 @@
 
                                 <div class="menu-item">
                                     <!--begin:Menu link-->
+                                    <a class="menu-link" href="{{ route('admin.adsense.list') }}">
+                                        <span class="menu-icon">
+                                            <i class="fa-solid fa-file"></i>
+                                        </span>
+                                        <span class="menu-title"> Reklam {{ __('message.yönetimi') }}
+                                        </span>
+                                    </a>
+                                    <!--end:Menu link-->
+                                </div>
+
+                                <div class="menu-item">
+                                    <!--begin:Menu link-->
                                     <a class="menu-link" href="{{ route('admin.page.list') }}">
                                         <span class="menu-icon">
-                                            <i class="fa fa-text-width" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-file"></i>
                                         </span>
                                         <span class="menu-title"> {{__('message.sayfa')}} {{ __('message.yönetimi') }}
                                         </span>
@@ -744,7 +756,7 @@
                                     <!--begin:Menu link-->
                                     <a class="menu-link" href="{{ route('admin.anket.list') }}">
                                         <span class="menu-icon">
-                                            <i class="fa fa-text-width" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-circle-question"></i>
                                         </span>
                                         <span class="menu-title"> {{__('message.anket')}} {{ __('message.yönetimi') }}
                                         </span>

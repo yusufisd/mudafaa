@@ -29,6 +29,8 @@
     <link rel="stylesheet" type="text/css"
         href="{{ asset('assets/frontend/dependencies/magnific-popup/css/magnific-popup.css') }}">
 
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+
     <!-- Site Stylesheet -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/css/style.css') }}">
 
@@ -665,7 +667,6 @@
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @include('sweetalert::alert')
-
 
 
 </body>

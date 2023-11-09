@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\ActivityCategoryController;
 use App\Http\Controllers\Backend\ActivityController;
+use App\Http\Controllers\Backend\AdsenseController;
 use App\Http\Controllers\Backend\AnketController;
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\CompanyCategoryController;
@@ -47,6 +48,7 @@ use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\PageController as FrontendPageController;
 use App\Http\Controllers\Frontend\ContactController as FrontendContactController;
 use App\Http\Controllers\Frontend\KunyeController as FrontendKunyeController;
+use App\Http\Controllers\TitleIconController;
 
 /*
 |--------------------------------------------------------------------------
@@ -612,10 +614,12 @@ Route::middleware('lang')->group(function () {
                     Route::middleware('per:anket_delete')->get('/sil/{id?}', 'destroy')->name('destroy');
                 });
 
-                // Commpany iCON 
-                Route::controller(IconController::class)
-                ->prefix('icon')
-                ->name('companyIcon.')
+                
+
+                // title icon
+                Route::controller(TitleIconController::class)
+                ->prefix('baslik-icon')
+                ->name('titleIcon.')
                 ->group(function () {
                     Route::get('/', 'list')->name('list');
                     Route::get('/ekle', 'create')->name('add');
@@ -625,10 +629,10 @@ Route::middleware('lang')->group(function () {
                     Route::get('/sil/{id?}', 'destroy')->name('destroy');
                 });
 
-                // Commpany iCON 
-                Route::controller(CompanySubTitle::class)
-                ->prefix('sirket-baslik')
-                ->name('companySubTitle.')
+                // adsense
+                Route::controller(AdsenseController::class)
+                ->prefix('reklam')
+                ->name('adsense.')
                 ->group(function () {
                     Route::get('/', 'list')->name('list');
                     Route::get('/ekle', 'create')->name('add');

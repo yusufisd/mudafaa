@@ -22,6 +22,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\CompanyImport;
 use App\Models\CompanySubTitle;
 use App\Models\Icon;
+use App\Models\Title_Icon;
 
 class CompanyModelController extends Controller
 {
@@ -39,10 +40,10 @@ class CompanyModelController extends Controller
      */
     public function create()
     {
-        $icons = Icon::latest()->get();
+        $title_en = Title_Icon::latest()->get();
+        $title_tr = Title_Icon::latest()->get();
         $categories = CompanyCategory::latest()->get();
-        $titles = CompanySubTitle::latest()->get();
-        return view('backend.companyModel.add', compact('categories','icons','titles'));
+        return view('backend.companyModel.add', compact('categories','title_tr','title_en'));
     }
 
     /**
@@ -50,7 +51,6 @@ class CompanyModelController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
         $request->validate(
             [
                 'category' => 'required',
@@ -167,22 +167,20 @@ class CompanyModelController extends Controller
             $new_adres->company_id = $new_company->id;
             $new_adres->save();
         }
-        if ($request->company_icon[0] != null) {
-            for ($i = 0; $i < count($request->company_icon); $i++) {
+        if ($request->company_title[0] != null) {
+            for ($i = 0; $i < count($request->company_description); $i++) {
                 $new_title = new CompanyTitle();
-                $new_title->title = $request->company_title[$i];
-                $new_title->icon = $request->company_icon[$i];
+                $new_title->icon_title_id = $request->company_title[$i];
                 $new_title->description = $request->company_description[$i];
                 $new_title->company_id = $new_company->id;
                 $new_title->save();
             }
         }
-        if ($request->company_icon_en[0] != null) {
-            for ($i = 0; $i < count($request->company_icon_en); $i++) {
+        if ($request->company_title_en[0] != null) {
+            for ($i = 0; $i < count($request->company_description_en); $i++) {
                 $new_title = new EnCompanyTitle();
-                $new_title->title = $request->company_title[$i];
-                $new_title->icon = $request->company_icon[$i];
-                $new_title->description = $request->company_description[$i];
+                $new_title->icon_title_id = $request->company_title_en[$i];
+                $new_title->description = $request->company_description_en[$i];
                 $new_title->company_id = $new_company->id;
                 $new_title->save();
             }
@@ -366,21 +364,19 @@ class CompanyModelController extends Controller
         }
 
         CompanyTitle::where('company_id', $id)->delete();
-        for ($i = 0; $i < count($request->company_icon); $i++) {
+        for ($i = 0; $i < count($request->company_description); $i++) {
             if ($request->company_title[$i] == null ) continue;
             $new_title = new CompanyTitle();
-            $new_title->title = $request->company_title[$i];
-            $new_title->icon = $request->company_icon[$i];
+            $new_title->icon_title_id = $request->company_title[$i];
             $new_title->description = $request->company_description[$i];
             $new_title->company_id = $new_company->id;
             $new_title->save();
         }
         EnCompanyTitle::where('company_id', $id)->delete();
-        for ($i = 0; $i < count($request->company_icon_en); $i++) {
+        for ($i = 0; $i < count($request->company_description_en); $i++) {
             if ($request->company_title_en[$i] == null ) continue;
             $new_title = new EnCompanyTitle();
-            $new_title->title = $request->company_title_en[$i];
-            $new_title->icon = $request->company_icon_en[$i];
+            $new_title->icon_title_id = $request->company_title_en[$i];
             $new_title->description = $request->company_description_en[$i];
             $new_title->company_id = $new_company->id;
             $new_title->save();

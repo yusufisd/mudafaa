@@ -149,7 +149,7 @@
                                                     </td>
 
                                                     <td style="text-align: center">
-                                                        <img src="/{{ $item->image }}"
+                                                        <img src="/{{ $item->image != null ? $item->image : 'assets/default_act.jpeg' }}"
                                                             style="width:100px; border-radius:5%" alt="">
                                                     </td>
 

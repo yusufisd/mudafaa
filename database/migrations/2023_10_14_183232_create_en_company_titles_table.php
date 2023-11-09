@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('en_company_titles', function (Blueprint $table) {
             $table->id();
-            $table->string('icon');
-            $table->string('title');
+            $table->integer('icon_title_id');
             $table->string('description');
             $table->integer('company_id');
             $table->timestamps();

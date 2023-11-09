@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('en_company_sub_titles', function (Blueprint $table) {
+        Schema::create('title__icons', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->integer('sub_title_id');
-            $table->softDeletes();
+            $table->string('title_tr');
+            $table->string('icon_tr');
+            $table->string('title_en');
+            $table->string('icon_en');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('en_company_sub_titles');
+        Schema::dropIfExists('title__icons');
     }
 };

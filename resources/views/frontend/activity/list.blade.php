@@ -167,7 +167,7 @@
                                         <div class="rt-post-grid grid-meta">
                                             <div class="post-img">
                                                 <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.activity.detail', $item->link)) : (route('front.activity.detail_en', $item->link)) }}">
-                                                    <img src="/{{ $item->image == null ? 'media/gallery/post-md_42.jpg' : $item->image }}"
+                                                    <img src="/{{ $item->image == null ? 'assets/default_act.jpeg' : $item->image }}"
                                                         alt="post" width="551" height="431">
                                                 </a>
                                             </div>
@@ -254,7 +254,7 @@
                                             <div class="rt-post-grid grid-meta">
                                                 <div class="post-img">
                                                     <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.activity.detail', $item->link)) : (route('front.activity.detail_en', $item->link)) }}">
-                                                        <img src="/{{ $item->image == null ? 'media/gallery/post-md_42.jpg' : $item->image }}"
+                                                        <img src="/{{ $item->image == null ? 'assets/default_act.jpeg' : $item->image }}"
                                                             alt="post" width="551" height="431">
                                                     </a>
                                                 </div>
