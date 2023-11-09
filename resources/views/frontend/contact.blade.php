@@ -49,7 +49,7 @@
                                     {{ $datas->title ?? 'Başlık' }}
                                 </h2>
                                 <p >
-                                    {!! $datas->description ?? 'test' !!}
+                                    {!! $datas->description ?? 'Açıklama boş' !!}
                                 </p>
                             </div>
 
@@ -62,7 +62,7 @@
                                                 <i class="fas fa-map-marker-alt"></i>
                                             </div>
                                             <div class="list-content">
-                                                <span> {{ $datas->address }} </span>
+                                                <span> {{ $datas->address ?? 'Adres boş' }} </span>
                                             </div>
                                         </li>
                                     @endif
@@ -75,7 +75,7 @@
                                             </div>
                                             <div class="list-content">
                                                 <span>
-                                                    <a href="mailto:{{ $datas->email }}"> {{ $datas->email }} </a>
+                                                    <a href="mailto:{{ $datas->email ?? 'test' }}"> {{ $datas->email ?? 'Email boş' }} </a>
                                                 </span>
                                             </div>
                                         </li>
@@ -87,7 +87,7 @@
                                                 <i class="fas fa-phone-alt"></i>
                                             </div>
                                             <div class="list-content">
-                                                <span><a href="tel:+90{{ $datas->phone }}"> {{ $datas->phone }} </a></span>
+                                                <span><a href="tel:+90{{ $datas->phone ?? '0' }}"> {{ $datas->phone ?? 'Telefon boş' }} </a></span>
                                             </div>
                                         </li>
                                     @endif
@@ -100,7 +100,7 @@
                                             </div>
                                             <div class="list-content">
                                                 <span>
-                                                    <a href="{{ $datas->website }}" rel="nofollow">{{ $datas->website }}</a>
+                                                    <a href="{{ $datas->website ?? '#' }}" rel="nofollow">{{ $datas->website ?? 'Site boş' }}</a>
                                                 </span>
                                             </div>
                                         </li>
