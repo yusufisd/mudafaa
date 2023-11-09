@@ -48,7 +48,7 @@
                                 <h2 class="heading-tilte">
                                     {{ $datas->title ?? 'Başlık' }}
                                 </h2>
-                                @if($datas->description)
+                                @if($datas->description != null)
                                 <p >
                                     {!! $datas->description !!}
                                 </p>
