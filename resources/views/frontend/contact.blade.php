@@ -48,11 +48,9 @@
                                 <h2 class="heading-tilte">
                                     {{ $datas->title ?? 'Başlık' }}
                                 </h2>
-                                @if($datas->description != null)
                                 <p >
-                                    {!! $datas->description !!}
+                                    {!! $datas->description ?? 'test' !!}
                                 </p>
-                                @endif
                             </div>
 
                             <div class="contact-list-area-1">
