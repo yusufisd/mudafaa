@@ -56,7 +56,7 @@
                             <div class="contact-list-area-1">
                                 <ul class="contact-list-style-1 clearfix">
 
-                                    @if ($datas->address != null)
+                                    @if ($datas && $data->address != null)
                                         <li class="media list-item">
                                             <div class="list-icon">
                                                 <i class="fas fa-map-marker-alt"></i>
@@ -67,7 +67,7 @@
                                         </li>
                                     @endif
 
-                                    @if ($datas->email != null)
+                                    @if ($datas && $datas->email != null)
                                         <li class="media list-item">
                                             <div class="list-icon">
 
@@ -81,7 +81,7 @@
                                         </li>
                                     @endif
 
-                                    @if ($datas->phone != null)
+                                    @if ($datas && $datas->phone != null)
                                         <li class="media list-item">
                                             <div class="list-icon">
                                                 <i class="fas fa-phone-alt"></i>
@@ -93,7 +93,7 @@
                                     @endif
 
 
-                                    @if ($datas->website != null)
+                                    @if ($datas && $datas->website != null)
                                         <li class="media list-item">
                                             <div class="list-icon">
                                                 <i class="fas fa-globe-americas"></i>
@@ -154,7 +154,7 @@
         <!-- end contact-section-layout-1 -->
 
         <!-- start  Map Section -->
-        @if($datas->map != null)
+        @if($datas && $datas->map != null)
         <div class="map-section-style-1">
             <div class="container">
                <div class="row">
