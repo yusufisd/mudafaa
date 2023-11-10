@@ -49,8 +49,7 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-        <script src='https://www.google.com/recaptcha/api.js?hl=en'></script>
-
+        
     <style>
         .number_list , .number_list > li{
             list-style: decimal !important;
