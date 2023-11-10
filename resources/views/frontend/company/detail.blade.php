@@ -78,15 +78,16 @@
                                     <h2 class="responsive-title" style="color: #3b4022;"> {{ $data->title }} </h2>
                                     <div class="row">
 
-                                        @foreach ($ekstra as $item)
+
+                                        @foreach ($data->Title() as $item)
                                             <div class="col-md-6">
                                                 <ul class="mt-3">
                                                     <li class="mb-3">
-                                                        {!! $item->icon !!}
+                                                        {!! $item->titleIcon()->icon_tr !!}
                                                         <b>
-                                                            <span style="color: #749f43"> {{ $item->title }} : </span>
+                                                            <span style="color: #749f43"> {{ $item->titleIcon()->title_tr }} : </span>
                                                         </b>
-                                                        {!! printDesc($data->description) !!}
+                                                        {{ $item->description }}
                                                     </li>
 
                                                 </ul>
@@ -193,9 +194,13 @@
                                                         </li>
                                                     </ul>
                                                 </div>
-                                                <div class="col-lg-6 grid-adress">
-                                                    {{ $item->map }}
+                                                <div style="width:460px!important;height:300px!important" class="col-lg-6 grid-adress">
+                                                    <div style="overflow:hidden">
+                                                    {!! $item->map !!}
+                                                        
+                                                    </div>
                                                 </div>
+                                                
 
                                             </div>
                                         </div>

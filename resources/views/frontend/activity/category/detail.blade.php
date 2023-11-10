@@ -54,7 +54,7 @@
                                             </div>
                                             <div class="post-content">
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.activity.categoryDetail',$item->Category->link)) : (route('front.activity.categoryDetail_en',$item->Category->link)}}"
+                                                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.activity.categoryDetail',$item->Category->link)) : (route('front.activity.categoryDetail_en',$item->Category->link))}}"
                                                         class="rt-cat-primary restricted_category_title">
                                                         {{ $item->Category->title }} </a>
                                                     @if($item->sayac_yil() || $item->sayac_ay() || $item->sayac_gun())

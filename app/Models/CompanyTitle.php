@@ -10,4 +10,8 @@ class CompanyTitle extends Model
     use HasFactory;
     protected $guarded = [];
 
+    public function TitleIcon(){
+        return Title_Icon::where('id',$this->icon_title_id)->first();
+    }
+
 }

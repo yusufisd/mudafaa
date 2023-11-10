@@ -17,6 +17,10 @@ class CompanyModel extends Model
         return $this->hasOne(CompanyCategory::class,'id','category');
     }
 
+    public function Title(){
+        return CompanyTitle::where('company_id',$this->id)->get();
+    }
+
     public function getKeys(){
         return explode(',', $this->seo_key);
     }

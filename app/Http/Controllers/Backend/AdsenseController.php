@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\AdsenseModel;
 use Illuminate\Http\Request;
+use Intervention\Image\Image;
 
 class AdsenseController extends Controller
 {
@@ -31,6 +32,38 @@ class AdsenseController extends Controller
     public function store(Request $request)
     {
         dd($request->all());
+
+        $request->validate([
+            "ad_name" => "required",
+            "ad_url" => "required",
+        ]);
+
+
+        $data = new AdsenseModel();
+        $data->title = $request->ad_name;
+        $data->description = $request->ad_explanation;
+        $data->type = $request->type;
+        if($request->type == 0 ){
+            $data->adsense_url = $request->ad_google_adsense_code;
+        }if($data-> type == 1 ){
+            $data->adsense_url = $request->ad_url;
+        }if(isset($request->href_tab)){
+            $data->href_tab = 1;
+        }if ($request->file('image') != null) {
+            $image = $request->file('image');
+            $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $save_url = public_path('assets/uploads/anket/' . $image_name);
+            Image::make($image)
+                ->resize(492, 340)
+                ->save($save_url);
+            $data->image = $save_url;
+        }
+        $data->start = $request->start_time;
+        $data->finish = $request->finish_time;
+        
+
+
+        
     }
 
     

@@ -44,7 +44,8 @@
                             <!--begin::Body-->
                             <div class="card-body py-5">
                                 <!--begin::Form-->
-                                <form id="add_ad_form" class="form">
+                                <form method="POST" enctype="multipart/form-data" action="{{ route('admin.adsense.store') }}" id="add_ad_form" class="form">
+									@csrf
                                     <!--begin::Card body-->
                                     <div class="card-body px-0 py-9">
                                         <!--begin::Input group-->
@@ -123,6 +124,7 @@
                                     '<div class="row">'+
                                         '<div class="col-lg-12 fv-row">'+
                                             '<input type="text" name="ad_name" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="" />'+
+                                            '<input type="hidden" name="type" value="0" />'+
                                         '</div>'+
                                     '</div>'+
                                 '</div>'+
@@ -150,38 +152,30 @@
                           
 							'<div class="separator my-10"></div>'+
 							'<div class="row mb-6">'+
-								'<div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">'+
+								'<div class="col-lg-5 fv-row fv-plugins-icon-container ps-5">'+
 									'<div class="row">'+
-										'<label class="col-lg-4 col-form-label fw-bold fs-6">'+
-											'Yayın Başlangıç <br>Tarihi - Saati'+
+										'<label class="col-lg-5 col-form-label fw-bold fs-6">'+
+											'Yayın Başlangıç Tarihi'+
 										'</label>'+
-										'<div class="col-lg-8">'+
+										'<div class="col-lg-7">'+
 											'<div class="row">'+
 												'<div class="col-lg-12 fv-row">'+
-													'<div class="input-group" id="add_ad_google_start_calendar" data-td-target-input="nearest" data-td-target-toggle="nearest">'+
-														'<input id="add_ad_date" type="text" class="form-control" data-td-target="#add_ad_google_start_calendar"/>'+
-														'<span class="input-group-text" data-td-target="#add_ad_google_start_calendar" data-td-toggle="datetimepicker">'+
-															'<i class="bi bi-calendar2-week fs-2"><span class="path1"></span><span class="path2"></span></i>'+
-														'</span>'+
-													'</div>'+
+													'<input type="date" class="form-control" name="start_time" id="">'+
 												'</div>'+
 											'</div>'+
 										'</div>'+
 									'</div>'+
 								'</div>'+
 
-								'<div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">'+
+								'<div class="col-lg-7 fv-row fv-plugins-icon-container ps-5">'+
 									'<div class="row ms-10">'+
-										'<label class="col-lg-4 col-form-label fw-bold fs-6" style="padding-top: 0px;">Yayın Bitiş <br> Tarihi - Saati</label>'+
-										'<div class="col-lg-8">'+
+										'<label style="text-align:right" class="col-lg-6 col-form-label fw-bold fs-6">'+
+											'Yayın Bitiş Tarihi'+
+										'</label>'+
+										'<div class="col-lg-6">'+
 											'<div class="row">'+
 												'<div class="col-lg-12 fv-row">'+
-													'<div class="input-group" id="add_ad_google_end_calendar" data-td-target-input="nearest" data-td-target-toggle="nearest">'+
-														'<input id="add_ad_date" type="text" class="form-control" data-td-target="#add_ad_google_end_calendar"/>'+
-														'<span class="input-group-text" data-td-target="#add_ad_google_end_calendar" data-td-toggle="datetimepicker">'+
-															'<i class="bi bi-calendar2-week fs-2"><span class="path1"></span><span class="path2"></span></i>'+
-														'</span>'+
-													'</div>'+
+													'<input type="date" class="form-control" name="finish_time" id="">'+
 												'</div>'+
 											'</div>'+
 										'</div>'+
@@ -201,6 +195,7 @@
                                     '<div class="row">'+
                                         '<div class="col-lg-12 fv-row">'+
                                             '<input type="text" name="ad_name" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="" />'+
+                                            '<input type="hidden" name="type"  value="1" />'+
                                         '</div>'+
                                     '</div>'+
                                 '</div>'+

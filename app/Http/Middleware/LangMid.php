@@ -21,6 +21,7 @@ class LangMid
             //App::setLocale(Session()->get('tur'));
             \App::setLocale(config('app.fallback_locale'));
         }
+
         return $next($request);    
     }
 }

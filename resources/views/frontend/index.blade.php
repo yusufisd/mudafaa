@@ -61,7 +61,7 @@
                                 </a>
                                 <div class="swiper-content">
                                     @if ($variable->Category()[0] != null)
-                                        <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNewsCategory.list', $variable->Category()[0]->link) : route('front.currentNewsCategory.list_en', $variable->Category()[0]->link) }}"
+                                        <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNewsCategory.list', $variable->Category()[0]->link)) : (route('front.currentNewsCategory.list_en', $variable->Category()[0]->link)) }}"
                                             style="background-color: {{ $variable->Category()[0]->color_code != null ? $variable->Category()[0]->color_code : '#749f43' }}"
                                             class="rt-cat-primary restricted_story_title">{{ $variable->Category()[0]->title }}</a>
                                     @endif
@@ -1119,7 +1119,7 @@
                             </div>
                             <div class="post-content">
                                 <a style="background-color:#749f43"
-                                    href="{{ \Session::get('applocale') == 'tr' ? route('front.video.category_list', $item->Category->link) : route('front.video.category_list_en', $item->Category->link) }}"
+                                    href="{{ \Session::get('applocale') == 'tr' ? (route('front.video.category_list', $item->Category->link)) : (route('front.video.category_list_en', $item->Category->link)) }}"
                                     class="mission restricted_category_title">
                                     {{ $item->Category->title }} </a>
                                 <h3 class="post-title">
@@ -1253,7 +1253,8 @@
                         <br>
                         <center>
                             <div class="center">
-                                @captcha()
+
+                                @captcha('6LdsdQgpAAAAAJDjntc0qmafUnetreYnv2RMRbz0')
 
                             </div>
                         </center>
