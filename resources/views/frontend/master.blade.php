@@ -136,9 +136,9 @@
                                     </div>
                                     <div class="social-wrap d-none d-xl-block">
                                         <ul class="rt-top-social">
-                                            @if (SocialMedia())
+                                            @if (SocialMedia() && SocialMedia()->facebook != null)
                                                 <li>
-                                                    <a href="https://www.facebook.com/{{ SocialMedia()->facebook != null ? SocialMedia()->facebook : '' }}"
+                                                    <a href="https://www.facebook.com/{{  SocialMedia()->facebook }}"
                                                         target="_blank">
                                                         <i class="fab fa-facebook-f"></i>
                                                     </a>
@@ -152,25 +152,25 @@
                                                     </a>
                                                 </li>
                                             @endif
-                                            @if (SocialMedia())
+                                            @if (SocialMedia() && SocialMedia()->instagram != null)
                                                 <li>
-                                                    <a href="https://www.instagram.com/{{ SocialMedia()->instagram != null ? SocialMedia()->instagram : '' }}"
+                                                    <a href="https://www.instagram.com/{{  SocialMedia()->instagram  }}"
                                                         target="_blank">
                                                         <i class="fab fa-instagram"></i>
                                                     </a>
                                                 </li>
                                             @endif
-                                            @if (SocialMedia())
+                                            @if (SocialMedia() && SocialMedia()->youtube != null)
                                                 <li>
-                                                    <a href="https://www.youtube.com/channel/{{ SocialMedia()->youtube != null ? SocialMedia()->youtube : '' }}"
+                                                    <a href="https://www.youtube.com/channel/{{  SocialMedia()->youtube  }}"
                                                         target="_blank">
                                                         <i class="fab fa-youtube"></i>
                                                     </a>
                                                 </li>
                                             @endif
-                                            @if (SocialMedia())
+                                            @if (SocialMedia() && SocialMedia()->linkedin != null)
                                                 <li>
-                                                    <a href="https://www.linkedin.com/company/{{ SocialMedia()->linkedin != null ? SocialMedia()->linkedin : '' }}"
+                                                    <a href="https://www.linkedin.com/company/{{  SocialMedia()->linkedin }}"
                                                         target="_blank">
                                                         <i class="fab fa-linkedin-in"></i>
                                                     </a>
@@ -542,38 +542,38 @@
                                     <h3 class="footer-widget-title">Instagram</h3>
                                     <div class="insta-gallery">
                                         <div class="galleryitem">
-                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia() != null ? (SocailMedia()->instagram != null ? SocialMedia()->instagram : '') : '' }}">
+                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia() != null ? (SocialMedia()->instagram != null ? SocialMedia()->instagram : '') : '' }}">
                                                 <img src="/assets/insta1.png"
                                                     width="100" height="90" alt="gallery1">
                                            </a>
                                         </div>
                                         <div class="galleryitem">
-                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia() != null ? (SocailMedia()->instagram != null ? SocialMedia()->instagram : '') : '' }}">
+                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia() != null ? (SocialMedia()->instagram != null ? SocialMedia()->instagram : '') : '' }}">
                                                 <img src="/assets/insta2.png"
                                                     width="100" height="90" alt="gallery2">
                                             </a>
                                         </div>
                                         <div class="galleryitem">
-                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia() != null ? (SocailMedia()->instagram != null ? SocialMedia()->instagram : '') : '' }}">
+                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia() != null ? (SocialMedia()->instagram != null ? SocialMedia()->instagram : '') : '' }}">
                                                 <img src="/assets/insta3.png"
                                                     width="100" height="90" alt="gallery3">
                                             </a>
                                         </div>
                                         <div class="galleryitem">
-                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia() != null ? (SocailMedia()->instagram != null ? SocialMedia()->instagram : '') : '' }}">
+                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia() != null ? (SocialMedia()->instagram != null ? SocialMedia()->instagram : '') : '' }}">
                                                 <img src="/assets/insta4.png"
                                                     width="100" height="90" alt="gallery4">
                                             </a>
                                         </div>
                                         <div class="galleryitem">
-                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia() != null ? (SocailMedia()->instagram != null ? SocialMedia()->instagram : '') : '' }}">
+                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia() != null ? (SocialMedia()->instagram != null ? SocialMedia()->instagram : '') : '' }}">
                                                 <img src="/assets/insta5.png"
                                                     width="100" height="90" alt="gallery5">
                                             </a>
                                         </div>
 
                                         <div class="galleryitem">
-                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia() != null ? (SocailMedia()->instagram != null ? SocialMedia()->instagram : '') : '' }}">
+                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia() != null ? (SocialMedia()->instagram != null ? SocialMedia()->instagram : '') : '' }}">
                                                 <img src="/assets/insta6.png"
                                                     width="100" height="90" alt="gallery6">
                                             </a>
