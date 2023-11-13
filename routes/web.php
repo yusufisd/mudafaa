@@ -689,14 +689,14 @@ Route::middleware('lang')->group(function () {
                         Route::get('yaklasan/etkinlikler', 'close_activity')->name('close_activity');
                         Route::get('kategori-detay/{id?}', 'categoryDetail')->name('categoryDetail');
                         Route::post('/ara', 'searchActivity')->name('searchActivity');
-                        Route::get('/takvim', 'calendar')->name('calendar');
+                        Route::get('/takvim/ozet', 'calendar')->name('calendar');
                     });
                     Route::prefix('activity')->group(function(){
                         Route::get('/', 'index')->name('list_en');
                         Route::get('/{id?}', 'detail')->name('detail_en');
                         Route::get('/upcoming/activites', 'close_activity')->name('close_activity_en');
                         Route::get('/category/{id?}', 'categoryDetail')->name('categoryDetail_en');
-                        Route::get('/calendar', 'calendar')->name('calendar_en');
+                        Route::get('/calendar/summary', 'calendar')->name('calendar_en');
                     });
                 });
 
