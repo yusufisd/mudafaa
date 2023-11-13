@@ -122,5 +122,5 @@ function most_popular_new(){
 }
 
 function getCaptchaSiteKey(){
-    return "6LdsdQgpAAAAAJDjntc0qmafUnetreYnv2RMRbz0";
+    return "6LfCwQgpAAAAAInvavlOQObCUTU_Blegu8we7BOP";
 }
