@@ -54,12 +54,24 @@ class CurrentNewsCategoryController extends Controller
             'seo_description_tr' => 'required',
             'seo_key_tr' => 'required',
             'image' => 'required',
-
             'title_en' => 'required',
             'link_en' => 'required',
             'seo_title_en' => 'required',
             'seo_descriptipn_en' => 'required',
             'seo_key_en' => 'required',
+        ],[
+            'queue' => 'Sıralama boş bırakılamaz',
+            'title_tr' => 'Başlık (TR) boş bırakılamaz',
+            'link_tr' => 'Link (TR) boş bırakılamaz',
+            'seo_title_tr' => 'Seo başlık (TR) boş bırakılamaz',
+            'seo_description_tr' => 'Seo açıklama (TR) boş bırakılamaz',
+            'seo_key_tr' => 'Seo anahtarı (TR) boş bırakılamaz',
+            'image' => 'Görsel boş bırakılamaz',
+            'title_en' => 'Başlık (EN) boş bırakılamaz',
+            'link_en' => 'Link (EN) boş bırakılamaz',
+            'seo_title_en' => 'Seo başlık (EN) boş bırakılamaz',
+            'seo_descriptipn_en' => 'Seo açıklama (EN) boş bırakılamaz',
+            'seo_key_en' => 'Seo anahtarı (EN) boş bırakılamaz',
         ]);
 
         $veri = json_decode(json_decode(json_encode($request->seo_key_tr[0])));

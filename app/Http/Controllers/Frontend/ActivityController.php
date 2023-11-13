@@ -56,6 +56,7 @@ class ActivityController extends Controller
             $data = EnActivity::where('link', $id)->first();
             $other_activity = EnActivity::inRandomOrder()->get();
         }
+        dd($id);
         // OKUMA KONTRLÜ
         $readCheck = json_decode(\Illuminate\Support\Facades\Cookie::get('activity')) ?? [];
         if (!in_array($data->id, $readCheck)) {

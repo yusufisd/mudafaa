@@ -58,7 +58,7 @@ class ActivityCategoryController extends Controller
                 'title_en' => 'required',
                 'link_en' => 'required',
                 'seo_title_en' => 'required',
-                'seo_descriptipn_en' => 'required',
+                'seo_description_en' => 'required',
                 'seo_key_en' => 'required',
             ],
             [
@@ -71,12 +71,10 @@ class ActivityCategoryController extends Controller
                 'title_en' => 'Başlık (İNGİLİZCE) boş bırakılamaz.',
                 'link_en' => 'Link (İNGİLİZCE) boş bırakılamaz.',
                 'seo_title_en' => 'Seo başlığı (İNGİLİZCE) boş bırakılamaz.',
-                'seo_descriptipn_en' => 'Seo açıklaması (İNGİLİZCE) boş bırakılamaz.',
+                'seo_description_en' => 'Seo açıklaması (İNGİLİZCE) boş bırakılamaz.',
                 'seo_key_en' => 'Seo anahtarı (İNGİLİZCE) boş bırakılamaz.',
             ],
         );
-        try {
-            DB::beginTransaction();
 
             $veri = json_decode(json_decode(json_encode($request->seo_key_tr[0])));
             $merge = [];
@@ -114,7 +112,7 @@ class ActivityCategoryController extends Controller
             $category_en->queue = $request->queue;
             $category_en->activity_id = $category->id;
             $category_en->seo_title = $request->seo_title_en;
-            $category_en->seo_description = $request->seo_descriptipn_en;
+            $category_en->seo_description = $request->seo_description_en;
             $category_en->seo_key = $merge_en;
             if (!isset($request->status_en)) {
                 $category_en->status = 0;
@@ -125,14 +123,7 @@ class ActivityCategoryController extends Controller
             logKayit(['Etkinlik Kategori', 'Etkinlik kategorisi eklendi']);
             Alert::success('Etkinlik Kategorisi Eklendi');
             DB::commit();
-        } catch (Throwable $e) {
-            DB::rollBack();
-            logKayit(['Etkinlik Kategori', 'Kategori eklemede hata', 0]);
-            Alert::error('Kategori Eklemede Hata');
-            throw ValidationException::withMessages([
-                'error' => 'Tüm alanların doldurulması zorunludur.',
-            ]);
-        }
+        
         return redirect()->route('admin.activityCategory.list');
     }
 
