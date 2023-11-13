@@ -44,19 +44,25 @@ class ActivityController extends Controller
 
     public function detail($id)
     {
+        
         $local = \Session::get('applocale');
         if ($local == null) {
             $local = config('app.fallback_locale');
         }
 
         if ($local == 'tr') {
+            if($id == 'takvim'){
+                return redirect()->route('front.activity.calendar');
+            }
             $data = Activity::where('link', $id)->first();
             $other_activity = Activity::inRandomOrder()->get();
         } elseif ($local == 'en') {
+            if($id == 'takvim'){
+                return redirect()->route('front.activity.calendar_en');
+            }
             $data = EnActivity::where('link', $id)->first();
             $other_activity = EnActivity::inRandomOrder()->get();
         }
-        dd($id);
         // OKUMA KONTRLÜ
         $readCheck = json_decode(\Illuminate\Support\Facades\Cookie::get('activity')) ?? [];
         if (!in_array($data->id, $readCheck)) {
