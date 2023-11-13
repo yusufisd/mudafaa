@@ -51,10 +51,10 @@ class ActivityController extends Controller
 
         if ($local == 'tr') {
             $data = Activity::where('link', $id)->first();
-            $other_activity = Activity::inRandomOrder()->get();
+            $other_activity = Activity::where('status',1)->inRandomOrder()->get();
         } elseif ($local == 'en') {
             $data = EnActivity::where('link', $id)->first();
-            $other_activity = EnActivity::inRandomOrder()->get();
+            $other_activity = EnActivity::where('status',1)->inRandomOrder()->get();
         }
         // OKUMA KONTRLÜ
         $readCheck = json_decode(\Illuminate\Support\Facades\Cookie::get('activity')) ?? [];
@@ -134,11 +134,11 @@ class ActivityController extends Controller
             $local = config('app.fallback_locale');
         }
         if ($local == 'tr') {
-            $data = Activity::where('start_time', '>=', $now)
+            $data = Activity::where('status',1)->where('start_time', '>=', $now)
                 ->orderBy('start_time', 'desc')
                 ->get();
         } elseif ($local == 'en') {
-            $data = EnActivity::where('start_time', '>=', $now)
+            $data = EnActivity::where('status',1)->where('start_time', '>=', $now)
                 ->orderBy('start_time', 'desc')
                 ->get();
         }

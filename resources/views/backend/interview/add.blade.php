@@ -114,7 +114,7 @@
                                                             <option value="">Seçiniz...</option>
 
                                                             @foreach ($users as $item)
-                                                                <option value="{{ $item->id }}"> {{ $item->name }} {{ $item->surname }}
+                                                                <option @selected(old('author') == $item->id) value="{{ $item->id }}"> {{ $item->name }} {{ $item->surname }}
                                                                 </option>
                                                             @endforeach
 
@@ -149,7 +149,7 @@
                                                     <div class="col-lg-10 fv-row">
                                                         <input  type="text"
                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                            name="youtube" id="">
+                                                            name="youtube" value="{{ old('youtube') }}" id="">
                                                     </div>
                                                     <!--end::Col-->
                                                 </div>
@@ -205,7 +205,7 @@
                                                                             <input required type="text" name="name_tr"
                                                                                 id="name_tr" onchange="create_slug_tr()"
                                                                                 class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                value="" />
+                                                                                value="{{ old('name_tr') }}" />
                                                                         </div>
                                                                         <!--end::Col-->
                                                                     </div>
@@ -225,7 +225,7 @@
                                                                 <!--begin::Col-->
                                                                 <div class="col-lg-10 fv-row">
                                                                     <textarea required name="short_description_tr" id="short_description_tr" onchange="create_ozet_tr()"
-                                                                        class="form-control form-control-lg form-control-solid" value=""></textarea>
+                                                                        class="form-control form-control-lg form-control-solid" value="">{{ old('short_description_tr') }}</textarea>
                                                                 </div>
                                                                 <!--end::Col-->
                                                             </div>
@@ -234,14 +234,14 @@
                                                             <div class="row mb-6">
                                                                 <!--begin::Label-->
                                                                 <label
-                                                                    class="col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5 required">
+                                                                    class="col-lg-1 col-form-label fw-bold fs-6 mb-5 ps-5 required">
                                                                     <span>İçerik</span>
                                                                 </label>
                                                                 <!--end::Label-->
                                                                 <!--begin::Col-->
-                                                                <div class="col-lg-12 fv-row mb-5 ps-5">
+                                                                <div class="col-lg-11 fv-row mb-5 ps-5">
 
-                                                                    <textarea id="editor" name="description_tr" class="tox-target ckeditor"></textarea>
+                                                                    <textarea id="editor" name="description_tr" class="tox-target ckeditor">{{ old('description_tr') }}</textarea>
 
 
                                                                 </div>
@@ -260,7 +260,7 @@
                                                                                 <input required type="text" name="link_tr"
                                                                                        id="link_tr" onchange="create_slug_tr()"
                                                                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                       value="" />
+                                                                                       value="{{ old('link_tr') }}" />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -318,7 +318,7 @@
                                                                             <input required type="text" name="name_en"
                                                                                 id="name_en" onchange="create_slug_en()"
                                                                                 class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                value="" />
+                                                                                value="{{ old('name_en') }}" />
                                                                         </div>
                                                                         <!--end::Col-->
                                                                     </div>
@@ -336,7 +336,7 @@
 
                                                                 <div class="col-lg-10 fv-row">
                                                                     <textarea required name="short_description_en" id="short_description_en" onchange="create_ozet_en()"
-                                                                        class="form-control form-control-lg form-control-solid" value=""></textarea>
+                                                                        class="form-control form-control-lg form-control-solid" value="">{{ old('short_description_en') }}</textarea>
                                                                 </div>
                                                                 <!--end::Col-->
                                                             </div>
@@ -344,13 +344,13 @@
                                                             <div class="row mb-6">
                                                                 <!--begin::Label-->
                                                                 <label
-                                                                    class="col-lg-12 col-form-label required fw-bold fs-6 mb-5 ps-5">
+                                                                    class="col-lg-1 col-form-label required fw-bold fs-6 mb-5 ps-5">
                                                                     <span>İçerik</span>
                                                                 </label>
 
-                                                                <div class="col-lg-12 fv-row mb-5 ps-5">
+                                                                <div class="col-lg-11 fv-row mb-5 ps-5">
 
-                                                                    <textarea id="editor2" name="description_en" class="tox-target ckeditor"></textarea>
+                                                                    <textarea id="editor2" name="description_en" class="tox-target ckeditor">{{ old('description_en') }}</textarea>
 
 
                                                                 </div>
@@ -369,7 +369,7 @@
                                                                                 <input required type="text" name="link_en"
                                                                                        id="link_en" onchange="create_slug_en()"
                                                                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                       value="" />
+                                                                                       value="{{ old('link_en') }}" />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>

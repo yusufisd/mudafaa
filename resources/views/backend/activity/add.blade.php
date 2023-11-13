@@ -108,7 +108,7 @@
                                                             <option value="">Seçiniz...</option>
 
                                                             @foreach ($categories as $item)
-                                                                <option value="{{ $item->id }}"> {{ $item->title }}
+                                                                <option @selected(old('category') == $item->id) value="{{ $item->id }}"> {{ $item->title }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -133,7 +133,7 @@
                                                             <option value="">Seçiniz...</option>
 
                                                             @foreach ($users as $item)
-                                                                <option value="{{ $item->id }}"> {{ $item->name }}
+                                                                <option @selected(old('author') == $item->id) value="{{ $item->id }}"> {{ $item->name }}
                                                                 </option>
                                                             @endforeach
 
@@ -150,7 +150,7 @@
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10 fv-row">
-                                                        <input  type="text"
+                                                        <input  type="text" value="{{ old('website') }}"
                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                             name="website" id="">
                                                     </div>
@@ -169,7 +169,7 @@
                                                             <div class="col-lg-8 fv-row">
                                                                 <input  type="text"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                    name="ticket" id="">
+                                                                    name="ticket" value="{{ old('ticket') }}" id="">
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -186,7 +186,7 @@
                                                             <div class="col-lg-8 fv-row">
                                                                 <input  type="text"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                    name="user_form" id="">
+                                                                    name="user_form" value="{{ old('user_form') }}" id="">
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -206,12 +206,12 @@
                                                             <div class="col-lg-5 fv-row">
                                                                 <input  type="date"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                    name="start_date" id="">
+                                                                    name="start_date" value="{{ old('start_date') }}" id="">
                                                             </div>
                                                             <div class="col-lg-3 fv-row">
                                                                 <input  type="time"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                    name="start_clock" id="">
+                                                                    name="start_clock" value="{{ old('start_clock') }}" id="">
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -228,12 +228,12 @@
                                                             <div class="col-lg-5 fv-row">
                                                                 <input  type="date"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                    name="finish_date" id="">
+                                                                    name="finish_date" value="{{ old('finish_date') }}" id="">
                                                             </div>
                                                             <div class="col-lg-3 fv-row">
                                                                 <input  type="time"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                    name="finish_clock" id="">
+                                                                    name="finish_clock" value="{{ old('finish_clock') }}" id="">
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -257,7 +257,7 @@
                                                                     <option value="">Seçiniz...</option>
 
                                                                     @foreach ($countrylist as $item)
-                                                                        <option value="{{ $item->id }}">
+                                                                        <option @selected(old('country') == $item->id) value="{{ $item->id }}">
                                                                             {{ $item->name }}
                                                                         </option>
                                                                     @endforeach
@@ -279,7 +279,7 @@
                                                             <div class="col-lg-8 fv-row">
                                                                 <input  type="text"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                    name="city" id="">
+                                                                    name="city" value="{{ old('city') }}" id="">
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -299,7 +299,7 @@
                                                             <div class="col-lg-8 fv-row">
                                                                 <input  type="text"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                    name="adres" id="">
+                                                                    name="adres" value="{{ old('adres') }}" id="">
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -317,7 +317,7 @@
                                                             <div class="col-lg-8 fv-row">
                                                                 <input  type="text"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                    name="map" id="">
+                                                                    name="map" {{ old('map') }} id="">
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -336,7 +336,7 @@
                                                             <div class="col-lg-8 fv-row">
                                                                 <input  type="text"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                    name="email" id="">
+                                                                    name="email" value="{{ old('email') }}" id="">
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -353,7 +353,7 @@
                                                             <div class="col-lg-8 fv-row">
                                                                 <input  type="text"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                    name="phone" id="">
+                                                                    name="phone" value="{{ old('phone') }}" id="">
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -408,7 +408,7 @@
                                                                             <input required type="text" name="name_tr"
                                                                                 id="name_tr" onchange="create_slug_tr()"
                                                                                 class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                value="" />
+                                                                                value="{{ old('name_tr') }}" />
                                                                         </div>
                                                                         <!--end::Col-->
                                                                     </div>
@@ -428,7 +428,7 @@
                                                                 <!--begin::Col-->
                                                                 <div class="col-lg-11 fv-row">
                                                                     <textarea name="short_description_tr" id="short_description_tr" onchange="create_ozet_tr()"
-                                                                        class="form-control form-control-lg form-control-solid" value=""></textarea>
+                                                                        class="form-control form-control-lg form-control-solid" value="">{{ old('short_description_tr') }}</textarea>
                                                                 </div>
                                                                 <!--end::Col-->
                                                             </div>
@@ -444,7 +444,7 @@
                                                                 <!--begin::Col-->
                                                                 <div class="col-lg-11 fv-row mb-5 ps-5">
 
-                                                                    <textarea id="editor" name="description_tr" class="tox-target ckeditor"></textarea>
+                                                                    <textarea id="editor" name="description_tr" class="tox-target ckeditor">{{ old('description_tr') }}</textarea>
 
 
                                                                 </div>
@@ -465,7 +465,7 @@
                                                                             <input required type="text" name="link_tr"
                                                                                 id="link_tr" onchange="create_slug_tr()"
                                                                                 class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                value="" />
+                                                                                value="{{ old('link_tr') }}" />
                                                                         </div>
                                                                         <!--end::Col-->
                                                                     </div>
@@ -519,7 +519,7 @@
                                                                             <input required type="text" name="name_en"
                                                                                 id="name_en" onchange="create_slug_en()"
                                                                                 class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                value="" />
+                                                                                value="{{ old('name_en') }}" />
                                                                         </div>
                                                                         <!--end::Col-->
                                                                     </div>
@@ -539,7 +539,7 @@
                                                                 <!--begin::Col-->
                                                                 <div class="col-lg-11 fv-row">
                                                                     <textarea name="short_description_en" id="short_description_en" onchange="create_ozet_en()"
-                                                                        class="form-control form-control-lg form-control-solid" value=""></textarea>
+                                                                        class="form-control form-control-lg form-control-solid" value="">{{ old('short_description_en') }}</textarea>
                                                                 </div>
                                                                 <!--end::Col-->
                                                             </div>
@@ -555,7 +555,7 @@
                                                                 <!--begin::Col-->
                                                                 <div class="col-lg-11 fv-row mb-5 ps-5">
 
-                                                                    <textarea id="editor2" name="description_en" class="tox-target ckeditor"></textarea>
+                                                                    <textarea id="editor2" name="description_en" class="tox-target ckeditor">{{ old('description_en') }}</textarea>
 
 
                                                                 </div>
@@ -576,7 +576,7 @@
                                                                             <input required type="text" name="link_en"
                                                                                 id="link_en" onchange="create_slug_en()"
                                                                                 class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                value="" />
+                                                                                value="{{ old('link_en') }}" />
                                                                         </div>
                                                                         <!--end::Col-->
                                                                     </div>
@@ -660,7 +660,7 @@
                                                                         <input required type="text" name="seo_title_tr"
                                                                             id="seo_title_tr"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                            value="" />
+                                                                            value="{{ old('seo_title_tr') }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>

@@ -103,7 +103,7 @@
                                                 <!--begin::Input group-->
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
-                                                    <label class="col-lg-2 required col-form-label ps-5 fw-bold fs-6">
+                                                    <label class="col-lg-2  col-form-label ps-5 fw-bold fs-6">
                                                         {{ __('message.renk kodu') }} </label>
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
@@ -112,7 +112,7 @@
                                                         <div class="row">
                                                             <!--begin::Col-->
                                                             <div class="col-lg-12 fv-row">
-                                                                <input type="text" name="color_code"
+                                                                <input type="text" name="color_code" placeholder="#236500"
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                     value="{{$data_tr->color_code}}" />
                                                             </div>
