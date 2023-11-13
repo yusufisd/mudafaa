@@ -141,6 +141,18 @@
                                                 <i style="color:black" class="fa-brands fa-square-x-twitter twitter"></i>
                                             </a>
                                         </li>
+                                        <li>
+                                            <a class="fb" target="_blank"
+                                                href="https://linkedin.com/sharing/share-offsite/?url={{ request()->url() }}">
+                                                <i class="social-icon fab fa-linkedin"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="wh" target="_blank"
+                                                href="https://web.whatsapp.com/send?text={{ $data->title }} {{ request()->url() }}">
+                                                <i class="social-icon fab fa-whatsapp"></i>
+                                            </a>
+                                        </li>
 
                                     </ul>
                                 </div>

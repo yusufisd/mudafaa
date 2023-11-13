@@ -660,6 +660,8 @@ Route::middleware('lang')->group(function () {
             // CURRENT NEWS  CONTROLLER
             Route::get('guncel-haber/{id?}',[FrontendCurrentNewsController::class,'detail'])->name('currentNews.detail');
             Route::get('current-news/{id?}',[FrontendCurrentNewsController::class,'detail'])->name('currentNews.detail_en');
+            Route::post('paylas-sayi', [FrontendCurrentNewsController::class,'share_counter'])->name('currentNews.share_counter');
+
 
             Route::get('guncel-haber/etiket/{title?}',[FrontendCurrentNewsController::class,'tag_list'])->name('currentNews.tag_list');
             Route::get('current-news/tag/{title?}',[FrontendCurrentNewsController::class,'tag_list'])->name('currentNews.tag_list_en');

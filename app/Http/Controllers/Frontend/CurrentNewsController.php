@@ -10,6 +10,7 @@ use App\Models\EmojiType;
 use App\Models\EnCurrentNews;
 use App\Models\EnCurrentNewsCategory;
 use App\Models\PostType;
+use App\Models\ShareCounter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Jorenvh\Share\Share;
@@ -88,5 +89,22 @@ class CurrentNewsController extends Controller
         }
 
         return view('frontend.currentNews.tag_list',compact('datas','sub_categories','other_news'));
+    }
+
+    public function share_counter(){
+        $id = request()->id;
+
+        if(ShareCounter::where('content_id',$id)->first() != null){
+            $new = ShareCounter::where('content_id',$id)->first();
+            $new->share_counter = $new->share_counter + 1;
+            $new->save();
+        }else{
+            $new = new ShareCounter();
+            $new-> share_counter = 1;
+            $new->content_id = $id;
+            $new->save();
+        }
+        
+        return $new;
     }
 }

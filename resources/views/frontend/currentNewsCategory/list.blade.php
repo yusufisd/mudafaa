@@ -115,7 +115,12 @@
                                                                 {{ $item->view_counter }}
                                                             </span>
                                                         </li>
-                                                        
+                                                        <li>
+                                                            <span class="rt-meta">
+                                                               <i class="fas fa-share-alt icon"></i>
+                                                               {{ $item->ShareCounter() }}
+                                                            </span>
+                                                         </li>
                                                     </ul>
                                                 </div>
                                                 <div class="btn-wrap mt--25">

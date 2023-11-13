@@ -172,7 +172,7 @@
                                                 <div class="share-text mb--10">
                                                     <span class="rt-meta">
                                                         <i class="fas fa-share-alt icon"></i>
-                                                        Paylaş: 1,509
+                                                        Paylaş: {{ $data->ShareCounter()}}
                                                     </span>
                                                 </div>
 
@@ -180,7 +180,7 @@
 
 
                                                     <li>
-                                                        <a class="fb" target="_blank"
+                                                        <a class="fb" target="_blank" onclick="share_count()"
                                                             href="https://www.facebook.com/sharer/sharer.php?u={{ request()->url() }}&text={{ $data->title }}">
                                                             <i class="social-icon fab fa-facebook-f"></i>
                                                         </a>
@@ -815,6 +815,23 @@
 @endsection
 @section('script')
     <script>
+        function share_count(){
+            $.ajax({
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                },
+                url: "/paylas-sayi",
+                type: "post",
+                data: {
+                    "id": "{{ $data->id }}",
+                },
+                dataType: "json",
+                success: function(response) {
+                    console.log(response);
+                }
+
+            })
+        }
         function convertToPDF() {
             const pdf = new jsPDF();
 

@@ -178,6 +178,13 @@
                                             {{ $tek_haber->view_counter }}
                                         </span>
                                     </li>
+                                    <li>
+                                        <span class="rt-meta">
+                                           <i class="fas fa-share-alt icon"></i>
+                                           {{ $tek_haber->ShareCounter() }}
+                                        </span>
+                                     </li>
+                                    
 
                                 </ul>
                             </div>
@@ -235,6 +242,12 @@
                                                         {{ $item->view_counter }}
                                                     </span>
                                                 </li>
+                                                <li>
+                                                    <span class="rt-meta">
+                                                       <i class="fas fa-share-alt icon"></i>
+                                                       {{ $item->ShareCounter() }}
+                                                    </span>
+                                                 </li>
 
                                             </ul>
                                         </div>
@@ -333,7 +346,12 @@
                                                                 {{ $ilk_kategori_icerigi->view_counter }}
                                                             </span>
                                                         </li>
-
+                                                        <li>
+                                                            <span class="rt-meta">
+                                                               <i class="fas fa-share-alt icon"></i>
+                                                               {{ $ilk_kategori_icerigi->ShareCounter() }}
+                                                            </span>
+                                                         </li>
                                                     </ul>
                                                 </div>
 
@@ -470,6 +488,12 @@
                                                                 {{ $ikinci_kategori_icerigi->live_time->translatedFormat('d M Y') }}
                                                             </span>
                                                         </li>
+                                                        <li>
+                                                            <span class="rt-meta">
+                                                               <i class="fas fa-share-alt icon"></i>
+                                                               {{ $ikinci_kategori_icerigi->ShareCounter() }}
+                                                            </span>
+                                                         </li>
                                                     </ul>
                                                 </div>
 
@@ -619,6 +643,12 @@
                                                                     {{ $ucuncu_kategori_icerigi->live_time->format('d M Y') }}
                                                                 </span>
                                                             </li>
+                                                            <li>
+                                                                <span class="rt-meta">
+                                                                   <i class="fas fa-share-alt icon"></i>
+                                                                   {{ $ucuncu_kategori_icerigi->ShareCounter() }}
+                                                                </span>
+                                                             </li>
                                                         </ul>
                                                     </div>
 
@@ -812,6 +842,7 @@
                                                 {{ $item->view_counter }}
                                             </span>
                                         </li>
+                                        
                                     </ul>
 
                                 </div>
@@ -891,7 +922,12 @@
                                                     {{ $populer_haber_first->view_counter }}
                                                 </span>
                                             </li>
-
+                                            <li>
+                                                <span class="rt-meta">
+                                                   <i class="fas fa-share-alt icon"></i>
+                                                   {{ $populer_haber_first->ShareCounter() }}
+                                                </span>
+                                             </li>
                                         </ul>
                                     </div>
                                     <div class="btn-wrap mt--25">

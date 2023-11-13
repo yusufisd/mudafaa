@@ -478,4 +478,6 @@ class CurrentNewsController extends Controller
     public function disa_aktar(){
         return Excel::download(new CurrentNewsExport, 'currentNews.xlsx');
     }
+
+ 
 }
