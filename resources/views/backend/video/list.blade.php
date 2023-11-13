@@ -82,7 +82,7 @@
                                                 <th>{{ __('message.başlık') }}<i class="fa fa-sort ms-3"></i></th>
                                                 <th>{{ __('message.kategori') }}<i class="fa fa-sort ms-3"></i></th>
                                                 <th style="text-align: center">{{ __('message.durum') }}<i class="fa fa-sort ms-3"></i></th>
-                                                <th class="text-center">{{ __('message.işlem') }}<i
+                                                <th style="width: 150px" class="text-center">{{ __('message.işlem') }}<i
                                                         class="fa fa-sort ms-3"></i></th>
                                             </tr>
                                         </thead>
@@ -118,13 +118,16 @@
                                                         </div>
                                                     </td>
 
-                                                    <td class="text-center">
+                                                    <td style="width: 150px" class="text-center">
 
-                                                        <a href="{{ route('admin.video.commentList', $item->id) }}">
-                                                            <button type="button" class="btn btn-primary px-4 py-2">
-                                                                Yorumlar ({{ $item->AdminCommentCount() }})
-                                                            </button>
+                                                        <a href="{{ route('admin.video.commentList', $item->id) }}"
+                                                            style="border:solid; border-radius:5px;padding:3%; border-color:lightgray;margin:3%">
+                                                            <i class="fa-solid fa-comment fa-xl"></i>
+                                                            <span style="color: gray">
+                                                                {{ $item->AdminCommentCount() }}
+                                                            </span>
                                                         </a>
+                                                        
                                                         <a href="{{ route('admin.video.edit', $item->id) }}"
                                                             class="px-2 btn btn-icon btn-bg-light btn-active-color-secondary btn-sm me-1"
                                                             title="Düzenle">

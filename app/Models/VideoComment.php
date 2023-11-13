@@ -22,4 +22,12 @@ class VideoComment extends Model
     public function MainComment(){
         return $this->belongsTo(VideoComment::class, 'post_id');
     }
+
+    public function CommentCommentsCount(){
+        return VideoComment::where('is_post',0)->where('post_id',$this->id)->count();
+    }
+
+    public function CommentComments(){
+        return VideoComment::where('is_post',0)->where('post_id',$this->id)->get();
+    }
 }

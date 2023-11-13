@@ -46,22 +46,22 @@ class DictionaryController extends Controller
             }
 
             if ($local == 'tr') {
-                $data = Dictionary::where('title', 'like', "%".$request->search."%")->paginate(6);
+                $data = Dictionary::where('status',1)->where('title', 'like', "%".$request->search."%")->paginate(6);
             } elseif ($local == 'en') {
-                $data = EnDictionary::where('title', 'like', "%".$request->search."%")->paginate(6);
+                $data = EnDictionary::where('status',1)->where('title', 'like', "%".$request->search."%")->paginate(6);
             }
         }else {
             if ($local == 'tr') {
                 if ($letter != null) {
-                    $data = Dictionary::where('title', 'LIKE', $letter . '%')->paginate(6);
+                    $data = Dictionary::where('status',1)->where('title', 'LIKE', $letter . '%')->paginate(6);
                 } else {
-                    $data = Dictionary::orderBy('title','asc')->paginate(12);
+                    $data = Dictionary::where('status',1)->orderBy('title','asc')->paginate(12);
                 }
             } elseif ($local == 'en') {
                 if ($letter != null) {
-                    $data = EnDictionary::where('title', 'LIKE', $letter . '%')->paginate(6);
+                    $data = EnDictionary::where('status',1)->where('title', 'LIKE', $letter . '%')->paginate(6);
                 } else {
-                    $data = EnDictionary::orderBy('title','asc')->paginate(12);
+                    $data = EnDictionary::where('status',1)->orderBy('title','asc')->paginate(12);
                 }
             }
         }
@@ -73,12 +73,12 @@ class DictionaryController extends Controller
         if (!$id) return abort(404);
         $local = \Session::get('applocale') ?? config('app.fallback_locale');
         if ($local == "tr"){
-            $other = Dictionary::inRandomOrder()->paginate(6);
-            $data = Dictionary::where('link', $id)->first();
+            $other = Dictionary::where('status',1)->inRandomOrder()->paginate(6);
+            $data = Dictionary::where('status',1)->where('link', $id)->first();
             if (!$data) abort(404);
         }else{
-            $other = EnDictionary::inRandomOrder()->paginate(6);
-            $data = EnDictionary::where('link', $id)->first();
+            $other = EnDictionary::where('status',1)->inRandomOrder()->paginate(6);
+            $data = EnDictionary::where('status',1)->where('link', $id)->first();
             if (!$data) abort(404);
         }
 
@@ -99,10 +99,10 @@ class DictionaryController extends Controller
             $local = config('app.fallback_locale');
         }
         if ($local == 'tr') {
-            $data = Dictionary::where('seo_key', 'LIKE' , '%'.$title.'%')->get();
+            $data = Dictionary::where('status',1)->where('seo_key', 'LIKE' , '%'.$title.'%')->get();
             
         } elseif ($local == 'en') {
-            $data = EnDictionary::where('seo_key', 'LIKE' , '%'.$title.'%')->get();
+            $data = EnDictionary::where('status',1)->where('seo_key', 'LIKE' , '%'.$title.'%')->get();
         }
 
 

@@ -16,4 +16,8 @@ class EnCompanyModel extends Model
     public function getKeys(){
         return explode(',', $this->seo_key);
     }
+
+    public function Title(){
+        return EnCompanyTitle::where('company_id',$this->id)->get();
+    }
 }

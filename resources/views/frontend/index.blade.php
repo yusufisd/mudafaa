@@ -1289,9 +1289,10 @@
                         <br>
                         <center>
                             <div class="center">
-
-                                @captcha('6LfCwQgpAAAAAInvavlOQObCUTU_Blegu8we7BOP')
-
+                                <div class="g-recaptcha"
+                                    data-sitekey="{{ getCaptchaSiteKey() }}" 
+                                    data-callback="onSubmit">
+                                </div>
                             </div>
                         </center>
                         <br>
@@ -1321,6 +1322,7 @@
     <!-- End Main -->
 @endsection
 @section('script')
+
     <script>
         function onSubmit(token) {
             document.getElementById("demo-form").submit();

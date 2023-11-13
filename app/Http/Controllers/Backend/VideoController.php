@@ -63,6 +63,26 @@ class VideoController extends Controller
             'seo_title_en' => 'required',
             'seo_description_en' => 'required',
             'seo_key_en' => 'required',
+        ],
+        [
+            'image.required' => 'Görsel boş bırakılamaz',
+            'category.required' => 'Kategori boş bırakılamaz',
+            'author.required' => 'Yazar boş bırakılamaz',
+            'live_date.required' => 'Yayınlama tarihi boş bırakılamaz',
+            'name_tr.required' => 'Başlık (TR) boş bırakılamaz',
+            'description_tr.required' => 'Açıklama (TR) boş bırakılamaz',
+            'youtube_tr.required' => 'Youtube linki (TR) boş bırakılamaz',
+            'link_tr.required' => 'Link (TR) boş bırakılamaz',
+            'name_en.required' => 'Başlık (EN) boş bırakılamaz',
+            'description_en.required' => 'Açıklama (EN) boş bırakılamaz',
+            'youtube_en.required' => 'Youtube linki (EN) boş bırakılamaz',
+            'link_en.required' => 'Link (EN) boş bırakılamaz',
+            'seo_title_tr.required' => 'Seo başlık (TR) boş bırakılamaz',
+            'seo_description_tr.required' => 'Seo açıklama (TR) boş bırakılamaz',
+            'seo_key_tr.required' => 'Seo anahtarı (TR) boş bırakılamaz',
+            'seo_title_en.required' => 'Seo başlık (EN) boş bırakılamaz',
+            'seo_description_en.required' => 'Seo açıklama (EN) boş bırakılamaz',
+            'seo_key_en.required' => 'Seo anahtarı (EN) boş bırakılamaz',
         ]);
         try {
             DB::beginTransaction();
@@ -179,6 +199,28 @@ class VideoController extends Controller
             'seo_title_en' => 'required',
             'seo_description_en' => 'required',
             'seo_key_en' => 'required',
+        ],
+        [
+            'category.required' => 'Kategori boş bırakılamaz',
+            'author.required' => 'Yazar boş bırakılamaz',
+            'live_date.required' => 'Yayınlama tarihi boş bırakılamaz',
+            'name_tr.required' => 'Başlık (TR) boş bırakılamaz',
+            'description_tr.required' => 'Açıklama (TR) boş bırakılamaz',
+            'youtube_tr.required' => 'Youtube linki (TR) boş bırakılamaz',
+            'link_tr.required' => 'Link (TR) boş bırakılamaz',
+            'name_en.required' => 'Başlık (EN) boş bırakılamaz',
+            'description_en.required' => 'Açıklama (EN) boş bırakılamaz',
+            'youtube_en.required' => 'Youtube linki (EN) boş bırakılamaz',
+            'link_en.required' => 'Link (EN) boş bırakılamaz',
+            'seo_title_tr.required' => 'Seo başlık (TR) boş bırakılamaz',
+            'seo_description_tr.required' => 'Seo açıklama (TR) boş bırakılamaz',
+            'seo_key_tr.required' => 'Seo anahtarı (TR) boş bırakılamaz',
+            'seo_title_en.required' => 'Seo başlık (EN) boş bırakılamaz',
+            'seo_description_en.required' => 'Seo açıklama (EN) boş bırakılamaz',
+            'seo_key_en.required' => 'Seo anahtarı (EN) boş bırakılamaz',
+        ]);
+        $request->validate([
+            
         ]);
         try {
             DB::beginTransaction();
@@ -219,9 +261,7 @@ class VideoController extends Controller
                     ->save($save_url);
                 $news->image = $save_url;
             }
-            if (!isset($request->status_tr)) {
-                $news->status = 0;
-            }
+            
             $news->save();
 
 
@@ -246,9 +286,7 @@ class VideoController extends Controller
                     ->save($save_url);
                 $news_en->image = $save_url;
             }
-            if (!isset($request->status_en)) {
-                $news_en->status = 0;
-            }
+            
             $news_en->save();
 
             logKayit(['Video Yönetimi ', 'Video düzenlendi']);
@@ -295,7 +333,7 @@ class VideoController extends Controller
             DB::beginTransaction();
             $data = Video::findOrFail($id);
             $data_en = EnVideo::where('video_id', $id)->first();
-            $data_en->status = !$data->status;
+            $data_en->status = !$data_en->status;
             $data_en->save();
             $data->status = !$data->status;
             $data->save();
@@ -316,14 +354,7 @@ class VideoController extends Controller
 
     public function commentList($id)
     {
-        $list = VideoComment::where('is_post',1)->where('post_id', $id)->get()->toArray();
-        $data = [];
-        foreach($list as $item){
-            $data = VideoComment::where('is_post',0)->where('post_id',$item["id"])->get()->toArray();
-
-        }
-        $data = array_merge($data, $list);
-
+        $data = VideoComment::where('is_post',1)->where('post_id', $id)->get();
         return view('backend.video.comments.list', compact('data'));
     }
 
@@ -344,6 +375,12 @@ class VideoController extends Controller
         $data->delete();
         Alert::success('Yorum Silindi');
         return redirect()->back();
+    }
+
+    public function comment_commentList($id)
+    {
+        $data = VideoComment::where('is_post',0)->where('post_id', $id)->get();
+        return view('backend.video.comments.comments.list', compact('data'));
     }
 
 }

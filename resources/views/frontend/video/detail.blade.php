@@ -69,7 +69,6 @@
             </div>
         </div>
         <!-- End inner page Banner -->
-
         <!-- start single-post-overlay area -->
         <div class="section-padding pb-0">
             <div class="container">
@@ -570,7 +569,7 @@
                             <div class="sidebar-wrap mb--40">
                                 <div class="ad-banner-img">
                                     <a href="#">
-                                        <img src="media/gallery/sports-ad_3.jpg" alt="ad-banner" width="310"
+                                        <img src="/media/gallery/sports-ad_3.jpg" alt="ad-banner" width="310"
                                             height="425">
                                     </a>
                                 </div>
@@ -584,14 +583,11 @@
                                     <span class="rt-section-line"></span>
                                 </h2>
                                 <div class="tag-list">
-                                    <a href="#" class="tag-link">güzel</a>
-                                    <a href="#" class="tag-link">seyahat</a>
-                                    <a href="#" class="tag-link">teknoloji</a>
-                                    <a href="#" class="tag-link">kimyasak</a>
-                                    <a href="#" class="tag-link">siyaset</a>
-                                    <a href="#" class="tag-link">işletme</a>
-                                    <a href="#" class="tag-link">makyaj</a>
-                                    <a href="#" class="tag-link">sosyal</a>
+                                    @if($popular != null)
+                                    @foreach ($popular->getKeys() as $key)
+                                        <a href="#" class="tag-link">{{ $key }}</a>
+                                    @endforeach
+                                    @endif
                                 </div>
                             </div>
                             <!-- end sidebar wrap -->
@@ -618,8 +614,8 @@
     <!-- EXTRA -->
     <script>
         /*--------------------------------
-                              // clicking the reply button
-                           -------------------------------*/
+                                      // clicking the reply button
+                                   -------------------------------*/
         // Clicking the reply link
         function setCommentId(id) {
             var replyField = $(
@@ -651,7 +647,7 @@
                 '<div class="col-12">' +
                 '<div class="rt-form-group">' +
                 '<div class="form-check">' +
-                '<input class="form-check-input" type="checkbox" value="" id="comment-form-check1">' +
+                '<input class="form-check-input" required type="checkbox" value="" id="comment-form-check1">' +
                 '<label class="form-check-label" for="comment-form-check1">' +
                 '<a href="empty.html">Kişisel Verilerin Korunması</a>' +
                 "Hakkında Aydınlatma Metni'ni okudum, onay veriyorum." +

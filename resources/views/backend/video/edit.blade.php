@@ -141,7 +141,7 @@
 
                                                                             @foreach ($users as $user)
                                                                             @endforeach
-                                                                            <option {{$data_tr->author == $user->id ? 'selected' : ''}} value="{{ $user->id }}">
+                                                                            <option  {{$data_tr->author == $user->id ? 'selected' : ''}} value="{{ $user->id }}">
                                                                                 {{ $user->name ?? '' }}
                                                                                 {{ $user->surname ?? '' }}
                                                                             </option>
@@ -156,7 +156,6 @@
                                                         </div>
 
                                                     </div>
-
                                                     <div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">
                                                         <div class="row ms-10">
                                                             <!--begin::Label-->
@@ -171,7 +170,7 @@
                                                                     <div class="col-lg-12 fv-row">
                                                                         <input type="date" name="live_date"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                            value="{{$data_tr->live_date}}" />
+                                                                            value="{{$data_tr->live_date->format('Y-m-d')}}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>

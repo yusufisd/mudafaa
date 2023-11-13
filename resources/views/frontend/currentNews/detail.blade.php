@@ -771,6 +771,13 @@
                                                     placeholder="E-posta *" name="email" id="email_1"
                                                     data-error="E-posta alanı zorunludur" required>
                                             </div>
+                                            <div class="center" style="overflow:hidden; border:solid; border-color:#b6b6b6;border-radius:3px">
+                                                <div class="g-recaptcha"
+                                                    data-sitekey="{{ getCaptchaSiteKey() }}" 
+                                                    data-callback="onSubmit">
+                                                </div>
+                                            </div>
+                                            <br>
                                             <button type="submit" class="rt-submit-btn">
                                                 {{ __('message.şimdi abone ol') }} </button>
                                             <div class="form-response"></div>

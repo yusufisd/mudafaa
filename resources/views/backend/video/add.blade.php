@@ -79,7 +79,7 @@
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10">
-                                                        <input required type="file" class="form-control" name="image"
+                                                        <input  type="file" class="form-control" name="image"
                                                             id="">
                                                     </div>
                                                     <!--end::Col-->
@@ -100,7 +100,7 @@
                                                             >
                                                             <option value="">Seçiniz...</option>
                                                             @foreach ($categories as $cat)
-                                                                <option value="{{ $cat->id }}"> {{ $cat->title }}
+                                                                <option @selected(old('category') == $cat->id) value="{{ $cat->id }}"> {{ $cat->title }}
                                                                 </option>
                                                             @endforeach
 
@@ -133,7 +133,7 @@
 
                                                                             @foreach ($users as $user)
                                                                             @endforeach
-                                                                            <option value="{{ $user->id }}">
+                                                                            <option @selected(old('author') == $user->id) value="{{ $user->id }}">
                                                                                 {{ $user->name ?? '' }} {{ $user->surname ?? ''}}
                                                                             </option>
 
@@ -160,7 +160,7 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input required type="date"
+                                                                        <input  type="date"
                                                                             name="live_date"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                             value="{{ substr($now,0,10) }}" />
@@ -218,12 +218,12 @@
                                                                         <div class="row">
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
-                                                                                <input required type="text"
+                                                                                <input  type="text"
                                                                                     name="name_tr"
                                                                                     onchange="create_slug_tr()"
                                                                                     id="activity_name_tr"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="" />
+                                                                                    value="{{ old('name_tr') }}" />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -241,7 +241,7 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10 fv-row">
                                                                         <textarea  name="description_tr" id="editor"
-                                                                            class="form-control form-control-lg form-control-solid" value=""></textarea>
+                                                                            class="form-control form-control-lg form-control-solid" value="">{{ old('description_tr') }}</textarea>
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -253,7 +253,7 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label  ps-5 fw-bold fs-6">Youtube</label>
+                                                                        class="col-lg-2 col-form-label required ps-5 fw-bold fs-6">Youtube</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10">
@@ -265,7 +265,7 @@
                                                                                     id="youtube"
                                                                                     name="youtube_tr"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="" />
+                                                                                    value="{{ old('youtube_tr') }}" />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -292,11 +292,11 @@
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <div class="row">
                                                                                     <div class="col-lg-12">
-                                                                                        <input required type="text"
+                                                                                        <input  type="text"
                                                                                             name="link_tr"
                                                                                             id="activity_url_tr"
                                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                            value="" />
+                                                                                            value="{{ old('link_tr') }}" />
                                                                                     </div>
 
 
@@ -358,12 +358,12 @@
                                                                         <div class="row">
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
-                                                                                <input required type="text"
+                                                                                <input  type="text"
                                                                                     name="name_en"
                                                                                     id="activity_name_en"
                                                                                     onchange="create_slug_en()"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="" />
+                                                                                    value="{{ old('name_en') }}" />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -381,7 +381,7 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10 fv-row">
                                                                         <textarea  name="description_en" id="editor2"
-                                                                            class="form-control form-control-lg form-control-solid" value=""></textarea>
+                                                                            class="form-control form-control-lg form-control-solid" value="">{{ old('description_en') }}</textarea>
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -404,7 +404,7 @@
                                                                                 <input  type="text"
                                                                                     name="youtube_en"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                    value="" />
+                                                                                    value="{{ old('youtube_en') }}" />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -431,11 +431,11 @@
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <div class="row">
                                                                                     <div class="col-lg-12">
-                                                                                        <input required type="text"
+                                                                                        <input  type="text"
                                                                                             name="link_en"
                                                                                             id="activity_url_en"
                                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                            value="" />
+                                                                                            value="{{ old('link_en') }}" />
                                                                                     </div>
 
 
@@ -528,10 +528,10 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input required type="text" name="seo_title_tr"
+                                                                        <input  type="text" name="seo_title_tr"
                                                                             id="activity_seo_title_tr"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                            value="" />
+                                                                            value="{{ old('seo_title_tr') }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -549,7 +549,7 @@
                                                             <!--begin::Col-->
                                                             <div class="col-lg-10 fv-row">
                                                                 <textarea  name="seo_description_tr" id="seo_description_tr"
-                                                                    class="form-control form-control-lg form-control-solid" value=""></textarea>
+                                                                    class="form-control form-control-lg form-control-solid" value="">{{ old('seo_description_tr') }}</textarea>
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -567,11 +567,11 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input required type="text"
+                                                                        <input  type="text"
                                                                             id="activity_seo_keywords_tr"
                                                                             name="seo_key_tr[]"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                            value="" />
+                                                                            value="{{ old('seo_key_tr[]') }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -604,10 +604,10 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input required type="text" name="seo_title_en"
+                                                                        <input  type="text" name="seo_title_en"
                                                                             id="activity_seo_title_en"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                            value="" />
+                                                                            value="{{ old('seo_title_en') }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -625,7 +625,7 @@
                                                             <!--begin::Col-->
                                                             <div class="col-lg-10 fv-row">
                                                                 <textarea  name="seo_description_en" id="seo_description_en"
-                                                                    class="form-control form-control-lg form-control-solid" value=""></textarea>
+                                                                    class="form-control form-control-lg form-control-solid" value="">{{ old('seo_description_en') }}</textarea>
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -643,11 +643,11 @@
                                                                 <div class="row">
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input required type="text"
+                                                                        <input  type="text"
                                                                             id="activity_seo_keywords_en"
                                                                             name="seo_key_en[]"
                                                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                            value="" />
+                                                                            value="{{ old('seo_key_en[]') }}" />
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>

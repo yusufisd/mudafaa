@@ -170,7 +170,7 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label required fw-bold fs-6 ps-5">
+                                                                        class="col-lg-1 col-form-label required fw-bold fs-6 ps-5">
                                                                         {{ __('message.başlık') }} </label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
@@ -178,7 +178,7 @@
                                                                         <!--begin::Row-->
                                                                         <div class="row">
                                                                             <!--begin::Col-->
-                                                                            <div class="col-lg-12 fv-row">
+                                                                            <div class="col-lg-11 fv-row">
                                                                                 <input type="text" name="title_tr"
                                                                                     id="title_tr" id="title_tr"
                                                                                     onchange="create_slug_tr()"
@@ -196,12 +196,12 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5">
+                                                                        class="col-lg-1 col-form-label fw-bold fs-6 mb-5 ps-5">
                                                                         <span>İçerik</span>
                                                                     </label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-12 fv-row mb-5 ps-5">
+                                                                    <div class="col-lg-11 fv-row mb-5 ps-5">
 
                                                                         <textarea id="editor" name="description_tr" class="tox-target ckeditor"> {{ $data_tr->description }} </textarea>
 
@@ -248,14 +248,14 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-2 col-form-label required fw-bold fs-6 ps-5">Başlık</label>
+                                                                        class="col-lg-1 col-form-label required fw-bold fs-6 ps-5">Başlık</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10">
                                                                         <!--begin::Row-->
                                                                         <div class="row">
                                                                             <!--begin::Col-->
-                                                                            <div class="col-lg-12 fv-row">
+                                                                            <div class="col-lg-11 fv-row">
                                                                                 <input type="text" name="title_en"
                                                                                     id="title_en"
                                                                                     onchange="create_slug_en()"
@@ -273,12 +273,12 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5">
+                                                                        class="col-lg-1 col-form-label fw-bold fs-6 mb-5 ps-5">
                                                                         <span>İçerik</span>
                                                                     </label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-12 fv-row mb-5 ps-5">
+                                                                    <div class="col-lg-11 fv-row mb-5 ps-5">
 
                                                                         <textarea id="editor2" name="description_en" class="tox-target ckeditor">{{ $data_en->description }}</textarea>
 
@@ -534,23 +534,17 @@
 
 
                                                     <div class="row" style="padding: 1%;margin-left:0" id="show_item">
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-5">
                                                             <div class="col-lg-11 fv-row">
-                                                                <input type="text" placeholder="İkon"
-                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3 w-full"
-                                                                    name="company_icon[]" id="">
-                                                                <span style="color:gray">Fontawesome sitesinden
-                                                                    alınmaldır.</span>
+                                                                <select name="company_title[]" class="form-select form-control-solid" id="">
+                                                                    <option value="">Lütfen başlık seçin</option>
+                                                                    @foreach ($title_tr as $title)
+                                                                        <option value="{{ $title->id }}">{{ $title->title_tr }}</option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
-                                                            <div class="col-lg-11 fv-row">
-                                                                <input type="text" placeholder="Başlık"
-                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                    name="company_title[]" id="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-6">
                                                             <div class="col-lg-11 fv-row">
                                                                 <input type="text" placeholder="Açıklama"
                                                                     class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
@@ -560,7 +554,7 @@
                                                         <div class="col-md-1"
                                                             style="text-align: right;padding-right:0;padding-left:0">
                                                             <button style="width:100%" style="text-align: right"
-                                                                class="btn btn-primary add_item_buton">EKLE</button>
+                                                                class="btn btn-primary btn-sm add_item_buton">EKLE</button>
                                                         </div>
                                                     </div>
 
@@ -568,30 +562,21 @@
                                                         @foreach ($basliklar as $baslik)
                                                             <div class="row pt-10" style="margin-left:0;padding:1%"
                                                                 id="show_item">
-                                                                <div class="col-md-3">
+                                                                <div class="col-md-5">
                                                                     <div class="col-lg-11 fv-row">
-                                                                        <input type="text" placeholder="İkon"
-                                                                            value="{{ $baslik->icon }}"
-                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3 w-full"
-                                                                            name="company_icon[]" id="">
-                                                                        <span style="color:gray">Fontawesome sitesinden
-                                                                            alınmaldır.</span>
+                                                                        <select name="company_title[]" class="form-select form-control-solid" id="">
+                                                                            <option value="">Lütfen başlık seçin</option>
+                                                                            @foreach ($title_tr as $title)
+                                                                                <option {{ $baslik->icon_title_id == $title->id ? 'selected' : '' }} value="{{ $title->id }}">{{ $title->title_tr }}</option>
+                                                                            @endforeach
+                                                                        </select>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-4">
-                                                                    <div class="col-lg-11 fv-row">
-                                                                        <input type="text" placeholder="Başlık"
-                                                                            value="{{ $baslik->title }}"
-                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            name="company_title[]" id="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-4">
+                                                                <div class="col-md-6">
                                                                     <div class="col-lg-11 fv-row">
                                                                         <input type="text" placeholder="Açıklama"
-                                                                            value="{{ $baslik->description }}"
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            name="company_description[]" id="">
+                                                                            name="company_description[]" id=""  value="{{ $baslik->description }}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-1"
@@ -607,23 +592,17 @@
 
                                                     <div class="row" style="padding: 1%;margin-left:0"
                                                         id="show_item_en">
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-5">
                                                             <div class="col-lg-11 fv-row">
-                                                                <input type="text" placeholder="İkon"
-                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3 w-full"
-                                                                    name="company_icon_en[]" id="">
-                                                                <span style="color:gray">Fontawesome sitesinden
-                                                                    alınmaldır.</span>
+                                                                <select name="company_title_en[]" class="form-select form-control-solid" id="">
+                                                                    <option value="">Lütfen seçin</option>
+                                                                    @foreach ($title_tr as $title)
+                                                                        <option value="{{ $title->id }}">{{ $title->title_en }}</option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
-                                                            <div class="col-lg-11 fv-row">
-                                                                <input type="text" placeholder="Başlık"
-                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                    name="company_title_en[]" id="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-6">
                                                             <div class="col-lg-11 fv-row">
                                                                 <input type="text" placeholder="Açıklama"
                                                                     class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
@@ -631,9 +610,9 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-1"
-                                                            style="text-align: right;padding-right:0;padding-left:0">
+                                                        style="text-align: right;padding-right:0;padding-left:0">
                                                             <button style="width:100%" style="text-align: right"
-                                                                class="btn btn-primary add_item_buton_en">EKLE</button>
+                                                                class="btn btn-primary btn-sm add_item_buton_en">EKLE</button>
                                                         </div>
                                                     </div>
 
@@ -641,25 +620,17 @@
                                                         @foreach ($basliklar_en as $baslik_en)
                                                             <div class="row pt-10" style="margin-left:0; padding:1%"
                                                                 id="show_item">
-                                                                <div class="col-md-3">
+                                                                <div class="col-md-5">
                                                                     <div class="col-lg-11 fv-row">
-                                                                        <input type="text" placeholder="İkon"
-                                                                            value="{{ $baslik_en->icon }}"
-                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3 w-full"
-                                                                            name="company_icon_en[]" id="">
-                                                                        <span style="color:gray">Fontawesome sitesinden
-                                                                            alınmaldır.</span>
+                                                                        <select name="company_title_en[]" class="form-select form-control-solid" id="">
+                                                                            <option value="">Lütfen seçin</option>
+                                                                            @foreach ($title_tr as $title)
+                                                                                <option {{ $baslik_en->icon_title_id == $title->id ? 'selected' : '' }} value="{{ $title->id }}">{{ $title->title_en }}</option>
+                                                                            @endforeach
+                                                                        </select>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-4">
-                                                                    <div class="col-lg-11 fv-row">
-                                                                        <input type="text" placeholder="Başlık"
-                                                                            value="{{ $baslik_en->title }}"
-                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            name="company_title_en[]" id="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-4">
+                                                                <div class="col-md-6">
                                                                     <div class="col-lg-11 fv-row">
                                                                         <input type="text" placeholder="Açıklama"
                                                                             value="{{ $baslik_en->description }}"

@@ -62,6 +62,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+
                                             @foreach ($data as $item)
                                                 <tr class="align-middle">
                                                     <td>
@@ -75,11 +76,11 @@
                                                     <td> {{ $item->email }} </td>
                                                     <td> {{ $item->comment }} </td>
                                                     <td>
-                                                        @if ($item['status'] == 0)
+                                                        @if ($item->status == 0)
                                                             <span style="color:orange;"><b>BEKLİYOR</b></span>
-                                                        @elseif ($item['status'] == 1)
+                                                        @elseif ($item->status == 1)
                                                             <span style="color:lightgreen;"><b>ONAYLANDI</b></span>
-                                                        @elseif ($item['status'] == 2)
+                                                        @elseif ($item->status == 2)
                                                             <span style="color:red;"><b>REDDEDİLDİ</b></span>
                                                         @endif
                                                     </td>
@@ -96,13 +97,7 @@
 
                                                     </td>
                                                     <td>
-                                                        <a href="{{ route('admin.video.comment_commentList', $item->id) }}"
-                                                            style="border:solid; border-radius:5px;padding:3%; border-color:lightgray;margin:3%">
-                                                            <i class="fa-solid fa-comment fa-xl"></i>
-                                                            <span style="color: gray">
-                                                                {{ $item->CommentCommentsCount() }}
-                                                            </span>
-                                                        </a>
+                                                        
                                                         <a onclick="destroy({{ $item->id }})"
                                                             class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1 px-2"
                                                             data-bs-toggle="modal" data-bs-target="#delete_modal"

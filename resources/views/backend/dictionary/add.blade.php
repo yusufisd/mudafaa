@@ -88,7 +88,7 @@
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10">
 
-                                                        <input required type="file" class="form-control" name="image"
+                                                        <input  type="file" class="form-control" name="image"
                                                             accept=".png, .jpg, .jpeg" />
 
                                                     </div>
@@ -118,7 +118,7 @@
                                                                             <option value="">Seçiniz...</option>
 
                                                                             @foreach ($users as $user)
-                                                                                <option value="{{ $user->id }}">
+                                                                                <option @selected(old('author') == $user->id) value="{{ $user->id }}">
                                                                                     {{ $user->name }} {{ $user->surname }}
                                                                                 </option>
                                                                             @endforeach

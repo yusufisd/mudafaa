@@ -79,20 +79,48 @@
                                     <div class="row">
 
 
+                                        @if (\Session::get('applocale') == 'tr')
                                         @foreach ($data->Title() as $item)
-                                            <div class="col-md-6">
-                                                <ul class="mt-3">
-                                                    <li class="mb-3">
-                                                        {!! $item->titleIcon()->icon_tr !!}
+                                        <div class="col-md-6">
+                                            <ul class="mt-3">
+                                                <li class="mb-3">
+                                                    @if ($item->titleIcon() != null)
+                                                        {!! $item->titleIcon()->icon_tr ?? ' ' !!}
                                                         <b>
-                                                            <span style="color: #749f43"> {{ $item->titleIcon()->title_tr }} : </span>
+                                                            <span style="color: #749f43">
+                                                                {{ $item->titleIcon()->title_tr ?? '' }} :
+                                                            </span>
                                                         </b>
-                                                        {{ $item->description }}
-                                                    </li>
+                                                    @endif
+                                                    {{ $item->description ?? '' }}
+                                                </li>
 
-                                                </ul>
-                                            </div>
-                                        @endforeach
+                                            </ul>
+                                        </div>
+                                    @endforeach
+                                        @endif
+                                        @if (\Session::get('applocale') == 'en')
+                                            @if ($data->Title() != null)
+                                                @foreach ($data->Title() as $item)
+                                                    <div class="col-md-6">
+                                                        <ul class="mt-3">
+                                                            <li class="mb-3">
+                                                                @if ($item->titleIcon() != null)
+                                                                    {!! $item->titleIcon()->icon_en ?? ' ' !!}
+                                                                    <b>
+                                                                        <span style="color: #749f43">
+                                                                            {{ $item->titleIcon()->title_en ?? '' }} :
+                                                                        </span>
+                                                                    </b>
+                                                                @endif
+                                                                {{ $item->description ?? '' }}
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+                                                @endforeach
+                                            @endif
+                                        @endif
 
 
                                     </div>
@@ -194,13 +222,14 @@
                                                         </li>
                                                     </ul>
                                                 </div>
-                                                <div style="width:460px!important;height:300px!important" class="col-lg-6 grid-adress">
+                                                <div style="width:460px!important;height:300px!important"
+                                                    class="col-lg-6 grid-adress">
                                                     <div style="overflow:hidden">
-                                                    {!! $item->map !!}
-                                                        
+                                                        {!! $item->map !!}
+
                                                     </div>
                                                 </div>
-                                                
+
 
                                             </div>
                                         </div>
@@ -289,6 +318,13 @@
                                                     placeholder="E-posta *" name="email" id="email_1"
                                                     data-error="E-posta alanı zorunludur" required>
                                             </div>
+                                            <div class="center" style="overflow:hidden; border:solid; border-color:#b6b6b6;border-radius:3px">
+                                                <div class="g-recaptcha"
+                                                    data-sitekey="{{ getCaptchaSiteKey() }}" 
+                                                    data-callback="onSubmit">
+                                                </div>
+                                            </div>
+                                            <br>
                                             <button type="submit" class="rt-submit-btn">Şimdi Abone Ol</button>
                                             <div class="form-response"></div>
                                         </form>

@@ -460,6 +460,7 @@ Route::middleware('lang')->group(function () {
                         ->name('destroy');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
                     Route::get('yorumlar/{id?}', 'commentList')->name('commentList');
+                    Route::get('yorumlar/ek/{id?}', 'comment_commentList')->name('comment_commentList');
                     Route::get('yorum-statu/{id?}', 'changeCommentStatus')->name('changeCommentStatus');
                     Route::get('yorum-sil/{id?}', 'commentDestroy')->name('commentDestroy');
                 });

@@ -65,4 +65,14 @@ class EnCurrentNews extends Model
     public function getKeys(){
         return explode(',', $this->seo_key);
     }
+
+    public function ShareCounter(){
+        $data = ShareCounter::where('content_id',$this->id)->first();
+        if($data){
+            return $data->share_counter;
+        }else{
+            return 0;
+        }
+
+    }
 }

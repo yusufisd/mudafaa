@@ -523,10 +523,10 @@
                                                     </a>
                                                 </li>
                                             </ul>
-                                            <div class="test" style="margin:2%; text-align:right">
+                                            <div class="test">
                                                 
                                                 <a href="{{ route('admin.titleIcon.list') }}">
-                                                    <button type="button" style="color:white"
+                                                    <button type="button" style="color:white;margin:20px"
                                                         class="btn btn-secondary btn-sm">BAŞLIKLAR</button>
                                                 </a>
 
@@ -544,7 +544,7 @@
                                                         <div class="col-md-5">
                                                             <div class="col-lg-11 fv-row">
                                                                 <select name="company_title[]" class="form-select form-control-solid" id="">
-                                                                    <option value="">Lütfen seçin</option>
+                                                                    <option value="">Lütfen başlık seçin</option>
                                                                     @foreach ($title_tr as $title)
                                                                         <option value="{{ $title->id }}">{{ $title->title_tr }}</option>
                                                                     @endforeach

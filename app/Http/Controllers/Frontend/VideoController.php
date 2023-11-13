@@ -20,9 +20,9 @@ class VideoController extends Controller
     {
         $lang = session('applocale') ?? config('app.fallback_locale');
         if ($lang == 'tr') {
-            $categories = VideoCategory::orderBy('queue', 'asc')->get();
+            $categories = VideoCategory::where('status',1)->orderBy('queue', 'asc')->get();
         } else {
-            $categories = EnVideoCategory::orderBy('queue', 'asc')->get();
+            $categories = EnVideoCategory::where('status',1)->orderBy('queue', 'asc')->get();
         }
 
         return view('frontend.video.list', compact('categories'));
@@ -34,16 +34,17 @@ class VideoController extends Controller
         if ($lang == 'tr') {
             $data = Video::where('link', $link)->first();
             if(!$data) return redirect("/");
-            $onceki = Video::where('id','<',$data->id)->first();
-            $sonraki = Video::where('id','>',$data->id)->first();
+            $onceki = Video::where('status',1)->where('id','<',$data->id)->first();
+            $sonraki = Video::where('status',1)->where('id','>',$data->id)->first();
             $other = Video::whereNot('link',$link)->get();
+            $popular = Video::where('status',1)->orderBy('view_counter','desc')->first();
                 
         } else {
-            $data = EnVideo::where('link', $link)->first();
-            $onceki = EnVideo::where('id','<',$data->id)->first();
+            $data = EnVideo::where('status',1)->where('link', $link)->first();
+            $onceki = EnVideo::where('status',1)->where('id','<',$data->id)->first();
             $sonraki = EnVideo::where('id','>',$data->id)->first();
             $other = EnVideo::whereNot('link',$link)->get();
-
+            $popular = EnVideo::where('status',1)->orderBy('view_counter','desc')->first();
         }
 
         $emojies = [
@@ -82,7 +83,7 @@ class VideoController extends Controller
             \Illuminate\Support\Facades\Cookie::queue(\Illuminate\Support\Facades\Cookie::make('video', json_encode($readCheck), 30));
         }
 
-        return view('frontend.video.detail', compact('data', 'emojies','onceki','sonraki','other'));
+        return view('frontend.video.detail', compact('data', 'emojies','onceki','sonraki','other','popular'));
     }
 
     public function category_list($link)
@@ -92,11 +93,11 @@ class VideoController extends Controller
             $local = config('app.fallback_locale');
         }
         if ($local == 'tr') {
-            $cat = VideoCategory::where('link', $link)->first();
-            $data = Video::where('category_id', $cat->id)->get();
+            $cat = VideoCategory::where('status',1)->where('link', $link)->first();
+            $data = Video::where('status',1)->where('category_id', $cat->id)->get();
         } elseif ($local == 'en') {
-            $cat = EnVideoCategory::where('link', $link)->first();
-            $data = EnVideo::where('category_id', $cat->id)->get();
+            $cat = EnVideoCategory::where('status',1)->where('link', $link)->first();
+            $data = EnVideo::where('status',1)->where('category_id', $cat->id)->get();
         }
 
         return view('frontend.videoCategory.list', compact('data', 'cat'));
@@ -109,9 +110,9 @@ class VideoController extends Controller
             $local = config('app.fallback_locale');
         }
         if ($local == 'tr') {
-            $data = Video::where('seo_key', 'LIKE', '%' . $tag . '%')->paginate(10);
+            $data = Video::where('status',1)->where('seo_key', 'LIKE', '%' . $tag . '%')->paginate(10);
         } elseif ($local == 'en') {
-            $data = EnVideo::where('seo_key', 'LIKE', '%' . $tag . '%')->paginate(10);
+            $data = EnVideo::where('status',1)->where('seo_key', 'LIKE', '%' . $tag . '%')->paginate(10);
         }
 
         return view('frontend.videoCategory.tag_list', compact('data'));

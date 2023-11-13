@@ -18,9 +18,9 @@ class VideoCategory extends Model
     {
         $lang = session('applocale') ?? config('app.fallback_locale');
         if ($lang == 'tr') {
-            $data = Video::where('category_id', $this->id)->get();
+            $data = Video::where('status',1)->where('category_id', $this->id)->get();
         } else {
-            $data = Video::where('category_id', $this->id)->get();
+            $data = EnVideo::where('status',1)->where('category_id', $this->id)->get();
         }
         return $data;
     }

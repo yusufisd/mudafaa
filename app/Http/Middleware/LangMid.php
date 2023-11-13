@@ -15,11 +15,16 @@ class LangMid
      */
     public function handle(Request $request, Closure $next): Response
     {
+        \Artisan::call('optimize:clear');
         if (Session()->has('applocale') AND array_key_exists(Session()->get('applocale'), config('languages'))) {
             \App::setLocale(Session()->get('applocale'));
+        \Artisan::call('optimize:clear');
+
         }else{
             //App::setLocale(Session()->get('tur'));
             \App::setLocale(config('app.fallback_locale'));
+        \Artisan::call('optimize:clear');
+
         }
 
         return $next($request);    

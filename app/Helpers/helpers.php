@@ -120,3 +120,7 @@ function most_popular_new(){
     }
     return $data;
 }
+
+function getCaptchaSiteKey(){
+    return "6LdsdQgpAAAAAJDjntc0qmafUnetreYnv2RMRbz0";
+}
