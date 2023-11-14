@@ -77,27 +77,25 @@
                                 <div class="w-100">
                                     <h2 class="responsive-title" style="color: #3b4022;"> {{ $data->title }} </h2>
                                     <div class="row">
-
-
                                         @if (\Session::get('applocale') == 'tr')
-                                        @foreach ($data->Title() as $item)
-                                        <div class="col-md-6">
-                                            <ul class="mt-3">
-                                                <li class="mb-3">
-                                                    @if ($item->titleIcon() != null)
-                                                        {!! $item->titleIcon()->icon_tr ?? ' ' !!}
-                                                        <b>
-                                                            <span style="color: #749f43">
-                                                                {{ $item->titleIcon()->title_tr ?? '' }} :
-                                                            </span>
-                                                        </b>
-                                                    @endif
-                                                    {{ $item->description ?? '' }}
-                                                </li>
+                                            @foreach ($data->Title() as $item)
+                                                <div class="col-md-6">
+                                                    <ul class="mt-3">
+                                                        <li class="mb-3">
+                                                            @if ($item->titleIcon() != null)
+                                                                {!! $item->titleIcon()->icon_tr ?? ' ' !!}
+                                                                <b>
+                                                                    <span style="color: #749f43">
+                                                                        {{ $item->titleIcon()->title_tr ?? '' }} :
+                                                                    </span>
+                                                                </b>
+                                                            @endif
+                                                            {{ $item->description ?? '' }}
+                                                        </li>
 
-                                            </ul>
-                                        </div>
-                                    @endforeach
+                                                    </ul>
+                                                </div>
+                                            @endforeach
                                         @endif
                                         @if (\Session::get('applocale') == 'en')
                                             @if ($data->Title() != null)
@@ -128,13 +126,13 @@
                                 </div>
                             </div>
 
-                            <div class="mb--30" style="text-align: justify">
+                            <div class="mb--60" style="text-align: justify">
                                 {!! printDesc($data->description) !!}
 
                             </div>
 
                             <!-- end inner row -->
-
+                            @if($images->count() != 0)
                             <div class="wrap post-wrap mb--30">
                                 <h2 class="rt-section-heading">
                                     <span class="rt-section-text">Ürün Görselleri </span>
@@ -156,6 +154,7 @@
 
 
                             </div>
+                            @endif
                             <!-- end wrap -->
 
                             <div class="wrap mb--30">
@@ -318,9 +317,9 @@
                                                     placeholder="E-posta *" name="email" id="email_1"
                                                     data-error="E-posta alanı zorunludur" required>
                                             </div>
-                                            <div class="center" style="overflow:hidden; border:solid; border-color:#b6b6b6;border-radius:3px">
-                                                <div class="g-recaptcha"
-                                                    data-sitekey="{{ getCaptchaSiteKey() }}" 
+                                            <div class="center"
+                                                style="overflow:hidden; border:solid; border-color:#b6b6b6;border-radius:3px">
+                                                <div class="g-recaptcha" data-sitekey="{{ getCaptchaSiteKey() }}"
                                                     data-callback="onSubmit">
                                                 </div>
                                             </div>

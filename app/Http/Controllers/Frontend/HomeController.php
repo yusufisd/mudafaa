@@ -23,8 +23,11 @@ class HomeController extends Controller
     public function index()
     {
         $local = \Session::get('applocale');
+
         if ($local == null) {
             $local = config('app.fallback_locale');
+
+            \Session::get('applocale') == 'tr';
         }
         if ($local == 'tr') {
             $cats = CurrentNews::orderBy('live_time','desc')->where('headline',1)->where('status',1)

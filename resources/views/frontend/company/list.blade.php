@@ -67,7 +67,7 @@
                                                 <a
                                                     href="{{ route('front.company.detail', $item->id . '-' . \Illuminate\Support\Str::slug($item->title)) }}">
                                                     <div class="item-img">
-                                                        <img src="/{{ $item->image }}" style="height: 130px" alt="cat-slider">
+                                                        <img src="/{{ $item->image }}" style="height: 130px" alt="{{ $item->title }}">
                                                             
                                                     </div>
                                                 </a>
