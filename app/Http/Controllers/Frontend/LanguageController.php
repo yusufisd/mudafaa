@@ -40,16 +40,18 @@ class LanguageController extends Controller
             }
         }else{
             // session process
-            Session::forget("applocale");
-            App::setLocale(config('app.fallback_locale'));
+            \Session::forget("applocale");
+            \App::setLocale(config('app.fallback_locale'));
             // cache process
+            /*
             \Artisan::call('cache:clear');
             \Artisan::call('route:clear');
             \Artisan::call('config:clear');
             \Artisan::call('view:clear');
             \Artisan::call('optimize:clear');
             \Artisan::call('config:cache');
-            \Artisan::call('optimize');
+            */
+            \Artisan::call('optimize:clear');
 
             /*
             Route::dispatchToRoute(Request::create(url()->previous()));

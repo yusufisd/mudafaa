@@ -54,14 +54,14 @@
                         @foreach ($cats as $variable)
                             <div class="swiper-slide">
                                 <a
-                                    href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $variable->link) : route('front.currentNews.detail_en', $variable->link) }}">
+                                    href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $variable->link) : route('front.currentNews.detail', $variable->link) }}">
                                     <img style="height: 100%"
                                         src="{{ $variable->mobil_image != null ? $variable->mobil_image : $variable->image }}"
                                         alt="slide-1">
                                 </a>
                                 <div class="swiper-content">
                                     @if ($variable->Category()[0] != null)
-                                        <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNewsCategory.list', $variable->Category()[0]->link)) : (route('front.currentNewsCategory.list_en', $variable->Category()[0]->link)) }}"
+                                        <a href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNewsCategory.list_en', $variable->Category()[0]->link)) : (route('front.currentNewsCategory.list', $variable->Category()[0]->link)) }}"
                                             style="background-color: {{ $variable->Category()[0]->color_code != null ? $variable->Category()[0]->color_code : '#749f43' }}"
                                             class="rt-cat-primary restricted_story_title">{{ $variable->Category()[0]->title }}</a>
                                     @endif
@@ -88,20 +88,20 @@
                         <div class="rt-post post-sm style-1">
                             <div class="post-img">
                                 <a
-                                    href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $variable->link) : route('front.currentNews.detail_en', $variable->link) }}">
+                                    href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $variable->link) : route('front.currentNews.detail', $variable->link) }}">
                                     <img style="object-fit:cover!important"
                                         src="{{ $variable->mobil_image != null ? $variable->mobil_image : $variable->image }}"
                                         alt="post" width="100" height="100">
                                 </a>
                             </div>
                             <div class="post-content ms-4">
-                                <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNewsCategory.list', $variable->Category()[0]->link) : route('front.currentNewsCategory.list_en', $variable->Category()[0]->link) }}"
+                                <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $variable->Category()[0]->link) : route('front.currentNewsCategory.list', $variable->Category()[0]->link) }}"
                                     style="background-color: {{ $variable->Category()[0]->color_code != null ? $variable->Category()[0]->color_code : '#749f43' }}"
                                     class="rt-cat-primary restricted_category_title">
                                     {{ $variable->Category()[0]->title }}
                                 </a>
                                 <h3 class="post-title">
-                                    <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $variable->link) : route('front.currentNews.detail_en', $variable->link) }}"
+                                    <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $variable->link) : route('front.currentNews.detail', $variable->link) }}"
                                         class="top_restricted_title">
                                         {{ $variable->title }}
                                     </a>
@@ -136,7 +136,7 @@
 
                     <div class="rt-post-overlay rt-post-overlay-xl layout-2">
                         <div class="post-img">
-                            <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $tek_haber->link) : route('front.currentNews.detail_en', $tek_haber->link) }}"
+                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $tek_haber->link) : route('front.currentNews.detail', $tek_haber->link) }}"
                                 class="img-link">
                                 <img src="/{{ $tek_haber->image }}" alt="travel-xl_1" width="900" height="600">
                             </a>
@@ -144,7 +144,7 @@
                         <div class="post-content">
 
                             @if (isset($tek_haber->Category()[0]))
-                                <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNewsCategory.list', $tek_haber->Category()[0]->link) : route('front.currentNewsCategory.list_en', $tek_haber->Category()[0]->link) }}"
+                                <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $tek_haber->Category()[0]->link) : route('front.currentNewsCategory.list', $tek_haber->Category()[0]->link) }}"
                                     style="background-color: {{ $tek_haber->Category()[0]->color_code != null ? $tek_haber->Category()[0]->color_code : '#749f43' }}"
                                     class="tr-america restricted_category_title">
                                     {{ $tek_haber->Category()[0]->title }}
@@ -152,7 +152,7 @@
                             @endif
 
                             <h3 class="post-title">
-                                <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $tek_haber->link) : route('front.currentNews.detail_en', $tek_haber->link) }}"
+                                <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $tek_haber->link) : route('front.currentNews.detail', $tek_haber->link) }}"
                                     class="section_2_title_style_1">
                                     {{ $tek_haber->title }}
                                 </a>
@@ -199,14 +199,14 @@
                             <div class="col-12">
                                 <div class="rt-post-overlay rt-post-overlay-md layout-3">
                                     <div class="post-img">
-                                        <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $item->link) : route('front.currentNews.detail_en', $item->link) }}"
+                                        <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail', $item->link) : route('front.currentNews.detail_en', $item->link) }}"
                                             class="img-link">
                                             <img src="{{ $item->image }}" alt="travel-xl_2" width="900" height="600">
                                         </a>
                                     </div>
                                     <div class="post-content">
                                         @foreach ($item->Category() as $Category)
-                                            <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNewsCategory.list', $Category->link) : route('front.currentNewsCategory.list_en', $Category->link) }}"
+                                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $Category->link) : route('front.currentNewsCategory.list', $Category->link) }}"
                                                 style="background-color: {{ $Category->color_code != null ? $Category->color_code : '#749f43' }}"
                                                 class="tr-europe restricted_category_title">
                                                 {{ $Category->title }}
@@ -215,7 +215,7 @@
 
 
                                         <h4 class="post-title">
-                                            <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $item->link) : route('front.currentNews.detail_en', $item->link) }}"
+                                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}"
                                                 class="section_2_title_style_2">
                                                 {{ $item->title }}
                                             </a>
@@ -302,7 +302,7 @@
                                     <div class="col-xl-4 col-lg-6">
                                         <div class="rt-post-overlay rt-post-overlay-md">
                                             <div class="post-img">
-                                                <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $ilk_kategori_icerigi->link) : route('front.currentNews.detail_en', $ilk_kategori_icerigi->link) }}"
+                                                <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $ilk_kategori_icerigi->link) : route('front.currentNews.detail', $ilk_kategori_icerigi->link) }}"
                                                     class="img-link">
                                                     <img style="object-fit:cover"
                                                         src="{{ $ilk_kategori_icerigi->image }}" alt="post-xl-3"
@@ -311,14 +311,14 @@
                                             </div>
                                             <div class="post-content">
                                                 @foreach ($ilk_kategori_icerigi->Category() as $Category)
-                                                    <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNewsCategory.list', $Category->link) : route('front.currentNewsCategory.list_en', $Category->link) }}"
+                                                    <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $Category->link) : route('front.currentNewsCategory.list', $Category->link) }}"
                                                         style="background-color: {{ $Category->color_code != null ? $Category->color_code : '#749f43' }}"
                                                         class="music restricted_category_title">
                                                         {{ $Category->title }} </a>
                                                 @endforeach
 
                                                 <h3 class="post-title">
-                                                    <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $ilk_kategori_icerigi->link) : route('front.currentNews.detail_en', $ilk_kategori_icerigi->link) }}"
+                                                    <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $ilk_kategori_icerigi->link) : route('front.currentNews.detail', $ilk_kategori_icerigi->link) }}"
                                                         class="section_4_title_style_1">
                                                         {{ $ilk_kategori_icerigi->title }}
                                                     </a>
@@ -369,18 +369,18 @@
                                                     <div class="rt-post post-md style-8">
                                                         <div class="post-img">
                                                             <a
-                                                                href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $item->link) : route('front.currentNews.detail_en', $item->link) }}">
+                                                                href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}">
                                                                 <img src="{{ $item->image }}" alt="post"
                                                                     width="343" height="250">
                                                             </a>
                                                         </div>
                                                         <div class="post-content">
-                                                            <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNewsCategory.list', $item->Category()[0]->link) : route('front.currentNewsCategory.list_en', $item->Category()[0]->link) }}"
+                                                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $item->Category()[0]->link) : route('front.currentNewsCategory.list', $item->Category()[0]->link) }}"
                                                                 style="background-color: {{ $item->Category()[0]->color_code != null ? $item->Category()[0]->color_code : '#749f43' }}"
                                                                 class="rt-cat-primary restricted_category_title">
                                                                 {{ $item->Category()[0]->title }} </a>
                                                             <h4 class="post-title">
-                                                                <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $item->link) : route('front.currentNews.detail_en', $item->link) }}"
+                                                                <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}"
                                                                     class="section_4_title_style_2">
                                                                     {{ $item->title }}
                                                                 </a>
@@ -414,17 +414,17 @@
                                                     <div class="rt-post post-md style-8">
                                                         <div class="post-img">
                                                             <a
-                                                                href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $item->id) : route('front.currentNews.detail_en', $item->id) }}">
+                                                                href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->id) : route('front.currentNews.detail', $item->id) }}">
                                                                 <img src="{{ $item->image }}" alt="post"
                                                                     width="343" height="250">
                                                             </a>
                                                         </div>
                                                         <div class="post-content">
-                                                            <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNewsCategory.list', $item->Category()[0]->link) : route('front.currentNewsCategory.list_en', $item->Category()[0]->link) }}"
+                                                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $item->Category()[0]->link) : route('front.currentNewsCategory.list', $item->Category()[0]->link) }}"
                                                                 style="background-color: {{ $item->Category()[0]->color_code != null ? $item->Category()[0]->color_code : '#749f43' }}"
                                                                 class="rt-cat-primary restricted_category_title">{{ $item->Category()[0]->title }}</a>
                                                             <h4 class="post-title">
-                                                                <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $item->link) : route('front.currentNews.detail_en', $item->link) }}"
+                                                                <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}"
                                                                     class="section_4_title_style_2">
                                                                     {{ $item->title }}
                                                                 </a>
@@ -458,7 +458,7 @@
                                     <div class="col-xl-4 col-lg-6">
                                         <div class="rt-post-overlay rt-post-overlay-md">
                                             <div class="post-img">
-                                                <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $ikinci_kategori_icerigi->link) : route('front.currentNews.detail_en', $ikinci_kategori_icerigi->link) }}"
+                                                <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $ikinci_kategori_icerigi->link) : route('front.currentNews.detail', $ikinci_kategori_icerigi->link) }}"
                                                     class="img-link">
                                                     <img src="{{ $ikinci_kategori_icerigi->image }}" alt="post-xl-3"
                                                         width="900" height="600">
@@ -466,7 +466,7 @@
                                             </div>
                                             <div class="post-content">
                                                 <h3 class="post-title">
-                                                    <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $ikinci_kategori_icerigi->link) : route('front.currentNews.detail_en', $ikinci_kategori_icerigi->link) }}"
+                                                    <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $ikinci_kategori_icerigi->link) : route('front.currentNews.detail', $ikinci_kategori_icerigi->link) }}"
                                                         class="section_4_title_style_2">
                                                         {{ $ikinci_kategori_icerigi->title }}
                                                     </a>
@@ -511,19 +511,19 @@
                                                     <div class="rt-post post-md style-8">
                                                         <div class="post-img">
                                                             <a
-                                                                href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $item->link) : route('front.currentNews.detail_en', $item->link) }}">
+                                                                href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}">
                                                                 <img src="{{ $item->image }}" alt="post"
                                                                     width="343" height="250">
                                                             </a>
                                                         </div>
                                                         <div class="post-content">
                                                             @if ($item->Category()[0] != null)
-                                                                <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNewsCategory.list', $item->Category()[0]->link) : route('front.currentNewsCategory.list_en', $item->Category()[0]->link) }}"
+                                                                <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $item->Category()[0]->link) : route('front.currentNewsCategory.list', $item->Category()[0]->link) }}"
                                                                     style="background-color: {{ $item->Category()[0]->color_code != null ? $item->Category()[0]->color_code : '#749f43' }}"
                                                                     class="rt-cat-primary restricted_category_title">{{ $item->Category()[0]->title }}</a>
                                                             @endif
                                                             <h4 class="post-title">
-                                                                <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $item->link) : route('front.currentNews.detail_en', $item->link) }}"
+                                                                <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}"
                                                                     class="section_4_title_style_2">
                                                                     {{ $item->title }}
                                                                 </a>
@@ -553,19 +553,19 @@
                                                     <div class="rt-post post-md style-8">
                                                         <div class="post-img">
                                                             <a
-                                                                href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $item->link) : route('front.currentNews.detail_en', $item->link) }}">
+                                                                href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}">
                                                                 <img src="{{ $item->image }}" alt="post"
                                                                     width="343" height="250">
                                                             </a>
                                                         </div>
                                                         <div class="post-content">
                                                             @if ($item->Category()[0] != null)
-                                                                <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNewsCategory.list', $item->Category()[0]->link) : route('front.currentNewsCategory.list_en', $item->Category()[0]->link) }}"
+                                                                <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $item->Category()[0]->link) : route('front.currentNewsCategory.list', $item->Category()[0]->link) }}"
                                                                     style="background-color: {{ $item->Category()[0]->color_code != null ? $item->Category()[0]->color_code : '#749f43' }}"
                                                                     class="rt-cat-primary restricted_category_title">{{ $item->Category()[0]->title }}</a>
                                                             @endif
                                                             <h4 class="post-title">
-                                                                <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $item->link) : route('front.currentNews.detail_en', $item->link) }}"
+                                                                <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}"
                                                                     class="section_4_title_style_2">
                                                                     {{ $item->title }}
                                                                 </a>
@@ -605,7 +605,7 @@
                                         <div class="col-xl-4 col-lg-6">
                                             <div class="rt-post-overlay rt-post-overlay-md">
                                                 <div class="post-img">
-                                                    <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $ucuncu_kategori_icerigi->link) : route('front.currentNews.detail_en', $ucuncu_kategori_icerigi->link) }}"
+                                                    <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $ucuncu_kategori_icerigi->link) : route('front.currentNews.detail', $ucuncu_kategori_icerigi->link) }}"
                                                         class="img-link">
                                                         <img src="/{{ $ucuncu_kategori_icerigi->image }}" alt="post-xl-3"
                                                             width="900" height="600">
@@ -613,14 +613,14 @@
                                                 </div>
                                                 <div class="post-content">
                                                     @if ($ucuncu_kategori_icerigi != null)
-                                                        <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNewsCategory.list', $ucuncu_kategori_icerigi->Category()[0]->link) : route('front.currentNewsCategory.list_en', $ucuncu_kategori_icerigi->Category()[0]->link) }}"
+                                                        <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $ucuncu_kategori_icerigi->Category()[0]->link) : route('front.currentNewsCategory.list', $ucuncu_kategori_icerigi->Category()[0]->link) }}"
                                                             style="background-color: {{ $ucuncu_kategori_icerigi->Category()[0]->color_code != null ? $ucuncu_kategori_icerigi->Category()[0]->color_code : '#749f43' }}"
                                                             class="music restricted_category_title">
                                                             {{ $ucuncu_kategori_icerigi->Category()[0]->title }} </a>
                                                     @endif
                                                     <h3 class="post-title">
                                                         @if ($ucuncu_kategori_icerigi != null)
-                                                            <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $ucuncu_kategori_icerigi->link) : route('front.currentNews.detail_en', $ucuncu_kategori_icerigi->link) }}"
+                                                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $ucuncu_kategori_icerigi->link) : route('front.currentNews.detail', $ucuncu_kategori_icerigi->link) }}"
                                                                 class="section_4_title_style_2">
                                                                 {{ $ucuncu_kategori_icerigi->title }}
                                                             </a>
@@ -668,18 +668,18 @@
                                                     <div class="rt-post post-md style-8">
                                                         <div class="post-img">
                                                             <a
-                                                                href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $item->link) : route('front.currentNews.detail_en', $item->link) }}">
+                                                                href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail', $item->link) : route('front.currentNews.detail', $item->link) }}">
                                                                 <img src="{{ $item->image }}" alt="post"
                                                                     width="343" height="250">
                                                             </a>
                                                         </div>
                                                         <div class="post-content">
-                                                            <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNewsCategory.list', $item->Category()[0]->link) : route('front.currentNewsCategory.list_en', $item->Category()[0]->link) }}"
+                                                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $item->Category()[0]->link) : route('front.currentNewsCategory.list', $item->Category()[0]->link) }}"
                                                                 style="background-color: {{ $item->Category()[0]->color_code != null ? $item->Category()[0]->color_code : '#749f43' }}"
                                                                 class="rt-cat-primary restricted_category_title">
                                                                 {{ $item->Category()[0]->title }} </a>
                                                             <h4 class="post-title">
-                                                                <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $item->link) : route('front.currentNews.detail_en', $item->link) }}"
+                                                                <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}"
                                                                     class="section_4_title_style_2">
                                                                     {{ $item->title }}
                                                                 </a>
@@ -712,18 +712,18 @@
                                                     <div class="rt-post post-md style-8">
                                                         <div class="post-img">
                                                             <a
-                                                                href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $item->link) : route('front.currentNews.detail_en', $item->link) }}">
+                                                                href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}">
                                                                 <img src="{{ $item->image }}" alt="post"
                                                                     width="343" height="250">
                                                             </a>
                                                         </div>
                                                         <div class="post-content">
-                                                            <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNewsCategory.list', $item->Category()[0]->link) : route('front.currentNewsCategory.list_en', $item->Category()[0]->link) }}"
+                                                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $item->Category()[0]->link) : route('front.currentNewsCategory.list', $item->Category()[0]->link) }}"
                                                                 style="background-color: {{ $item->Category()[0]->color_code != null ? $item->Category()[0]->color_code : '#749f43' }}"
                                                                 class="rt-cat-primary restricted_category_title">
                                                                 {{ $item->Category()[0]->title }} </a>
                                                             <h4 class="post-title">
-                                                                <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $item->link) : route('front.currentNews.detail_en', $item->link) }}"
+                                                                <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}"
                                                                     class="section_4_title_style_2">
                                                                     {{ $item->title }}
                                                                 </a>
@@ -782,7 +782,7 @@
 
                         <div>
                             <h6><a
-                                    href="{{ \Session::get('applocale') == 'tr' ? route('front.activity.close_activity') : route('front.activity.close_activity_en') }}">
+                                    href="{{ \Session::get('applocale') == 'en' ? route('front.activity.close_activity_en') : route('front.activity.close_activity') }}">
                                     {{ __('message.tümünü gör') }} </a></h6>
                         </div>
                     </div>
@@ -796,7 +796,7 @@
                         <div class="rt-post-grid grid-meta">
                             <div class="post-img">
                                 <a
-                                    href="{{ \Session::get('applocale') == 'tr' ? route('front.activity.detail', $item->link) : route('front.activity.detail_en', $item->link) }}">
+                                    href="{{ \Session::get('applocale') == 'en' ? route('front.activity.detail_en', $item->link) : route('front.activity.detail', $item->link) }}">
                                     <img src="/{{ $item->image == null ? 'assets/default_act.jpeg' : $item->image }}"
                                         alt="post" width="551" height="431">
                                 </a>
@@ -817,7 +817,7 @@
                                 </div>
 
                                 <h4 class="post-title">
-                                    <a href="{{ \Session::get('applocale') == 'tr' ? route('front.activity.detail', $item->link) : route('front.activity.detail_en', $item->link) }}"
+                                    <a href="{{ \Session::get('applocale') == 'en' ? route('front.activity.detail_en', $item->link) : route('front.activity.detail', $item->link) }}"
                                         class="title_style_2">
                                         {{ $item->title }}
                                     </a>
@@ -879,19 +879,19 @@
                             <div class="rt-post post-md style-7 grid-meta bold-underline mb--20">
                                 <div class="post-img">
                                     <a
-                                        href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $populer_haber_first->link) : route('front.currentNews.detail_en', $populer_haber_first->link) }}">
+                                        href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $populer_haber_first->link) : route('front.currentNews.detail', $populer_haber_first->link) }}">
                                         <img src="{{ $populer_haber_first->image }}" alt="post" width="696"
                                             height="491">
                                     </a>
                                 </div>
                                 <div class="post-content">
                                     @if ($populer_haber_first->Category()[0] != null)
-                                        <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNewsCategory.list', $populer_haber_first->Category()[0]->link) : route('front.currentNewsCategory.list_en', $populer_haber_first->Category()[0]->link) }}"
+                                        <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $populer_haber_first->Category()[0]->link) : route('front.currentNewsCategory.list', $populer_haber_first->Category()[0]->link) }}"
                                             style="background-color: {{ $populer_haber_first->Category()[0]->color_code != null ? $populer_haber_first->Category()[0]->color_code : '#749f43' }}"
                                             class="world"> {{ $populer_haber_first->Category()[0]->title }} </a>
                                     @endif
                                     <h3 class="post-title">
-                                        <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $populer_haber_first->link) : route('front.currentNews.detail_en', $populer_haber_first->link) }}"
+                                        <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $populer_haber_first->link) : route('front.currentNews.detail', $populer_haber_first->link) }}"
                                             class="restricted_title">
                                             {{ $populer_haber_first->title }}
                                         </a>
@@ -931,7 +931,7 @@
                                         </ul>
                                     </div>
                                     <div class="btn-wrap mt--25">
-                                        <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $populer_haber_first->link) : route('front.currentNews.detail_en', $populer_haber_first->link) }}"
+                                        <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $populer_haber_first->link) : route('front.currentNews.detail', $populer_haber_first->link) }}"
                                             class="rt-read-more rt-button-animation-out">
                                             {{ __('message.daha fazla oku') }}
                                             <svg width="34px" height="16px" viewBox="0 0 34.53 16"
@@ -956,7 +956,7 @@
                                         <div class="rt-post-grid grid-meta">
                                             <div class="post-img">
                                                 <a
-                                                    href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $item->link) : route('front.currentNews.detail_en', $item->link) }}">
+                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}">
                                                     <img src="{{ $item->image }}" alt="post" width="551"
                                                         height="431">
                                                 </a>
@@ -974,13 +974,13 @@
                                                     
                                                     ?>
 
-                                                    <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNewsCategory.list', $Category->link) : route('front.currentNewsCategory.list_en', $Category->link) }}"
+                                                    <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $Category->link) : route('front.currentNewsCategory.list', $Category->link) }}"
                                                         style="background-color: {{ $Category->color_code != null ? $Category->color_code : '#749f43' }}"
                                                         class="tr-america restricted_category_title">{{ $Category->title }}</a>
                                                 @endforeach
 
                                                 <h3 class="post-title">
-                                                    <a href="{{ \Session::get('applocale') == 'tr' ? route('front.currentNews.detail', $item->link) : route('front.currentNews.detail_en', $item->link) }}"
+                                                    <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}"
                                                         class="title_style_2">
                                                         {{ $item->title }}
                                                     </a>
@@ -1155,7 +1155,7 @@
                             </div>
                             <div class="post-content">
                                 <a style="background-color:#749f43"
-                                    href="{{ \Session::get('applocale') == 'tr' ? (route('front.video.category_list', $item->Category->link)) : (route('front.video.category_list_en', $item->Category->link)) }}"
+                                    href="{{ \Session::get('applocale') == 'en' ? (route('front.video.category_list_en', $item->Category->link)) : (route('front.video.category_list', $item->Category->link)) }}"
                                     class="mission restricted_category_title">
                                     {{ $item->Category->title }} </a>
                                 <h3 class="post-title">
@@ -1204,7 +1204,7 @@
 
                         <div>
                             <h6><a
-                                    href="{{ \Session::get('applocale') == 'tr' ? route('front.interview.list') : route('front.interview.list_en') }}">
+                                    href="{{ \Session::get('applocale') == 'en' ? route('front.interview.list_en') : route('front.interview.list') }}">
                                     {{ __('message.tümünü gör') }} </a></h6>
                         </div>
                     </div>

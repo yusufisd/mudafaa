@@ -281,7 +281,7 @@
                                                     placeholder="E-posta *" name="email" id="email_1"
                                                     data-error="E-posta alanı zorunludur" required>
                                             </div>
-                                            <div class="center" style="overflow:hidden; border:solid; border-color:#b6b6b6;border-radius:3px">
+                                            <div class="center" style="overflow:hidden; border-right:solid; border-color:#d3d3d3; border-radius:3px">
                                                 <div class="g-recaptcha"
                                                     data-sitekey="{{ getCaptchaSiteKey() }}" 
                                                     data-callback="onSubmit">
