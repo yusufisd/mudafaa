@@ -82,6 +82,7 @@ class CompanyModelController extends Controller
             ],
         );
 
+
         $veri = json_decode(json_decode(json_encode($request->seo_key_tr[0])));
         $merge = [];
         foreach ($veri as $v) {
@@ -268,6 +269,8 @@ class CompanyModelController extends Controller
             ],
         );
 
+
+
         $veri = json_decode(json_decode(json_encode($request->seo_key_tr[0])));
         $merge = [];
         foreach ($veri as $v) {
@@ -362,8 +365,9 @@ class CompanyModelController extends Controller
         }
 
         CompanyTitle::where('company_id', $id)->delete();
-        if ($request->company_title[0] != null) {
+        if (count($request->company_title) > 0 || $request->company_title[0] != null) {
             for ($i = 0; $i < count($request->company_description); $i++) {
+                if($request->company_title[$i] == null ) continue;
                 $new_title = new CompanyTitle();
                 $new_title->icon_title_id = $request->company_title[$i];
                 $new_title->description = $request->company_description[$i];
@@ -373,8 +377,9 @@ class CompanyModelController extends Controller
         }
         
         EnCompanyTitle::where('company_id', $id)->delete();
-        if ($request->company_title_en[0] != null) {
+        if ($request->company_title_en[0] != null || count($request->company_title_en) > 0) {
             for ($i = 0; $i < count($request->company_description_en); $i++) {
+                if($request->company_title_en[$i] == null ) continue;
                 $new_title = new EnCompanyTitle();
                 $new_title->icon_title_id = $request->company_title_en[$i];
                 $new_title->description = $request->company_description_en[$i];
