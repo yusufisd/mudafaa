@@ -116,7 +116,7 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-clock icon"></i>
-                                                                {{ $item->read_time }} DK
+                                                                {{ $item->read_time == 0 ? '1' : $item->read_time }} DK
                                                             </span>
                                                         </li>
                                                         <li>
@@ -201,7 +201,7 @@
                                             <div class="rt-post post-sm style-1">
                                                 <div class="post-img">
                                                     <a href="">
-                                                        <img src="/{{ $item->image }}" alt="post" width="100"
+                                                        <img src="/{{ $item->image }}" style="object-fit: cover" alt="post" width="100"
                                                             height="100">
                                                     </a>
                                                 </div>
