@@ -49,6 +49,9 @@ use App\Http\Controllers\Frontend\PageController as FrontendPageController;
 use App\Http\Controllers\Frontend\ContactController as FrontendContactController;
 use App\Http\Controllers\Frontend\KunyeController as FrontendKunyeController;
 use App\Http\Controllers\TitleIconController;
+use App\Models\CompanyModel;
+use App\Models\EnCompanyModel;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +63,21 @@ use App\Http\Controllers\TitleIconController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('test-link',function(){
+    $data = CompanyModel::get();
+    foreach($data as $key){
+        $link = Str::slug($key->title);
+        $key->link = $link;
+        $key->save();
+    }
+    $data_en = EnCompanyModel::get();
+    foreach($data_en as $item){
+        $link_en = Str::slug($item->title);
+        $item->link = $link_en;
+        $item->save();
+    }
+    return "Başarılı";
+});
 
 // CHANGE LANG
 Route::get('/change-lang/{lang}', [LanguageController::class, 'change'])->name('chaange.lang');
@@ -753,6 +771,9 @@ Route::middleware('lang')->group(function () {
                 Route::get('company', 'index')->name('list_en');
                 Route::prefix('firma')->group(function(){
                     Route::get('/{id?}', 'detail')->name('detail');
+                    });
+                Route::prefix('company')->group(function(){
+                    Route::get('/{id?}', 'detail')->name('detail_en');
                     });
                 });
 

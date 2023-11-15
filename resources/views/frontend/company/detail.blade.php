@@ -71,8 +71,8 @@
                     <div class="col-xl-9 sticky-coloum-item">
                         <div class="rt-left-sidebar-sapcer-5">
                             <div class="author-big-box-style-1 mb--30">
-                                <div class="author-img">
-                                    <img src="/{{ $data->image }}" alt="author-img_1" width="170" height="170">
+                                <div style="background-image: url({{ asset('assets/black_fon.jpeg') }});background-opacity:0.7;border-radius:5px" class="author-img">
+                                    <img style="width:170px;height:170px;opacity:0.8" src="/{{ $data->image }}" alt="{{ $data->title }}" >
                                 </div>
                                 <div class="w-100">
                                     <h2 class="responsive-title" style="color: #3b4022;"> {{ $data->title }} </h2>
@@ -317,9 +317,9 @@
                                                     placeholder="E-posta *" name="email" id="email_1"
                                                     data-error="E-posta alanı zorunludur" required>
                                             </div>
-                                            <div class="center"
-                                                style="overflow:hidden; border:solid; border-color:#b6b6b6;border-radius:3px">
-                                                <div class="g-recaptcha" data-sitekey="{{ getCaptchaSiteKey() }}"
+                                            <div class="center" style="overflow:hidden; border-right:solid; border-color:#d3d3d3; border-radius:3px">
+                                                <div class="g-recaptcha"
+                                                    data-sitekey="{{ getCaptchaSiteKey() }}" 
                                                     data-callback="onSubmit">
                                                 </div>
                                             </div>

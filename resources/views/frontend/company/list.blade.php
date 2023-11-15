@@ -61,11 +61,11 @@
                             <div class="row gutter-24">
 
                                 @foreach ($data as $item)
-                                    <div class="col-md-2 wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
+                                    <div class="col-md-3 wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
                                         <div class="cat-item">
                                             <div class="rt-cart-item" style="background-color: white!important">
                                                 <a
-                                                    href="{{ route('front.company.detail', $item->id . '-' . \Illuminate\Support\Str::slug($item->title)) }}">
+                                                    href="{{ route('front.company.detail', \Illuminate\Support\Str::slug($item->title)) }}">
                                                     <div class="item-img">
                                                         <img src="/{{ $item->image }}" style="height: 130px" alt="{{ $item->title }}">
                                                             

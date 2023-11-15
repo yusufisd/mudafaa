@@ -30,16 +30,15 @@ class CompanyController extends Controller
 
     public function detail($id)
     {
-        $id = explode('-', $id)[0];
         $lang = session('applocale') ?? config('app.fallback_locale');
         if ($lang == 'tr') {
-            $data = CompanyModel::findOrFail($id);
+            $data = CompanyModel::where('link',$id)->first();
         } else {
-            $data = EnCompanyModel::findOrFail($id);
+            $data = EnCompanyModel::where('link',$id)->first();
         }
-        $ekstra = CompanyTitle::where('company_id', $id)->get();
-        $images = CompanyImage::where('company_id', $id)->get();
-        $address = CompanyAddress::where('company_id', $id)->get();
+        $ekstra = CompanyTitle::where('company_id', $data->id)->get();
+        $images = CompanyImage::where('company_id', $data->id)->get();
+        $address = CompanyAddress::where('company_id', $data->id)->get();
 
         return view('frontend.company.detail', compact('data', 'ekstra', 'images', 'address'));
     }
