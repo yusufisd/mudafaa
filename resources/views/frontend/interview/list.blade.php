@@ -90,7 +90,7 @@
                                         <div class="rt-post post-md style-2 style-4  grid-meta">
                                             <div class="post-img">
                                                 <a href="{{ route('front.interview.detail', $item->link) }}">
-                                                    <img src="/{{ $item->image }}" alt="post" width="696"
+                                                    <img style="object-fit: cover" src="/{{ $item->image }}" alt="post" width="696"
                                                         height="491">
                                                 </a>
                                             </div>
