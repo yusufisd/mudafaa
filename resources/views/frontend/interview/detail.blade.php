@@ -218,7 +218,7 @@
                                     <div class="row gutter-30">
                                         <div class="col-xl-7 col-lg-6">
                                             <div class="conent-block">
-                                                <h4 class="block-tile mb--20">Popüler Etiketler:</h4>
+                                                <h4 class="block-tile mb--20"> {{ __('message.popüler etiketler') }} </h4>
 
 
                                                 <div class="tag-list">
@@ -234,7 +234,7 @@
                                         </div>
                                         <div class="col-xl-5 col-lg-6 d-flex justify-content-start justify-content-lg-end">
                                             <div class="conent-block">
-                                                <h4 class="block-tile mb--20">Paylaş:</h4>
+                                                <h4 class="block-tile mb--20"> {{ __('message.paylaş') }} </h4>
                                                 <ul class="social-share-style-1">
                                                     <li>
                                                         <a class="fb" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ request()->url() }}&text={{ $data->title }}">
@@ -277,7 +277,7 @@
                                                     <div class="item-icon">
                                                         <a href="{{ route('front.interview.detail', $data->id - 1) }}">
                                                             <i class="fas fa-chevron-left"></i>
-                                                            Önceki Röportaj
+                                                            {{ __('message.önceki röportaj') }}
                                                         </a>
                                                     </div>
                                                     <div class="content">
@@ -302,7 +302,7 @@
                                                 <div class="next-prev-wrap next-wrap">
                                                     <div class="item-icon">
                                                         <a href="{{ route('front.interview.detail', $data->id + 1) }}">
-                                                            Sonraki Röportaj
+                                                            {{ __('message.sonraki röportaj') }}
                                                             <i class="fas fa-chevron-right"></i>
                                                         </a>
                                                     </div>
@@ -354,7 +354,7 @@
 
                                     </div>
                                     <div class="row mb--20">
-                                        <h5>Yorumlar ({{ $data->commentCount() }}) </h5>
+                                        <h5> {{ __('message.yorumlar') }} ({{ $data->commentCount() }}) </h5>
                                     </div>
 
                                     @foreach ($data->comments() as $item)
@@ -378,8 +378,8 @@
                                             <div class="row justify-content-end">
                                                 <div class="col-md-4">
                                                     <span class="comment_span mx-2"><i class="fas fa-pencil-alt"></i>
-                                                        Cevap
-                                                        Yaz </span>
+                                                        {{ __('message.cevap yaz') }}
+                                                    </span>
                                                     <span class="comment_span mx-2"><i class="far fa-thumbs-up icon"></i>
                                                         0</span>
                                                     <span class="comment_span mx-2"><i
@@ -408,7 +408,7 @@
                                         <div class="row">
                                             <div class="col-xl-6">
                                                 <div class="rt-form-group">
-                                                    <label for="name">İsim - Soyisim *</label>
+                                                    <label for="name"> {{ __('message.ad soyad') }} *</label>
                                                     <input type="text" name="full_name" id="name"
                                                         class="form-control" data-error="Bu alan zorunludur" required>
                                                     <div class="help-block with-errors"></div>
@@ -416,7 +416,7 @@
                                             </div>
                                             <div class="col-xl-6">
                                                 <div class="rt-form-group">
-                                                    <label for="email">E-posta *</label>
+                                                    <label for="email">E-mail *</label>
                                                     <input type="text" name="email" id="email"
                                                         class="form-control" data-error="Bu alan zorunludur" required>
                                                     <div class="help-block with-errors"></div>
@@ -424,7 +424,7 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="rt-form-group">
-                                                    <label for="comment">Yorum *</label>
+                                                    <label for="comment"> {{ __('message.yorum') }} *</label>
                                                     <textarea name="comment" id="comment" class="form-control text-area" data-error="Bu alan zorunludur" required></textarea>
                                                     <div class="help-block with-errors"></div>
                                                 </div>
@@ -432,10 +432,10 @@
                                             <div class="col-12">
                                                 <div class="rt-form-group">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value=""
+                                                        <input required class="form-check-input" type="checkbox" value=""
                                                             id="comment-form-check1">
                                                         <label class="form-check-label" for="comment-form-check1">
-                                                            <a href="empty.html">Kişisel Verilerin Korunması</a> Hakkında
+                                                            <a href="#">Kişisel Verilerin Korunması</a> Hakkında
                                                             Aydınlatma Metni'ni okudum, onay veriyorum.
                                                         </label>
                                                     </div>
@@ -443,7 +443,7 @@
                                             </div>
                                             <div class="col-12">
                                                 <button type="submit" class="submit-btn">
-                                                    Gönder
+                                                    {{ __('message.kaydet') }}
                                                 </button>
                                             </div>
                                             <div class="form-response"></div>
@@ -456,7 +456,7 @@
                                 <div class="related-post-box">
                                     <div class="titile-wrapper mb--40">
                                         <h2 class="rt-section-heading flex-grow-1 mb-0 me-3">
-                                            <span class="rt-section-text">Diğer Röportajlar </span>
+                                            <span class="rt-section-text"> {{ __('message.diğer röportajlar') }} </span>
                                             <span class="rt-section-dot"></span>
                                             <span class="rt-section-line"></span>
                                         </h2>
@@ -538,7 +538,7 @@
 
                             <div class="d-none d-md-block sidebar-wrap mb--40">
                                 <h2 class="rt-section-heading style-2 mb--30">
-                                    <span class="rt-section-text">Bİzİ Takİp Edİn</span>
+                                    <span class="rt-section-text"> {{ __('message.bizi takip edin') }} </span>
                                     <span class="rt-section-dot"></span>
                                     <span class="rt-section-line"></span>
                                 </h2>
@@ -593,7 +593,7 @@
 
                             <div class="sidebar-wrap">
                                 <h2 class="rt-section-heading style-2 mb--30">
-                                    <span class="rt-section-text">Etİketler </span>
+                                    <span class="rt-section-text"> {{ __('message.etiketler') }} </span>
                                     <span class="rt-section-dot"></span>
                                     <span class="rt-section-line"></span>
                                 </h2>

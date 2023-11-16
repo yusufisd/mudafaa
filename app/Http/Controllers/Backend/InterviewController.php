@@ -47,7 +47,24 @@ class InterviewController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-
+            "author" => "required",
+            "live_time" => "required",
+            "youtube" => "required",
+            "name_tr" => "required",
+            "short_description_tr" => "required",
+            "description_tr" => "required",
+            "link_tr" => "required",
+            "name_en" => "required",
+            "short_description_en" => "required",
+            "description_en" => "required",
+            "link_en" => "required",
+            "seo_title_tr" => "required",
+            "seo_description_tr" => "required",
+            "seo_key_tr" => "required",
+            "seo_title_en" => "required",
+            "seo_description_en" => "required",
+            "seo_key_en" => "required",
+            "image" => "required",
             'soran_tr' => 'required',
             'cevaplayan_tr' => 'required',
             'soru_tr' => 'required',
@@ -56,6 +73,32 @@ class InterviewController extends Controller
             'cevaplayan_en' => 'required',
             'soru_en' => 'required',
             'cevap_en' => 'required',
+        ],[
+            "author" => "Yazar boş bırakılamaz",
+            "live_time" => "Yayınlama tarihi boş bırakılamaz",
+            "name_tr" => "Başlık (TR) boş bırakılamaz",
+            "short_description_tr" => "Kısa açıklama (TR) boş bırakılamaz",
+            "description_tr" => "İçerik (TR) boş bırakılamaz",
+            "link_tr" => "Link (TR) boş bırakılamaz",
+            "name_en" => "Başlık (EN) boş bırakılamaz",
+            "short_description_en" => "Kısa açıklama (EN) boş bırakılamaz",
+            "description_en" => "Açıklama (EN) boş bırakılamaz",
+            "link_en" => "Link (EN) boş bırakılamaz",
+            "seo_title_tr" => "Seo başlık (TR) boş bırakılamaz",
+            "seo_description_tr" => "Seo açıklama (TR) boş bırakılamaz",
+            "seo_key_tr" => "Seo anahtarı (TR) boş bırakılamaz",
+            "seo_title_en" => "Seo başlık (EN) boş bırakılamaz",
+            "seo_description_en" => "Seo açıklama (EN) boş bırakılamaz",
+            "seo_key_en" => "Seo anahtarı (EN) boş bırakılamaz",
+            "image" => "Görsel boş bırakılamaz",
+            'soran_tr' => 'Soran kişi (TR) boş bırakılamaz',
+            'cevaplayan_tr' => 'Cevaplayan (TR) kişi boş bırakılamaz',
+            'soru_tr' => 'Soru (TR) boş bırakılamaz',
+            'cevap_tr' => 'Cevap (TR) boş bırakılamaz',
+            'soran_en' => 'Soran kişi (EN) boş bırakılamaz',
+            'cevaplayan_en' => 'Cevaplayan kişi (EN) boş bırakılamaz',
+            'soru_en' => 'Soru (EN) boş bırakılamaz',
+            'cevap_en' => 'Cevap (EN) boş bırakılamaz',
         ]);
 
 
@@ -106,7 +149,7 @@ class InterviewController extends Controller
         $new_interview->save();
 
 
-        if(count($request->soran_tr) > 0) {
+        if(count($request->soran_tr) > 0 && $request->soran_tr[0] != null) {
             for ($i = 0; $i < count($request->soran_tr); $i++) {
                 $new_dialog = new Dialog();
                 $new_dialog->soran = $request->soran_tr[$i];
@@ -141,7 +184,7 @@ class InterviewController extends Controller
         }
         $interview_en->save();
 
-        if(count($request->soran_en) > 0) {
+        if(count($request->soran_en) > 0 && $request->soran_en[0] != null) {
             for ($i = 0; $i < count($request->soran_en); $i++) {
                 $new_dialog_en = new EnDialog();
                 $new_dialog_en->soran = $request->soran_en[$i];

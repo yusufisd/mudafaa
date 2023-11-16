@@ -35,7 +35,9 @@ class DictionaryImport implements ToCollection, WithStartRow
                     $keys_tr = trim($row[4]);
                     $keys_en = trim($row[5]);
 
-                    
+                    if(Dictionary::where('link',$link_tr)->first() != null){
+                        continue;
+                    }
 
                     $dict = new Dictionary();
                     $dict->title = $row[0];

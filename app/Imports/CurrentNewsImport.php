@@ -30,6 +30,10 @@ class CurrentNewsImport implements ToCollection, WithStartRow
                     $link_tr = Str::slug($row[2]);
                     $link_en = Str::slug($row[3]);
 
+                    if(CurrentNews::where('link',$link_tr)->first() != null){
+                        continue;
+                    }
+
                     $keys_tr = trim($row[10]);
                     $keys_en = trim($row[11]);
 

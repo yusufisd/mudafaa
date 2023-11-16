@@ -29,6 +29,10 @@ class ActivityCategoryImport implements ToCollection, WithStartRow
                     $keys_tr = ($row[4]);
 
 
+                    if(ActivityCategory::where('link',Str::slug($row[1]))->first() != null){
+                        continue;
+                    }
+
 
                     $tr = ActivityCategory::create([
                         'title' => $row[1],

@@ -28,6 +28,10 @@ class CurrentNewsCategoryImport implements ToCollection, WithStartRow
                     $keys = ($row[3]);
                     $keys_tr = ($row[4]);
 
+                    if(CurrentNewsCategory::where('link',Str::slug($row[1]))->first() != null){
+                        continue;
+                    }
+
 
                     $tr = CurrentNewsCategory::create([
                         'title' => $row[1],

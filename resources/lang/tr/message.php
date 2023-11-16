@@ -110,7 +110,11 @@ return [
     "tarih seçiniz" => "Tarih seçiniz",
     "kategori seçiniz" => "Kategori seçiniz",
     "Arama sonuçları" => "Arama sonuçları",
-
+    "iş birliği" => "İş Birliği",
+    "reklam" => "Reklam",
+    "önceki röportaj" => "Önceki Röportaj",
+    "sonraki röportaj" => "Sonraki Röportaj",
+    "diğer röportajlar" => "Diğer Röportajlar",
 
 
 ];

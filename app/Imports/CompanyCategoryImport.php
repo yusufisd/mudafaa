@@ -27,6 +27,10 @@ class CompanyCategoryImport implements ToCollection, WithStartRow
                     $keys = $row[3];
                     $keys_tr = $row[4];
 
+                    if(CompanyCategory::where('link',Str::slug($row[1]))->first() != null){
+                        continue;
+                    }
+
                     $tr = CompanyCategory::create([
                         'name' => $row[1],
                         'link' => Str::slug($row[1]),

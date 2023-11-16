@@ -190,6 +190,7 @@
                                             <div class="row gutter-30">
                                                 <div class="col-lg-6 grid-adress">
                                                     <ul class="contact_info">
+                                                        @if($item->address != null)
                                                         <li>
                                                             <h6>Adres</h6>
                                                             <p class="rt-teta">
@@ -197,6 +198,8 @@
                                                                 {{ $item->address }}
                                                             </p>
                                                         </li>
+                                                        @endif
+                                                        @if($item->email != null)
                                                         <li>
                                                             <h6>E-Posta</h6>
                                                             <p class="rt-teta">
@@ -204,6 +207,8 @@
                                                                 {{ $item->email }}
                                                             </p>
                                                         </li>
+                                                        @endif
+                                                        @if($item->phone != null)
                                                         <li>
                                                             <h6>Telefon</h6>
                                                             <p class="rt-teta">
@@ -212,6 +217,8 @@
                                                             </p>
 
                                                         </li>
+                                                        @endif
+                                                        @if($item->website != null)
                                                         <li>
                                                             <h6>Web Site</h6>
                                                             <p class="rt-teta">
@@ -219,6 +226,7 @@
                                                                 {{ $item->website }}
                                                             </p>
                                                         </li>
+                                                        @endif
                                                     </ul>
                                                 </div>
                                                 <div style="width:460px!important;height:300px!important"

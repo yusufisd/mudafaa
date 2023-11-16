@@ -39,6 +39,9 @@ class ActivityImport implements ToCollection, WithStartRow
                     if($cat_tr == null){
                         continue;
                     }
+                    if(Activity::where('link',$link_tr)->first() != null){
+                        continue;
+                    }
                     $activity = new Activity();
                     $activity->website = $row[1] ?? '';
                     $activity->ticket_link = $row[2] ?? '';

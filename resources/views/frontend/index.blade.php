@@ -1287,14 +1287,12 @@
                             <div class="form-response"></div>
                         </div>
                         <br>
-                        <center>
                             <div class="center">
                                 <div class="g-recaptcha"
                                     data-sitekey="{{ getCaptchaSiteKey() }}" 
                                     data-callback="onSubmit">
                                 </div>
                             </div>
-                        </center>
                         <br>
                         <div>
                             <input type="checkbox"  name="" id="check">

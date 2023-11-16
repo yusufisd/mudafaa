@@ -46,22 +46,22 @@ class DictionaryController extends Controller
             }
 
             if ($local == 'tr') {
-                $data = Dictionary::where('status',1)->where('title', 'like', "%".$request->search."%")->paginate(6);
+                $data = Dictionary::where('status',1)->where('title', 'like', "%".$request->search."%")->paginate(18);
             } elseif ($local == 'en') {
-                $data = EnDictionary::where('status',1)->where('title', 'like', "%".$request->search."%")->paginate(6);
+                $data = EnDictionary::where('status',1)->where('title', 'like', "%".$request->search."%")->paginate(18);
             }
         }else {
             if ($local == 'tr') {
                 if ($letter != null) {
-                    $data = Dictionary::where('status',1)->where('title', 'LIKE', $letter . '%')->paginate(6);
+                    $data = Dictionary::where('status',1)->where('title', 'LIKE', $letter . '%')->paginate(18);
                 } else {
-                    $data = Dictionary::where('status',1)->orderBy('title','asc')->paginate(12);
+                    $data = Dictionary::where('status',1)->orderBy('title','asc')->paginate(18);
                 }
             } elseif ($local == 'en') {
                 if ($letter != null) {
-                    $data = EnDictionary::where('status',1)->where('title', 'LIKE', $letter . '%')->paginate(6);
+                    $data = EnDictionary::where('status',1)->where('title', 'LIKE', $letter . '%')->paginate(18);
                 } else {
-                    $data = EnDictionary::where('status',1)->orderBy('title','asc')->paginate(12);
+                    $data = EnDictionary::where('status',1)->orderBy('title','asc')->paginate(18);
                 }
             }
         }

@@ -110,9 +110,11 @@
                                             @foreach (headline() as $item)
                                                 <div class="swiper-slide">
                                                     <div class="item">
+                                                        <a href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNews.detail_en', $item->link)) : (route('front.currentNews.detail', $item->link)) }}">
                                                         <p class="trending-slide-title">
-                                                            {{ substr($item->title, 0, 60) }} ...
+                                                            {{  str_word_count($item->title) < 100 ? $item->title : substr($item->title,0,100).'...' }} 
                                                         </p>
+                                                    </a>
                                                     </div>
                                                 </div>
                                             @endforeach
@@ -505,28 +507,28 @@
                                             <ul class="widget-list cat-list">
                                                 <li class="widget-list-item">
                                                     <a href="{{ route('front.kunye') }}" class="widget-list-link">
-                                                        Künye
+                                                        {{ __('message.künye') }}
                                                     </a>
                                                 </li>
                                                 <li class="widget-list-item">
                                                     <a href="{{ route('front.contact') }}" class="widget-list-link">
-                                                        İletişim
+                                                        {{ __('message.iletişim') }}
                                                     </a>
                                                 </li>
                                                 <li class="widget-list-item">
                                                     <a href="" class="widget-list-link">
-                                                        Reklam
+                                                        {{ __('message.reklam') }}
                                                     </a>
                                                 </li>
                                                 <li class="widget-list-item">
                                                     <a href="" class="widget-list-link">
-                                                        İş Birliği
+                                                        {{ __('message.iş birliği') }}
                                                     </a>
                                                 </li>
                                                 <li class="widget-list-item">
                                                     <a href="{{ \Session::get('applocale') == 'en' ? (route('front.archive.index_en')) : (route('front.archive.index')) }}"
                                                         class="widget-list-link">
-                                                        Arşiv
+                                                        {{ __('message.arşiv') }}
                                                     </a>
                                                 </li>
                                             </ul>

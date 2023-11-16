@@ -112,6 +112,12 @@ return [
     "tarih seçiniz" => "Select date",
     "kategori seçiniz" => "Select category",
     "Arama sonuçları" => "Search results",
+    "iş birliği" => "Cooperation",
+    "reklam" => "Advertisement",
+    "önceki röportaj" => "Previous Interview",
+    "sonraki röportaj" => "Next Interview",
+    "diğer röportajlar" => "Other Interview",
+
 
 ];
 ?>
