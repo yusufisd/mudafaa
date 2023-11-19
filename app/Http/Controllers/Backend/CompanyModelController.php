@@ -55,6 +55,8 @@ class CompanyModelController extends Controller
             [
                 'category' => 'required',
                 'title_tr' => 'required',
+                'link_tr' => 'required',
+                'link_en' => 'required',
                 'description_tr' => 'required',
                 'title_en' => 'required',
                 'description_en' => 'required',
@@ -71,6 +73,8 @@ class CompanyModelController extends Controller
                 'title_tr' => 'Başlık (TR) boş bırakılamaz',
                 'description_tr' => 'İçerik (TR) boş bırakılamaz',
                 'title_en' => 'Başlık (EN) boş bırakılamaz',
+                'link_tr' => 'Link (TR) boş bırakılamaz',
+                'link_en' => 'Link (EN) boş bırakılamaz',
                 'description_en' => 'İçerik(EN) boş bırakılamaz',
                 'seo_title_tr' => 'Seo başlık (TR) boş bırakılamaz',
                 'seo_description_tr' => 'Seo açıklama (TR) boş bırakılamaz',
@@ -106,7 +110,7 @@ class CompanyModelController extends Controller
         $new_company->seo_title = $request->seo_title_tr;
         $new_company->seo_description = $request->seo_description_tr;
         $new_company->seo_key = $merge;
-
+        $new_company->link = $request->link_tr;
         if ($request->file('image') != null) {
             $image = $request->file('image');
             $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
@@ -128,6 +132,7 @@ class CompanyModelController extends Controller
         $new_company_en->seo_title = $request->seo_title_en;
         $new_company_en->seo_description = $request->seo_descriptipn_en;
         $new_company_en->seo_key = $merge_en;
+        $new_company_en->link = $request->link_tr;
         $new_company_en->category = $request->category;
         if ($request->file('image') != null) {
             $image = $request->file('image');
@@ -170,6 +175,7 @@ class CompanyModelController extends Controller
         }
         if ($request->company_title[0] != null) {
             for ($i = 0; $i < count($request->company_description); $i++) {
+                if($request->company_title[$i] == null &&  $request->company_description[$i] == null) continue;
                 $new_title = new CompanyTitle();
                 $new_title->icon_title_id = $request->company_title[$i];
                 $new_title->description = $request->company_description[$i];
@@ -179,6 +185,7 @@ class CompanyModelController extends Controller
         }
         if ($request->company_title_en[0] != null) {
             for ($i = 0; $i < count($request->company_description_en); $i++) {
+                if($request->company_title_en[$i] == null &&  $request->company_description_en[$i] == null) continue;
                 $new_title = new EnCompanyTitle();
                 $new_title->icon_title_id = $request->company_title_en[$i];
                 $new_title->description = $request->company_description_en[$i];
@@ -207,17 +214,7 @@ class CompanyModelController extends Controller
         return redirect()->route('admin.companyModel.list');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function edit($id)
     {
         $title_en = Title_Icon::latest()->get();
@@ -366,8 +363,8 @@ class CompanyModelController extends Controller
 
         CompanyTitle::where('company_id', $id)->delete();
         if (count($request->company_title) > 0 || $request->company_title[0] != null) {
-            for ($i = 0; $i < count($request->company_description); $i++) {
-                if($request->company_title[$i] == null ) continue;
+            for ($i = 0; $i < count($request->company_title); $i++) {
+                if($request->company_title[$i] == null &&  $request->company_description[$i] == null) continue;
                 $new_title = new CompanyTitle();
                 $new_title->icon_title_id = $request->company_title[$i];
                 $new_title->description = $request->company_description[$i];
@@ -378,7 +375,7 @@ class CompanyModelController extends Controller
         
         EnCompanyTitle::where('company_id', $id)->delete();
         if ($request->company_title_en[0] != null || count($request->company_title_en) > 0) {
-            for ($i = 0; $i < count($request->company_description_en); $i++) {
+            for ($i = 0; $i < count($request->company_title_en); $i++) {
                 if($request->company_title_en[$i] == null ) continue;
                 $new_title = new EnCompanyTitle();
                 $new_title->icon_title_id = $request->company_title_en[$i];

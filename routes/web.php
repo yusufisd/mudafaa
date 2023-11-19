@@ -659,6 +659,8 @@ Route::middleware('lang')->group(function () {
                     Route::get('/duzenle/{id?}', 'edit')->name('edit');
                     Route::post('/duzenle/{id?}', 'update')->name('update');
                     Route::get('/sil/{id?}', 'destroy')->name('destroy');
+                    Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
+
                 });
         });
 

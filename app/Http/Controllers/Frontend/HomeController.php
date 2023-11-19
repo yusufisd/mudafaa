@@ -22,8 +22,8 @@ class HomeController extends Controller
 {
     public function index()
     {
+        
         $local = \Session::get('applocale');
-
         if ($local == null) {
             $local = config('app.fallback_locale');
 

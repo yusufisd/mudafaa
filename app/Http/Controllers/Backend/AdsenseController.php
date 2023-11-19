@@ -5,7 +5,12 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\AdsenseModel;
 use Illuminate\Http\Request;
-use Intervention\Image\Image;
+use Intervention\Image\Facades\Image;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
+use Throwable;
+use Illuminate\Validation\ValidationException;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdsenseController extends Controller
 {
@@ -15,7 +20,7 @@ class AdsenseController extends Controller
     public function list()
     {
         $data = AdsenseModel::latest()->get();
-        return view('backend.adsense.list',compact('data'));
+        return view('backend.adsense.list', compact('data'));
     }
 
     /**
@@ -31,25 +36,35 @@ class AdsenseController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
-
         $request->validate([
             "ad_name" => "required",
-            "ad_url" => "required",
+            "ad_explanation" => "required",
+            "start_date" => "required",
+            "finish_date;" => "required",
+        ],[
+            "ad_name" => "başlık boş bırakılamaz",
+            "ad_explanation" => "açıklama boş bırakılamaz",
+            "start_date" => "başlangıç tarihi boş bırakılamaz",
+            "finish_date;" => "bitiş tarihi boş bırakılamaz",
         ]);
-
 
         $data = new AdsenseModel();
         $data->title = $request->ad_name;
         $data->description = $request->ad_explanation;
         $data->type = $request->type;
-        if($request->type == 0 ){
+        $data->start = $request->start_date;
+        $data->finish = $request->finish_date;
+
+        if ($request->type == 0) {
             $data->adsense_url = $request->ad_google_adsense_code;
-        }if($data-> type == 1 ){
+        }
+        if ($data->type == 1) {
             $data->adsense_url = $request->ad_url;
-        }if(isset($request->href_tab)){
+        }
+        if (isset($request->href_tab)) {
             $data->href_tab = 1;
-        }if ($request->file('image') != null) {
+        }
+        if ($request->file('image') != null) {
             $image = $request->file('image');
             $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
             $save_url = public_path('assets/uploads/anket/' . $image_name);
@@ -58,33 +73,89 @@ class AdsenseController extends Controller
                 ->save($save_url);
             $data->image = $save_url;
         }
-        $data->start = $request->start_time;
-        $data->finish = $request->finish_time;
-        
+        $data->save();
 
-
-        
+        Alert::success('Reklam başarıyla eklendi');
+        return redirect()->route('admin.adsense.list');
     }
 
-    
     public function edit($id)
     {
-        dd($id);
+        $data = AdsenseModel::findOrFail($id);
+        return view('backend.adsense.edit', compact('data'));
     }
 
-   
     public function update(Request $request, $id)
     {
-        dd($request->all());
+        $request->validate([
+            "ad_name" => "required",
+            "ad_explanation" => "required",
+            "start_date" => "required",
+            "finish_date;" => "required",
+        ],[
+            "ad_name" => "başlık boş bırakılamaz",
+            "ad_explanation" => "açıklama boş bırakılamaz",
+            "start_date" => "başlangıç tarihi boş bırakılamaz",
+            "finish_date;" => "bitiş tarihi boş bırakılamaz",
+        ]);
+        
+        $data = AdsenseModel::find($id);
+        $data->title = $request->ad_name;
+        $data->description = $request->ad_explanation;
+        $data->type = $request->type;
+        $data->start = $request->start_date;
+        $data->finish = $request->finish_date;
 
+        if ($request->type == 0) {
+            $data->adsense_url = $request->ad_google_adsense_code;
+        }
+        if ($data->type == 1) {
+            $data->adsense_url = $request->ad_url;
+        }
+        if (isset($request->href_tab)) {
+            $data->href_tab = 1;
+        }
+        if ($request->file('image') != null) {
+            $image = $request->file('image');
+            $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $save_url = public_path('assets/uploads/anket/' . $image_name);
+            Image::make($image)
+                ->resize(492, 340)
+                ->save($save_url);
+            $data->image = $save_url;
+        }
+        $data->save();
+        Alert::success('Reklam başarıyla düzenlendi');
+        return redirect()->route('admin.adsense.list');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
-        dd($id);
-        
+        AdsenseModel::where('id',$id)->delete();
+        Alert::success('Reklam Başarıyla Silindi');
+        return redirect()->route('admin.adsense.list');
+    }
+
+    public function change_status($id)
+    {
+        try {
+            DB::beginTransaction();
+            $data = AdsenseModel::findOrFail($id);
+            $data->status = !$data->status;
+            $data->save();
+
+            logKayit(['Reklam Yönetimi', 'Reklam durumu değiştirildi']);
+            Alert::success('Reklam Durumu Değiştirildi');
+            DB::commit();
+        } catch (Throwable $e) {
+            DB::rollBack();
+
+            logKayit(['Reklam Yönetimi ', 'Reklam durumu değiştirilemedi', 0]);
+            Alert::error('Reklam durum değiştirmede Hata');
+            throw ValidationException::withMessages([
+                'error' => 'Bir hatayla karşılaşıldı.',
+            ]);
+        }
+        return redirect()->route('admin.adsense.list');
     }
 }

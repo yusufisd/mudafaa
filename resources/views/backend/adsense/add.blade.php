@@ -28,8 +28,15 @@
             </div>
             <!--end::Toolbar container-->
         </div>
-        <!--end::Toolbar-->
-        <!--begin::Content-->
+
+		@if($errors->any())
+			@foreach ($errors->all() as $e)
+				<div class="alert alert-danger">
+					{{ $e }}
+				</div>
+			@endforeach
+		@endif
+
         <div id="kt_app_content" class="app-content flex-column-fluid">
             <!--begin::Content container-->
             <div id="kt_app_content_container" class="app-container container-fluid">
@@ -59,7 +66,7 @@
                                                 <div class="row">
                                                     <!--begin::Col-->
                                                     <div class="col-lg-12 fv-row">
-                                                        <select name="ad_type_select" aria-label="Seçiniz" data-control="select2" data-placeholder="Seçiniz..." class="form-select form-select-solid form-select-lg fw-semibold">
+                                                        <select name="ad_type_select" aria-label="Seçiniz" data-placeholder="Seçiniz..." class="form-select form-select-solid form-select-lg fw-semibold">
                                                             <option value="">Seçiniz...</option>
                                                             <option value="google_ads">Google Reklamları</option>
                                                             <option value="sponsored_ads">Sponsorlu Reklamlar</option>
@@ -152,38 +159,34 @@
                           
 							'<div class="separator my-10"></div>'+
 							'<div class="row mb-6">'+
-								'<div class="col-lg-5 fv-row fv-plugins-icon-container ps-5">'+
-									'<div class="row">'+
-										'<label class="col-lg-5 col-form-label fw-bold fs-6">'+
-											'Yayın Başlangıç Tarihi'+
-										'</label>'+
-										'<div class="col-lg-7">'+
-											'<div class="row">'+
-												'<div class="col-lg-12 fv-row">'+
-													'<input type="date" class="form-control" name="start_time" id="">'+
-												'</div>'+
+							'<div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">'+
+								'<div class="row">'+
+									'<label class="col-lg-4 col-form-label fw-bold fs-6">'+
+										'Yayın Başlangıç <br>Tarihi'+
+									'</label>'+
+									'<div class="col-lg-8">'+
+										'<div class="row">'+
+											'<div class="col-md-12">'+
+												'<input type="date" name="start_date" class="form-control">'+
 											'</div>'+
 										'</div>'+
 									'</div>'+
 								'</div>'+
+							'</div>'+
 
-								'<div class="col-lg-7 fv-row fv-plugins-icon-container ps-5">'+
-									'<div class="row ms-10">'+
-										'<label style="text-align:right" class="col-lg-6 col-form-label fw-bold fs-6">'+
-											'Yayın Bitiş Tarihi'+
-										'</label>'+
-										'<div class="col-lg-6">'+
-											'<div class="row">'+
-												'<div class="col-lg-12 fv-row">'+
-													'<input type="date" class="form-control" name="finish_time" id="">'+
-												'</div>'+
+							'<div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">'+
+								'<div class="row ms-10">'+
+									'<label class="col-lg-4 col-form-label fw-bold fs-6" style="padding-top: 0px;">Yayın Bitiş <br> Tarihi </label>'+
+									'<div class="col-lg-8">'+
+										'<div class="row">'+
+											'<div class="col-md-12">'+
+												'<input type="date" name="finish_date" class="form-control">'+
 											'</div>'+
 										'</div>'+
 									'</div>'+
 								'</div>'+
-
-								
-							'</div>'
+							'</div>'+
+						'</div>'
 
 						);
 					
@@ -238,21 +241,7 @@
 						'<div class="row mb-6">'+
 							'<label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Reklam Görseli</label>'+
 							'<div class="col-lg-10">'+
-								'<div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url("assets/media/svg/avatars/blank.svg")">'+
-									'<div class="image-input-wrapper w-125px h-125px" style="background-image: url(../assets/media/avatars/300-1.jpg)"></div>'+
-									'<label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Resmi Değiştir">'+
-										'<i class="bi bi-pencil-fill fs-7"></i>'+
-										'<input type="file" name="add_ad_image" accept=".png, .jpg, .jpeg" />'+
-										'<input type="hidden" name="add_ad_image_remove" />'+
-									'</label>'+
-									'<span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Resmi Sil">'+
-										'<i class="bi bi-x fs-2"></i>'+
-									'</span>'+
-									'<span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Resmi Kaldır">'+
-										'<i class="bi bi-x fs-2"></i>'+
-									'</span>'+
-								'</div>'+
-								'<div class="form-text">png, jpg, jpeg - (20x20)</div>'+
+								'<input type="file" name="image" class="form-control">'+
 							'</div>'+
 						'</div>'+
 						'<div class="separator my-10"></div>'+
@@ -260,17 +249,12 @@
 							'<div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">'+
 								'<div class="row">'+
 									'<label class="col-lg-4 col-form-label fw-bold fs-6">'+
-										'Yayın Başlangıç <br>Tarihi - Saati'+
+										'Yayın Başlangıç <br>Tarihi'+
 									'</label>'+
 									'<div class="col-lg-8">'+
 										'<div class="row">'+
-											'<div class="col-lg-12 fv-row">'+
-												'<div class="input-group" id="add_ad_sponsered_start_calendar" data-td-target-input="nearest" data-td-target-toggle="nearest">'+
-													'<input id="add_ad_date" type="text" class="form-control" data-td-target="#add_ad_sponsered_start_calendar"/>'+
-													'<span class="input-group-text" data-td-target="#add_ad_sponsered_start_calendar" data-td-toggle="datetimepicker">'+
-														'<i class="bi bi-calendar2-week fs-2"><span class="path1"></span><span class="path2"></span></i>'+
-													'</span>'+
-												'</div>'+
+											'<div class="col-md-12">'+
+												'<input type="date" name="start_date" class="form-control">'+
 											'</div>'+
 										'</div>'+
 									'</div>'+
@@ -279,16 +263,11 @@
 
 							'<div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">'+
 								'<div class="row ms-10">'+
-									'<label class="col-lg-4 col-form-label fw-bold fs-6" style="padding-top: 0px;">Yayın Bitiş <br> Tarihi - Saati</label>'+
+									'<label class="col-lg-4 col-form-label fw-bold fs-6" style="padding-top: 0px;">Yayın Bitiş <br> Tarihi</label>'+
 									'<div class="col-lg-8">'+
 										'<div class="row">'+
-											'<div class="col-lg-12 fv-row">'+
-												'<div class="input-group" id="add_ad_sponsered_end_calendar" data-td-target-input="nearest" data-td-target-toggle="nearest">'+
-													'<input id="add_ad_date" type="text" class="form-control" data-td-target="#add_ad_sponsered_end_calendar"/>'+
-													'<span class="input-group-text" data-td-target="#add_ad_sponsered_end_calendar" data-td-toggle="datetimepicker">'+
-														'<i class="bi bi-calendar2-week fs-2"><span class="path1"></span><span class="path2"></span></i>'+
-													'</span>'+
-												'</div>'+
+											'<div class="col-md-12">'+
+												'<input type="date" name="finish_date" class="form-control">'+
 											'</div>'+
 										'</div>'+
 									'</div>'+

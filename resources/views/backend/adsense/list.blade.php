@@ -58,7 +58,7 @@
                                                             <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#ad_table .my-input " value="1" />
                                                         </div>
                                                     </th>
-                                                    <th>Resim<i class="fa fa-sort ms-3"></i></th>
+                                                    <th>Reklam Tipi<i class="fa fa-sort ms-3"></i></th>
                                                     <th>Reklam Adı<i class="fa fa-sort ms-3"></i></th>
                                                     <th>Açıklama<i class="fa fa-sort ms-3"></i></th>
                                                     <th class="text-center pe-7">Durum<i class="fa fa-sort ms-3"></i></th>
@@ -66,6 +66,9 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+
+                                                @foreach ($data as $item)
+                                                    
                                                 <tr class="align-middle">
                                                     <td>
                                                         <div class="form-check form-check-sm form-check-custom form-check-solid">
@@ -73,58 +76,34 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <img src="../assets/media/stock/ecommerce/197.gif" class="w-75px ms-n1" alt="">
+                                                    @if($item->type == 0)
+                                                        Google Reklam
+                                                    @elseif($item->type == 1)
+                                                        Sponsorlu Reklam
+                                                    @endif
                                                     </td>
-
-                                                    <td>Social Media</td>
-                                                    <td>NEW TRENDS IN WEB</td>
+                                                    <td style="text-transform: capitalize"> {{ $item->title ?? '-' }} </td>
+                                                    <td> {{ $item->description ?? '-' }} </td>
                                                     <td>
                                                         <div class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
-                                                            <input class="form-check-input w-50px h-25px" type="checkbox" id="ad_status_1" checked="checked">
+                                                            <input class="form-check-input w-50px h-25px" type="checkbox" id="ad_status_1" {{ $item->status == 1 ? 'checked' : '' }}
+                                                            onchange="change_status({{ $item->id }})"
+                                                            >
                                                             <label class="form-check-label" for="ad_status_1"></label>
                                                         </div>
                                                     </td>
                                                     <td class="text-center">
-                                                        <a href="" class="px-2 btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" title="Görüntüle">
-                                                            <i class="fa-solid fa-eye fs-3"></i>
-                                                        </a>
-                                                        <a href="edit_ad.html" class="px-2 btn btn-icon btn-bg-light btn-active-color-secondary btn-sm me-1" title="Düzenle">
+                                                        <a href="{{ route('admin.adsense.edit',$item->id) }}" class="px-2 btn btn-icon btn-bg-light btn-active-color-secondary btn-sm me-1" title="Düzenle">
                                                             <i class="fa-regular fa-pen-to-square fs-3"></i>
                                                         </a>
-                                                        <a href="" class="px-2 btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1" data-bs-toggle="modal" data-bs-target="#delete_modal" title="Sil">
+                                                        <a onclick="destroy({{$item->id}})" class="px-2 btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1" data-bs-toggle="modal" data-bs-target="#delete_modal" title="Sil">
                                                             <i class="fa-regular fa-trash-can fs-4"></i>
                                                         </a>
                                                     </td>
                                                 </tr>
-                                                <tr class="align-middle">
-                                                    <td>
-                                                        <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                            <input class="form-check-input my-input" type="checkbox" value="1" />
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <img src="../assets/media/stock/ecommerce/101.gif" class="w-75px ms-n1" alt="">
-                                                    </td>
-                                                    <td>Entertainment</td>
-                                                    <td>THE SOUND OF LIFE</td>
-                                                    <td>
-                                                        <div class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
-                                                            <input class="form-check-input w-50px h-25px" type="checkbox" id="ad_status_2" checked="">
-                                                            <label class="form-check-label" for="ad_status_2"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <a href="" class="px-2 btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" title="Görüntüle">
-                                                            <i class="fa-solid fa-eye fs-3"></i>
-                                                        </a>
-                                                        <a href="edit_ad.html" class="px-2 btn btn-icon btn-bg-light btn-active-color-secondary btn-sm me-1" title="Düzenle">
-                                                            <i class="fa-regular fa-pen-to-square fs-3"></i>
-                                                        </a>
-                                                        <a href="" class="px-2 btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1" data-bs-toggle="modal" data-bs-target="#delete_modal" title="Sil">
-                                                            <i class="fa-regular fa-trash-can fs-4"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
+                                                @endforeach
+
+                                                
                                             </tbody>
                                         </table>
                                     </div>
@@ -148,6 +127,11 @@
     <!--end:::Main-->
     @endsection
     @section('script')
+    <script>
+         function change_status(d) {
+            window.location.href = "{{ route('admin.adsense.change_status') }}/" + d;
+        }
+    </script>
     <script>var hostUrl = "../assets/";</script>
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
     <script src="../assets/plugins/global/plugins.bundle.js"></script>
@@ -200,7 +184,21 @@
         });
     // end: DataTable Scripts
         
-
+    function destroy(d) {
+            Swal.fire({
+                title: 'Emin misiniz?',
+                text: "Seçtiğiniz içerik silinecek!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Evet, sil!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "{{ route('admin.adsense.destroy') }}/" + d;
+                }
+            })
+        }
 
     </script>
     @endsection

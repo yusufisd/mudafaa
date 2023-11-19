@@ -174,11 +174,11 @@
                                                                         {{ __('message.başlık') }} </label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-10">
+                                                                    <div class="col-lg-11">
                                                                         <!--begin::Row-->
                                                                         <div class="row">
                                                                             <!--begin::Col-->
-                                                                            <div class="col-lg-11 fv-row">
+                                                                            <div class="col-lg-12 fv-row">
                                                                                 <input type="text" name="title_tr"
                                                                                     id="title_tr" id="title_tr"
                                                                                     onchange="create_slug_tr()"
@@ -206,6 +206,29 @@
                                                                         <textarea id="editor" name="description_tr" class="tox-target ckeditor"> {{ $data_tr->description }} </textarea>
 
 
+                                                                    </div>
+                                                                    <!--end::Col-->
+                                                                </div>
+
+                                                                <div class="row mb-6">
+                                                                    <!--begin::Label-->
+                                                                    <label
+                                                                        class="col-lg-1 col-form-label required fw-bold fs-6 ps-5">
+                                                                        Url </label>
+                                                                    <!--end::Label-->
+                                                                    <!--begin::Col-->
+                                                                    <div class="col-lg-11">
+                                                                        <!--begin::Row-->
+                                                                        <div class="row">
+                                                                            <!--begin::Col-->
+                                                                            <div class="col-lg-12 fv-row">
+                                                                                <input type="text" name="link_tr" id="link_tr" 
+                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                    value="{{ $data_tr->link }}" />
+                                                                            </div>
+                                                                            <!--end::Col-->
+                                                                        </div>
+                                                                        <!--end::Row-->
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -251,11 +274,11 @@
                                                                         class="col-lg-1 col-form-label required fw-bold fs-6 ps-5">Başlık</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-10">
+                                                                    <div class="col-lg-11">
                                                                         <!--begin::Row-->
                                                                         <div class="row">
                                                                             <!--begin::Col-->
-                                                                            <div class="col-lg-11 fv-row">
+                                                                            <div class="col-lg-12 fv-row">
                                                                                 <input type="text" name="title_en"
                                                                                     id="title_en"
                                                                                     onchange="create_slug_en()"
@@ -288,6 +311,28 @@
                                                                 </div>
                                                                 <!--end::Input group-->
 
+
+                                                                <div class="row mb-6">
+                                                                    <!--begin::Label-->
+                                                                    <label
+                                                                        class="col-lg-1 col-form-label required fw-bold fs-6 ps-5">
+                                                                        Url </label>
+                                                                    <!--end::Label-->
+                                                                    <!--begin::Col-->
+                                                                    <div class="col-lg-11">
+                                                                        <!--begin::Row-->
+                                                                        <div class="row">
+                                                                            <!--begin::Col-->
+                                                                            <div class="col-lg-12 fv-row">
+                                                                                <input type="text" name="link_en" id="link_en" 
+                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                    value="{{ $data_en->link }}" />
+                                                                            </div>
+                                                                            <!--end::Col-->
+                                                                        </div>
+                                                                        <!--end::Row-->
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                             <!--end::Card body-->
                                                             <!--begin::Actions-->
@@ -582,7 +627,7 @@
                                                                 <div class="col-md-1"
                                                                     style="text-align:right;padding-right:0">
                                                                     <button style="width:100px"
-                                                                        class="btn btn-danger delete_item_buton">SİL</button>
+                                                                        class="btn btn-danger btn-sm delete_item_buton">SİL</button>
                                                                 </div>
                                                             </div>
                                                         @endforeach
@@ -616,15 +661,15 @@
                                                         </div>
                                                     </div>
 
-                                                    @if ($basliklar_en != null)
-                                                        @foreach ($basliklar_en as $baslik_en)
+                                                    @if ($basliklar != null)
+                                                        @foreach ($basliklar as $baslik_en)
                                                             <div class="row pt-10" style="margin-left:0; padding:1%"
                                                                 id="show_item">
                                                                 <div class="col-md-5">
                                                                     <div class="col-lg-11 fv-row">
                                                                         <select name="company_title_en[]" class="form-select form-control-solid" id="">
                                                                             <option value="">Lütfen seçin</option>
-                                                                            @foreach ($title_tr as $title)
+                                                                            @foreach ($title_en as $title)
                                                                                 <option {{ $baslik_en->icon_title_id == $title->id ? 'selected' : '' }} value="{{ $title->id }}">{{ $title->title_en }}</option>
                                                                             @endforeach
                                                                         </select>
@@ -642,7 +687,7 @@
                                                                 <div class="col-md-1"
                                                                     style="text-align:right;padding-right:0">
                                                                     <button style="width:100px"
-                                                                        class="btn btn-danger delete_item_buton_en">SİL</button>
+                                                                        class="btn btn-danger btn-sm delete_item_buton_en">SİL</button>
                                                                 </div>
                                                             </div>
                                                         @endforeach
@@ -1295,32 +1340,27 @@
             $(".add_item_buton").click(function(e) {
                 e.preventDefault();
                 $("#show_item").append('<div class="row pt-10"  style="margin-left:0" id="show_item">\
-                                                                                                                <div class="col-md-3">\
-                                                                                                                    <div class="col-lg-11 fv-row" >\
-                                                                                                                        <input type="text" placeholder="İkon"\
-                                                                                                                            class="form-control w-full form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                                                                                            name="company_icon[]" id="">\
-                                                                                                                            <span style="color:gray">Fontawesome sitesinden alınmaldır.</span>\
-                                                                                                                    </div>\
-                                                                                                                </div>\
-                                                                                                                <div class="col-md-4">\
-                                                                                                                    <div class="col-lg-11 fv-row">\
-                                                                                                                        <input type="text" placeholder="Başlık"\
-                                                                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                                                                                            name="company_title[]" id="">\
-                                                                                                                    </div>\
-                                                                                                                </div>\
-                                                                                                                <div class="col-md-4">\
-                                                                                                                    <div class="col-lg-11 fv-row">\
-                                                                                                                        <input type="text" placeholder="Açıklama"\
-                                                                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                                                                                            name="company_description[]" id="">\
-                                                                                                                    </div>\
-                                                                                                                </div>\
-                                                                                                                <div class="col-md-1" style="text-align:right;padding-right:0">\
-                                                                                                                    <button style="width:100px" class="btn btn-danger delete_item_buton ">SİL</button>\
-                                                                                                                </div>\
-                                                                                                            </div>');
+                                           <div class="col-md-5">\
+                                                <div class="col-lg-11 fv-row">\
+                                                    <select name="company_title[]" class="form-select form-control-solid" id="">\
+                                                        <option value="">Lütfen başlık seçin</option>\
+                                                        @foreach ($title_tr as $title)\
+                                                            <option value="{{ $title->id }}">{{ $title->title_tr }}</option>\
+                                                        @endforeach\
+                                                    </select>\
+                                                </div>\
+                                            </div>\
+                                            <div class="col-md-6">\
+                                                <div class="col-lg-11 fv-row">\
+                                                    <input type="text" placeholder="Açıklama"\
+                                                        class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"\
+                                                        name="company_description[]" id="">\
+                                                </div>\
+                                            </div>\
+                                            <div class="col-md-1" style="text-align:right;padding-right:0">\
+                                                <button style="width:100px" class="btn btn-danger btn-sm delete_item_buton ">SİL</button>\
+                                            </div>\
+                                        </div>');
             });
 
             $(document).on('click', '.delete_item_buton', function(e) {
@@ -1336,32 +1376,27 @@
             $(".add_item_buton_en").click(function(e) {
                 e.preventDefault();
                 $("#show_item_en").append('<div class="row pt-10"  style="margin-left:0" id="show_item">\
-                                                                                                                <div class="col-md-3">\
-                                                                                                                    <div class="col-lg-11 fv-row" >\
-                                                                                                                        <input type="text" placeholder="İkon"\
-                                                                                                                            class="form-control w-full form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                                                                                            name="company_icon_en[]" id="">\
-                                                                                                                            <span style="color:gray">Fontawesome sitesinden alınmaldır.</span>\
-                                                                                                                    </div>\
-                                                                                                                </div>\
-                                                                                                                <div class="col-md-4">\
-                                                                                                                    <div class="col-lg-11 fv-row">\
-                                                                                                                        <input type="text" placeholder="Başlık"\
-                                                                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                                                                                            name="company_title_en[]" id="">\
-                                                                                                                    </div>\
-                                                                                                                </div>\
-                                                                                                                <div class="col-md-4">\
-                                                                                                                    <div class="col-lg-11 fv-row">\
-                                                                                                                        <input type="text" placeholder="Açıklama"\
-                                                                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                                                                                            name="company_description_en[]" id="">\
-                                                                                                                    </div>\
-                                                                                                                </div>\
-                                                                                                                <div class="col-md-1" style="text-align:right;padding-right:0">\
-                                                                                                                    <button style="width:100px" class="btn btn-danger delete_item_buton_en ">SİL</button>\
-                                                                                                                </div>\
-                                                                                                            </div>');
+                                                <div class="col-md-5">\
+                                                    <div class="col-lg-11 fv-row">\
+                                                        <select name="company_title_en[]" class="form-select form-control-solid" id="">\
+                                                            <option value="">Lütfen seçin</option>\
+                                                            @foreach ($title_tr as $title)\
+                                                                <option value="{{ $title->id }}">{{ $title->title_en }}</option>\
+                                                            @endforeach\
+                                                        </select>\
+                                                    </div>\
+                                                </div>\
+                                                <div class="col-md-6">\
+                                                    <div class="col-lg-11 fv-row">\
+                                                        <input type="text" placeholder="Açıklama"\
+                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"\
+                                                            name="company_description_en[]" id="">\
+                                                    </div>\
+                                                </div>\
+                                                <div class="col-md-1" style="text-align:right;padding-right:0">\
+                                                    <button style="width:100px" class="btn btn-danger btn-sm delete_item_buton_en ">SİL</button>\
+                                                </div>\
+                                            </div>');
             });
 
             $(document).on('click', '.delete_item_buton_en', function(e) {
@@ -1377,84 +1412,84 @@
             $(".add_item_buton2").click(function(e) {
                 e.preventDefault();
                 $("#show_item2").append('<hr><div id="show_item2">\
-                                                                                                                <div style="padding:2%" >\
-                                                                                                                    <div class="row mb-6">\
-                                                                                                                        <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
-                                                                                                                            <span class=""> Başlık</span>\
-                                                                                                                        </label>\
-                                                                                                                        <div class="col-lg-10 fv-row">\
-                                                                                                                            <input type="text"\
-                                                                                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                                                                                                name="address_title[]" id="">\
-                                                                                                                        </div>\
-                                                                                                                    </div>\
-                                                                                                                    <div class="row mb-6">\
-                                                                                                                        <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
-                                                                                                                            <span class=""> Adres</span>\
-                                                                                                                        </label>\
-                                                                                                                        <div class="col-lg-10 fv-row">\
-                                                                                                                            <input type="text"\
-                                                                                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                                                                                                name="address_address[]" id="">\
-                                                                                                                        </div>\
-                                                                                                                    </div>\
-                                                                                                                    <div class="row">\
-                                                                                                                        <div class="col-md-6">\
-                                                                                                                            <div class="row mb-6">\
-                                                                                                                                <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">\
-                                                                                                                                    <span class=""> Website</span>\
-                                                                                                                                </label>\
-                                                                                                                                <div class="col-lg-8 fv-row">\
-                                                                                                                                    <input type="text"\
-                                                                                                                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                                                                                                        name="address_website[]" id="">\
-                                                                                                                                </div>\
-                                                                                                                            </div>\
-                                                                                                                        </div>\
-                                                                                                                        <div class="col-md-6">\
-                                                                                                                            <div class="row mb-6">\
-                                                                                                                                <label class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">\
-                                                                                                                                    <span class=""> Harita <br><p style="  font-weight: normal;font-size:13px;">(iframe linki)</p> </span>\
-                                                                                                                                </label>\
-                                                                                                                                <div class="col-lg-8 fv-row">\
-                                                                                                                                    <input type="number"\
-                                                                                                                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                                                                                                        name="address_map[]" id="">\
-                                                                                                                                </div>\
-                                                                                                                            </div>\
-                                                                                                                        </div>\
-                                                                                                                    </div>\
-                                                                                                                    <div class="row">\
-                                                                                                                        <div class="col-md-6">\
-                                                                                                                            <div class="row mb-6">\
-                                                                                                                                <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">\
-                                                                                                                                    <span class=""> Email</span>\
-                                                                                                                                </label>\
-                                                                                                                                <div class="col-lg-8 fv-row">\
-                                                                                                                                    <input type="text"\
-                                                                                                                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                                                                                                        name="address_email[]" id="">\
-                                                                                                                                </div>\
-                                                                                                                            </div>\
-                                                                                                                        </div>\
-                                                                                                                        <div class="col-md-6">\
-                                                                                                                            <div class="row mb-6">\
-                                                                                                                                <label class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">\
-                                                                                                                                    <span class=""> Telefon </span>\
-                                                                                                                                </label>\
-                                                                                                                                <div class="col-lg-8 fv-row">\
-                                                                                                                                    <input type="text"\
-                                                                                                                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                                                                                                        name="address_phone[]" id="">\
-                                                                                                                                </div>\
-                                                                                                                            </div>\
-                                                                                                                        </div>\
-                                                                                                                    </div>\
-                                                                                                                    <div style="text-align: center" class="py-6">\
-                                                                                                                        <button style="width:150px" type="button" class="btn btn-danger delete_item_buton2">SİL</button>\
-                                                                                                                    </div>\
-                                                                                                                </div>\
-                                                                                                            </div>');
+                                            <div style="padding:2%" >\
+                                                <div class="row mb-6">\
+                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
+                                                        <span class=""> Başlık</span>\
+                                                    </label>\
+                                                    <div class="col-lg-10 fv-row">\
+                                                        <input type="text"\
+                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                                            name="address_title[]" id="">\
+                                                    </div>\
+                                                </div>\
+                                                <div class="row mb-6">\
+                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
+                                                        <span class=""> Adres</span>\
+                                                    </label>\
+                                                    <div class="col-lg-10 fv-row">\
+                                                        <input type="text"\
+                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                                            name="address_address[]" id="">\
+                                                    </div>\
+                                                </div>\
+                                                <div class="row">\
+                                                    <div class="col-md-6">\
+                                                        <div class="row mb-6">\
+                                                            <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">\
+                                                                <span class=""> Website</span>\
+                                                            </label>\
+                                                            <div class="col-lg-8 fv-row">\
+                                                                <input type="text"\
+                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                                                    name="address_website[]" id="">\
+                                                            </div>\
+                                                        </div>\
+                                                    </div>\
+                                                    <div class="col-md-6">\
+                                                        <div class="row mb-6">\
+                                                            <label class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">\
+                                                                <span class=""> Harita <br><p style="  font-weight: normal;font-size:13px;">(iframe linki)</p> </span>\
+                                                            </label>\
+                                                            <div class="col-lg-8 fv-row">\
+                                                                <input type="number"\
+                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                                                    name="address_map[]" id="">\
+                                                            </div>\
+                                                        </div>\
+                                                    </div>\
+                                                </div>\
+                                                <div class="row">\
+                                                    <div class="col-md-6">\
+                                                        <div class="row mb-6">\
+                                                            <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">\
+                                                                <span class=""> Email</span>\
+                                                            </label>\
+                                                            <div class="col-lg-8 fv-row">\
+                                                                <input type="text"\
+                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                                                    name="address_email[]" id="">\
+                                                            </div>\
+                                                        </div>\
+                                                    </div>\
+                                                    <div class="col-md-6">\
+                                                        <div class="row mb-6">\
+                                                            <label class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">\
+                                                                <span class=""> Telefon </span>\
+                                                            </label>\
+                                                            <div class="col-lg-8 fv-row">\
+                                                                <input type="text"\
+                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                                                    name="address_phone[]" id="">\
+                                                            </div>\
+                                                        </div>\
+                                                    </div>\
+                                                </div>\
+                                                <div style="text-align: center" class="py-6">\
+                                                    <button style="width:150px" type="button" class="btn btn-danger btn-sm delete_item_buton2">SİL</button>\
+                                                </div>\
+                                            </div>\
+                                        </div>');
             });
 
             $(document).on('click', '.delete_item_buton2', function(e) {
@@ -1470,84 +1505,84 @@
             $(".add_item_buton2_en").click(function(e) {
                 e.preventDefault();
                 $("#show_item2_en").append('<hr><div id="show_item2">\
-                                                                                                                <div style="padding:2%" >\
-                                                                                                                    <div class="row mb-6">\
-                                                                                                                        <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
-                                                                                                                            <span class=""> Başlık</span>\
-                                                                                                                        </label>\
-                                                                                                                        <div class="col-lg-10 fv-row">\
-                                                                                                                            <input type="text"\
-                                                                                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                                                                                                name="address_title_en[]" id="">\
-                                                                                                                        </div>\
-                                                                                                                    </div>\
-                                                                                                                    <div class="row mb-6">\
-                                                                                                                        <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
-                                                                                                                            <span class=""> Adres</span>\
-                                                                                                                        </label>\
-                                                                                                                        <div class="col-lg-10 fv-row">\
-                                                                                                                            <input type="text"\
-                                                                                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                                                                                                name="address_address_en[]" id="">\
-                                                                                                                        </div>\
-                                                                                                                    </div>\
-                                                                                                                    <div class="row">\
-                                                                                                                        <div class="col-md-6">\
-                                                                                                                            <div class="row mb-6">\
-                                                                                                                                <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">\
-                                                                                                                                    <span class=""> Website</span>\
-                                                                                                                                </label>\
-                                                                                                                                <div class="col-lg-8 fv-row">\
-                                                                                                                                    <input type="text"\
-                                                                                                                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                                                                                                        name="address_website_en[]" id="">\
-                                                                                                                                </div>\
-                                                                                                                            </div>\
-                                                                                                                        </div>\
-                                                                                                                        <div class="col-md-6">\
-                                                                                                                            <div class="row mb-6">\
-                                                                                                                                <label class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">\
-                                                                                                                                    <span class=""> Harita <br><p style="  font-weight: normal;font-size:13px;">(iframe linki)</p> </span>\
-                                                                                                                                </label>\
-                                                                                                                                <div class="col-lg-8 fv-row">\
-                                                                                                                                    <input type="number"\
-                                                                                                                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                                                                                                        name="address_map_en[]" id="">\
-                                                                                                                                </div>\
-                                                                                                                            </div>\
-                                                                                                                        </div>\
-                                                                                                                    </div>\
-                                                                                                                    <div class="row">\
-                                                                                                                        <div class="col-md-6">\
-                                                                                                                            <div class="row mb-6">\
-                                                                                                                                <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">\
-                                                                                                                                    <span class=""> Email</span>\
-                                                                                                                                </label>\
-                                                                                                                                <div class="col-lg-8 fv-row">\
-                                                                                                                                    <input type="text"\
-                                                                                                                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                                                                                                        name="address_email_en[]" id="">\
-                                                                                                                                </div>\
-                                                                                                                            </div>\
-                                                                                                                        </div>\
-                                                                                                                        <div class="col-md-6">\
-                                                                                                                            <div class="row mb-6">\
-                                                                                                                                <label class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">\
-                                                                                                                                    <span class=""> Telefon </span>\
-                                                                                                                                </label>\
-                                                                                                                                <div class="col-lg-8 fv-row">\
-                                                                                                                                    <input type="text"\
-                                                                                                                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                                                                                                        name="address_phone_en[]" id="">\
-                                                                                                                                </div>\
-                                                                                                                            </div>\
-                                                                                                                        </div>\
-                                                                                                                    </div>\
-                                                                                                                    <div style="text-align: center" class="py-6">\
-                                                                                                                        <button style="width:150px" type="button" class="btn btn-danger delete_item_buton2_en">SİL</button>\
-                                                                                                                    </div>\
-                                                                                                                </div>\
-                                                                                                            </div>');
+                                                <div style="padding:2%" >\
+                                                    <div class="row mb-6">\
+                                                        <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
+                                                            <span class=""> Başlık</span>\
+                                                        </label>\
+                                                        <div class="col-lg-10 fv-row">\
+                                                            <input type="text"\
+                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                                                name="address_title_en[]" id="">\
+                                                        </div>\
+                                                    </div>\
+                                                    <div class="row mb-6">\
+                                                        <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
+                                                            <span class=""> Adres</span>\
+                                                        </label>\
+                                                        <div class="col-lg-10 fv-row">\
+                                                            <input type="text"\
+                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                                                name="address_address_en[]" id="">\
+                                                        </div>\
+                                                    </div>\
+                                                    <div class="row">\
+                                                        <div class="col-md-6">\
+                                                            <div class="row mb-6">\
+                                                                <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">\
+                                                                    <span class=""> Website</span>\
+                                                                </label>\
+                                                                <div class="col-lg-8 fv-row">\
+                                                                    <input type="text"\
+                                                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                                                        name="address_website_en[]" id="">\
+                                                                </div>\
+                                                            </div>\
+                                                        </div>\
+                                                        <div class="col-md-6">\
+                                                            <div class="row mb-6">\
+                                                                <label class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">\
+                                                                    <span class=""> Harita <br><p style="  font-weight: normal;font-size:13px;">(iframe linki)</p> </span>\
+                                                                </label>\
+                                                                <div class="col-lg-8 fv-row">\
+                                                                    <input type="number"\
+                                                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                                                        name="address_map_en[]" id="">\
+                                                                </div>\
+                                                            </div>\
+                                                        </div>\
+                                                    </div>\
+                                                    <div class="row">\
+                                                        <div class="col-md-6">\
+                                                            <div class="row mb-6">\
+                                                                <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">\
+                                                                    <span class=""> Email</span>\
+                                                                </label>\
+                                                                <div class="col-lg-8 fv-row">\
+                                                                    <input type="text"\
+                                                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                                                        name="address_email_en[]" id="">\
+                                                                </div>\
+                                                            </div>\
+                                                        </div>\
+                                                        <div class="col-md-6">\
+                                                            <div class="row mb-6">\
+                                                                <label class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">\
+                                                                    <span class=""> Telefon </span>\
+                                                                </label>\
+                                                                <div class="col-lg-8 fv-row">\
+                                                                    <input type="text"\
+                                                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                                                        name="address_phone_en[]" id="">\
+                                                                </div>\
+                                                            </div>\
+                                                        </div>\
+                                                    </div>\
+                                                    <div style="text-align: center" class="py-6">\
+                                                        <button style="width:150px" type="button" class="btn btn-danger btn-sm delete_item_buton2_en">SİL</button>\
+                                                    </div>\
+                                                </div>\
+                                            </div>');
             });
 
             $(document).on('click', '.delete_item_buton2_en', function(e) {
@@ -1579,7 +1614,7 @@
                             </div>\
                         </div>\
                         <div class="col-md-2" style="padding-right:0">\
-                            <button style="width:100px" class="btn btn-danger delete_item_buton3">SİL</button>\
+                            <button style="width:100px" class="btn btn-danger btn-sm delete_item_buton3">SİL</button>\
                         </div>\
                     </div>');
             });

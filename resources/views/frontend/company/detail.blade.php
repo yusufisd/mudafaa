@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
 @endsection
 @section('content')
+
     <style>
         .post-body {
             color: #464847;
@@ -71,32 +72,15 @@
                     <div class="col-xl-9 sticky-coloum-item">
                         <div class="rt-left-sidebar-sapcer-5">
                             <div class="author-big-box-style-1 mb--30">
-                                <div style="background-image: url({{ asset('assets/black_fon.jpeg') }});background-opacity:0.7;border-radius:5px" class="author-img">
-                                    <img style="width:170px;height:170px;opacity:0.8" src="/{{ $data->image }}" alt="{{ $data->title }}" >
+                                <div style="background-image: url({{ asset('assets/black_fon.jpeg') }});background-opacity:0.7;border-radius:5px"
+                                    class="author-img">
+                                    <img style="width:170px;height:170px;opacity:0.8" src="/{{ $data->image }}"
+                                        alt="{{ $data->title }}">
                                 </div>
                                 <div class="w-100">
                                     <h2 class="responsive-title" style="color: #3b4022;"> {{ $data->title }} </h2>
                                     <div class="row">
-                                        @if (\Session::get('applocale') == 'tr')
-                                            @foreach ($data->Title() as $item)
-                                                <div class="col-md-6">
-                                                    <ul class="mt-3">
-                                                        <li class="mb-3">
-                                                            @if ($item->titleIcon() != null)
-                                                                {!! $item->titleIcon()->icon_tr ?? ' ' !!}
-                                                                <b>
-                                                                    <span style="color: #749f43">
-                                                                        {{ $item->titleIcon()->title_tr ?? '' }} :
-                                                                    </span>
-                                                                </b>
-                                                            @endif
-                                                            {{ $item->description ?? '' }}
-                                                        </li>
 
-                                                    </ul>
-                                                </div>
-                                            @endforeach
-                                        @endif
                                         @if (\Session::get('applocale') == 'en')
                                             @if ($data->Title() != null)
                                                 @foreach ($data->Title() as $item)
@@ -118,6 +102,25 @@
                                                     </div>
                                                 @endforeach
                                             @endif
+                                        @else
+                                            @foreach ($data->Title() as $item)
+                                                <div class="col-md-6">
+                                                    <ul class="mt-3">
+                                                        <li class="mb-3">
+                                                            @if ($item->titleIcon() != null)
+                                                                {!! $item->titleIcon()->icon_tr ?? ' ' !!}
+                                                                <b>
+                                                                    <span style="color: #749f43">
+                                                                        {{ $item->titleIcon()->title_tr ?? '' }} :
+                                                                    </span>
+                                                                </b>
+                                                            @endif
+                                                            {{ $item->description ?? '' }}
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                            @endforeach
                                         @endif
 
 
@@ -132,28 +135,28 @@
                             </div>
 
                             <!-- end inner row -->
-                            @if($images->count() != 0)
-                            <div class="wrap post-wrap mb--30">
-                                <h2 class="rt-section-heading">
-                                    <span class="rt-section-text">Ürün Görselleri </span>
-                                    <span class="rt-section-dot"></span>
-                                    <span class="rt-section-line"></span>
-                                </h2>
+                            @if ($images->count() != 0)
+                                <div class="wrap post-wrap mb--30">
+                                    <h2 class="rt-section-heading">
+                                        <span class="rt-section-text">Ürün Görselleri </span>
+                                        <span class="rt-section-dot"></span>
+                                        <span class="rt-section-line"></span>
+                                    </h2>
 
-                                <!-- Galeri Resimleri gallery classı kaldırıldı -->
-                                <div class="row">
-                                    @foreach ($images as $item)
-                                        <div class="col-md-4">
-                                            <a data-fancybox="gallery" href="/{{ $item->image }}">
-                                                <img src="/{{ $item->image }}" style="width: 100%;" alt="Resim 3">
-                                            </a>
-                                        </div>
-                                    @endforeach
+                                    <!-- Galeri Resimleri gallery classı kaldırıldı -->
+                                    <div class="row">
+                                        @foreach ($images as $item)
+                                            <div class="col-md-4">
+                                                <a data-fancybox="gallery" href="/{{ $item->image }}">
+                                                    <img src="/{{ $item->image }}" style="width: 100%;" alt="Resim 3">
+                                                </a>
+                                            </div>
+                                        @endforeach
+
+                                    </div>
+
 
                                 </div>
-
-
-                            </div>
                             @endif
                             <!-- end wrap -->
 
@@ -190,42 +193,42 @@
                                             <div class="row gutter-30">
                                                 <div class="col-lg-6 grid-adress">
                                                     <ul class="contact_info">
-                                                        @if($item->address != null)
-                                                        <li>
-                                                            <h6>Adres</h6>
-                                                            <p class="rt-teta">
-                                                                <i class="fas fa-home icon"></i>
-                                                                {{ $item->address }}
-                                                            </p>
-                                                        </li>
+                                                        @if ($item->address != null)
+                                                            <li>
+                                                                <h6>Adres</h6>
+                                                                <p class="rt-teta">
+                                                                    <i class="fas fa-home icon"></i>
+                                                                    {{ $item->address }}
+                                                                </p>
+                                                            </li>
                                                         @endif
-                                                        @if($item->email != null)
-                                                        <li>
-                                                            <h6>E-Posta</h6>
-                                                            <p class="rt-teta">
-                                                                <i class="fas fa-envelope icon"></i>
-                                                                {{ $item->email }}
-                                                            </p>
-                                                        </li>
+                                                        @if ($item->email != null)
+                                                            <li>
+                                                                <h6>E-Posta</h6>
+                                                                <p class="rt-teta">
+                                                                    <i class="fas fa-envelope icon"></i>
+                                                                    {{ $item->email }}
+                                                                </p>
+                                                            </li>
                                                         @endif
-                                                        @if($item->phone != null)
-                                                        <li>
-                                                            <h6>Telefon</h6>
-                                                            <p class="rt-teta">
-                                                                <i class="fas fa-phone icon"></i>
-                                                                {{ $item->phone }}
-                                                            </p>
+                                                        @if ($item->phone != null)
+                                                            <li>
+                                                                <h6>Telefon</h6>
+                                                                <p class="rt-teta">
+                                                                    <i class="fas fa-phone icon"></i>
+                                                                    {{ $item->phone }}
+                                                                </p>
 
-                                                        </li>
+                                                            </li>
                                                         @endif
-                                                        @if($item->website != null)
-                                                        <li>
-                                                            <h6>Web Site</h6>
-                                                            <p class="rt-teta">
-                                                                <i class="fas fa-globe icon"></i>
-                                                                {{ $item->website }}
-                                                            </p>
-                                                        </li>
+                                                        @if ($item->website != null)
+                                                            <li>
+                                                                <h6>Web Site</h6>
+                                                                <p class="rt-teta">
+                                                                    <i class="fas fa-globe icon"></i>
+                                                                    {{ $item->website }}
+                                                                </p>
+                                                            </li>
                                                         @endif
                                                     </ul>
                                                 </div>
@@ -325,9 +328,9 @@
                                                     placeholder="E-posta *" name="email" id="email_1"
                                                     data-error="E-posta alanı zorunludur" required>
                                             </div>
-                                            <div class="center" style="overflow:hidden; border-right:solid; border-color:#d3d3d3; border-radius:3px">
-                                                <div class="g-recaptcha"
-                                                    data-sitekey="{{ getCaptchaSiteKey() }}" 
+                                            <div class="center"
+                                                style="overflow:hidden; border-right:solid; border-color:#d3d3d3; border-radius:3px">
+                                                <div class="g-recaptcha" data-sitekey="{{ getCaptchaSiteKey() }}"
                                                     data-callback="onSubmit">
                                                 </div>
                                             </div>

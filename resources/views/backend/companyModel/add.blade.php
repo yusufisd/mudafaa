@@ -205,6 +205,29 @@
                                                                     <!--end::Col-->
                                                                 </div>
 
+                                                                <div class="row mb-6">
+                                                                    <!--begin::Label-->
+                                                                    <label
+                                                                        class="col-lg-1 col-form-label required fw-bold fs-6 ps-5">
+                                                                        Url </label>
+                                                                    <!--end::Label-->
+                                                                    <!--begin::Col-->
+                                                                    <div class="col-lg-11">
+                                                                        <!--begin::Row-->
+                                                                        <div class="row">
+                                                                            <!--begin::Col-->
+                                                                            <div class="col-lg-12 fv-row">
+                                                                                <input type="text" name="link_tr" id="link_tr" 
+                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                    value="{{ old('link_tr') }}" />
+                                                                            </div>
+                                                                            <!--end::Col-->
+                                                                        </div>
+                                                                        <!--end::Row-->
+                                                                    </div>
+                                                                    <!--end::Col-->
+                                                                </div>
+
                                                             </div>
                                                             <!--end::Card body-->
                                                             <!--begin::Actions-->
@@ -281,11 +304,32 @@
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
-                                                                <!--end::Input group-->
+
+
+                                                                <div class="row mb-6">
+                                                                    <!--begin::Label-->
+                                                                    <label
+                                                                        class="col-lg-1 col-form-label required fw-bold fs-6 ps-5">
+                                                                        Url </label>
+                                                                    <!--end::Label-->
+                                                                    <!--begin::Col-->
+                                                                    <div class="col-lg-11">
+                                                                        <!--begin::Row-->
+                                                                        <div class="row">
+                                                                            <!--begin::Col-->
+                                                                            <div class="col-lg-12 fv-row">
+                                                                                <input type="text" name="link_en" id="link_en" 
+                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                    value="{{ old('link_en') }}" />
+                                                                            </div>
+                                                                            <!--end::Col-->
+                                                                        </div>
+                                                                        <!--end::Row-->
+                                                                    </div>
+                                                                </div>
 
                                                             </div>
-                                                            <!--end::Card body-->
-                                                            <!--begin::Actions-->
+
                                                             <div
                                                                 class="card-footer d-flex justify-content-between px-0 py-6">
 
