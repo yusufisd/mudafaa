@@ -125,7 +125,7 @@
 
                                     <div class="share-text">
                                         <i class="fas fa-share-alt"></i>
-                                        <span>Paylaş</span>
+                                        <span> {{ __('message.paylaş') }} </span>
                                     </div>
 
                                     <ul class="social-share-style-7">
@@ -169,7 +169,7 @@
                                 <div class="row gutter-30">
                                     <div class="col-xl-12 col-lg-12">
                                         <div class="conent-block" style="margin-top:3%">
-                                            <h4 class="block-tile mb--20">Popüler Etiketler:</h4>
+                                            <h4 class="block-tile mb--20"> {{ __('message.popüler etiketler') }}</h4>
                                             <div class="tag-list">
 
                                                 @foreach ($data->getKeys() as $item)
@@ -205,7 +205,7 @@
                         <div class="titile-wrapper mb--30">
 
                             <h2 class="rt-section-heading flex-grow-1 mb-0 me-3">
-                                <span class="rt-section-text">Diğer Sözlükler </span>
+                                <span class="rt-section-text"> {{ __('message.diğer sözlükler') }} </span>
                                 <span class="rt-section-dot"></span>
                                 <span class="rt-section-line"></span>
                             </h2>

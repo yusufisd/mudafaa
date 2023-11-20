@@ -52,7 +52,7 @@
                         </li>
                         <li class="breadcrumb-item">
                             <a href="/firma/liste">
-                                Firmalar
+                                {{ __('message.firmalar') }}
                             </a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
@@ -138,7 +138,7 @@
                             @if ($images->count() != 0)
                                 <div class="wrap post-wrap mb--30">
                                     <h2 class="rt-section-heading">
-                                        <span class="rt-section-text">Ürün Görselleri </span>
+                                        <span class="rt-section-text"> {{ __('message.Ürün Görselleri') }} </span>
                                         <span class="rt-section-dot"></span>
                                         <span class="rt-section-line"></span>
                                     </h2>
@@ -163,7 +163,7 @@
                             <div class="wrap mb--30">
                                 <div class="featured-tab-title">
                                     <h2 class="rt-section-heading">
-                                        <span class="rt-section-text">İletişim Bilgileri </span>
+                                        <span class="rt-section-text"> {{ __('message.İletişim Bilgileri') }} </span>
                                         <span class="rt-section-dot"></span>
                                         <span class="rt-section-line"></span>
                                     </h2>
@@ -195,7 +195,7 @@
                                                     <ul class="contact_info">
                                                         @if ($item->address != null)
                                                             <li>
-                                                                <h6>Adres</h6>
+                                                                <h6> {{ __('message.adres') }} </h6>
                                                                 <p class="rt-teta">
                                                                     <i class="fas fa-home icon"></i>
                                                                     {{ $item->address }}
@@ -204,7 +204,7 @@
                                                         @endif
                                                         @if ($item->email != null)
                                                             <li>
-                                                                <h6>E-Posta</h6>
+                                                                <h6>E-mail</h6>
                                                                 <p class="rt-teta">
                                                                     <i class="fas fa-envelope icon"></i>
                                                                     {{ $item->email }}
@@ -213,7 +213,7 @@
                                                         @endif
                                                         @if ($item->phone != null)
                                                             <li>
-                                                                <h6>Telefon</h6>
+                                                                <h6> {{ __('message.telefon') }} </h6>
                                                                 <p class="rt-teta">
                                                                     <i class="fas fa-phone icon"></i>
                                                                     {{ $item->phone }}
@@ -223,7 +223,7 @@
                                                         @endif
                                                         @if ($item->website != null)
                                                             <li>
-                                                                <h6>Web Site</h6>
+                                                                <h6> Website </h6>
                                                                 <p class="rt-teta">
                                                                     <i class="fas fa-globe icon"></i>
                                                                     {{ $item->website }}
@@ -269,7 +269,7 @@
 
                             <div class="d-none d-md-block sidebar-wrap mb--40">
                                 <h2 class="rt-section-heading style-2 mb--30">
-                                    <span class="rt-section-text">Bİzİ Takİp Edİn</span>
+                                    <span class="rt-section-text"> {{ __('message.bizi takip edin') }} </span>
                                     <span class="rt-section-dot"></span>
                                     <span class="rt-section-line"></span>
                                 </h2>
@@ -316,11 +316,10 @@
                                 <div class="subscribe-box-style-1" data-bg-image="media/elements/elm_3.png">
                                     <div class="subscribe-content">
                                         <h3 class="title">
-                                            Haber Bültenimize Abone Ol
+                                            {{ __('message.Haber Bültenimize Abone Ol') }}
                                         </h3>
                                         <p>
-                                            Ulusal ve global savunma ile ilgili gündemden daha hızlı haberdar olmak
-                                            istiyorsanız, Milli Müdafaa e-posta listesine kayıt olun!
+                                            {{ __('message.Ulusal ve global savunma ile ilgili gündemden daha hızlı haberdar olmak istiyorsanız, Milli Müdafaa e-posta listesine kayıt olun!') }}
                                         </p>
                                         <form action="#" class="rt-contact-form subscribe-form rt-form">
                                             <div class="rt-form-group">
@@ -335,7 +334,7 @@
                                                 </div>
                                             </div>
                                             <br>
-                                            <button type="submit" class="rt-submit-btn">Şimdi Abone Ol</button>
+                                            <button type="submit" class="rt-submit-btn"> {{ __('message.Abone ol') }} </button>
                                             <div class="form-response"></div>
                                         </form>
                                     </div>

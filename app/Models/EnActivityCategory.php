@@ -24,10 +24,10 @@ class EnActivityCategory extends Model
         }
 
         if ($local == 'tr') {
-            $data = Activity::where('category',$this->id)->take(4)->get();
+            $data = Activity::where('category',$this->id)->take(6)->get();
 
         } elseif ($local == 'en') {
-            $data = EnActivity::where('category',$this->id)->take(4)->get();
+            $data = EnActivity::where('category',$this->id)->take(6)->get();
 
         }
         return $data;

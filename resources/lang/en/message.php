@@ -51,7 +51,7 @@ return [
     "içeriği" => "Content",
     "etkinlik" => "Activity",
     "renk kodu" => "Color Code",
-
+    "popüler röportajlar" => "Popular Interview",
 
     "son dakika" => "BREAKİNG NEWS",
     "güncel haberler" => "Current News",
@@ -113,11 +113,21 @@ return [
     "kategori seçiniz" => "Select category",
     "Arama sonuçları" => "Search results",
     "iş birliği" => "Cooperation",
+    "ay" => "Month",
+    "yıl" => "Year",
     "reklam" => "Advertisement",
     "önceki röportaj" => "Previous Interview",
     "sonraki röportaj" => "Next Interview",
     "diğer röportajlar" => "Other Interview",
-
-
+    "diğer videolar" => "Other Videos",
+    "etkinlik takvimi" => "Events Calendar",
+    "diğer sözlükler" => "Other Dictionaries",
+    "Fuar adı/Anahtar kelime" => "Fair name/Keyword",
+    "Aradığınız etkinliği kolayca bulun." => "Easily find the event you are looking for.",
+    "Detaylı arama ile etkinlik yılı, etkinlik ayı ve etkinlik kategorisi gibi kriterleri belirleyerek aradığınız etkinliği kolaylıkla bulabilirsiniz." => "With the detailed search, you can easily find the event you are looking for by specifying criteria such as event year, event month and event category.",
+    "Ürün Görselleri" => "Images",
+    "İletişim Bilgileri" => "Contact",
+    "adres" => "Address",
+    "telefon" => "Phone",
 ];
 ?>

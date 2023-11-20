@@ -9,6 +9,7 @@ use App\Models\CompanyTitle;
 use App\Models\EnCompanyAddress;
 use App\Models\EnCompanyCategory;
 use App\Models\EnCompanyModel;
+use App\Models\EnCompanyTitle;
 use App\Models\Title_Icon;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
@@ -45,6 +46,7 @@ class CompanyImport implements ToCollection, WithStartRow
                     }else{
                         $cat_en = EnCompanyCategory::where('category_id',$cat->id)->first();
                     }
+                    $link_tr = Str::slug($row[0]);
                     
                     $company = new CompanyModel();
                     $company->title = $row[0];
@@ -54,6 +56,7 @@ class CompanyImport implements ToCollection, WithStartRow
                     $company->seo_title = $row[0];
                     $company->seo_description = $row[0];
                     $company->seo_key = $row[0];
+                    $company->link = $link_tr;
                     $company->save();
 
                     $company_en = new EnCompanyModel();
@@ -64,6 +67,7 @@ class CompanyImport implements ToCollection, WithStartRow
                     $company_en->seo_title = $row[0];
                     $company_en->seo_description = $row[0];
                     $company_en->seo_key = $row[0];
+                    $company_en->link = $link_tr;
                     $company_en->image = 'assets/uploads/companyModel/firma-logolar/'.$row[48];
                     $company_en->save();
 
@@ -74,17 +78,35 @@ class CompanyImport implements ToCollection, WithStartRow
                     $company_title->company_id = $company->id;
                     $company_title->save();
 
+                    $company_title_en = new EnCompanyTitle();
+                    $company_title_en->icon_title_id = $title_tr->id;
+                    $company_title_en->description = $row[1];
+                    $company_title_en->company_id = $company->id;
+                    $company_title_en->save();
+
                     $company_title2 = new CompanyTitle();
                     $company_title2->icon_title_id = $title_tr_2->id;
                     $company_title2->description = $row[2];
                     $company_title2->company_id = $company->id;
                     $company_title2->save();
 
+                    $company_title2_en = new EnCompanyTitle();
+                    $company_title2_en->icon_title_id = $title_tr_2->id;
+                    $company_title2_en->description = $row[2];
+                    $company_title2_en->company_id = $company->id;
+                    $company_title2_en->save();
+
                     $company_title3 = new CompanyTitle();
                     $company_title3->icon_title_id = $title_tr_3->id;
                     $company_title3->description = $row[3];
                     $company_title3->company_id = $company->id;
                     $company_title3->save();
+
+                    $company_title3_en = new EnCompanyTitle();
+                    $company_title3_en->icon_title_id = $title_tr_3->id;
+                    $company_title3_en->description = $row[3];
+                    $company_title3_en->company_id = $company->id;
+                    $company_title3_en->save();
 
                     $company_address = new CompanyAddress();
                     $company_address->title = $row[7] ?? 'Merkez';

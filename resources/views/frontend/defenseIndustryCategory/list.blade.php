@@ -148,7 +148,7 @@
                             <div class="sidebar-wrap mb--40">
 
                                 <h2 class="rt-section-heading style-2 mb--30">
-                                    <span class="rt-section-text">KATEGORİLER </span>
+                                    <span class="rt-section-text"> {{ __('message.kategoriler') }} </span>
                                     <span class="rt-section-dot"></span>
                                     <span class="rt-section-line"></span>
                                 </h2>
@@ -197,7 +197,7 @@
 
                             <div class="d-none d-md-block sidebar-wrap mb--40">
                                 <h2 class="rt-section-heading style-2 mb--30">
-                                    <span class="rt-section-text">Bİzİ Takİp Edİn</span>
+                                    <span class="rt-section-text"> {{ __('message.bizi takip edin') }} </span>
                                     <span class="rt-section-dot"></span>
                                     <span class="rt-section-line"></span>
                                 </h2>
@@ -241,11 +241,10 @@
                                 <div class="subscribe-box-style-1" data-bg-image="media/elements/elm_3.png">
                                     <div class="subscribe-content">
                                         <h3 class="title">
-                                            Haber Bültenimize Abone Ol
+                                            {{ __('message.Haber Bültenimize Abone Ol') }}
                                         </h3>
                                         <p>
-                                            Ulusal ve global savunma ile ilgili gündemden daha hızlı haberdar olmak
-                                            istiyorsanız, Milli Müdafaa e-posta listesine kayıt olun!
+                                            {{ __('message.Ulusal ve global savunma ile ilgili gündemden daha hızlı haberdar olmak istiyorsanız, Milli Müdafaa e-posta listesine kayıt olun!') }}
                                         </p>
                                         <form action="#" class="rt-contact-form subscribe-form rt-form">
                                             <div class="rt-form-group">
@@ -260,7 +259,7 @@
                                                 </div>
                                             </div>
                                             <br>
-                                            <button type="submit" class="rt-submit-btn">Şimdi Abone Ol</button>
+                                            <button type="submit" class="rt-submit-btn"> {{ __('message.Abone ol') }} </button>
                                             <div class="form-response"></div>
                                         </form>
                                     </div>

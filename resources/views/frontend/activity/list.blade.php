@@ -28,7 +28,7 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            Etkinlikler
+                            {{ __('message.etkinlikler') }}
                         </li>
                     </ol>
                 </nav>
@@ -47,15 +47,13 @@
                                 <form action="{{ route('front.activity.searchActivity') }}" method="POST">
                                     @csrf
                                     <div class="row mb--25">
-                                        <h3 class="activity-title">Aradığınız etkinliği kolaylıkla bulun.</h3>
-                                        <p class="activity-text">Detaylı arama ile etkinlik yılı, etkinlik ayı ve etkinlik
-                                            kategorisi gibi kriterleri belirleyerek aradığınız etkinliği kolaylıkla
-                                            bulabilirsiniz.</p>
+                                        <h3 class="activity-title">{{ __('message.Aradığınız etkinliği kolayca bulun.') }}</h3>
+                                        <p class="activity-text">{{__('message.Detaylı arama ile etkinlik yılı, etkinlik ayı ve etkinlik kategorisi gibi kriterleri belirleyerek aradığınız etkinliği kolaylıkla bulabilirsiniz.')}}</p>
                                     </div>
                                     <div class="row mb--25">
                                         <div class="col-md-3 mb-3">
                                             <select class="form-select form-select-md" name="ay">
-                                                <option value>Ay</option>
+                                                <option value> {{ __('message.ay') }} </option>
                                                 <option value="01">Ocak</option>
                                                 <option value="02">Şubat</option>
                                                 <option value="03">Mart</option>
@@ -74,7 +72,7 @@
                                         <div class="col-md-3 mb-3">
                                             <select class="form-select form-select-md" name="yil"
                                                 aria-label="Default select example">
-                                                <option value>Yıl</option>
+                                                <option value>{{ __('message.yıl') }}</option>
                                                 <option value="2023">2023</option>
                                                 <option value="2022">2022</option>
                                                 <option value="2021">2021</option>
@@ -86,7 +84,7 @@
                                         <div class="col-md-3 mb-3">
                                             <select class="form-select form-select-md" name="kategori"
                                                 aria-label="Default select example">
-                                                <option value>Kategori</option>
+                                                <option value> {{ __('message.kategori') }} </option>
 
                                                 @foreach ($categories as $item)
                                                     <option value="{{ $item->id }}"> {{ $item->title }} </option>
@@ -98,7 +96,7 @@
                                         <div class="col-md-3 mb-3">
                                             <select class="form-select form-select-md" name="konum"
                                                 aria-label="Default select example">
-                                                <option value>Konum</option>
+                                                <option value> {{ __('message.konum') }} </option>
 
                                                 @foreach ($countries as $item)
                                                     <option value="{{ $item->id }}"> {{ $item->name }} </option>
@@ -111,7 +109,7 @@
                                     <div class="row mb--25">
                                         <div class="input-group input-group-md">
                                             <input type="text" class="form-control" name="search" value=""
-                                                placeholder="Fuar adı/Anahtar kelime">
+                                                placeholder="{{ __('message.Fuar adı/Anahtar kelime') }}">
                                             <button class="btn btn-outline-secondary" type="submit">
                                                 <i class="fas fa-search" style="color: #fff;"></i>
                                             </button>
@@ -122,9 +120,9 @@
 
                                 <div class="row">
                                     <div class="col-12 col-md-6 col-lg-2 mx-auto">
-                                        <a href="{{ route('front.activity.calendar') }}" type="button"
+                                        <a href="{{ \Session::get('applocale') == 'en' ? route('front.activity.calendar_en') : route('front.activity.calendar') }}" type="button"
                                             class="rt-submit-btn" style="float: right;">
-                                            Etkinlik Takvimi
+                                            {{ __('message.etkinlik takvimi') }}
                                         </a>
                                     </div>
                                 </div>
@@ -166,14 +164,14 @@
                                     <div class="col-md-4">
                                         <div class="rt-post-grid grid-meta">
                                             <div class="post-img">
-                                                <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.activity.detail', $item->link)) : (route('front.activity.detail_en', $item->link)) }}">
+                                                <a href="{{ \Session::get('applocale') == 'en' ? (route('front.activity.detail_en', $item->link)) : (route('front.activity.detail', $item->link)) }}">
                                                     <img src="/{{ $item->image == null ? 'assets/default_act.jpeg' : $item->image }}"
                                                         alt="post" width="551" height="431">
                                                 </a>
                                             </div>
                                             <div class="post-content">
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.activity.categoryDetail', $item->Category->link)) : (route('front.activity.categoryDetail_en', $item->Category->link)) }}"
+                                                    <a href="{{ \Session::get('applocale') == 'en' ? (route('front.activity.categoryDetail_en', $item->Category->link)) : (route('front.activity.categoryDetail', $item->Category->link)) }}"
                                                         class="rt-cat-primary restricted_category_title">
                                                         {{ $item->Category->title }} </a>
                                                     @if ($item->sayac_yil() || $item->sayac_ay() || $item->sayac_gun())
@@ -185,7 +183,7 @@
                                                     @endif
                                                 </div>
                                                 <h4 class="post-title">
-                                                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.activity.detail', $item->link)) : (route('front.activity.detail_en', $item->link)) }}">
+                                                    <a href="{{ \Session::get('applocale') == 'en' ? (route('front.activity.detail_en', $item->link)) : (route('front.activity.detail', $item->link)) }}">
                                                         {{ $item->title }}
                                                     </a>
                                                 </h4>
@@ -240,7 +238,7 @@
                                 </h2>
 
                                 <div>
-                                    <h6><a href="{{ \Session::get('applocale') == 'tr' ? (route('front.activity.categoryDetail', $data->link)) : (route('front.activity.categoryDetail_en', $data->link)) }}">
+                                    <h6><a href="{{ \Session::get('applocale') == 'en' ? (route('front.activity.categoryDetail_en', $data->link)) : (route('front.activity.categoryDetail', $data->link)) }}">
                                             {{ __('message.tümünü gör') }} </a></h6>
                                 </div>
                             </div>
@@ -253,13 +251,13 @@
                                         <div class="col-md-4">
                                             <div class="rt-post-grid grid-meta">
                                                 <div class="post-img">
-                                                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.activity.detail', $item->link)) : (route('front.activity.detail_en', $item->link)) }}">
+                                                    <a href="{{ \Session::get('applocale') == 'en' ? (route('front.activity.detail_en', $item->link)) : (route('front.activity.detail', $item->link)) }}">
                                                         <img src="/{{ $item->image == null ? 'assets/default_act.jpeg' : $item->image }}"
                                                             alt="post" width="551" height="431">
                                                     </a>
                                                 </div>
                                                 <div class="post-content">
-                                                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.activity.categoryDetail', $item->Category->link)) : (route('front.activity.categoryDetail_en', $item->Category->link)) }}"
+                                                    <a href="{{ \Session::get('applocale') == 'en' ? (route('front.activity.categoryDetail_en', $item->Category->link)) : (route('front.activity.categoryDetail', $item->Category->link)) }}"
                                                         class="rt-cat-primary sidebar_restricted_category_title">
                                                         {{ $item->Category->title }} </a>
                                                     @if ($item->sayac_yil() || $item->sayac_ay() || $item->sayac_gun())
@@ -270,7 +268,7 @@
                                                         </h6>
                                                     @endif
                                                     <h4 class="post-title">
-                                                        <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.activity.detail', $item->link)) : (route('front.activity.detail_en', $item->link)) }}">
+                                                        <a href="{{ \Session::get('applocale') == 'en' ? (route('front.activity.detail_en', $item->link)) : (route('front.activity.detail', $item->link)) }}">
                                                             {{ $item->title }}
                                                         </a>
                                                     </h4>

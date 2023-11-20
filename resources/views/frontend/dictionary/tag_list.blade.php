@@ -35,7 +35,7 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            Etiket
+                            {{ __('message.etiketler') }}
                         </li>
                     </ol>
                 </nav>

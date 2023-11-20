@@ -53,7 +53,7 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            Röportajlar
+                            {{ __('message.röportajlar') }} 
                         </li>
                     </ol>
                 </nav>
@@ -190,7 +190,7 @@
 
                             <div class="d-none d-md-block sidebar-wrap mb--40">
                                 <h2 class="rt-section-heading style-2 mb--30">
-                                    <span class="rt-section-text">PopÜler Röportajlar </span>
+                                    <span class="rt-section-text"> {{ __('message.popüler röportajlar') }} </span>
                                     <span class="rt-section-dot"></span>
                                     <span class="rt-section-line"></span>
                                 </h2>

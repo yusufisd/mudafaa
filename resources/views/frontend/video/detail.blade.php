@@ -159,7 +159,7 @@
                                     <div class="row gutter-30">
                                         <div class="col-xl-7 col-lg-6">
                                             <div class="conent-block">
-                                                <h4 class="block-tile mb--20">Popüler Etiketler:</h4>
+                                                <h4 class="block-tile mb--20"> {{ __('message.popüler etiketler') }} </h4>
                                                 <div class="tag-list">
                                                     @foreach ($data->getKeys() as $key)
                                                         <a href="#" class="tag-link">{{ $key }}</a>
@@ -170,7 +170,7 @@
                                         </div>
                                         <div class="col-xl-5 col-lg-6 d-flex justify-content-start justify-content-lg-end">
                                             <div class="conent-block">
-                                                <h4 class="block-tile mb--20">Paylaş:</h4>
+                                                <h4 class="block-tile mb--20"> {{ __('message.paylaş') }} :</h4>
                                                 <ul class="social-share-style-1">
                                                     <li>
                                                         <a class="fb" target="_blank"
@@ -217,7 +217,7 @@
                                                     <div class="item-icon">
                                                         <a href="{{ route('front.video.detail', $sonraki->link) }}">
                                                             <i class="fas fa-chevron-left"></i>
-                                                            Önceki Video
+                                                            {{ __('message.Önceki') }} Video
                                                         </a>
                                                     </div>
                                                     <div class="content">
@@ -241,7 +241,7 @@
                                                 <div class="next-prev-wrap next-wrap">
                                                     <div class="item-icon">
                                                         <a href="{{ route('front.video.detail', $sonraki->link) }}">
-                                                            Sonrakİ Vİdeo
+                                                            {{ __('message.Sonraki') }} Vİdeo
                                                             <i class="fas fa-chevron-right"></i>
                                                         </a>
                                                     </div>
@@ -439,7 +439,7 @@
                                             </div>
                                             <div class="col-12">
                                                 <button type="submit" class="submit-btn" style="float: right;">
-                                                    Gönder
+                                                    {{ __('message.kaydet') }}
                                                 </button>
                                             </div>
                                             <div class="form-response"></div>
@@ -453,7 +453,7 @@
                                 <div class="related-post-box">
                                     <div class="titile-wrapper mb--40">
                                         <h2 class="rt-section-heading flex-grow-1 mb-0 me-3">
-                                            <span class="rt-section-text"> Diğer Videolar </span>
+                                            <span class="rt-section-text"> {{ __('message.diğer videolar') }} </span>
                                             <span class="rt-section-dot"></span>
                                             <span class="rt-section-line"></span>
                                         </h2>
@@ -525,7 +525,7 @@
 
                             <div class="d-none d-md-block sidebar-wrap mb--40">
                                 <h2 class="rt-section-heading style-2 mb--30">
-                                    <span class="rt-section-text">Bİzİ Takİp Edİn</span>
+                                    <span class="rt-section-text"> {{ __('message.bizi takip edin') }} </span>
                                     <span class="rt-section-dot"></span>
                                     <span class="rt-section-line"></span>
                                 </h2>
@@ -578,7 +578,7 @@
 
                             <div class="sidebar-wrap">
                                 <h2 class="rt-section-heading style-2 mb--30">
-                                    <span class="rt-section-text">Etİketler </span>
+                                    <span class="rt-section-text"> {{ __('message.popüler etiketler') }} </span>
                                     <span class="rt-section-dot"></span>
                                     <span class="rt-section-line"></span>
                                 </h2>

@@ -9,8 +9,10 @@ use App\Models\CompanyCategory;
 use App\Models\CompanyImage;
 use App\Models\CompanyModel;
 use App\Models\CompanyTitle;
+use App\Models\EnCompanyAddress;
 use App\Models\EnCompanyCategory;
 use App\Models\EnCompanyModel;
+use App\Models\EnCompanyTitle;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -33,12 +35,16 @@ class CompanyController extends Controller
         $lang = session('applocale') ?? config('app.fallback_locale');
         if ($lang == 'tr') {
             $data = CompanyModel::where('link',$id)->first();
+            $ekstra = CompanyTitle::where('company_id', $data->id)->get();
+            $images = CompanyImage::where('company_id', $data->id)->get();
+            $address = CompanyAddress::where('company_id', $data->id)->get();
         } else {
             $data = EnCompanyModel::where('link',$id)->first();
+            $ekstra = EnCompanyTitle::where('company_id', $data->id)->get();
+            $images = CompanyImage::where('company_id', $data->id)->get();
+            $address = EnCompanyAddress::where('company_id', $data->id)->get();
         }
-        $ekstra = CompanyTitle::where('company_id', $data->id)->get();
-        $images = CompanyImage::where('company_id', $data->id)->get();
-        $address = CompanyAddress::where('company_id', $data->id)->get();
+        
 
         return view('frontend.company.detail', compact('data', 'ekstra', 'images', 'address'));
     }

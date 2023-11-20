@@ -43,12 +43,12 @@
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
                             <a href="/etkinlikler/list">
-                                Etkinlikler
+                                {{ __('message.etkinlikler') }}
                             </a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
                             <span class="rt-text-truncate">
-                                Etkinlik Takvimi
+                                {{ __('message.etkinlik takvimi') }}
                             </span>
                         </li>
                     </ol>

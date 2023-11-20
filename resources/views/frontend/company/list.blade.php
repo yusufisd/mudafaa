@@ -36,7 +36,7 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            Firmalar
+                            {{ __('message.firmalar') }}
                         </li>
                     </ol>
                 </nav>
@@ -65,7 +65,7 @@
                                         <div class="cat-item">
                                             <div class="rt-cart-item" style="background-color: white!important">
                                                 <a
-                                                    href="{{ route('front.company.detail', \Illuminate\Support\Str::slug($item->title)) }}">
+                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.company.detail_en', \Illuminate\Support\Str::slug($item->title)) : route('front.company.detail', \Illuminate\Support\Str::slug($item->title)) }}">
                                                     <div class="item-img">
                                                         <img src="/{{ $item->image }}" style="height: 130px" alt="{{ $item->title }}">
                                                             
@@ -101,7 +101,7 @@
 
                             <div class="sidebar-wrap mb--40">
                                 <h2 class="rt-section-heading style-2 mb--30">
-                                    <span class="rt-section-text">KATEGORİLER </span>
+                                    <span class="rt-section-text"> {{ __('message.kategoriler') }} </span>
                                     <span class="rt-section-dot"></span>
                                     <span class="rt-section-line"></span>
                                 </h2>

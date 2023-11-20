@@ -63,21 +63,6 @@ use Illuminate\Support\Str;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('test-link',function(){
-    $data = CompanyModel::get();
-    foreach($data as $key){
-        $link = Str::slug($key->title);
-        $key->link = $link;
-        $key->save();
-    }
-    $data_en = EnCompanyModel::get();
-    foreach($data_en as $item){
-        $link_en = Str::slug($item->title);
-        $item->link = $link_en;
-        $item->save();
-    }
-    return "Başarılı";
-});
 
 // CHANGE LANG
 Route::get('/change-lang/{lang}', [LanguageController::class, 'change'])->name('chaange.lang');
@@ -676,29 +661,24 @@ Route::middleware('lang')->group(function () {
 
             // CURRENT NEWS CATEGORY CONTROLLER
             Route::get('guncel-haber-kategorisi/{id?}',[FrontendCurrentNewsCategoryController::class,'index'])->name('currentNewsCategory.list');
-            Route::get('current-news-category/{id?}',[FrontendCurrentNewsCategoryController::class,'index'])->name('currentNewsCategory.list_en');
-
-            // CURRENT NEWS  CONTROLLER
             Route::get('guncel-haber/{id?}',[FrontendCurrentNewsController::class,'detail'])->name('currentNews.detail');
-            Route::get('current-news/{id?}',[FrontendCurrentNewsController::class,'detail'])->name('currentNews.detail_en');
             Route::post('paylas-sayi', [FrontendCurrentNewsController::class,'share_counter'])->name('currentNews.share_counter');
-
-
             Route::get('guncel-haber/etiket/{title?}',[FrontendCurrentNewsController::class,'tag_list'])->name('currentNews.tag_list');
-            Route::get('current-news/tag/{title?}',[FrontendCurrentNewsController::class,'tag_list'])->name('currentNews.tag_list_en');
-
             // DEFENSE INDUSTRY CATEGORY CONTROLLER
             Route::get('savunma-sanayi-kategorisi/{id?}',[FrontendDefenseIndustryCategoryController::class,'index'])->name('defenseIndustryCategory.list');
             Route::get('savunma-sanayi-kategorisi/etiket/{id?}',[FrontendDefenseIndustryCategoryController::class,'tag_list'])->name('defenseIndustryCategory.tag_list');
-            Route::get('defense-industry-category/{id?}',[FrontendDefenseIndustryCategoryController::class,'index'])->name('defenseIndustryCategory.list_en');
-            Route::get('defense-industry-category/tag/{id?}',[FrontendDefenseIndustryCategoryController::class,'tag_list'])->name('defenseIndustryCategory.tag_list_en');
-
             // DEFENSE INDUSTRY CATEGORY2 CONTROLLER
             Route::get('savunma-sanayi-alt-kategorisi/{id?}',[FrontendDefenseIndustryCategoryController::class,'sub_category_index'])->name('defenseIndustrySubCategory.list2');
-            Route::get('defense-industry-sub-category/{id?}',[FrontendDefenseIndustryCategoryController::class,'sub_category_index'])->name('defenseIndustrySubCategory.list2_en');
-
             // DEFENSE INDUSTRY CONTENT CONTROLLER
             Route::get('savunma-sanayi/{id?]',[FrontendDefenseIndustryContentController::class,'detail'])->name('defenseIndustryContent.detail');
+            
+            // CURRENT NEWS  CONTROLLER
+            Route::get('current-news-category/{id?}',[FrontendCurrentNewsCategoryController::class,'index'])->name('currentNewsCategory.list_en');
+            Route::get('current-news/{id?}',[FrontendCurrentNewsController::class,'detail'])->name('currentNews.detail_en');
+            Route::get('current-news/tag/{title?}',[FrontendCurrentNewsController::class,'tag_list'])->name('currentNews.tag_list_en');
+            Route::get('defense-industry-category/{id?}',[FrontendDefenseIndustryCategoryController::class,'index'])->name('defenseIndustryCategory.list_en');
+            Route::get('defense-industry-category/tag/{id?}',[FrontendDefenseIndustryCategoryController::class,'tag_list'])->name('defenseIndustryCategory.tag_list_en');
+            Route::get('defense-industry-sub-category/{id?}',[FrontendDefenseIndustryCategoryController::class,'sub_category_index'])->name('defenseIndustrySubCategory.list2_en');
             Route::get('defense-industry/{id?]',[FrontendDefenseIndustryContentController::class,'detail'])->name('defenseIndustryContent.detail_en');
 
             // ACTİVİYY CONTROLLER
@@ -729,6 +709,7 @@ Route::middleware('lang')->group(function () {
                         Route::get('kategori/{link?}', 'category_list')->name('category_list');
                         Route::get('category/{link?}', 'category_list')->name('category_list_en');
                         Route::get('/{id?}', 'detail')->name('detail');
+                        Route::get('en/{id?}', 'detail')->name('detail_en');
                         Route::post('yorum-ekle/{id?}', 'commentStore')->name('commentStore');
                         Route::post('alt-yorum-ekle/{id?}', 'sub_commentStore')->name('sub_commentStore');
                     });

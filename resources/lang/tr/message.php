@@ -115,7 +115,19 @@ return [
     "önceki röportaj" => "Önceki Röportaj",
     "sonraki röportaj" => "Sonraki Röportaj",
     "diğer röportajlar" => "Diğer Röportajlar",
-
+    "diğer sözlükler" => "Diğer Sözlükler",
+    "diğer videolar" => "Diğer Videolar",
+    "ay" => "Ay",
+    "yıl" => "Yıl",
+    "popüler röportajlar" => "Popüler Röportajlar",
+    "Fuar adı/Anahtar kelime" => "Fuar adı/Anahtar kelime",
+    "etkinlik takvimi" => "Etkinlik Takvimi",
+    "Aradığınız etkinliği kolayca bulun." => "Aradığınız etkinliği kolayca bulun.",
+    "Detaylı arama ile etkinlik yılı, etkinlik ayı ve etkinlik kategorisi gibi kriterleri belirleyerek aradığınız etkinliği kolaylıkla bulabilirsiniz." => "Detaylı arama ile etkinlik yılı, etkinlik ayı ve etkinlik kategorisi gibi kriterleri belirleyerek aradığınız etkinliği kolaylıkla bulabilirsiniz.",
+    "Ürün Görselleri" => "Ürün Görselleri",
+    "İletişim Bilgileri" => "İletişim Bilgileri",
+    "adres" => "Adres",
+    "telefon" => "Telefon",
 
 ];
 ?>

@@ -35,7 +35,7 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            SS Sözlüğü
+                            SS  {{ __('message.sözlük') }}
                         </li>
                     </ol>
                 </nav>

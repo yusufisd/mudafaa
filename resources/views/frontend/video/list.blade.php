@@ -63,7 +63,7 @@
                                 <div class="slide-item">
                                     <div class="rt-post-grid grid-meta">
                                         <div class="post-img">
-                                            <a href="{{ route('front.video.detail',$item->link) }}">
+                                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.video.detail_en',$item->link) : route('front.video.detail',$item->link) }}">
                                                 <img src="/{{ $item->image }}" alt="post" width="551"
                                                     height="431">
                                             </a>

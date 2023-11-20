@@ -114,14 +114,33 @@ class ActivityController extends Controller
     
     public function calendar(Request $request)
     {
-        if (isset($request->category)) {
-            $events = Activity::where('status',1)->where('category', $request->category)
-                ->latest()
-                ->get();
-        } else {
-            $events = Activity::where('status',1)->latest()->get();
+        $local = \Session::get('applocale');
+        if ($local == null) {
+            $local = config('app.fallback_locale');
         }
+
+        if ($local == 'tr') {
+            if (isset($request->category)) {
+                $events = Activity::where('status',1)->where('category', $request->category)
+                    ->latest()
+                    ->get();
+            } else {
+                $events = Activity::where('status',1)->latest()->get();
+            }
         $categories = ActivityCategory::where('status',1)->get();
+
+        } elseif ($local == 'en') {
+            if (isset($request->category)) {
+                $events = EnActivity::where('status',1)->where('category', $request->category)
+                    ->latest()
+                    ->get();
+            } else {
+                $events = EnActivity::where('status',1)->latest()->get();
+            }
+        $categories = EnActivityCategory::where('status',1)->get();
+
+        }
+        
         return view('frontend.activity.calendar', compact('events', 'categories'));
     }
 

@@ -435,8 +435,7 @@
                                                         <input required class="form-check-input" type="checkbox" value=""
                                                             id="comment-form-check1">
                                                         <label class="form-check-label" for="comment-form-check1">
-                                                            <a href="#">Kişisel Verilerin Korunması</a> Hakkında
-                                                            Aydınlatma Metni'ni okudum, onay veriyorum.
+                                                            {{ __('message.Kişisel Verilerin Korunması Hakkında Aydınlatma Metnini okudum, onay veriyorum.') }}                                                                
                                                         </label>
                                                     </div>
                                                 </div>
