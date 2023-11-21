@@ -116,6 +116,7 @@ return [
     "sonraki röportaj" => "Sonraki Röportaj",
     "diğer röportajlar" => "Diğer Röportajlar",
     "diğer sözlükler" => "Diğer Sözlükler",
+    "diğer etkinlikler" => "Diğer Etkinlikler",
     "diğer videolar" => "Diğer Videolar",
     "ay" => "Ay",
     "yıl" => "Yıl",
@@ -128,6 +129,12 @@ return [
     "İletişim Bilgileri" => "İletişim Bilgileri",
     "adres" => "Adres",
     "telefon" => "Telefon",
+    "Katılımcı Başvuru Formu" => "Katılımcı Başvuru Formu",
+    "Online Bilet" => "Online Bilet",
+    "kullanılan ülkeler" => "Kullanılan Ülkeler",
+    "ürün hakkında" => "Ürün Hakkında",
+    "ürün" => "Ürün",
+
 
 ];
 ?>

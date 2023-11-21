@@ -21,20 +21,19 @@
                         <li>
                             <span class="rt-meta">
                                 <i class="fa fa-user"></i> <a href=""
-                                    class="name">Alİ
-                                    Yılmaz</a>
+                                    class="name"> {{ $item->Author->name }} {{ $item->Author->surname }} </a>
                             </span>
                         </li>
                         <li>
                             <span class="rt-meta">
                                 <i class="far fa-calendar-alt icon"></i>
-                                25.12.2022
+                                {{ $item->live_date }}
                             </span>
                         </li>
                         <li>
                             <span class="rt-meta">
                                 <i class="far fa-eye icon"></i>
-                                1050
+                                {{ $item->view_counter }}
                             </span>
                         </li>
                         

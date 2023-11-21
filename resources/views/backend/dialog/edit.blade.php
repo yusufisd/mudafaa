@@ -89,7 +89,7 @@
                                                     <div class="col-lg-10">
 
                                                         <input type="file" class="form-control" name="image"
-                                                            accept=".png, .jpg, .jpeg" />
+                                                            accept=".png, .jpg, .jpeg, .webp" />
 
                                                     </div>
                                                     <!--end::Col-->

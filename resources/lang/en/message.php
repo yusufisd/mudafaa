@@ -119,6 +119,7 @@ return [
     "önceki röportaj" => "Previous Interview",
     "sonraki röportaj" => "Next Interview",
     "diğer röportajlar" => "Other Interview",
+    "diğer etkinlikler" => "Other Activities",
     "diğer videolar" => "Other Videos",
     "etkinlik takvimi" => "Events Calendar",
     "diğer sözlükler" => "Other Dictionaries",
@@ -129,5 +130,10 @@ return [
     "İletişim Bilgileri" => "Contact",
     "adres" => "Address",
     "telefon" => "Phone",
+    "Katılımcı Başvuru Formu" => "Participant Application Form",
+    "Online Bilet" => "Online Ticket",
+    "kullanılan ülkeler" => "Used Countries",
+    "ürün hakkında" => "Product's About",
+    "ürün" => "Product",
 ];
 ?>

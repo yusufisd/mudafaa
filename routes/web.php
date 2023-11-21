@@ -653,6 +653,7 @@ Route::middleware('lang')->group(function () {
         ->name('front.')
         ->group(function () {
             Route::get('/', [FrontendHomeController::class, 'index'])->name('home');
+            Route::get('/en', [FrontendHomeController::class, 'index'])->name('home_en');
             // SET EMOJI
             Route::post('/setEmoji', [\App\Http\Controllers\Frontend\EmojiController::class, 'index'])->name('setEmoji');
 

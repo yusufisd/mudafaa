@@ -66,13 +66,13 @@
                 <nav class="rt-breadcrumb-wrap" aria-label="breadcrumb">
                     <ol class="breadcrumb d-inline-flex">
                         <li class="breadcrumb-item">
-                            <a href="index.html">
+                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
                         <li class="breadcrumb-item" aria-label="breadcrumb">
-                            <a href="activity.html">
-                                Etkinlikler
+                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.activity.list_en') : route('front.activity.list') }}">
+                                {{ __('message.etkinlikler') }}
                             </a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
@@ -214,7 +214,7 @@
                                             <li>
                                                 <h3>
                                                     <a href="{{ $data->ticket_link }}">
-                                                        Online Bilet <i class="fas fa-angle-double-right"></i>
+                                                        {{ __('message.Online Bilet') }} <i class="fas fa-angle-double-right"></i>
                                                     </a>
                                                 </h3>
                                             </li>
@@ -224,7 +224,7 @@
                                             <li>
                                                 <h3>
                                                     <a href="{{ $data->subscribe_form }}">
-                                                        Katılımcı Başvuru Formu <i class="fas fa-angle-double-right"></i>
+                                                        {{ __('message.Katılımcı Başvuru Formu') }} <i class="fas fa-angle-double-right"></i>
                                                     </a>
                                                 </h3>
                                             </li>
@@ -239,7 +239,7 @@
                             <div class="wrap mb--30">
                                 <div class="featured-tab-title">
                                     <h2 class="rt-section-heading">
-                                        <span class="rt-section-text">İletişim Bilgileri </span>
+                                        <span class="rt-section-text"> {{ __('message.İletişim Bilgileri') }} </span>
                                         <span class="rt-section-dot"></span>
                                         <span class="rt-section-line"></span>
                                     </h2>
@@ -250,7 +250,7 @@
                                         <ul class="contact_info">
                                             @if ($data->address != null)
                                                 <li>
-                                                    <h6>Adres</h6>
+                                                    <h6> {{ __('message.adres') }} </h6>
                                                     <p class="rt-teta">
                                                         <i class="fas fa-home icon"></i>
                                                         {{ $data->address }} / {{ $data->city }}
@@ -259,7 +259,7 @@
                                             @endif
                                             @if ($data->email != null)
                                                 <li>
-                                                    <h6>E-Posta</h6>
+                                                    <h6>E-mail</h6>
                                                     <p class="rt-teta">
                                                         <i class="fas fa-envelope icon"></i>
                                                         {{ $data->email }}
@@ -268,7 +268,7 @@
                                             @endif
                                             @if ($data->phone != null)
                                                 <li>
-                                                    <h6>Telefon</h6>
+                                                    <h6> {{ __('message.telefon') }} </h6>
                                                     <p class="rt-teta">
                                                         <i class="fas fa-phone icon"></i>
                                                         {{ $data->phone }}
@@ -277,7 +277,7 @@
                                             @endif
                                             @if ($data->website != null)
                                                 <li>
-                                                    <h6>Web Site</h6>
+                                                    <h6>Website</h6>
                                                     <p class="rt-teta">
                                                         <i class="fas fa-globe icon"></i>
                                                         {{ $data->website }}
@@ -323,7 +323,7 @@
                         <div class="titile-wrapper mb--30">
 
                             <h2 class="rt-section-heading flex-grow-1 mb-0 me-3">
-                                <span class="rt-section-text">Diğer Etkinlikler </span>
+                                <span class="rt-section-text"> {{ __('message.diğer etkinlikler') }} </span>
                                 <span class="rt-section-dot"></span>
                                 <span class="rt-section-line"></span>
                             </h2>

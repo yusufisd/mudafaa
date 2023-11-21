@@ -30,12 +30,12 @@
                 <nav class="rt-breadcrumb-wrap" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.dictionary.list', ['id' => 2])) : (route('front.dictionary.list_en', ['id' => 2])) }}">
+                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            SS  {{ __('message.sözlük') }}
+                            {{ __('message.ss sözlüğü') }}
                         </li>
                     </ol>
                 </nav>

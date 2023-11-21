@@ -50,7 +50,7 @@
                 <nav class="rt-breadcrumb-wrap" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">
+                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
@@ -141,7 +141,7 @@
 
                                     <div class="share-text">
                                         <i class="fas fa-share-alt"></i>
-                                        <span>Paylaş</span>
+                                        <span> {{ __('message.paylaş') }} </span>
                                     </div>
 
                                     <ul class="social-share-style-7">
@@ -189,7 +189,7 @@
                                 <div class="wrap mb--30">
                                     <div class="featured-tab-title">
                                         <h2 class="rt-section-heading">
-                                            <span class="rt-section-text">Ürün Hakkında</span>
+                                            <span class="rt-section-text"> {{ __('message.ürün hakkında') }} </span>
                                             <span class="rt-section-dot"></span>
                                             <span class="rt-section-line"></span>
                                         </h2>
@@ -198,7 +198,7 @@
                                             <li class="menu-item" role="presentation">
                                                 <a class="menu-link active" id="menu-1-tab" data-bs-toggle="tab"
                                                     href="#menu-1" role="tab" aria-controls="menu-1"
-                                                    aria-selected="true"> Üretici Firmalar </a>
+                                                    aria-selected="true"> {{ __('message.üretici') }} {{ __('message.firmalar') }} </a>
                                             </li>
                                             <li class="menu-item" role="presentation">
                                                 <a class="menu-link" id="menu-2-tab" data-bs-toggle="tab" href="#menu-2"
@@ -208,7 +208,7 @@
                                             <li class="menu-item" role="presentation">
                                                 <a class="menu-link" id="menu-3-tab" data-bs-toggle="tab" href="#menu-3"
                                                     role="tab" aria-controls="menu-3" aria-selected="false">
-                                                    Kullanılan Ülkeler </a>
+                                                    {{ __('message.kullanılan ülkeler') }} </a>
                                             </li>
                                         </ul><!-- end nav tab -->
 
@@ -299,7 +299,7 @@
                                 <div class="row">
                                     <div class="col-xl-7 col-lg-6">
                                         <div class="conent-block">
-                                            <h4 class="block-tile mb--20">Popüler Etiketler:</h4>
+                                            <h4 class="block-tile mb--20"> {{ __('message.popüler etiketler') }} :</h4>
                                             <div class="tag-list">
                                                 @foreach ($data->getKeys() as $key)
                                                     <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.defenseIndustryCategory.tag_list', $key)) : (route('front.defenseIndustryCategory.tag_list_en', $key)) }}"
@@ -327,7 +327,7 @@
                                                     <a
                                                         href="{{ route('front.defenseIndustryContent.detail', $previous_product->link) }}">
                                                         <i class="fas fa-chevron-left"></i>
-                                                        Öncekİ Ürün
+                                                        {{ __('message.Önceki') }} {{ __('message.ürün') }}
                                                     </a>
                                                 </div>
                                                 <div class="content">
@@ -355,7 +355,7 @@
                                                 <div class="item-icon">
                                                     <a
                                                         href="{{ route('front.defenseIndustryContent.detail', $next_product->link) }}">
-                                                        Sonrakİ Ürün
+                                                        {{ __('message.Sonraki') }} {{ __('message.ürün') }}
                                                         <i class="fas fa-chevron-right"></i>
                                                     </a>
                                                 </div>
@@ -399,7 +399,7 @@
                         <div class="titile-wrapper mb--30">
 
                             <h2 class="rt-section-heading flex-grow-1 mb-0 me-3">
-                                <span class="rt-section-text">Diğer Ürünler </span>
+                                <span class="rt-section-text"> {{ __('message.diğer ürünler') }} </span>
                                 <span class="rt-section-dot"></span>
                                 <span class="rt-section-line"></span>
                             </h2>

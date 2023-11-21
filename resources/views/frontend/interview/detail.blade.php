@@ -65,13 +65,13 @@
                 <nav class="rt-breadcrumb-wrap" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="{{ route('front.home') }}">
+                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.interview.list')) : (route('front.interview.list_en')) }}">
-                                Röportajlar
+                            <a href="{{ \Session::get('applocale') == 'en' ? (route('front.interview.list_en')) : (route('front.interview.list')) }}">
+                                {{ __('message.röportajlar') }}
                             </a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">

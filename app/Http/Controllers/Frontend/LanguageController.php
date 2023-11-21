@@ -11,7 +11,9 @@ class LanguageController extends Controller
 {
     public function change($lang){
         $saved_langs = \Config::get('languages');
+
         if (array_key_exists($lang, $saved_langs)) {
+            
             // session process
             \Session::forget("applocale");
             \Session::put("applocale", $lang);
@@ -36,9 +38,14 @@ class LanguageController extends Controller
             if (Auth::user()){
                 return redirect('/admin');
             }else{
-                return redirect('/');
+                if($lang == "en"){
+                    return redirect('/en');
+                }else{
+                    return redirect('/');
+                }
             }
         }else{
+
             // session process
             \Session::forget("applocale");
             \App::setLocale(config('app.fallback_locale'));

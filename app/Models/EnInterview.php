@@ -31,4 +31,12 @@ class EnInterview extends Model
     public function getKeys(){
         return explode(',', $this->seo_key);
     }
+
+    public function CommentCommentsCount(){
+        return InterviewComment::where('is_post',0)->where('post_id',$this->id)->count();
+    }
+
+    public function CommentComments(){
+        return InterviewComment::where('is_post',0)->where('post_id',$this->id)->get();
+    }
 }

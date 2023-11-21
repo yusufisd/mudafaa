@@ -218,12 +218,12 @@
 
                                 <!-- start logo here -->
                                 <div class="site-branding">
-                                    <a class="dark-logo" href="{{ route('front.home') }}">
+                                    <a class="dark-logo" href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
                                         <img src="/assets/frontend/media/logo/logo-light.png" width="250"
                                             height="52" src="" alt="neeon">
 
                                     </a>
-                                    <a class="light-logo" href="{{ route('front.home') }}">
+                                    <a class="light-logo" href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
                                         <img src="/assets/frontend/media/logo/logo-light.png" width="250"
                                             height="52" alt="neeon">
                                     </a>
@@ -235,7 +235,7 @@
                                     <nav class="main-menu__nav">
                                         <ul>
                                             <li class="active">
-                                                <a class="animation" href="{{ route('front.home') }}"><i
+                                                <a class="animation" href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}"><i
                                                         class="fa fa-home fa-md"></i></a>
                                             </li>
                                             <li
@@ -327,7 +327,7 @@
                 <div class="mobile-menu-bar-wrap" id="mobile-menu-bar-wrap">
                     <div class="mobile-menu-bar">
                         <div class="logo">
-                            <a href="{{ route('front.home') }}">
+                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
                                 <img src="/assets/frontend/media/logo/mm.svg" alt="neeon" width="162"
                                     height="52">
                             </a>
@@ -344,7 +344,7 @@
                             <nav class="menu-main-primary-container">
                                 <ul class="menu">
                                     <li>
-                                        <a class="animation" href="{{ route('front.home') }}">
+                                        <a class="animation" href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
                                             {{ __('message.anasayfa') }} </a>
                                     </li>
                                     <li class="list menu-item-has-children">
@@ -403,7 +403,7 @@
                                 data-wow-duration="800ms">
                                 <div class="footer-widget">
                                     <div class="logo footer-logo">
-                                        <a class="dark-logo" href="{{ route('front.home') }}">
+                                        <a class="dark-logo" href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
                                             <img width="250" height="52"
                                                 src="/assets/frontend/media/logo/mm-beyaz.svg" alt="neeon">
                                         </a>
