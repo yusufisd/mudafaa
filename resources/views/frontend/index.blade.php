@@ -804,8 +804,9 @@
                             <div class="post-content">
                                 <div class="d-flex justify-content-between align-items-center">
                                     @if ($item->Category != null)
-                                        <a href="graphics.html" class="rt-cat-primary restricted_category_title">
-                                            {{ substr($item->Category->title, 0, 10) }} ...</a>
+                                    <a href="{{ \Session::get('applocale') == 'en' ? (route('front.activity.categoryDetail_en', $item->Category->link)) : (route('front.activity.categoryDetail', $item->Category->link)) }}"
+                                        class="rt-cat-primary restricted_category_title">
+                                        {{ $item->Category->title }} </a>
                                     @endif
                                     @if ($item->sayac_yil() || $item->sayac_ay() || $item->sayac_gun())
                                         <h6 class="rt-news-cat-normal text-danger mx-2">

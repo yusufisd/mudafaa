@@ -555,7 +555,7 @@
                                                     <a class="nav-link active" data-bs-toggle="tab" href="#baslik_tr"
                                                         aria-selected="false" role="tab" tabindex="-1">
                                                         <span>
-                                                            <img src="https://mudafaa.test/assets/tr.png" width="28"
+                                                            <img src="{{ asset('/assets/tr.png') }}" width="28"
                                                                 height="20" alt="TR" title="TR">
                                                         </span>
 
@@ -565,7 +565,7 @@
                                                     <a class="nav-link" data-bs-toggle="tab" href="#baslik_en"
                                                         aria-selected="true" role="tab">
                                                         <span>
-                                                            <img src="https://mudafaa.test/assets/en.png" width="28"
+                                                            <img src="{{ asset('/assets/en.png') }}" width="28"
                                                                 height="20" alt="EN" title="EN">
                                                         </span>
                                                     </a>
@@ -716,7 +716,7 @@
                                                     </div>
                                                     <div class="col-md-2">
                                                         <button style="width:90px"
-                                                                class="btn btn-primary add_item_buton3">EKLE</button>
+                                                                class="btn btn-primary btn-sm add_item_buton3">EKLE</button>
                                                     </div>
                                                 </div>
                                             @endif
@@ -745,12 +745,12 @@
                                                     @if($gkey == 0)
                                                         <div class="col-md-2">
                                                             <button style="width:90px"
-                                                                    class="btn btn-primary add_item_buton3">EKLE</button>
+                                                                    class="btn btn-primary btn-sm add_item_buton3">EKLE</button>
                                                         </div>
                                                     @else
                                                         <div class="col-md-2">
                                                             <button style="width:100px"
-                                                                    class="btn btn-danger delete_item_buton3">SİL</button>
+                                                                    class="btn btn-danger btn-sm delete_item_buton3">SİL</button>
                                                         </div>
                                                     @endif
                                                 </div>
@@ -766,7 +766,7 @@
                                                     <a class="nav-link active" data-bs-toggle="tab" href="#adres_tr"
                                                         aria-selected="true" role="tab">
                                                         <span>
-                                                            <img src="https://mudafaa.test/assets/tr.png" width="28"
+                                                            <img src="{{ asset('/assets/tr.png') }}" width="28"
                                                                 height="20" alt="TR" title="TR">
                                                         </span>
 
@@ -776,7 +776,7 @@
                                                     <a class="nav-link" data-bs-toggle="tab" href="#adres_en"
                                                         aria-selected="false" tabindex="-1" role="tab">
                                                         <span>
-                                                            <img src="https://mudafaa.test/assets/en.png" width="28"
+                                                            <img src="{{ asset('/assets/en.png') }}" width="28"
                                                                 height="20" alt="EN" title="EN">
                                                         </span>
                                                     </a>
@@ -961,7 +961,7 @@
                                                                                     </span>
                                                                                 </label>
                                                                                 <div class="col-lg-8 fv-row">
-                                                                                    <input type="number"
+                                                                                    <input type="text"
                                                                                         value="{{ $adres_tr->map }}"
                                                                                         class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                         name="address_map[]"
@@ -1189,7 +1189,7 @@
                                                                                     </span>
                                                                                 </label>
                                                                                 <div class="col-lg-8 fv-row">
-                                                                                    <input type="number"
+                                                                                    <input type="text"
                                                                                         value="{{ $adres_en->map }}"
                                                                                         class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                         name="address_map_en[]"
@@ -1452,7 +1452,7 @@
                                                                 <span class=""> Harita <br><p style="  font-weight: normal;font-size:13px;">(iframe linki)</p> </span>\
                                                             </label>\
                                                             <div class="col-lg-8 fv-row">\
-                                                                <input type="number"\
+                                                                <input type="text"\
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
                                                                     name="address_map[]" id="">\
                                                             </div>\
@@ -1545,7 +1545,7 @@
                                                                     <span class=""> Harita <br><p style="  font-weight: normal;font-size:13px;">(iframe linki)</p> </span>\
                                                                 </label>\
                                                                 <div class="col-lg-8 fv-row">\
-                                                                    <input type="number"\
+                                                                    <input type="text"\
                                                                         class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
                                                                         name="address_map_en[]" id="">\
                                                                 </div>\
@@ -1614,7 +1614,7 @@
                             </div>\
                         </div>\
                         <div class="col-md-2" style="padding-right:0">\
-                            <button style="width:100px" class="btn btn-danger btn-sm delete_item_buton3">SİL</button>\
+                            <button style="width:100px" class="btn btn-sm btn-danger btn-sm delete_item_buton3">SİL</button>\
                         </div>\
                     </div>');
             });

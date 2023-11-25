@@ -14,7 +14,6 @@ class DefenseIndustryContentController extends Controller
 {
     public function detail($id = null){
         if ($id == null) return redirect('/');
-
         $lang = session('applocale') ?? config('app.fallback_locale');
         if ($lang == "tr"){
             $data = DefenseIndustryContent::where('link',$id)->first();

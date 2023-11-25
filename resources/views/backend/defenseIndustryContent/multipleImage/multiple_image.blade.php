@@ -83,37 +83,38 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($data as $item)
-                                                <tr class="align-middle">
-                                                    <td>
-                                                        <div
-                                                            class="form-check form-check-sm form-check-custom form-check-solid">
-                                                            <input class="form-check-input my-input" type="checkbox"
-                                                                value="1" />
-                                                        </div>
-                                                    </td>
-                                                    <td style="text-align: center">
-                                                        <img src="/{{ $item }}"
-                                                            style="width:150px; border-radius:5%" alt="">
-                                                    </td>
+                                            @if ($data)
+                                                @foreach ($data as $item)
+                                                    <tr class="align-middle">
+                                                        <td>
+                                                            <div
+                                                                class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                <input class="form-check-input my-input" type="checkbox"
+                                                                    value="1" />
+                                                            </div>
+                                                        </td>
+                                                        <td style="text-align: center">
+                                                            <img src="/{{ $item }}"
+                                                                style="width:150px; border-radius:5%" alt="">
+                                                        </td>
 
-                                                    <td>
-                                                        <a href="#"
-                                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 px-2"
-                                                            title="Görüntüle">
-                                                            <i class="fa-solid fa-eye fs-3"></i>
-                                                        </a>
+                                                        <td>
+                                                            <a href="#"
+                                                                class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 px-2"
+                                                                title="Görüntüle">
+                                                                <i class="fa-solid fa-eye fs-3"></i>
+                                                            </a>
 
-                                                        <a onclick="destroy('{{$item}}')"
-                                                            class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1 px-2"
-                                                            data-bs-toggle="modal" data-bs-target="#delete_modal"
-                                                            title="Sil">
-                                                            <i class="fa-regular fa-trash-can fs-4"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-
+                                                            <a onclick="destroy('{{ $item }}')"
+                                                                class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1 px-2"
+                                                                data-bs-toggle="modal" data-bs-target="#delete_modal"
+                                                                title="Sil">
+                                                                <i class="fa-regular fa-trash-can fs-4"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>
@@ -146,7 +147,9 @@
                 confirmButtonText: 'Evet, sil!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "{{ route('admin.defenseIndustryContent.multipleImage_destroy') }}/{{$id}}?path=" + d;
+                    window.location.href =
+                        "{{ route('admin.defenseIndustryContent.multipleImage_destroy') }}/{{ $id }}?path=" +
+                        d;
                 }
             })
         }

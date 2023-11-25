@@ -671,7 +671,7 @@ Route::middleware('lang')->group(function () {
             // DEFENSE INDUSTRY CATEGORY2 CONTROLLER
             Route::get('savunma-sanayi-alt-kategorisi/{id?}',[FrontendDefenseIndustryCategoryController::class,'sub_category_index'])->name('defenseIndustrySubCategory.list2');
             // DEFENSE INDUSTRY CONTENT CONTROLLER
-            Route::get('savunma-sanayi/{id?]',[FrontendDefenseIndustryContentController::class,'detail'])->name('defenseIndustryContent.detail');
+            Route::get('savunma-sanayi/{id?}',[FrontendDefenseIndustryContentController::class,'detail'])->name('defenseIndustryContent.detail');
             
             // CURRENT NEWS  CONTROLLER
             Route::get('current-news-category/{id?}',[FrontendCurrentNewsCategoryController::class,'index'])->name('currentNewsCategory.list_en');
@@ -680,7 +680,7 @@ Route::middleware('lang')->group(function () {
             Route::get('defense-industry-category/{id?}',[FrontendDefenseIndustryCategoryController::class,'index'])->name('defenseIndustryCategory.list_en');
             Route::get('defense-industry-category/tag/{id?}',[FrontendDefenseIndustryCategoryController::class,'tag_list'])->name('defenseIndustryCategory.tag_list_en');
             Route::get('defense-industry-sub-category/{id?}',[FrontendDefenseIndustryCategoryController::class,'sub_category_index'])->name('defenseIndustrySubCategory.list2_en');
-            Route::get('defense-industry/{id?]',[FrontendDefenseIndustryContentController::class,'detail'])->name('defenseIndustryContent.detail_en');
+            Route::get('defense-industry/{id?}',[FrontendDefenseIndustryContentController::class,'detail'])->name('defenseIndustryContent.detail_en');
 
             // ACTİVİYY CONTROLLER
             Route::controller(FrontendActivityController::class)->name('activity.')->group(function () {
@@ -755,9 +755,11 @@ Route::middleware('lang')->group(function () {
                 Route::get('company', 'index')->name('list_en');
                 Route::prefix('firma')->group(function(){
                     Route::get('/{id?}', 'detail')->name('detail');
+                    Route::get('/kategori/{link?}', 'categoryList')->name('categoryList');
                     });
                 Route::prefix('company')->group(function(){
                     Route::get('/{id?}', 'detail')->name('detail_en');
+                    Route::get('/category/{link?}', 'categoryList')->name('categoryList_en');
                     });
                 });
 

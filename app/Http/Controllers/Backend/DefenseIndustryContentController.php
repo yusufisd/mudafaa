@@ -405,7 +405,6 @@ class DefenseIndustryContentController extends Controller
     {
         $data2 = DefenseIndustryContent::findOrFail($id);
         $data = $data2->multiple_image;
-        $id = $id;
 
         return view('backend.defenseIndustryContent.multipleImage.multiple_image', compact('data', 'id'));
     }
@@ -427,6 +426,9 @@ class DefenseIndustryContentController extends Controller
                 ->save($save_url);
         }
         $old_images = $data->multiple_image;
+        if($old_images == null){
+            $old_images = [];
+        }
         array_push($old_images, $save_url);
         $data->multiple_image = $old_images;
         $data->save();

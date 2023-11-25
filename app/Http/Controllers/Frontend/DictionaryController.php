@@ -20,6 +20,7 @@ class DictionaryController extends Controller
             "C-Ç",
             "D",
             "E",
+            "F",
             "G - Ğ",
             "I - İ",
             "J",
@@ -55,13 +56,13 @@ class DictionaryController extends Controller
                 if ($letter != null) {
                     $data = Dictionary::where('status',1)->where('title', 'LIKE', $letter . '%')->paginate(18);
                 } else {
-                    $data = Dictionary::where('status',1)->orderBy('title','asc')->paginate(18);
+                    $data = Dictionary::where('status',1)->orderBy('id','desc')->paginate(18);
                 }
             } elseif ($local == 'en') {
                 if ($letter != null) {
                     $data = EnDictionary::where('status',1)->where('title', 'LIKE', $letter . '%')->paginate(18);
                 } else {
-                    $data = EnDictionary::where('status',1)->orderBy('title','asc')->paginate(18);
+                    $data = EnDictionary::where('status',1)->orderBy('id','desc')->paginate(18);
                 }
             }
         }

@@ -38,7 +38,7 @@ class DefenseIndustryContent extends Model
     }
 
     public function Companies(){
-        return Company::whereIn('id',$this->companies)->get();
+        return Company::whereIn('id',$this->companies ?? [])->get();
     }
 
     public function GeneralCategory(){

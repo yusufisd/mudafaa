@@ -146,30 +146,30 @@
 
                                     <ul class="social-share-style-7">
                                         <li>
-                                            <a class="fb" target="_blank" href="https://www.facebook.com/">
+                                            <a class="fb" target="_blank"
+                                                href="https://www.facebook.com/sharer/sharer.php?u={{ request()->url() }}&text={{ $data->title }}">
                                                 <i class="social-icon fab fa-facebook-f"></i>
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="tw" target="_blank" href="https://twitter.com/">
+                                            <a class="tw" target="_blank"
+                                                href="https://twitter.com/intent/tweet?text={{ $data->title }}&url={{ request()->url() }}">
                                                 <i style="color:black" class="fa-brands fa-square-x-twitter twitter"></i>
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="yu" target="_blank" href="https://www.youtube.com/">
-                                                <i class="social-icon fab fa-youtube"></i>
+                                            <a class="fb" target="_blank"
+                                                href="https://linkedin.com/sharing/share-offsite/?url={{ request()->url() }}">
+                                                <i class="social-icon fab fa-linkedin"></i>
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="dr" target="_blank" href="https://dribbble.com/">
-                                                <i class="social-icon fab fa-dribbble"></i>
+                                            <a class="wh" target="_blank"
+                                                href="https://web.whatsapp.com/send?text={{ $data->title }} {{ request()->url() }}">
+                                                <i class="social-icon fab fa-whatsapp"></i>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a class="dw" target="_blank" href="https://cloud.google.com/">
-                                                <i class="social-icon fas fa-cloud"></i>
-                                            </a>
-                                        </li>
+
                                     </ul>
                                 </div>
                             </div>
@@ -267,28 +267,30 @@
 
                                     </div> <!-- end /.tab-content -->
                                 </div>
+                                @if($data->multiple_image != null)
 
                                 <div class="wrap post-wrap mb--30">
                                     <h2 class="rt-section-heading">
-                                        <span class="rt-section-text">Ürün Görselleri </span>
+                                        <span class="rt-section-text"> {{ __('message.Ürün Görselleri') }} </span>
                                         <span class="rt-section-dot"></span>
                                         <span class="rt-section-line"></span>
                                     </h2>
 
                                     <!-- Galeri Resimleri -->
                                     <div class="gallery">
-                                        @foreach ($data->multiple_image as $item)
-                                            <a data-fancybox="gallery" href="/{{ $item }}">
-                                                <img src="/{{ $item }}" alt="">
-                                            </a>
-                                        @endforeach
-
+                                            @foreach ($data->multiple_image as $item)
+                                                <a data-fancybox="gallery" href="/{{ $item }}">
+                                                    <img src="/{{ $item }}" alt="">
+                                                </a>
+                                            @endforeach
 
                                     </div>
 
 
                                 </div>
                                 <!-- end wrap -->
+                                @endif
+
 
                                 <div class="border-with-spacer-1"></div>
                             </div>
@@ -438,12 +440,6 @@
                                             </h3>
                                             <div class="post-meta">
                                                 <ul>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-comments icon"></i>
-                                                            250
-                                                        </span>
-                                                    </li>
                                                     <li>
                                                         <span class="rt-meta">
                                                             <i class="far fa-clock icon"></i>

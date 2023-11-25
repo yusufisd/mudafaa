@@ -44,8 +44,20 @@ class CompanyController extends Controller
             $images = CompanyImage::where('company_id', $data->id)->get();
             $address = EnCompanyAddress::where('company_id', $data->id)->get();
         }
-        
-
         return view('frontend.company.detail', compact('data', 'ekstra', 'images', 'address'));
+    }
+
+    public function categoryList($link){
+        $lang = session('applocale') ?? config('app.fallback_locale');
+        if ($lang == 'tr') {
+            $cat = CompanyCategory::where('link',$link)->first();
+            $data = CompanyModel::where('category',$cat->id)->latest()->get();
+            $categories = CompanyCategory::orderBy('queue', 'asc')->get();
+        } else {
+            $cat = EnCompanyCategory::where('link',$link)->first();
+            $data = EnCompanyModel::where('category',$cat->id)->latest()->get();
+            $categories = EnCompanyCategory::orderBy('queue', 'asc')->get();
+        }
+        return view('frontend.company.category_list', compact('data', 'categories','cat'));
     }
 }

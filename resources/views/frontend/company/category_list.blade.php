@@ -35,8 +35,13 @@
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
+                        <li class="breadcrumb-item " aria-current="page">
+                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.company.list_en') : route('front.company.list') }}">
+                                {{ __('message.firmalar') }}
+                            </a>
+                        </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            {{ __('message.firmalar') }}
+                            {{ $cat->name }}
                         </li>
                     </ol>
                 </nav>

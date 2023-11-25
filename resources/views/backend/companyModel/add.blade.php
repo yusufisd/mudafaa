@@ -660,7 +660,7 @@
                                                 </div>
                                                 <div class="col-md-2" style="text-align: right">
                                                     <button style="width:100px"
-                                                        class="btn btn-primary add_item_buton3">EKLE</button>
+                                                        class="btn btn-primary btn-sm add_item_buton3">EKLE</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -1151,7 +1151,7 @@
                                                                 <span class=""> Harita <br><p style="  font-weight: normal;font-size:13px;">(iframe linki)</p> </span>\
                                                             </label>\
                                                             <div class="col-lg-8 fv-row">\
-                                                                <input type="number"\
+                                                                <input type="text"\
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
                                                                     name="address_map[]" id="">\
                                                             </div>\
@@ -1244,7 +1244,7 @@
                                                                 <span class=""> Harita <br><p style="  font-weight: normal;font-size:13px;">(iframe linki)</p> </span>\
                                                             </label>\
                                                             <div class="col-lg-8 fv-row">\
-                                                                <input type="number"\
+                                                                <input type="text"\
                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
                                                                     name="address_map_en[]" id="">\
                                                             </div>\
@@ -1312,7 +1312,7 @@
                                                 </div>\
                                             </div>\
                                             <div class="col-md-2" style="text-align:right;padding-right:0">\
-                                                <button style="width:100px" class="btn btn-danger delete_item_buton3">SİL</button>\
+                                                <button style="width:100px" class="btn btn-sm btn-danger delete_item_buton3">SİL</button>\
                                             </div>\
                                         </div>');
 });

@@ -134,6 +134,7 @@ return [
     "kullanılan ülkeler" => "Kullanılan Ülkeler",
     "ürün hakkında" => "Ürün Hakkında",
     "ürün" => "Ürün",
+    "diğer ürünler" => "Diğer Ürünler",
 
 
 ];
