@@ -8,6 +8,23 @@
         .pagination>li>span {
             color: rgb(26, 159, 26); // use your own color here
         }
+
+        .social-connection li:nth-child(2) a {
+            background-image: -webkit-gradient(linear, right top, left top, from(#56c3f0), to(#13a4e7));
+            background-image: linear-gradient(-90deg, #909fa5 0%, #151616 100%);
+            background-image: -ms-linear-gradient(-90deg, #56c3f0 0%, #13a4e7 100%);
+        }
+
+        .social-connection li:nth-child(5) a {
+            border-radius: 3px;
+            background-image: -webkit-gradient(linear, right top, left top, from(#f43079), to(#f7679d));
+            background-image: linear-gradient(-90deg, #5579ad 0%, #1a6be1 100%);
+            background-image: -ms-linear-gradient(-90deg, #f43079 0%, #f7679d 100%);
+        }
+
+        .post-body {
+            color: #464847;
+        }
     </style>
     <main>
         <!-- theme-switch-box -->
@@ -213,9 +230,12 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://twitter.com/millimudafaacom">
-                                            <i class="fab fa-twitter twitter"></i>
-                                            <span class="text"><span>20,751</span> Takipçi</span>
+                                        <a class="tw" style="background-color: black!important" target="_blank"
+                                            href="https://twitter.com/">
+                                            <i style="background-color: black"
+                                                class="fa-brands fa-square-x-twitter twitter"></i>
+                                            <span class="text"><span>15,985</span> Takipçi</span>
+
                                         </a>
                                     </li>
                                     <li>
