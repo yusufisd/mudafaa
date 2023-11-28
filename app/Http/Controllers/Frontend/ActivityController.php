@@ -23,8 +23,8 @@ class ActivityController extends Controller
         }
 
         if ($local == 'tr') {
-            $coming_activity = Activity::where('status',1)->orderBy('start_time', 'desc')
-                ->take(4)
+            $coming_activity = Activity::where('status',1)->where('start_time', '>',$now)
+                ->take(6)
                 ->get();
             $activity_category = ActivityCategory::where('status',1)->orderBy('queue', 'asc')->get();
             $categories = ActivityCategory::where('status',1)->get();
@@ -32,7 +32,7 @@ class ActivityController extends Controller
         } elseif ($local == 'en') {
             $coming_activity = EnActivity::where('status',1)->where('start_time', '<', $now)
                 ->orderBy('start_time', 'asc')
-                ->take(4)
+                ->take(6)
                 ->get();
             $activity_category = EnActivityCategory::where('status',1)->orderBy('queue', 'asc')->get();
             $categories = EnActivityCategory::where('status',1)->get();

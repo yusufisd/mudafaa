@@ -118,7 +118,7 @@ class DictionaryController extends Controller
                 $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
                 $save_url = 'assets/uploads/dictionary/' . $image_name;
                 Image::make($image)
-                    ->resize(960, 520)
+                    ->resize(2880, 1920)
                     ->save($save_url);
                 $new->image = $save_url;
             }
@@ -143,7 +143,7 @@ class DictionaryController extends Controller
                 $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
                 $save_url = 'assets/uploads/dictionary/' . $image_name;
                 Image::make($image)
-                    ->resize(960, 520)
+                    ->resize(2880, 1920)
                     ->save($save_url);
                 $new_en->image = $save_url;
             }
@@ -248,7 +248,7 @@ class DictionaryController extends Controller
             $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
             $save_url = 'assets/uploads/dictionary/' . $image_name;
             Image::make($image)
-                ->resize(960, 520)
+                ->resize(2880, 1920)
                 ->save($save_url);
             $new->image = $save_url;
         }
@@ -274,7 +274,7 @@ class DictionaryController extends Controller
             $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
             $save_url = 'assets/uploads/dictionary/' . $image_name;
             Image::make($image)
-                ->resize(960, 520)
+                ->resize(2880, 1920)
                 ->save($save_url);
             $new_en->image = $save_url;
         }

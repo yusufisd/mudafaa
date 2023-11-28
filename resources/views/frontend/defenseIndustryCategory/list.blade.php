@@ -99,7 +99,7 @@
                                                         height="600">
                                                     @if ($item->national == 1)
                                                         <span
-                                                            style="background-color:red ;position: absolute; border:solid; border-color:red; padding:1%; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; top: 10px; border-radius:8px ;right: 10px;font-size: 13px;">
+                                                            style="background-color:red ;position: absolute; border:solid; border-color:red; padding:1%; top: 10px; border-radius:8px ;right: 10px;font-size: 13px;">
                                                             <b style="color:white"> YERLİ ÜRETİM </b>
                                                         </span>
                                                     @endif

@@ -74,12 +74,12 @@
                             <div class="author-big-box-style-1 mb--30">
                                 <div style="background-image: url({{ asset('assets/black_fon.jpeg') }});background-opacity:0.7;border-radius:5px"
                                     class="author-img">
-                                    <img style="width:170px; height:170px; opacity:0.9" src="/{{ $data->image }}"
+                                    <img style=" height:170px; opacity:0.9" src="/{{ $data->image }}"
                                         alt="{{ $data->title }}">
                                 </div>
                                 <div class="w-90">
                                     <h2 class="responsive-title" style="color: #3b4022;"> {{ $data->title }} </h2>
-                                    <div class="row container">
+                                    <div class="row">
 
                                         @if (\Session::get('applocale') == 'en')
                                             @if ($data->Title() != null)
@@ -107,7 +107,7 @@
                                             @foreach ($data->Title() as $item)
                                                 <div class="col-md-6">
                                                     <ul class="mt-3">
-                                                        <li class="mb-3">
+                                                        <li class="" style="margin-top: -8px">
                                                             @if ($item->titleIcon() != null)
                                                                 {!! $item->titleIcon()->icon_tr ?? ' ' !!}
                                                                 &nbsp;&nbsp;
@@ -120,7 +120,6 @@
                                                             @endif
                                                             {{ $item->description ?? '' }}
                                                         </li>
-
                                                     </ul>
                                                 </div>
                                             @endforeach

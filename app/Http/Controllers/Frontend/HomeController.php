@@ -96,7 +96,7 @@ class HomeController extends Controller
             $cat3_news1 = $cat3_news1->get();
             $cat3_news2 = CurrentNews::whereJsonContains('category_id',$third_cat->id)->where('status',1)->orderBy('id','asc')->whereNot('id',$ucuncu_kategori_icerigi->id)->whereNotIn('id',$cat3_news_ids)->take(3)->get();
 
-            $activity = Activity::where('status',1)->where('start_time','>=',$now->format('Y-m-d'))->take(4)->get();
+            $activity = Activity::where('status',1)->where('start_time','>=',$now->format('Y-m-d'))->orderBy('start_time','asc')->take(4)->get();
 
             $populer_haber_first = CurrentNews::where('status',1)->orderBy('view_counter','desc')->take(1)->first();
             $populer_haber_three = CurrentNews::where('status',1)->orderBy('view_counter','desc')->whereNot('id',$populer_haber_first->id)->take(3)->get();
@@ -180,7 +180,7 @@ class HomeController extends Controller
 
 
 
-            $activity = EnActivity::where('status',1)->where('start_time','>=',$now->format('Y-m-d'))->take(4)->get();
+            $activity = EnActivity::where('status',1)->where('start_time','>=',$now->format('Y-m-d'))->orderBy('start_time','asc')->take(4)->get();
 
             $populer_haber_first = EnCurrentNews::where('status',1)->orderBy('view_counter','desc')->take(1)->first();
             $populer_haber_three = EnCurrentNews::where('status',1)->orderBy('view_counter','desc')->whereNot('id',$populer_haber_first->id)->take(3)->get();
