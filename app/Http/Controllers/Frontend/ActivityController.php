@@ -154,11 +154,11 @@ class ActivityController extends Controller
         }
         if ($local == 'tr') {
             $data = Activity::where('status',1)->where('start_time', '>=', $now)
-                ->orderBy('start_time', 'desc')
+                ->orderBy('start_time', 'asc')
                 ->get();
         } elseif ($local == 'en') {
             $data = EnActivity::where('status',1)->where('start_time', '>=', $now)
-                ->orderBy('start_time', 'desc')
+                ->orderBy('start_time', 'asc')
                 ->get();
         }
         return view('frontend.activity.category.detail', compact('data'));

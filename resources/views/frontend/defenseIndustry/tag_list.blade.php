@@ -1,5 +1,5 @@
 @extends('frontend.master')
-@section('title','Etiket')
+@section('title', 'Etiket')
 
 @section('content')
     <!-- Start Main -->
@@ -47,7 +47,8 @@
                 <nav class="rt-breadcrumb-wrap" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
+                            <a
+                                href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
@@ -55,7 +56,7 @@
 
 
                         <li class="breadcrumb-item active" aria-current="page">
-                           Etiket
+                            Etiket
                         </li>
                     </ol>
                 </nav>
@@ -65,7 +66,7 @@
 
         <!-- start rt-sidebar-section-layout-2 -->
         <section class="rt-sidebar-section-layout-2">
-            <div class="container d-block d-md-none sidebar-wrap mb--40">
+            <div class="d-block d-md-none sidebar-wrap container mb--40">
                 <div class="search-box">
                     <form action="#" class="form search-form-box">
                         <div class="form-group">
@@ -81,7 +82,7 @@
             <!-- end sidebar wrap -->
 
 
-            <div class="container sticky-coloum-wrap">
+            <div class="sticky-coloum-wrap container">
                 <div class="row gutter-40 sticky-coloum-wrap">
                     <div class="col-xl-9 sticky-coloum-item">
                         <div class="rt-left-sidebar-sapcer-5">
@@ -89,43 +90,52 @@
                             <div class="row gutter-24">
 
                                 @foreach ($datas as $item)
-                                <div class="col-md-6 wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
-                                    <div class="rt-post-overlay rt-post-overlay-md layout-6">
-                                        <div class="post-img">
-                                            <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.defenseIndustryContent.detail',$item->link)) : (route('front.defenseIndustryContent.detail_en',$item->link))}}" class="img-link">
-                                                <img src="/{{$item->image}}" alt="post-xl_37" width="900"
-                                                    height="600">
-                                            </a>
-                                        </div>
-                                        <div class="post-content">
-                                            <h3 class="post-title">
-                                                <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.defenseIndustryContent.detail',$item->link)) : (route('front.defenseIndustryContent.detail_en',$item->link))}}">
-                                                    {{$item->title}}
+                                    <div class="col-md-6 wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
+                                        <div class="rt-post-overlay rt-post-overlay-md layout-6">
+                                            <div class="post-img">
+                                                <a href="{{ \Session::get('applocale') == 'tr' ? route('front.defenseIndustryContent.detail', $item->link) : route('front.defenseIndustryContent.detail_en', $item->link) }}"
+                                                    class="img-link">
+                                                    <img src="/{{ $item->image }}" alt="post-xl_37" width="900"
+                                                        height="600">
+                                                    @if ($item->national == 1)
+                                                        <span
+                                                            style="background-color:red ;position: absolute; border:solid; border-color:red; padding:1%; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; top: 10px; border-radius:8px ;right: 10px;font-size: 13px;">
+                                                            <b style="color:white"> YERLİ ÜRETİM </b>
+                                                        </span>
+                                                    @endif
                                                 </a>
-                                            </h3>
-                                            <div class="post-meta">
-                                                <ul>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="fa fa-user"></i>
-                                                            @if(isset($item->Author))
-                                                                <a href="#" class="name">{{$item->Author->name}} {{$item->Author->surname}}</a>
-                                                            @endif
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-calendar-alt icon"></i>
-                                                            {{$item->created_at->translatedFormat('d M Y')}}
-                                                        </span>
-                                                    </li>
-                                                </ul>
+                                            </div>
+                                            <div class="post-content">
+                                                <h3 class="post-title">
+                                                    <a
+                                                        href="{{ \Session::get('applocale') == 'tr' ? route('front.defenseIndustryContent.detail', $item->link) : route('front.defenseIndustryContent.detail_en', $item->link) }}">
+                                                        {{ $item->title }}
+                                                    </a>
+                                                </h3>
+                                                <div class="post-meta">
+                                                    <ul>
+                                                        <li>
+                                                            <span class="rt-meta">
+                                                                <i class="fa fa-user"></i>
+                                                                @if (isset($item->Author))
+                                                                    <a href="#"
+                                                                        class="name">{{ $item->Author->name }}
+                                                                        {{ $item->Author->surname }}</a>
+                                                                @endif
+                                                            </span>
+                                                        </li>
+                                                        <li>
+                                                            <span class="rt-meta">
+                                                                <i class="far fa-calendar-alt icon"></i>
+                                                                {{ $item->created_at->translatedFormat('d M Y') }}
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- end inner col -->
-
+                                    <!-- end inner col -->
                                 @endforeach
 
 
@@ -133,13 +143,13 @@
 
 
                             </div>
-                           
+
 
                         </div>
                         <!-- end rt-left-sidebar-sapcer-5 -->
                     </div>
                     <!-- end col-->
-                    <div class="col-xl-3 col-lg-8 mx-auto sticky-coloum-item">
+                    <div class="col-xl-3 col-lg-8 sticky-coloum-item mx-auto">
                         <div class="rt-sidebar sticky-wrap">
 
                             <div class="d-none d-md-block sidebar-wrap mb--40">
@@ -169,25 +179,25 @@
 
 
                                     @foreach ($data as $item)
-
-                                    <div class="cat-item">
-                                        <div class="rt-cart-item">
-                                            <div class="item-img">
-                                                <img src="/{{$item->image}}" alt="cat-slider" width="696"
-                                                    height="491">
-                                                <div class="item-content">
-                                                    <h4 class="title" style="font-size: 13px">
-                                                        <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.defenseIndustrySubCategory.list2', $item->link)) : (route('front.defenseIndustrySubCategory.list2_en', $item->link)) }}"> {{$item->title}} </a>
-                                                    </h4>
-                                                    <p class="count">
-                                                        <span class="anim-overflow"> ({{$item->adet()}}) </span>
-                                                    </p>
+                                        <div class="cat-item">
+                                            <div class="rt-cart-item">
+                                                <div class="item-img">
+                                                    <img src="/{{ $item->image }}" alt="cat-slider" width="696"
+                                                        height="491">
+                                                    <div class="item-content">
+                                                        <h4 class="title" style="font-size: 13px">
+                                                            <a
+                                                                href="{{ \Session::get('applocale') == 'tr' ? route('front.defenseIndustrySubCategory.list2', $item->link) : route('front.defenseIndustrySubCategory.list2_en', $item->link) }}">
+                                                                {{ $item->title }} </a>
+                                                        </h4>
+                                                        <p class="count">
+                                                            <span class="anim-overflow"> ({{ $item->adet() }}) </span>
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- end cat item -->
-
+                                        <!-- end cat item -->
                                     @endforeach
 
 
@@ -200,8 +210,8 @@
                             <div class="sidebar-wrap mb--40">
                                 <div class="ad-banner-img">
                                     <a href="#">
-                                        <img src="/assets/frontend/media/gallery/sports-ad_3.jpg" alt="ad-banner" width="310"
-                                            height="425">
+                                        <img src="/assets/frontend/media/gallery/sports-ad_3.jpg" alt="ad-banner"
+                                            width="310" height="425">
                                     </a>
                                 </div>
                             </div>
@@ -252,7 +262,7 @@
                             </div>
                             <!-- end slidebar wrap  -->
 
-                            <div class="d-none d-md-block  sidebar-wrap">
+                            <div class="d-none d-md-block sidebar-wrap">
                                 <div class="subscribe-box-style-1" data-bg-image="media/elements/elm_3.png">
                                     <div class="subscribe-content">
                                         <h3 class="title">

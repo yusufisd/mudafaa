@@ -97,9 +97,20 @@
                                                     class="img-link">
                                                     <img src="/{{ $item->image }}" alt="post-xl_37" width="900"
                                                         height="600">
+                                                    @if ($item->national == 1)
+                                                        <span
+                                                            style="background-color:red ;position: absolute; border:solid; border-color:red; padding:1%; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; top: 10px; border-radius:8px ;right: 10px;font-size: 13px;">
+                                                            <b style="color:white"> YERLİ ÜRETİM </b>
+                                                        </span>
+                                                    @endif
                                                 </a>
+
                                             </div>
                                             <div class="post-content">
+
+                                                <a class="tr-america" style="background-color:#749F43"
+                                                    href="{{ \Session::get('applocale') == 'tr' ? route('front.defenseIndustrySubCategory.list2', $item->Category->link) : route('front.defenseIndustrySubCategory.list2_en', $item->Category->link) }}">
+                                                    {{ $item->Category->title }} </a>
                                                 <h3 class="post-title">
                                                     <a
                                                         href="{{ \Session::get('applocale') == 'tr' ? route('front.defenseIndustryContent.detail', $item->link) : route('front.defenseIndustryContent.detail_en', $item->link) }}">
@@ -122,6 +133,12 @@
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
                                                                 {{ $item->created_at->translatedFormat('d M Y') }}
+                                                            </span>
+                                                        </li>
+                                                        <li>
+                                                            <span class="rt-meta">
+                                                                <i class="fa-solid fa-eye"></i>
+                                                                {{ $item->view_counter }}
                                                             </span>
                                                         </li>
                                                     </ul>

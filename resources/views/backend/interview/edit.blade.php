@@ -830,11 +830,12 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <div class="ekle" style="text-align:center">
+                                                                <button type="button"
+                                                                    class="btn btn-primary add_item_buton2">EKLE</button>
+                                                            </div>
                                                         </div><br>
-                                                        <div class="ekle" style="text-align:center">
-                                                            <button type="button"
-                                                                class="btn btn-primary add_item_buton2">EKLE</button>
-                                                        </div>
+                                                        
                                                     </div>
                                                 @endif
                                                 <div id="dsa" class="tab-pane fade">
@@ -1061,8 +1062,6 @@
                 e.preventDefault();
                 let soran = $("#soranTr").val();
                 let cevaplayan = $("#cevapTr").val();
-                let fQuestion = $("#first_quest").val();
-                let fAnswer = $("#first_answer").val();
                 let hasDialog = $("#has_dialog_tr");
                 if (hasDialog != undefined && hasDialog.val() > 0) {
                     $("#first_quest").val("");
@@ -1106,7 +1105,7 @@
                                                 <div class="col-lg-10 fv-row">\
                                                     <input type="text"\
                                                         class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                        name="soru_tr[]" id="" value="' + fQuestion + '">\
+                                                        name="soru_tr[]" id="" value="">\
                                                 </div>\
                                             </div>\
                                             <div class="row mb-6">\
@@ -1116,7 +1115,7 @@
                                                 <div class="col-lg-10 fv-row">\
                                                     <input type="text"\
                                                         class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                        name="cevap_tr[]" id="" value="' + fAnswer + '">\
+                                                        name="cevap_tr[]" id="" value="">\
                                                 </div>\
                                             </div>\
                                             <div class="ekle" style="text-align:center">\
@@ -1140,8 +1139,6 @@
                 e.preventDefault();
                 let soran = $("#soranEn").val();
                 let cevaplayan = $("#cevapEn").val();
-                let fQuestion = $("#first_quest_en").val();
-                let fAnswer = $("#first_answer_en").val();
                 let hasDialog = $("#has_dialog_en");
                 if (hasDialog != undefined && hasDialog.val() > 0) {
                     $("#first_quest_en").val("");
@@ -1183,7 +1180,7 @@
                                                 <div class="col-lg-10 fv-row">\
                                                     <input type="text"\
                                                         class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                        name="soru_en[]" id="" value="' + fQuestion + '">\
+                                                        name="soru_en[]" id="" value="">\
                                                 </div>\
                                             </div>\
                                             <div class="row mb-6">\
@@ -1193,7 +1190,7 @@
                                                 <div class="col-lg-10 fv-row">\
                                                     <input type="text"\
                                                         class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                        name="cevap_en[]" id="" value="' + fAnswer + '">\
+                                                        name="cevap_en[]" id="" value="">\
                                                 </div>\
                                             </div>\
                                         <div class="ekle" style="text-align:center">\

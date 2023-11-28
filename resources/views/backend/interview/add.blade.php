@@ -3,11 +3,11 @@
     <!--begin::Content wrapper-->
     <div class="d-flex flex-column flex-column-fluid">
         <!--begin::Toolbar-->
-        <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-10">
+        <div id="kt_app_toolbar" class="app-toolbar py-lg-10 py-3">
             <!--begin::Toolbar container-->
             <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
                 <!--begin::Page title-->
-                <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                <div class="page-title d-flex flex-column justify-content-center me-3 flex-wrap">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-primary fw-bold fs-3 flex-column justify-content-center my-0">
                         Röportaj
@@ -16,11 +16,11 @@
                 </div>
                 <!--end::Page title-->
                 <!--begin::Back-->
-                <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                <div class="page-title d-flex flex-column justify-content-center me-3 flex-wrap">
                     <!--begin::Title-->
                     <a href="javascript:history.back()"
-                        class="page-heading d-flex text-dark fw-bold fs-3 justify-content-center my-0 text-hover-success">
-                        <i class="fa fa-arrow-left my-auto mx-2"></i>
+                        class="page-heading d-flex text-dark fw-bold fs-3 justify-content-center text-hover-success my-0">
+                        <i class="fa fa-arrow-left mx-2 my-auto"></i>
                         {{ __('message.geri dön') }}
                     </a>
                     <!--end::Title-->
@@ -49,20 +49,20 @@
 
                     <div class="row g-5 g-xl-8">
                         <!--begin::Col-->
-                        <div class="col-xl-12 mb-5 mb-xl-8">
-                            <div class="card card-flush h-xl-100 mb-5 mb-xl-8">
+                        <div class="col-xl-12 mb-xl-8 mb-5">
+                            <div class="card card-flush h-xl-100 mb-xl-8 mb-5">
                                 <!--begin::Header-->
                                 <!--<div class="ps-12 pt-12"></div>-->
                                 <!--end::Header-->
                                 <!--begin::Body-->
                                 <div class="card-body py-5">
                                     <!--begin::Tab-->
-                                    <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
+                                    <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x fs-6 mb-5">
                                         <li class="nav-item">
                                             <a class="nav-link active" data-bs-toggle="tab" href="#tab_blog_detay">Detay</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link " data-bs-toggle="tab" href="#rop">Röportaj</a>
+                                            <a class="nav-link" data-bs-toggle="tab" href="#rop">Röportaj</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" data-bs-toggle="tab" href="#tab_blog_seo">Seo Bilgileri</a>
@@ -81,7 +81,7 @@
                                                 <!--begin::Input group-->
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
-                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
+                                                    <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
                                                         {{ __('message.görsel') }} (1320px -
                                                         620px) </label>
                                                     <!--end::Label-->
@@ -102,19 +102,21 @@
 
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
-                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
+                                                    <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
                                                         <span class="required"> {{ __('message.yazar') }} </span>
                                                     </label>
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10 fv-row">
-                                                        <select required name="author" aria-label="Seçiniz" data-control="select2"
-                                                            data-placeholder="Seçiniz..."
+                                                        <select required name="author" aria-label="Seçiniz"
+                                                            data-control="select2" data-placeholder="Seçiniz..."
                                                             class="form-select form-select-solid form-select-lg fw-semibold">
                                                             <option value="">Seçiniz...</option>
 
                                                             @foreach ($users as $item)
-                                                                <option @selected(old('author') == $item->id) value="{{ $item->id }}"> {{ $item->name }} {{ $item->surname }}
+                                                                <option @selected(old('author') == $item->id)
+                                                                    value="{{ $item->id }}"> {{ $item->name }}
+                                                                    {{ $item->surname }}
                                                                 </option>
                                                             @endforeach
 
@@ -125,15 +127,15 @@
 
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
-                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
+                                                    <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
                                                         <span class="required"> Yayın Tarihi</span>
                                                     </label>
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10 fv-row">
-                                                        <input  type="date"
-                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                            name="live_time" value="{{ substr($now,0,10) }}" id="">
+                                                        <input type="date"
+                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                            name="live_time" value="{{ substr($now, 0, 10) }}" id="">
                                                     </div>
                                                     <!--end::Col-->
                                                 </div>
@@ -141,14 +143,14 @@
 
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
-                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
+                                                    <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
                                                         <span class=""> Youtube</span>
                                                     </label>
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
                                                     <div class="col-lg-10 fv-row">
-                                                        <input  type="text"
-                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                        <input type="text"
+                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                             name="youtube" value="{{ old('youtube') }}" id="">
                                                     </div>
                                                     <!--end::Col-->
@@ -163,13 +165,12 @@
                                             <!--end::Input group-->
                                             <div class="row mb-6">
                                                 <!--begin::Tab-->
-                                                <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
+                                                <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x fs-6 mb-5">
                                                     <li class="nav-item">
                                                         <a class="nav-link active" data-bs-toggle="tab" href="#tab_blog_tr">
                                                             <span>
-                                                                <img src="{{asset('/assets/tr.png')}}"
-                                                                    width="28" height="20" alt="TR"
-                                                                    title="TR">
+                                                                <img src="{{ asset('/assets/tr.png') }}" width="28"
+                                                                    height="20" alt="TR" title="TR">
                                                             </span>
 
                                                         </a>
@@ -177,9 +178,8 @@
                                                     <li class="nav-item">
                                                         <a class="nav-link" data-bs-toggle="tab" href="#tab_blog_en">
                                                             <span>
-                                                                <img src="{{asset('/assets/en.png')}}"
-                                                                    width="28" height="20" alt="EN"
-                                                                    title="EN">
+                                                                <img src="{{ asset('/assets/en.png') }}" width="28"
+                                                                    height="20" alt="EN" title="EN">
                                                             </span>
                                                         </a>
                                                     </li>
@@ -194,7 +194,7 @@
                                                             <div class="row mb-6">
                                                                 <!--begin::Label-->
                                                                 <label
-                                                                    class="col-lg-1 col-form-label ps-5 required fw-bold fs-6">Başlık</label>
+                                                                    class="col-lg-1 col-form-label required fw-bold fs-6 ps-5">Başlık</label>
                                                                 <!--end::Label-->
                                                                 <!--begin::Col-->
                                                                 <div class="col-lg-10">
@@ -202,9 +202,9 @@
                                                                     <div class="row">
                                                                         <!--begin::Col-->
                                                                         <div class="col-lg-11 fv-row">
-                                                                            <input  type="text" name="name_tr"
+                                                                            <input type="text" name="name_tr"
                                                                                 id="name_tr" onchange="create_slug_tr()"
-                                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                 value="{{ old('name_tr') }}" />
                                                                         </div>
                                                                         <!--end::Col-->
@@ -220,11 +220,11 @@
                                                             <div class="row mb-6">
                                                                 <!--begin::Label-->
                                                                 <label
-                                                                    class="col-lg-1 col-form-label ps-5 fw-bold fs-6 required">Özet</label>
+                                                                    class="col-lg-1 col-form-label fw-bold fs-6 required ps-5">Özet</label>
                                                                 <!--end::Label-->
                                                                 <!--begin::Col-->
                                                                 <div class="col-lg-11 fv-row">
-                                                                    <textarea  name="short_description_tr" id="short_description_tr" onchange="create_ozet_tr()"
+                                                                    <textarea name="short_description_tr" id="short_description_tr" onchange="create_ozet_tr()"
                                                                         class="form-control form-control-lg form-control-solid" value="">{{ old('short_description_tr') }}</textarea>
                                                                 </div>
                                                                 <!--end::Col-->
@@ -234,7 +234,7 @@
                                                             <div class="row mb-6">
                                                                 <!--begin::Label-->
                                                                 <label
-                                                                    class="col-lg-1 col-form-label fw-bold fs-6 mb-5 ps-5 required">
+                                                                    class="col-lg-1 col-form-label fw-bold fs-6 required mb-5 ps-5">
                                                                     <span>İçerik</span>
                                                                 </label>
                                                                 <!--end::Label-->
@@ -249,7 +249,7 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-1 col-form-label ps-5 required fw-bold fs-6">Link</label>
+                                                                        class="col-lg-1 col-form-label required fw-bold fs-6 ps-5">Link</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-11">
@@ -257,10 +257,11 @@
                                                                         <div class="row">
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
-                                                                                <input required type="text" name="link_tr"
-                                                                                       id="link_tr" onchange="create_slug_tr()"
-                                                                                       class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                       value="{{ old('link_tr') }}" />
+                                                                                <input required type="text"
+                                                                                    name="link_tr" id="link_tr"
+                                                                                    onchange="create_slug_tr()"
+                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                    value="{{ old('link_tr') }}" />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -276,7 +277,7 @@
                                                         </div>
                                                         <!--end::Card body-->
                                                         <!--begin::Actions-->
-                                                        <div class="card-footer d-flex justify-content-between py-6 px-0">
+                                                        <div class="card-footer d-flex justify-content-between px-0 py-6">
                                                             <!--begin::Input group-->
                                                             <div class="row mb-0">
                                                                 <label
@@ -307,7 +308,7 @@
                                                             <div class="row mb-6">
                                                                 <!--begin::Label-->
                                                                 <label
-                                                                    class="col-lg-1 col-form-label ps-5 required fw-bold fs-6">Başlık</label>
+                                                                    class="col-lg-1 col-form-label required fw-bold fs-6 ps-5">Başlık</label>
                                                                 <!--end::Label-->
                                                                 <!--begin::Col-->
                                                                 <div class="col-lg-11">
@@ -317,7 +318,7 @@
                                                                         <div class="col-lg-12 fv-row">
                                                                             <input required type="text" name="name_en"
                                                                                 id="name_en" onchange="create_slug_en()"
-                                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                 value="{{ old('name_en') }}" />
                                                                         </div>
                                                                         <!--end::Col-->
@@ -332,7 +333,7 @@
                                                             <div class="row mb-6">
                                                                 <!--begin::Label-->
                                                                 <label
-                                                                    class="col-lg-1 col-form-label required ps-5 fw-bold fs-6">Özet</label>
+                                                                    class="col-lg-1 col-form-label required fw-bold fs-6 ps-5">Özet</label>
 
                                                                 <div class="col-lg-11 fv-row">
                                                                     <textarea required name="short_description_en" id="short_description_en" onchange="create_ozet_en()"
@@ -358,7 +359,7 @@
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
                                                                     <label
-                                                                        class="col-lg-1 col-form-label ps-5 required required fw-bold fs-6">Link</label>
+                                                                        class="col-lg-1 col-form-label required required fw-bold fs-6 ps-5">Link</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-11">
@@ -366,10 +367,11 @@
                                                                         <div class="row">
                                                                             <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
-                                                                                <input required type="text" name="link_en"
-                                                                                       id="link_en" onchange="create_slug_en()"
-                                                                                       class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                       value="{{ old('link_en') }}" />
+                                                                                <input required type="text"
+                                                                                    name="link_en" id="link_en"
+                                                                                    onchange="create_slug_en()"
+                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                    value="{{ old('link_en') }}" />
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -383,7 +385,7 @@
 
                                                         </div>
 
-                                                        <div class="card-footer d-flex justify-content-between py-6 px-0">
+                                                        <div class="card-footer d-flex justify-content-between px-0 py-6">
                                                             <!--begin::Input group-->
                                                             <div class="row mb-0">
                                                                 <label
@@ -413,13 +415,12 @@
                                         <!--end::Form-->
                                         <div class="tab-pane fade" id="tab_blog_seo" role="tabpanel">
                                             <!--begin::Tab-->
-                                            <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
+                                            <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x fs-6 mb-5">
                                                 <li class="nav-item">
                                                     <a class="nav-link active" data-bs-toggle="tab" href="#tab_seo_tr">
                                                         <span>
-                                                            <img src="{{asset('/assets/tr.png')}}"
-                                                                width="28" height="20" alt="TR"
-                                                                title="TR">
+                                                            <img src="{{ asset('/assets/tr.png') }}" width="28"
+                                                                height="20" alt="TR" title="TR">
                                                         </span>
 
                                                     </a>
@@ -427,9 +428,8 @@
                                                 <li class="nav-item">
                                                     <a class="nav-link" data-bs-toggle="tab" href="#tab_seo_en">
                                                         <span>
-                                                            <img src="{{asset('/assets/en.png')}}"
-                                                                width="28" height="20" alt="EN"
-                                                                title="EN">
+                                                            <img src="{{ asset('/assets/en.png') }}" width="28"
+                                                                height="20" alt="EN" title="EN">
                                                         </span>
                                                     </a>
                                                 </li>
@@ -442,7 +442,7 @@
                                                         <!--begin::Input group-->
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
-                                                            <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Site
+                                                            <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">Site
                                                                 Başlığı</label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
@@ -453,7 +453,7 @@
                                                                     <div class="col-lg-12 fv-row">
                                                                         <input type="text" name="seo_title_tr"
                                                                             id="seo_title_tr"
-                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="{{ old('seo_title_tr') }}" />
                                                                     </div>
                                                                     <!--end::Col-->
@@ -466,7 +466,7 @@
                                                         <!--begin::Input group-->
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
-                                                            <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Site
+                                                            <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">Site
                                                                 Açıklaması</label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
@@ -481,7 +481,7 @@
                                                         <!--begin::Input group-->
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
-                                                            <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Site
+                                                            <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">Site
                                                                 Anahtar Kelimeleri</label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
@@ -492,7 +492,7 @@
                                                                     <div class="col-lg-12 fv-row">
                                                                         <input type="text" id="blog_seo_keywords_tr"
                                                                             name="seo_key_tr[]"
-                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="" />
                                                                     </div>
                                                                     <!--end::Col-->
@@ -517,7 +517,7 @@
                                                         <!--begin::Input group-->
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
-                                                            <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Site
+                                                            <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">Site
                                                                 Başlığı</label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
@@ -528,7 +528,7 @@
                                                                     <div class="col-lg-12 fv-row">
                                                                         <input type="text" name="seo_title_en"
                                                                             id="seo_title_en"
-                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="{{ old('seo_title_en') }}" />
                                                                     </div>
                                                                     <!--end::Col-->
@@ -541,7 +541,7 @@
                                                         <!--begin::Input group-->
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
-                                                            <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Site
+                                                            <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">Site
                                                                 Açıklaması</label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
@@ -556,7 +556,7 @@
                                                         <!--begin::Input group-->
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
-                                                            <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">Site
+                                                            <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">Site
                                                                 Anahtar Kelimeleri</label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
@@ -567,7 +567,7 @@
                                                                     <div class="col-lg-12 fv-row">
                                                                         <input type="text" id="blog_seo_keywords_en"
                                                                             name="seo_key_en[]"
-                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="" />
                                                                     </div>
                                                                     <!--end::Col-->
@@ -590,13 +590,12 @@
                                         </div>
 
                                         <div class="tab-pane fade" id="rop">
-                                            <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
+                                            <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x fs-6 mb-5">
                                                 <li class="nav-item">
                                                     <a class="nav-link active" data-bs-toggle="tab" href="#asd">
                                                         <span>
-                                                            <img src="{{asset('/assets/tr.png')}}"
-                                                                width="28" height="20" alt="TR"
-                                                                title="TR">
+                                                            <img src="{{ asset('/assets/tr.png') }}" width="28"
+                                                                height="20" alt="TR" title="TR">
                                                         </span>
 
                                                     </a>
@@ -604,9 +603,8 @@
                                                 <li class="nav-item">
                                                     <a class="nav-link" data-bs-toggle="tab" href="#dsa">
                                                         <span>
-                                                            <img src="{{asset('/assets/en.png')}}"
-                                                                width="28" height="20" alt="EN"
-                                                                title="EN">
+                                                            <img src="{{ asset('/assets/en.png') }}" width="28"
+                                                                height="20" alt="EN" title="EN">
                                                         </span>
                                                     </a>
                                                 </li>
@@ -614,62 +612,64 @@
 
                                             <div class="tab-content">
                                                 <div id="asd" class="tab-pane fade show active">
-                                                    <div id="show_item" >
-                                                        <div class=" container"
-                                                            style=" padding:2%;"
-                                                             role="tabpanel">
+                                                    <div id="show_item">
+                                                        <div class="container" style=" padding:2%;" role="tabpanel">
                                                             <div class="row mb-6">
                                                                 <div class="col-md-6">
                                                                     <div class="row mb-6">
                                                                         <label
-                                                                            class="col-lg-4 col-form-label ps-5 fw-bold fs-6">
+                                                                            class="col-lg-4 col-form-label fw-bold fs-6 ps-5">
                                                                             <span class="required"> Soran Kişi</span>
                                                                         </label>
                                                                         <div class="col-lg-8 fv-row">
                                                                             <input type="text"
-                                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                name="soran_tr[]" onkeyup="setToEn('questioner')" id="questioner">
+                                                                                class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                name="soran_tr[]"
+                                                                                onkeyup="setToEn('questioner')"
+                                                                                id="questioner">
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="row mb-6">
                                                                         <label
-                                                                            class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">
+                                                                            class="col-lg-4 col-form-label fw-bold fs-6 ps-5 text-end">
                                                                             <span class="required"> Cevaplayan Kişi</span>
                                                                         </label>
                                                                         <div class="col-lg-8 fv-row">
                                                                             <input type="text"
-                                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                                name="cevaplayan_tr[]" onkeyup="setToEn('answered')" id="answered">
+                                                                                class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                name="cevaplayan_tr[]"
+                                                                                onkeyup="setToEn('answered')"
+                                                                                id="answered">
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="row mb-6">
-                                                                <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
+                                                                <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
                                                                     <span class="required"> Soru</span>
                                                                 </label>
                                                                 <div class="col-lg-10 fv-row">
                                                                     <input type="text"
-                                                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                        class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                         name="soru_tr[]" id="">
                                                                 </div>
                                                             </div>
                                                             <div class="row mb-6">
-                                                                <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
+                                                                <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
                                                                     <span class="required"> Cevap</span>
                                                                 </label>
                                                                 <div class="col-lg-10 fv-row">
                                                                     <input type="text"
-                                                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                        class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                         name="cevap_tr[]" id="">
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <button type="button"
-                                                            id="main_add_tr"
-                                                                class="btn btn-primary add_item_buton" style="margin: auto; display: flex">EKLE</button>
+                                                        <button type="button" id="main_add_tr"
+                                                            class="btn btn-primary add_item_buton"
+                                                            style="margin: auto; display: flex">EKLE</button>
                                                     </div><br>
 
                                                     <div class="ekle" style="text-align:center">
@@ -684,12 +684,12 @@
                                                                 <div class="col-md-6">
                                                                     <div class="row mb-6">
                                                                         <label
-                                                                            class="col-lg-4 col-form-label ps-5 fw-bold fs-6">
+                                                                            class="col-lg-4 col-form-label fw-bold fs-6 ps-5">
                                                                             <span class="required"> Soran Kişi</span>
                                                                         </label>
                                                                         <div class="col-lg-8 fv-row">
                                                                             <input type="text"
-                                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                 name="soran_en[]" id="questioner_en">
                                                                         </div>
                                                                     </div>
@@ -697,41 +697,41 @@
                                                                 <div class="col-md-6">
                                                                     <div class="row mb-6">
                                                                         <label
-                                                                            class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">
+                                                                            class="col-lg-4 col-form-label fw-bold fs-6 ps-5 text-end">
                                                                             <span class="required"> Cevaplayan Kişi</span>
                                                                         </label>
                                                                         <div class="col-lg-8 fv-row">
                                                                             <input type="text"
-                                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                 name="cevaplayan_en[]" id="answered_en">
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="row mb-6">
-                                                                <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
+                                                                <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
                                                                     <span class="required"> Soru</span>
                                                                 </label>
                                                                 <div class="col-lg-10 fv-row">
                                                                     <input type="text"
-                                                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                        class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                         name="soru_en[]" id="">
                                                                 </div>
                                                             </div>
                                                             <div class="row mb-6">
-                                                                <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">
+                                                                <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
                                                                     <span class="required"> Cevap</span>
                                                                 </label>
                                                                 <div class="col-lg-10 fv-row">
                                                                     <input type="text"
-                                                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                        class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                         name="cevap_en[]" id="">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <button type="button" style="display: flex; margin: auto"
-                                                        id="main_add_en"
-                                                                class="btn btn-primary add_item_buton2">EKLE</button>
+                                                            id="main_add_en"
+                                                            class="btn btn-primary add_item_buton2">EKLE</button>
                                                     </div><br>
 
                                                     <div class="ekle" style="text-align:center">
@@ -792,8 +792,7 @@
     <script src="../assets/plugins/custom/tinymce/langs/tr.js"></script>
 
     <script>
-
-        function setToEn(p){
+        function setToEn(p) {
             $("#" + p + "_en").val($("#" + p).val());
         }
 
@@ -816,6 +815,7 @@
 
             return str;
         };
+
         function create_slug_tr() {
             var Text = $("#name_tr").val();
             Text2 = (slug(Text));
@@ -843,12 +843,16 @@
 
 
         var input1 = document.querySelector("#blog_seo_keywords_tr");
-        new Tagify(input1,{ maxTags:5});
+        new Tagify(input1, {
+            maxTags: 5
+        });
 
         var input2 = document.querySelector("#blog_seo_keywords_en");
-        new Tagify(input2,{ maxTags:5});
+        new Tagify(input2, {
+            maxTags: 5
+        });
 
-       
+
 
         $(document).ready(function() {
             tinymce.init({
@@ -881,67 +885,67 @@
         $(document).ready(function() {
             $(document).on('click', '.add_item_buton', function(e) {
                 let this_id = $(this).prop('id');
-                if(this_id != "main_add_tr"){
+                if (this_id != "main_add_tr") {
                     $(this).remove();
                 }
                 let questioner = $("#questioner").val();
                 let answered = $("#answered").val();
                 e.preventDefault();
                 $("#show_item").append('<div class="mt-4 container" style=" padding-top:10%; padding-bottom:10%; border-top: 1px solid black; "\
-                        role="tabpanel">\
-                        <div class="row mb-6">\
-                            <div class="col-md-6">\
-                                <div class="row mb-6">\
-                                    <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">\
-                                        <span class="required"> Soran Kişi</span>\
-                                    </label>\
-                                    <div class="col-lg-8 fv-row">\
-                                        <input type="text"\
-                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                            name="soran_tr[]" id="" value="' + questioner + '">\
+                            role="tabpanel">\
+                            <div class="row mb-6">\
+                                <div class="col-md-6">\
+                                    <div class="row mb-6">\
+                                        <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">\
+                                            <span class="required"> Soran Kişi</span>\
+                                        </label>\
+                                        <div class="col-lg-8 fv-row">\
+                                            <input type="text"\
+                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                                name="soran_tr[]" id="" value="' + questioner + '">\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                                <div class="col-md-6">\
+                                    <div class="row mb-6">\
+                                        <label\
+                                            class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">\
+                                            <span class="required"> Cevaplayan Kişi</span>\
+                                        </label>\
+                                        <div class="col-lg-8 fv-row">\
+                                            <input type="text"\
+                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                                name="cevaplayan_tr[]" id="" value="' + answered + '">\
+                                        </div>\
                                     </div>\
                                 </div>\
                             </div>\
-                            <div class="col-md-6">\
-                                <div class="row mb-6">\
-                                    <label\
-                                        class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">\
-                                        <span class="required"> Cevaplayan Kişi</span>\
-                                    </label>\
-                                    <div class="col-lg-8 fv-row">\
-                                        <input type="text"\
-                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                            name="cevaplayan_tr[]" id="" value="' + answered + '">\
-                                    </div>\
+                            <div class="row mb-6">\
+                                <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
+                                    <span class="required"> Soru</span>\
+                                </label>\
+                                <div class="col-lg-10 fv-row">\
+                                    <input type="text"\
+                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                        name="soru_tr[]" id="">\
                                 </div>\
                             </div>\
-                        </div>\
-                        <div class="row mb-6">\
-                            <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
-                                <span class="required"> Soru</span>\
-                            </label>\
-                            <div class="col-lg-10 fv-row">\
-                                <input type="text"\
-                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                    name="soru_tr[]" id="">\
+                            <div class="row mb-6">\
+                                <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
+                                    <span class="required"> Cevap</span>\
+                                </label>\
+                                <div class="col-lg-10 fv-row">\
+                                    <input type="text"\
+                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                        name="cevap_tr[]" id="">\
+                                </div>\
                             </div>\
+                            <div class="ekle" style="text-align:center">\
+                            <button type="button" id="add_en" class="btn btn-success add_item_buton">EKLE</button>\
+                        <button type="button"\
+                            class="btn btn-danger delete_item_buton">SİL</button>\
                         </div>\
-                        <div class="row mb-6">\
-                            <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
-                                <span class="required"> Cevap</span>\
-                            </label>\
-                            <div class="col-lg-10 fv-row">\
-                                <input type="text"\
-                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                    name="cevap_tr[]" id="">\
-                            </div>\
-                        </div>\
-                        <div class="ekle" style="text-align:center">\
-                        <button type="button" id="add_en" class="btn btn-success add_item_buton">EKLE</button>\
-                    <button type="button"\
-                        class="btn btn-danger delete_item_buton">SİL</button>\
-                    </div>\
-            </div>');
+                </div>');
             });
 
             $(document).on('click', '.delete_item_buton', function(e) {
@@ -956,7 +960,7 @@
         $(document).ready(function() {
             $(document).on('click', '.add_item_buton2', function(e) {
                 let this_id = $(this).prop('id');
-                if(this_id != "main_add_en"){
+                if (this_id != "main_add_en") {
                     $(this).remove();
                 }
                 let questioner = $("#questioner_en").val();
@@ -964,60 +968,60 @@
                 console.log("ok");
                 e.preventDefault();
                 $("#show_item2").append('<div  role="tabpanel" style="margin-top:10px; padding-top:10%; padding-bottom:10%; border-top: 1px solid black;">\
-                        <div class="row mb-6">\
-                            <div class="col-md-6">\
-                                <div class="row mb-6">\
-                                    <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">\
-                                        <span class="required"> Soran Kişi</span>\
-                                    </label>\
-                                    <div class="col-lg-8 fv-row">\
-                                        <input type="text"\
-                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                            name="soran_en[]" id="" value="' + questioner + '">\
+                            <div class="row mb-6">\
+                                <div class="col-md-6">\
+                                    <div class="row mb-6">\
+                                        <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">\
+                                            <span class="required"> Soran Kişi</span>\
+                                        </label>\
+                                        <div class="col-lg-8 fv-row">\
+                                            <input type="text"\
+                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                                name="soran_en[]" id="" value="' + questioner + '">\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                                <div class="col-md-6">\
+                                    <div class="row mb-6">\
+                                        <label\
+                                            class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">\
+                                            <span class="required"> Cevaplayan Kişi</span>\
+                                        </label>\
+                                        <div class="col-lg-8 fv-row">\
+                                            <input type="text"\
+                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                                name="cevaplayan_en[]" id="" value="' + answered + '">\
+                                        </div>\
                                     </div>\
                                 </div>\
                             </div>\
-                            <div class="col-md-6">\
-                                <div class="row mb-6">\
-                                    <label\
-                                        class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">\
-                                        <span class="required"> Cevaplayan Kişi</span>\
-                                    </label>\
-                                    <div class="col-lg-8 fv-row">\
-                                        <input type="text"\
-                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                            name="cevaplayan_en[]" id="" value="' + answered + '">\
-                                    </div>\
+                            <div class="row mb-6">\
+                                <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
+                                    <span class="required"> Soru</span>\
+                                </label>\
+                                <div class="col-lg-10 fv-row">\
+                                    <input type="text"\
+                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                        name="soru_en[]" id="">\
                                 </div>\
                             </div>\
-                        </div>\
-                        <div class="row mb-6">\
-                            <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
-                                <span class="required"> Soru</span>\
-                            </label>\
-                            <div class="col-lg-10 fv-row">\
-                                <input type="text"\
-                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                    name="soru_en[]" id="">\
+                            <div class="row mb-6">\
+                                <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
+                                    <span class="required"> Cevap</span>\
+                                </label>\
+                                <div class="col-lg-10 fv-row">\
+                                    <input type="text"\
+                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                        name="cevap_en[]" id="">\
+                                </div>\
                             </div>\
+                        <div class="ekle" style="text-align:center">\
+                            <button type="button" id="add_en" class="btn btn-success add_item_buton2">EKLE</button>\
+                        <button type="button"\
+                            class="btn btn-danger delete_item_buton2">SİL</button>\
                         </div>\
-                        <div class="row mb-6">\
-                            <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
-                                <span class="required"> Cevap</span>\
-                            </label>\
-                            <div class="col-lg-10 fv-row">\
-                                <input type="text"\
-                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                    name="cevap_en[]" id="">\
-                            </div>\
-                        </div>\
-                    <div class="ekle" style="text-align:center">\
-                        <button type="button" id="add_en" class="btn btn-success add_item_buton2">EKLE</button>\
-                    <button type="button"\
-                        class="btn btn-danger delete_item_buton2">SİL</button>\
                     </div>\
-                </div>\
-                </div>');
+                    </div>');
             });
 
             $(document).on('click', '.delete_item_buton2', function(e) {

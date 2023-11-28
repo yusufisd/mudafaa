@@ -40,7 +40,7 @@
                     </div>
                     <div>
                         <a href="{{ route('admin.companyModel.disa_aktar') }}">
-                            <button style="position:initial;background-color:blue" class="btn-sm btn btn-info"
+                            <button style="position:initial;background-color:#1e1e3f" class="btn-sm btn btn-info"
                                 type="button"> Örnek Excel</button>
                         </a>
                     </div>

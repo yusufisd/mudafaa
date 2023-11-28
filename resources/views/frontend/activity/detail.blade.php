@@ -105,6 +105,12 @@
                                                 <i class="far fa-calendar-alt icon"></i>
                                                 {{ $data->start_time->translatedFormat('d M Y') }}
                                             </span>
+                                            @if($data->finish_time != null)
+                                            <span class="rt-meta">
+                                                -
+                                                {{ $data->finish_time->translatedFormat('d M Y') }}
+                                            </span>
+                                            @endif
                                         </li>
                                     @endif
                                     @if ($data->start_clock)
@@ -113,6 +119,12 @@
                                                 <i class="fas fa-clock icon"></i>
                                                 {{ substr($data->start_clock, 0, 5) }}
                                             </span>
+                                            @if($data->finish_clock != null)
+                                            <span class="rt-meta">
+                                                -
+                                                {{ substr($data->finish_clock, 0, 5) }}
+                                            </span>
+                                            @endif
                                         </li>
                                     @endif
                                     @if ($data->Country)
@@ -124,10 +136,12 @@
                                         </li>
                                     @endif
                                     <li>
+                                        @if($data->address != null)
                                         <span class="rt-meta">
                                             <i class="fas fa-handshake icon"></i>
                                             {{ $data->address }}
                                         </span>
+                                        @endif
                                     </li>
                                 </ul>
                             </div>

@@ -74,12 +74,12 @@
                             <div class="author-big-box-style-1 mb--30">
                                 <div style="background-image: url({{ asset('assets/black_fon.jpeg') }});background-opacity:0.7;border-radius:5px"
                                     class="author-img">
-                                    <img style="width:170px;height:170px;opacity:0.8" src="/{{ $data->image }}"
+                                    <img style="width:170px; height:170px; opacity:0.9" src="/{{ $data->image }}"
                                         alt="{{ $data->title }}">
                                 </div>
-                                <div class="w-100">
+                                <div class="w-90">
                                     <h2 class="responsive-title" style="color: #3b4022;"> {{ $data->title }} </h2>
-                                    <div class="row">
+                                    <div class="row container">
 
                                         @if (\Session::get('applocale') == 'en')
                                             @if ($data->Title() != null)
@@ -89,6 +89,7 @@
                                                             <li class="mb-3">
                                                                 @if ($item->titleIcon() != null)
                                                                     {!! $item->titleIcon()->icon_en ?? ' ' !!}
+                                                                    &nbsp;&nbsp;
                                                                     <b>
                                                                         <span style="color: #749f43">
                                                                             {{ $item->titleIcon()->title_en ?? '' }} :
@@ -109,6 +110,8 @@
                                                         <li class="mb-3">
                                                             @if ($item->titleIcon() != null)
                                                                 {!! $item->titleIcon()->icon_tr ?? ' ' !!}
+                                                                &nbsp;&nbsp;
+
                                                                 <b>
                                                                     <span style="color: #749f43">
                                                                         {{ $item->titleIcon()->title_tr ?? '' }} :
@@ -122,10 +125,7 @@
                                                 </div>
                                             @endforeach
                                         @endif
-
-
                                     </div>
-
                                 </div>
                             </div>
 

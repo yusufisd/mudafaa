@@ -10,6 +10,7 @@
             border-radius: var(--border-radius-xs);
         }
     </style>
+
     <main>
         <!-- theme-switch-box -->
         <div class="theme-switch-box-mobile-wrap">
@@ -66,10 +67,13 @@
                                             <div class="rt-cart-item" style="background-color: white!important">
                                                 <a
                                                     href="{{ \Session::get('applocale') == 'en' ? route('front.company.detail_en', \Illuminate\Support\Str::slug($item->title)) : route('front.company.detail', \Illuminate\Support\Str::slug($item->title)) }}">
-                                                    <div class="item-img">
-                                                        <img src="/{{ $item->image }}" style="height: 130px" alt="{{ $item->title }}">
-                                                            
+
+                                                    <div style="background-image: url({{ asset('assets/black_fon.jpeg') }});background-opacity:0.7;border-radius:5px"
+                                                        class="author-img">
+                                                        <img style="width:170px; height:170px; opacity:0.9" src="/{{ $item->image }}"
+                                                            alt="{{ $item->title }}">
                                                     </div>
+                                                    
                                                 </a>
                                             </div>
                                         </div>

@@ -607,7 +607,7 @@
                                                                         {{ $single->Category()[0]->title }} </a>
                                                                     <h4 class="post-title">
                                                                         <a href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNews.detail_en', $single->link)) : (route('front.currentNews.detail', $single->link)) }}"
-                                                                            class="restricted_title_2">
+                                                                            class="">
                                                                             {{ $single->title }}
                                                                         </a>
                                                                     </h4>
@@ -730,16 +730,16 @@
                                             <div class="rt-post post-sm style-1">
                                                 <div class="post-img">
                                                     <a href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNews.detail_en', $item->link)) : (route('front.currentNews.detail', $item->link)) }}">
-                                                        <img style="object-fit:cover" src="/{{ $item->image }}"
+                                                        <img title="{{ $item->title }}" style="object-fit:cover" src="/{{ $item->image }}"
                                                             alt="post" width="100" height="100">
                                                     </a>
                                                 </div>
                                                 <div class="post-content ms-4">
                                                     
-                                                    <h4 class="post-title">
+                                                    <h4 class="post-title" style="font-size:15px" title="{{ $item->title }}">
                                                         <a href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNews.detail_en', $item->link)) : (route('front.currentNews.detail', $item->link)) }}"
-                                                            class="sidebar_restricted_title">
-                                                            {{ $item->title }}
+                                                            class="">
+                                                            {{ (Illuminate\Support\Str::words($item->title,8,'...')) }}
                                                         </a>
                                                     </h4>
                                                     <span class="rt-meta">

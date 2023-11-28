@@ -49,7 +49,6 @@ class InterviewController extends Controller
         $request->validate([
             "author" => "required",
             "live_time" => "required",
-            "youtube" => "required",
             "name_tr" => "required",
             "short_description_tr" => "required",
             "description_tr" => "required",
@@ -233,7 +232,22 @@ class InterviewController extends Controller
         $interview_en   = EnInterview::findOrFail($request->enInt);
 
         $request->validate([
-
+            "author" => "required",
+            "live_time" => "required",
+            "name_tr" => "required",
+            "short_description_tr" => "required",
+            "description_tr" => "required",
+            "link_tr" => "required",
+            "name_en" => "required",
+            "short_description_en" => "required",
+            "description_en" => "required",
+            "link_en" => "required",
+            "seo_title_tr" => "required",
+            "seo_description_tr" => "required",
+            "seo_key_tr" => "required",
+            "seo_title_en" => "required",
+            "seo_description_en" => "required",
+            "seo_key_en" => "required",
             'soran_tr' => 'required',
             'cevaplayan_tr' => 'required',
             'soru_tr' => 'required',
@@ -242,6 +256,31 @@ class InterviewController extends Controller
             'cevaplayan_en' => 'required',
             'soru_en' => 'required',
             'cevap_en' => 'required',
+        ],[
+            "author" => "Yazar boş bırakılamaz",
+            "live_time" => "Yayınlama tarihi boş bırakılamaz",
+            "name_tr" => "Başlık (TR) boş bırakılamaz",
+            "short_description_tr" => "Kısa açıklama (TR) boş bırakılamaz",
+            "description_tr" => "İçerik (TR) boş bırakılamaz",
+            "link_tr" => "Link (TR) boş bırakılamaz",
+            "name_en" => "Başlık (EN) boş bırakılamaz",
+            "short_description_en" => "Kısa açıklama (EN) boş bırakılamaz",
+            "description_en" => "Açıklama (EN) boş bırakılamaz",
+            "link_en" => "Link (EN) boş bırakılamaz",
+            "seo_title_tr" => "Seo başlık (TR) boş bırakılamaz",
+            "seo_description_tr" => "Seo açıklama (TR) boş bırakılamaz",
+            "seo_key_tr" => "Seo anahtarı (TR) boş bırakılamaz",
+            "seo_title_en" => "Seo başlık (EN) boş bırakılamaz",
+            "seo_description_en" => "Seo açıklama (EN) boş bırakılamaz",
+            "seo_key_en" => "Seo anahtarı (EN) boş bırakılamaz",
+            'soran_tr' => 'Soran kişi (TR) boş bırakılamaz',
+            'cevaplayan_tr' => 'Cevaplayan (TR) kişi boş bırakılamaz',
+            'soru_tr' => 'Soru (TR) boş bırakılamaz',
+            'cevap_tr' => 'Cevap (TR) boş bırakılamaz',
+            'soran_en' => 'Soran kişi (EN) boş bırakılamaz',
+            'cevaplayan_en' => 'Cevaplayan kişi (EN) boş bırakılamaz',
+            'soru_en' => 'Soru (EN) boş bırakılamaz',
+            'cevap_en' => 'Cevap (EN) boş bırakılamaz',
         ]);
 
 
@@ -286,6 +325,8 @@ class InterviewController extends Controller
         }
         if (!isset($request->status_tr)) {
             $new_interview->status = 0;
+        }else{
+           $new_interview->status = 1; 
         }
         $new_interview->save();
 
@@ -293,6 +334,7 @@ class InterviewController extends Controller
         if(count($request->soran_tr) > 0) {
             Dialog::where('interview_id', $id)->delete();
             for ($i = 0; $i < count($request->soran_tr); $i++) {
+                if($request->soru_tr[$i] == null ) continue;
                 $new_dialog = new Dialog();
                 $new_dialog->soran = $request->soran_tr[$i];
                 $new_dialog->cevaplayan = $request->cevaplayan_tr[$i];
@@ -326,6 +368,7 @@ class InterviewController extends Controller
         if(count($request->soran_en) > 0) {
             EnDialog::where('interview_id', $request->enInt)->delete();
             for ($i = 0; $i < count($request->soran_en); $i++) {
+                if($request->soru_en[$i] == null ) continue;
                 $new_dialog_en = new EnDialog();
                 $new_dialog_en->soran = $request->soran_en[$i];
                 $new_dialog_en->cevaplayan = $request->cevaplayan_en[$i];
@@ -337,7 +380,7 @@ class InterviewController extends Controller
             }
         }
 
-        Alert::success('Röportaj düzenlendi');
+        Alert::success('Röportaj Düzenlendi');
         return redirect()->route('admin.interview.list');
     }
 

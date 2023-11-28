@@ -220,7 +220,7 @@
                             <!-- end slidebar wrap  -->
 
                             <div class="d-none d-md-block sidebar-wrap mb--40">
-                                <h2 class="rt-section-heading style-2 mb--30">
+                                <h2 class="rt-section-heading style-2" >
                                     <span class="rt-section-text"> {{ __('message.popüler haberler') }} </span>
                                     <span class="rt-section-dot"></span>
                                     <span class="rt-section-line"></span>
@@ -239,14 +239,14 @@
                                                     </a>
                                                     <div class="post-img mb-2">
                                                         <a href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNews.detail_en', $item->link)) : (route('front.currentNews.detail', $item->link)) }}">
-                                                            <img src="/{{ $item->image }}" alt="post"
+                                                            <img title="{{ $item->title }}" src="/{{ $item->image }}" alt="post"
                                                                 width="343" height="250">
                                                         </a>
                                                     </div>
-                                                    <h4 class="post-title">
+                                                    <h4 title="{{ $item->title }}" class="post-title" style="font-size:15px">
                                                         <a href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNews.detail_en', $item->link)) : (route('front.currentNews.detail', $item->link)) }}"
-                                                            class="sidebar_restricted_title">
-                                                            {{ $item->title }}
+                                                            class="">
+                                                            {{ (Illuminate\Support\Str::words($item->title,5,'...')) }}
                                                         </a>
                                                     </h4>
                                                     @if(isset($item->live_time))

@@ -82,7 +82,7 @@
         <!-- End inner page Banner -->
 
         <!-- Start single-post-banner -->
-        <div class="single-post-banner rt-gradient-overaly" data-bg-image="/{{ $data->image }}">
+        <div class="single-post-banner rt-gradient-overaly" data-bg-image="/{{ $data->image }}" style="object-fit: cover">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-9 col-lg-10 mx-auto">
@@ -424,14 +424,14 @@
                                     <div class="rt-post-grid grid-meta">
                                         <div class="post-img">
                                             <a href="{{ route('front.defenseIndustryContent.detail', $item->link) }}">
-                                                <img src="/{{ $item->image }}" style="object-fit:contain!important"
+                                                <img src="/{{ $item->image }}" style="object-fit:cover!important"
                                                     alt="post" width="551" height="431">
                                             </a>
                                         </div>
                                         <div class="post-content">
                                             @if (isset($item->GeneralCategory->link))
                                                 <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.defenseIndustryCategory.list', $item->GeneralCategory->link)) : (route('front.defenseIndustryCategory.list_en', $item->GeneralCategory->link)) }}"
-                                                    class="rt-cat-primary">{{ substr($item->GeneralCategory->title, 0, 20) }}...</a>
+                                                    class="rt-cat-primary">{{ ($item->GeneralCategory->title) }}</a>
                                             @endif
                                             <h3 class="post-title">
                                                 <a href="{{ route('front.defenseIndustryContent.detail', $item->link) }}">

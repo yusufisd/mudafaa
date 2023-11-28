@@ -14,6 +14,7 @@ class Activity extends Model
     protected $guarded = [];
     protected $casts = [
         'start_time' => 'datetime',
+        'finish_time' => 'datetime',
     ];
 
     public function Category()

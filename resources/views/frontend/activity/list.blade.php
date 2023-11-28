@@ -165,7 +165,7 @@
                                         <div class="rt-post-grid grid-meta">
                                             <div class="post-img">
                                                 <a href="{{ \Session::get('applocale') == 'en' ? (route('front.activity.detail_en', $item->link)) : (route('front.activity.detail', $item->link)) }}">
-                                                    <img src="/{{ $item->image == null ? 'assets/default_act.jpeg' : $item->image }}"
+                                                    <img style="object-fit: cover" src="/{{ $item->image == null ? 'assets/default_act.jpeg' : $item->image }}"
                                                         alt="post" width="551" height="431">
                                                 </a>
                                             </div>
@@ -192,13 +192,14 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ $item->start_time->translatedFormat('d M Y') }} / {{ $item->start_clock }}
+                                                                {{ $item->start_time->translatedFormat('d M Y') }} / {{ substr($item->start_clock,0,5) }}
                                                             </span>
                                                         </li>
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="fas fa-map-marker-alt icon"></i>
-                                                                {{ $item->Country->name }}
+                                                                <span style="text-transform:capitalize"> {{ (strlen($item->country->name) <= 19) ? $item->country->name : (substr($item->country->name,0,19).'...') }} / {{ strlen($item->city) <= 9 ? $item->city : substr($item->city,0,5).'...' }} </span>
+
                                                             </span>
                                                         </li>
                                                         <li>
@@ -252,7 +253,7 @@
                                             <div class="rt-post-grid grid-meta">
                                                 <div class="post-img">
                                                     <a href="{{ \Session::get('applocale') == 'en' ? (route('front.activity.detail_en', $item->link)) : (route('front.activity.detail', $item->link)) }}">
-                                                        <img src="/{{ $item->image == null ? 'assets/default_act.jpeg' : $item->image }}"
+                                                        <img style="object-fit: cover" src="/{{ $item->image == null ? 'assets/default_act.jpeg' : $item->image }}"
                                                             alt="post" width="551" height="431">
                                                     </a>
                                                 </div>
@@ -277,13 +278,13 @@
                                                             <li>
                                                                 <span class="rt-meta">
                                                                     <i class="far fa-calendar-alt icon"></i>
-                                                                    {{ $item->start_time->translatedFormat('d M Y') }} / {{ $item->start_clock }}
+                                                                    {{ $item->start_time->translatedFormat('d M Y') }} / {{ substr($item->start_clock,0,5)}}
                                                                 </span>
                                                             </li>
                                                             <li>
                                                                 <span class="rt-meta">
                                                                     <i class="fas fa-map-marker-alt icon"></i>
-                                                                    {{ $item->Country->name }}
+                                                                    <span style="text-transform:capitalize"> {{ (strlen($item->country->name) <= 19) ? $item->country->name : (substr($item->country->name,0,19).'...') }} / {{ strlen($item->city) <= 9 ? $item->city : substr($item->city,0,5).'...' }} </span>
                                                                 </span>
                                                             </li>
                                                             <li>
