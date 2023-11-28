@@ -694,18 +694,16 @@
                                                             </div>
                                                         </div>
                                                         <div class="ekle" style="text-align:center">
-                                                            <button type="button"
+                                                            <button type="button" id="main_add_tr"
                                                                 class="btn btn-primary add_item_buton">EKLE</button>
                                                         </div>
                                                     </div><br>
 
                                                 </div>
-
+                                                <input type="hidden" id="has_dialog_tr"
+                                                       value="{{ count($dialog_tr) }}">
                                                 @foreach ($dialog_tr as $ktr => $item)
                                                 <hr>
-
-                                                    <input type="hidden" id="has_dialog_tr"
-                                                        value="{{ count($dialog_tr) }}">
                                                     <div class="container" style=" padding:2%;" role="tabpanel">
                                                         <div class="row mb-6">
                                                             <div class="col-md-6">
@@ -766,7 +764,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="ekle" style="text-align:center">
-                                                        <button type="button" id="add_en"
+                                                        <button type="button" id="main_add_en"
                                                             class="btn btn-success add_item_buton">EKLE</button>
                                                         <button type="button"
                                                             class="btn btn-danger delete_item_buton">SİL</button>
@@ -774,8 +772,8 @@
                                                 @endforeach
 
 
+                                                <div id="dsa" class="tab-pane fade">
                                                 @if (count($dialog_en) <= 0)
-                                                    <div id="dsa" class="tab-pane fade">
                                                         <div id="show_item2">
                                                             <div class="container" role="tabpanel" style=" padding:2%; ">
                                                                 <div class="row mb-6">
@@ -835,7 +833,7 @@
                                                                     class="btn btn-primary add_item_buton2">EKLE</button>
                                                             </div>
                                                         </div><br>
-                                                        
+
                                                     </div>
                                                 @endif
                                                 <div id="dsa" class="tab-pane fade">
@@ -1057,9 +1055,13 @@
         });
     </script>
     <script>
+        // RÖPORTAJ TR İÇİN GEÇERLİ OLAN JQUERY KOD BLOĞU
         $(document).ready(function() {
-            $(".add_item_buton").click(function(e) {
-                e.preventDefault();
+            $(document).on('click', '.add_item_buton', function(e) {
+                let this_id = $(this).prop('id');
+                if (this_id != "main_add_tr") {
+                    $(this).remove();
+                }
                 let soran = $("#soranTr").val();
                 let cevaplayan = $("#cevapTr").val();
                 let hasDialog = $("#has_dialog_tr");
@@ -1068,7 +1070,7 @@
                     $("#first_answer").val("");
                 }
 
-                $("#show_item").append(' <div id="show_item">\
+                $("#show_item").append('<div id="show_item">\
                                         <div class="datarow" style=" padding:2%;"\
                                             role="tabpanel ">\
                                             <div class="row mb-6">\
@@ -1119,6 +1121,7 @@
                                                 </div>\
                                             </div>\
                                             <div class="ekle" style="text-align:center">\
+                                            <button type="button" id="add_tr" class="btn btn-success add_item_buton">EKLE</button>\
                                         <button type="button"\
                                             class="btn btn-danger delete_item_buton">SİL</button>\
                                     </div>\
@@ -1134,9 +1137,14 @@
         });
     </script>
     <script>
+
+        // RÖPORTAJ EN İÇİN GEÇERLİ OLAN KOD BLOĞU
         $(document).ready(function() {
-            $(".add_item_buton2").click(function(e) {
-                e.preventDefault();
+            $(document).on('click', '.add_item_buton2', function(e) {
+                let this_id = $(this).prop('id');
+                if (this_id != "main_add_en") {
+                    $(this).remove();
+                }
                 let soran = $("#soranEn").val();
                 let cevaplayan = $("#cevapEn").val();
                 let hasDialog = $("#has_dialog_en");
@@ -1194,6 +1202,7 @@
                                                 </div>\
                                             </div>\
                                         <div class="ekle" style="text-align:center">\
+                                        <button type="button" id="add_en" class="btn btn-success add_item_buton2">EKLE</button>\
                                         <button type="button"\
                                             class="btn btn-danger delete_item_buton2">SİL</button>\
                                         </div>\
