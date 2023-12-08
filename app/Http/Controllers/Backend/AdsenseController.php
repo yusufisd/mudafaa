@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\AdsenseModel;
+use App\Models\Reklam;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -36,17 +37,20 @@ class AdsenseController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            "ad_name" => "required",
-            "ad_explanation" => "required",
-            "start_date" => "required",
-            "finish_date;" => "required",
-        ],[
-            "ad_name" => "başlık boş bırakılamaz",
-            "ad_explanation" => "açıklama boş bırakılamaz",
-            "start_date" => "başlangıç tarihi boş bırakılamaz",
-            "finish_date;" => "bitiş tarihi boş bırakılamaz",
-        ]);
+        $request->validate(
+            [
+                'ad_name' => 'required',
+                'ad_explanation' => 'required',
+                'start_date' => 'required',
+                'finish_date' => 'required',
+            ],
+            [
+                'ad_name' => 'başlık boş bırakılamaz',
+                'ad_explanation' => 'açıklama boş bırakılamaz',
+                'start_date' => 'başlangıç tarihi boş bırakılamaz',
+                'finish_date' => 'bitiş tarihi boş bırakılamaz',
+            ],
+        );
 
         $data = new AdsenseModel();
         $data->title = $request->ad_name;
@@ -67,13 +71,26 @@ class AdsenseController extends Controller
         if ($request->file('image') != null) {
             $image = $request->file('image');
             $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-            $save_url = public_path('assets/uploads/anket/' . $image_name);
-            Image::make($image)
-                ->resize(492, 340)
-                ->save($save_url);
+            $save_url = 'assets/uploads/adsense/' . $image_name;
+            Image::make($image)->save($save_url);
             $data->image = $save_url;
         }
         $data->save();
+
+        if ($request->reklam != null) {
+            foreach ($request->reklam as $reklam) {
+                if (Reklam::where('alan_id', $reklam)->first() != null) {
+                    Reklam::where('alan_id', $reklam)->update([
+                        'reklam_id' => $data->id,
+                    ]);
+                } else {
+                    Reklam::create([
+                        'reklam_id' => $data->id,
+                        'alan_id' => $reklam,
+                    ]);
+                }
+            }
+        }
 
         Alert::success('Reklam başarıyla eklendi');
         return redirect()->route('admin.adsense.list');
@@ -87,18 +104,21 @@ class AdsenseController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            "ad_name" => "required",
-            "ad_explanation" => "required",
-            "start_date" => "required",
-            "finish_date;" => "required",
-        ],[
-            "ad_name" => "başlık boş bırakılamaz",
-            "ad_explanation" => "açıklama boş bırakılamaz",
-            "start_date" => "başlangıç tarihi boş bırakılamaz",
-            "finish_date;" => "bitiş tarihi boş bırakılamaz",
-        ]);
-        
+        $request->validate(
+            [
+                'ad_name' => 'required',
+                'ad_explanation' => 'required',
+                'start_date' => 'required',
+                'finish_date' => 'required',
+            ],
+            [
+                'ad_name' => 'başlık boş bırakılamaz',
+                'ad_explanation' => 'açıklama boş bırakılamaz',
+                'start_date' => 'başlangıç tarihi boş bırakılamaz',
+                'finish_date' => 'bitiş tarihi boş bırakılamaz',
+            ],
+        );
+
         $data = AdsenseModel::find($id);
         $data->title = $request->ad_name;
         $data->description = $request->ad_explanation;
@@ -124,14 +144,31 @@ class AdsenseController extends Controller
                 ->save($save_url);
             $data->image = $save_url;
         }
-        $data->save();
+        $data->update();
+
+        Reklam::where('reklam_id', $data->id)->delete();
+        if ($request->reklam != null) {
+            foreach ($request->reklam as $reklam) {
+                if (Reklam::where('alan_id', $reklam)->first()) {
+                    Reklam::where('alan_id', $reklam)->update([
+                        'reklam_id' => $data->id,
+                    ]);
+                } else {
+                    Reklam::create([
+                        'reklam_id' => $data->id,
+                        'alan_id' => $reklam,
+                    ]);
+                }
+            }
+        }
+
         Alert::success('Reklam başarıyla düzenlendi');
         return redirect()->route('admin.adsense.list');
     }
 
     public function destroy($id)
     {
-        AdsenseModel::where('id',$id)->delete();
+        AdsenseModel::where('id', $id)->delete();
         Alert::success('Reklam Başarıyla Silindi');
         return redirect()->route('admin.adsense.list');
     }

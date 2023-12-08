@@ -95,6 +95,7 @@
                                 <a href="" class="img-link">
                                     <img src="/{{ $data->image }}" alt="post-ex_7" width="1320" height="620">
                                 </a>
+                                @dd($data->youtube)
                                 @if ($data->youtube != null)
                                     <a href="{{ $data->youtube }}" class="play-btn play-btn-white_xl rt-play-over md-right">
                                         <i class="fas fa-play"></i>

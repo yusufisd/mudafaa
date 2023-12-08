@@ -12,4 +12,9 @@ class CommentController extends Controller
         $data = Comment::where('post_id',$id)->get();
         return view('backend.currentNews.comments.list',compact('data'));
     }
+
+    public function currentNewsComments(){
+        $data = Comment::get();
+        return view('backend.comments.currentNews.list',compact('data'));
+    }
 }

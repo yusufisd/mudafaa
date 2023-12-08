@@ -14,6 +14,7 @@ use App\Models\EnCurrentNewsCategory;
 use App\Models\EnInterview;
 use App\Models\EnVideo;
 use App\Models\Interview;
+use App\Models\Reklam;
 use App\Models\Video;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -198,7 +199,8 @@ class HomeController extends Controller
             $anket = Anket::inRandomOrder()->first();
 
         }
-        return view('frontend.index', compact('cats','iki_haber','tek_haber','uc_kategori','ilk_kategori_icerigi','ucuncu_kategori_icerigi','cat1_news1','cat1_news2','cat2_news1','cat2_news2','cat3_news1','cat3_news2','ikinci_kategori_icerigi','activity','populer_haber_first','populer_haber_three','videos','interview','anket'));
+        $reklamlar = Reklam::all();
+        return view('frontend.index', compact('cats','iki_haber','tek_haber','uc_kategori','ilk_kategori_icerigi','ucuncu_kategori_icerigi','cat1_news1','cat1_news2','cat2_news1','cat2_news2','cat3_news1','cat3_news2','ikinci_kategori_icerigi','activity','populer_haber_first','populer_haber_three','videos','interview','anket','reklamlar'));
 
     }
 }

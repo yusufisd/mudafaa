@@ -139,7 +139,6 @@
                                                     </div>
                                                     <!--end::Col-->
                                                 </div>
-
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
                                                     <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
@@ -150,7 +149,7 @@
                                                     <div class="col-lg-10 fv-row">
                                                         <input type="date"
                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                            name="live_time" value="{{ substr($now, 0, 10) }}"
+                                                            name="live_time" value="{{ $data_tr->live_time->format('Y-m-d') }}"
                                                             id="">
                                                     </div>
                                                     <!--end::Col-->

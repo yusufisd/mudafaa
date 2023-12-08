@@ -228,6 +228,7 @@ class InterviewController extends Controller
      */
     public function update($id, Request $request)
     {
+        dd($request->all());
         $new_interview  = Interview::findOrFail($id);
         $interview_en   = EnInterview::findOrFail($request->enInt);
 

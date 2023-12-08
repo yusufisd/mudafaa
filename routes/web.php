@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\ActivityController;
 use App\Http\Controllers\Backend\AdsenseController;
 use App\Http\Controllers\Backend\AnketController;
 use App\Http\Controllers\Backend\AuthController;
+use App\Http\Controllers\Backend\CommentController as BackendCommentController;
 use App\Http\Controllers\Backend\CompanyCategoryController;
 use App\Http\Controllers\Backend\CompanyController;
 use App\Http\Controllers\Backend\CompanyModelController;
@@ -210,7 +211,9 @@ Route::middleware('lang')->group(function () {
                         ->get('sil/{id?}', 'destroy')
                         ->name('destroy');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
-
+                    Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
+                    Route::get('disa-aktar', 'disa_aktar')->name('disa_aktar');
+                    
                     Route::get('/coklu-gorsel/{id?}', 'multipleImage')->name('multipleImage');
                     Route::get('/coklu-gorsel-ekle/{id?}', 'multipleImage_add')->name('multipleImage_add');
                     Route::post('/coklu-gorsel-ekle/{id?}', 'multipleImage_store')->name('multipleImage_store');
@@ -646,6 +649,11 @@ Route::middleware('lang')->group(function () {
                     Route::get('/sil/{id?}', 'destroy')->name('destroy');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
 
+                });
+
+                Route::controller(BackendCommentController::class)->name('comments.')->prefix('yorumlar')->group(function(){
+                    // Current News Comments
+                    Route::get('haber','currentNewsComments')->name('currentNews');
                 });
         });
 

@@ -37,7 +37,11 @@
             z-index: 999 !important;
         }
 
-  
+        @media screen and (max-width: 767px) {
+            #ikinci_reklam {
+                display: none;
+            }
+        }
     </style>
 
 
@@ -55,13 +59,12 @@
                             <div class="swiper-slide">
                                 <a
                                     href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $variable->link) : route('front.currentNews.detail', $variable->link) }}">
-                                    <img style="height: 100%"
-                                        src="{{ $variable->mobil_image != null ? $variable->mobil_image : $variable->image }}"
+                                    <img src="{{ $variable->mobil_image != null ? $variable->mobil_image : $variable->image }}"
                                         alt="slide-1">
                                 </a>
                                 <div class="swiper-content">
                                     @if ($variable->Category()[0] != null)
-                                        <a href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNewsCategory.list_en', $variable->Category()[0]->link)) : (route('front.currentNewsCategory.list', $variable->Category()[0]->link)) }}"
+                                        <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $variable->Category()[0]->link) : route('front.currentNewsCategory.list', $variable->Category()[0]->link) }}"
                                             style="background-color: {{ $variable->Category()[0]->color_code != null ? $variable->Category()[0]->color_code : '#749f43' }}"
                                             class="rt-cat-primary restricted_story_title">{{ $variable->Category()[0]->title }}</a>
                                     @endif
@@ -74,6 +77,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- start feature-section-style-1  -->
     <section class="d-none d-md-block rt-feature-section feature-section-style-1 overflow-hidden"
@@ -113,22 +117,35 @@
                     </div>
                     <!-- end col -->
                 @endforeach
-
-
-                <!-- end col -->
-
-
-
-
             </div>
             <!-- end row -->
         </div>
         <!-- end container -->
     </section>
+
+
+    <div class="container" style="margin-top:3%">
+        <div class="row">
+            <div class="col-md-6">
+                @if (reklam(1)->type == 1)
+                    <img src="/{{ reklam(1)->image }}" alt="">
+                @else
+                    {!! reklam(1)->adsense_url !!}
+                @endif
+            </div>
+
+            <div id="ikinci_reklam" class="col-md-6">
+                <img src="media/gallery/ad-banner_5.jpg" alt="">
+            </div>
+
+        </div>
+    </div>
+
     <!-- end feature-section-style-1  -->
     <!-- start main post section style 1 -->
     <section class="d-none d-md-block rt-main-post-section main-post-section-style-1 section-padding">
         <div class="container">
+
             <div class="row rt-gutter-5 justify-content-between">
                 <div class="col-xl-8 col-lg-6 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="800ms">
 
@@ -144,8 +161,8 @@
                             @if (isset($tek_haber->Category()[0]))
                                 <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $tek_haber->Category()[0]->link) : route('front.currentNewsCategory.list', $tek_haber->Category()[0]->link) }}"
                                     style="background-color: {{ $tek_haber->Category()[0]->color_code != null ? $tek_haber->Category()[0]->color_code : '#749f43' }}"
-                                    class="tr-america ">
-                                    {{ $tek_haber->Category()[0]->title }} 
+                                    class="tr-america">
+                                    {{ $tek_haber->Category()[0]->title }}
                                 </a>
                             @endif
 
@@ -178,11 +195,11 @@
                                     </li>
                                     <li>
                                         <span class="rt-meta">
-                                           <i class="fas fa-share-alt icon"></i>
-                                           {{ $tek_haber->ShareCounter() }}
+                                            <i class="fas fa-share-alt icon"></i>
+                                            {{ $tek_haber->ShareCounter() }}
                                         </span>
-                                     </li>
-                                    
+                                    </li>
+
 
                                 </ul>
                             </div>
@@ -242,10 +259,10 @@
                                                 </li>
                                                 <li>
                                                     <span class="rt-meta">
-                                                       <i class="fas fa-share-alt icon"></i>
-                                                       {{ $item->ShareCounter() }}
+                                                        <i class="fas fa-share-alt icon"></i>
+                                                        {{ $item->ShareCounter() }}
                                                     </span>
-                                                 </li>
+                                                </li>
 
                                             </ul>
                                         </div>
@@ -263,6 +280,12 @@
         <!-- end container -->
     </section>
     <!-- end main post section style 1 -->
+
+    <div class="container" style="margin-top:3%">
+        <div class="row">
+            <img src="media/gallery/ad-banner_5.jpg" alt="">
+        </div>
+    </div>
 
     <!-- start what's new section -->
     <section class="whats-new-style-1 section-padding">
@@ -346,10 +369,10 @@
                                                         </li>
                                                         <li>
                                                             <span class="rt-meta">
-                                                               <i class="fas fa-share-alt icon"></i>
-                                                               {{ $ilk_kategori_icerigi->ShareCounter() }}
+                                                                <i class="fas fa-share-alt icon"></i>
+                                                                {{ $ilk_kategori_icerigi->ShareCounter() }}
                                                             </span>
-                                                         </li>
+                                                        </li>
                                                     </ul>
                                                 </div>
 
@@ -368,7 +391,8 @@
                                                         <div class="post-img">
                                                             <a
                                                                 href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}">
-                                                                <img title="{{ $item->title }}" src="{{ $item->image }}" alt="post"
+                                                                <img title="{{ $item->title }}"
+                                                                    src="{{ $item->image }}" alt="post"
                                                                     width="343" height="250">
                                                             </a>
                                                         </div>
@@ -378,9 +402,9 @@
                                                                 class="rt-cat-primary restricted_category_title">
                                                                 {{ $item->Category()[0]->title }} </a>
                                                             <h4 class="post-title" title="{{ $item->title }}">
-                                                                <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}"
-                                                                    >
-                                                                    {{ (Illuminate\Support\Str::words($item->title,8,'...')) }}
+                                                                <a
+                                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}">
+                                                                    {{ Illuminate\Support\Str::words($item->title, 8, '...') }}
                                                                 </a>
                                                             </h4>
                                                             <span class="rt-meta">
@@ -413,7 +437,8 @@
                                                         <div class="post-img">
                                                             <a
                                                                 href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->id) : route('front.currentNews.detail', $item->id) }}">
-                                                                <img title="{{ $item->title }}" src="{{ $item->image }}" alt="post"
+                                                                <img title="{{ $item->title }}"
+                                                                    src="{{ $item->image }}" alt="post"
                                                                     width="343" height="250">
                                                             </a>
                                                         </div>
@@ -424,7 +449,7 @@
                                                             <h4 class="post-title" title="{{ $item->title }}">
                                                                 <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}"
                                                                     class="">
-                                                                    {{ (Illuminate\Support\Str::words($item->title,8,'...')) }}
+                                                                    {{ Illuminate\Support\Str::words($item->title, 8, '...') }}
                                                                 </a>
                                                             </h4>
                                                             <span class="rt-meta">
@@ -488,10 +513,10 @@
                                                         </li>
                                                         <li>
                                                             <span class="rt-meta">
-                                                               <i class="fas fa-share-alt icon"></i>
-                                                               {{ $ikinci_kategori_icerigi->ShareCounter() }}
+                                                                <i class="fas fa-share-alt icon"></i>
+                                                                {{ $ikinci_kategori_icerigi->ShareCounter() }}
                                                             </span>
-                                                         </li>
+                                                        </li>
                                                     </ul>
                                                 </div>
 
@@ -509,7 +534,8 @@
                                                         <div class="post-img">
                                                             <a
                                                                 href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}">
-                                                                <img title="{{ $item->title }}" src="{{ $item->image }}" alt="post"
+                                                                <img title="{{ $item->title }}"
+                                                                    src="{{ $item->image }}" alt="post"
                                                                     width="343" height="250">
                                                             </a>
                                                         </div>
@@ -522,7 +548,7 @@
                                                             <h4 class="post-title" title="{{ $item->title }}">
                                                                 <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}"
                                                                     class="">
-                                                                    {{ (Illuminate\Support\Str::words($item->title,8,'...')) }}
+                                                                    {{ Illuminate\Support\Str::words($item->title, 8, '...') }}
                                                                 </a>
                                                             </h4>
                                                             <span class="rt-meta">
@@ -551,7 +577,8 @@
                                                         <div class="post-img">
                                                             <a
                                                                 href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}">
-                                                                <img title="{{ $item->title }}" src="{{ $item->image }}" alt="post"
+                                                                <img title="{{ $item->title }}"
+                                                                    src="{{ $item->image }}" alt="post"
                                                                     width="343" height="250">
                                                             </a>
                                                         </div>
@@ -564,7 +591,7 @@
                                                             <h4 class="post-title" title="{{ $item->title }}">
                                                                 <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}"
                                                                     class="">
-                                                                    {{ (Illuminate\Support\Str::words($item->title,6,'...')) }}
+                                                                    {{ Illuminate\Support\Str::words($item->title, 6, '...') }}
                                                                 </a>
                                                             </h4>
                                                             <span class="rt-meta">
@@ -604,8 +631,8 @@
                                                 <div class="post-img">
                                                     <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $ucuncu_kategori_icerigi->link) : route('front.currentNews.detail', $ucuncu_kategori_icerigi->link) }}"
                                                         class="img-link">
-                                                        <img  src="/{{ $ucuncu_kategori_icerigi->image }}" alt="post-xl-3"
-                                                            width="900" height="600">
+                                                        <img src="/{{ $ucuncu_kategori_icerigi->image }}"
+                                                            alt="post-xl-3" width="900" height="600">
                                                     </a>
                                                 </div>
                                                 <div class="post-content">
@@ -642,10 +669,10 @@
                                                             </li>
                                                             <li>
                                                                 <span class="rt-meta">
-                                                                   <i class="fas fa-share-alt icon"></i>
-                                                                   {{ $ucuncu_kategori_icerigi->ShareCounter() }}
+                                                                    <i class="fas fa-share-alt icon"></i>
+                                                                    {{ $ucuncu_kategori_icerigi->ShareCounter() }}
                                                                 </span>
-                                                             </li>
+                                                            </li>
                                                         </ul>
                                                     </div>
 
@@ -666,7 +693,8 @@
                                                         <div class="post-img">
                                                             <a
                                                                 href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail', $item->link) : route('front.currentNews.detail', $item->link) }}">
-                                                                <img title="{{ $item->title }}" src="{{ $item->image }}" alt="post"
+                                                                <img title="{{ $item->title }}"
+                                                                    src="{{ $item->image }}" alt="post"
                                                                     width="343" height="250">
                                                             </a>
                                                         </div>
@@ -678,7 +706,7 @@
                                                             <h4 class="post-title" title="{{ $item->title }}">
                                                                 <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}"
                                                                     class="">
-                                                                    {{ (Illuminate\Support\Str::words($item->title,6,'...')) }}
+                                                                    {{ Illuminate\Support\Str::words($item->title, 6, '...') }}
                                                                 </a>
                                                             </h4>
                                                             <span class="rt-meta">
@@ -710,7 +738,8 @@
                                                         <div class="post-img">
                                                             <a
                                                                 href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}">
-                                                                <img title="{{ $item->title }}" src="{{ $item->image }}" alt="post"
+                                                                <img title="{{ $item->title }}"
+                                                                    src="{{ $item->image }}" alt="post"
                                                                     width="343" height="250">
                                                             </a>
                                                         </div>
@@ -722,7 +751,7 @@
                                                             <h4 class="post-title" title="{{ $item->title }}">
                                                                 <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}"
                                                                     class="">
-                                                                    {{ (Illuminate\Support\Str::words($item->title,6,'...')) }}
+                                                                    {{ Illuminate\Support\Str::words($item->title, 6, '...') }}
                                                                 </a>
                                                             </h4>
                                                             <span class="rt-meta">
@@ -763,6 +792,8 @@
     </section>
     <!-- end what's new section -->
 
+
+
     <!-- start travel-main-section-style-3 -->
     <section class="travel-main-section-style-3 section-padding"
         style="background-image: url('media/elements/element_9.png');">
@@ -794,16 +825,17 @@
                             <div class="post-img">
                                 <a
                                     href="{{ \Session::get('applocale') == 'en' ? route('front.activity.detail_en', $item->link) : route('front.activity.detail', $item->link) }}">
-                                    <img title="{{ $item->title }}" src="/{{ $item->image == null ? 'assets/default_act.jpeg' : $item->image }}"
+                                    <img title="{{ $item->title }}"
+                                        src="/{{ $item->image == null ? 'assets/default_act.jpeg' : $item->image }}"
                                         alt="post" width="551" height="431">
                                 </a>
                             </div>
                             <div class="post-content">
                                 <div class="d-flex justify-content-between align-items-center">
                                     @if ($item->Category != null)
-                                    <a href="{{ \Session::get('applocale') == 'en' ? (route('front.activity.categoryDetail_en', $item->Category->link)) : (route('front.activity.categoryDetail', $item->Category->link)) }}"
-                                        class="rt-cat-primary ">
-                                        {{ $item->Category->title }} </a>
+                                        <a href="{{ \Session::get('applocale') == 'en' ? route('front.activity.categoryDetail_en', $item->Category->link) : route('front.activity.categoryDetail', $item->Category->link) }}"
+                                            class="rt-cat-primary">
+                                            {{ $item->Category->title }} </a>
                                     @endif
                                     @if ($item->sayac_yil() || $item->sayac_ay() || $item->sayac_gun())
                                         <h6 class="rt-news-cat-normal text-danger mx-2">
@@ -831,7 +863,11 @@
                                         <li>
                                             <span class="rt-meta">
                                                 <i class="fas fa-map-marker-alt icon"></i>
-                                                <span style="text-transform:capitalize"> {{ (strlen($item->country->name) <= 7) ? $item->country->name : (substr($item->country->name,0,5).'...') }} / {{ strlen($item->city) <= 9 ? $item->city : substr($item->city,0,5).'...' }} </span>
+                                                <span style="text-transform:capitalize">
+                                                    {{ strlen($item->country->name) <= 7 ? $item->country->name : substr($item->country->name, 0, 5) . '...' }}
+                                                    /
+                                                    {{ strlen($item->city) <= 9 ? $item->city : substr($item->city, 0, 5) . '...' }}
+                                                </span>
                                             </span>
                                         </li>
                                         <li>
@@ -840,7 +876,7 @@
                                                 {{ $item->view_counter }}
                                             </span>
                                         </li>
-                                        
+
                                     </ul>
 
                                 </div>
@@ -857,6 +893,17 @@
         <!-- end container -->
     </section>
     <!-- end travel-main-section-style-3 -->
+
+    <div class="container" style="margin-top:3%">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="media/gallery/ad-banner_5.jpg" alt="">
+            </div>
+            <div id="ikinci_reklam" class="col-md-6">
+                <img src="media/gallery/ad-banner_5.jpg" alt="">
+            </div>
+        </div>
+    </div>
 
     <!-- start popular post  -->
     <section class="section-padding">
@@ -895,7 +942,7 @@
                                         </a>
                                     </h3>
                                     <p class="restricted_text">
-                                        {{ Illuminate\Support\Str::words($populer_haber_first->short_description,17,'...') }}
+                                        {{ Illuminate\Support\Str::words($populer_haber_first->short_description, 17, '...') }}
 
                                     </p>
                                     <div class="post-meta">
@@ -922,10 +969,10 @@
                                             </li>
                                             <li>
                                                 <span class="rt-meta">
-                                                   <i class="fas fa-share-alt icon"></i>
-                                                   {{ $populer_haber_first->ShareCounter() }}
+                                                    <i class="fas fa-share-alt icon"></i>
+                                                    {{ $populer_haber_first->ShareCounter() }}
                                                 </span>
-                                             </li>
+                                            </li>
                                         </ul>
                                     </div>
                                     <div class="btn-wrap mt--25">
@@ -955,8 +1002,8 @@
                                             <div class="post-img">
                                                 <a
                                                     href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}">
-                                                    <img title="{{ $item->title }}" src="{{ $item->image }}" alt="post" width="551"
-                                                        height="431">
+                                                    <img title="{{ $item->title }}" src="{{ $item->image }}"
+                                                        alt="post" width="551" height="431">
                                                 </a>
                                             </div>
                                             <div class="post-content">
@@ -980,7 +1027,7 @@
                                                 <h3 class="post-title" title="{{ $item->title }}">
                                                     <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}"
                                                         class="">
-                                                        {{ (Illuminate\Support\Str::words($item->title,8,'...')) }}
+                                                        {{ Illuminate\Support\Str::words($item->title, 8, '...') }}
                                                     </a>
                                                 </h3>
                                                 <span class="rt-meta">
@@ -1153,7 +1200,7 @@
                             </div>
                             <div class="post-content">
                                 <a style="background-color:#749f43"
-                                    href="{{ \Session::get('applocale') == 'en' ? (route('front.video.category_list_en', $item->Category->link)) : (route('front.video.category_list', $item->Category->link)) }}"
+                                    href="{{ \Session::get('applocale') == 'en' ? route('front.video.category_list_en', $item->Category->link) : route('front.video.category_list', $item->Category->link) }}"
                                     class="mission restricted_category_title">
                                     {{ $item->Category->title }} </a>
                                 <h3 class="post-title">
@@ -1285,15 +1332,13 @@
                             <div class="form-response"></div>
                         </div>
                         <br>
-                            <div class="center">
-                                <div class="g-recaptcha"
-                                    data-sitekey="{{ getCaptchaSiteKey() }}" 
-                                    data-callback="onSubmit">
-                                </div>
+                        <div class="center">
+                            <div class="g-recaptcha" data-sitekey="{{ getCaptchaSiteKey() }}" data-callback="onSubmit">
                             </div>
+                        </div>
                         <br>
                         <div>
-                            <input type="checkbox"  name="" id="check">
+                            <input type="checkbox" name="" id="check">
                             <label for="check">
                                 {{ __("message.Kişisel Verilerin İşlenmesi Aydınlatma Metni'ni okudum kabul ediyorum.") }}
                             </label>

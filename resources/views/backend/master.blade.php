@@ -764,6 +764,43 @@
                                     <!--end:Menu link-->
                                 </div>
 
+                                
+                                <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention">
+                                    <span class="menu-link">
+                                        <span class="menu-icon">
+                                            <i class="fa-solid fa-comments"></i>
+                                        </span>
+                                        <span class="menu-title">Yorumlar</span>
+                                        <span class="menu-arrow"></span>
+                                    </span>
+                                    <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown px-2 py-4 w-200px mh-75 overflow-auto" style="">
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="{{ route('admin.comments.currentNews') }}">
+                                                <span class="menu-bullet">
+                                                    <span class="bullet bullet-dot"></span>
+                                                </span>
+                                                <span class="menu-title">Haber Yorumları</span>
+                                            </a>
+                                        </div>
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="{{ route('admin.contact.edit') }}">
+                                                <span class="menu-bullet">
+                                                    <span class="bullet bullet-dot"></span>
+                                                </span>
+                                                <span class="menu-title">Röportaj Yorumları</span>
+                                            </a>
+                                        </div>
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="{{ route('admin.kunye.list') }}">
+                                                <span class="menu-bullet">
+                                                    <span class="bullet bullet-dot"></span>
+                                                </span>
+                                                <span class="menu-title">Video Yorumları</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 @if(auth()->guard('admin')->user() != null)
                                  <!--begin:Menu item-->
                                  <div class="menu-item">

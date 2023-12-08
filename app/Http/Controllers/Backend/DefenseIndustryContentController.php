@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Exports\DefenseIndustryContentExport;
 use App\Http\Controllers\Controller;
+use App\Imports\DefenseIndustryContentImport;
 use App\Models\Company;
 use App\Models\Country;
 use App\Models\CountryList;
@@ -17,6 +19,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 use Illuminate\Validation\ValidationException;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DefenseIndustryContentController extends Controller
 {
@@ -450,5 +453,17 @@ class DefenseIndustryContentController extends Controller
         Alert::success('Görsel başarıyla silindi');
         return redirect()->route('admin.defenseIndustryContent.list');
 
+    }
+
+    public function ice_aktar(Request $request)
+    {
+        Excel::import(new DefenseIndustryContentImport(), $request->file('ice_aktar')->store('temp'));
+
+        Alert::success('Başarılı');
+        return back();
+    }
+
+    public function disa_aktar(){
+        return Excel::download(new DefenseIndustryContentExport, 'defenseIndustryContent.xlsx');
     }
 }

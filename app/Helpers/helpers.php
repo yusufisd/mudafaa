@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\AdsenseModel;
 use App\Models\CurrentNews;
 use App\Models\CurrentNewsCategory;
 use App\Models\DefenseIndustry;
@@ -9,6 +10,7 @@ use App\Models\EnDefenseIndustry;
 use App\Models\EnPage;
 use App\Models\LogModel;
 use App\Models\Page;
+use App\Models\Reklam;
 use App\Models\SocialMedia;
 use App\Models\UserModel;
 use Carbon\Carbon;
@@ -123,4 +125,26 @@ function most_popular_new(){
 
 function getCaptchaSiteKey(){
     return "6LfCwQgpAAAAAInvavlOQObCUTU_Blegu8we7BOP";
+}
+
+function is_adsense($reklam,$id){
+    if(Reklam::where('reklam_id',$reklam)->where('alan_id',$id)->first() != null){
+        return 1;
+    }else{
+        return 0;
+    }
+}
+
+function reklam($id){
+    if(Reklam::where('alan_id',$id)->first() != null){
+        $data = Reklam::where('alan_id',$id)->first();
+        $data2 = AdsenseModel::where('id',$data->reklam_id)->first();
+        if($data2 != null){
+            return $data2;
+        }else{
+            return 0;
+        }
+    }else{
+        return 0;
+    }
 }

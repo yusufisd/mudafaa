@@ -19,6 +19,31 @@
                         {{ __('message.yönetimi') }}</h1>
                     <!--end::Title-->
                 </div>
+                <div class="gap-5" style="display: flex" style="text-align: right!important">
+                    <div id="goster" class="col-md-8" style="display:none">
+                        <form action="{{ route('admin.defenseIndustryContent.ice_aktar') }}" method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <input type="file" class="form-control" name="ice_aktar" id="">
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="submit" class="btn-sm btn btn-primary" id="">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="gizle">
+                        <button class="btn-sm btn btn-primary" onclick="iceri_aktar()" type="button"> Aktar</button>
+                    </div>
+                    <div>
+                        <a href="{{ route('admin.defenseIndustryContent.disa_aktar') }}">
+                            <button style="position:initial;background-color:#1e1e3f" class="btn-sm btn btn-info"
+                                type="button"> Örnek Excel</button>
+                        </a>
+                    </div>
+                </div>
                 <!--end::Page title-->
             </div>
             <!--end::Toolbar container-->
@@ -127,7 +152,7 @@
                                                             {{ $item->Author->surname ?? '-' }}</p>
                                                     </td>
 
-                                                    <td> {{ substr($item->title, 0, 20) }} ...</td>
+                                                    <td> {{ Str::words($item->title, 10, '...') }} </td>
 
                                                     <td>
                                                         <p style="text-transform: capitalize">
@@ -149,9 +174,11 @@
 
                                                     <td class="text-center">
 
-                                                        <a href="{{route('admin.defenseIndustryContent.multipleImage',$item->id)}}">
+                                                        <a
+                                                            href="{{ route('admin.defenseIndustryContent.multipleImage', $item->id) }}">
                                                             <button type="button"
-                                                                class="btn btn-secondary btn-sm text-white"> Görseller ( {{$item->ImageCounter()}} )
+                                                                class="btn btn-secondary btn-sm text-white"> Görseller (
+                                                                {{ $item->ImageCounter() }} )
                                                             </button>
                                                         </a>
                                                         <a href="{{ route('admin.defenseIndustryContent.edit', $item->id) }}"
@@ -190,6 +217,11 @@
     <!--end::Content wrapper-->
 @endsection
 @section('script')
+    <script>
+        function iceri_aktar() {
+            $('#goster').toggle('fast');
+        }
+    </script>
     <script>
         function destroy(d) {
             Swal.fire({
