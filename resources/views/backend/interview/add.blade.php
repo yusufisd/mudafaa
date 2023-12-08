@@ -959,10 +959,7 @@
     <script>
         $(document).ready(function() {
             $(document).on('click', '.add_item_buton2', function(e) {
-                let this_id = $(this).prop('id');
-                if (this_id != "main_add_en") {
-                    $(this).remove();
-                }
+                w
                 let questioner = $("#questioner_en").val();
                 let answered = $("#answered_en").val();
                 console.log("ok");

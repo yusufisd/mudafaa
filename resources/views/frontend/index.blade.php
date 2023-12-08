@@ -125,20 +125,21 @@
 
 
     <div class="container" style="margin-top:3%">
+        @if(reklam(1) != 0 || reklam(2) != 0)
         <div class="row">
             <div class="col-md-6">
-                @if (reklam(1)->type == 1)
+                @if (reklam(1)->type ?? 0 == 1)
                     <img src="/{{ reklam(1)->image }}" alt="">
                 @else
-                    {!! reklam(1)->adsense_url !!}
+                    {!! reklam(1)->adsense_url ?? '' !!}
                 @endif
             </div>
 
             <div id="ikinci_reklam" class="col-md-6">
                 <img src="media/gallery/ad-banner_5.jpg" alt="">
             </div>
-
         </div>
+        @endif
     </div>
 
     <!-- end feature-section-style-1  -->
@@ -1016,7 +1017,7 @@
                                                     if (++$a == 3) {
                                                         break;
                                                     }
-                                                    
+
                                                     ?>
 
                                                     <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $Category->link) : route('front.currentNewsCategory.list', $Category->link) }}"
