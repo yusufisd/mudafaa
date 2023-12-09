@@ -111,7 +111,7 @@
 										</div>
 										<div class="col-md-4">
 											<input type="checkbox" value="3" name="reklam[]" id="3">&nbsp;&nbsp;
-											<label for="3">Anasayfa Üst Tekli (970x90)</label>
+											<label for="3">Anasayfa Üst Tekli (1320x90)</label>
 										</div>
 									</div><br>
 									<div class="row">
@@ -125,13 +125,13 @@
 										</div>
 										<div class="col-md-4">
 											<input type="checkbox" value="6" name="reklam[]" id="6">&nbsp;&nbsp;
-											<label for="6">Anasayfa Orta Tekli (970x90)</label>
+											<label for="6">Anasayfa Orta Tekli (1320x90)</label>
 										</div>
 									</div><br>
 									<div class="row">
 										<div class="col-md-4">
 											<input type="checkbox" value="7" name="reklam[]" id="7">&nbsp;&nbsp;
-											<label for="7">Anasayfa Alt Tekli (970x90)</label>
+											<label for="7">Anasayfa Alt Tekli (1320x90)</label>
 										</div>
 
 									</div><br>
@@ -190,11 +190,11 @@
 									<div class="row">
 										<div class="col-md-4">
 											<input type="checkbox" value="15" name="reklam[]" id="15">&nbsp;&nbsp;
-											<label for="15">Üst Kısım (970x90)</label>
+											<label for="15">Üst Kısım (1320x90)</label>
 										</div>
 										<div class="col-md-4">
 											<input type="checkbox" value="16" name="reklam[]" id="16">&nbsp;&nbsp;
-											<label for="16">Alt Kısım (970x90)</label>
+											<label for="16">Alt Kısım (1320x90)</label>
 										</div>
 									</div><br>
 								</div><br>
@@ -207,7 +207,7 @@
 									<div class="row">
 										<div class="col-md-4">
 											<input type="checkbox" value="17" name="reklam[]" id="17">&nbsp;&nbsp;
-											<label for="17">Üst Kısım (970x90)</label>
+											<label for="17">Üst Kısım (1320x90)</label>
 										</div>
 										<div class="col-md-4">
 											<input type="checkbox" name="reklam[]" id="175" value="175">&nbsp; &nbsp;
@@ -221,29 +221,29 @@
 									<div class="row">
 										<div class="col-md-4">
 											<input type="checkbox" value="19" name="reklam[]" id="19">&nbsp;&nbsp;
-											<label for="19">Ara Kısım 1 (970x90)</label>
+											<label for="19">Ara Kısım 1 (1320x90)</label>
 										</div>
 										<div class="col-md-4">
 											<input type="checkbox" value="20" name="reklam[]" id="20">&nbsp;&nbsp;
-											<label for="20">Ara Kısım 2 (970x90)</label>
+											<label for="20">Ara Kısım 2 (1320x90)</label>
 										</div>
 										<div class="col-md-4">
 											<input type="checkbox" value="21" name="reklam[]" id="21">&nbsp;&nbsp;
-											<label for="21">Ara Kısım 3 (970x90)</label>
+											<label for="21">Ara Kısım 3 (1320x90)</label>
 										</div>
 									</div><br>
 									<div class="row">
 										<div class="col-md-4">
 											<input type="checkbox" value="22" name="reklam[]" id="22">&nbsp;&nbsp;
-											<label for="22">Ara Kısım 4 (970x90)</label>
+											<label for="22">Ara Kısım 4 (1320x90)</label>
 										</div>
 										<div class="col-md-4">
 											<input type="checkbox" value="23" name="reklam[]" id="23">&nbsp;&nbsp;
-											<label for="23">Ara Kısım 5 (970x90)</label>
+											<label for="23">Ara Kısım 5 (1320x90)</label>
 										</div>
 										<div class="col-md-4">
 											<input type="checkbox" value="24" name="reklam[]" id="24">&nbsp;&nbsp;
-											<label for="24">Ara Kısım 6 (970x90)</label>
+											<label for="24">Ara Kısım 6 (1320x90)</label>
 										</div>
 									</div><br>
 
@@ -251,7 +251,7 @@
 									<div class="row">
 										<div class="col-md-4">
 											<input type="checkbox" value="25" name="reklam[]" id="25">&nbsp;&nbsp;
-											<label for="25">Orta Kısım (970x90)</label>
+											<label for="25">Orta Kısım (1320x90)</label>
 										</div>
 									</div><br>
 
@@ -346,11 +346,11 @@
 									<div class="row">
 										<div class="col-md-4">
 											<input type="checkbox" value="39" name="reklam[]" id="39">&nbsp;&nbsp;
-											<label for="39">Üst Kısım (970x90)</label>
+											<label for="39">Üst Kısım (1320x90)</label>
 										</div>
 										<div class="col-md-4">
 											<input type="checkbox" value="40" name="reklam[]" id="40">&nbsp;&nbsp;
-											<label for="40">Alt Kısım (970x90)</label>
+											<label for="40">Alt Kısım (1320x90)</label>
 										</div>
 									</div><br>
 
@@ -358,7 +358,7 @@
 									<div class="row">
 										<div class="col-md-4">
 											<input type="checkbox" value="41" name="reklam[]" id="41">&nbsp;&nbsp;
-											<label for="41">Alt Kısım (970x90)</label>
+											<label for="41">Alt Kısım (1320x90)</label>
 										</div>
 									</div><br>
 								</div><br>

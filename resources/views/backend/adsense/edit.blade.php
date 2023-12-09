@@ -279,7 +279,7 @@
                                                 <div class="col-md-4">
                                                     <input type="checkbox" {{ is_adsense(request()->id,3) == 1 ? 'checked' : '' }} value="3" name="reklam[]"
                                                         id="3">&nbsp;&nbsp;
-                                                    <label for="3">Anasayfa Üst Tekli (970x90)</label>
+                                                    <label for="3">Anasayfa Üst Tekli (1320x90)</label>
                                                 </div>
                                             </div><br>
                                             <div class="row">
@@ -296,14 +296,14 @@
                                                 <div class="col-md-4">
                                                     <input type="checkbox" {{ is_adsense(request()->id,6) == 1 ? 'checked' : '' }} value="6" name="reklam[]"
                                                         id="6">&nbsp;&nbsp;
-                                                    <label for="6">Anasayfa Orta Tekli (970x90)</label>
+                                                    <label for="6">Anasayfa Orta Tekli (1320x90)</label>
                                                 </div>
                                             </div><br>
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <input type="checkbox" {{ is_adsense(request()->id,7) == 1 ? 'checked' : '' }} value="7" name="reklam[]"
                                                         id="7">&nbsp;&nbsp;
-                                                    <label for="7">Anasayfa Alt Tekli (970x90)</label>
+                                                    <label for="7">Anasayfa Alt Tekli (1320x90)</label>
                                                 </div>
 
                                             </div><br>
@@ -376,12 +376,12 @@
                                                 <div class="col-md-4">
                                                     <input type="checkbox" {{ is_adsense(request()->id,15) == 1 ? 'checked' : '' }} value="15" name="reklam[]"
                                                         id="15">&nbsp;&nbsp;
-                                                    <label for="15">Üst Kısım (970x90)</label>
+                                                    <label for="15">Üst Kısım (1320x90)</label>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <input type="checkbox" {{ is_adsense(request()->id,16) == 1 ? 'checked' : '' }} value="16" name="reklam[]"
                                                         id="16">&nbsp;&nbsp;
-                                                    <label for="16">Alt Kısım (970x90)</label>
+                                                    <label for="16">Alt Kısım (1320x90)</label>
                                                 </div>
                                             </div><br>
                                         </div><br>
@@ -397,7 +397,7 @@
                                                 <div class="col-md-4">
                                                     <input type="checkbox" {{ is_adsense(request()->id,17) == 1 ? 'checked' : '' }} value="17" name="reklam[]"
                                                         id="17">&nbsp;&nbsp;
-                                                    <label for="17">Üst Kısım (970x90)</label>
+                                                    <label for="17">Üst Kısım (1320x90)</label>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <input type="checkbox" {{ is_adsense(request()->id,175) == 1 ? 'checked' : '' }} name="reklam[]" id="175" value="175">&nbsp; &nbsp;
@@ -413,34 +413,34 @@
                                                 <div class="col-md-4">
                                                     <input type="checkbox" {{ is_adsense(request()->id,19) == 1 ? 'checked' : '' }} value="19" name="reklam[]"
                                                         id="19">&nbsp;&nbsp;
-                                                    <label for="19">Ara Kısım 1 (970x90)</label>
+                                                    <label for="19">Ara Kısım 1 (1320x90)</label>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <input type="checkbox" {{ is_adsense(request()->id,20) == 1 ? 'checked' : '' }} value="20" name="reklam[]"
                                                         id="20">&nbsp;&nbsp;
-                                                    <label for="20">Ara Kısım 2 (970x90)</label>
+                                                    <label for="20">Ara Kısım 2 (1320x90)</label>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <input type="checkbox" {{ is_adsense(request()->id,21) == 1 ? 'checked' : '' }} value="21" name="reklam[]"
                                                         id="21">&nbsp;&nbsp;
-                                                    <label for="21">Ara Kısım 3 (970x90)</label>
+                                                    <label for="21">Ara Kısım 3 (1320x90)</label>
                                                 </div>
                                             </div><br>
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <input type="checkbox" {{ is_adsense(request()->id,22) == 1 ? 'checked' : '' }} value="22" name="reklam[]"
                                                         id="22">&nbsp;&nbsp;
-                                                    <label for="22">Ara Kısım 4 (970x90)</label>
+                                                    <label for="22">Ara Kısım 4 (1320x90)</label>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <input type="checkbox" {{ is_adsense(request()->id,23) == 1 ? 'checked' : '' }} value="23" name="reklam[]"
                                                         id="23">&nbsp;&nbsp;
-                                                    <label for="23">Ara Kısım 5 (970x90)</label>
+                                                    <label for="23">Ara Kısım 5 (1320x90)</label>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <input type="checkbox" {{ is_adsense(request()->id,24) == 1 ? 'checked' : '' }} value="24" name="reklam[]"
                                                         id="24">&nbsp;&nbsp;
-                                                    <label for="24">Ara Kısım 6 (970x90)</label>
+                                                    <label for="24">Ara Kısım 6 (1320x90)</label>
                                                 </div>
                                             </div><br>
 
@@ -450,7 +450,7 @@
                                                 <div class="col-md-4">
                                                     <input type="checkbox" {{ is_adsense(request()->id,25) == 1 ? 'checked' : '' }} value="25" name="reklam[]"
                                                         id="25">&nbsp;&nbsp;
-                                                    <label for="25">Orta Kısım (970x90)</label>
+                                                    <label for="25">Orta Kısım (1320x90)</label>
                                                 </div>
                                             </div><br>
 
@@ -557,11 +557,11 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <input type="checkbox" {{ is_adsense(request()->id,39) == 1 ? 'checked' : '' }} value="39" name="reklam[]" id="39">&nbsp;&nbsp;
-                                                    <label for="39">Üst Kısım (970x90)</label>
+                                                    <label for="39">Üst Kısım (1320x90)</label>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <input type="checkbox" {{ is_adsense(request()->id,40) == 1 ? 'checked' : '' }} value="40" name="reklam[]" id="40">&nbsp;&nbsp;
-                                                    <label for="40">Alt Kısım (970x90)</label>
+                                                    <label for="40">Alt Kısım (1320x90)</label>
                                                 </div>
                                             </div><br>
 
@@ -569,7 +569,7 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <input type="checkbox" {{ is_adsense(request()->id,41) == 1 ? 'checked' : '' }} value="41" name="reklam[]" id="41">&nbsp;&nbsp;
-                                                    <label for="41">Alt Kısım (970x90)</label>
+                                                    <label for="41">Alt Kısım (1320x90)</label>
                                                 </div>
                                             </div><br>
                                         </div><br>
