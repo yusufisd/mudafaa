@@ -290,12 +290,13 @@
     </section>
     <!-- end main post section style 1 -->
 
+    @dd(reklam(3)->image)
     @if(reklam(3) != null)
     <div class="container" style="margin-top:3%">
         <div class="row">
             @if (reklam(3)->type ?? 0 == 1)
                 <a href="{{ reklam(3)->adsense_url }}" target="{{ reklam(3)->href_tab == 0 ? '_self'  : '_blank' }}">
-                    <img src="/{{ reklam(3)->image }}" alt="" width="970" height="90">
+                    <img src="/{{ reklam(3)->image }}" style="width: 100%">
                 </a>
 
             @else
