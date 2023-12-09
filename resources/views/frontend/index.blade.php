@@ -290,7 +290,6 @@
     </section>
     <!-- end main post section style 1 -->
 
-    @dd(reklam(3)->image)
     @if(reklam(3) != null)
     <div class="container" style="margin-top:3%">
         <div class="row">
