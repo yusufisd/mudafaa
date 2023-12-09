@@ -66,7 +66,30 @@
 
                             <div class="post-list-style-4">
 
-                                @foreach ($datas as $item)
+                                @foreach ($datas as $key => $item)
+                                    @if($key == 3 && reklam(8) != null)
+                                        <div class="ad-banner-img">
+                                            <a href="{{ reklam(8)->adsense_url }}">
+                                                @if (reklam(8)->type ?? 0 == 1)
+                                                    <img src="/{{ reklam(8)->image }}" alt="" width="728" height="91">
+                                                @else
+                                                    {!! reklam(8)->adsense_url ?? '' !!}
+                                                @endif
+                                            </a>
+                                        </div>
+                                    @endif
+
+                                    @if($key == 6 && reklam(9) != null)
+                                        <div class="ad-banner-img">
+                                            <a href="{{ reklam(9)->adsense_url }}">
+                                                @if (reklam(9)->type ?? 0 == 1)
+                                                    <img src="/{{ reklam(9)->image }}" alt="" width="728" height="91">
+                                                @else
+                                                    {!! reklam(9)->adsense_url ?? '' !!}
+                                                @endif
+                                            </a>
+                                        </div>
+                                    @endif
                                     <div class="post-item wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
                                         <div class="rt-post post-md style-9 grid-meta">
                                             <div class="post-content">
@@ -74,9 +97,9 @@
                                                 $no = 0;
                                                 ?>
                                                 @foreach ($item->Category() as $Category)
-                                                    
+
                                                 @if($no != 3)
-                                                <?php 
+                                                <?php
                                                 $no++;
                                                 ?>
                                                 <a href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNewsCategory.list_en', $Category->link)) : (route('front.currentNewsCategory.list', $Category->link)) }}"
@@ -157,10 +180,10 @@
 
                             </div>
 
-                           
-
+                            <!--
                             <div class="items-center" style="padding:15%">
                             </div>
+                            -->
 
                         </div>
                         <!-- end rt-left-sidebar-sapcer-5 -->
@@ -207,16 +230,20 @@
                             </div>
                             <!-- end slidebar wrap  -->
 
-
-
+                            @if(reklam(10) != null)
                             <div class="sidebar-wrap mb--40">
                                 <div class="ad-banner-img">
-                                    <a href="#">
-                                        <img src="/assets/frontend/media/gallery/ad-post_5.jpg" alt="ad-banner"
-                                            width="301" height="270">
+                                    <a href="{{ reklam(10)->adsense_url }}">
+                                        @if (reklam(10)->type ?? 0 == 1)
+                                            <img src="/{{ reklam(10)->image }}" alt="" width="250" height="250">
+                                        @else
+                                            {!! reklam(10)->adsense_url ?? '' !!}
+                                        @endif
+
                                     </a>
                                 </div>
                             </div>
+                            @endif
                             <!-- end slidebar wrap  -->
 
                             <div class="d-none d-md-block sidebar-wrap mb--40">
@@ -231,7 +258,7 @@
                                         <div class="col-6">
                                             <div class="rt-post-grid post-grid-md grid-meta">
                                                 <div class="post-content">
-                                                    
+
                                                     <a href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNewsCategory.list_en', $item->Category()[0]->link)) : (route('front.currentNewsCategory.list', $item->Category()[0]->link)) }}"
                                                         style="background-color: {{ $item->Category()[0]->color_code != null ? $item->Category()[0]->color_code : '' }}"
                                                         class="rt-cat-primary sidebar_restricted_category_title">
@@ -283,7 +310,7 @@
                                             </div>
                                             <div class="center" style="overflow:hidden; border-right:solid; border-color:#d3d3d3; border-radius:3px">
                                                 <div class="g-recaptcha"
-                                                    data-sitekey="{{ getCaptchaSiteKey() }}" 
+                                                    data-sitekey="{{ getCaptchaSiteKey() }}"
                                                     data-callback="onSubmit">
                                                 </div>
                                             </div>
@@ -325,7 +352,7 @@
                 <!-- end row  -->
             </div>
             <!-- end container -->
-            
+
         </section>
         <!-- end rt-sidebar-section-layout-2 -->
 

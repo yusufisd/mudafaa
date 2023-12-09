@@ -29,11 +29,11 @@
             <!--end::Toolbar container-->
         </div>
 
-		
+
 
         <div id="kt_app_content" class="app-content flex-column-fluid">
 
-			
+
             <!--begin::Content container-->
             <div id="kt_app_content_container" class="app-container container-fluid">
                 <!--begin::Row-->
@@ -46,7 +46,7 @@
 					@endforeach
 				@endif
                 <div class="row g-5 g-xl-8">
-					
+
                     <!--begin::Col-->
                     <div class="col-xl-12 mb-5 mb-xl-8">
                         <div class="card card-flush h-xl-100 mb-5 mb-xl-8">
@@ -95,7 +95,7 @@
                                     <!--end::Actions-->
                                 <!--end::Form-->
 
-								
+
 								<div class="header">
 									<h5>Anasayfa</h5>
 								</div>
@@ -133,7 +133,7 @@
 											<input type="checkbox" value="7" name="reklam[]" id="7">&nbsp;&nbsp;
 											<label for="7">Anasayfa Alt Tekli (970x90)</label>
 										</div>
-										
+
 									</div><br>
 								</div><br>
 
@@ -210,8 +210,8 @@
 											<label for="17">Üst Kısım (970x90)</label>
 										</div>
 										<div class="col-md-4">
-											<input type="checkbox" name="" id="2">&nbsp;&nbsp;
-											<label for="2">Üst Sol Yarım (468x60)</label>
+											<input type="checkbox" name="reklam[]" id="175" value="175">&nbsp; &nbsp;
+											<label for="175">Üst Sol Yarım (468x60)</label>
 										</div>
 										<div class="col-md-4">
 											<input type="checkbox" value="18" name="reklam[]" id="18">&nbsp;&nbsp;
@@ -380,7 +380,7 @@
         </div>
         <!--end::Content-->
     </div>
-    
+
 </div>
 <!--end:::Main-->
 @endsection
@@ -388,7 +388,7 @@
     <!--begin:: extra js-->
 		<script>
             $(document).ready(function() {
-				
+
 				var selectedOption;
 
 				$('select').on('change', function(e) {
@@ -398,7 +398,7 @@
                     $( "#card_action" ).html("");
 
 					selectedOption = $(this).val();
-				
+
 					if (selectedOption === 'google_ads') {
 						$( "#google_ads_content" ).append(
                             '<div class="row mb-6">'+
@@ -432,7 +432,7 @@
                                     '</div>'+
                                 '</div>'+
                             '</div>'+
-                          
+
 							'<div class="separator my-10"></div>'+
 							'<div class="row mb-6">'+
 							'<div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">'+
@@ -465,7 +465,7 @@
 						'</div>'
 
 						);
-					
+
                     }else {
                         $( "#sponsered_ads_content" ).append(
 							'<div class="row mb-6">'+
@@ -552,8 +552,8 @@
 						'</div>'
 
 						);
-					
-                        
+
+
                     }
 
                     $( "#card_action" ).append(
@@ -567,7 +567,7 @@
                             '</div>'+
                         '</div>'
                     );
-                    
+
 					if(document.getElementById("add_ad_google_start_calendar")) {
 						new tempusDominus.TempusDominus(document.getElementById("add_ad_google_start_calendar"), {
 							display: {
@@ -656,8 +656,8 @@
 						});
 
 					}
-					
-					
+
+
 				});
 
 			});

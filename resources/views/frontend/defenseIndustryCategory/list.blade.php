@@ -223,14 +223,19 @@
                             </div>
                             <!-- end slidebar wrap  -->
 
+                            @if(reklam(14) != null)
                             <div class="sidebar-wrap mb--40">
                                 <div class="ad-banner-img">
-                                    <a href="#">
-                                        <img src="/assets/frontend/media/gallery/sports-ad_3.jpg" alt="ad-banner"
-                                            width="310" height="425">
+                                    <a href="{{ reklam(14)->adsense_url }}">
+                                        @if (reklam(14)->type ?? 0 == 1)
+                                            <img src="/{{ reklam(14)->image }}" alt="" width="310" height="425">
+                                        @else
+                                            {!! reklam(14)->adsense_url ?? '' !!}
+                                        @endif
                                     </a>
                                 </div>
                             </div>
+                            @endif
                             <!-- end slidebar wrap  -->
 
                             <div class="d-none d-md-block sidebar-wrap mb--40">

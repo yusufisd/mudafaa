@@ -179,12 +179,17 @@
                                 {!! printDesc($data->description) !!}
                                 <br><br>
                                 <!-- ad banner -->
+                                @if(reklam(15) != null)
                                 <div class="ad-banner-img mt--45 mb--40">
-                                    <a href="#">
-                                        <img src="/assets/frontend/media/gallery/ad-banner_5.jpg" alt="ad-banner"
-                                            width="960" height="150">
+                                    <a href="{{ reklam(15)->adsense_url }}">
+                                        @if (reklam(15)->type ?? 0 == 1)
+                                            <img src="/{{ reklam(15)->image }}" alt="" width="970" height="90">
+                                        @else
+                                            {!! reklam(15)->adsense_url ?? '' !!}
+                                        @endif
                                     </a>
                                 </div>
+                                @endif
 
                                 <div class="wrap mb--30">
                                     <div class="featured-tab-title">
@@ -387,6 +392,7 @@
 
                 </div>
                 <!-- end row  -->
+
             </div>
             <!-- end container -->
         </section>
@@ -394,8 +400,18 @@
 
         <!-- editor-choice-section-style-1 -->
         <section class="editor-choice-section-style-1 section-padding overflow-hidden">
-
             <div class="container">
+                @if(reklam(16) != null)
+                    <div class="ad-banner-img mt--45 mb--40">
+                        <a href="{{ reklam(16)->adsense_url }}">
+                            @if (reklam(16)->type ?? 0 == 1)
+                                <img src="/{{ reklam(16)->image }}" alt="" width="970" height="90">
+                            @else
+                                {!! reklam(16)->adsense_url ?? '' !!}
+                            @endif
+                        </a>
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-12">
                         <div class="titile-wrapper mb--30">

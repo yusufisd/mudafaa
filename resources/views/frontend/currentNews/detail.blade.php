@@ -231,13 +231,17 @@
                                 <div class="post-body" id="contentToConvert" style="text-align: justify;">
                                     {!! printDesc($data->description) !!}
                                     <br><br>
+                                    @if(reklam(11) != null)
                                     <div class="ad-banner-img mt--45 mb--40">
-                                        <a href="#">
-                                            <img src="/assets/frontend/media/gallery/ad-banner_4.jpg" alt="ad-banner"
-                                                width="960" height="150">
+                                        <a href="{{ reklam(11)->adsense_url }}">
+                                            @if (reklam(11)->type ?? 0 == 1)
+                                                <img src="/{{ reklam(11)->image }}" alt="" width="728" height="91">
+                                            @else
+                                                {!! reklam(11)->adsense_url ?? '' !!}
+                                            @endif
                                         </a>
                                     </div>
-
+                                    @endif
                                 </div>
                                 <!-- end post body -->
 
@@ -665,14 +669,19 @@
                             </div>
                             <!-- end sidebar wrap -->
 
+                            @if(reklam(12) != null)
                             <div class="sidebar-wrap mb--40">
                                 <div class="ad-banner-img">
-                                    <a href="#">
-                                        <img src="/assets/frontend/media/gallery/sports-ad_3.jpg" alt="ad-banner"
-                                            width="310" height="425">
+                                    <a href="{{ reklam(12)->adsense_url }}">
+                                        @if (reklam(12)->type ?? 0 == 1)
+                                            <img src="/{{ reklam(12)->image }}" alt="" width="300" height="250">
+                                        @else
+                                            {!! reklam(12)->adsense_url ?? '' !!}
+                                        @endif
                                     </a>
                                 </div>
                             </div>
+                            @endif
                             <!-- end slidebar wrap  -->
 
                             <div class="d-none d-md-block sidebar-wrap mb--40">
@@ -735,7 +744,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="post-content ms-4">
-                                                    
+
                                                     <h4 class="post-title" style="font-size:15px" title="{{ $item->title }}">
                                                         <a href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNews.detail_en', $item->link)) : (route('front.currentNews.detail', $item->link)) }}"
                                                             class="">
@@ -773,7 +782,7 @@
                                             </div>
                                             <div class="center" style="overflow:hidden; border-right:solid; border-color:#d3d3d3; border-radius:3px">
                                                 <div class="g-recaptcha"
-                                                    data-sitekey="{{ getCaptchaSiteKey() }}" 
+                                                    data-sitekey="{{ getCaptchaSiteKey() }}"
                                                     data-callback="onSubmit">
                                                 </div>
                                             </div>

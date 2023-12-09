@@ -198,8 +198,19 @@
 
         <!-- editor-choice-section-style-1 -->
         <section class="editor-choice-section-style-1 mt-sm-3 mt-md-5 rt-sidebar-section-layout-2 overflow-hidden">
-
+            @if(reklam(41) != null)
+                <div class="ad-banner-img mt--45 mb--40">
+                    <a href="{{ reklam(41)->adsense_url }}">
+                        @if (reklam(41)->type ?? 0 == 1)
+                            <img src="/{{ reklam(41)->image }}" alt="" width="970" height="90">
+                        @else
+                            {!! reklam(41)->adsense_url ?? '' !!}
+                        @endif
+                    </a>
+                </div>
+            @endif
             <div class="container">
+
                 <div class="row">
                     <div class="col-12">
                         <div class="titile-wrapper mb--30">

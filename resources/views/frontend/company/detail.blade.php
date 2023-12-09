@@ -258,10 +258,20 @@
 
                             <div class="sidebar-wrap mb--40">
                                 <div class="ad-banner-img">
-                                    <a href="#">
-                                        <img src="/assets/frontend/media/gallery/sports-ad_3.jpg" alt="ad-banner"
-                                            width="310" height="425">
-                                    </a>
+                                    @if(reklam(37) != null)
+                                        <div class="sidebar-wrap mb--40">
+                                            <div class="ad-banner-img">
+                                                <a href="{{ reklam(37)->adsense_url }}">
+                                                    @if (reklam(37)->type ?? 0 == 1)
+                                                        <img src="/{{ reklam(37)->image }}" alt="" width="310" height="425">
+                                                    @else
+                                                        {!! reklam(37)->adsense_url ?? '' !!}
+                                                    @endif
+
+                                                </a>
+                                            </div>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                             <!-- end slidebar wrap  -->

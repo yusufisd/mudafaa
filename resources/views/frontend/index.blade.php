@@ -125,18 +125,26 @@
 
 
     <div class="container" style="margin-top:3%">
-        @if(reklam(1) != 0 || reklam(2) != 0)
+        @if(reklam(1) != null || reklam(2) != null)
         <div class="row">
             <div class="col-md-6">
                 @if (reklam(1)->type ?? 0 == 1)
-                    <img src="/{{ reklam(1)->image }}" alt="">
+                    <a href="{{ reklam(1)->adsense_url }}" target="{{ reklam(1)->href_tab == 0 ? '_self'  : '_blank' }}">
+                        <img src="/{{ reklam(1)->image }}" alt="">
+                    </a>
                 @else
                     {!! reklam(1)->adsense_url ?? '' !!}
                 @endif
             </div>
 
             <div id="ikinci_reklam" class="col-md-6">
-                <img src="media/gallery/ad-banner_5.jpg" alt="">
+                @if (reklam(2)->type ?? 0 == 1)
+                    <a href="{{ reklam(2)->adsense_url }}" target="{{ reklam(2)->href_tab == 0 ? '_self'  : '_blank' }}">
+                        <img src="/{{ reklam(2)->image }}" alt="">
+                    </a>
+                @else
+                    {!! reklam(2)->adsense_url ?? '' !!}
+                @endif
             </div>
         </div>
         @endif
@@ -282,11 +290,20 @@
     </section>
     <!-- end main post section style 1 -->
 
+    @if(reklam(3) != null)
     <div class="container" style="margin-top:3%">
         <div class="row">
-            <img src="media/gallery/ad-banner_5.jpg" alt="">
+            @if (reklam(3)->type ?? 0 == 1)
+                <a href="{{ reklam(3)->adsense_url }}" target="{{ reklam(3)->href_tab == 0 ? '_self'  : '_blank' }}">
+                    <img src="/{{ reklam(3)->image }}" alt="" width="970" height="90">
+                </a>
+
+            @else
+                {!! reklam(3)->adsense_url ?? '' !!}
+            @endif
         </div>
     </div>
+    @endif
 
     <!-- start what's new section -->
     <section class="whats-new-style-1 section-padding">
@@ -895,17 +912,30 @@
     </section>
     <!-- end travel-main-section-style-3 -->
 
+    @if(reklam(4) != null || reklam(5) != null)
     <div class="container" style="margin-top:3%">
         <div class="row">
             <div class="col-md-6">
-                <img src="media/gallery/ad-banner_5.jpg" alt="">
+                @if (reklam(4)->type ?? 0 == 1)
+                    <a href="{{ reklam(4)->adsense_url }}" target="{{ reklam(4)->href_tab == 0 ? '_self'  : '_blank' }}">
+                        <img src="/{{ reklam(4)->image }}" alt="">
+                    </a>
+                @else
+                    {!! reklam(4)->adsense_url ?? '' !!}
+                @endif
             </div>
             <div id="ikinci_reklam" class="col-md-6">
-                <img src="media/gallery/ad-banner_5.jpg" alt="">
+                @if (reklam(5)->type ?? 0 == 1)
+                    <a href="{{ reklam(5)->adsense_url }}" target="{{ reklam(5)->href_tab == 0 ? '_self'  : '_blank' }}">
+                        <img src="/{{ reklam(5)->image }}" alt="">
+                    </a>
+                @else
+                    {!! reklam(5)->adsense_url ?? '' !!}
+                @endif
             </div>
         </div>
     </div>
-
+    @endif
     <!-- start popular post  -->
     <section class="section-padding">
         <div class="container">
@@ -1072,14 +1102,14 @@
                             @if ($anket)
                                 <div class="rt-post-grid">
                                     <div class="post-img">
-                                        <a href="single-post1.html" class="img-link">
+                                        <a class="img-link" role="button">
                                             <img src="/{{ $anket->image != null ? $anket->image : 'media/gallery/travel-md_8.jpg' }}"
                                                 alt="post" width="492" height="340">
                                         </a>
                                     </div>
                                     <div class="post-content">
                                         <h3 class="post-title">
-                                            <a href="single-post1.html">
+                                            <a role="button">
                                                 {{ $anket->question }}
                                             </a>
                                         </h3>
@@ -1127,14 +1157,18 @@
     <!-- start popular post  -->
 
     <!-- start rt ad banner -->
+    @if(reklam(6))
     <div class="rt-ad-banner rt-ad-banner-style-1 section-padding">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="ad-banner-img">
-                        <a href="#">
-                            <img src="assets/frontend/media/gallery/ad-banner_1.jpg" alt="ad-banner" width="1400"
-                                height="181">
+                        <a href="{{ reklam(6)->adsense_url }}" target="{{ reklam(6)->href_tab == 0 ? '_self' : '_blank' }}">
+                            @if (reklam(6)->type ?? 0 == 1)
+                                <img src="/{{ reklam(6)->image }}" alt="" width="970" height="90">
+                            @else
+                                {!! reklam(6)->adsense_url ?? '' !!}
+                            @endif
                         </a>
                     </div>
                 </div>
@@ -1145,6 +1179,7 @@
         <!-- end container -->
     </div>
     <!-- end rt ad banner -->
+    @endif
 
     <!-- start top-games-section-style-1 -->
     <section class="top-video-section-style-2 section-padding motion-effects-wrap">
@@ -1249,8 +1284,7 @@
                         </h2>
 
                         <div>
-                            <h6><a
-                                    href="{{ \Session::get('applocale') == 'en' ? route('front.interview.list_en') : route('front.interview.list') }}">
+                            <h6><a href="{{ \Session::get('applocale') == 'en' ? route('front.interview.list_en') : route('front.interview.list') }}">
                                     {{ __('message.tümünü gör') }} </a></h6>
                         </div>
                     </div>
@@ -1304,6 +1338,29 @@
     </section>
     <!-- end travel-main-section-style-2 -->
 
+    @if(reklam(7))
+        <div class="rt-ad-banner rt-ad-banner-style-1 section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="ad-banner-img">
+                            <a href="{{ reklam(7)->adsense_url }}" target="{{ reklam(7)->href_tab == 0 ? '_self' : '_blank' }}">
+                                @if (reklam(7)->type ?? 0 == 1)
+                                    <img src="/{{ reklam(7)->image }}" alt="" width="970" height="90">
+                                @else
+                                    {!! reklam(7)->adsense_url ?? '' !!}
+                                @endif
+                            </a>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- end rt ad banner -->
+    @endif
     <!-- start subscribe section -->
     <div class="section subscribe-section-style-1 section-padding"
         style="background-image: url('media/elements/element_9.png');">

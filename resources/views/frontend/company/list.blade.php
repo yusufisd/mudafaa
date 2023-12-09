@@ -53,10 +53,20 @@
                         <div class="rt-left-sidebar-sapcer-5">
 
                             <div class="ad-banner-img wow fadeInUp mb--40" data-wow-delay="100ms" data-wow-duration="800ms">
-                                <a href="#">
-                                    <img src="/assets/frontend/media/gallery/ad-banner_5.jpg" alt="ad-banner" width="960"
-                                        height="150">
-                                </a>
+                                @if(reklam(34) != null)
+                                    <div class="sidebar-wrap mb--40">
+                                        <div class="ad-banner-img">
+                                            <a href="{{ reklam(34)->adsense_url }}">
+                                                @if (reklam(10)->type ?? 0 == 1)
+                                                    <img src="/{{ reklam(34)->image }}" alt="" width="720" height="100">
+                                                @else
+                                                    {!! reklam(34)->adsense_url ?? '' !!}
+                                                @endif
+
+                                            </a>
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
 
                             <div class="row gutter-24">
@@ -73,7 +83,7 @@
                                                         <img style="width:170px; height:170px; opacity:0.9" src="/{{ $item->image }}"
                                                             alt="{{ $item->title }}">
                                                     </div>
-                                                    
+
                                                 </a>
                                             </div>
                                         </div>
@@ -87,11 +97,21 @@
                             <!-- end inner row -->
 
                             <div class="ad-banner-img wow fadeInUp mb--40 mt--40" data-wow-delay="100ms"
-                                data-wow-duration="800ms">
-                                <a href="#">
-                                    <img src="/assets/frontend/media/gallery/ad-banner_5.jpg" alt="ad-banner" width="960"
-                                        height="150">
-                                </a>
+                                 data-wow-duration="800ms">
+                                @if(reklam(35) != null)
+                                    <div class="sidebar-wrap mb--40">
+                                        <div class="ad-banner-img">
+                                            <a href="{{ reklam(35)->adsense_url }}">
+                                                @if (reklam(35)->type ?? 0 == 1)
+                                                    <img src="/{{ reklam(35)->image }}" alt="" width="728" height="100">
+                                                @else
+                                                    {!! reklam(35)->adsense_url ?? '' !!}
+                                                @endif
+
+                                            </a>
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                             <!-- end rt-pagination-area -->
 
@@ -128,17 +148,24 @@
                                 </ul>
                             </div>
                             <!-- end slidebar wrap  -->
-
                             <div class="sidebar-wrap mb--40">
                                 <div class="ad-banner-img">
-                                    <a href="#">
-                                        <img src="/assets/frontend/media/gallery/sports-ad_3.jpg" alt="ad-banner"
-                                            width="310" height="425">
-                                    </a>
+                                    @if(reklam(36) != null)
+                                        <div class="sidebar-wrap mb--40">
+                                            <div class="ad-banner-img">
+                                                <a href="{{ reklam(36)->adsense_url }}">
+                                                    @if (reklam(36)->type ?? 0 == 1)
+                                                        <img src="/{{ reklam(36)->image }}" alt="" width="300" height="600">
+                                                    @else
+                                                        {!! reklam(36)->adsense_url ?? '' !!}
+                                                    @endif
+
+                                                </a>
+                                            </div>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
-                            <!-- end slidebar wrap  -->
-
                         </div>
                         <!-- end rt-sidebar -->
                     </div>

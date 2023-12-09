@@ -312,10 +312,17 @@
                             </div>
 
                             <div class="ad-banner-img mb--40">
-                                <a href="#">
-                                    <img src="/assets/frontend/media/gallery/ad-banner_5.jpg" alt="ad-banner"
-                                        width="960" height="150">
-                                </a>
+                                @if(reklam(25) != null)
+                                    <div class="ad-banner-img mt--45 mb--40">
+                                        <a href="{{ reklam(25)->adsense_url }}">
+                                            @if (reklam(25)->type ?? 0 == 1)
+                                                <img src="/{{ reklam(25)->image }}" alt="" width="970" height="90">
+                                            @else
+                                                {!! reklam(25)->adsense_url ?? '' !!}
+                                            @endif
+                                        </a>
+                                    </div>
+                                @endif
                             </div>
 
 

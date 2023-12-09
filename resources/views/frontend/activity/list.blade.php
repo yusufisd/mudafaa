@@ -39,6 +39,17 @@
         <!-- Start rt-sidebar-section-layout-2 -->
         <div class="rt-sidebar-section-layout-2">
             <div class="container">
+                @if(reklam(17) != null)
+                    <div class="ad-banner-img mt--45 mb--40">
+                        <a href="{{ reklam(17)->adsense_url }}">
+                            @if (reklam(17)->type ?? 0 == 1)
+                                <img src="/{{ reklam(17)->image }}" alt="" width="970" height="90">
+                            @else
+                                {!! reklam(17)->adsense_url ?? '' !!}
+                            @endif
+                        </a>
+                    </div>
+                @endif
                 <div class="row mb--30">
                     <div class="col mx-auto">
                         <div class="activity-filter-box-style-1 mb--30">
@@ -132,12 +143,34 @@
                     </div>
                 </div>
 
-                <div class="ad-banner-img mb--40">
-                    <a href="#">
-                        <img src="/assets/frontend/media/gallery/ad-banner_5.jpg" alt="ad-banner" width="960"
-                            height="150">
-                    </a>
-                </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            @if(reklam(175) != null)
+                                <div class="ad-banner-img mt--45 mb--40">
+                                    <a href="{{ reklam(175)->adsense_url }}">
+                                        @if (reklam(175)->type ?? 0 == 1)
+                                            <img src="/{{ reklam(175)->image }}" alt="">
+                                        @else
+                                            {!! reklam(175)->adsense_url ?? '' !!}
+                                        @endif
+                                    </a>
+                                </div>
+                            @endif
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            @if(reklam(18) != null)
+                                <div class="ad-banner-img mt--45 mb--40">
+                                    <a href="{{ reklam(18)->adsense_url }}">
+                                        @if (reklam(18)->type ?? 0 == 1)
+                                            <img src="/{{ reklam(18)->image }}" alt="">
+                                        @else
+                                            {!! reklam(18)->adsense_url ?? '' !!}
+                                        @endif
+                                    </a>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
 
                 <div class="row mb--50">
                     <!-- start related-post-box -->
@@ -227,7 +260,18 @@
                     <!-- end related-post-box -->
                 </div>
 
-                @foreach ($activity_category as $data)
+                @foreach ($activity_category as $key => $data)
+                    @if(reklam($key + 19) != null)
+                        <div class="ad-banner-img mt--45 mb--40">
+                            <a href="{{ reklam($key + 19)->adsense_url }}">
+                                @if (reklam($key + 19)->type ?? 0 == 1)
+                                    <img src="/{{ reklam($key + 19)->image }}" alt="" width="970" height="90">
+                                @else
+                                    {!! reklam($key + 19)->adsense_url ?? '' !!}
+                                @endif
+                            </a>
+                        </div>
+                    @endif
                     <div class="row mb--50">
                         <!-- start related-post-box -->
                         <div class="related-post-box">
@@ -316,12 +360,7 @@
                 @endforeach
 
 
-                <div class="ad-banner-img mb--40">
-                    <a href="#">
-                        <img src="/assets/frontend/media/gallery/ad-banner_5.jpg" alt="ad-banner" width="960"
-                            height="150">
-                    </a>
-                </div>
+
 
 
             </div>

@@ -53,7 +53,7 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            {{ __('message.röportajlar') }} 
+                            {{ __('message.röportajlar') }}
                         </li>
                     </ol>
                 </nav>
@@ -156,10 +156,20 @@
                             <!-- end wrap -->
 
                             <div class="ad-banner-img mt--40 mb--40">
-                                <a href="#">
-                                    <img src="/assets/frontend/media/gallery/ad-banner_5.jpg" alt="ad-banner" width="960"
-                                        height="150">
-                                </a>
+                                @if(reklam(29) != null)
+                                    <div class="sidebar-wrap mb--40">
+                                        <div class="ad-banner-img">
+                                            <a href="{{ reklam(29)->adsense_url }}">
+                                                @if (reklam(29)->type ?? 0 == 1)
+                                                    <img src="/{{ reklam(29)->image }}" alt="" width="960" height="150">
+                                                @else
+                                                    {!! reklam(29)->adsense_url ?? '' !!}
+                                                @endif
+
+                                            </a>
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
 
 
@@ -228,10 +238,19 @@
 
                             <div class="sidebar-wrap mb--40">
                                 <div class="ad-banner-img">
-                                    <a href="#">
-                                        <img src="/assets/frontend/media/gallery/ad-post_5.jpg" alt="ad-banner"
-                                            width="315" height="270">
-                                    </a>
+                                    @if(reklam(30) != null)
+                                        <div class="sidebar-wrap mb--40">
+                                            <div class="ad-banner-img">
+                                                <a href="{{ reklam(30)->adsense_url }}">
+                                                    @if (reklam(30)->type ?? 0 == 1)
+                                                        <img src="/{{ reklam(30)->image }}" alt="" width="315" height="270">
+                                                    @else
+                                                        {!! reklam(30)->adsense_url ?? '' !!}
+                                                    @endif
+                                                </a>
+                                            </div>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                             <!-- end slidebar wrap  -->

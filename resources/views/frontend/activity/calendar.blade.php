@@ -75,11 +75,37 @@
                                        href="javascript:void(0);">Tümü</a>
                                 </li>
                         </ul>
+                        @if(reklam(26) != null)
+                            <div class="ad-banner-img mt--45 mb--40">
+                                <a href="{{ reklam(26)->adsense_url }}">
+                                    @if (reklam(26)->type ?? 0 == 1)
+                                        <img src="/{{ reklam(26)->image }}" alt="" width="300" height="600">
+                                    @else
+                                        {!! reklam(26)->adsense_url ?? '' !!}
+                                    @endif
+                                </a>
+                            </div>
+                        @endif
                     </div>
                     <div class="col-md-9">
                         <div id='calendar'></div>
                     </div>
-
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12 col-sm-12 col-lg-3 mb-5"></div>
+                    <div class="col-md-9">
+                        @if(reklam(27) != null)
+                            <div class="ad-banner-img">
+                                <a href="{{ reklam(27)->adsense_url }}">
+                                    @if (reklam(27)->type ?? 0 == 1)
+                                        <img src="/{{ reklam(27)->image }}" alt="" width="468" height="60">
+                                    @else
+                                        {!! reklam(27)->adsense_url ?? '' !!}
+                                    @endif
+                                </a>
+                            </div>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>

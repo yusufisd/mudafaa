@@ -39,7 +39,7 @@
                 @endforeach
             @endif
 
-            
+
             <div id="kt_app_content" class="app-content flex-column-fluid">
                 <!--begin::Content container-->
                 <div id="kt_app_content_container" class="app-container container-fluid">
@@ -400,8 +400,8 @@
                                                     <label for="17">Üst Kısım (970x90)</label>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <input type="checkbox" name="" id="2">&nbsp;&nbsp;
-                                                    <label for="2">Üst Sol Yarım (468x60)</label>
+                                                    <input type="checkbox" {{ is_adsense(request()->id,175) == 1 ? 'checked' : '' }} name="reklam[]" id="175" value="175">&nbsp; &nbsp;
+                                                    <label for="175">Üst Sol Yarım (468x60)</label>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <input type="checkbox" {{ is_adsense(request()->id,18) == 1 ? 'checked' : '' }} value="18" name="reklam[]"
@@ -535,7 +535,7 @@
                                                     <label for="36">Sağ Kısım (300x600)</label>
                                                 </div>
                                             </div><br>
-        
+
                                             <p><b> İçerik Detay Sayfası</b> </p><hr>
                                             <div class="row">
                                                 <div class="col-md-4">
@@ -548,7 +548,7 @@
                                                 </div>
                                             </div><br>
                                         </div><br>
-        
+
                                         <div class="header">
                                             <h5>Sözlük</h5>
                                         </div>
@@ -564,7 +564,7 @@
                                                     <label for="40">Alt Kısım (970x90)</label>
                                                 </div>
                                             </div><br>
-        
+
                                             <p><b> İçerik Detay Sayfası</b> </p><hr>
                                             <div class="row">
                                                 <div class="col-md-4">

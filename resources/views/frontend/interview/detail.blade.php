@@ -95,7 +95,6 @@
                                 <a href="" class="img-link">
                                     <img src="/{{ $data->image }}" alt="post-ex_7" width="1320" height="620">
                                 </a>
-                                @dd($data->youtube)
                                 @if ($data->youtube != null)
                                     <a href="{{ $data->youtube }}" class="play-btn play-btn-white_xl rt-play-over md-right">
                                         <i class="fas fa-play"></i>
@@ -206,10 +205,19 @@
 
                                     <!-- ad banner -->
                                     <div class="ad-banner-img mt--45 mb--40">
-                                        <a href="#">
-                                            <img src="/assets/frontend/media/gallery/ad-banner_4.jpg" alt="ad-banner"
-                                                width="960" height="150">
-                                        </a>
+                                        @if(reklam(31) != null)
+                                            <div class="sidebar-wrap mb--40">
+                                                <div class="ad-banner-img">
+                                                    <a href="{{ reklam(31)->adsense_url }}">
+                                                        @if (reklam(31)->type ?? 0 == 1)
+                                                            <img src="/{{ reklam(31)->image }}" alt="" width="960" height="150">
+                                                        @else
+                                                            {!! reklam(31)->adsense_url ?? '' !!}
+                                                        @endif
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        @endif
                                     </div>
 
                                 </div>
@@ -436,7 +444,7 @@
                                                         <input required class="form-check-input" type="checkbox" value=""
                                                             id="comment-form-check1">
                                                         <label class="form-check-label" for="comment-form-check1">
-                                                            {{ __('message.Kişisel Verilerin Korunması Hakkında Aydınlatma Metnini okudum, onay veriyorum.') }}                                                                
+                                                            {{ __('message.Kişisel Verilerin Korunması Hakkında Aydınlatma Metnini okudum, onay veriyorum.') }}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -583,10 +591,20 @@
 
                             <div class="sidebar-wrap mb--40">
                                 <div class="ad-banner-img">
-                                    <a href="#">
-                                        <img src="/assets/frontend/media/gallery/sports-ad_3.jpg" alt="ad-banner"
-                                            width="310" height="425">
-                                    </a>
+                                    @if(reklam(33) != null)
+                                        <div class="sidebar-wrap mb--40">
+                                            <div class="ad-banner-img">
+                                                <a href="{{ reklam(33)->adsense_url }}">
+                                                    @if (reklam(33)->type ?? 0 == 1)
+                                                        <img src="/{{ reklam(33)->image }}" alt="" width="310" height="425">
+                                                    @else
+                                                        {!! reklam(33)->adsense_url ?? '' !!}
+                                                    @endif
+
+                                                </a>
+                                            </div>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                             <!-- end slidebar wrap  -->
