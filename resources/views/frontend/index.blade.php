@@ -295,7 +295,7 @@
         <div class="row">
             @if (reklam(3)->type ?? 0 == 1)
                 <a href="{{ reklam(3)->adsense_url }}" target="{{ reklam(3)->href_tab == 0 ? '_self'  : '_blank' }}">
-                    <img src="/{{ reklam(3)->image }}" style="width: 100%">
+                    <img src="/{{ reklam(3)->image }}" style="width: 100%; height:90px!important">
                 </a>
 
             @else
