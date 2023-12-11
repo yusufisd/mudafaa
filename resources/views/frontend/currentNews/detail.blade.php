@@ -235,7 +235,7 @@
                                     <div class="ad-banner-img mt--45 mb--40">
                                         <a href="{{ reklam(11)->adsense_url }}">
                                             @if (reklam(11)->type ?? 0 == 1)
-                                                <img src="/{{ reklam(11)->image }}" alt="" width="728" height="91">
+                                                <img src="/{{ reklam(11)->image }}" alt="" width="1320" style="height: 90px">
                                             @else
                                                 {!! reklam(11)->adsense_url ?? '' !!}
                                             @endif
@@ -674,7 +674,7 @@
                                 <div class="ad-banner-img">
                                     <a href="{{ reklam(12)->adsense_url }}">
                                         @if (reklam(12)->type ?? 0 == 1)
-                                            <img src="/{{ reklam(12)->image }}" alt="" width="300" height="250">
+                                            <img src="/{{ reklam(12)->image }}" alt="" width="300" style="250">
                                         @else
                                             {!! reklam(12)->adsense_url ?? '' !!}
                                         @endif

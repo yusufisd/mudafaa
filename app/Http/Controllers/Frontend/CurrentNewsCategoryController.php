@@ -25,9 +25,9 @@ class CurrentNewsCategoryController extends Controller
             if(!$name)  return redirect('/');
 
             if(isset($request->search)){
-                $datas = CurrentNews::where('status', 1)->where('title','like', '%'. $request->search . '%')->whereJsonContains('category_id', $name->id)->paginate(10);
+                $datas = CurrentNews::where('status', 1)->where('title','like', '%'. $request->search . '%')->whereJsonContains('category_id', $name->id)->paginate(9);
             }else{
-                $datas = CurrentNews::where('status', 1)->whereJsonContains('category_id', $name->id)->orderBy('live_time','desc')->paginate(10);
+                $datas = CurrentNews::where('status', 1)->whereJsonContains('category_id', $name->id)->orderBy('live_time','desc')->paginate(9);
             }
 
         
@@ -40,9 +40,9 @@ class CurrentNewsCategoryController extends Controller
             if(!$name)  return redirect('/');
 
             if(isset($request->search)){
-                $datas = EnCurrentNews::where('status', 1)->where('title','like', '%'. $request->search . '%')->whereJsonContains('category_id', $name->id)->paginate(10);
+                $datas = EnCurrentNews::where('status', 1)->where('title','like', '%'. $request->search . '%')->whereJsonContains('category_id', $name->id)->paginate(9);
             }else{
-                $datas = EnCurrentNews::where('status', 1)->whereJsonContains('category_id', $name->id)->orderBy('live_time','desc')->paginate(10);
+                $datas = EnCurrentNews::where('status', 1)->whereJsonContains('category_id', $name->id)->orderBy('live_time','desc')->paginate(9);
             }
 
             $sub_categories = EnCurrentNewsCategory::latest()

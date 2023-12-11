@@ -783,7 +783,7 @@
                                             </a>
                                         </div>
                                         <div class="menu-item">
-                                            <a class="menu-link" href="{{ route('admin.contact.edit') }}">
+                                            <a class="menu-link" href="{{ route('admin.comments.interviews') }}">
                                                 <span class="menu-bullet">
                                                     <span class="bullet bullet-dot"></span>
                                                 </span>
@@ -791,7 +791,7 @@
                                             </a>
                                         </div>
                                         <div class="menu-item">
-                                            <a class="menu-link" href="{{ route('admin.kunye.list') }}">
+                                            <a class="menu-link" href="{{ route('admin.comments.videos') }}">
                                                 <span class="menu-bullet">
                                                     <span class="bullet bullet-dot"></span>
                                                 </span>

@@ -4,49 +4,21 @@
         #blog_status_1:hover {
             cursor: pointer;
         }
-        .test:hover{
-            background-color: #1e1e3f!important;
-        }
     </style>
     <!--begin::Content wrapper-->
     <div class="d-flex flex-column flex-column-fluid">
         <!--begin::Toolbar-->
-        <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-10">
+        <div id="kt_app_toolbar" class="app-toolbar py-lg-10 py-3">
             <!--begin::Toolbar container-->
             <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
                 <!--begin::Page title-->
-                <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                <div class="page-title d-flex flex-column justify-content-center me-3 flex-wrap">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-primary fw-bold fs-3 flex-column justify-content-center my-0">
-                        {{ __('message.etkinlik') }} {{ __('message.kategorisi') }} </h1>
+                        Video Yorumları </h1>
                     <!--end::Title-->
                 </div>
                 <!--end::Page title-->
-                <div class="gap-5" style="display: flex" style="text-align: right!important">
-                    <div id="goster" class="col-md-8" style="display:none">
-                        <form action="{{ route('admin.activityCategory.ice_aktar') }}" method="POST"
-                            enctype="multipart/form-data">
-                            @csrf
-                            <div class="row" >
-                                <div class="col-md-8">
-                                    <input type="file" class="form-control" name="ice_aktar" id="">
-                                </div>
-                                <div class="col-md-2">
-                                    <input type="submit" class="btn-sm btn btn-primary" id="">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div id="gizle">
-                        <button class="btn-sm btn btn-primary" onclick="iceri_aktar()" type="button"> Aktar</button>
-                    </div>
-                    <div>
-                        <a href="{{ route('admin.activityCategory.disa_aktar') }}">
-                            <button style="position:initial;background-color:#1e1e3f" class="btn-sm btn test btn-info"
-                                type="button"> Örnek Excel</button>
-                        </a>
-                    </div>
-                </div>
             </div>
             <!--end::Toolbar container-->
         </div>
@@ -59,43 +31,18 @@
                 <!--begin::Row-->
                 <div class="row g-5 g-xl-8">
                     <!--begin::Col-->
-                    <div class="col-xl-12 mb-5 mb-xl-8">
-                        <div class="card card-flush h-xl-100 mb-5 mb-xl-8">
+                    <div class="col-xl-12 mb-xl-8 mb-5">
+                        <div class="card card-flush h-xl-100 mb-xl-8 mb-5">
                             <!--begin::Card header-->
                             <div class="card-header border-0 pt-6">
-                                <!--begin::Card toolbar-->
-                                <div class="card-toolbar">
-                                    <!--begin::Toolbar-->
-                                    <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
-                                        <!--begin::Add user-->
-                                        <a type="button" class="btn btn-outline btn-outline-success"
-                                            href="{{ route('admin.activityCategory.add') }}">
-                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
-                                            <span class="svg-icon svg-icon-2">
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect opacity="0.5" x="11.364" y="20.364" width="16"
-                                                        height="2" rx="1" transform="rotate(-90 11.364 20.364)"
-                                                        fill="currentColor" />
-                                                    <rect x="4.36396" y="11.364" width="16" height="2"
-                                                        rx="1" fill="currentColor" />
-                                                </svg>
-                                            </span>
-                                            <!--end::Svg Icon--> {{ __('message.etkinlik') }}  {{ __('message.kategorisi') }} {{ __('message.ekle') }} </a>
-                                        <!--end::Add user-->
-                                    </div>
-                                    <!--end::Toolbar-->
-                                </div>
-                                <!--end::Card toolbar-->
-
 
                             </div>
                             <!--end::Card header-->
                             <!--begin::Body-->
-                            <div class="card-body pt-0 pb-5">
+                            <div class="card-body pb-5 pt-0">
                                 <!--begin::Table container-->
                                 <div class="table-responsive with_search_table">
-                                    <table id="blog_categories_table" class="table gy-7 gx-7">
+                                    <table id="blog_categories_table" class="gy-7 gx-7 table">
                                         <thead>
                                             <tr class="fw-bold fs-6 text-gray-800">
                                                 <th class="w-10px">
@@ -106,14 +53,15 @@
                                                             value="1" />
                                                     </div>
                                                 </th>
-                                                <th> {{ __('message.başlık') }} <i class="fa fa-sort ms-3"></i></th>
-                                                <th style="text-align: center"> {{ __('message.sıralama') }} <i class="fa fa-sort ms-3"></i></th>
-                                                <th style="text-align: center"> {{ __('message.durum') }} <i class="fa fa-sort ms-3"></i></th>
+                                                <th> Ad Soyad <i class="fa fa-sort ms-3"></i></th>
+                                                <th> Email <i class="fa fa-sort ms-3"></i></th>
+                                                <th> Yorum <i class="fa fa-sort ms-3"></i></th>
+                                                <th> Durum <i class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center"> Ayar <i class="fa fa-sort ms-3"></i></th>
                                                 <th> {{ __('message.işlem') }} <i class="fa fa-sort ms-3"></i></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-
                                             @foreach ($data as $item)
                                                 <tr class="align-middle">
                                                     <td>
@@ -123,32 +71,40 @@
                                                                 value="1" />
                                                         </div>
                                                     </td>
-                                                    <td> {{ $item->title }} </td>
-                                                    <td style="text-align: center"> {{ $item->queue }} </td>
+                                                    <td> {{ $item->full_name }} </td>
+                                                    <td> {{ $item->email }} </td>
+                                                    <td> {{ $item->comment }} </td>
+                                                    <td>
+                                                        @if ($item['status'] == 0)
+                                                            <span style="color:orange;"><b>BEKLİYOR</b></span>
+                                                        @elseif ($item['status'] == 1)
+                                                            <span style="color:lightgreen;"><b>ONAYLANDI</b></span>
+                                                        @elseif ($item['status'] == 2)
+                                                            <span style="color:red;"><b>REDDEDİLDİ</b></span>
+                                                        @endif
+                                                    </td>
+
                                                     <td style="text-align: center">
                                                         <div
                                                             class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
                                                             <input class="form-check-input w-50px h-25px" type="checkbox"
-                                                                id="blog_status_1"
-                                                                onchange="change_status({{ $item->id }})"
+                                                                id="blog_status_1" onclick="gonder({{$item->id}})"
+                                                                
                                                                 {{ $item->status == 1 ? 'checked' : '' }}>
                                                             <label class="form-check-label" for="blog_status_1"></label>
                                                         </div>
 
                                                     </td>
                                                     <td>
-                                                        <a href="#"
-                                                            class="px-2 btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
-                                                            title="Görüntüle">
-                                                            <i class="fa-solid fa-eye fs-3"></i>
-                                                        </a>
-                                                        <a href="{{ route('admin.activityCategory.edit', $item->id) }}"
-                                                            class="px-2 btn btn-icon btn-bg-light btn-active-color-secondary btn-sm me-1"
-                                                            title="Düzenle">
-                                                            <i class="fa-regular fa-pen-to-square fs-3"></i>
+                                                        <a href="{{ route('admin.video.comment_commentList', $item->id) }}"
+                                                            style="border:solid; border-radius:5px;padding:3%; border-color:lightgray;margin:3%">
+                                                            <i class="fa-solid fa-comment fa-xl"></i>
+                                                            <span style="color: gray">
+                                                                {{ $item->CommentCommentsCount() }}
+                                                            </span>
                                                         </a>
                                                         <a onclick="destroy({{ $item->id }})"
-                                                            class="px-2 btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1"
+                                                            class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1 px-2"
                                                             data-bs-toggle="modal" data-bs-target="#delete_modal"
                                                             title="Sil">
                                                             <i class="fa-regular fa-trash-can fs-4"></i>
@@ -177,20 +133,20 @@
     <!--end::Content wrapper-->
 @endsection
 @section('script')
-<script>
-    function iceri_aktar() {
-        $('#goster').toggle('fast');
-    }
-</script>
     <script>
+        
         function change_status(d) {
-            window.location.href = "{{ route('admin.activityCategory.change_status') }}/" + d
+            window.location.href = "{{ route('admin.video.change_status') }}/" + d
+        }
+
+        function gonder(d) {
+            window.location.href = "{{ route('admin.video.changeCommentStatus') }}/" + d
         }
 
         function destroy(d) {
             Swal.fire({
                 title: 'Emin misiniz?',
-                text: "Seçtiğiniz kategoriye ait içerikler de silinecek!",
+                text: "Seçtiğiniz içerik silinecek!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -198,7 +154,7 @@
                 confirmButtonText: 'Evet, sil!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "{{ route('admin.activityCategory.destroy') }}/" + d;
+                    window.location.href = "{{ route('admin.video.commentDestroy') }}/" + d;
                 }
             })
         }
