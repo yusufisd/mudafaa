@@ -1,10 +1,10 @@
 @extends('frontend.master')
-@section('title',$data->title)
-@section('meta-title',$data->title)
-@section('description',$data->short_description)
+@section('title', $data->title)
+@section('meta-title', $data->title)
+@section('description', $data->short_description)
 @section('simage', asset($data->image))
-@section('stitle',$data->title)
-@section('sdescription',$data->short_description)
+@section('stitle', $data->title)
+@section('sdescription', $data->short_description)
 
 @section('content')
     <!-- Start Main -->
@@ -65,12 +65,14 @@
                 <nav class="rt-breadcrumb-wrap" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
+                            <a
+                                href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{ \Session::get('applocale') == 'en' ? (route('front.interview.list_en')) : (route('front.interview.list')) }}">
+                            <a
+                                href="{{ \Session::get('applocale') == 'en' ? route('front.interview.list_en') : route('front.interview.list') }}">
                                 {{ __('message.röportajlar') }}
                             </a>
                         </li>
@@ -205,12 +207,13 @@
 
                                     <!-- ad banner -->
                                     <div class="ad-banner-img mt--45 mb--40">
-                                        @if(reklam(31) != null)
+                                        @if (reklam(31) != null)
                                             <div class="sidebar-wrap mb--40">
                                                 <div class="ad-banner-img">
                                                     <a href="{{ reklam(31)->adsense_url }}">
                                                         @if (reklam(31)->type ?? 0 == 1)
-                                                            <img src="/{{ reklam(31)->image }}" alt="" width="960" height="150">
+                                                            <img src="/{{ reklam(31)->image }}" alt=""
+                                                            width="1320px" style="height: 90px">
                                                         @else
                                                             {!! reklam(31)->adsense_url ?? '' !!}
                                                         @endif
@@ -233,9 +236,7 @@
                                                 <div class="tag-list">
 
                                                     @foreach ($data->getKeys() as $item)
-
-                                                    <a href="#" class="tag-link"> {{ $item }} </a>
-
+                                                        <a href="#" class="tag-link"> {{ $item }} </a>
                                                     @endforeach
 
                                                 </div>
@@ -246,7 +247,8 @@
                                                 <h4 class="block-tile mb--20"> {{ __('message.paylaş') }} </h4>
                                                 <ul class="social-share-style-1">
                                                     <li>
-                                                        <a class="fb" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ request()->url() }}&text={{ $data->title }}">
+                                                        <a class="fb" target="_blank"
+                                                            href="https://www.facebook.com/sharer/sharer.php?u={{ request()->url() }}&text={{ $data->title }}">
                                                             <i class="social-icon fab fa-facebook-f"></i>
                                                         </a>
                                                     </li>
@@ -258,12 +260,14 @@
                                                     </li>
 
                                                     <li>
-                                                        <a class="fb" target="_blank" href="https://linkedin.com/sharing/share-offsite/?url={{ request()->url() }}">
+                                                        <a class="fb" target="_blank"
+                                                            href="https://linkedin.com/sharing/share-offsite/?url={{ request()->url() }}">
                                                             <i class="social-icon fab fa-linkedin"></i>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a class="wh" target="_blank" href="https://web.whatsapp.com/send?text={{ $data->title }} {{ request()->url() }}">
+                                                        <a class="wh" target="_blank"
+                                                            href="https://web.whatsapp.com/send?text={{ $data->title }} {{ request()->url() }}">
                                                             <i class="social-icon fab fa-whatsapp"></i>
                                                         </a>
                                                     </li>
@@ -409,6 +413,7 @@
                                 </div>
                                 <!-- end commentator box -->
 
+
                                 <!-- start blog-post-comment -->
                                 <div class="blog-post-comment mb--50">
                                     <form action="{{ route('front.interview.addComment', $data->id) }}" method="POST"
@@ -441,8 +446,8 @@
                                             <div class="col-12">
                                                 <div class="rt-form-group">
                                                     <div class="form-check">
-                                                        <input required class="form-check-input" type="checkbox" value=""
-                                                            id="comment-form-check1">
+                                                        <input required class="form-check-input" type="checkbox"
+                                                            value="" id="comment-form-check1">
                                                         <label class="form-check-label" for="comment-form-check1">
                                                             {{ __('message.Kişisel Verilerin Korunması Hakkında Aydınlatma Metnini okudum, onay veriyorum.') }}
                                                         </label>
@@ -459,6 +464,24 @@
                                     </form>
                                 </div>
                                 <!-- end blog-post-comment -->
+
+                                @if (reklam(31) != null)
+                                    <div class="ad-banner-img mt--45 mb--40">
+                                        <div class="sidebar-wrap mb--40">
+                                            <div class="ad-banner-img">
+                                                <a href="{{ reklam(31)->adsense_url }}">
+                                                    @if (reklam(31)->type ?? 0 == 1)
+                                                        <img src="/{{ reklam(31)->image }}" alt=""
+                                                            width="1320px" style="height: 90px">
+                                                    @else
+                                                        {!! reklam(31)->adsense_url ?? '' !!}
+                                                    @endif
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+
 
                                 <!-- start related-post-box -->
                                 <div class="related-post-box">
@@ -591,12 +614,13 @@
 
                             <div class="sidebar-wrap mb--40">
                                 <div class="ad-banner-img">
-                                    @if(reklam(33) != null)
+                                    @if (reklam(33) != null)
                                         <div class="sidebar-wrap mb--40">
                                             <div class="ad-banner-img">
                                                 <a href="{{ reklam(33)->adsense_url }}">
                                                     @if (reklam(33)->type ?? 0 == 1)
-                                                        <img src="/{{ reklam(33)->image }}" alt="" width="310" height="425">
+                                                        <img src="/{{ reklam(33)->image }}" alt=""
+                                                            width="310" height="425">
                                                     @else
                                                         {!! reklam(33)->adsense_url ?? '' !!}
                                                     @endif
@@ -642,8 +666,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                       // sidebar title limitation
-                    -------------------------------*/
+                           // sidebar title limitation
+                        -------------------------------*/
         // Select all tags with class .sidebar_restricted_category_title
         $('.sidebar_restricted_category_title').each(function() {
             var content = $(this).text().trim(); // get the content of a tag

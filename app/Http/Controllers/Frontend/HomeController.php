@@ -8,9 +8,13 @@ use App\Models\Anket;
 use App\Models\Answer;
 use App\Models\CurrentNews;
 use App\Models\CurrentNewsCategory;
+use App\Models\DefenseIndustryContent;
+use App\Models\Dictionary;
 use App\Models\EnActivity;
 use App\Models\EnCurrentNews;
 use App\Models\EnCurrentNewsCategory;
+use App\Models\EnDefenseIndustryContent;
+use App\Models\EnDictionary;
 use App\Models\EnInterview;
 use App\Models\EnVideo;
 use App\Models\Interview;
@@ -202,5 +206,50 @@ class HomeController extends Controller
         $reklamlar = Reklam::all();
         return view('frontend.index', compact('cats','iki_haber','tek_haber','uc_kategori','ilk_kategori_icerigi','ucuncu_kategori_icerigi','cat1_news1','cat1_news2','cat2_news1','cat2_news2','cat3_news1','cat3_news2','ikinci_kategori_icerigi','activity','populer_haber_first','populer_haber_three','videos','interview','anket','reklamlar'));
 
+    }
+
+    public function view_counter(){
+        $data = CurrentNews::get();
+        $data_en = EnCurrentNews::get();
+        $act = Activity::get();
+        $act_en = EnActivity::get();
+        $def = DefenseIndustryContent::get();
+        $def_en = EnDefenseIndustryContent::get();
+        $vid = Video::get();
+        $vid_en = EnVideo::get();
+
+        foreach ($data as $item){
+            $item->view_counter = rand(155,555);
+            $item->save();
+        }
+        foreach ($data_en as $item){
+            $item->view_counter = rand(155,555);
+            $item->save();
+        }
+        foreach ($act as $item){
+            $item->view_counter = rand(155,555);
+            $item->save();
+        }
+        foreach ($act_en as $item){
+            $item->view_counter = rand(155,555);
+            $item->save();
+        }
+        foreach ($def as $item){
+            $item->view_counter = rand(155,555);
+            $item->save();
+        }
+        foreach ($def_en as $item){
+            $item->view_counter = rand(155,555);
+            $item->save();
+        }
+        foreach ($vid as $item){
+            $item->view_counter = rand(155,555);
+            $item->save();
+        }
+        foreach ($vid_en as $item){
+            $item->view_counter = rand(155,555);
+            $item->save();
+        }
+        return "Başarılı";
     }
 }

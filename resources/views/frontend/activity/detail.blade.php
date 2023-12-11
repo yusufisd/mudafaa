@@ -316,7 +316,7 @@
                                     <div class="ad-banner-img mt--45 mb--40">
                                         <a href="{{ reklam(25)->adsense_url }}">
                                             @if (reklam(25)->type ?? 0 == 1)
-                                                <img src="/{{ reklam(25)->image }}" alt="" width="970" height="90">
+                                                <img src="/{{ reklam(25)->image }}" width="1320px" style="height: 90px">
                                             @else
                                                 {!! reklam(25)->adsense_url ?? '' !!}
                                             @endif

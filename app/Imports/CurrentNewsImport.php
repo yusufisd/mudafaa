@@ -25,7 +25,7 @@ class CurrentNewsImport implements ToCollection, WithStartRow
     public function collection(Collection $rows)
     {
         foreach ($rows as $row) {
-            if ($row[0] != null && $row[2] != null) {
+            if ($row[2] != null) {
                 if ($row->filter()->isNotEmpty()) {
                     $link_tr = Str::slug($row[2]);
                     $link_en = Str::slug($row[3]);
@@ -46,9 +46,6 @@ class CurrentNewsImport implements ToCollection, WithStartRow
                             array_push($list, $cat->id);
                         }
                     }
-
-                    $slug_cat = Str::slug($row[1]);
-                    $cat_tr = CurrentNewsCategory::where('link', 'like', '%' . $slug_cat . '%')->first();
 
                     $read_time_tr = (int) round(str_word_count($row[6]) / 200);
                     $read_time_en = (int) round(str_word_count($row[7]) / 200);
@@ -72,10 +69,10 @@ class CurrentNewsImport implements ToCollection, WithStartRow
                     $news_en->category_id = $list;
                     $news_en->author_id = 1;
                     $news_en->currentNews_id = $news->id;
-                    $news_en->title = $row[3];
+                    $news_en->title = $row[3] ?? '-';;
                     $news_en->read_time = $read_time_en;
-                    $news_en->short_description = $row[5];
-                    $news_en->description = $row[7];
+                    $news_en->short_description = $row[5] ?? '-';;
+                    $news_en->description = $row[7] ?? '-';;
                     $news_en->link = $link_en;
                     $news_en->live_time = date("Y-m-d H:i:s", \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[8])->getTimestamp());
                     $news_en->image = 'assets/uploads/currentNews/haber-gorsel/' . $row[12];

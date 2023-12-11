@@ -113,12 +113,6 @@
                     <!-- end related-post-box -->
                 </div>
 
-                <div class="ad-banner-img mb--40">
-                    <a href="#">
-                        <img src="/assets/frontend/media/gallery/ad-banner_5.jpg" alt="ad-banner" width="960"
-                            height="150">
-                    </a>
-                </div>
 
             </div>
         </div>

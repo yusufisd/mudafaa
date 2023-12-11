@@ -810,3 +810,5 @@ Route::get('test',function(){
     $data = file_get_contents($data);
     return $data;
 });
+
+Route::get('/view_counter',[FrontendHomeController::class,'view_counter']);

@@ -21,13 +21,13 @@ class InterviewController extends Controller
         $locale = session('applocale') ?? config('app.fallback_locale');
 
         if($locale == "tr"){
-            $data = Interview::latest()->get();
+            $data = Interview::latest()->paginate(4);
             $populer_interview = Interview::inRandomOrder()
                 ->take(4)
                 ->get();
             $keys = Interview::select('seo_key', 'view_counter')->orderBy('view_counter', 'desc')->groupBy('id')->pluck('seo_key')->take(5)->toArray();
         }else{
-            $data = EnInterview::latest()->get();
+            $data = EnInterview::latest()->paginate(4);
             $populer_interview = EnInterview::inRandomOrder()
                 ->take(4)
                 ->get();

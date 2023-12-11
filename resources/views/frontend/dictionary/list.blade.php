@@ -80,7 +80,40 @@
                                 </div>
 
 
-                                @foreach ($data as $item)
+                                @foreach ($data as $key => $item)
+                                @if($key==6)
+                                    @if (reklam(39) != null)
+                                        <div class="sidebar-wrap mb--40">
+                                            <div class="ad-banner-img">
+                                                <a href="{{ reklam(39)->adsense_url }}">
+                                                    @if (reklam(39)->type ?? 0 == 1)
+                                                        <img src="/{{ reklam(39)->image }}"
+                                                            width="1320px" style="height:90px">
+                                                    @else
+                                                        {!! reklam(39)->adsense_url ?? '' !!}
+                                                    @endif
+                                                </a>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endif
+
+                                @if($key==12)
+                                    @if (reklam(40) != null)
+                                        <div class="sidebar-wrap mb--40">
+                                            <div class="ad-banner-img">
+                                                <a href="{{ reklam(40)->adsense_url }}">
+                                                    @if (reklam(40)->type ?? 0 == 1)
+                                                        <img src="/{{ reklam(40)->image }}"
+                                                        width="1320px" style="height:90px">
+                                                    @else
+                                                        {!! reklam(40)->adsense_url ?? '' !!}
+                                                    @endif
+                                                </a>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endif
                                     <div class="col-md-4 wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
                                         <div class="rt-post-overlay rt-post-overlay-md layout-6">
                                             <div class="post-img">

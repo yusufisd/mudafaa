@@ -109,7 +109,7 @@
                                                     <div class="row mb-6">
                                                         <div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">
                                                             <div class="row">
-                                                                <label class="col-lg-4 col-form-label fw-bold fs-6">
+                                                                <label class="required col-lg-4 col-form-label fw-bold fs-6">
                                                                     Yayın Başlangıç <br>Tarihi
                                                                 </label>
                                                                 <div class="col-lg-8">
@@ -126,7 +126,7 @@
 
                                                         <div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">
                                                             <div class="row ms-10">
-                                                                <label class="col-lg-4 col-form-label fw-bold fs-6"
+                                                                <label class="required col-lg-4 col-form-label fw-bold fs-6"
                                                                     style="padding-top: 0px;">Yayın Bitiş <br> Tarihi
                                                                 </label>
                                                                 <div class="col-lg-8">
@@ -219,7 +219,7 @@
                                                     <div class="row mb-6">
                                                         <div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">
                                                             <div class="row">
-                                                                <label class="col-lg-4 col-form-label fw-bold fs-6">
+                                                                <label class="required col-lg-4 col-form-label fw-bold fs-6">
                                                                     Yayın Başlangıç <br>Tarihi
                                                                 </label>
                                                                 <div class="col-lg-8">
@@ -236,7 +236,7 @@
 
                                                         <div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">
                                                             <div class="row ms-10">
-                                                                <label class="col-lg-4 col-form-label fw-bold fs-6"
+                                                                <label class="required col-lg-4 col-form-label fw-bold fs-6"
                                                                     style="padding-top: 0px;">Yayın Bitiş <br>
                                                                     Tarihi</label>
                                                                 <div class="col-lg-8">

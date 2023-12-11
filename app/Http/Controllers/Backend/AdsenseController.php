@@ -40,19 +40,34 @@ class AdsenseController extends Controller
         $request->validate(
             [
                 'ad_name' => 'required',
-                'ad_explanation' => 'required',
                 'start_date' => 'required',
                 'finish_date' => 'required',
+                
             ],
             [
                 'ad_name' => 'başlık boş bırakılamaz',
-                'ad_explanation' => 'açıklama boş bırakılamaz',
                 'start_date' => 'başlangıç tarihi boş bırakılamaz',
                 'finish_date' => 'bitiş tarihi boş bırakılamaz',
             ],
         );
 
         $data = new AdsenseModel();
+        if ($request->type == 0) {
+            $request->validate([
+                "ad_google_adsense_code" => "required",
+            ],[
+                "ad_google_adsense_code" => "Url/Kod boş bırakılamaz"
+            ]);
+            $data->adsense_url = $request->ad_google_adsense_code;
+        }
+        if ($data->type == 1) {
+            $request->validate([
+                "ad_url" => "required",
+            ],[
+                "ad_url" => "Url/Kod boş bırakılamaz"
+            ]);
+            $data->adsense_url = $request->ad_url;
+        }
         $data->title = $request->ad_name;
         $data->description = $request->ad_explanation;
         $data->type = $request->type;
@@ -107,31 +122,40 @@ class AdsenseController extends Controller
         $request->validate(
             [
                 'ad_name' => 'required',
-                'ad_explanation' => 'required',
                 'start_date' => 'required',
                 'finish_date' => 'required',
             ],
             [
                 'ad_name' => 'başlık boş bırakılamaz',
-                'ad_explanation' => 'açıklama boş bırakılamaz',
                 'start_date' => 'başlangıç tarihi boş bırakılamaz',
                 'finish_date' => 'bitiş tarihi boş bırakılamaz',
             ],
         );
 
         $data = AdsenseModel::find($id);
+        if ($request->type == 0) {
+            $request->validate([
+                "ad_google_adsense_code" => "required",
+            ],[
+                "ad_google_adsense_code" => "Url/Kod boş bırakılamaz"
+            ]);
+            $data->adsense_url = $request->ad_google_adsense_code;
+        }
+        if ($data->type == 1) {
+            $request->validate([
+                "ad_url" => "required",
+            ],[
+                "ad_url" => "Url/Kod boş bırakılamaz"
+            ]);
+            $data->adsense_url = $request->ad_url;
+        }
         $data->title = $request->ad_name;
         $data->description = $request->ad_explanation;
         $data->type = $request->type;
         $data->start = $request->start_date;
         $data->finish = $request->finish_date;
 
-        if ($request->type == 0) {
-            $data->adsense_url = $request->ad_google_adsense_code;
-        }
-        if ($data->type == 1) {
-            $data->adsense_url = $request->ad_url;
-        }
+       
         if (isset($request->href_tab)) {
             $data->href_tab = 1;
         }

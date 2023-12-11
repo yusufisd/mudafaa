@@ -25,6 +25,10 @@
         .post-body {
             color: #464847;
         }
+
+        .rt-cart-item .item-img::after {
+            background-color: rgba(var(--color-black-rgb), 0.5);
+        }
     </style>
     <main>
         <!-- theme-switch-box -->
@@ -89,7 +93,24 @@
 
                             <div class="row gutter-24">
 
-                                @foreach ($contents_first as $item)
+                                @foreach ($contents_first as $key => $item)
+
+                                    @if($key == 4)
+                                        @if (reklam(13) != null)
+                                            <div class="sidebar-wrap mb--40">
+                                                <div class="ad-banner-img">
+                                                    <a href="{{ reklam(13)->adsense_url }}">
+                                                        @if (reklam(13)->type ?? 0 == 1)
+                                                            <img src="/{{ reklam(13)->image }}" width="938">
+                                                        @else
+                                                            {!! reklam(13)->adsense_url ?? '' !!}
+                                                        @endif
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endif
+
                                     <div class="col-md-6 wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
                                         <div class="rt-post-overlay rt-post-overlay-md layout-6">
                                             <div class="post-img">
@@ -195,6 +216,7 @@
 
 
                                     @foreach ($data as $item)
+
                                         <div class="cat-item">
                                             <div class="rt-cart-item">
                                                 <div class="item-img">
@@ -223,18 +245,19 @@
                             </div>
                             <!-- end slidebar wrap  -->
 
-                            @if(reklam(14) != null)
-                            <div class="sidebar-wrap mb--40">
-                                <div class="ad-banner-img">
-                                    <a href="{{ reklam(14)->adsense_url }}">
-                                        @if (reklam(14)->type ?? 0 == 1)
-                                            <img src="/{{ reklam(14)->image }}" alt="" width="310" height="425">
-                                        @else
-                                            {!! reklam(14)->adsense_url ?? '' !!}
-                                        @endif
-                                    </a>
+                            @if (reklam(14) != null)
+                                <div class="sidebar-wrap mb--40">
+                                    <div class="ad-banner-img">
+                                        <a href="{{ reklam(14)->adsense_url }}">
+                                            @if (reklam(14)->type ?? 0 == 1)
+                                                <img src="/{{ reklam(14)->image }}" alt="" width="310"
+                                                    height="425">
+                                            @else
+                                                {!! reklam(14)->adsense_url ?? '' !!}
+                                            @endif
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
                             @endif
                             <!-- end slidebar wrap  -->
 

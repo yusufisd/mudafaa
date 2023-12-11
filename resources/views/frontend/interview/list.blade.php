@@ -1,5 +1,5 @@
 @extends('frontend.master')
-@section('title','Röportajlar')
+@section('title', 'Röportajlar')
 
 @section('content')
     <!-- Start Main -->
@@ -22,6 +22,7 @@
             background-image: linear-gradient(-90deg, #5579ad 0%, #1a6be1 100%);
             background-image: -ms-linear-gradient(-90deg, #f43079 0%, #f7679d 100%);
         }
+
         .tag-link:hover {
             background-color: #749f43;
             color: white;
@@ -48,7 +49,8 @@
                 <nav class="rt-breadcrumb-wrap" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
+                            <a
+                                href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
@@ -63,7 +65,7 @@
 
         <!-- start rt-sidebar-section-layout-2 -->
         <section class="rt-sidebar-section-layout-2">
-            <div class="container d-block d-md-none sidebar-wrap mb--40">
+            <div class="d-block d-md-none sidebar-wrap container mb--40">
                 <div class="search-box">
                     <form action="#" class="form search-form-box">
                         <div class="form-group">
@@ -85,13 +87,34 @@
 
                             <div class="wrap post-wrap-style-3">
 
-                                @foreach ($data as $item)
+                                @foreach ($data as $key => $item)
+                                    @if ($key == 2)
+                                        <div class="ad-banner-img mb--40 mt--40">
+                                            @if (reklam(28) != null)
+                                                <div class="sidebar-wrap mb--40">
+                                                    <div class="ad-banner-img">
+                                                        <a href="{{ reklam(29)->adsense_url }}">
+                                                            @if (reklam(29)->type ?? 0 == 1)
+                                                                <img src="/{{ reklam(29)->image }}" alt=""
+                                                                width="1320px" style="height:90px">
+                                                            @else
+                                                                {!! reklam(29)->adsense_url ?? '' !!}
+                                                            @endif
+
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    @endif
+
+                                    
                                     <div class="post-item wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
-                                        <div class="rt-post post-md style-2 style-4  grid-meta">
+                                        <div class="rt-post post-md style-2 style-4 grid-meta">
                                             <div class="post-img">
                                                 <a href="{{ route('front.interview.detail', $item->link) }}">
-                                                    <img style="object-fit: cover" src="/{{ $item->image }}" alt="post" width="696"
-                                                        height="491">
+                                                    <img style="object-fit: cover" src="/{{ $item->image }}" alt="post"
+                                                        width="696" height="491">
                                                 </a>
                                             </div>
                                             <div class="post-content">
@@ -128,7 +151,8 @@
                                                     </ul>
                                                 </div>
                                                 <div class="btn-wrap mt--25">
-                                                    <a href="{{ route('front.interview.detail', $item->link) }}" class="rt-read-more rt-button-animation-out">
+                                                    <a href="{{ route('front.interview.detail', $item->link) }}"
+                                                        class="rt-read-more rt-button-animation-out">
                                                         Daha Fazla Oku
                                                         <svg width="34px" height="16px" viewBox="0 0 34.53 16"
                                                             xml:space="preserve">
@@ -146,6 +170,26 @@
                                             </div>
                                         </div>
                                     </div><br>
+
+                                    @if ($key == 3)
+                                        <div class="ad-banner-img mb--40 mt--40">
+                                            @if (reklam(29) != null)
+                                                <div class="sidebar-wrap mb--40">
+                                                    <div class="ad-banner-img">
+                                                        <a href="{{ reklam(29)->adsense_url }}">
+                                                            @if (reklam(29)->type ?? 0 == 1)
+                                                                <img src="/{{ reklam(29)->image }}" alt=""
+                                                                    width="1320px" style="height:90px">
+                                                            @else
+                                                                {!! reklam(29)->adsense_url ?? '' !!}
+                                                            @endif
+
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    @endif
                                 @endforeach
 
                                 <!-- end post-item -->
@@ -155,23 +199,10 @@
                             </div>
                             <!-- end wrap -->
 
-                            <div class="ad-banner-img mt--40 mb--40">
-                                @if(reklam(29) != null)
-                                    <div class="sidebar-wrap mb--40">
-                                        <div class="ad-banner-img">
-                                            <a href="{{ reklam(29)->adsense_url }}">
-                                                @if (reklam(29)->type ?? 0 == 1)
-                                                    <img src="/{{ reklam(29)->image }}" alt="" width="960" height="150">
-                                                @else
-                                                    {!! reklam(29)->adsense_url ?? '' !!}
-                                                @endif
 
-                                            </a>
-                                        </div>
-                                    </div>
-                                @endif
+                            <div class="d-flex justify-content-center" style="padding:10%">
+                                {{ $data->links() }}
                             </div>
-
 
                             <!-- end rt-pagination-area -->
 
@@ -180,7 +211,7 @@
                     </div>
                     <!-- end col-->
 
-                    <div class="col-xl-3 col-lg-8 mx-auto sticky-coloum-item">
+                    <div class="col-xl-3 col-lg-8 sticky-coloum-item mx-auto">
                         <div class="rt-sidebar">
 
                             <div class="d-none d-md-block sidebar-wrap mb--40">
@@ -211,11 +242,11 @@
                                             <div class="rt-post post-sm style-1">
                                                 <div class="post-img">
                                                     <a href="">
-                                                        <img src="/{{ $item->image }}" style="object-fit: cover" alt="post" width="100"
-                                                            height="100">
+                                                        <img src="/{{ $item->image }}" style="object-fit: cover"
+                                                            alt="post" width="100" height="100">
                                                     </a>
                                                 </div>
-                                                <div class="ms-4 post-content">
+                                                <div class="post-content ms-4">
 
                                                     <h4 class="post-title">
                                                         <a href="" class="sidebar_restricted_title">
@@ -238,12 +269,13 @@
 
                             <div class="sidebar-wrap mb--40">
                                 <div class="ad-banner-img">
-                                    @if(reklam(30) != null)
+                                    @if (reklam(30) != null)
                                         <div class="sidebar-wrap mb--40">
                                             <div class="ad-banner-img">
                                                 <a href="{{ reklam(30)->adsense_url }}">
                                                     @if (reklam(30)->type ?? 0 == 1)
-                                                        <img src="/{{ reklam(30)->image }}" alt="" width="315" height="270">
+                                                        <img src="/{{ reklam(30)->image }}" alt=""
+                                                            width="315" height="270">
                                                     @else
                                                         {!! reklam(30)->adsense_url ?? '' !!}
                                                     @endif
@@ -270,7 +302,8 @@
                                     </li>
                                     <li>
                                         <a href="https://twitter.com/millimudafaacom">
-                                            <i style="background-color: black" class="fa-brands fa-square-x-twitter twitter"></i>
+                                            <i style="background-color: black"
+                                                class="fa-brands fa-square-x-twitter twitter"></i>
                                             <span class="text"><span>20,751</span> Takipçi</span>
                                         </a>
                                     </li>
@@ -304,8 +337,8 @@
                                     <span class="rt-section-line"></span>
                                 </h2>
                                 <div class="tag-list">
-                                    @foreach($keys as $key)
-                                        @foreach(explode(',',$key) as $tag)
+                                    @foreach ($keys as $key)
+                                        @foreach (explode(',', $key) as $tag)
                                             <a href="#" class="tag-link">{{ $tag }}</a>
                                         @endforeach
                                     @endforeach
@@ -332,8 +365,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-            // limit by device width
-            -------------------------------*/
+                    // limit by device width
+                    -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
 

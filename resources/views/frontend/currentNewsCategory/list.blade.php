@@ -346,7 +346,7 @@
                     </div>
                 </div>
                 <!-- end col -->
-                    <div style="margin-left: 45%; margin-top:5%">
+                    <div style="margin-left: 35%; margin-top:5%">
                         {{ $datas->links() }}
                     </div>
                 <!-- end row  -->

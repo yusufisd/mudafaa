@@ -47,18 +47,7 @@ class DefenseIndustryCategoryImport implements ToCollection, WithStartRow
                         $queue_en = 1;
                     }
 
-                    $last_def_cat = DefenseIndustryCategory::orderBy('queue', 'desc')->first();
-                    if ($last_def_cat != null) {
-                        $cat_queue_tr = $last_def_cat->queue + 1;
-                    } else {
-                        $cat_queue_tr = 1;
-                    }
-                    $last_def_cat_en = EnDefenseIndustryCategory::orderBy('queue', 'desc')->first();
-                    if ($last_def_cat_en != null) {
-                        $cat_queue_en = $last_def_cat_en->queue + 1;
-                    } else {
-                        $cat_queue_en = 1;
-                    }
+
 
                     if (DefenseIndustry::where('title', $row[1])->first() == null) {
                         $new_defense = new DefenseIndustry();
@@ -84,7 +73,8 @@ class DefenseIndustryCategoryImport implements ToCollection, WithStartRow
                     $new_defense_cat->defense_id = $def_id_tr->id;
                     $new_defense_cat->title = $row[3];
                     $new_defense_cat->link = $defense_cat_link_tr;
-                    $new_defense_cat->queue = $cat_queue_tr;
+                    $new_defense_cat->queue = $row[0];
+                    $new_defense_cat->image = 'assets/uploads/defenseIndustryCategory/kategori-gorselleri/'.$row[5];
                     $new_defense_cat->seo_title = $row[3];
                     $new_defense_cat->seo_description = $row[3];
                     $new_defense_cat->seo_key = $row[3];
@@ -96,14 +86,15 @@ class DefenseIndustryCategoryImport implements ToCollection, WithStartRow
                     $new_defense_cat_en->defense_category_id = $new_defense_cat->id;
                     $new_defense_cat_en->title = $row[4];
                     $new_defense_cat_en->link = $defense_cat_link_en;
-                    $new_defense_cat_en->queue = $cat_queue_en;
+                    $new_defense_cat_en->queue = $row[0];
+                    $new_defense_cat_en->image = 'assets/uploads/defenseIndustryCategory/kategori-gorselleri/'.$row[5];
                     $new_defense_cat_en->seo_title = $row[4];
                     $new_defense_cat_en->seo_description = $row[4];
                     $new_defense_cat_en->seo_key = $row[4];
                     $new_defense_cat_en->save();
                 }
             } else {
-                break;
+                continue;
             }
         }
     }
