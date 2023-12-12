@@ -882,9 +882,7 @@
                                             <span class="rt-meta">
                                                 <i class="fas fa-map-marker-alt icon"></i>
                                                 <span style="text-transform:capitalize">
-                                                    {{ strlen($item->country->name) <= 7 ? $item->country->name : substr($item->country->name, 0, 5) . '...' }}
-                                                    /
-                                                    {{ strlen($item->city) <= 9 ? $item->city : substr($item->city, 0, 5) . '...' }}
+                                                    {{ $item->city}}
                                                 </span>
                                             </span>
                                         </li>

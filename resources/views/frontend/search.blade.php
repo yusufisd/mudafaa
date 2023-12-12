@@ -14,7 +14,7 @@
                 <span class="theme-switch-box-mobile__theme-status"><i class="fas fa-cog"></i></span>
                 <label class="theme-switch-box-mobile__label" for="themeSwitchCheckboxMobile">
                     <input class="theme-switch-box-mobile__input" type="checkbox" name="themeSwitchCheckboxMobile"
-                           id="themeSwitchCheckboxMobile">
+                        id="themeSwitchCheckboxMobile">
                     <span class="theme-switch-box-mobile__main"></span>
                 </label>
                 <span class="theme-switch-box-mobile__theme-status"><i class="fas fa-moon"></i></span>
@@ -49,12 +49,11 @@
 
                             <div id="ss_container" class="row gutter-24">
                                 <div class="search-box">
-                                    <form action="{{ route('front.search') }}" method="GET"
-                                          class="form search-form-box">
+                                    <form action="{{ route('front.search') }}" method="GET" class="form search-form-box">
                                         <div class="form-group">
                                             <input type="text" name="s" value="{{ request()->s ?? '' }}"
-                                                   id="search" placeholder="Ara..." required
-                                                   class="form-control rt-search-control">
+                                                id="search" placeholder="Ara..." required
+                                                class="form-control rt-search-control">
                                             <button type="submit" class="search-submit">
                                                 <i class="fas fa-search"></i>
                                             </button>
@@ -67,16 +66,18 @@
                                     <div class="col-md-4 wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
                                         <div class="rt-post-overlay rt-post-overlay-md layout-6">
                                             <div class="post-img">
-                                                <a href="{{ route('front.dictionary.detail', $item->link) }}"
-                                                   class="img-link">
+
+                                                <a class="img-link"
+                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}">
                                                     <img src="/{{ $item->image }}" alt="{{ $item->title }}" width="900"
-                                                         height="600">
+                                                        height="600">
                                                 </a>
                                             </div>
                                             <div class="post-content">
 
                                                 <h3 class="post-title">
-                                                    <a href="{{ route('front.dictionary.detail', $item->link) }}">
+                                                    <a 
+                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}">
                                                         {{ $item->title }}
                                                     </a>
                                                 </h3>

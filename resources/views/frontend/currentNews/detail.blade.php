@@ -622,7 +622,7 @@
                                                                                 <span class="rt-meta">
                                                                                     <i
                                                                                         class="far fa-calendar-alt icon"></i>
-                                                                                    {{ $single->created_at->translatedFormat('d M Y') }}
+                                                                                    {{ $single->live_time->translatedFormat('d M Y') }}
                                                                                 </span>
                                                                             </li>
                                                                         </ul>
@@ -753,7 +753,7 @@
                                                     </h4>
                                                     <span class="rt-meta">
                                                         <i class="far fa-calendar-alt icon"></i>
-                                                        {{ $item->created_at->translatedFormat('d M Y') }}
+                                                        {{ $item->live_time->translatedFormat('d M Y') }}
                                                     </span>
                                                 </div>
                                             </div>
