@@ -321,7 +321,7 @@
                                         <div class="col-lg-6">
 
                                             @if ($previous_data != null)
-                                                <div class="next-prev-wrap">
+                                                <div class="next-prev-wrap" style="height: 100%">
                                                     <div class="item-icon">
                                                         <a
                                                             href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNews.detail_en', $previous_data->link)) : (route('front.currentNews.detail', $previous_data->link)) }}">
@@ -338,7 +338,7 @@
                                                         </h4>
                                                         <span class="rt-meta">
                                                             <i class="far fa-calendar-alt icon"></i>
-                                                            {{ $previous_data->created_at->translatedFormat('d M Y') }}
+                                                            {{ $previous_data->live_time->translatedFormat('d M Y') }}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -349,7 +349,7 @@
                                         <div class="col-lg-6">
 
                                             @if ($next_data != null)
-                                                <div class="next-prev-wrap next-wrap">
+                                                <div class="next-prev-wrap next-wrap" style="height: 100%">
                                                     <div class="item-icon">
                                                         <a
                                                             href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNews.detail_en', $next_data->link)) : (route('front.currentNews.detail', $next_data->link)) }}">
@@ -366,7 +366,7 @@
                                                         </h4>
                                                         <span class="rt-meta">
                                                             <i class="far fa-calendar-alt icon"></i>
-                                                            {{ $next_data->created_at->translatedFormat('d M Y') }}
+                                                            {{ $next_data->live_time->translatedFormat('d M Y') }}
 
                                                         </span>
                                                     </div>
