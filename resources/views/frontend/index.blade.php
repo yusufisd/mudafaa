@@ -882,7 +882,7 @@
                                             <span class="rt-meta">
                                                 <i class="fas fa-map-marker-alt icon"></i>
                                                 <span style="text-transform:capitalize">
-                                                    {{ $item->city}}
+                                                    {{ strtoupper($item->city)}}
                                                 </span>
                                             </span>
                                         </li>

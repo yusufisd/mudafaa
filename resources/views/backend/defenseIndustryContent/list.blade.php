@@ -120,7 +120,6 @@
                                                     </div>
                                                 </th>
                                                 <th>{{ __('message.görsel') }}<i class="fa fa-sort ms-3"></i></th>
-                                                <th>{{ __('message.yazar') }}<i class="fa fa-sort ms-3"></i></th>
                                                 <th>{{ __('message.başlık') }}<i class="fa fa-sort ms-3"></i></th>
                                                 <th>{{ __('message.kategori') }}<i class="fa fa-sort ms-3"></i></th>
                                                 <th>{{ __('message.durum') }}<i class="fa fa-sort ms-3"></i></th>
@@ -146,11 +145,7 @@
                                                             style="width: 150px; border-radius:15px" class="ms-n1"
                                                             alt="">
                                                     </td>
-                                                    <td>
-                                                        <p style="text-transform: capitalize">
-                                                            {{ $item->Author->name ?? '-' }}
-                                                            {{ $item->Author->surname ?? '-' }}</p>
-                                                    </td>
+                                                    
 
                                                     <td> {{ Str::words($item->title, 10, '...') }} </td>
 

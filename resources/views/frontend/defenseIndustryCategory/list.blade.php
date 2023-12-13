@@ -57,9 +57,17 @@
                             </a>
                         </li>
 
+                        
+                        @if ($defense->defense != null)
+                            <li class="breadcrumb-item active">
+                                <a 
+                                    href="{{ \Session::get('applocale') == 'en' ? route('front.defenseIndustryCategory.list_en', $defense->defense->link) : route('front.defenseIndustryCategory.list', $defense->defense->link) }}">
+                                    {{ $defense->defense->title }}
+                                </a>
+                            </li>
+                        @endif
 
-
-                        <li class="breadcrumb-item active" aria-current="page">
+                        <li class="breadcrumb-item {{ $defense->defense == null ? '' : 'active' }}" aria-current="page">
                             {{ $defense->title }}
                         </li>
                     </ol>
@@ -95,7 +103,7 @@
 
                                 @foreach ($contents_first as $key => $item)
 
-                                    @if($key == 4)
+                                    @if ($key == 4)
                                         @if (reklam(13) != null)
                                             <div class="sidebar-wrap mb--40">
                                                 <div class="ad-banner-img">
@@ -114,7 +122,7 @@
                                     <div class="col-md-6 wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
                                         <div class="rt-post-overlay rt-post-overlay-md layout-6">
                                             <div class="post-img">
-                                                <a href="{{ \Session::get('applocale') == 'tr' ? route('front.defenseIndustryContent.detail', $item->link) : route('front.defenseIndustryContent.detail_en', $item->link) }}"
+                                                <a href="{{ \Session::get('applocale') == 'en' ? route('front.defenseIndustryContent.detail_en', $item->link) : route('front.defenseIndustryContent.detail', $item->link) }}"
                                                     class="img-link">
                                                     <img src="/{{ $item->image }}" alt="post-xl_37" width="900"
                                                         height="600">
@@ -130,11 +138,11 @@
                                             <div class="post-content">
 
                                                 <a class="tr-america" style="background-color:#749F43"
-                                                    href="{{ \Session::get('applocale') == 'tr' ? route('front.defenseIndustrySubCategory.list2', $item->Category->link) : route('front.defenseIndustrySubCategory.list2_en', $item->Category->link) }}">
+                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.defenseIndustrySubCategory.list2_en', $item->Category->link) : route('front.defenseIndustrySubCategory.list2', $item->Category->link) }}">
                                                     {{ $item->Category->title }} </a>
                                                 <h3 class="post-title">
                                                     <a
-                                                        href="{{ \Session::get('applocale') == 'tr' ? route('front.defenseIndustryContent.detail', $item->link) : route('front.defenseIndustryContent.detail_en', $item->link) }}">
+                                                        href="{{ \Session::get('applocale') == 'en' ? route('front.defenseIndustryContent.detail_en', $item->link) : route('front.defenseIndustryContent.detail', $item->link) }}">
                                                         {{ $item->title }}
                                                     </a>
                                                 </h3>
@@ -216,7 +224,6 @@
 
 
                                     @foreach ($data as $item)
-
                                         <div class="cat-item">
                                             <div class="rt-cart-item">
                                                 <div class="item-img">
@@ -225,7 +232,7 @@
                                                     <div class="item-content">
                                                         <h4 class="title" style="font-size: 13px">
                                                             <a
-                                                                href="{{ \Session::get('applocale') == 'tr' ? route('front.defenseIndustrySubCategory.list2', $item->link) : route('front.defenseIndustrySubCategory.list2_en', $item->link) }}">
+                                                                href="{{ \Session::get('applocale') == 'en' ? route('front.defenseIndustrySubCategory.list2_en', $item->link) : route('front.defenseIndustrySubCategory.list2', $item->link) }}">
                                                                 {{ $item->title }} </a>
                                                         </h4>
                                                         <p class="count">

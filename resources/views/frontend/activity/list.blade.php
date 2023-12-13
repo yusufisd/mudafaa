@@ -231,7 +231,7 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="fas fa-map-marker-alt icon"></i>
-                                                                <span style="text-transform:capitalize"> {{ (strlen($item->country->name) <= 19) ? $item->country->name : (substr($item->country->name,0,19).'...') }} / {{ strlen($item->city) <= 9 ? $item->city : substr($item->city,0,5).'...' }} </span>
+                                                                <span style="text-transform:capitalize"> {{ strtoupper($item->city) }} </span>
 
                                                             </span>
                                                         </li>
@@ -328,7 +328,7 @@
                                                             <li>
                                                                 <span class="rt-meta">
                                                                     <i class="fas fa-map-marker-alt icon"></i>
-                                                                    <span style="text-transform:capitalize"> {{ (strlen($item->country->name) <= 19) ? $item->country->name : (substr($item->country->name,0,19).'...') }} / {{ strlen($item->city) <= 9 ? $item->city : substr($item->city,0,5).'...' }} </span>
+                                                                    <span style="text-transform:capitalize"> {{ strtoupper($item->city) }} </span>
                                                                 </span>
                                                             </li>
                                                             <li>

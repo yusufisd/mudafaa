@@ -79,7 +79,7 @@
                                                 <a
                                                     href="{{ \Session::get('applocale') == 'en' ? route('front.company.detail_en', \Illuminate\Support\Str::slug($item->title)) : route('front.company.detail', \Illuminate\Support\Str::slug($item->title)) }}">
 
-                                                    <div style="background-image: url({{ asset('assets/black_fon.jpeg') }});background-opacity:0.7;border-radius:5px"
+                                                    <div
                                                         class="author-img">
                                                         <img style="width:170px; height:170px; opacity:0.9" src="/{{ $item->image }}"
                                                             alt="{{ $item->title }}">

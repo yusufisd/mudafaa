@@ -145,7 +145,7 @@
                                                         </li>
                                                         <li>
                                                             <span class="rt-meta">
-                                                                <i class="far fa-clock icon"></i>
+                                                                <i class="fa-solid fa-clock"></i>
                                                                 {{ $item->read_time == 0 ? '1' : $item->read_time }} DK
                                                             </span>
                                                         </li>

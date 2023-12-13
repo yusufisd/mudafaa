@@ -50,13 +50,15 @@
                 <nav class="rt-breadcrumb-wrap" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
+                            <a
+                                href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
                         @if ($data->GeneralCategory->link != null)
                             <li class="breadcrumb-item">
-                                <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.defenseIndustryCategory.list', $data->GeneralCategory->link)) : (route('front.defenseIndustryCategory.list_en', $data->GeneralCategory->link)) }}">
+                                <a
+                                    href="{{ \Session::get('applocale') == 'en' ? route('front.defenseIndustryCategory.list_en', $data->GeneralCategory->link) : route('front.defenseIndustryCategory.list', $data->GeneralCategory->link) }}">
                                     {{ $data->GeneralCategory->title }}
                                 </a>
                             </li>
@@ -64,9 +66,12 @@
 
                         @if ($data->Category->title != null)
                             <li class="breadcrumb-item" aria-current="page">
-                                <span class="rt-text-truncate">
-                                    {{ $data->Category->title }}
-                                </span>
+                                <a
+                                    href="{{ \Session::get('applocale') == 'en' ? route('front.defenseIndustrySubCategory.list2_en', $data->Category->link) : route('front.defenseIndustrySubCategory.list2', $data->Category->link) }}">
+                                    <span class="rt-text-truncate">
+                                        {{ $data->Category->title }}
+                                    </span>
+                                </a>
                             </li>
                         @endif
 
@@ -109,13 +114,13 @@
                                     @endif
                                     <li>
                                         <span class="rt-meta">
-                                            <i class="far fa-clock icon"></i>
+                                            <i class="fa-solid fa-clock"></i>
                                             {{ $data->read_time == 0 ? '1' : $data->read_time }} DK
                                         </span>
                                     </li>
                                     <li>
                                         <span class="rt-meta">
-                                            <i class="far fa-eye icon"></i>
+                                            <i class="fa-solid fa-eye"></i>
                                             {{ $data->view_counter }}
                                         </span>
                                     </li>
@@ -179,16 +184,17 @@
                                 {!! printDesc($data->description) !!}
                                 <br><br>
                                 <!-- ad banner -->
-                                @if(reklam(15) != null)
-                                <div class="ad-banner-img mt--45 mb--40">
-                                    <a href="{{ reklam(15)->adsense_url }}">
-                                        @if (reklam(15)->type ?? 0 == 1)
-                                            <img src="/{{ reklam(15)->image }}" alt="" width="970" height="90">
-                                        @else
-                                            {!! reklam(15)->adsense_url ?? '' !!}
-                                        @endif
-                                    </a>
-                                </div>
+                                @if (reklam(15) != null)
+                                    <div class="ad-banner-img mt--45 mb--40">
+                                        <a href="{{ reklam(15)->adsense_url }}">
+                                            @if (reklam(15)->type ?? 0 == 1)
+                                                <img src="/{{ reklam(15)->image }}" alt="" width="970"
+                                                    height="90">
+                                            @else
+                                                {!! reklam(15)->adsense_url ?? '' !!}
+                                            @endif
+                                        </a>
+                                    </div>
                                 @endif
 
                                 <div class="wrap mb--30">
@@ -203,7 +209,8 @@
                                             <li class="menu-item" role="presentation">
                                                 <a class="menu-link active" id="menu-1-tab" data-bs-toggle="tab"
                                                     href="#menu-1" role="tab" aria-controls="menu-1"
-                                                    aria-selected="true"> {{ __('message.üretici') }} {{ __('message.firmalar') }} </a>
+                                                    aria-selected="true"> {{ __('message.üretici') }}
+                                                    {{ __('message.firmalar') }} </a>
                                             </li>
                                             <li class="menu-item" role="presentation">
                                                 <a class="menu-link" id="menu-2-tab" data-bs-toggle="tab" href="#menu-2"
@@ -272,28 +279,28 @@
 
                                     </div> <!-- end /.tab-content -->
                                 </div>
-                                @if($data->multiple_image != null)
+                                @if ($data->multiple_image != null)
 
-                                <div class="wrap post-wrap mb--30">
-                                    <h2 class="rt-section-heading">
-                                        <span class="rt-section-text"> {{ __('message.Ürün Görselleri') }} </span>
-                                        <span class="rt-section-dot"></span>
-                                        <span class="rt-section-line"></span>
-                                    </h2>
+                                    <div class="wrap post-wrap mb--30">
+                                        <h2 class="rt-section-heading">
+                                            <span class="rt-section-text"> {{ __('message.Ürün Görselleri') }} </span>
+                                            <span class="rt-section-dot"></span>
+                                            <span class="rt-section-line"></span>
+                                        </h2>
 
-                                    <!-- Galeri Resimleri -->
-                                    <div class="gallery">
+                                        <!-- Galeri Resimleri -->
+                                        <div class="gallery">
                                             @foreach ($data->multiple_image as $item)
                                                 <a data-fancybox="gallery" href="/{{ $item }}">
                                                     <img src="/{{ $item }}" alt="">
                                                 </a>
                                             @endforeach
 
+                                        </div>
+
+
                                     </div>
-
-
-                                </div>
-                                <!-- end wrap -->
+                                    <!-- end wrap -->
                                 @endif
 
 
@@ -309,7 +316,7 @@
                                             <h4 class="block-tile mb--20"> {{ __('message.popüler etiketler') }} :</h4>
                                             <div class="tag-list">
                                                 @foreach ($data->getKeys() as $key)
-                                                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.defenseIndustryCategory.tag_list', $key)) : (route('front.defenseIndustryCategory.tag_list_en', $key)) }}"
+                                                    <a href="{{ \Session::get('applocale') == 'tr' ? route('front.defenseIndustryCategory.tag_list', $key) : route('front.defenseIndustryCategory.tag_list_en', $key) }}"
                                                         class="tag-link" style="text-transform: capitalize">
                                                         {{ $key }} </a>
                                                 @endforeach
@@ -329,10 +336,10 @@
                                     <div class="col-lg-6">
 
                                         @if ($previous_product != null)
-                                            <div class="next-prev-wrap">
+                                            <div class="next-prev-wrap" style="height: 100%">
                                                 <div class="item-icon">
                                                     <a
-                                                        href="{{ route('front.defenseIndustryContent.detail', $previous_product->link) }}">
+                                                        href="{{ \Session::get('applocale') == 'en' ? route('front.defenseIndustryContent.detail_en', $previous_product->link) : route('front.defenseIndustryContent.detail', $previous_product->link) }}">
                                                         <i class="fas fa-chevron-left"></i>
                                                         {{ __('message.Önceki') }} {{ __('message.ürün') }}
                                                     </a>
@@ -340,7 +347,7 @@
                                                 <div class="content">
                                                     <h4 class="title">
                                                         <a
-                                                            href="{{ route('front.defenseIndustryContent.detail', $previous_product->link) }}">
+                                                            href="{{ \Session::get('applocale') == 'en' ? route('front.defenseIndustryContent.detail_en', $previous_product->link) : route('front.defenseIndustryContent.detail', $previous_product->link) }}">
                                                             {{ $previous_product->title }}
                                                         </a>
                                                     </h4>
@@ -358,10 +365,10 @@
                                     <div class="col-lg-6">
 
                                         @if ($next_product != null)
-                                            <div class="next-prev-wrap next-wrap">
+                                            <div class="next-prev-wrap next-wrap" style="height: 100%">
                                                 <div class="item-icon">
                                                     <a
-                                                        href="{{ route('front.defenseIndustryContent.detail', $next_product->link) }}">
+                                                        href="{{ \Session::get('applocale') == 'en' ? route('front.defenseIndustryContent.detail_en', $next_product->link) : route('front.defenseIndustryContent.detail', $next_product->link) }}">
                                                         {{ __('message.Sonraki') }} {{ __('message.ürün') }}
                                                         <i class="fas fa-chevron-right"></i>
                                                     </a>
@@ -369,12 +376,12 @@
                                                 <div class="content">
                                                     <h4 class="title">
                                                         <a
-                                                            href="{{ route('front.defenseIndustryContent.detail', $next_product->link) }}">
+                                                            href="{{ \Session::get('applocale') == 'en' ? route('front.defenseIndustryContent.detail_en', $next_product->link) : route('front.defenseIndustryContent.detail', $next_product->link) }}">
                                                             {{ $next_product->title }} </a>
                                                     </h4>
                                                     <span class="rt-meta">
                                                         <i class="far fa-calendar-alt icon"></i>
-                                                        {{ substr($next_product->created_at, 0, 10) }}
+                                                        {{ $next_product->created_at->translatedFormat('d M Y') }}
                                                     </span>
                                                 </div>
                                             </div>
@@ -401,7 +408,7 @@
         <!-- editor-choice-section-style-1 -->
         <section class="editor-choice-section-style-1 section-padding overflow-hidden">
             <div class="container">
-                @if(reklam(16) != null)
+                @if (reklam(16) != null)
                     <div class="ad-banner-img mt--45 mb--40">
                         <a href="{{ reklam(16)->adsense_url }}">
                             @if (reklam(16)->type ?? 0 == 1)
@@ -439,18 +446,20 @@
                                 <div class="slide-item">
                                     <div class="rt-post-grid grid-meta">
                                         <div class="post-img">
-                                            <a href="{{ route('front.defenseIndustryContent.detail', $item->link) }}">
+                                            <a
+                                                href="{{ \Session::get('applocale') == 'en' ? route('front.defenseIndustryContent.detail_en', $item->link) : route('front.defenseIndustryContent.detail', $item->link) }}">
                                                 <img src="/{{ $item->image }}" style="object-fit:cover!important"
                                                     alt="post" width="551" height="431">
                                             </a>
                                         </div>
                                         <div class="post-content">
                                             @if (isset($item->GeneralCategory->link))
-                                                <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.defenseIndustryCategory.list', $item->GeneralCategory->link)) : (route('front.defenseIndustryCategory.list_en', $item->GeneralCategory->link)) }}"
-                                                    class="rt-cat-primary">{{ ($item->GeneralCategory->title) }}</a>
+                                                <a href="{{ \Session::get('applocale') == 'tr' ? route('front.defenseIndustryCategory.list', $item->GeneralCategory->link) : route('front.defenseIndustryCategory.list_en', $item->GeneralCategory->link) }}"
+                                                    class="rt-cat-primary">{{ $item->GeneralCategory->title }}</a>
                                             @endif
                                             <h3 class="post-title">
-                                                <a href="{{ route('front.defenseIndustryContent.detail', $item->link) }}">
+                                                <a
+                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.defenseIndustryContent.detail_en', $item->link) : route('front.defenseIndustryContent.detail', $item->link) }}">
                                                     {{ $item->title }}
                                                 </a>
                                             </h3>
@@ -458,13 +467,13 @@
                                                 <ul>
                                                     <li>
                                                         <span class="rt-meta">
-                                                            <i class="far fa-clock icon"></i>
+                                                            <i class="fa-solid fa-clock"></i>
                                                             {{ $item->read_time == 0 ? '2' : $item->read_time }} DK
                                                         </span>
                                                     </li>
                                                     <li>
                                                         <span class="rt-meta">
-                                                            <i class="far fa-eye icon"></i>
+                                                            <i class="fa-solid fa-eye"></i>
                                                             {{ $item->view_counter }}
                                                         </span>
                                                     </li>
@@ -491,8 +500,8 @@
 @section('script')
     <script>
         /*--------------------------------
-                                                           // sidebar title limitation
-                                                        -------------------------------*/
+                                                                   // sidebar title limitation
+                                                                -------------------------------*/
         // Select all tags with class .sidebar_restricted_category_title
         $('.sidebar_restricted_category_title').each(function() {
             var content = $(this).text().trim(); // get the content of a tag

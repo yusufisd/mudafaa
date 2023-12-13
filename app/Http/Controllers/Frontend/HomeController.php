@@ -209,44 +209,14 @@ class HomeController extends Controller
     }
 
     public function view_counter(){
-        $data = CurrentNews::get();
-        $data_en = EnCurrentNews::get();
-        $act = Activity::get();
-        $act_en = EnActivity::get();
-        $def = DefenseIndustryContent::get();
-        $def_en = EnDefenseIndustryContent::get();
-        $vid = Video::get();
-        $vid_en = EnVideo::get();
-
+        $data = DefenseIndustryContent::get();
+        $data_en = EnDefenseIndustryContent::get();
+        
         foreach ($data as $item){
             $item->view_counter = rand(155,555);
             $item->save();
         }
         foreach ($data_en as $item){
-            $item->view_counter = rand(155,555);
-            $item->save();
-        }
-        foreach ($act as $item){
-            $item->view_counter = rand(155,555);
-            $item->save();
-        }
-        foreach ($act_en as $item){
-            $item->view_counter = rand(155,555);
-            $item->save();
-        }
-        foreach ($def as $item){
-            $item->view_counter = rand(155,555);
-            $item->save();
-        }
-        foreach ($def_en as $item){
-            $item->view_counter = rand(155,555);
-            $item->save();
-        }
-        foreach ($vid as $item){
-            $item->view_counter = rand(155,555);
-            $item->save();
-        }
-        foreach ($vid_en as $item){
             $item->view_counter = rand(155,555);
             $item->save();
         }

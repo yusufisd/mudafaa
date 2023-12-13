@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Milli Müdafaa | @yield('title') </title>
+    <title> @yield('title') | Milli Müdafaa </title>
     <meta name="title" content="@yield('meta-title')" />
     <meta name="keywords" content="@yield('keywords')" />
     <meta name="description" content="@yield('description')" />

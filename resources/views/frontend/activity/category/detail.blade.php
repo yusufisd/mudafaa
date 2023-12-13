@@ -83,7 +83,7 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="fas fa-map-marker-alt icon"></i>
-                                                                {{ $item->Country->name }}
+                                                                {{ strtoupper($item->city) }}
                                                             </span>
                                                         </li>
                                                         @endif

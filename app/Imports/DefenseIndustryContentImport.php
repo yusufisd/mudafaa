@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\Company;
+use App\Models\CompanyModel;
 use App\Models\CountryList;
 use App\Models\DefenseIndustryCategory;
 use App\Models\DefenseIndustryContent;
@@ -26,6 +27,7 @@ class DefenseIndustryContentImport implements ToCollection, WithStartRow
     public function collection(Collection $rows)
     {
         foreach ($rows as $row) {
+
             if ($row[0] != null) {
                 if ($row->filter()->isNotEmpty()) {
                     
@@ -38,7 +40,7 @@ class DefenseIndustryContentImport implements ToCollection, WithStartRow
                     if($row[5] != null){
                         $countries = explode(',', $row[5]);
                         foreach ($countries as $country) {
-                            $data = CountryList::where('name', '%' . $country . '%')->first();
+                            $data = CountryList::where('name','LIKE',$country)->first();
                             if ($data != null) {
                                 array_push($liste, $data->id);
                             }
@@ -49,7 +51,7 @@ class DefenseIndustryContentImport implements ToCollection, WithStartRow
                     if($row[6] != null){
                         $mensei = explode(',', $row[6]);
                         foreach ($mensei as $men) {
-                            $data = CountryList::where('name', '%' . $men . '%')->first();
+                            $data = CountryList::where('name',$men)->first();
                             if ($data != null) {
                                 array_push($liste2, $data->id);
                             }
@@ -57,10 +59,10 @@ class DefenseIndustryContentImport implements ToCollection, WithStartRow
                     }
 
                     $liste3 = [];
-                    if($row[6] != null){
+                    if($row[7] != null){
                         $companies = explode(',', $row[7]);
                         foreach ($companies as $company) {
-                            $data = Company::where('title', '%' . $company . '%')->first();
+                            $data = Company::where('title','LIKE',$company)->first();
                             if ($data != null) {
                                 array_push($liste3, $data->id);
                             }
@@ -77,6 +79,7 @@ class DefenseIndustryContentImport implements ToCollection, WithStartRow
                     $data->link = Str::slug($row[0]);
                     $data->read_time = (int) round(str_word_count($row[6]) / 200);
                     $data->author = 1;
+                    $data->live_time = date("Y-m-d H:i:s", \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[11])->getTimestamp());
                     $data->countries = $liste;
                     $data->origin = $liste2;
                     $data->companies = $liste3;
@@ -96,6 +99,7 @@ class DefenseIndustryContentImport implements ToCollection, WithStartRow
                     $data_en->link = Str::slug($row[0]);
                     $data_en->read_time = (int) round(str_word_count($row[6]) / 200);
                     $data_en->author = 1;
+                    $data_en->live_time = date("Y-m-d H:i:s", \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[11])->getTimestamp());
                     $data_en->content_id = $data->id;
                     $data_en->countries = $liste;
                     $data_en->origin = $liste2;
@@ -106,6 +110,7 @@ class DefenseIndustryContentImport implements ToCollection, WithStartRow
                     $data_en->seo_description = $row[9] ?? 'Seo description';
                     $data_en->seo_key = $row[10] ?? 'Seo';
                     $data_en->save();
+
                 }
             }else{
                 continue;
