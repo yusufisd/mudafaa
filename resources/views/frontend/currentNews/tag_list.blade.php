@@ -1,5 +1,5 @@
 @extends('frontend.master')
-@section('title','etiket')
+@section('title','Etiket')
 
 @section('content')
     <!-- Start Main -->

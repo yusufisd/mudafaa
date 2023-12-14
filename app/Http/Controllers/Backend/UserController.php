@@ -39,36 +39,38 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             "user_name" => "required",
             "user_surname" => "required",
             "user_no" => "required",
             "user_email" => "required|email",
             "role" => "required",
-            "user_password" => "required",
             "description" => "required",
+            "user_password" => "required",
             "user_password_again" => "required|same:user_password",
         ],[
             "user_name.required" => "İsim boş bırakılamaz",
             "user_surname.required" => "Soyisim boş bırakılamaz",
             "user_no.required" => "Telefon boş bırakılamaz",
-            "user_email.required" => "Email boş bırakılamaz|email",
+            "user_email.required" => "Email boş bırakılamaz",
+            "user_email.email" => "Email tipi doğru girilmelidir",
             "role.required" => "Kullanıcı grubu boş bırakılamaz",
             "user_password.required" => "Şifre boş bırakılamaz",
-            "description.description" => "Açıklama boş bırakılamaz",
-            "user_password_again.required" => "Şifre tekrarı boş bırakılamaz|same:user_password",
+            "description.required" => "Açıklama boş bırakılamaz",
+            "user_password_again.required" => "Şifre tekrarı boş bırakılamaz",
+            "user_password_again.same" => "Şifreler eşleşmiyor",
         ]);
         try {
             DB::beginTransaction();
-            
-
             $user = new UserModel();
             $user->name = $request->user_name;
             $user->surname = $request->user_surname;
             $user->phone = $request->user_no;
             $user->email = $request->user_email;
             $user->role = $request->role;
+            $user->twitter = $request->twitter;
+            $user->instagram = $request->instagram;
+            $user->facebook = $request->facebook;
             $user->description = $request->description;
             $user->password = Hash::make($request->user_password);
             $user->save();

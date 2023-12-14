@@ -94,19 +94,15 @@ class DictionaryController extends Controller
     }
 
     public function tag_list($title){
-
         $local = \Session::get('applocale');
         if ($local == null) {
             $local = config('app.fallback_locale');
         }
         if ($local == 'tr') {
             $data = Dictionary::where('status',1)->where('seo_key', 'LIKE' , '%'.$title.'%')->get();
-            
         } elseif ($local == 'en') {
             $data = EnDictionary::where('status',1)->where('seo_key', 'LIKE' , '%'.$title.'%')->get();
         }
-
-
         return view('frontend.dictionary.tag_list',compact('data'));
     }
 }

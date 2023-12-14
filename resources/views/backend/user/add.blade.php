@@ -75,9 +75,9 @@
                                                         <div class="row">
                                                             <!--begin::Col-->
                                                             <div class="col-lg-12 fv-row">
-                                                                <input id="user_name" name="user_name"
+                                                                <input id="user_name" name="user_name" type="text"
                                                                     class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                    value="" />
+                                                                    value="{{ old('user_name') }}" />
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -100,9 +100,9 @@
                                                         <div class="row">
                                                             <!--begin::Col-->
                                                             <div class="col-lg-12 fv-row">
-                                                                <input id="user_surname" name="user_surname"
+                                                                <input id="user_surname" name="user_surname" type="text"
                                                                     class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                    value="" />
+                                                                    value="{{ old('user_surname') }}" />
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -127,9 +127,9 @@
                                                         <div class="row">
                                                             <!--begin::Col-->
                                                             <div class="col-lg-12 fv-row">
-                                                                <input id="user_no" name="user_no"
+                                                                <input id="user_no" name="user_no" type="number"
                                                                     class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                    value="" />
+                                                                    value="{{ old('user_no') }}" />
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -150,7 +150,7 @@
                                             <div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">
                                                 <div class="row">
                                                     <!--begin::Label-->
-                                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Email</label>
+                                                    <label class="required col-lg-4 col-form-label fw-bold fs-6">Email</label>
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
                                                     <div class="col-lg-8">
@@ -160,7 +160,7 @@
                                                             <div class="col-lg-12 fv-row">
                                                                 <input type="email" id="user_email" name="user_email"
                                                                     class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                    value="" />
+                                                                    value="{{ old('user_email') }}" />
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -188,7 +188,7 @@
                                                                     <option>Seçiniz...</option>
 
                                                                     @foreach ($roles as $role)
-                                                                        <option value="{{ $role->id }}">
+                                                                        <option {{ old('role') == $role->id ? 'selected' : '' }} value="{{ $role->id }}">
                                                                             {{ $role->name }} </option>
                                                                     @endforeach
 
@@ -269,9 +269,9 @@
                                                     <div class="col-lg-8">
                                                         <div class="row">
                                                             <div class="col-lg-12 fv-row">
-                                                                <input id="user_name" name="user_name"
+                                                                <input id="user_name" name="instagram"
                                                                     class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                    value="" />
+                                                                    value="{{ old('instagram') }}" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -284,9 +284,9 @@
                                                     <div class="col-lg-8">
                                                         <div class="row">
                                                             <div class="col-lg-12 fv-row">
-                                                                <input id="user_name" name="user_name"
+                                                                <input id="user_name" name="twitter"
                                                                     class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                    value="" />
+                                                                    value="{{ old('twitter') }}" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -299,53 +299,30 @@
                                                     <div class="col-lg-8">
                                                         <div class="row">
                                                             <div class="col-lg-12 fv-row">
-                                                                <input id="user_name" name="user_name"
+                                                                <input id="user_name" name="facebook"
                                                                     class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                    value="" />
+                                                                    value="{{ old('facebook') }}" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-
-
-
-
                                         </div>
-                                        <!--end::Input group-->
-
-
 
 
                                     </div>
-                                    <!--end::Card body-->
-                                    <!--begin::Actions-->
-
                                     <div class="separator my-10"></div>
 
                                     <div class="row mb-6">
-                                        <!--begin::Label-->
-                                        <label class="col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5">
+                                        <label class="required col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5">
                                             <span>Biyografi</span>
                                         </label>
-                                        <!--end::Label-->
-                                        <!--begin::Col-->
                                         <div class="col-lg-12 fv-row mb-5 ps-5">
-
-                                            <textarea id="editor" name="description" class="tox-target ckeditor">
-                                            </textarea>
-
-
-
-
-
+                                            <textarea id="editor" name="description" class="tox-target ckeditor">{{ old('description') }}</textarea>
                                         </div>
-                                        <!--end::Col-->
                                     </div>
 
                                     <div class="card-footer d-flex justify-content-between px-0 py-6">
-
-                                        <!--begin::Input group-->
                                         <div class="row mb-0">
                                             <label class="col-lg-8 col-form-label fw-bold fs-6 ps-8">Durum</label>
                                             <div class="col-lg-4 d-flex align-items-center">
@@ -357,28 +334,18 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--end::Input group-->
 
                                         <button type="submit" class="btn btn-outline btn-outline-success"
                                             id="btn_submit_user"><i class="fa-solid fa-check ps-1"></i> KAYDET</button>
                                     </div>
-                                    <!--end::Actions-->
-                                    <!--end::Form-->
                                 </div>
-                                <!--begin::Body-->
                             </div>
                         </div>
-                        <!--end::Col-->
                     </div>
-                    <!--end::Row-->
-
                 </div>
-                <!--end::Content container-->
             </div>
-            <!--end::Content-->
         </form>
     </div>
-    <!--end::Content wrapper-->
 @endsection
 @section('script')
     <script>

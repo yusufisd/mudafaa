@@ -19,6 +19,7 @@ use App\Http\Controllers\Backend\DefenseIndustryCategoryController;
 use App\Http\Controllers\Backend\DefenseIndustryContentController;
 use App\Http\Controllers\Backend\DefenseIndustryController;
 use App\Http\Controllers\Backend\DictionaryController;
+use App\Http\Controllers\Backend\GoogleCodeController;
 use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\IconController;
 use App\Http\Controllers\Backend\InterviewController;
@@ -79,6 +80,10 @@ Route::middleware('lang')->group(function () {
             Route::get('/', [HomeController::class, 'index'])->name('index');
             Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
+
+            //  GOOGLE KOD
+            Route::get('/google-kod',[GoogleCodeController::class,'edit'])->name('google-kod.index');
+            Route::post('/google-kod',[GoogleCodeController::class,'update'])->name('google-kod.post');
             // CURRENT NEWS CATEGORY CONTROLLER
             Route::controller(CurrentNewsCategoryController::class)
                 ->prefix('guncel-haber-kategori')
@@ -701,6 +706,8 @@ Route::middleware('lang')->group(function () {
                         Route::get('kategori-detay/{id?}', 'categoryDetail')->name('categoryDetail');
                         Route::post('/ara', 'searchActivity')->name('searchActivity');
                         Route::get('/takvim/ozet', 'calendar')->name('calendar');
+                        Route::get('/etiket/{title?}','tag_list')->name('tag_list');
+
                     });
                     Route::prefix('activity')->group(function(){
                         Route::get('/', 'index')->name('list_en');
@@ -708,6 +715,8 @@ Route::middleware('lang')->group(function () {
                         Route::get('/upcoming/activites', 'close_activity')->name('close_activity_en');
                         Route::get('/category/{id?}', 'categoryDetail')->name('categoryDetail_en');
                         Route::get('/calendar/summary', 'calendar')->name('calendar_en');
+                        Route::get('/tag/{title?}','tag_list')->name('tag_list_en');
+
                     });
                 });
 

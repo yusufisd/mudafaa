@@ -163,4 +163,17 @@ class ActivityController extends Controller
         }
         return view('frontend.activity.category.detail', compact('data'));
     }
+
+    public function tag_list($title){
+        $local = \Session::get('applocale');
+        if ($local == null) {
+            $local = config('app.fallback_locale');
+        }
+        if ($local == 'tr') {
+            $data = Activity::where('status',1)->where('seo_key', 'LIKE' , '%'.$title.'%')->get();
+        } elseif ($local == 'en') {
+            $data = EnActivity::where('status',1)->where('seo_key', 'LIKE' , '%'.$title.'%')->get();
+        }
+        return view('frontend.activity.tag_list',compact('data'));
+    }
 }

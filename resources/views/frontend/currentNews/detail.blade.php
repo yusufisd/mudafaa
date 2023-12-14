@@ -255,7 +255,7 @@
                                                 <div class="tag-list">
 
                                                     @foreach ($data->getKeys() as $item)
-                                                        <a href="{{ route('front.currentNews.tag_list', $item) }}"
+                                                    <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.tag_list_en', $item) : route('front.currentNews.tag_list', $item) }}"
                                                             class="tag-link" style="text-transform: capitalize">
                                                             {{ $item }} </a>
                                                     @endforeach

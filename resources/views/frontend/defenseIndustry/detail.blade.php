@@ -26,6 +26,7 @@
             background-color: #749f43;
             color: white;
         }
+        
     </style>
 @endsection
 @section('content')
@@ -101,7 +102,7 @@
                                     <li>
                                         <span class="rt-meta">
                                             <i class="far fa-calendar-alt icon"></i>
-                                            {{ $data->created_at->translatedFormat('d M Y') }}
+                                            {{ $data->live_time->translatedFormat('d M Y') }}
                                         </span>
                                     </li>
                                     @if ($data->created_at != $data->updated_at)
@@ -289,11 +290,14 @@
                                         </h2>
 
                                         <!-- Galeri Resimleri -->
-                                        <div class="gallery">
+                                        <div class="row">
                                             @foreach ($data->multiple_image as $item)
-                                                <a data-fancybox="gallery" href="/{{ $item }}">
-                                                    <img src="/{{ $item }}" alt="">
-                                                </a>
+                                                <div class="col-md-2">
+                                                    <a data-fancybox="gallery" href="/{{ $item }}">
+                                                        <img src="/{{ $item }}" style="width:100%"
+                                                            alt="">
+                                                    </a>
+                                                </div>
                                             @endforeach
 
                                         </div>
@@ -353,7 +357,7 @@
                                                     </h4>
                                                     <span class="rt-meta">
                                                         <i class="far fa-calendar-alt icon"></i>
-                                                        {{ $previous_product->created_at->translatedFormat('d M Y') }}
+                                                        {{ $previous_product->live_time->translatedFormat('d M Y') }}
 
                                                     </span>
                                                 </div>
@@ -381,7 +385,7 @@
                                                     </h4>
                                                     <span class="rt-meta">
                                                         <i class="far fa-calendar-alt icon"></i>
-                                                        {{ $next_product->created_at->translatedFormat('d M Y') }}
+                                                        {{ $next_product->live_time->translatedFormat('d M Y') }}
                                                     </span>
                                                 </div>
                                             </div>
@@ -500,8 +504,8 @@
 @section('script')
     <script>
         /*--------------------------------
-                                                                   // sidebar title limitation
-                                                                -------------------------------*/
+                                                                       // sidebar title limitation
+                                                                    -------------------------------*/
         // Select all tags with class .sidebar_restricted_category_title
         $('.sidebar_restricted_category_title').each(function() {
             var content = $(this).text().trim(); // get the content of a tag

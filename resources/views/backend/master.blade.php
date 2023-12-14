@@ -770,7 +770,7 @@
                                         <span class="menu-icon">
                                             <i class="fa-solid fa-comments"></i>
                                         </span>
-                                        <span class="menu-title">Yorumlar</span>
+                                        <span class="menu-title">Yorumlar ({{ (commentsTotal()) }})</span>
                                         <span class="menu-arrow"></span>
                                     </span>
                                     <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown px-2 py-4 w-200px mh-75 overflow-auto" style="">
@@ -779,7 +779,7 @@
                                                 <span class="menu-bullet">
                                                     <span class="bullet bullet-dot"></span>
                                                 </span>
-                                                <span class="menu-title">Haber Yorumları</span>
+                                                <span class="menu-title">Haber Yorum ({{ master_currentCommentsCount() }})</span>
                                             </a>
                                         </div>
                                         <div class="menu-item">
@@ -787,7 +787,7 @@
                                                 <span class="menu-bullet">
                                                     <span class="bullet bullet-dot"></span>
                                                 </span>
-                                                <span class="menu-title">Röportaj Yorumları</span>
+                                                <span class="menu-title">Röportaj Yorum ({{ master_interviewCommentsCount() }})</span>
                                             </a>
                                         </div>
                                         <div class="menu-item">
@@ -795,7 +795,7 @@
                                                 <span class="menu-bullet">
                                                     <span class="bullet bullet-dot"></span>
                                                 </span>
-                                                <span class="menu-title">Video Yorumları</span>
+                                                <span class="menu-title">Video Yorum ({{ master_videoCommentsCount() }})</span>
                                             </a>
                                         </div>
                                     </div>
@@ -856,6 +856,14 @@
                                                     <span class="bullet bullet-dot"></span>
                                                 </span>
                                                 <span class="menu-title">{{ __('message.sosyal medya ayarları') }}</span>
+                                            </a>
+                                        </div>
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="{{ route('admin.google-kod.index') }}">
+                                                <span class="menu-bullet">
+                                                    <span class="bullet bullet-dot"></span>
+                                                </span>
+                                                <span class="menu-title"> Google Kod </span>
                                             </a>
                                         </div>
                                         

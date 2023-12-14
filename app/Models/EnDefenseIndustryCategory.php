@@ -20,4 +20,8 @@ class EnDefenseIndustryCategory extends Model
     public function getKeys(){
         return explode(',', $this->seo_key);
     }
+
+    public function defense(){
+        return $this->hasOne(EnDefenseIndustry::class,'id','defense_id');
+    }
 }

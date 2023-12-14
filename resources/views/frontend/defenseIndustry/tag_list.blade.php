@@ -5,6 +5,7 @@
     <!-- Start Main -->
     <style>
         .pagination>li>a,
+        .pagination>li>:hover,
         .pagination>li>span {
             color: rgb(26, 159, 26); // use your own color here
         }
@@ -127,7 +128,7 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ $item->created_at->translatedFormat('d M Y') }}
+                                                                {{ $item->live_time->translatedFormat('d M Y') }}
                                                             </span>
                                                         </li>
                                                     </ul>
@@ -138,12 +139,10 @@
                                     <!-- end inner col -->
                                 @endforeach
 
-
-
-
-
                             </div>
-
+                            <div class="d-flex justify-content-center" style="padding:10%">
+                                {!! $datas->appends(request()->input())->onEachSide(1)->links(); !!}
+                            </div>
 
                         </div>
                         <!-- end rt-left-sidebar-sapcer-5 -->

@@ -126,14 +126,14 @@
                                         </li>
                                         <li>
                                             <span class="rt-meta">
-                                                <i class="far fa-comments icon"></i>
+                                                <i class="fa-solid fa-comments"></i>
 
                                                 {{ $data->commentCount() }}
                                             </span>
                                         </li>
                                         <li>
                                             <span class="rt-meta">
-                                                <i class="far fa-clock icon"></i>
+                                                <i class="fa-solid fa-clock"></i>
                                                 {{ $data->read_time == 0 ? '1' : $data->read_time }} DK
                                             </span>
                                         </li>

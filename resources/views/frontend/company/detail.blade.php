@@ -46,12 +46,14 @@
                 <nav class="rt-breadcrumb-wrap" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
+                            <a
+                                href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.company.list_en') : route('front.company.list') }}">
+                            <a
+                                href="{{ \Session::get('applocale') == 'en' ? route('front.company.list_en') : route('front.company.list') }}">
                                 {{ __('message.firmalar') }}
                             </a>
                         </li>
@@ -258,12 +260,13 @@
 
                             <div class="sidebar-wrap mb--40">
                                 <div class="ad-banner-img">
-                                    @if(reklam(37) != null)
+                                    @if (reklam(37) != null)
                                         <div class="sidebar-wrap mb--40">
                                             <div class="ad-banner-img">
                                                 <a href="{{ reklam(37)->adsense_url }}">
                                                     @if (reklam(37)->type ?? 0 == 1)
-                                                        <img src="/{{ reklam(37)->image }}" alt="" width="310" height="425">
+                                                        <img src="/{{ reklam(37)->image }}" alt=""
+                                                            width="310" height="425">
                                                     @else
                                                         {!! reklam(37)->adsense_url ?? '' !!}
                                                     @endif
@@ -343,7 +346,8 @@
                                                 </div>
                                             </div>
                                             <br>
-                                            <button type="submit" class="rt-submit-btn"> {{ __('message.Abone ol') }} </button>
+                                            <button type="submit" class="rt-submit-btn"> {{ __('message.Abone ol') }}
+                                            </button>
                                             <div class="form-response"></div>
                                         </form>
                                     </div>
@@ -367,19 +371,6 @@
     <!-- End Main -->
 @endsection
 @section('script')
-    <!-- Fancybox CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
-    <script>
-        // Open slider on clicking pictures
-        var galleryImages = document.querySelectorAll('.gallery a');
-        galleryImages.forEach(function(image, index) {
-            image.addEventListener('click', function() {
-                image.setAttribute('data-fancybox',
-                    'gallery'); // This line makes the gallery share the same group
-                image.click();
-            });
-        });
-    </script>
     <!-- Fancybox CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
     <script>

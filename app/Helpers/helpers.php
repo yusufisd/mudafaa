@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\AdsenseModel;
+use App\Models\Comment;
 use App\Models\CurrentNews;
 use App\Models\CurrentNewsCategory;
 use App\Models\DefenseIndustry;
@@ -8,11 +9,13 @@ use App\Models\EnCurrentNews;
 use App\Models\EnCurrentNewsCategory;
 use App\Models\EnDefenseIndustry;
 use App\Models\EnPage;
+use App\Models\InterviewComment;
 use App\Models\LogModel;
 use App\Models\Page;
 use App\Models\Reklam;
 use App\Models\SocialMedia;
 use App\Models\UserModel;
+use App\Models\VideoComment;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -147,4 +150,23 @@ function reklam($id){
     }else{
         return 0;
     }
+}
+
+function commentsTotal(){
+    $haber_yorum = Comment::count();
+    $roportaj_yorum = InterviewComment::count();
+    $video_yorum = VideoComment::count();
+    return $haber_yorum + $roportaj_yorum + $video_yorum;
+}
+
+function master_currentCommentsCount(){
+    return Comment::count();
+}
+
+function master_interviewCommentsCount(){
+    return InterviewComment::count();
+}
+
+function master_videoCommentsCount(){
+    return VideoComment::count();
 }

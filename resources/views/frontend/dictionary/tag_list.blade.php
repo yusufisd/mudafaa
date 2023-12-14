@@ -5,7 +5,8 @@
     <!-- Start Main -->
     <style>
         .pagination>li>a,
-        .pagination>li>span {
+        .pagination>li>:hover,
+        .pagination>li>span,.pagination {
             color: rgb(26, 159, 26);
         }
     </style>

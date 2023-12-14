@@ -12,7 +12,8 @@ class EnActivity extends Model
     use HasFactory,SoftDeletes;
     protected $guarded = [];
     protected $casts = [
-        "start_time" => 'datetime'
+        "start_time" => 'datetime',
+        "finish_time" => 'datetime',
     ];
 
     public function Category()

@@ -1,5 +1,5 @@
 @extends('frontend.master')
-@section('title',$cat->title ?? 'Etkinlik')
+@section('title',$cat->title ?? 'Etiket')
 
 @section('content')
     <!-- Start Main -->

@@ -5,6 +5,7 @@
     <!-- Start Main -->
     <style>
         .pagination>li>a,
+        .pagination>li>:hover,
         .pagination>li>span {
             color: rgb(26, 159, 26);
         }
@@ -161,7 +162,7 @@
                             <!-- end inner row -->
 
                             <div style="margin-left: 45%; margin-top:5%">
-                                {{ $data->links() }}
+                                {!! $data->appends(request()->input())->onEachSide(1)->links(); !!}
                             </div>
 
                             <!-- end rt-pagination-area -->

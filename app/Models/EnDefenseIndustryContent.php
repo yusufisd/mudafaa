@@ -17,6 +17,7 @@ class EnDefenseIndustryContent extends Model
         "seo_key" => "array",
         "companies" => "array",
         "multiple_image" => "array",
+        "live_time" => 'datetime'
 
     ];
 

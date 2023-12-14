@@ -103,14 +103,12 @@ class DefenseIndustryContentController extends Controller
         }
         $merge = implode(',', $merge);
 
-
         $veri_en = json_decode(json_decode(json_encode($request->seo_key_en[0])));
         $merge_en = [];
         foreach ($veri_en as $v) {
             $merge_en[] = $v->value;
         }
         $merge_en = implode(',', $merge_en);
-
 
         $new->category_id = $request->category;
         $new->defense_id = $genel_id->defense_id;
@@ -142,7 +140,7 @@ class DefenseIndustryContentController extends Controller
                 $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
                 $save_url = 'assets/uploads/defenceIndustryContent/' . $image_name;
                 Image::make($image)
-                    ->resize(170, 170)
+                    ->resize(960, 520)
                     ->save($save_url);
                 array_push($datas, $save_url);
             }
@@ -262,14 +260,12 @@ class DefenseIndustryContentController extends Controller
         }
         $merge = implode(',', $merge);
 
-
         $veri_en = json_decode(json_decode(json_encode($request->seo_key_en[0])));
         $merge_en = [];
         foreach ($veri_en as $v) {
             $merge_en[] = $v->value;
         }
         $merge_en = implode(',', $merge_en);
-
 
         $new = DefenseIndustryContent::findOrFail($id);
         $new->category_id = $request->category;
@@ -302,7 +298,7 @@ class DefenseIndustryContentController extends Controller
                 $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
                 $save_url = 'assets/uploads/defenceIndustryContent/' . $image_name;
                 Image::make($image)
-                    ->resize(170, 170)
+                    ->resize(960, 520)
                     ->save($save_url);
                 array_push($datas, $save_url);
             }
@@ -425,11 +421,11 @@ class DefenseIndustryContentController extends Controller
             $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
             $save_url = 'assets/uploads/defenceIndustryContent/' . $image_name;
             Image::make($image)
-                ->resize(170, 170)
+                ->resize(960, 520)
                 ->save($save_url);
         }
         $old_images = $data->multiple_image;
-        if($old_images == null){
+        if ($old_images == null) {
             $old_images = [];
         }
         array_push($old_images, $save_url);
@@ -439,20 +435,18 @@ class DefenseIndustryContentController extends Controller
         return redirect()->route('admin.defenseIndustryContent.list');
     }
 
-    public function multipleImage_destroy(Request $request,$id)
+    public function multipleImage_destroy(Request $request, $id)
     {
-
         $data = DefenseIndustryContent::findOrFail($id);
         $images = $data->multiple_image;
 
-        $ara = array_search($request->path,$images);
+        $ara = array_search($request->path, $images);
         unset($images[$ara]);
         $data->multiple_image = $images;
         $data->save();
 
         Alert::success('Görsel başarıyla silindi');
         return redirect()->route('admin.defenseIndustryContent.list');
-
     }
 
     public function ice_aktar(Request $request)
@@ -463,7 +457,8 @@ class DefenseIndustryContentController extends Controller
         return back();
     }
 
-    public function disa_aktar(){
-        return Excel::download(new DefenseIndustryContentExport, 'defenseIndustryContent.xlsx');
+    public function disa_aktar()
+    {
+        return Excel::download(new DefenseIndustryContentExport(), 'defenseIndustryContent.xlsx');
     }
 }

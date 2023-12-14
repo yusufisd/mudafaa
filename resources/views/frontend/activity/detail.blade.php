@@ -130,7 +130,7 @@
                                     @if ($data->Country)
                                         <li>
                                             <span class="rt-meta">
-                                                <i class="fas fa-map-marker-alt icon"></i>
+                                                <i class="fa-solid fa-earth-americas"></i>
                                                 {{ $data->Country->name }} / {{ $data->city }}
                                             </span>
                                         </li>
@@ -138,7 +138,7 @@
                                     <li>
                                         @if($data->address != null)
                                         <span class="rt-meta">
-                                            <i class="fas fa-handshake icon"></i>
+                                            <i class="fas fa-map-marker-alt icon"></i>
                                             {{ $data->address }}
                                         </span>
                                         @endif
@@ -209,7 +209,7 @@
                                             <div class="tag-list">
 
                                                 @foreach ($data->getKeys() as $item)
-                                                    <a href="#" class="tag-link" style="text-transform: capitalize">
+                                                    <a href="{{ \Session::get('applocale') == 'en' ? route('front.activity.tag_list_en', $item) : route('front.activity.tag_list', $item) }}" class="tag-link" style="text-transform: capitalize">
                                                         {{ $item }} </a>
                                                 @endforeach
 

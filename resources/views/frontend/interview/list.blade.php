@@ -5,6 +5,7 @@
     <!-- Start Main -->
     <style>
         .pagination>li>a,
+        .pagination>li>:hover,
         .pagination>li>span {
             color: rgb(26, 159, 26); // use your own color here
         }
@@ -138,7 +139,7 @@
                                                         </li>
                                                         <li>
                                                             <span class="rt-meta">
-                                                                <i class="far fa-clock icon"></i>
+                                                                <i class="fa-solid fa-clock"></i>
                                                                 {{ $item->read_time == 0 ? '1' : $item->read_time }} DK
                                                             </span>
                                                         </li>
@@ -201,7 +202,7 @@
 
 
                             <div class="d-flex justify-content-center" style="padding:10%">
-                                {{ $data->links() }}
+                                {!! $data->appends(request()->input())->onEachSide(1)->links(); !!}
                             </div>
 
                             <!-- end rt-pagination-area -->

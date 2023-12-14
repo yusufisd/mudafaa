@@ -5,6 +5,7 @@
     <!-- Start Main -->
     <style>
         .pagination>li>a,
+        .pagination>li>:hover,
         .pagination>li>span {
             color: rgb(26, 159, 26); // use your own color here
         }
@@ -347,7 +348,7 @@
                 </div>
                 <!-- end col -->
                     <div style="margin-left: 35%; margin-top:5%">
-                        {{ $datas->links() }}
+                        {!! $datas->appends(request()->input())->onEachSide(1)->links(); !!}
                     </div>
                 <!-- end row  -->
             </div>
