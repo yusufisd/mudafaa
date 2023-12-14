@@ -31,11 +31,19 @@ class DefenseIndustryContent extends Model
     }
 
     public function Mensei(){
-        return CountryList::whereIn('id',$this->origin)->get();
+        if($this->origin != null){
+            return CountryList::whereIn('id',$this->origin)->get();
+        }else{
+            return [];
+        }
     }
 
     public function Countries(){
-        return CountryList::whereIn('id',$this->countries)->get();
+        if($this->countries){
+            return CountryList::whereIn('id',$this->countries)->get();
+        }else{
+            return [];
+        }
     }
 
     public function Companies(){

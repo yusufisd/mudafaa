@@ -21,6 +21,10 @@ class EnDefenseIndustryContent extends Model
 
     ];
 
+    public function Author(){
+        return $this->hasOne(UserModel::class,'id','author');
+    }
+
     public function GeneralCategory(){
         return $this->hasOne(EnDefenseIndustry::class,'id','defense_id');
     }
@@ -39,7 +43,11 @@ class EnDefenseIndustryContent extends Model
     }
 
     public function Countries(){
-        return CountryList::whereIn('id',$this->countries ?? [])->get();
+        if($this->countries){
+            return CountryList::whereIn('id',$this->countries)->get();
+        }else{
+            return [];
+        }
     }
 
     public function getKeys(){

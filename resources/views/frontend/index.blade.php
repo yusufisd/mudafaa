@@ -47,7 +47,6 @@
 
 @endsection
 @section('content')
-
     <!-- story -->
     <div class="d-block d-md-none mt--30" data-bg-image="media/elements/element_1.png">
         <div id="story_container" class="container">
@@ -104,8 +103,8 @@
                                 </a>
                                 <h3 class="post-title">
                                     <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $variable->link) : route('front.currentNews.detail', $variable->link) }}"
-                                        class="top_restricted_title">
-                                        {{ $variable->title }}
+                                        style="font-size: 14px">
+                                        {{ strlen(Illuminate\Support\Str::words($variable->title, 8, '...')) < 55 ? Illuminate\Support\Str::words($variable->title, 8, '...') : (strlen(Illuminate\Support\Str::words($variable->title, 7, '...')) < 55 ? Illuminate\Support\Str::words($variable->title, 7, '...') : Illuminate\Support\Str::words($variable->title, 6, '...')) }}
                                     </a>
                                 </h3>
                                 <span class="rt-meta">
@@ -125,28 +124,30 @@
 
 
     <div class="container" style="margin-top:3%">
-        @if(reklam(1) != null || reklam(2) != null)
-        <div class="row">
-            <div class="col-md-6" >
-                @if (reklam(1)->type ?? 0 == 1)
-                    <a href="{{ reklam(1)->adsense_url }}" target="{{ reklam(1)->href_tab == 0 ? '_self'  : '_blank' }}">
-                        <img src="/{{ reklam(1)->image }}" width="660px" style="height: 90px!important">
-                    </a>
-                @else
-                    {!! reklam(1)->adsense_url ?? '' !!}
-                @endif
-            </div>
+        @if (reklam(1) != null || reklam(2) != null)
+            <div class="row">
+                <div class="col-md-6">
+                    @if (reklam(1)->type ?? 0 == 1)
+                        <a href="{{ reklam(1)->adsense_url }}"
+                            target="{{ reklam(1)->href_tab == 0 ? '_self' : '_blank' }}">
+                            <img src="/{{ reklam(1)->image }}" width="660px" style="height: 90px!important">
+                        </a>
+                    @else
+                        {!! reklam(1)->adsense_url ?? '' !!}
+                    @endif
+                </div>
 
-            <div id="ikinci_reklam" class="col-md-6">
-                @if (reklam(2)->type ?? 0 == 1)
-                    <a href="{{ reklam(2)->adsense_url }}" target="{{ reklam(2)->href_tab == 0 ? '_self'  : '_blank' }}">
-                        <img src="/{{ reklam(2)->image }}"  width="660px" style="height: 90px!important">
-                    </a>
-                @else
-                    {!! reklam(2)->adsense_url ?? '' !!}
-                @endif
+                <div id="ikinci_reklam" class="col-md-6">
+                    @if (reklam(2)->type ?? 0 == 1)
+                        <a href="{{ reklam(2)->adsense_url }}"
+                            target="{{ reklam(2)->href_tab == 0 ? '_self' : '_blank' }}">
+                            <img src="/{{ reklam(2)->image }}" width="660px" style="height: 90px!important">
+                        </a>
+                    @else
+                        {!! reklam(2)->adsense_url ?? '' !!}
+                    @endif
+                </div>
             </div>
-        </div>
         @endif
     </div>
 
@@ -177,8 +178,8 @@
 
                             <h3 class="post-title">
                                 <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $tek_haber->link) : route('front.currentNews.detail', $tek_haber->link) }}"
-                                    class="section_2_title_style_1">
-                                    {{ $tek_haber->title }}
+                                    class="">
+                                    {{ strlen(Illuminate\Support\Str::words($tek_haber->title, 12, '...')) < 110 ? Illuminate\Support\Str::words($tek_haber->title, 12, '...') : (strlen(Illuminate\Support\Str::words($tek_haber->title, 11, '...')) < 55 ? Illuminate\Support\Str::words($tek_haber->title, 10, '...') : Illuminate\Support\Str::words($tek_haber->title, 9, '...')) }}
                                 </a>
                             </h3>
                             <div class="post-meta">
@@ -229,19 +230,19 @@
                                         </a>
                                     </div>
                                     <div class="post-content">
-                                        @foreach ($item->Category() as $Category)
-                                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $Category->link) : route('front.currentNewsCategory.list', $Category->link) }}"
-                                                style="background-color: {{ $Category->color_code != null ? $Category->color_code : '#749f43' }}"
-                                                class="tr-europe restricted_category_title">
-                                                {{ $Category->title }}
+                                        @if (isset($item->Category()[0]))
+                                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $item->Category()[0]->link) : route('front.currentNewsCategory.list', $item->Category()[0]->link) }}"
+                                                style="background-color: {{ $item->Category()[0]->color_code != null ? $item->Category()[0]->color_code : '#749f43' }}"
+                                                class="tr-america">
+                                                {{ $item->Category()[0]->title }}
                                             </a>
-                                        @endforeach
+                                        @endif
 
 
-                                        <h4 class="post-title">
+                                        <h4 class="post-title" style="font-size:17px">
                                             <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}"
-                                                class="section_2_title_style_2">
-                                                {{ $item->title }}
+                                                class="">
+                                                {{ strlen(Illuminate\Support\Str::words($item->title, 9, '...')) < 80 ? Illuminate\Support\Str::words($item->title, 9, '...') : (strlen(Illuminate\Support\Str::words($item->title, 8, '...')) < 55 ? Illuminate\Support\Str::words($item->title, 8, '...') : Illuminate\Support\Str::words($item->title, 7, '...')) }}
                                             </a>
                                         </h4>
                                         <div class="post-meta">
@@ -290,19 +291,18 @@
     </section>
     <!-- end main post section style 1 -->
 
-    @if(reklam(3) != null)
-    <div class="container" style="margin-top:3%">
-        <div class="row">
-            @if (reklam(3)->type ?? 0 == 1)
-                <a href="{{ reklam(3)->adsense_url }}" target="{{ reklam(3)->href_tab == 0 ? '_self'  : '_blank' }}">
-                    <img src="/{{ reklam(3)->image }}" style="width: 100%; height:90px!important">
-                </a>
-
-            @else
-                {!! reklam(3)->adsense_url ?? '' !!}
-            @endif
+    @if (reklam(3) != null)
+        <div class="container" style="margin-top:3%">
+            <div class="row">
+                @if (reklam(3)->type ?? 0 == 1)
+                    <a href="{{ reklam(3)->adsense_url }}" target="{{ reklam(3)->href_tab == 0 ? '_self' : '_blank' }}">
+                        <img src="/{{ reklam(3)->image }}" style="width: 100%; height:90px!important">
+                    </a>
+                @else
+                    {!! reklam(3)->adsense_url ?? '' !!}
+                @endif
+            </div>
         </div>
-    </div>
     @endif
 
     <!-- start what's new section -->
@@ -405,7 +405,7 @@
 
                                             @foreach ($cat1_news1 as $item)
                                                 <div class="item">
-                                                    <div class="rt-post post-md style-8">
+                                                    <div class="rt-post post-md style-8" style="height: 150px">
                                                         <div class="post-img">
                                                             <a
                                                                 href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}">
@@ -422,7 +422,7 @@
                                                             <h4 class="post-title" title="{{ $item->title }}">
                                                                 <a
                                                                     href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}">
-                                                                    {{ Illuminate\Support\Str::words($item->title, 8, '...') }}
+                                                                    {{ strlen(Illuminate\Support\Str::words($item->title, 8, '...')) < 55 ? Illuminate\Support\Str::words($item->title, 8, '...') : (strlen(Illuminate\Support\Str::words($item->title, 7, '...')) < 55 ? Illuminate\Support\Str::words($item->title, 7, '...') : Illuminate\Support\Str::words($item->title, 6, '...')) }}
                                                                 </a>
                                                             </h4>
                                                             <span class="rt-meta">
@@ -451,7 +451,7 @@
 
                                             @foreach ($cat1_news2 as $item)
                                                 <div class="item">
-                                                    <div class="rt-post post-md style-8">
+                                                    <div class="rt-post post-md style-8" style="height: 150px">
                                                         <div class="post-img">
                                                             <a
                                                                 href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->id) : route('front.currentNews.detail', $item->id) }}">
@@ -467,7 +467,7 @@
                                                             <h4 class="post-title" title="{{ $item->title }}">
                                                                 <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}"
                                                                     class="">
-                                                                    {{ Illuminate\Support\Str::words($item->title, 8, '...') }}
+                                                                    {{ strlen(Illuminate\Support\Str::words($item->title, 8, '...')) < 55 ? Illuminate\Support\Str::words($item->title, 8, '...') : (strlen(Illuminate\Support\Str::words($item->title, 7, '...')) < 55 ? Illuminate\Support\Str::words($item->title, 7, '...') : Illuminate\Support\Str::words($item->title, 6, '...')) }}
                                                                 </a>
                                                             </h4>
                                                             <span class="rt-meta">
@@ -548,7 +548,7 @@
                                         <div class="post-grid-md-list gutter-24">
                                             @foreach ($cat2_news1 as $item)
                                                 <div class="item">
-                                                    <div class="rt-post post-md style-8">
+                                                    <div class="rt-post post-md style-8" style="height: 150px">
                                                         <div class="post-img">
                                                             <a
                                                                 href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}">
@@ -566,7 +566,7 @@
                                                             <h4 class="post-title" title="{{ $item->title }}">
                                                                 <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}"
                                                                     class="">
-                                                                    {{ Illuminate\Support\Str::words($item->title, 8, '...') }}
+                                                                    {{ strlen(Illuminate\Support\Str::words($item->title, 8, '...')) < 55 ? Illuminate\Support\Str::words($item->title, 8, '...') : (strlen(Illuminate\Support\Str::words($item->title, 7, '...')) < 55 ? Illuminate\Support\Str::words($item->title, 7, '...') : Illuminate\Support\Str::words($item->title, 6, '...')) }}
                                                                 </a>
                                                             </h4>
                                                             <span class="rt-meta">
@@ -591,7 +591,7 @@
 
                                             @foreach ($cat2_news2 as $item)
                                                 <div class="item">
-                                                    <div class="rt-post post-md style-8">
+                                                    <div class="rt-post post-md style-8" style="height: 150px">
                                                         <div class="post-img">
                                                             <a
                                                                 href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}">
@@ -609,7 +609,7 @@
                                                             <h4 class="post-title" title="{{ $item->title }}">
                                                                 <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}"
                                                                     class="">
-                                                                    {{ Illuminate\Support\Str::words($item->title, 6, '...') }}
+                                                                    {{ strlen(Illuminate\Support\Str::words($item->title, 8, '...')) < 55 ? Illuminate\Support\Str::words($item->title, 8, '...') : (strlen(Illuminate\Support\Str::words($item->title, 7, '...')) < 55 ? Illuminate\Support\Str::words($item->title, 7, '...') : Illuminate\Support\Str::words($item->title, 6, '...')) }}
                                                                 </a>
                                                             </h4>
                                                             <span class="rt-meta">
@@ -682,7 +682,7 @@
                                                             <li>
                                                                 <span class="rt-meta">
                                                                     <i class="far fa-calendar-alt icon"></i>
-                                                                    {{ $ucuncu_kategori_icerigi->live_time->format('d M Y') }}
+                                                                    {{ $ucuncu_kategori_icerigi->live_time->translatedFormat('d M Y') }}
                                                                 </span>
                                                             </li>
                                                             <li>
@@ -707,7 +707,7 @@
 
                                             @foreach ($cat3_news1 as $item)
                                                 <div class="item">
-                                                    <div class="rt-post post-md style-8">
+                                                    <div class="rt-post post-md style-8" style="height: 150px">
                                                         <div class="post-img">
                                                             <a
                                                                 href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail', $item->link) : route('front.currentNews.detail', $item->link) }}">
@@ -724,7 +724,7 @@
                                                             <h4 class="post-title" title="{{ $item->title }}">
                                                                 <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}"
                                                                     class="">
-                                                                    {{ Illuminate\Support\Str::words($item->title, 6, '...') }}
+                                                                    {{ strlen(Illuminate\Support\Str::words($item->title, 8, '...')) < 55 ? Illuminate\Support\Str::words($item->title, 8, '...') : (strlen(Illuminate\Support\Str::words($item->title, 7, '...')) < 55 ? Illuminate\Support\Str::words($item->title, 7, '...') : Illuminate\Support\Str::words($item->title, 6, '...')) }}
                                                                 </a>
                                                             </h4>
                                                             <span class="rt-meta">
@@ -752,7 +752,7 @@
 
                                             @foreach ($cat3_news2 as $item)
                                                 <div class="item">
-                                                    <div class="rt-post post-md style-8">
+                                                    <div class="rt-post post-md style-8" style="height: 150px">
                                                         <div class="post-img">
                                                             <a
                                                                 href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}">
@@ -769,7 +769,7 @@
                                                             <h4 class="post-title" title="{{ $item->title }}">
                                                                 <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}"
                                                                     class="">
-                                                                    {{ Illuminate\Support\Str::words($item->title, 6, '...') }}
+                                                                    {{ strlen(Illuminate\Support\Str::words($item->title, 8, '...')) < 55 ? Illuminate\Support\Str::words($item->title, 8, '...') : (strlen(Illuminate\Support\Str::words($item->title, 7, '...')) < 55 ? Illuminate\Support\Str::words($item->title, 7, '...') : Illuminate\Support\Str::words($item->title, 6, '...')) }}
                                                                 </a>
                                                             </h4>
                                                             <span class="rt-meta">
@@ -882,7 +882,7 @@
                                             <span class="rt-meta">
                                                 <i class="fas fa-map-marker-alt icon"></i>
                                                 <span style="text-transform:capitalize">
-                                                    {{ strtoupper($item->city)}}
+                                                    {{ strtoupper($item->city) }}
                                                 </span>
                                             </span>
                                         </li>
@@ -910,29 +910,31 @@
     </section>
     <!-- end travel-main-section-style-3 -->
 
-    @if(reklam(4) != null || reklam(5) != null)
-    <div class="container" style="margin-top:3%">
-        <div class="row">
-            <div class="col-md-6">
-                @if (reklam(4)->type ?? 0 == 1)
-                    <a href="{{ reklam(4)->adsense_url }}" target="{{ reklam(4)->href_tab == 0 ? '_self'  : '_blank' }}">
-                        <img src="/{{ reklam(4)->image }}" width="660px" style="height: 90px!important">
-                    </a>
-                @else
-                    {!! reklam(4)->adsense_url ?? '' !!}
-                @endif
-            </div>
-            <div id="ikinci_reklam" class="col-md-6">
-                @if (reklam(5)->type ?? 0 == 1)
-                    <a href="{{ reklam(5)->adsense_url }}" target="{{ reklam(5)->href_tab == 0 ? '_self'  : '_blank' }}">
-                        <img src="/{{ reklam(5)->image }}" width="660px" style="height: 90px!important">
-                    </a>
-                @else
-                    {!! reklam(5)->adsense_url ?? '' !!}
-                @endif
+    @if (reklam(4) != null || reklam(5) != null)
+        <div class="container" style="margin-top:3%">
+            <div class="row">
+                <div class="col-md-6">
+                    @if (reklam(4)->type ?? 0 == 1)
+                        <a href="{{ reklam(4)->adsense_url }}"
+                            target="{{ reklam(4)->href_tab == 0 ? '_self' : '_blank' }}">
+                            <img src="/{{ reklam(4)->image }}" width="660px" style="height: 90px!important">
+                        </a>
+                    @else
+                        {!! reklam(4)->adsense_url ?? '' !!}
+                    @endif
+                </div>
+                <div id="ikinci_reklam" class="col-md-6">
+                    @if (reklam(5)->type ?? 0 == 1)
+                        <a href="{{ reklam(5)->adsense_url }}"
+                            target="{{ reklam(5)->href_tab == 0 ? '_self' : '_blank' }}">
+                            <img src="/{{ reklam(5)->image }}" width="660px" style="height: 90px!important">
+                        </a>
+                    @else
+                        {!! reklam(5)->adsense_url ?? '' !!}
+                    @endif
+                </div>
             </div>
         </div>
-    </div>
     @endif
     <!-- start popular post  -->
     <section class="section-padding">
@@ -1045,7 +1047,7 @@
                                                     if (++$a == 3) {
                                                         break;
                                                     }
-
+                                                    
                                                     ?>
 
                                                     <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $Category->link) : route('front.currentNewsCategory.list', $Category->link) }}"
@@ -1056,7 +1058,7 @@
                                                 <h3 class="post-title" title="{{ $item->title }}">
                                                     <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}"
                                                         class="">
-                                                        {{ Illuminate\Support\Str::words($item->title, 8, '...') }}
+                                                        {{ strlen(Illuminate\Support\Str::words($item->title, 8, '...')) < 55 ? Illuminate\Support\Str::words($item->title, 8, '...') : (strlen(Illuminate\Support\Str::words($item->title, 7, '...')) < 55 ? Illuminate\Support\Str::words($item->title, 7, '...') : Illuminate\Support\Str::words($item->title, 6, '...')) }}
                                                     </a>
                                                 </h3>
                                                 <span class="rt-meta">
@@ -1155,28 +1157,29 @@
     <!-- start popular post  -->
 
     <!-- start rt ad banner -->
-    @if(reklam(6))
-    <div class="rt-ad-banner rt-ad-banner-style-1 section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="ad-banner-img">
-                        <a href="{{ reklam(6)->adsense_url }}" target="{{ reklam(6)->href_tab == 0 ? '_self' : '_blank' }}">
-                            @if (reklam(6)->type ?? 0 == 1)
-                                <img src="/{{ reklam(6)->image }}" width="1320px" style="height: 90px!important">
-                            @else
-                                {!! reklam(6)->adsense_url ?? '' !!}
-                            @endif
-                        </a>
+    @if (reklam(6))
+        <div class="rt-ad-banner rt-ad-banner-style-1 section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="ad-banner-img">
+                            <a href="{{ reklam(6)->adsense_url }}"
+                                target="{{ reklam(6)->href_tab == 0 ? '_self' : '_blank' }}">
+                                @if (reklam(6)->type ?? 0 == 1)
+                                    <img src="/{{ reklam(6)->image }}" width="1320px" style="height: 90px!important">
+                                @else
+                                    {!! reklam(6)->adsense_url ?? '' !!}
+                                @endif
+                            </a>
+                        </div>
                     </div>
+                    <!-- end col -->
                 </div>
-                <!-- end col -->
+                <!-- end row -->
             </div>
-            <!-- end row -->
+            <!-- end container -->
         </div>
-        <!-- end container -->
-    </div>
-    <!-- end rt ad banner -->
+        <!-- end rt ad banner -->
     @endif
 
     <!-- start top-games-section-style-1 -->
@@ -1282,7 +1285,8 @@
                         </h2>
 
                         <div>
-                            <h6><a href="{{ \Session::get('applocale') == 'en' ? route('front.interview.list_en') : route('front.interview.list') }}">
+                            <h6><a
+                                    href="{{ \Session::get('applocale') == 'en' ? route('front.interview.list_en') : route('front.interview.list') }}">
                                     {{ __('message.tümünü gör') }} </a></h6>
                         </div>
                     </div>
@@ -1336,13 +1340,14 @@
     </section>
     <!-- end travel-main-section-style-2 -->
 
-    @if(reklam(7))
+    @if (reklam(7))
         <div class="rt-ad-banner rt-ad-banner-style-1 section-padding">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
                         <div class="ad-banner-img">
-                            <a href="{{ reklam(7)->adsense_url }}" target="{{ reklam(7)->href_tab == 0 ? '_self' : '_blank' }}">
+                            <a href="{{ reklam(7)->adsense_url }}"
+                                target="{{ reklam(7)->href_tab == 0 ? '_self' : '_blank' }}">
                                 @if (reklam(7)->type ?? 0 == 1)
                                     <img src="/{{ reklam(7)->image }}" width="1320px" style="height: 90px!important">
                                 @else

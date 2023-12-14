@@ -249,9 +249,9 @@
                                                 </div>
                                                 <div class="post-content ms-4">
 
-                                                    <h4 class="post-title">
-                                                        <a href="" class="sidebar_restricted_title">
-                                                            {{ $item->title }}
+                                                    <h4 class="post-title" style="font-size:15px">
+                                                        <a href="" class="">
+                                                            {{ (Illuminate\Support\Str::words($item->title,8,'...')) }}
                                                         </a>
                                                     </h4>
                                                     <span class="rt-meta">
