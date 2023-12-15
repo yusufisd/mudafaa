@@ -1,7 +1,12 @@
 @extends('frontend.master')
 @section('title', 'İletişim')
 @section('content')
-    
+    <style>
+        .iframe{
+            width: 1600px;
+            height: 500px;
+        }
+    </style>
     <main>
         <!-- theme-switch-box -->
         <div class="theme-switch-box-mobile-wrap">
@@ -159,7 +164,7 @@
             <div class="container">
                <div class="row">
                   <div class="col-12">
-                     <div class="map-wrapper">
+                     <div class="map-wrapper" style="text-align: center" style="width: 100%">
                         {!! $datas->map !!}
                      </div>
                   </div>
