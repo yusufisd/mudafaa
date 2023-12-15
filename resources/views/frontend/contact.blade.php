@@ -56,7 +56,7 @@
                             <div class="contact-list-area-1">
                                 <ul class="contact-list-style-1 clearfix">
 
-                                    @if ($datas && $data->address != null)
+                                    @if ($datas && $datas->address != null)
                                         <li class="media list-item">
                                             <div class="list-icon">
                                                 <i class="fas fa-map-marker-alt"></i>
