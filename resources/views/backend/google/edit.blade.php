@@ -96,7 +96,7 @@
                                                                 <div class="row mb-6">
                                                                     <label
                                                                         class="col-lg-3 col-form-label ps-5 fw-bold fs-6" style="text-align: right">
-                                                                        ADVERDS  :</label>
+                                                                        ADWORDS  :</label>
                                                                         <div class="col-md-1"></div>
                                                                     <div class="col-lg-6">
                                                                         <div class="row">
