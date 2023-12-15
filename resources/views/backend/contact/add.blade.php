@@ -259,6 +259,8 @@
                                                                                     id="title_tr" id="title_tr" value="{{ $data->map ?? '' }}"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                      />
+                                                                                     <span>width:1500 height:500 olmalıdır</span>
+
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
@@ -437,6 +439,7 @@
                                                                                     id="title_tr" id="title_tr" value="{{ $data_en->map ?? '' }}"
                                                                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                                                      />
+                                                                                     <span>width:1500 height:500 olmalıdır</span>
                                                                             </div>
                                                                             <!--end::Col-->
                                                                         </div>
