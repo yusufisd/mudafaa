@@ -82,7 +82,7 @@
                                                         </div>
                                                     </td>
                                                     <td> <p style="text-transform: capitalize"> {{ $item->name }} {{ $item->surname }} </p></td>
-                                                    <td> <p style="text-transform: capitalize">test </p> </td>
+                                                    <td> <p style="text-transform: capitalize"> {{ $item->Role->name }} </p> </td>
                                                     <td>
                                                         <div
                                                             class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">

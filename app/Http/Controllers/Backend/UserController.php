@@ -93,15 +93,60 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        //
+
+        $roles = Role::latest()->get();
+        $data = UserModel::findOrFail($id);
+        return view('backend.user.edit',compact('data','roles'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request,$id)
     {
-        //
+        $request->validate([
+            "user_name" => "required",
+            "user_surname" => "required",
+            "user_no" => "required",
+            "user_email" => "required|email",
+            "role" => "required",
+            "description" => "required",
+        ],[
+            "user_name.required" => "İsim boş bırakılamaz",
+            "user_surname.required" => "Soyisim boş bırakılamaz",
+            "user_no.required" => "Telefon boş bırakılamaz",
+            "user_email.required" => "Email boş bırakılamaz",
+            "user_email.email" => "Email tipi doğru girilmelidir",
+            "role.required" => "Kullanıcı grubu boş bırakılamaz",
+            "description.required" => "Açıklama boş bırakılamaz",
+        ]);
+        try {
+            DB::beginTransaction();
+            $user = UserModel::findOrFail($id);
+            $user->name = $request->user_name;
+            $user->surname = $request->user_surname;
+            $user->phone = $request->user_no;
+            $user->email = $request->user_email;
+            $user->role = $request->role;
+            $user->twitter = $request->twitter;
+            $user->instagram = $request->instagram;
+            $user->facebook = $request->facebook;
+            $user->description = $request->description;
+            $user->save();
+
+            logKayit(['Kullanıcı İşlemi', 'Kullanıcı düzenlendi']);
+            Alert::success('Kullanıcı Düzenlendi');
+            DB::commit();
+        } catch (Throwable $e) {
+            DB::rollBack();
+
+            logKayit(['Kullanıcı İşlemi', 'Kullanıcı düzenlemede hata', 0]);
+            Alert::error('Kullanıcı Düzenlemede Hata');
+            throw ValidationException::withMessages([
+                'error' => 'Tüm alanların doldurulması zorunludur.'
+            ]);
+        }
+        return redirect()->route('admin.user.list');
     }
 
     /**
