@@ -32,7 +32,7 @@
         <!--end::Toolbar-->
         <!--begin::Content-->
 
-        <form action="{{ route('admin.activity.update',$data_tr->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.activity.update', $data_tr->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div id="kt_app_content" class="app-content flex-column-fluid">
                 <!--begin::Content container-->
@@ -96,61 +96,94 @@
                                                     </div>
                                                     <!--end::Col-->
                                                 </div>
-                                                <!--end::Input group-->
-                                                <!--begin::Input group-->
+
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
-                                                    <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
-                                                        <span class="required"> {{ __('message.kategori') }} </span>
-                                                    </label>
-                                                    <!--end::Label-->
-                                                    <!--begin::Col-->
-                                                    <div class="col-lg-10 fv-row">
-                                                        <select name="category" aria-label="Seçiniz" data-control="select2"
-                                                            data-placeholder="Seçiniz..."
-                                                            class="form-select form-select-solid form-select-lg fw-semibold">
-                                                            <option value="">Seçiniz...</option>
+                                                    <div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">
+                                                        <div class="row">
+                                                            <label class="col-lg-4 col-form-label fw-bold fs-6 ps-5">
+                                                                <span class="required"> {{ __('message.kategori') }} </span>
+                                                            </label>
+                                                            <!--end::Label-->
+                                                            <!--begin::Col-->
+                                                            <div class="col-lg-8 fv-row">
+                                                                <select name="category" aria-label="Seçiniz"
+                                                                    data-control="select2" data-placeholder="Seçiniz..."
+                                                                    class="form-select form-select-solid form-select-lg fw-semibold">
+                                                                    <option value="">Seçiniz...</option>
 
-                                                            @foreach ($categories as $item)
-                                                                <option
-                                                                    {{ $data_tr->category == $item->id ? 'selected' : '' }}
-                                                                    value="{{ $item->id }}"> {{ $item->title }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
+                                                                    @foreach ($categories as $item)
+                                                                        <option @selected(old('category') == $item->id)
+                                                                            {{ $data_tr->category == $item->id ? 'selected' : '' }}
+                                                                            value="{{ $item->id }}">
+                                                                            {{ $item->title }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">
+
+                                                        <div class="row">
+                                                            <!--begin::Label-->
+                                                            <label
+                                                                class="col-lg-2 col-form-label fw-bold fs-6">Yazar</label>
+                                                            <!--end::Label-->
+                                                            <!--begin::Col-->
+                                                            <div class="col-lg-10">
+                                                                <!--begin::Row-->
+                                                                <div class="row">
+                                                                    <!--begin::Col-->
+                                                                    <div class="col-lg-12 fv-row">
+                                                                        @if (Auth::guard('admin')->check())
+                                                                            <select name="author" aria-label="Seçiniz"
+                                                                                data-control="select2"
+                                                                                data-placeholder="Seçiniz..."
+                                                                                class="form-select form-select-solid form-select-lg fw-semibold">
+                                                                                <option value="">Seçiniz...</option>
+                                                                                @foreach ($users as $user)
+                                                                                    <option value="{{ $user->id }}">
+                                                                                        {{ $data_tr->Author->id == $item->id ? 'selected' : '' }}
+
+                                                                                        {{ $user->name ?? '' }}
+                                                                                        {{ $user->surname ?? '' }}</option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        @endif
+                                                                        @if (Auth::guard('user_model')->check())
+                                                                            <input type="hidden" name="author"
+                                                                                value="{{ AuthorUser()->id }}"
+                                                                                id="">
+                                                                            <select disabled name="author"
+                                                                                aria-label="Seçiniz" data-control="select2"
+                                                                                data-placeholder="Seçiniz..."
+                                                                                class="form-select form-select-solid form-select-lg fw-semibold">
+                                                                                <option selected
+                                                                                    value="{{ AuthorUser()->id }}">
+                                                                                    {{ AuthorUser()->name }}
+                                                                                    {{ AuthorUser()->surname }} </option>
+                                                                            </select>
+                                                                        @endif
+
+                                                                    </div>
+                                                                    <!--end::Col-->
+                                                                </div>
+                                                                <!--end::Row-->
+                                                            </div>
+                                                            <!--end::Col-->
+                                                        </div>
+
                                                     </div>
                                                     <!--end::Col-->
                                                 </div>
 
+                                                
 
 
 
-                                                <div class="row mb-6">
-                                                    <!--begin::Label-->
-                                                    <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
-                                                        <span class="required"> {{ __('message.yazar') }} </span>
-                                                    </label>
-                                                    <!--end::Label-->
-                                                    <!--begin::Col-->
-                                                    <div class="col-lg-10 fv-row">
-                                                        <select name="author" aria-label="Seçiniz" data-control="select2"
-                                                            data-placeholder="Seçiniz..."
-                                                            class="form-select form-select-solid form-select-lg fw-semibold">
-                                                            <option value="">Seçiniz...</option>
 
-                                                            @foreach ($users as $item)
-                                                                <option
-                                                                    {{ $data_tr->Author->id == $item->id ? 'selected' : '' }}
-                                                                    value="{{ $item->id }}"> {{ $item->name }}
-                                                                    {{ $item->surname }}
-                                                                </option>
-                                                            @endforeach
-
-                                                        </select>
-                                                    </div>
-                                                    <!--end::Col-->
-                                                </div>
-
+                                               
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
                                                     <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
@@ -208,20 +241,23 @@
                                                     <div class="col-md-6">
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
-                                                            <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">
+                                                            <label class="col-lg-4 col-form-label fw-bold fs-6 ps-5">
                                                                 <span class=""> Başlangıç</span>
                                                             </label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
                                                             <div class="col-lg-5 fv-row">
-                                                                <input  type="date"
-                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                    name="start_date" value="{{ $data_tr->start_time != null ? $data_tr->start_time->format('Y-m-d') : '' }}" id="">
+                                                                <input type="date"
+                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                    name="start_date"
+                                                                    value="{{ $data_tr->start_time != null ? $data_tr->start_time->format('Y-m-d') : '' }}"
+                                                                    id="">
                                                             </div>
                                                             <div class="col-lg-3 fv-row">
-                                                                <input  type="time"
-                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                    name="start_clock" value="{{ $data_tr->start_clock }}" id="">
+                                                                <input type="time"
+                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                    name="start_clock"
+                                                                    value="{{ $data_tr->start_clock }}" id="">
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -230,20 +266,22 @@
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
                                                             <label
-                                                                class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">
+                                                                class="col-lg-4 col-form-label fw-bold fs-6 ps-5 text-end">
                                                                 <span class=""> Bitiş</span>
                                                             </label>
                                                             <!--end::Label-->
                                                             <!--begin::Col-->
                                                             <div class="col-lg-5 fv-row">
-                                                                <input  type="date"
-                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                    name="finish_date" value="{{ $data_tr->finish_time }}" id="">
+                                                                <input type="date"
+                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                    name="finish_date"
+                                                                    value="{{ $data_tr->finish_time }}" id="">
                                                             </div>
                                                             <div class="col-lg-3 fv-row">
-                                                                <input  type="time"
-                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                                                    name="finish_clock" value="{{ $data_tr->finish_clock }}" id="">
+                                                                <input type="time"
+                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                    name="finish_clock"
+                                                                    value="{{ $data_tr->finish_clock }}" id="">
                                                             </div>
                                                             <!--end::Col-->
                                                         </div>
@@ -268,7 +306,7 @@
 
                                                                     @foreach ($countrylist as $item)
                                                                         <option
-                                                                            {{ $data_tr->Country != null ?  ($data_tr->Country->id == $item->id ? 'selected' : '') : '' }}
+                                                                            {{ $data_tr->Country != null ? ($data_tr->Country->id == $item->id ? 'selected' : '') : '' }}
                                                                             value="{{ $item->id }}">
                                                                             {{ $item->name }}
                                                                         </option>
@@ -322,7 +360,8 @@
                                                             <label
                                                                 class="col-lg-4 col-form-label fw-bold fs-6 ps-5 text-end">
                                                                 <span class=""> Harita </span>
-                                                                <span style="font-size: 14px; font-weight:normal">(iFrame ekleyiniz)</span>
+                                                                <span style="font-size: 14px; font-weight:normal">(iFrame
+                                                                    ekleyiniz)</span>
 
                                                             </label>
                                                             <!--end::Label-->
@@ -439,7 +478,7 @@
                                                                 <!--begin::Col-->
                                                                 <div class="col-lg-11 fv-row">
                                                                     <textarea name="short_description_tr" id="short_description_tr" onchange="create_ozet_tr()"
-                                                                        class="form-control form-control-lg form-control-solid" >{{ $data_tr->short_description }}</textarea>
+                                                                        class="form-control form-control-lg form-control-solid">{{ $data_tr->short_description }}</textarea>
                                                                 </div>
                                                                 <!--end::Col-->
                                                             </div>
@@ -550,7 +589,7 @@
                                                                 <!--begin::Col-->
                                                                 <div class="col-lg-11 fv-row">
                                                                     <textarea name="short_description_en" id="short_description_en" onchange="create_ozet_en()"
-                                                                        class="form-control form-control-lg form-control-solid" >{{ $data_en->short_description }}</textarea>
+                                                                        class="form-control form-control-lg form-control-solid">{{ $data_en->short_description }}</textarea>
                                                                 </div>
                                                                 <!--end::Col-->
                                                             </div>
@@ -899,10 +938,14 @@
 
 
         var input1 = document.querySelector("#blog_seo_keywords_tr");
-        new Tagify(input1,{ maxTags:5});
+        new Tagify(input1, {
+            maxTags: 5
+        });
 
         var input2 = document.querySelector("#blog_seo_keywords_en");
-        new Tagify(input2,{ maxTags:5});
+        new Tagify(input2, {
+            maxTags: 5
+        });
 
 
         $(document).ready(function() {

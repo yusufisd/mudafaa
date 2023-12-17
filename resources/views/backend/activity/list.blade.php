@@ -131,7 +131,7 @@
                                                         class="fa fa-sort ms-3"></i></th>
                                                 <th style="text-align: center"> Konum <i class="fa fa-sort ms-3"></i></th>
                                                 <th style="text-align: center"> Durum <i class="fa fa-sort ms-3"></i></th>
-                                                <th style="text-align: center;width:200px"> {{ __('message.işlem') }} <i
+                                                <th  style="width: 200px"> {{ __('message.işlem') }} <i
                                                         class="fa fa-sort ms-3"></i></th>
                                             </tr>
                                         </thead>
@@ -169,7 +169,7 @@
                                                         </div>
                                                     </td>
 
-                                                    <td style="text-align: center">
+                                                    <td style="width: 200px">
                                                         <a href="#"
                                                             class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 px-2"
                                                             title="Görüntüle">

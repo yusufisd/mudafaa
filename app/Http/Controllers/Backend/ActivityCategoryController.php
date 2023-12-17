@@ -251,12 +251,10 @@ class ActivityCategoryController extends Controller
      */
     public function destroy($id)
     {
-       
-
+        try {
+            DB::beginTransaction();
             $data = ActivityCategory::findOrFail($id);
-
             Activity::where('category',$data->id)->delete();
-
             $son_queue = ActivityCategory::orderBy('queue', 'desc')->first()->queue;
             for ($i = $data->queue + 1; $i <= $son_queue; $i++) {
                 $item = ActivityCategory::where('queue', $i)->first();
@@ -264,12 +262,8 @@ class ActivityCategoryController extends Controller
                 $item->save();
             }
 
-
-
             $data_en = EnActivityCategory::where('activity_id', $id)->first();
-
             EnActivity::where('category',$data_en->id)->delete();
-
             $son_queue_en = EnActivityCategory::orderBy('queue','desc')->first()->queue;
             for($i = $data_en->queue+1; $i <= $son_queue_en; $i++){
                 $item_en = EnActivityCategory::where('queue',$i)->first();
@@ -282,7 +276,15 @@ class ActivityCategoryController extends Controller
             logKayit(['Etkinlik Kategori', 'Etkinlik kategorisi silindi']);
             Alert::success('Etkinlik Kategorisi Silindi');
             DB::commit();
-        
+        } catch (Throwable $e) {
+            DB::rollBack();
+
+            logKayit(['Etkinlik Kategori', 'Etkinlik kategori silme işleminde hata', 0]);
+            Alert::error('Silme İşleminde Hata');
+            throw ValidationException::withMessages([
+                'error' => 'Tüm alanların doldurulması zorunludur.',
+            ]);
+        }
         return redirect()->route('admin.activityCategory.list');
     }
 

@@ -153,6 +153,7 @@ class CurrentNewsController extends Controller
         $news_en->description = $request->tinymce_activity_detail_en;
         $news_en->read_time = $read_time_en;
         $news_en->currentNews_id = $news->id;
+        $news_en->live_time = $request->activity_on_location_tr;
         $news_en->link = $request->activity_url_en;
         $news_en->seo_title = $request->activity_seo_title_en;
         $news_en->seo_description = $request->activity_seo_description_en;
@@ -318,6 +319,7 @@ class CurrentNewsController extends Controller
             $news_en->short_description = $request->activity_summary_en;
             $news_en->description = $request->tinymce_activity_detail_en;
             $news_en->read_time = $read_time_en;
+            $news_en->live_time = $request->activity_on_location_tr;
             $news_en->currentNews_id = $news->id;
             $news_en->link = $request->activity_url_en;
             $news_en->seo_title = $request->activity_seo_title_en;

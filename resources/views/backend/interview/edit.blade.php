@@ -149,7 +149,8 @@
                                                     <div class="col-lg-10 fv-row">
                                                         <input type="date"
                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                            name="live_time" value="{{ $data_tr->live_time->format('Y-m-d') }}"
+                                                            name="live_time"
+                                                            value="{{ $data_tr->live_time->format('Y-m-d') }}"
                                                             id="">
                                                     </div>
                                                     <!--end::Col-->
@@ -640,6 +641,75 @@
                                             <div class="tab-content">
 
                                                 <div id="asd" class="tab-pane fade show active">
+
+                                                    @foreach ($dialog_tr as $ktr => $item)
+                                                        <hr>
+                                                        <div class="container" style=" padding:2%;" role="tabpanel">
+                                                            <div class="row mb-6">
+                                                                <div class="col-md-6">
+                                                                    <div class="row mb-6">
+                                                                        <label
+                                                                            class="col-lg-4 col-form-label fw-bold fs-6 ps-5">
+                                                                            <span class="required"> Soran Kişi</span>
+                                                                        </label>
+                                                                        <div class="col-lg-8 fv-row">
+                                                                            <input type="text"
+                                                                                class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                name="soran_tr[]"
+                                                                                id="{{ $ktr == 0 ? 'soranTr' : '' }}"
+                                                                                value="{{ $item->soran }}">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="row mb-6">
+                                                                        <label
+                                                                            class="col-lg-4 col-form-label fw-bold fs-6 ps-5 text-end">
+                                                                            <span class="required"> Cevaplayan
+                                                                                Kişi</span>
+                                                                        </label>
+                                                                        <div class="col-lg-8 fv-row">
+                                                                            <input type="text"
+                                                                                class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                name="cevaplayan_tr[]"
+                                                                                id="{{ $ktr == 0 ? 'cevapTr' : '' }}"
+                                                                                value="{{ $item->cevaplayan }}">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-6">
+                                                                <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
+                                                                    <span class="required"> Soru</span>
+                                                                </label>
+                                                                <div class="col-lg-10 fv-row">
+                                                                    <input type="text"
+                                                                        class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                        name="soru_tr[]"
+                                                                        id="{{ $ktr == 0 ? 'first_quest' : '' }}"
+                                                                        value="{{ $item->soru }}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-6">
+                                                                <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
+                                                                    <span class="required"> Cevap</span>
+                                                                </label>
+                                                                <div class="col-lg-10 fv-row">
+                                                                    <input type="text"
+                                                                        class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                        name="cevap_tr[]"
+                                                                        id="{{ $ktr == 0 ? 'first_answer' : '' }}"
+                                                                        value="{{ $item->cevap }}">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="ekle" style="text-align:center">
+                                                            <button type="button" id="main_add_en"
+                                                                class="btn btn-sm btn-success add_item_buton">EKLE</button>
+                                                            <button type="button"
+                                                                class="btn btn-sm btn-danger delete_item_buton">SİL</button>
+                                                        </div>
+                                                    @endforeach
                                                     <div id="show_item">
                                                         <div class="container" style=" padding:2%;" role="tabpanel">
                                                             <div class="row mb-6">
@@ -694,224 +764,148 @@
                                                         </div>
                                                         <div class="ekle" style="text-align:center">
                                                             <button type="button" id="main_add_tr"
-                                                                class="btn btn-primary add_item_buton">EKLE</button>
+                                                                class="btn btn-sm btn-primary add_item_buton">EKLE</button>
                                                         </div>
                                                     </div><br>
 
+                                                    <input type="hidden" id="has_dialog_tr"
+                                                        value="{{ count($dialog_tr) }}">
                                                 </div>
-                                                <input type="hidden" id="has_dialog_tr"
-                                                       value="{{ count($dialog_tr) }}">
-                                                @foreach ($dialog_tr as $ktr => $item)
-                                                <hr>
-                                                    <div class="container" style=" padding:2%;" role="tabpanel">
-                                                        <div class="row mb-6">
-                                                            <div class="col-md-6">
-                                                                <div class="row mb-6">
-                                                                    <label
-                                                                        class="col-lg-4 col-form-label fw-bold fs-6 ps-5">
-                                                                        <span class="required"> Soran Kişi</span>
-                                                                    </label>
-                                                                    <div class="col-lg-8 fv-row">
-                                                                        <input type="text"
-                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            name="soran_tr[]"
-                                                                            id="{{ $ktr == 0 ? 'soranTr' : '' }}"
-                                                                            value="{{ $item->soran }}">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="row mb-6">
-                                                                    <label
-                                                                        class="col-lg-4 col-form-label fw-bold fs-6 ps-5 text-end">
-                                                                        <span class="required"> Cevaplayan
-                                                                            Kişi</span>
-                                                                    </label>
-                                                                    <div class="col-lg-8 fv-row">
-                                                                        <input type="text"
-                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            name="cevaplayan_tr[]"
-                                                                            id="{{ $ktr == 0 ? 'cevapTr' : '' }}"
-                                                                            value="{{ $item->cevaplayan }}">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mb-6">
-                                                            <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
-                                                                <span class="required"> Soru</span>
-                                                            </label>
-                                                            <div class="col-lg-10 fv-row">
-                                                                <input type="text"
-                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                    name="soru_tr[]"
-                                                                    id="{{ $ktr == 0 ? 'first_quest' : '' }}"
-                                                                    value="{{ $item->soru }}">
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mb-6">
-                                                            <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
-                                                                <span class="required"> Cevap</span>
-                                                            </label>
-                                                            <div class="col-lg-10 fv-row">
-                                                                <input type="text"
-                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                    name="cevap_tr[]"
-                                                                    id="{{ $ktr == 0 ? 'first_answer' : '' }}"
-                                                                    value="{{ $item->cevap }}">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="ekle" style="text-align:center">
-                                                        <button type="button" id="main_add_en"
-                                                            class="btn btn-success add_item_buton">EKLE</button>
-                                                        <button type="button"
-                                                            class="btn btn-danger delete_item_buton">SİL</button>
-                                                    </div>
-                                                @endforeach
 
 
                                                 <div id="dsa" class="tab-pane fade">
-                                                @if (count($dialog_en) <= 0)
-                                                        <div id="show_item2">
-                                                            <div class="container" role="tabpanel" style=" padding:2%; ">
-                                                                <div class="row mb-6">
-                                                                    <div class="col-md-6">
-                                                                        <div class="row mb-6">
-                                                                            <label
-                                                                                class="col-lg-4 col-form-label fw-bold fs-6 ps-5">
-                                                                                <span class="required"> Soran Kişi</span>
-                                                                            </label>
-                                                                            <div class="col-lg-8 fv-row">
-                                                                                <input type="text"
-                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                    name="soran_en[]" id="soranEn">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="row mb-6">
-                                                                            <label
-                                                                                class="col-lg-4 col-form-label fw-bold fs-6 ps-5 text-end">
-                                                                                <span class="required"> Cevaplayan
-                                                                                    Kişi</span>
-                                                                            </label>
-                                                                            <div class="col-lg-8 fv-row">
-                                                                                <input type="text"
-                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                    name="cevaplayan_en[]" id="cevapEn">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row mb-6">
-                                                                    <label
-                                                                        class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
-                                                                        <span class="required"> Soru</span>
-                                                                    </label>
-                                                                    <div class="col-lg-10 fv-row">
-                                                                        <input type="text"
-                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            name="soru_en[]" id="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row mb-6">
-                                                                    <label
-                                                                        class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
-                                                                        <span class="required"> Cevap</span>
-                                                                    </label>
-                                                                    <div class="col-lg-10 fv-row">
-                                                                        <input type="text"
-                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            name="cevap_en[]" id="">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="ekle" style="text-align:center">
-                                                                <button type="button"
-                                                                    class="btn btn-primary add_item_buton2">EKLE</button>
-                                                            </div>
-                                                        </div><br>
 
-                                                    </div>
-                                                @endif
-                                                <div id="dsa" class="tab-pane fade">
+
                                                     @foreach ($dialog_en as $ken => $item)
-                                                        <div id="show_item2">
-                                                            <div class="container" role="tabpanel" style=" padding:2%; ">
-                                                                <div class="row mb-6">
-                                                                    <div class="col-md-6">
-                                                                        <div class="row mb-6">
-                                                                            <label
-                                                                                class="col-lg-4 col-form-label fw-bold fs-6 ps-5">
-                                                                                <span class="required"> Soran Kişi</span>
-                                                                            </label>
-                                                                            <input type="hidden" id="has_dialog_en"
-                                                                                value="{{ count($dialog_tr) }}">
-                                                                            <div class="col-lg-8 fv-row">
-                                                                                <input type="text"
-                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                    name="soran_en[]"
-                                                                                    id="{{ $ken == 0 ? 'soranEn' : '' }}"
-                                                                                    value="{{ $item->soran }}">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="row mb-6">
-                                                                            <label
-                                                                                class="col-lg-4 col-form-label fw-bold fs-6 ps-5 text-end">
-                                                                                <span class="required"> Cevaplayan
-                                                                                    Kişi</span>
-                                                                            </label>
-                                                                            <div class="col-lg-8 fv-row">
-                                                                                <input type="text"
-                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                    name="cevaplayan_en[]"
-                                                                                    id="{{ $ken == 0 ? 'cevapEn' : '' }}"
-                                                                                    value="{{ $item->cevaplayan }}">
-                                                                            </div>
+                                                        <hr>
+                                                        <div class="container" role="tabpanel" style=" padding:2%; ">
+                                                            <div class="row mb-6">
+                                                                <div class="col-md-6">
+                                                                    <div class="row mb-6">
+                                                                        <label
+                                                                            class="col-lg-4 col-form-label fw-bold fs-6 ps-5">
+                                                                            <span class="required"> Soran Kişi</span>
+                                                                        </label>
+                                                                        <input type="hidden" id="has_dialog_en"
+                                                                            value="{{ count($dialog_tr) }}">
+                                                                        <div class="col-lg-8 fv-row">
+                                                                            <input type="text"
+                                                                                class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                name="soran_en[]"
+                                                                                id="{{ $ken == 0 ? 'soranEn' : '' }}"
+                                                                                value="{{ $item->soran }}">
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="row mb-6">
-                                                                    <label
-                                                                        class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
-                                                                        <span class="required">Soru</span>
-                                                                    </label>
-                                                                    <div class="col-lg-10 fv-row">
-                                                                        <input type="text"
-                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            name="soru_en[]"
-                                                                            id="{{ $ken == 0 ? 'first_quest_en' : '' }}"
-                                                                            value="{{ $item->soru }}">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row mb-6">
-                                                                    <label
-                                                                        class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
-                                                                        <span class="required"> Cevap</span>
-                                                                    </label>
-                                                                    <div class="col-lg-10 fv-row">
-                                                                        <input type="text"
-                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                            name="cevap_en[]"
-                                                                            id="{{ $ken == 0 ? 'first_answer_en' : '' }}"
-                                                                            value="{{ $item->cevap }}">
+                                                                <div class="col-md-6">
+                                                                    <div class="row mb-6">
+                                                                        <label
+                                                                            class="col-lg-4 col-form-label fw-bold fs-6 ps-5 text-end">
+                                                                            <span class="required"> Cevaplayan
+                                                                                Kişi</span>
+                                                                        </label>
+                                                                        <div class="col-lg-8 fv-row">
+                                                                            <input type="text"
+                                                                                class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                name="cevaplayan_en[]"
+                                                                                id="{{ $ken == 0 ? 'cevapEn' : '' }}"
+                                                                                value="{{ $item->cevaplayan }}">
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="ekle" style="text-align:center">
-                                                                @if ($ken == 0)
-                                                                    <button type="button"
-                                                                        class="btn btn-primary add_item_buton2">EKLE</button>
-                                                                @else
-                                                                    <button type="button"
-                                                                        class="btn btn-danger delete_item_buton2">SİL</button>
-                                                                @endif
+                                                            <div class="row mb-6">
+                                                                <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
+                                                                    <span class="required">Soru</span>
+                                                                </label>
+                                                                <div class="col-lg-10 fv-row">
+                                                                    <input type="text"
+                                                                        class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                        name="soru_en[]"
+                                                                        id="{{ $ken == 0 ? 'first_quest_en' : '' }}"
+                                                                        value="{{ $item->soru }}">
+                                                                </div>
                                                             </div>
+                                                            <div class="row mb-6">
+                                                                <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
+                                                                    <span class="required"> Cevap</span>
+                                                                </label>
+                                                                <div class="col-lg-10 fv-row">
+                                                                    <input type="text"
+                                                                        class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                        name="cevap_en[]"
+                                                                        id="{{ $ken == 0 ? 'first_answer_en' : '' }}"
+                                                                        value="{{ $item->cevap }}">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="ekle" style="text-align:center">
+                                                            @if ($ken == 0)
+                                                                <button type="button"
+                                                                    class="btn btn-sm btn-primary add_item_buton2">EKLE</button>
+                                                            @else
+                                                                <button type="button"
+                                                                    class="btn btn-sm btn-danger delete_item_buton2">SİL</button>
+                                                            @endif
                                                         </div><br>
                                                     @endforeach
+                                                    <div id="show_item2">
+                                                        <div class="container" role="tabpanel" style=" padding:2%; ">
+                                                            <div class="row mb-6">
+                                                                <div class="col-md-6">
+                                                                    <div class="row mb-6">
+                                                                        <label
+                                                                            class="col-lg-4 col-form-label fw-bold fs-6 ps-5">
+                                                                            <span class="required"> Soran Kişi</span>
+                                                                        </label>
+                                                                        <div class="col-lg-8 fv-row">
+                                                                            <input type="text"
+                                                                                class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                name="soran_en[]" id="soranEn">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="row mb-6">
+                                                                        <label
+                                                                            class="col-lg-4 col-form-label fw-bold fs-6 ps-5 text-end">
+                                                                            <span class="required"> Cevaplayan
+                                                                                Kişi</span>
+                                                                        </label>
+                                                                        <div class="col-lg-8 fv-row">
+                                                                            <input type="text"
+                                                                                class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                name="cevaplayan_en[]" id="cevapEn">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-6">
+                                                                <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
+                                                                    <span class="required"> Soru</span>
+                                                                </label>
+                                                                <div class="col-lg-10 fv-row">
+                                                                    <input type="text"
+                                                                        class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                        name="soru_en[]" id="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-6">
+                                                                <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
+                                                                    <span class="required"> Cevap</span>
+                                                                </label>
+                                                                <div class="col-lg-10 fv-row">
+                                                                    <input type="text"
+                                                                        class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                        name="cevap_en[]" id="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="ekle" style="text-align:center">
+                                                            <button type="button"
+                                                                class="btn btn-sm btn-primary add_item_buton2">EKLE</button>
+                                                        </div>
+                                                    </div><br>
                                                 </div>
 
                                             </div><br>
@@ -927,7 +921,7 @@
                     </div>
                     <!--end::Col-->
                     <div class="right" style="text-align: right">
-                        <button class="btn btn-primary"> {{ __('message.kaydet') }} </button>
+                        <button class="btn btn-sm btn-primary"> {{ __('message.kaydet') }} </button>
                     </div>
                 </div>
                 <!--end::Row-->
@@ -1058,73 +1052,69 @@
         $(document).ready(function() {
             $(document).on('click', '.add_item_buton', function(e) {
                 let this_id = $(this).prop('id');
-                if (this_id != "main_add_tr") {
-                    $(this).remove();
-                }
+
                 let soran = $("#soranTr").val();
                 let cevaplayan = $("#cevapTr").val();
                 let hasDialog = $("#has_dialog_tr");
-                if (hasDialog != undefined && hasDialog.val() > 0) {
-                    $("#first_quest").val("");
-                    $("#first_answer").val("");
-                }
 
                 $("#show_item").append('<div id="show_item">\
-                                        <div class="datarow" style=" padding:2%;"\
-                                            role="tabpanel ">\
-                                            <div class="row mb-6">\
-                                                <div class="col-md-6">\
-                                                    <div class="row mb-6">\
-                                                        <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">\
-                                                            <span class="required"> Soran Kişi</span>\
-                                                        </label>\
-                                                        <div class="col-lg-8 fv-row">\
-                                                            <input type="text"\
-                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                                name="soran_tr[]" id="" value="' + soran + '">\
+                                                            <div class="datarow" style=" padding:2%;"\
+                                                                role="tabpanel ">\
+                                                                <div class="row mb-6">\
+                                                                    <div class="col-md-6">\
+                                                                        <div class="row mb-6">\
+                                                                            <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">\
+                                                                                <span class="required"> Soran Kişi</span>\
+                                                                            </label>\
+                                                                            <div class="col-lg-8 fv-row">\
+                                                                                <input type="text"\
+                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                                                                    name="soran_tr[]" id="" value="' +
+                    soran + '">\
+                                                                            </div>\
+                                                                        </div>\
+                                                                    </div>\
+                                                                    <div class="col-md-6">\
+                                                                        <div class="row mb-6">\
+                                                                            <label\
+                                                                                class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">\
+                                                                                <span class="required"> Cevaplayan Kişi</span>\
+                                                                            </label>\
+                                                                            <div class="col-lg-8 fv-row">\
+                                                                                <input type="text"\
+                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                                                                    name="cevaplayan_tr[]" id="" value="' +
+                    cevaplayan + '">\
+                                                                            </div>\
+                                                                        </div>\
+                                                                    </div>\
+                                                                </div>\
+                                                                <div class="row mb-6">\
+                                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
+                                                                        <span class="required"> Soru</span>\
+                                                                    </label>\
+                                                                    <div class="col-lg-10 fv-row">\
+                                                                        <input type="text"\
+                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                                                            name="soru_tr[]" id="" value="">\
+                                                                    </div>\
+                                                                </div>\
+                                                                <div class="row mb-6">\
+                                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
+                                                                        <span class="required"> Cevap</span>\
+                                                                    </label>\
+                                                                    <div class="col-lg-10 fv-row">\
+                                                                        <input type="text"\
+                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                                                            name="cevap_tr[]" id="" value="">\
+                                                                    </div>\
+                                                                </div>\
+                                                                <div class="ekle" style="text-align:center">\
+                                                                <button type="button" id="add_tr" class="btn btn-sm btn-success add_item_buton">EKLE</button>\
+                                                            <button type="button"\
+                                                                class="btn btn-sm btn-danger delete_item_buton">SİL</button>\
                                                         </div>\
-                                                    </div>\
-                                                </div>\
-                                                <div class="col-md-6">\
-                                                    <div class="row mb-6">\
-                                                        <label\
-                                                            class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">\
-                                                            <span class="required"> Cevaplayan Kişi</span>\
-                                                        </label>\
-                                                        <div class="col-lg-8 fv-row">\
-                                                            <input type="text"\
-                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                                name="cevaplayan_tr[]" id="" value="' + cevaplayan + '">\
-                                                        </div>\
-                                                    </div>\
-                                                </div>\
-                                            </div>\
-                                            <div class="row mb-6">\
-                                                <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
-                                                    <span class="required"> Soru</span>\
-                                                </label>\
-                                                <div class="col-lg-10 fv-row">\
-                                                    <input type="text"\
-                                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                        name="soru_tr[]" id="" value="">\
-                                                </div>\
-                                            </div>\
-                                            <div class="row mb-6">\
-                                                <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
-                                                    <span class="required"> Cevap</span>\
-                                                </label>\
-                                                <div class="col-lg-10 fv-row">\
-                                                    <input type="text"\
-                                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                        name="cevap_tr[]" id="" value="">\
-                                                </div>\
-                                            </div>\
-                                            <div class="ekle" style="text-align:center">\
-                                            <button type="button" id="add_tr" class="btn btn-success add_item_buton">EKLE</button>\
-                                        <button type="button"\
-                                            class="btn btn-danger delete_item_buton">SİL</button>\
-                                    </div>\
-                                </div>');
+                                                    </div>');
             });
 
             $(document).on('click', '.delete_item_buton', function(e) {
@@ -1136,7 +1126,6 @@
         });
     </script>
     <script>
-
         // RÖPORTAJ EN İÇİN GEÇERLİ OLAN KOD BLOĞU
         $(document).ready(function() {
             $(document).on('click', '.add_item_buton2', function(e) {
@@ -1152,62 +1141,64 @@
                     $("#first_answer_en").val("");
                 }
                 $("#show_item2").append('<div id="show_item2" >\
-                                        <div class="datarow" role="tabpanel " style=" padding:2%;">\
-                                            <div class="row mb-6">\
-                                                <div class="col-md-6">\
-                                                    <div class="row mb-6">\
-                                                        <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">\
-                                                            <span class="required"> Soran Kişi</span>\
-                                                        </label>\
-                                                        <div class="col-lg-8 fv-row">\
-                                                            <input type="text"\
-                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                                name="soran_en[]" id="" value="' + soran + '">\
+                                                            <div class="datarow" role="tabpanel " style=" padding:2%;">\
+                                                                <div class="row mb-6">\
+                                                                    <div class="col-md-6">\
+                                                                        <div class="row mb-6">\
+                                                                            <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">\
+                                                                                <span class="required"> Soran Kişi</span>\
+                                                                            </label>\
+                                                                            <div class="col-lg-8 fv-row">\
+                                                                                <input type="text"\
+                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                                                                    name="soran_en[]" id="" value="' +
+                    soran + '">\
+                                                                            </div>\
+                                                                        </div>\
+                                                                    </div>\
+                                                                    <div class="col-md-6">\
+                                                                        <div class="row mb-6">\
+                                                                            <label\
+                                                                                class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">\
+                                                                                <span class="required"> Cevaplayan Kişi</span>\
+                                                                            </label>\
+                                                                            <div class="col-lg-8 fv-row">\
+                                                                                <input type="text"\
+                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                                                                    name="cevaplayan_en[]" id="" value="' +
+                    cevaplayan + '">\
+                                                                            </div>\
+                                                                        </div>\
+                                                                    </div>\
+                                                                </div>\
+                                                                <div class="row mb-6">\
+                                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
+                                                                        <span class="required"> Soru</span>\
+                                                                    </label>\
+                                                                    <div class="col-lg-10 fv-row">\
+                                                                        <input type="text"\
+                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                                                            name="soru_en[]" id="" value="">\
+                                                                    </div>\
+                                                                </div>\
+                                                                <div class="row mb-6">\
+                                                                    <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
+                                                                        <span class="required"> Cevap</span>\
+                                                                    </label>\
+                                                                    <div class="col-lg-10 fv-row">\
+                                                                        <input type="text"\
+                                                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
+                                                                            name="cevap_en[]" id="" value="">\
+                                                                    </div>\
+                                                                </div>\
+                                                            <div class="ekle" style="text-align:center">\
+                                                            <button type="button" id="add_en" class="btn btn-sm btn-success add_item_buton2">EKLE</button>\
+                                                            <button type="button"\
+                                                                class="btn btn-sm btn-danger delete_item_buton2">SİL</button>\
+                                                            </div>\
                                                         </div>\
-                                                    </div>\
-                                                </div>\
-                                                <div class="col-md-6">\
-                                                    <div class="row mb-6">\
-                                                        <label\
-                                                            class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">\
-                                                            <span class="required"> Cevaplayan Kişi</span>\
-                                                        </label>\
-                                                        <div class="col-lg-8 fv-row">\
-                                                            <input type="text"\
-                                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                                name="cevaplayan_en[]" id="" value="' + cevaplayan + '">\
-                                                        </div>\
-                                                    </div>\
-                                                </div>\
-                                            </div>\
-                                            <div class="row mb-6">\
-                                                <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
-                                                    <span class="required"> Soru</span>\
-                                                </label>\
-                                                <div class="col-lg-10 fv-row">\
-                                                    <input type="text"\
-                                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                        name="soru_en[]" id="" value="">\
-                                                </div>\
-                                            </div>\
-                                            <div class="row mb-6">\
-                                                <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
-                                                    <span class="required"> Cevap</span>\
-                                                </label>\
-                                                <div class="col-lg-10 fv-row">\
-                                                    <input type="text"\
-                                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                        name="cevap_en[]" id="" value="">\
-                                                </div>\
-                                            </div>\
-                                        <div class="ekle" style="text-align:center">\
-                                        <button type="button" id="add_en" class="btn btn-success add_item_buton2">EKLE</button>\
-                                        <button type="button"\
-                                            class="btn btn-danger delete_item_buton2">SİL</button>\
-                                        </div>\
-                                    </div>\
-                                        </div>\
-                                    </div>');
+                                                            </div>\
+                                                        </div>');
             });
 
             $(document).on('click', '.delete_item_buton2', function(e) {

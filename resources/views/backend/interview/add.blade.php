@@ -959,7 +959,6 @@
     <script>
         $(document).ready(function() {
             $(document).on('click', '.add_item_buton2', function(e) {
-                w
                 let questioner = $("#questioner_en").val();
                 let answered = $("#answered_en").val();
                 console.log("ok");
