@@ -47,22 +47,27 @@
         integrity="sha512-WW8/jxkELe2CAiE4LvQfwm1rajOS8PHasCCx+knHG0gBHt8EXxS6T6tJRTGuDQVnluuAvMxWF4j8SNFDKceLFg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+        integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-        
+
     <style>
-        .number_list , .number_list > li{
+        .number_list,
+        .number_list>li {
             list-style: decimal !important;
         }
 
-        .disc_list , .disc_list > li{
+        .disc_list,
+        .disc_list>li {
             list-style: disc !important;
         }
-        .post-body > p {
+
+        .post-body>p {
             color: #464847 !important;
         }
 
-        .galleryitem{
+        .galleryitem {
             max-height: 100px;
         }
     </style>
@@ -73,7 +78,7 @@
 </head>
 
 <body>
-    
+
 
     <!-- Start wrapper -->
     <div id="wrapper" class="wrapper">
@@ -110,11 +115,12 @@
                                             @foreach (headline() as $item)
                                                 <div class="swiper-slide">
                                                     <div class="item">
-                                                        <a href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNews.detail_en', $item->link)) : (route('front.currentNews.detail', $item->link)) }}">
-                                                        <p class="trending-slide-title">
-                                                            {{  str_word_count($item->title) < 100 ? $item->title : substr($item->title,0,100).'...' }} 
-                                                        </p>
-                                                    </a>
+                                                        <a
+                                                            href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}">
+                                                            <p class="trending-slide-title">
+                                                                {{ str_word_count($item->title) < 100 ? $item->title : substr($item->title, 0, 100) . '...' }}
+                                                            </p>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             @endforeach
@@ -141,7 +147,7 @@
                                         <ul class="rt-top-social">
                                             @if (SocialMedia() && SocialMedia()->facebook != null)
                                                 <li>
-                                                    <a href="https://www.facebook.com/{{  SocialMedia()->facebook }}"
+                                                    <a href="https://www.facebook.com/{{ SocialMedia()->facebook }}"
                                                         target="_blank">
                                                         <i class="fab fa-facebook-f"></i>
                                                     </a>
@@ -157,7 +163,7 @@
                                             @endif
                                             @if (SocialMedia() && SocialMedia()->instagram != null)
                                                 <li>
-                                                    <a href="https://www.instagram.com/{{  SocialMedia()->instagram  }}"
+                                                    <a href="https://www.instagram.com/{{ SocialMedia()->instagram }}"
                                                         target="_blank">
                                                         <i class="fab fa-instagram"></i>
                                                     </a>
@@ -165,7 +171,7 @@
                                             @endif
                                             @if (SocialMedia() && SocialMedia()->youtube != null)
                                                 <li>
-                                                    <a href="https://www.youtube.com/channel/{{  SocialMedia()->youtube  }}"
+                                                    <a href="https://www.youtube.com/channel/{{ SocialMedia()->youtube }}"
                                                         target="_blank">
                                                         <i class="fab fa-youtube"></i>
                                                     </a>
@@ -173,7 +179,7 @@
                                             @endif
                                             @if (SocialMedia() && SocialMedia()->linkedin != null)
                                                 <li>
-                                                    <a href="https://www.linkedin.com/company/{{  SocialMedia()->linkedin }}"
+                                                    <a href="https://www.linkedin.com/company/{{ SocialMedia()->linkedin }}"
                                                         target="_blank">
                                                         <i class="fab fa-linkedin-in"></i>
                                                     </a>
@@ -218,12 +224,14 @@
 
                                 <!-- start logo here -->
                                 <div class="site-branding">
-                                    <a class="dark-logo" href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
+                                    <a class="dark-logo"
+                                        href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
                                         <img src="/assets/frontend/media/logo/logo-light.png" width="250"
                                             height="52" src="" alt="neeon">
 
                                     </a>
-                                    <a class="light-logo" href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
+                                    <a class="light-logo"
+                                        href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
                                         <img src="/assets/frontend/media/logo/logo-light.png" width="250"
                                             height="52" alt="neeon">
                                     </a>
@@ -235,7 +243,8 @@
                                     <nav class="main-menu__nav">
                                         <ul>
                                             <li class="active">
-                                                <a class="animation" href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}"><i
+                                                <a class="animation"
+                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}"><i
                                                         class="fa fa-home fa-md"></i></a>
                                             </li>
                                             <li
@@ -245,7 +254,7 @@
                                                 <ul class="main-menu__dropdown">
                                                     @foreach (currentCats() as $item)
                                                         <li><a
-                                                                href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNewsCategory.list_en', $item->link)) : (route('front.currentNewsCategory.list', $item->link)) }}">
+                                                                href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $item->link) : route('front.currentNewsCategory.list', $item->link) }}">
                                                                 {{ $item->title }} </a></li>
                                                     @endforeach
 
@@ -260,7 +269,7 @@
 
                                                     @foreach (defenseIndustryCat() as $item)
                                                         <li><a
-                                                                href="{{ \Session::get('applocale') == 'en' ? (route('front.defenseIndustryCategory.list_en', $item->link)) : (route('front.defenseIndustryCategory.list', $item->link)) }}">
+                                                                href="{{ \Session::get('applocale') == 'en' ? route('front.defenseIndustryCategory.list_en', $item->link) : route('front.defenseIndustryCategory.list', $item->link) }}">
                                                                 {{ $item->title }} </a>
                                                         </li>
                                                     @endforeach
@@ -269,22 +278,26 @@
                                             </li>
                                             <li
                                                 class="{{ Route::is('front.activity.detail') || Route::is('front.activity.list') || Route::is('front.activity.detail') ? 'active' : '' }}">
-                                                <a class="animation" href="{{ \Session::get('applocale') == 'en' ? (route('front.activity.list_en')) : (route('front.activity.list')) }}">
+                                                <a class="animation"
+                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.activity.list_en') : route('front.activity.list') }}">
                                                     {{ __('message.etkinlikler') }} </a>
                                             </li>
                                             <li
                                                 class="{{ Route::is('front.interview.list') || Route::is('front.interview.detail') ? 'active' : '' }}">
-                                                <a class="animation" href="{{ \Session::get('applocale') == 'en' ? (route('front.interview.list_en')) : (route('front.interview.list')) }}">
+                                                <a class="animation"
+                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.interview.list_en') : route('front.interview.list') }}">
                                                     {{ __('message.röportajlar') }} </a>
                                             </li>
                                             <li
                                                 class="{{ Route::is('front.company.list') || Route::is('front.company.detail') ? 'active' : '' }}">
-                                                <a class="animation" href="{{ \Session::get('applocale') == 'en' ? (route('front.company.list_en')) : (route('front.company.list')) }}">
+                                                <a class="animation"
+                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.company.list_en') : route('front.company.list') }}">
                                                     {{ __('message.firmalar') }} </a>
                                             </li>
                                             <li
                                                 class="{{ Route::is('front.dictionary.list') || Route::is('front.dictionary.detail') ? 'active' : '' }}">
-                                                <a class="animation" href="{{ \Session::get('applocale') == 'en' ? (route('front.dictionary.list_en')) : (route('front.dictionary.list')) }}">
+                                                <a class="animation"
+                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.dictionary.list_en') : route('front.dictionary.list') }}">
                                                     {{ __('message.ss sözlüğü') }}
                                                 </a>
                                             </li>
@@ -327,7 +340,8 @@
                 <div class="mobile-menu-bar-wrap" id="mobile-menu-bar-wrap">
                     <div class="mobile-menu-bar">
                         <div class="logo">
-                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
+                            <a
+                                href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
                                 <img src="/assets/frontend/media/logo/mm.svg" alt="neeon" width="162"
                                     height="52">
                             </a>
@@ -344,7 +358,8 @@
                             <nav class="menu-main-primary-container">
                                 <ul class="menu">
                                     <li>
-                                        <a class="animation" href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
+                                        <a class="animation"
+                                            href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
                                             {{ __('message.anasayfa') }} </a>
                                     </li>
                                     <li class="list menu-item-has-children">
@@ -353,7 +368,7 @@
                                         <ul class="main-menu__dropdown sub-menu">
                                             @foreach (currentCats() as $item)
                                                 <li><a
-                                                        href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNewsCategory.list_en', $item->id)) : (route('front.currentNewsCategory.list', $item->id)) }}">
+                                                        href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $item->id) : route('front.currentNewsCategory.list', $item->id) }}">
                                                         {{ $item->title }} </a></li>
                                             @endforeach
                                         </ul>
@@ -365,20 +380,24 @@
                                         <ul class="main-menu__dropdown sub-menu">
                                             @foreach (defenseIndustryCat() as $item)
                                                 <li><a
-                                                        href="{{ \Session::get('applocale') == 'en' ? (route('front.defenseIndustryCategory.list_en', $item->link)) : (route('front.defenseIndustryCategory.list', $item->link)) }}">
+                                                        href="{{ \Session::get('applocale') == 'en' ? route('front.defenseIndustryCategory.list_en', $item->link) : route('front.defenseIndustryCategory.list', $item->link) }}">
                                                         {{ $item->title }} </a>
                                                 </li>
                                             @endforeach
                                         </ul>
                                     </li>
-                                    <li><a class="animation" href="{{ \Session::get('applocale') == 'en' ? (route('front.activity.list_en')) : (route('front.activity.list')) }}">
+                                    <li><a class="animation"
+                                            href="{{ \Session::get('applocale') == 'en' ? route('front.activity.list_en') : route('front.activity.list') }}">
                                             {{ __('message.etkinlikler') }} </a></li>
-                                    <li><a class="animation" href="{{ \Session::get('applocale') == 'en' ? (route('front.interview.list_en')) : (route('front.interview.list')) }}">
+                                    <li><a class="animation"
+                                            href="{{ \Session::get('applocale') == 'en' ? route('front.interview.list_en') : route('front.interview.list') }}">
                                             {{ __('message.röportajlar') }} </a></li>
-                                    <li><a class="animation" href="{{ \Session::get('applocale') == 'en' ? (route('front.company.list_en')) : (route('front.company.list')) }}">
+                                    <li><a class="animation"
+                                            href="{{ \Session::get('applocale') == 'en' ? route('front.company.list_en') : route('front.company.list') }}">
                                             {{ __('message.firmalar') }} </a>
                                     </li>
-                                    <li><a class="animation" href="{{ \Session::get('applocale') == 'en' ? (route('front.dictionary.list_en')) : (route('front.dictionary.list')) }}">
+                                    <li><a class="animation"
+                                            href="{{ \Session::get('applocale') == 'en' ? route('front.dictionary.list_en') : route('front.dictionary.list') }}">
                                             {{ __('message.ss sözlüğü') }} </a></li>
                                     <li><a class="animation" href="{{ route('front.video.list') }}">
                                             {{ __('message.videolar') }} </a></li>
@@ -397,194 +416,110 @@
 
                 <div class="footer-top footer-style-1">
                     <div class="container">
-                        <div class="row gutter-30">
+                        <div class="row">
 
-                            <div class="col-xl-3 col-md-6 wow fadeInUp" data-wow-delay="200ms"
-                                data-wow-duration="800ms">
-                                <div class="footer-widget">
-                                    <div class="logo footer-logo">
-                                        <a class="dark-logo" href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
-                                            <img width="250" height="52"
-                                                src="/assets/frontend/media/logo/mm-beyaz.svg" alt="neeon">
-                                        </a>
-                                    </div>
-                                    <p class="text footer-text">
-                                        <span style="color: #fff;font-size:1.2rem">www.millimudafaa.com</span>
-                                        {{ __('message.Sitede yayınlanan yazı, haber, video ve fotoğrafların tüm hakları Dada İst Ajans a aittir. Kaynak gösterilerek dahi olsa izin alınmadan alıntı yapılamaz') }}
-                                    </p>
-                                    <ul class="footer-social gutter-15">
-                                        @if (SocialMedia())
-                                            <li class="social-item">
-                                                <a href="https://www.facebook.com/{{ SocialMedia()->facebook != null ? SocialMedia()->facebook : '' }}"
-                                                    class="social-link" target="_blank">
-                                                    <i class="fab fa-facebook-f"></i>
+                            <center>
+                                <div class="col-xl-3 col-md-6 wow fadeInUp" style="width: 800px"
+                                    data-wow-delay="200ms" data-wow-duration="800ms">
+                                    <div class="footer-widget">
+                                        <div class="logo footer-logo">
+                                            <a class="dark-logo"
+                                                href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
+                                                <img width="250" height="52"
+                                                    src="/assets/frontend/media/logo/mm-beyaz.svg" alt="neeon">
+                                            </a>
+                                        </div>
+                                        <div class="icerik">
+                                            <p class="footer-text" style="width:630px"><span class="text-white text-2xl"> www.millimudafaa.com  </span>Sitede yayınlanan yazı, haber, video ve fotoğrafların tüm hakları Dada İst Ajans a aittir. Kaynak gösterilerek dahi olsa izin alınmadan alıntı yapılamaz.</p>
+                                        </div>
+                                        <div class="basliklar2 row px-4 mt-5">
+                                            <div class="col-md-2">
+                                                <p style="color: white; font-size:20px">Hakkımızda</p>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <p style="color: white; font-size:20px">Künye</p>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <p style="color: white; font-size:20px">İletişim</p>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <p style="color: white; font-size:20px">Reklam</p>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <p style="color: white; font-size:20px">İş Bİrliği</p>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <p style="color: white; font-size:20px">Arşiv</p>
+                                            </div>
+
+                                        </div>
+                                        <ul class="footer-social gap-4 mt-3" style="justify-content: center">
+                                            @if (SocialMedia())
+                                                <li class="social-item">
+                                                    <a href="https://www.facebook.com/{{ SocialMedia()->facebook != null ? SocialMedia()->facebook : '' }}"
+                                                        class="social-link rounded-circle" target="_blank" style="width: 50px;height:50px">
+                                                        <i class="fab fa-x fa-facebook-f"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+                                            @if (SocialMedia())
+                                                <li class="social-item">
+                                                    <a href="https://twitter.com/{{ SocialMedia()->twitter != null ? SocialMedia()->twitter : '' }}"
+                                                        class="social-link rounded-circle" target="_blank"  style="width: 50px;height:50px">
+                                                        <i class="fab fa-x-twitter"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+                                            @if (SocialMedia())
+                                                <li class="social-item">
+                                                    <a href="https://www.instagram.com/{{ SocialMedia()->instagram != null ? SocialMedia()->instagram : '' }}"
+                                                        class="social-link rounded-circle" target="_blank"  style="width: 50px;height:50px">
+                                                        <i class="fab fa-instagram"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+                                            @if (SocialMedia())
+                                                <li class="social-item">
+                                                    <a href="https://www.youtube.com/channel/{{ SocialMedia()->youtube != null ? SocialMedia()->youtube : '' }}"
+                                                        class="social-link rounded-circle" target="_blank"  style="width: 50px;height:50px">
+                                                        <i class="fab fa-youtube youtube"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+                                            @if (SocialMedia())
+                                                <li class="social-item">
+                                                    <a href="https://www.linkedin.com/company/{{ SocialMedia()->linkedin != null ? SocialMedia()->linkedin : '' }}"
+                                                        class="social-link rounded-circle" target="_blank"  style="width: 50px;height:50px">
+                                                        <i class="fab fa-linkedin-in"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+                                        </ul>
+                                        <ul class="footer-social mt--20" style="justify-content: center">
+                                            <li>
+                                                <a href="#" style="width: 5.5rem; margin-right:2px">
+                                                    <img src="https://millimudafaa.com/assets/img/app-store.png">
                                                 </a>
                                             </li>
-                                        @endif
-                                        @if (SocialMedia())
-                                            <li class="social-item">
-                                                <a href="https://twitter.com/{{ SocialMedia()->twitter != null ? SocialMedia()->twitter : '' }}"
-                                                    class="social-link" target="_blank">
-                                                    <i class="fab fa-x-twitter"></i>
+                                            <li>
+                                                <a href="#" style="width: 5.5rem; margin-right:2px">
+                                                    <img src="https://millimudafaa.com/assets/img/google-play.png">
                                                 </a>
                                             </li>
-                                        @endif
-                                        @if (SocialMedia())
-                                            <li class="social-item">
-                                                <a href="https://www.instagram.com/{{ SocialMedia()->instagram != null ? SocialMedia()->instagram : '' }}"
-                                                    class="social-link" target="_blank">
-                                                    <i class="fab fa-instagram"></i>
+                                            <li>
+                                                <a href="#" style="width: 5.5rem; margin-right:2px">
+                                                    <img src="https://millimudafaa.com/assets/img/huawei-app.png">
                                                 </a>
                                             </li>
-                                        @endif
-                                        @if (SocialMedia())
-                                            <li class="social-item">
-                                                <a href="https://www.youtube.com/channel/{{ SocialMedia()->youtube != null ? SocialMedia()->youtube : '' }}"
-                                                    class="social-link" target="_blank">
-                                                    <i class="fab fa-youtube youtube"></i>
-                                                </a>
-                                            </li>
-                                        @endif
-                                        @if (SocialMedia())
-                                            <li class="social-item">
-                                                <a href="https://www.linkedin.com/company/{{ SocialMedia()->linkedin != null ? SocialMedia()->linkedin : '' }}"
-                                                    class="social-link" target="_blank">
-                                                    <i class="fab fa-linkedin-in"></i>
-                                                </a>
-                                            </li>
-                                        @endif
-                                    </ul>
-                                    <ul class="footer-social mt--20">
-                                        <li>
-                                            <a href="#" style="width: 5.5rem; margin-right:2px">
-                                                <img src="https://millimudafaa.com/assets/img/app-store.png">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" style="width: 5.5rem; margin-right:2px">
-                                                <img src="https://millimudafaa.com/assets/img/google-play.png">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" style="width: 5.5rem; margin-right:2px">
-                                                <img src="https://millimudafaa.com/assets/img/huawei-app.png">
-                                            </a>
-                                        </li>
 
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- end col -->
-
-                            <div class="col-xl-6 col-md-12 wow fadeInUp" data-wow-delay="400ms"
-                                data-wow-duration="800ms">
-                                <div class="footer-widget">
-                                    <div class="row">
-                                        <div class="col-6 list_responsive">
-                                            <!-- <h3 class="footer-widget-title">Diğer</h3> -->
-                                            <ul class="widget-list cat-list">
-                                                <li class="widget-list-item">
-                                                    <a href="{{ \Session::get('applocale') == 'en' ? (route('front.about.detail_en')) : (route('front.about.detail'))  }}"
-                                                        class="widget-list-link">
-                                                        {{ __('message.hakkımızda') }}
-                                                    </a>
-                                                </li>
-
-                                                @foreach (sayfalar() as $item)
-                                                    <li class="widget-list-item">
-                                                        <a href="{{ route('front.page.detail', $item->link) }}"
-                                                            class="widget-list-link">
-                                                            {{ $item->title }}
-                                                        </a>
-                                                    </li>
-                                                @endforeach
-
-
-                                            </ul>
-                                        </div>
-                                        <div class="col-6 list_responsive">
-                                            <!-- <h3 class="footer-widget-title">Diğer</h3> -->
-                                            <ul class="widget-list cat-list">
-                                                <li class="widget-list-item">
-                                                    <a href="{{ route('front.kunye') }}" class="widget-list-link">
-                                                        {{ __('message.künye') }}
-                                                    </a>
-                                                </li>
-                                                <li class="widget-list-item">
-                                                    <a href="{{ route('front.contact') }}" class="widget-list-link">
-                                                        {{ __('message.iletişim') }}
-                                                    </a>
-                                                </li>
-                                                <li class="widget-list-item">
-                                                    <a href="" class="widget-list-link">
-                                                        {{ __('message.reklam') }}
-                                                    </a>
-                                                </li>
-                                                <li class="widget-list-item">
-                                                    <a href="" class="widget-list-link">
-                                                        {{ __('message.iş birliği') }}
-                                                    </a>
-                                                </li>
-                                                <li class="widget-list-item">
-                                                    <a href="{{ \Session::get('applocale') == 'en' ? (route('front.archive.index_en')) : (route('front.archive.index')) }}"
-                                                        class="widget-list-link">
-                                                        {{ __('message.arşiv') }}
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <!-- end col -->
-
-                            <div class="d-none d-md-block col-xl-3 col-md-6 wow fadeInUp" data-wow-delay="600ms"
-                                data-wow-duration="800ms">
-                                <div class="footer-widget">
-                                    <h3 class="footer-widget-title">Instagram</h3>
-                                    <div class="insta-gallery">
-                                        <div class="galleryitem">
-                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia() != null ? (SocialMedia()->instagram != null ? SocialMedia()->instagram : '') : '' }}">
-                                                <img src="/assets/insta1.png"
-                                                    width="100" height="90" alt="gallery1">
-                                           </a>
-                                        </div>
-                                        <div class="galleryitem">
-                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia() != null ? (SocialMedia()->instagram != null ? SocialMedia()->instagram : '') : '' }}">
-                                                <img src="/assets/insta2.png"
-                                                    width="100" height="90" alt="gallery2">
-                                            </a>
-                                        </div>
-                                        <div class="galleryitem">
-                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia() != null ? (SocialMedia()->instagram != null ? SocialMedia()->instagram : '') : '' }}">
-                                                <img src="/assets/insta3.png"
-                                                    width="100" height="90" alt="gallery3">
-                                            </a>
-                                        </div>
-                                        <div class="galleryitem">
-                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia() != null ? (SocialMedia()->instagram != null ? SocialMedia()->instagram : '') : '' }}">
-                                                <img src="/assets/insta4.png"
-                                                    width="100" height="90" alt="gallery4">
-                                            </a>
-                                        </div>
-                                        <div class="galleryitem">
-                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia() != null ? (SocialMedia()->instagram != null ? SocialMedia()->instagram : '') : '' }}">
-                                                <img src="/assets/insta5.png"
-                                                    width="100" height="90" alt="gallery5">
-                                            </a>
-                                        </div>
-
-                                        <div class="galleryitem">
-                                            <a style="height:100px" target="_blank" href="https://www.instagram.com/{{ SocialMedia() != null ? (SocialMedia()->instagram != null ? SocialMedia()->instagram : '') : '' }}">
-                                                <img src="/assets/insta6.png"
-                                                    width="100" height="90" alt="gallery6">
-                                            </a>
-                                        </div>
+                                        </ul>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- end col -->
+                                <!-- end col -->
+                            </center>
+
+
+
 
                         </div>
                     </div>
@@ -596,8 +531,7 @@
                         <div class="footer-bottom-area d-flex align-items-center justify-content-center">
                             <p class="copyright-text wow fadeInUp mb-0" data-wow-delay="200ms"
                                 data-wow-duration="800ms">
-                                <span class="currentYear"></span> © Copyright 2022 | Milli Müdafaa | Tüm Hakları
-                                Saklıdır.
+                                <span></span> © Copyright 2024 | Milli Müdafaa 
                             </p>
                         </div>
                     </div>

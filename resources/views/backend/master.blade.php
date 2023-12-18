@@ -40,13 +40,13 @@
         .timeline-label:before {
             left: 81px !important;
         }
+
         /*
         .swal2-confirm, .swal2-styled{
             background-color: rgb(20, 212, 20) !important;
         }*/
-      
     </style>
-     <style>
+    <style>
         i {
             font-size: 18px !important;
         }
@@ -91,7 +91,7 @@
                 <div class="app-container container-fluid d-flex align-items-stretch justify-content-between"
                     id="kt_app_header_container">
                     <!--begin::Sidebar mobile toggle-->
-                    <div class="d-flex align-items-center d-lg-none ms-n3 me-1 me-md-2" title="Show sidebar menu">
+                    <div class="d-flex align-items-center d-lg-none ms-n3 me-md-2 me-1" title="Show sidebar menu">
                         <div class="btn btn-icon btn-active-color-primary w-35px h-35px"
                             id="kt_app_sidebar_mobile_toggle">
                             <!--begin::Svg Icon | path: icons/duotune/abstract/abs015.svg-->
@@ -112,7 +112,7 @@
                     <!--end::Sidebar mobile toggle-->
                     <!--begin::Mobile logo-->
                     <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-                        <a href="{{route('admin.index')}}" class="d-lg-none">
+                        <a href="{{ route('admin.index') }}" class="d-lg-none">
                             <img alt="Logo" src="/assets/backend/media/logos/erkek.png" class="h-30px" />
                         </a>
                     </div>
@@ -132,245 +132,9 @@
                         <!--begin::Navbar-->
                         <div class="app-navbar flex-shrink-0">
 
-                            <!--begin::Notifications-->
-                            <div class="app-navbar-item ms-1 ms-md-3">
-                                <!--begin::Menu- wrapper-->
-                                <div class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-30px h-30px w-md-40px h-md-40px"
-                                    data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent"
-                                    data-kt-menu-placement="bottom-end">
-                                    <!--begin::Svg Icon | path: icons/duotune/general/gen007.svg-->
-                                    <span class="svg-icon svg-icon-2 svg-icon-md-1">
 
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path opacity="0.3"
-                                                d="M12 22C13.6569 22 15 20.6569 15 19C15 17.3431 13.6569 16 12 16C10.3431 16 9 17.3431 9 19C9 20.6569 10.3431 22 12 22Z"
-                                                fill="currentColor" />
-                                            <path
-                                                d="M19 15V18C19 18.6 18.6 19 18 19H6C5.4 19 5 18.6 5 18V15C6.1 15 7 14.1 7 13V10C7 7.6 8.7 5.6 11 5.1V3C11 2.4 11.4 2 12 2C12.6 2 13 2.4 13 3V5.1C15.3 5.6 17 7.6 17 10V13C17 14.1 17.9 15 19 15ZM11 10C11 9.4 11.4 9 12 9C12.6 9 13 8.6 13 8C13 7.4 12.6 7 12 7C10.3 7 9 8.3 9 10C9 10.6 9.4 11 10 11C10.6 11 11 10.6 11 10Z"
-                                                fill="currentColor" />
-                                        </svg>
-                                    </span>
-                                    <!--end::Svg Icon-->
-                                </div>
-                                <!--begin::Menu-->
-                                <div class="menu menu-sub menu-sub-dropdown menu-column w-350px w-lg-375px"
-                                    data-kt-menu="true">
-                                    <!--begin::Heading-->
-                                    <div class="d-flex flex-column bgi-no-repeat rounded-top"
-                                        style="background-image:url('/assets/backend/media/misc/menu-header-dark.png')">
-                                        <!--begin::Title-->
-                                        <h3 class="text-white fw-semibold px-9 mt-6 mb-6">Bildirimler</h3>
-                                        <!--end::Title-->
-                                    </div>
-                                    <!--end::Heading-->
-                                    <!--begin:: content-->
-                                    <div>
-                                        <!--begin::Items-->
-                                        <div class="scroll-y mh-325px my-5 px-8">
-                                            <!--begin::Item-->
-                                            <div class="d-flex flex-stack py-4">
-                                                <!--begin::Section-->
-                                                <div class="d-flex align-items-center me-2">
-                                                    <!--begin::Title-->
-                                                    <a href="#"
-                                                        class="text-gray-800 text-hover-primary fw-semibold">New
-                                                        order</a>
-                                                    <!--end::Title-->
-                                                </div>
-                                                <!--end::Section-->
-                                                <!--begin::Label-->
-                                                <span class="badge badge-light fs-8">Just now</span>
-                                                <!--end::Label-->
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex flex-stack py-4">
-                                                <!--begin::Section-->
-                                                <div class="d-flex align-items-center me-2">
-                                                    <!--begin::Title-->
-                                                    <a href="#"
-                                                        class="text-gray-800 text-hover-primary fw-semibold">New
-                                                        customer</a>
-                                                    <!--end::Title-->
-                                                </div>
-                                                <!--end::Section-->
-                                                <!--begin::Label-->
-                                                <span class="badge badge-light fs-8">2 hrs</span>
-                                                <!--end::Label-->
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex flex-stack py-4">
-                                                <!--begin::Section-->
-                                                <div class="d-flex align-items-center me-2">
-                                                    <!--begin::Title-->
-                                                    <a href="#"
-                                                        class="text-gray-800 text-hover-primary fw-semibold">Payment
-                                                        process</a>
-                                                    <!--end::Title-->
-                                                </div>
-                                                <!--end::Section-->
-                                                <!--begin::Label-->
-                                                <span class="badge badge-light fs-8">5 hrs</span>
-                                                <!--end::Label-->
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex flex-stack py-4">
-                                                <!--begin::Section-->
-                                                <div class="d-flex align-items-center me-2">
-                                                    <!--begin::Title-->
-                                                    <a href="#"
-                                                        class="text-gray-800 text-hover-primary fw-semibold">Search
-                                                        query</a>
-                                                    <!--end::Title-->
-                                                </div>
-                                                <!--end::Section-->
-                                                <!--begin::Label-->
-                                                <span class="badge badge-light fs-8">2 days</span>
-                                                <!--end::Label-->
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex flex-stack py-4">
-                                                <!--begin::Section-->
-                                                <div class="d-flex align-items-center me-2">
-                                                    <!--begin::Title-->
-                                                    <a href="#"
-                                                        class="text-gray-800 text-hover-primary fw-semibold">API
-                                                        connection</a>
-                                                    <!--end::Title-->
-                                                </div>
-                                                <!--end::Section-->
-                                                <!--begin::Label-->
-                                                <span class="badge badge-light fs-8">1 week</span>
-                                                <!--end::Label-->
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex flex-stack py-4">
-                                                <!--begin::Section-->
-                                                <div class="d-flex align-items-center me-2">
-                                                    <!--begin::Title-->
-                                                    <a href="#"
-                                                        class="text-gray-800 text-hover-primary fw-semibold">Database
-                                                        restore</a>
-                                                    <!--end::Title-->
-                                                </div>
-                                                <!--end::Section-->
-                                                <!--begin::Label-->
-                                                <span class="badge badge-light fs-8">Mar 5</span>
-                                                <!--end::Label-->
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex flex-stack py-4">
-                                                <!--begin::Section-->
-                                                <div class="d-flex align-items-center me-2">
-                                                    <!--begin::Title-->
-                                                    <a href="#"
-                                                        class="text-gray-800 text-hover-primary fw-semibold">System
-                                                        update</a>
-                                                    <!--end::Title-->
-                                                </div>
-                                                <!--end::Section-->
-                                                <!--begin::Label-->
-                                                <span class="badge badge-light fs-8">May 15</span>
-                                                <!--end::Label-->
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex flex-stack py-4">
-                                                <!--begin::Section-->
-                                                <div class="d-flex align-items-center me-2">
-                                                    <!--begin::Title-->
-                                                    <a href="#"
-                                                        class="text-gray-800 text-hover-primary fw-semibold">Server OS
-                                                        update</a>
-                                                    <!--end::Title-->
-                                                </div>
-                                                <!--end::Section-->
-                                                <!--begin::Label-->
-                                                <span class="badge badge-light fs-8">Apr 3</span>
-                                                <!--end::Label-->
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex flex-stack py-4">
-                                                <!--begin::Section-->
-                                                <div class="d-flex align-items-center me-2">
-                                                    <!--begin::Title-->
-                                                    <a href="#"
-                                                        class="text-gray-800 text-hover-primary fw-semibold">API
-                                                        rollback</a>
-                                                    <!--end::Title-->
-                                                </div>
-                                                <!--end::Section-->
-                                                <!--begin::Label-->
-                                                <span class="badge badge-light fs-8">Jun 30</span>
-                                                <!--end::Label-->
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex flex-stack py-4">
-                                                <!--begin::Section-->
-                                                <div class="d-flex align-items-center me-2">
-                                                    <!--begin::Title-->
-                                                    <a href="#"
-                                                        class="text-gray-800 text-hover-primary fw-semibold">Refund
-                                                        process</a>
-                                                    <!--end::Title-->
-                                                </div>
-                                                <!--end::Section-->
-                                                <!--begin::Label-->
-                                                <span class="badge badge-light fs-8">Jul 10</span>
-                                                <!--end::Label-->
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex flex-stack py-4">
-                                                <!--begin::Section-->
-                                                <div class="d-flex align-items-center me-2">
-                                                    <!--begin::Title-->
-                                                    <a href="#"
-                                                        class="text-gray-800 text-hover-primary fw-semibold">Withdrawal
-                                                        process</a>
-                                                    <!--end::Title-->
-                                                </div>
-                                                <!--end::Section-->
-                                                <!--begin::Label-->
-                                                <span class="badge badge-light fs-8">Sep 10</span>
-                                                <!--end::Label-->
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex flex-stack py-4">
-                                                <!--begin::Section-->
-                                                <div class="d-flex align-items-center me-2">
-                                                    <!--begin::Title-->
-                                                    <a href="#"
-                                                        class="text-gray-800 text-hover-primary fw-semibold">Mail
-                                                        tasks</a>
-                                                    <!--end::Title-->
-                                                </div>
-                                                <!--end::Section-->
-                                                <!--begin::Label-->
-                                                <span class="badge badge-light fs-8">Dec 10</span>
-                                                <!--end::Label-->
-                                            </div>
-                                            <!--end::Item-->
-                                        </div>
-                                        <!--end::Items-->
-                                    </div>
-                                    <!--end:: content-->
-                                </div>
-                                <!--end::Menu-->
-                                <!--end::Menu wrapper-->
-                            </div>
-                            <!--end::Notifications-->
                             <!--begin::Theme mode-->
-                            <div class="app-navbar-item ms-1 ms-md-3">
+                            <div class="app-navbar-item ms-md-3 ms-1">
                                 <!--begin::Menu toggle-->
                                 <a href="#"
                                     class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-30px h-30px w-md-40px h-md-40px"
@@ -432,10 +196,10 @@
                                 </a>
                                 <!--begin::Menu toggle-->
                                 <!--begin::Menu-->
-                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-title-gray-700 menu-icon-muted menu-active-bg menu-state-color fw-semibold py-4 fs-base w-150px"
+                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-title-gray-700 menu-icon-muted menu-active-bg menu-state-color fw-semibold fs-base w-150px py-4"
                                     data-kt-menu="true" data-kt-element="theme-mode-menu">
                                     <!--begin::Menu item-->
-                                    <div class="menu-item px-3 my-0">
+                                    <div class="menu-item my-0 px-3">
                                         <a href="#" class="menu-link px-3 py-2" data-kt-element="mode"
                                             data-kt-value="light">
                                             <span class="menu-icon" data-kt-element="icon">
@@ -479,7 +243,7 @@
                                     </div>
                                     <!--end::Menu item-->
                                     <!--begin::Menu item-->
-                                    <div class="menu-item px-3 my-0">
+                                    <div class="menu-item my-0 px-3">
                                         <a href="#" class="menu-link px-3 py-2" data-kt-element="mode"
                                             data-kt-value="dark">
                                             <span class="menu-icon" data-kt-element="icon">
@@ -512,7 +276,7 @@
                             </div>
                             <!--end::Theme mode-->
                             <!--begin::Language mode-->
-                            <div class="app-navbar-item ms-1 ms-md-3">
+                            <div class="app-navbar-item ms-md-3 ms-1">
                                 <!--begin::Menu toggle-->
                                 <a href="#"
                                     class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-30px h-30px w-md-40px h-md-40px"
@@ -523,27 +287,27 @@
                                 </a>
                                 <!--begin::Menu toggle-->
                                 <!--begin::Menu-->
-                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-title-gray-700 menu-icon-muted menu-active-bg menu-state-color fw-semibold py-4 fs-base w-150px"
+                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-title-gray-700 menu-icon-muted menu-active-bg menu-state-color fw-semibold fs-base w-150px py-4"
                                     data-kt-menu="true" data-kt-element="theme-mode-menu">
                                     <!--begin::Menu item-->
-                                    <div class="menu-item px-3 my-0">
-                                        <a href="#" class="menu-link px-3 py-2 active" data-kt-element="mode"
+                                    <div class="menu-item my-0 px-3">
+                                        <a href="#" class="menu-link active px-3 py-2" data-kt-element="mode"
                                             data-kt-value="light">
                                             <span class="menu-icon" data-kt-element="icon">
-                                                <img src="{{asset('/assets/tr.png')}}"
-                                                    width="28" height="28" alt="TR" title="TR">
+                                                <img src="{{ asset('/assets/tr.png') }}" width="28"
+                                                    alt="TR" title="TR">
                                             </span>
                                             <span class="menu-title">Türkçe</span>
                                         </a>
                                     </div>
                                     <!--end::Menu item-->
                                     <!--begin::Menu item-->
-                                    <div class="menu-item px-3 my-0">
+                                    <div class="menu-item my-0 px-3">
                                         <a href="#" class="menu-link px-3 py-2" data-kt-element="mode"
                                             data-kt-value="dark">
                                             <span class="menu-icon" data-kt-element="icon">
-                                                <img src="{{asset('/assets/en.png')}}"
-                                                    width="28" height="28" alt="EN" title="EN">
+                                                <img src="{{ asset('/assets/en.png') }}" width="28"
+                                                    alt="EN" title="EN">
                                             </span>
                                             <span class="menu-title">İngilizce</span>
                                         </a>
@@ -554,15 +318,15 @@
                             </div>
                             <!--end::Language mode-->
                             <!--begin::User menu-->
-                            <div class="app-navbar-item ms-1 ms-md-3" id="kt_header_user_menu_toggle">
+                            <div class="app-navbar-item ms-md-3 ms-1" id="kt_header_user_menu_toggle">
                                 <!--begin::Menu wrapper-->
-                                <div class="cursor-pointer symbol symbol-30px symbol-md-40px"
+                                <div class="symbol symbol-30px symbol-md-40px cursor-pointer"
                                     data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
                                     data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
                                     <img src="/assets/backend/media/avatars/300-1.jpg" alt="user" />
                                 </div>
                                 <!--begin::User account menu-->
-                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px"
+                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold fs-6 w-275px py-4"
                                     data-kt-menu="true">
 
                                     <!--begin::Menu item-->
@@ -572,7 +336,7 @@
                                     <!--end::Menu item-->
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-5">
-                                        <a href="{{route('admin.logout')}}" class="menu-link px-5">Çıkış</a>
+                                        <a href="{{ route('admin.logout') }}" class="menu-link px-5">Çıkış</a>
                                     </div>
                                     <!--end::Menu item-->
                                 </div>
@@ -598,7 +362,7 @@
                     <!--begin::Logo-->
                     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
                         <!--begin::Logo image-->
-                        <a href="{{route('admin.index')}}" class="mx-auto">
+                        <a href="{{ route('admin.index') }}" class="mx-auto">
                             <img alt="Logo" src="/assets/backend/media/logos/disi.png"
                                 class="h-50px app-sidebar-logo-default" />
                             <img alt="Logo" src="/assets/backend/media/logos/favikon.svg"
@@ -628,7 +392,7 @@
                     </div>
                     <!--end::Logo-->
                     <!--begin::sidebar menu-->
-                    <div class="app-sidebar-menu overflow-hidden flex-column-fluid">
+                    <div class="app-sidebar-menu flex-column-fluid overflow-hidden">
                         <!--begin::Menu wrapper-->
                         <div id="kt_app_sidebar_menu_wrapper" class="app-sidebar-wrapper hover-scroll-overlay-y my-5"
                             data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-height="auto"
@@ -652,7 +416,7 @@
                                 </div>
                                 <!--end:Menu item-->
 
-                                <div class="separator border-1 border-light border-opacity-10 mt-5 mb-10"></div>
+                                <div class="separator border-1 border-light mb-10 mt-5 border-opacity-10"></div>
                                 <div class="ms-5">
                                     <h6 class="text-white">Genel</h6>
                                 </div>
@@ -673,7 +437,8 @@
                                         <span class="menu-icon">
                                             <i class="fa-solid fa-shield-halved"></i>
                                         </span>
-                                        <span class="menu-title"> {{ __('message.savunma') }} {{ __('message.sanayi') }}
+                                        <span class="menu-title"> {{ __('message.savunma') }}
+                                            {{ __('message.sanayi') }}
                                         </span>
                                     </a>
                                 </div>
@@ -683,7 +448,8 @@
                                         <span class="menu-icon">
                                             <i class="fa-solid fa-calendar-days"></i>
                                         </span>
-                                        <span class="menu-title"> {{ __('message.etkinlik') }} {{ __('message.yönetimi') }}
+                                        <span class="menu-title"> {{ __('message.etkinlik') }}
+                                            {{ __('message.yönetimi') }}
                                         </span>
                                     </a>
                                 </div>
@@ -693,7 +459,8 @@
                                         <span class="menu-icon">
                                             <i class="fa-solid fa-clipboard-question"></i>
                                         </span>
-                                        <span class="menu-title"> {{__('message.röportaj')}} {{ __('message.yönetimi') }}
+                                        <span class="menu-title"> {{ __('message.röportaj') }}
+                                            {{ __('message.yönetimi') }}
                                         </span>
                                     </a>
                                 </div>
@@ -703,7 +470,8 @@
                                         <span class="menu-icon">
                                             <i class="fa-solid fa-book"></i>
                                         </span>
-                                        <span class="menu-title"> {{__('message.sözlük')}} {{ __('message.yönetimi') }}
+                                        <span class="menu-title"> {{ __('message.sözlük') }}
+                                            {{ __('message.yönetimi') }}
                                         </span>
                                     </a>
                                 </div>
@@ -723,7 +491,8 @@
                                         <span class="menu-icon">
                                             <i class="fa-solid fa-building"></i>
                                         </span>
-                                        <span class="menu-title"> {{__('message.firma')}} {{ __('message.yönetimi') }}
+                                        <span class="menu-title"> {{ __('message.firma') }}
+                                            {{ __('message.yönetimi') }}
                                         </span>
                                     </a>
                                 </div>
@@ -746,7 +515,8 @@
                                         <span class="menu-icon">
                                             <i class="fa-solid fa-file"></i>
                                         </span>
-                                        <span class="menu-title"> {{__('message.sayfa')}} {{ __('message.yönetimi') }}
+                                        <span class="menu-title"> {{ __('message.sayfa') }}
+                                            {{ __('message.yönetimi') }}
                                         </span>
                                     </a>
                                     <!--end:Menu link-->
@@ -758,28 +528,33 @@
                                         <span class="menu-icon">
                                             <i class="fa-solid fa-circle-question"></i>
                                         </span>
-                                        <span class="menu-title"> {{__('message.anket')}} {{ __('message.yönetimi') }}
+                                        <span class="menu-title"> {{ __('message.anket') }}
+                                            {{ __('message.yönetimi') }}
                                         </span>
                                     </a>
                                     <!--end:Menu link-->
                                 </div>
 
-                                
-                                <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention">
+
+                                <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+                                    data-kt-menu-placement="right-start"
+                                    class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention">
                                     <span class="menu-link">
                                         <span class="menu-icon">
                                             <i class="fa-solid fa-comments"></i>
                                         </span>
-                                        <span class="menu-title">Yorumlar ({{ (commentsTotal()) }})</span>
+                                        <span class="menu-title">Yorumlar ({{ commentsTotal() }})</span>
                                         <span class="menu-arrow"></span>
                                     </span>
-                                    <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown px-2 py-4 w-200px mh-75 overflow-auto" style="">
+                                    <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown w-200px mh-75 overflow-auto px-2 py-4"
+                                        style="">
                                         <div class="menu-item">
                                             <a class="menu-link" href="{{ route('admin.comments.currentNews') }}">
                                                 <span class="menu-bullet">
                                                     <span class="bullet bullet-dot"></span>
                                                 </span>
-                                                <span class="menu-title">Haber Yorum ({{ master_currentCommentsCount() }})</span>
+                                                <span class="menu-title">Haber Yorum
+                                                    ({{ master_currentCommentsCount() }})</span>
                                             </a>
                                         </div>
                                         <div class="menu-item">
@@ -787,7 +562,8 @@
                                                 <span class="menu-bullet">
                                                     <span class="bullet bullet-dot"></span>
                                                 </span>
-                                                <span class="menu-title">Röportaj Yorum ({{ master_interviewCommentsCount() }})</span>
+                                                <span class="menu-title">Röportaj Yorum
+                                                    ({{ master_interviewCommentsCount() }})</span>
                                             </a>
                                         </div>
                                         <div class="menu-item">
@@ -795,90 +571,100 @@
                                                 <span class="menu-bullet">
                                                     <span class="bullet bullet-dot"></span>
                                                 </span>
-                                                <span class="menu-title">Video Yorum ({{ master_videoCommentsCount() }})</span>
+                                                <span class="menu-title">Video Yorum
+                                                    ({{ master_videoCommentsCount() }})</span>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
 
-                                @if(auth()->guard('admin')->user() != null)
-                                 <!--begin:Menu item-->
-                                 <div class="menu-item">
-                                    <!--begin:Menu link-->
-                                    <a class="menu-link" href="{{route('admin.user.list')}}">
-                                        <span class="menu-icon">
-                                            <i class="fa fa-user" aria-hidden="true"></i>
-                                        </span>
-                                        <span class="menu-title"> {{__('message.kullanıcı')}} {{__('message.yönetimi')}} </span>
-                                    </a>
-                                    <!--end:Menu link-->
-                                </div>
-
+                                @if (auth()->guard('admin')->user() != null)
+                                    <!--begin:Menu item-->
+                                    <div class="menu-item">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link" href="{{ route('admin.user.list') }}">
+                                            <span class="menu-icon">
+                                                <i class="fa fa-user" aria-hidden="true"></i>
+                                            </span>
+                                            <span class="menu-title"> {{ __('message.kullanıcı') }}
+                                                {{ __('message.yönetimi') }} </span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
                                 @endif
                                 <!--end:Menu item-->
 
-                                <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention">
-                                    <span class="menu-link">
-                                        <span class="menu-icon">
-                                            <i class="fa fa-cogs" aria-hidden="true"></i>
+                                @if (auth()->guard('admin')->user() != null)
+                                    <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+                                        data-kt-menu-placement="right-start"
+                                        class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention">
+                                        <span class="menu-link">
+                                            <span class="menu-icon">
+                                                <i class="fa fa-cogs" aria-hidden="true"></i>
+                                            </span>
+                                            <span class="menu-title">Genel Ayarlar</span>
+                                            <span class="menu-arrow"></span>
                                         </span>
-                                        <span class="menu-title">Genel Ayarlar</span>
-                                        <span class="menu-arrow"></span>
-                                    </span>
-                                    <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown px-2 py-4 w-200px mh-75 overflow-auto" style="">
-                                        <div class="menu-item">
-                                            <a class="menu-link" href="{{ route('admin.about.add') }}">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title">{{ __('message.hakkımızda') }} {{ __('message.yönetimi') }}</span>
-                                            </a>
+                                        <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown w-200px mh-75 overflow-auto px-2 py-4"
+                                            style="">
+                                            <div class="menu-item">
+                                                <a class="menu-link" href="{{ route('admin.about.add') }}">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title">{{ __('message.hakkımızda') }}
+                                                        {{ __('message.yönetimi') }}</span>
+                                                </a>
+                                            </div>
+                                            <div class="menu-item">
+                                                <a class="menu-link" href="{{ route('admin.contact.edit') }}">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title"> {{ __('message.iletişim') }}
+                                                        {{ __('message.yönetimi') }}</span>
+                                                </a>
+                                            </div>
+                                            <div class="menu-item">
+                                                <a class="menu-link" href="{{ route('admin.kunye.list') }}">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title"> {{ __('message.künye') }}
+                                                        {{ __('message.yönetimi') }} </span>
+                                                </a>
+                                            </div>
+                                            <div class="menu-item">
+                                                <a class="menu-link" href="{{ route('admin.social.list') }}">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span
+                                                        class="menu-title">{{ __('message.sosyal medya ayarları') }}</span>
+                                                </a>
+                                            </div>
+                                            <div class="menu-item">
+                                                <a class="menu-link" href="{{ route('admin.google-kod.index') }}">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title"> Google Kod </span>
+                                                </a>
+                                            </div>
+
+
                                         </div>
-                                        <div class="menu-item">
-                                            <a class="menu-link" href="{{ route('admin.contact.edit') }}">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title"> {{ __('message.iletişim') }} {{ __('message.yönetimi') }}</span>
-                                            </a>
-                                        </div>
-                                        <div class="menu-item">
-                                            <a class="menu-link" href="{{ route('admin.kunye.list') }}">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title"> {{ __('message.künye') }} {{ __('message.yönetimi') }} </span>
-                                            </a>
-                                        </div>
-                                        <div class="menu-item">
-                                            <a class="menu-link" href="{{ route('admin.social.list') }}">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title">{{ __('message.sosyal medya ayarları') }}</span>
-                                            </a>
-                                        </div>
-                                        <div class="menu-item">
-                                            <a class="menu-link" href="{{ route('admin.google-kod.index') }}">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title"> Google Kod </span>
-                                            </a>
-                                        </div>
-                                        
-                                        
                                     </div>
-                                </div>
+                                @endif
 
                                 <hr>
 
-                                
-                               
 
-                               
 
-                                <div class="separator border-1 border-light border-opacity-10 mt-5 mb-10"></div>
+
+
+
+                                <div class="separator border-1 border-light mb-10 mt-5 border-opacity-10"></div>
 
                                 <div class="ms-5">
                                     <h6 class="text-white">Destek</h6>
@@ -957,10 +743,10 @@
                         <div
                             class="app-container container-fluid d-flex flex-column flex-md-row flex-center flex-md-stack py-3">
                             <!--begin::Copyright-->
-                            <div class="text-dark order-2 order-md-1">
+                            <div class="text-dark order-md-1 order-2">
                                 <span class="text-muted fw-semibold me-1">2023&copy;</span>
                                 <a href="https://gaviaworks.com" target="_blank"
-                                    class="text-gray-800 text-hover-primary">Gavia Works</a>
+                                    class="text-hover-primary text-gray-800">Gavia Works</a>
                             </div>
                             <!--end::Copyright-->
                             <!--begin::Menu-->
@@ -1106,7 +892,7 @@
 
         // end: DataTable Scripts
     </script>
-    
+
     <!--end:: extra js-->
 
     @yield('script')

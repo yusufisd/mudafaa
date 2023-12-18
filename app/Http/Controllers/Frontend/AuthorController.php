@@ -29,4 +29,9 @@ class AuthorController extends Controller
 
         return view('frontend.author.detail', compact('data', 'news', 'popular_news'));
     }
+
+    public function list(){
+        $data = UserModel::latest()->get();
+        return view('frontend.author.list',compact('data'));
+    }
 }

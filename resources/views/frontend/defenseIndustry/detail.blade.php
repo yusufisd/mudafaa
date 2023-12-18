@@ -292,7 +292,7 @@
                                         <!-- Galeri Resimleri -->
                                         <div class="row">
                                             @foreach ($data->multiple_image as $item)
-                                                <div class="col-md-2">
+                                                <div class="col-md-3">
                                                     <a data-fancybox="gallery" href="/{{ $item }}">
                                                         <img src="/{{ $item }}" style="width:100%"
                                                             alt="">

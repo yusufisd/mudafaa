@@ -255,20 +255,24 @@ class ActivityCategoryController extends Controller
             DB::beginTransaction();
             $data = ActivityCategory::findOrFail($id);
             Activity::where('category',$data->id)->delete();
-            $son_queue = ActivityCategory::orderBy('queue', 'desc')->first()->queue;
-            for ($i = $data->queue + 1; $i <= $son_queue; $i++) {
+            $son_queue = ActivityCategory::orderBy('queue', 'desc')->first();
+            for ($i = $data->queue + 1; $i <= $son_queue->queue; $i++) {
                 $item = ActivityCategory::where('queue', $i)->first();
-                $item->queue = $item->queue - 1;
-                $item->save();
+                if($item != null && $item->queue != null){
+                    $item->queue = $item->queue - 1;
+                    $item->save();
+                }
             }
 
             $data_en = EnActivityCategory::where('activity_id', $id)->first();
             EnActivity::where('category',$data_en->id)->delete();
-            $son_queue_en = EnActivityCategory::orderBy('queue','desc')->first()->queue;
-            for($i = $data_en->queue+1; $i <= $son_queue_en; $i++){
+            $son_queue_en = EnActivityCategory::orderBy('queue','desc')->first();
+            for($i = $data_en->queue+1; $i <= $son_queue_en->queue; $i++){
                 $item_en = EnActivityCategory::where('queue',$i)->first();
-                $item_en->queue = $item_en->queue - 1;
-                $item_en->save();
+                if($item_en != null && $item_en->queue != null){
+                    $item_en->queue = $item_en->queue - 1;
+                    $item_en->save();
+                }
             }
             $data->delete();
             $data_en->delete();

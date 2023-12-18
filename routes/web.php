@@ -658,7 +658,7 @@ Route::middleware('lang')->group(function () {
 
                 Route::controller(BackendCommentController::class)->name('comments.')->prefix('yorumlar')->group(function(){
                     // Current News Comments
-                    Route::get('haber','currentNewsComments')->name('currentNews');
+                    Route::get('haber','NewsComment')->name('currentNews');
                     Route::get('roportaj','interviewsComments')->name('interviews');
                     Route::get('video','videosComments')->name('videos');
                 });
@@ -811,6 +811,7 @@ Route::middleware('lang')->group(function () {
 
             // yazar detay
             Route::get('yazar/{id?}',[AuthorController::class,'detail'])->name('author.detail');
+            Route::get('yazarlar',[AuthorController::class,'list'])->name('author.list');
         });
 
         

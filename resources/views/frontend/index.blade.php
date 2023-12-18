@@ -186,7 +186,7 @@
                                 <ul>
                                     <li>
                                         <span class="rt-meta">
-                                            <i class="fa fa-user"></i> <a href="" class="name">
+                                            <i class="fa fa-user"></i> <a href="{{ route('front.author.detail',$tek_haber->Author->id) }}" class="name">
                                                 {{ $tek_haber->Author->name }} {{ $tek_haber->Author->surname }}
                                             </a>
                                         </span>

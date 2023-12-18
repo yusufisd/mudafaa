@@ -7,7 +7,13 @@
 @section('sdescription')
 
 @section('content')
-
+<style>
+    .pagination>li>a,
+    .pagination>li>:hover,
+    .pagination>li>span {
+        color: rgb(26, 159, 26); // use your own color here
+    }
+</style>
     <main>
         <!-- theme-switch-box -->
         <div class="theme-switch-box-mobile-wrap">
@@ -34,7 +40,7 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="authors.html">
+                            <a href="{{ route('front.author.list') }}">
                                 Yazarlarımız
                             </a>
                         </li>
@@ -60,7 +66,7 @@
                                     {{ $data->surname }} </h2>
                                 <!-- <span class="designation">Senior Author</span> -->
                                 <p>
-                                    {{ $data->description }}
+                                    {!! $data->description !!}
                                 </p>
                             </div>
                             <div class="author-social-area">
@@ -204,22 +210,9 @@
                             </div>
                             <!-- end post-list-style-4 -->
 
-                            <nav class="rt-pagination-area gap-top-90">
-                                <ul class="pagination rt-pagination justify-content-center">
-                                    <li class="page-item prev">
-                                        <a class="page-link" href="#"><i class="fas fa-angle-double-left"></i></a>
-                                    </li>
-                                    <li class="page-item active" aria-current="page">
-                                        <span class="page-link">1</span>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                    <li class="page-item next">
-                                        <a class="page-link" href="#"><i class="fas fa-angle-double-right"></i></a>
-                                    </li>
-                                </ul>
-                            </nav>
+                            <div style="margin-left: 35%; margin-top:5%">
+                                {!! $news->appends(request()->input())->onEachSide(1)->links(); !!}
+                            </div>
                             <!-- end rt-pagination-area -->
 
                         </div>
@@ -289,33 +282,7 @@
 
                             </div>
 
-                            <div class="sidebar-wrap mb--40">
-                                <div class="ad-banner-img">
-                                    <a href="#">
-                                        <img src="media/gallery/ad-post_5.jpg" alt="ad-banner" width="301"
-                                            height="270">
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- end slidebar wrap  -->
-
-                            <div class="d-none d-md-block sidebar-wrap">
-                                <h2 class="rt-section-heading style-2 mb--30">
-                                    <span class="rt-section-text"> {{ __('message.etiketler') }} </span>
-                                    <span class="rt-section-dot"></span>
-                                    <span class="rt-section-line"></span>
-                                </h2>
-                                <div class="tag-list">
-
-                                    @foreach (most_popular_new()->getKeys() as $key)
-                                        <a href="{{ route('front.currentNews.tag_list', $key) }}" class="tag-link"
-                                            style="text-transform: capitalize">
-                                            {{ $key }} </a>
-                                    @endforeach
-
-                                </div>
-                            </div>
-                            <!-- end sidebar wrap -->
+                           
 
                         </div>
                         <!-- end rt-sidebar -->
