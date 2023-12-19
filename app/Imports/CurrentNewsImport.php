@@ -62,12 +62,12 @@ class CurrentNewsImport implements ToCollection, WithStartRow
                     $news->short_description = $row[4] ?? '-';
                     $news->description = $row[6] ?? '-';
                     $news->link = $link_tr;
-                    $news->image = 'assets/uploads/currentNews/haber-gorsel/haber-gorseli-'.(explode('.',explode('-',$row[12])[1])[0]).'.webp';
+                    $news->image = 'assets/uploads/currentNews/haber-gorsel/' . $row[12];
                     $news->seo_title = $row[2];
                     $news->seo_description = trim($row[4]);
                     $news->seo_key = $keys_tr;
                     $news->save();
-                    
+
                     $news_en = new EnCurrentNews();
                     $news_en->category_id = $list;
                     $news_en->author_id = 1;
@@ -78,7 +78,7 @@ class CurrentNewsImport implements ToCollection, WithStartRow
                     $news_en->description = $row[7] ?? '-';;
                     $news_en->link = $link_en;
                     $news_en->live_time = date("Y-m-d H:i:s", \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[8])->getTimestamp());
-                    $news_en->image = 'assets/uploads/currentNews/haber-gorsel/haber-gorseli-'.(explode('.',explode('-',$row[12])[1])[0]).'.webp';
+                    $news_en->image = 'assets/uploads/currentNews/haber-gorsel/' . $row[12];
                     $news_en->seo_title = $row[3];
                     $news_en->seo_description = trim($row[5]);
                     $news_en->seo_key = $keys_en;

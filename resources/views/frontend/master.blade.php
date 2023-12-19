@@ -419,7 +419,7 @@
                         <div class="row">
 
                             <center>
-                                <div class="col-xl-3 col-md-6 wow fadeInUp" style="width: 800px"
+                                <div class="col-xl-3 col-md-6 wow fadeInUp" style="width: 1000px"
                                     data-wow-delay="200ms" data-wow-duration="800ms">
                                     <div class="footer-widget">
                                         <div class="logo footer-logo">
@@ -432,32 +432,52 @@
                                         <div class="icerik">
                                             <p class="footer-text" style="width:630px"><span class="text-white text-2xl"> www.millimudafaa.com  </span>Sitede yayınlanan yazı, haber, video ve fotoğrafların tüm hakları Dada İst Ajans a aittir. Kaynak gösterilerek dahi olsa izin alınmadan alıntı yapılamaz.</p>
                                         </div>
-                                        <div class="basliklar2 row px-4 mt-5">
+                                        <div class="basliklar2 row px-4 mt-5" style="width: 100%">
                                             <div class="col-md-2">
-                                                <p style="color: white; font-size:20px">Hakkımızda</p>
+                                                <a href="{{ \Session::get('applocale') == 'en' ? route('front.about.detail_en') : route('front.about.detail') }}">
+                                                    <p style="color: white; font-size:17px">Hakkımızda</p>
+                                                </a>
                                             </div>
                                             <div class="col-md-2">
-                                                <p style="color: white; font-size:20px">Künye</p>
+                                                <a href="{{ \Session::get('applocale') == 'en' ? route('front.kunye_en') : route('front.kunye') }}">
+                                                    <p style="color: white; font-size:17px">Künye</p>
+                                                </a>
                                             </div>
                                             <div class="col-md-2">
-                                                <p style="color: white; font-size:20px">İletişim</p>
+                                                <a href="{{ \Session::get('applocale') == 'en' ? route('front.contact_en') : route('front.contact') }}">
+                                                    <p style="color: white; font-size:17px">İletişim</p>
+                                                </a>
                                             </div>
                                             <div class="col-md-2">
-                                                <p style="color: white; font-size:20px">Reklam</p>
+                                                <a href="#">
+                                                    <p style="color: white; font-size:17px">Reklam</p>
+                                                </a>
                                             </div>
                                             <div class="col-md-2">
-                                                <p style="color: white; font-size:20px">İş Bİrliği</p>
+                                                <a href="#">
+                                                    <p style="color: white; font-size:17px">İş Bİrliği</p>
+                                                </a>
                                             </div>
                                             <div class="col-md-2">
-                                                <p style="color: white; font-size:20px">Arşiv</p>
+                                                <a href="{{ \Session::get('applocale') == 'en' ? route('front.archive.index_en') : route('front.archive.index') }}">
+                                                    <p style="color: white; font-size:17px">Arşiv</p>
+                                                </a>
                                             </div>
-
                                         </div>
-                                        <ul class="footer-social gap-4 mt-3" style="justify-content: center">
+                                        <div class="basliklar2 row px-4 mt-5">
+                                            @foreach (sayfalar() as $item)
+                                                <div class="col-md-2">
+                                                    <a href="{{ \Session::get('applocale') == 'en' ? route('front.archive.index_en') : route('front.archive.index') }}">
+                                                        <p style="color: white; font-size:17px"> {{ $item->title }} </p>
+                                                    </a>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <ul class="footer-social gap-2 mt-3" style="justify-content: center">
                                             @if (SocialMedia())
                                                 <li class="social-item">
                                                     <a href="https://www.facebook.com/{{ SocialMedia()->facebook != null ? SocialMedia()->facebook : '' }}"
-                                                        class="social-link rounded-circle" target="_blank" style="width: 50px;height:50px">
+                                                        class="social-link " target="_blank" style="width: 35px;height:35px">
                                                         <i class="fab fa-x fa-facebook-f"></i>
                                                     </a>
                                                 </li>
@@ -465,7 +485,7 @@
                                             @if (SocialMedia())
                                                 <li class="social-item">
                                                     <a href="https://twitter.com/{{ SocialMedia()->twitter != null ? SocialMedia()->twitter : '' }}"
-                                                        class="social-link rounded-circle" target="_blank"  style="width: 50px;height:50px">
+                                                        class="social-link " target="_blank"  style="width: 35px;height:35px">
                                                         <i class="fab fa-x-twitter"></i>
                                                     </a>
                                                 </li>
@@ -473,7 +493,7 @@
                                             @if (SocialMedia())
                                                 <li class="social-item">
                                                     <a href="https://www.instagram.com/{{ SocialMedia()->instagram != null ? SocialMedia()->instagram : '' }}"
-                                                        class="social-link rounded-circle" target="_blank"  style="width: 50px;height:50px">
+                                                        class="social-link " target="_blank"  style="width: 35px;height:35px">
                                                         <i class="fab fa-instagram"></i>
                                                     </a>
                                                 </li>
@@ -481,7 +501,7 @@
                                             @if (SocialMedia())
                                                 <li class="social-item">
                                                     <a href="https://www.youtube.com/channel/{{ SocialMedia()->youtube != null ? SocialMedia()->youtube : '' }}"
-                                                        class="social-link rounded-circle" target="_blank"  style="width: 50px;height:50px">
+                                                        class="social-link " target="_blank"  style="width: 35px;height:35px">
                                                         <i class="fab fa-youtube youtube"></i>
                                                     </a>
                                                 </li>
@@ -489,7 +509,7 @@
                                             @if (SocialMedia())
                                                 <li class="social-item">
                                                     <a href="https://www.linkedin.com/company/{{ SocialMedia()->linkedin != null ? SocialMedia()->linkedin : '' }}"
-                                                        class="social-link rounded-circle" target="_blank"  style="width: 50px;height:50px">
+                                                        class="social-link " target="_blank"  style="width: 35px;height:35px">
                                                         <i class="fab fa-linkedin-in"></i>
                                                     </a>
                                                 </li>
