@@ -508,7 +508,7 @@
                                                         <div class="rt-post-grid grid-meta">
                                                             <div class="post-img">
                                                                 <a
-                                                                    href="{{ route('front.interview.detail', $item->id) }}">
+                                                                    href="{{ route('front.interview.detail', $item->link) }}">
                                                                     <img src="/{{ $item->image }}" alt="post"
                                                                         width="551" height="431">
                                                                 </a>
@@ -516,7 +516,7 @@
                                                             <div class="post-content">
 
                                                                 <h4 class="post-title">
-                                                                    <a href="">
+                                                                    <ahref="{{ route('front.interview.detail', $item->link) }}">
                                                                         {{ $item->title }}
                                                                     </a>
                                                                 </h4>

@@ -64,14 +64,6 @@ class InterviewController extends Controller
             "seo_description_en" => "required",
             "seo_key_en" => "required",
             "image" => "required",
-            'soran_tr' => 'required',
-            'cevaplayan_tr' => 'required',
-            'soru_tr' => 'required',
-            'cevap_tr' => 'required',
-            'soran_en' => 'required',
-            'cevaplayan_en' => 'required',
-            'soru_en' => 'required',
-            'cevap_en' => 'required',
         ],[
             "author" => "Yazar boş bırakılamaz",
             "live_time" => "Yayınlama tarihi boş bırakılamaz",
@@ -90,14 +82,6 @@ class InterviewController extends Controller
             "seo_description_en" => "Seo açıklama (EN) boş bırakılamaz",
             "seo_key_en" => "Seo anahtarı (EN) boş bırakılamaz",
             "image" => "Görsel boş bırakılamaz",
-            'soran_tr' => 'Soran kişi (TR) boş bırakılamaz',
-            'cevaplayan_tr' => 'Cevaplayan (TR) kişi boş bırakılamaz',
-            'soru_tr' => 'Soru (TR) boş bırakılamaz',
-            'cevap_tr' => 'Cevap (TR) boş bırakılamaz',
-            'soran_en' => 'Soran kişi (EN) boş bırakılamaz',
-            'cevaplayan_en' => 'Cevaplayan kişi (EN) boş bırakılamaz',
-            'soru_en' => 'Soru (EN) boş bırakılamaz',
-            'cevap_en' => 'Cevap (EN) boş bırakılamaz',
         ]);
 
 
@@ -148,11 +132,11 @@ class InterviewController extends Controller
         $new_interview->save();
 
 
-        if(count($request->soran_tr) > 0 && $request->soran_tr[0] != null) {
-            for ($i = 0; $i < count($request->soran_tr); $i++) {
+        if(count($request->soru_tr) > 0 && $request->soru_tr[0] != null) {
+            for ($i = 0; $i < count($request->soru_tr); $i++) {
                 $new_dialog = new Dialog();
-                $new_dialog->soran = $request->soran_tr[$i];
-                $new_dialog->cevaplayan = $request->cevaplayan_tr[$i];
+                $new_dialog->soran = $request->soran;
+                $new_dialog->cevaplayan = $request->cevaplayan;
                 $new_dialog->soru = $request->soru_tr[$i];
                 $new_dialog->cevap = $request->cevap_tr[$i];
                 $new_dialog->interview_id = $new_interview->id;
@@ -183,11 +167,11 @@ class InterviewController extends Controller
         }
         $interview_en->save();
 
-        if(count($request->soran_en) > 0 && $request->soran_en[0] != null) {
-            for ($i = 0; $i < count($request->soran_en); $i++) {
+        if(count($request->soru_en) > 0 && $request->soru_en[0] != null) {
+            for ($i = 0; $i < count($request->soru_en); $i++) {
                 $new_dialog_en = new EnDialog();
-                $new_dialog_en->soran = $request->soran_en[$i];
-                $new_dialog_en->cevaplayan = $request->cevaplayan_en[$i];
+                $new_dialog_en->soran = $request->soran;
+                $new_dialog_en->cevaplayan = $request->cevaplayan;
                 $new_dialog_en->soru = $request->soru_en[$i];
                 $new_dialog_en->cevap = $request->cevap_en[$i];
                 $new_dialog_en->interview_id = $interview_en->id;
@@ -228,7 +212,6 @@ class InterviewController extends Controller
      */
     public function update($id, Request $request)
     {
-        dd($request->all());
         $new_interview  = Interview::findOrFail($id);
         $interview_en   = EnInterview::findOrFail($request->enInt);
 
@@ -249,14 +232,6 @@ class InterviewController extends Controller
             "seo_title_en" => "required",
             "seo_description_en" => "required",
             "seo_key_en" => "required",
-            'soran_tr' => 'required',
-            'cevaplayan_tr' => 'required',
-            'soru_tr' => 'required',
-            'cevap_tr' => 'required',
-            'soran_en' => 'required',
-            'cevaplayan_en' => 'required',
-            'soru_en' => 'required',
-            'cevap_en' => 'required',
         ],[
             "author" => "Yazar boş bırakılamaz",
             "live_time" => "Yayınlama tarihi boş bırakılamaz",
@@ -274,14 +249,6 @@ class InterviewController extends Controller
             "seo_title_en" => "Seo başlık (EN) boş bırakılamaz",
             "seo_description_en" => "Seo açıklama (EN) boş bırakılamaz",
             "seo_key_en" => "Seo anahtarı (EN) boş bırakılamaz",
-            'soran_tr' => 'Soran kişi (TR) boş bırakılamaz',
-            'cevaplayan_tr' => 'Cevaplayan (TR) kişi boş bırakılamaz',
-            'soru_tr' => 'Soru (TR) boş bırakılamaz',
-            'cevap_tr' => 'Cevap (TR) boş bırakılamaz',
-            'soran_en' => 'Soran kişi (EN) boş bırakılamaz',
-            'cevaplayan_en' => 'Cevaplayan kişi (EN) boş bırakılamaz',
-            'soru_en' => 'Soru (EN) boş bırakılamaz',
-            'cevap_en' => 'Cevap (EN) boş bırakılamaz',
         ]);
 
 
@@ -327,18 +294,18 @@ class InterviewController extends Controller
         if (!isset($request->status_tr)) {
             $new_interview->status = 0;
         }else{
-           $new_interview->status = 1; 
+           $new_interview->status = 1;
         }
         $new_interview->save();
 
 
-        if(count($request->soran_tr) > 0) {
+        if(count($request->soru_tr) > 0) {
             Dialog::where('interview_id', $id)->delete();
-            for ($i = 0; $i < count($request->soran_tr); $i++) {
+            for ($i = 0; $i < count($request->soru_tr); $i++) {
                 if($request->soru_tr[$i] == null ) continue;
                 $new_dialog = new Dialog();
-                $new_dialog->soran = $request->soran_tr[$i];
-                $new_dialog->cevaplayan = $request->cevaplayan_tr[$i];
+                $new_dialog->soran = $request->soran;
+                $new_dialog->cevaplayan = $request->cevaplayan;
                 $new_dialog->soru = $request->soru_tr[$i];
                 $new_dialog->cevap = $request->cevap_tr[$i];
                 $new_dialog->interview_id = $new_interview->id;
@@ -366,13 +333,13 @@ class InterviewController extends Controller
         }
         $interview_en->save();
 
-        if(count($request->soran_en) > 0) {
+        if(count($request->soru_en) > 0) {
             EnDialog::where('interview_id', $request->enInt)->delete();
-            for ($i = 0; $i < count($request->soran_en); $i++) {
+            for ($i = 0; $i < count($request->soru_en); $i++) {
                 if($request->soru_en[$i] == null ) continue;
                 $new_dialog_en = new EnDialog();
-                $new_dialog_en->soran = $request->soran_en[$i];
-                $new_dialog_en->cevaplayan = $request->cevaplayan_en[$i];
+                $new_dialog_en->soran = $request->soran;
+                $new_dialog_en->cevaplayan = $request->cevaplayan;
                 $new_dialog_en->soru = $request->soru_en[$i];
                 $new_dialog_en->cevap = $request->cevap_en[$i];
                 $new_dialog_en->interview_id = $interview_en->id;

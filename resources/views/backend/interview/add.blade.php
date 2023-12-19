@@ -590,30 +590,29 @@
                                         </div>
 
                                         <div class="tab-pane fade" id="rop">
-                                            <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x fs-6 mb-5">
-                                                <li class="nav-item">
-                                                    <a class="nav-link active" data-bs-toggle="tab" href="#asd">
-                                                        <span>
-                                                            <img src="{{ asset('/assets/tr.png') }}" width="28"
-                                                                height="20" alt="TR" title="TR">
-                                                        </span>
-
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" data-bs-toggle="tab" href="#dsa">
-                                                        <span>
-                                                            <img src="{{ asset('/assets/en.png') }}" width="28"
-                                                                height="20" alt="EN" title="EN">
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-
                                             <div class="tab-content">
                                                 <div id="asd" class="tab-pane fade show active">
                                                     <div id="show_item">
                                                         <div class="container" style=" padding:2%;" role="tabpanel">
+                                                            <!--
+                                                            <div class="row mb-6">
+                                                                <div class="col-md-6">
+                                                                    <span>
+                                                                        <img src="{{ asset('/assets/tr.png') }}" width="28"
+                                                                             height="20" alt="TR" title="TR">
+                                                                    </span>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <span>
+                                                                        <img src="{{ asset('/assets/en.png') }}" width="28"
+                                                                             height="20" alt="EN" title="EN">
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            -->
+
+
+
                                                             <div class="row mb-6">
                                                                 <div class="col-md-6">
                                                                     <div class="row mb-6">
@@ -624,7 +623,7 @@
                                                                         <div class="col-lg-8 fv-row">
                                                                             <input type="text"
                                                                                 class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                name="soran_tr[]"
+                                                                                name="soran"
                                                                                 onkeyup="setToEn('questioner')"
                                                                                 id="questioner">
                                                                         </div>
@@ -633,37 +632,78 @@
                                                                 <div class="col-md-6">
                                                                     <div class="row mb-6">
                                                                         <label
-                                                                            class="col-lg-4 col-form-label fw-bold fs-6 ps-5 text-end">
+                                                                            class="col-lg-4 col-form-label fw-bold fs-6 ps-5">
                                                                             <span class="required"> Cevaplayan Kişi</span>
                                                                         </label>
                                                                         <div class="col-lg-8 fv-row">
                                                                             <input type="text"
                                                                                 class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                name="cevaplayan_tr[]"
+                                                                                name="cevaplayan"
                                                                                 onkeyup="setToEn('answered')"
                                                                                 id="answered">
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
+
+
+
+
                                                             <div class="row mb-6">
-                                                                <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
-                                                                    <span class="required"> Soru</span>
-                                                                </label>
-                                                                <div class="col-lg-10 fv-row">
-                                                                    <input type="text"
-                                                                        class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                        name="soru_tr[]" id="">
+                                                                <div class="col-md-12">
+                                                                    <div class="row">
+                                                                        <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
+                                                                            <span class="required"> Soru TR</span>
+                                                                        </label>
+                                                                        <div class="col-lg-10 fv-row">
+                                                                            <input type="text"
+                                                                                   class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                   name="soru_tr[]" id="">
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div class="row mb-6">
-                                                                <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
-                                                                    <span class="required"> Cevap</span>
-                                                                </label>
-                                                                <div class="col-lg-10 fv-row">
-                                                                    <input type="text"
-                                                                        class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                        name="cevap_tr[]" id="">
+                                                                <div class="col-md-12">
+                                                                    <div class="row mb-6">
+                                                                        <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
+                                                                            <span class="required"> Soru EN</span>
+                                                                        </label>
+                                                                        <div class="col-lg-10 fv-row">
+                                                                            <input type="text"
+                                                                                   class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                   name="soru_en[]" id="">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row mb-6">
+                                                                <div class="col-md-12">
+                                                                    <div class="row">
+                                                                        <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
+                                                                            <span class="required"> Cevap TR</span>
+                                                                        </label>
+                                                                        <div class="col-lg-10 fv-row">
+                                                                            <input type="text"
+                                                                                class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                name="cevap_tr[]" id="">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-6">
+                                                                <div class="col-md-12">
+                                                                    <div class="row mb-6">
+                                                                        <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
+                                                                            <span class="required"> Cevap EN</span>
+                                                                        </label>
+                                                                        <div class="col-lg-10 fv-row">
+                                                                            <input type="text"
+                                                                                   class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                   name="cevap_en[]" id="">
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -676,64 +716,6 @@
 
                                                     </div>
                                                 </div>
-                                                <div id="dsa" class="tab-pane fade">
-                                                    <div id="show_item2">
-                                                        <div class="container" role="tabpanel"
-                                                            style=" padding:2%; margin-top:20px">
-                                                            <div class="row mb-6">
-                                                                <div class="col-md-6">
-                                                                    <div class="row mb-6">
-                                                                        <label
-                                                                            class="col-lg-4 col-form-label fw-bold fs-6 ps-5">
-                                                                            <span class="required"> Soran Kişi</span>
-                                                                        </label>
-                                                                        <div class="col-lg-8 fv-row">
-                                                                            <input type="text"
-                                                                                class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                name="soran_en[]" id="questioner_en">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <div class="row mb-6">
-                                                                        <label
-                                                                            class="col-lg-4 col-form-label fw-bold fs-6 ps-5 text-end">
-                                                                            <span class="required"> Cevaplayan Kişi</span>
-                                                                        </label>
-                                                                        <div class="col-lg-8 fv-row">
-                                                                            <input type="text"
-                                                                                class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                name="cevaplayan_en[]" id="answered_en">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row mb-6">
-                                                                <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
-                                                                    <span class="required"> Soru</span>
-                                                                </label>
-                                                                <div class="col-lg-10 fv-row">
-                                                                    <input type="text"
-                                                                        class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                        name="soru_en[]" id="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="row mb-6">
-                                                                <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
-                                                                    <span class="required"> Cevap</span>
-                                                                </label>
-                                                                <div class="col-lg-10 fv-row">
-                                                                    <input type="text"
-                                                                        class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                        name="cevap_en[]" id="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <button type="button" style="display: flex; margin: auto"
-                                                            id="main_add_en"
-                                                            class="btn btn-primary add_item_buton2">EKLE</button>
-                                                    </div><br>
-
                                                     <div class="ekle" style="text-align:center">
 
                                                     </div>
@@ -748,7 +730,6 @@
                             </div>
                             <!--begin::Body-->
                         </div>
-                    </div>
                     <!--end::Col-->
                     <div class="right" style="text-align: right">
                         <button class="btn btn-primary"> {{ __('message.kaydet') }} </button>
@@ -883,7 +864,7 @@
     </script>
     <script>
         $(document).ready(function() {
-            $(document).on('click', '.add_item_buton', function(e) {
+            $(document).on('click', '.add_item_butonx', function(e) {
                 let this_id = $(this).prop('id');
                 if (this_id != "main_add_tr") {
                     $(this).remove();
@@ -891,6 +872,7 @@
                 let questioner = $("#questioner").val();
                 let answered = $("#answered").val();
                 e.preventDefault();
+                // burası iptal
                 $("#show_item").append('<div class="mt-4 container" style=" padding-top:10%; padding-bottom:10%; border-top: 1px solid black; "\
                             role="tabpanel">\
                             <div class="row mb-6">\
@@ -958,66 +940,79 @@
     </script>
     <script>
         $(document).ready(function() {
-            $(document).on('click', '.add_item_buton2', function(e) {
+            $(document).on('click', '.add_item_buton', function(e) {
+                let this_id = $(this).prop('id');
+                if (this_id != "main_add_tr") {
+                    $(this).remove();
+                }
                 let questioner = $("#questioner_en").val();
                 let answered = $("#answered_en").val();
-                console.log("ok");
                 e.preventDefault();
-                $("#show_item2").append('<div  role="tabpanel" style="margin-top:10px; padding-top:10%; padding-bottom:10%; border-top: 1px solid black;">\
-                            <div class="row mb-6">\
-                                <div class="col-md-6">\
-                                    <div class="row mb-6">\
-                                        <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">\
-                                            <span class="required"> Soran Kişi</span>\
-                                        </label>\
-                                        <div class="col-lg-8 fv-row">\
-                                            <input type="text"\
-                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                name="soran_en[]" id="" value="' + questioner + '">\
-                                        </div>\
-                                    </div>\
-                                </div>\
-                                <div class="col-md-6">\
-                                    <div class="row mb-6">\
-                                        <label\
-                                            class="col-lg-4 col-form-label text-end ps-5 fw-bold fs-6">\
-                                            <span class="required"> Cevaplayan Kişi</span>\
-                                        </label>\
-                                        <div class="col-lg-8 fv-row">\
-                                            <input type="text"\
-                                                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                                name="cevaplayan_en[]" id="" value="' + answered + '">\
-                                        </div>\
-                                    </div>\
-                                </div>\
-                            </div>\
-                            <div class="row mb-6">\
-                                <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
-                                    <span class="required"> Soru</span>\
-                                </label>\
-                                <div class="col-lg-10 fv-row">\
-                                    <input type="text"\
-                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                        name="soru_en[]" id="">\
-                                </div>\
-                            </div>\
-                            <div class="row mb-6">\
-                                <label class="col-lg-2 col-form-label ps-5 fw-bold fs-6">\
-                                    <span class="required"> Cevap</span>\
-                                </label>\
-                                <div class="col-lg-10 fv-row">\
-                                    <input type="text"\
-                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"\
-                                        name="cevap_en[]" id="">\
-                                </div>\
-                            </div>\
-                        <div class="ekle" style="text-align:center">\
-                            <button type="button" id="add_en" class="btn btn-success add_item_buton2">EKLE</button>\
-                        <button type="button"\
-                            class="btn btn-danger delete_item_buton2">SİL</button>\
-                        </div>\
-                    </div>\
-                    </div>');
+                $("#show_item").append(`
+                <div class="container mt-5" style=" padding:2%; border-top: 1px solid black" role="tabpanel">
+                    <div class="row mb-6">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
+                                    <span class="required"> Soru TR</span>
+                                </label>
+                                <div class="col-lg-10 fv-row">
+                                    <input type="text"
+                                           class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                           name="soru_tr[]" id="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-6">
+
+                        <div class="col-md-12">
+                            <div class="row mb-6">
+                                <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
+                                    <span class="required"> Soru EN</span>
+                                </label>
+                                <div class="col-lg-10 fv-row">
+                                    <input type="text"
+                                           class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                           name="soru_en[]" id="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-6">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
+                                    <span class="required"> Cevap TR</span>
+                                </label>
+                                <div class="col-lg-10 fv-row">
+                                    <input type="text"
+                                        class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                        name="cevap_tr[]" id="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-6">
+                        <div class="col-md-12">
+                            <div class="row mb-6">
+                                <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
+                                    <span class="required"> Cevap EN</span>
+                                </label>
+                                <div class="col-lg-10 fv-row">
+                                    <input type="text"
+                                           class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                           name="cevap_en[]" id="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ekle" style="text-align:center">
+                        <button type="button" id="add_tr" class="btn btn-success add_item_buton">EKLE</button>
+                        <button type="button" class="btn btn-danger delete_item_buton">SİL</button>
+                   </div>
+                </div>`);
             });
 
             $(document).on('click', '.delete_item_buton2', function(e) {
