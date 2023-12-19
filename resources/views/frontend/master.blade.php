@@ -467,7 +467,7 @@
                                         <div class="basliklar2 row px-4 mt-5">
                                             @foreach (sayfalar() as $item)
                                                 <div class="col-md-2">
-                                                    <a href="{{ \Session::get('applocale') == 'en' ? route('front.archive.index_en') : route('front.archive.index') }}">
+                                                    <a href="{{ \Session::get('applocale') == 'en' ? route('front.page.detail',$item->link) : route('front.page.detail',$item->link) }}">
                                                         <p style="color: white; font-size:17px"> {{ $item->title }} </p>
                                                     </a>
                                                 </div>
