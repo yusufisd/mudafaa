@@ -177,6 +177,7 @@ function Topbar(){
     $local = \Session::get('applocale') ?? config('app.fallback_locale');
 
     $now = Carbon::now();
+    $data = '';
     if ($local == 'tr') {
         if(Topbar::where('start_time','<',$now)->where('finish_time','>',$now)->first() != null){
             $data = Topbar::where('start_time','<',$now)->where('finish_time','>',$now)->first();
