@@ -94,9 +94,29 @@
 
             <!-- Header -->
             <header class="rt-header sticky-on">
-
-                <!-- sticky-placeholder -->
                 <div id="sticky-placeholder"></div>
+
+
+                @if(Topbar())
+                 <div class=" " style="background-color:{{ Topbar()->color_code }};height:43px">
+                    <center>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <img src="/{{ Topbar()->image }}" style="width:36px;padding:4px" alt="">
+                            </div>
+                            <div class="col-md-10">
+                                <h6 style="color:white; padding:8px;">{{ Topbar()->title }}</h6>
+                            </div>
+                            <div class="col-md-1">
+                                <img src="/{{ Topbar()->image }}" style="width:36px;padding:4px" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </center>
+                </div>
+                @endif
+
 
                 <!-- start  topbar -->
                 <div class="topbar topbar-style-1" id="topbar-wrap">

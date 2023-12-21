@@ -27,6 +27,7 @@ use App\Http\Controllers\Backend\KunyeController;
 use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\SocialMediaController;
+use App\Http\Controllers\Backend\TopbarController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\VideoCategoryController;
 use App\Http\Controllers\Backend\VideoController;
@@ -661,6 +662,21 @@ Route::middleware('lang')->group(function () {
                     Route::get('haber','NewsComment')->name('currentNews');
                     Route::get('roportaj','interviewsComments')->name('interviews');
                     Route::get('video','videosComments')->name('videos');
+                });
+
+
+                // topbar controller
+                Route::controller(TopbarController::class)
+                ->prefix('header')
+                ->name('topbar.')
+                ->group(function () {
+                    Route::get('/', 'list')->name('list');
+                    Route::get('/ekle', 'create')->name('add');
+                    Route::post('/ekle', 'store')->name('store');
+                    Route::get('/duzenle/{id?}', 'edit')->name('edit');
+                    Route::post('/duzenle/{id?}', 'update')->name('update');
+                    Route::get('/sil/{id?}', 'destroy')->name('destroy');
+
                 });
         });
 

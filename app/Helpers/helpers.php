@@ -9,11 +9,13 @@ use App\Models\EnCurrentNews;
 use App\Models\EnCurrentNewsCategory;
 use App\Models\EnDefenseIndustry;
 use App\Models\EnPage;
+use App\Models\EnTopbar;
 use App\Models\InterviewComment;
 use App\Models\LogModel;
 use App\Models\Page;
 use App\Models\Reklam;
 use App\Models\SocialMedia;
+use App\Models\Topbar;
 use App\Models\UserModel;
 use App\Models\VideoComment;
 use Carbon\Carbon;
@@ -169,4 +171,20 @@ function master_interviewCommentsCount(){
 
 function master_videoCommentsCount(){
     return VideoComment::count();
+}
+
+function Topbar(){
+    $local = \Session::get('applocale') ?? config('app.fallback_locale');
+
+    $now = Carbon::now();
+    if ($local == 'tr') {
+        if(Topbar::where('start_time','<',$now)->where('finish_time','>',$now)->first() != null){
+            $data = Topbar::where('start_time','<',$now)->where('finish_time','>',$now)->first();
+        }
+    } elseif ($local == 'en') {
+        if(EnTopbar::where('start_time','<',$now)->where('finish_time','>',$now)->first() != null){
+            $data = EnTopbar::where('start_time','<',$now)->where('finish_time','>',$now)->first();
+        }
+    }
+    return $data;
 }

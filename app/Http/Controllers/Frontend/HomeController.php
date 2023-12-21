@@ -257,8 +257,8 @@ class HomeController extends Controller
     }
 
     public function view_counter(){
-        $data = DefenseIndustryContent::get();
-        $data_en = EnDefenseIndustryContent::get();
+        $data = CurrentNews::get();
+        $data_en = EnCurrentNews::get();
         
         foreach ($data as $item){
             $item->view_counter = rand(155,555);

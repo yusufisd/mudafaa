@@ -535,6 +535,17 @@
                                     <!--end:Menu link-->
                                 </div>
 
+                                <div class="menu-item">
+                                    <a class="menu-link" href="{{ route('admin.topbar.list') }}">
+                                        <span class="menu-icon">
+                                            <i class="fa-solid fa-book"></i>
+                                        </span>
+                                        <span class="menu-title"> Header
+                                            {{ __('message.yönetimi') }}
+                                        </span>
+                                    </a>
+                                </div>
+
 
                                 <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
                                     data-kt-menu-placement="right-start"

@@ -94,11 +94,11 @@
                                         <div class="rt-post post-md style-9 grid-meta">
                                             <div class="post-content">
                                                 @if (isset($item->Category()[0]))
-                                                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNewsCategory.list', $item->Category()[0]->link)) : (route('front.currentNewsCategory.list_en', $item->Category()[0]->link)) }}"
+                                                    <a href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNewsCategory.list_en', $item->Category()[0]->link)) : (route('front.currentNewsCategory.list', $item->Category()[0]->link)) }}"
                                                         class="rt-cat-primary">{{ $item->Category()[0]->title }}</a>
                                                 @endif
                                                 <h3 class="post-title">
-                                                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNews.detail', $item->link)) : (route('front.currentNews.detail_en', $item->link)) }}"
+                                                    <a href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNews.detail_en', $item->link)) : (route('front.currentNews.detail', $item->link)) }}"
                                                         class="restricted_title">
                                                         {{ $item->title }}
                                                     </a>
@@ -122,7 +122,7 @@
                                                         </li>
                                                         <li>
                                                             <span class="rt-meta">
-                                                                <i class="far fa-eye icon"></i>
+                                                                <i class="fa-solid fa-eye"></i>
                                                                 {{ $item->view_counter }}
                                                             </span>
                                                         </li>
@@ -130,7 +130,7 @@
                                                     </ul>
                                                 </div>
                                                 <div class="btn-wrap mt--25">
-                                                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNews.detail', $item->link)) : (route('front.currentNews.detail_en', $item->link)) }}"
+                                                    <a href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNews.detail_en', $item->link)) : (route('front.currentNews.detail', $item->link)) }}"
                                                         class="rt-read-more qodef-button-animation-out">
                                                         {{ __('message.daha fazla oku') }}
                                                         <svg width="34px" height="16px" viewBox="0 0 34.53 16"
@@ -148,7 +148,7 @@
                                                 </div>
                                             </div>
                                             <div class="post-img">
-                                                <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNews.detail', $item->link)) : (route('front.currentNews.detail_en', $item->link)) }}">
+                                                <a href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNews.detail_en', $item->link)) : (route('front.currentNews.detail', $item->link)) }}">
                                                     <img src="/{{ $item->image != null ? $item->image : 'url (assets/frontend/media/gallery/post-lg_40.jpg)' }}"
                                                         alt="{{ $item->title }}" width="696" height="491">
                                                 </a>
@@ -206,7 +206,7 @@
                                             <div class="rt-post-grid post-grid-md grid-meta">
                                                 <div class="post-content">
                                                     @if (isset($item->Category()[0]))
-                                                        <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.currentNewsCategory.list', $item->Category()[0]->link)) : (route('front.currentNewsCategory.list_en', $item->Category()[0]->link)) }}"
+                                                        <a href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNewsCategory.list_en', $item->Category()[0]->link)) : (route('front.currentNewsCategory.list', $item->Category()[0]->link)) }}"
                                                             class="rt-cat-primary sidebar_restricted_category_title">
                                                             {{ $item->Category()[0]->title }} </a>
                                                     @endif
@@ -217,8 +217,8 @@
                                                         </a>
                                                     </div>
                                                     <h4 class="post-title">
-                                                        <a href="" class="sidebar_restricted_title">
-                                                            {{ $item->title }}
+                                                        <a href="" class="">
+                                                            {{ (Illuminate\Support\Str::words($item->title,5,'...')) }}
                                                         </a>
                                                     </h4>
                                                     <span class="rt-meta">
@@ -326,5 +326,80 @@
             */
         }
 
+    </script>
+    <script>
+        /*--------------------------------
+                        // limit by device width
+                        -------------------------------*/
+        // get device width
+        var windowWidth = $(window).width();
+
+        // Set limits for different device widths
+        var limit_sidebar_restricted_title = 17;
+        if (windowWidth <= 768) {
+            limit_sidebar_restricted_title = 14;
+        } else if (windowWidth <= 1200) {
+            limit_sidebar_restricted_title = 17;
+        }
+
+        // Set limits for different device widths
+        var limit_restricted_title = 120;
+        if (windowWidth <= 768) {
+            limit_restricted_title = 45;
+        } else if (windowWidth <= 1200) {
+            limit_restricted_title = 120;
+        }
+
+        /*--------------------------------
+           // title limitation
+        -------------------------------*/
+        // Select all tags with class .restricted_title
+        $('.restricted_title').each(function() {
+            var content = $(this).text().trim(); // get the content of a tag
+            if (content.length > limit_restricted_title) {
+                // If the content is longer than limit_restricted_title characters
+                content = content.slice(0, limit_restricted_title) + '...';
+                // Select limit_restricted_title characters and add ellipses
+                $(this).text(content); // Restore modified content
+            }
+        });
+
+        /*--------------------------------
+           // title limitation
+        -------------------------------*/
+        // Select all tags with class .restricted_text
+        $('.restricted_text').each(function() {
+            var content = $(this).text().trim(); // get the content of a tag
+            if (content.length > 225) { // If the content is longer than 225 characters
+                content = content.slice(0, 225) + '...'; // Select 225 characters and add ellipses
+                $(this).text(content); // Restore modified content
+            }
+        });
+
+        /*--------------------------------
+           // sidebar title limitation
+        -------------------------------*/
+        // Select all tags with class .sidebar_restricted_title
+        $('.sidebar_restricted_title').each(function() {
+            var content = $(this).text().trim(); // get the content of a tag
+            if (content.length > limit_sidebar_restricted_title) {
+                // If the content is longer than limit_sidebar_restricted_title characters
+                content = content.slice(0, limit_sidebar_restricted_title) + '...';
+                // Select limit_sidebar_restricted_title characters and add ellipses
+                $(this).text(content); // Restore modified content
+            }
+        });
+
+        /*--------------------------------
+           // sidebar title limitation
+        -------------------------------*/
+        // Select all tags with class .sidebar_restricted_category_title
+        $('.sidebar_restricted_category_title').each(function() {
+            var content = $(this).text().trim(); // get the content of a tag
+            if (content.length > 14) { // If the content is longer than 14 characters
+                content = content.slice(0, 14) + '...'; // Select 14 characters and add ellipses
+                $(this).text(content); // Restore modified content
+            }
+        });
     </script>
 @endsection
