@@ -270,4 +270,30 @@ class HomeController extends Controller
         }
         return "Başarılı";
     }
+
+    public function mansetOnSinir(){
+        $data_tr = CurrentNews::latest()->get();
+        $data_en = EnCurrentNews::latest()->get();
+        foreach($data_tr as $item){
+            $item->headline = 0;
+            $item->save();
+        }
+        foreach($data_en as $item){
+            $item->headline = 0;
+            $item->save();
+        }
+
+
+        $data_ten_tr = CurrentNews::orderBy('live_time','desc')->take(10)->get();
+        $data_ten_en = EnCurrentNews::orderBy('live_time','desc')->take(10)->get();
+        foreach($data_ten_tr as $item){
+            $item->headline = 1;
+            $item->save();
+        }
+        foreach($data_ten_en as $item){
+            $item->headline = 1;
+            $item->save();
+        }
+        return "Başarılı";
+    }
 }

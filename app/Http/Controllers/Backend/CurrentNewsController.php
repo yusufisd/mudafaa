@@ -138,6 +138,16 @@ class CurrentNewsController extends Controller
         }
         if (!isset($request->manset_tr)) {
             $news->headline = 0;
+        }else{
+            $manset_say = CurrentNews::where('headline',1)->count();
+            if($manset_say <10){
+                $news->headline = 1;
+            }else{
+                $son_manset = CurrentNews::orderBy('live_time','asc')->first();
+                $son_manset->headline = 0;
+                $son_manset->save();
+                $news->headline = 1;
+            }
         }
         if (!isset($request->status_tr)) {
             $news->status = 0;
@@ -178,6 +188,17 @@ class CurrentNewsController extends Controller
         }
         if (!isset($request->manset_en)) {
             $news_en->headline = 0;
+        
+        }else{
+            $manset_say = CurrentNews::where('headline',1)->count();
+            if($manset_say <10){
+                $news_en->headline = 1;
+            }else{
+                $son_manset = CurrentNews::orderBy('live_time','asc')->first();
+                $son_manset->headline = 0;
+                $son_manset->save();
+                $news_en->headline = 1;
+            }
         }
         if (!isset($request->status_en)) {
             $news_en->status = 0;
@@ -301,7 +322,16 @@ class CurrentNewsController extends Controller
             if (!isset($request->manset_tr)) {
                 $news->headline = 0;
             }else{
-                $news->headline = 1;
+                $manset_say = CurrentNews::where('headline',1)->count();
+                if($manset_say < 10){
+                    $news->headline = 1;
+                }else{
+                    $son_manset = CurrentNews::orderBy('live_time','asc')->first();
+                    $son_manset->headline = 0;
+                    $son_manset->save();
+                    $news->headline = 1;
+                }
+                
             }
             if (!isset($request->status_tr)) {
                 $news->status = 0;
@@ -344,9 +374,18 @@ class CurrentNewsController extends Controller
                 $news_en->mobil_image = $save_url;
             }
             if (!isset($request->manset_en)) {
-                $news_en->headline = 0;
+                $news->headline = 0;
             }else{
-                $news_en->headline = 1;
+                $manset_say = EnCurrentNews::where('headline',1)->count();
+                if($manset_say < 10){
+                    $news_en->headline = 1;
+                }else{
+                    $son_manset = EnCurrentNews::orderBy('live_time','asc')->first();
+                    $son_manset->headline = 0;
+                    $son_manset->save();
+                    $news_en->headline = 1;
+                }
+                
             }
             if (!isset($request->status_en)) {
                 $news_en->status = 0;
@@ -397,9 +436,42 @@ class CurrentNewsController extends Controller
     {
         try {
             DB::beginTransaction();
+
             $data = CurrentNews::findOrFail($id);
-            $data->headline = !$data->headline;
-            $data->save();
+            if($data->headline == 1){
+                $data->headline = 0;
+                $data->save();
+            }else{
+                $manset_say = CurrentNews::where('headline',1)->count();
+                if($manset_say < 10){
+                    $data->headline = 1;
+                    $data->save();
+                }else{
+                    $son_manset = CurrentNews::where('headline',1)->orderBy('live_time','asc')->first();
+                    $son_manset->headline = 0;
+                    $son_manset->save();
+                    $data->headline = 1;
+                    $data->save();
+                }
+            }
+
+            $data_en = EnCurrentNews::where('currentNews_id',$id)->first();
+            if($data_en->headline == 1){
+                $data_en->headline = 0;
+                $data_en->save();
+            }else{
+                $manset_say = EnCurrentNews::where('headline',1)->count();
+                if($manset_say < 10){
+                    $data_en->headline = 1;
+                    $data_en->save();
+                }else{
+                    $son_manset = EnCurrentNews::where('headline',1)->orderBy('live_time','asc')->first();
+                    $son_manset->headline = 0;
+                    $son_manset->save();
+                    $data_en->headline = 1;
+                    $data_en->save();
+                }
+            }
 
             logKayit(['Haber Yönetimi ', 'Manşet durumu değiştirildi']);
             Alert::success('Haber Manşet Durumu Değiştirildi');

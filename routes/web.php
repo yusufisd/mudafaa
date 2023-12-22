@@ -844,3 +844,4 @@ Route::middleware('lang')->group(function () {
 });
 
 Route::get('/view_counter',[FrontendHomeController::class,'view_counter']);
+Route::get('/manset-on-sinir',[FrontendHomeController::class,'mansetOnSinir']);
