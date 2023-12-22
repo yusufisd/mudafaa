@@ -50,12 +50,12 @@
                                 <div class="card-body pt-0 pb-5">
                                     <!--begin::Table container-->
                                     <div class="table-responsive with_search_table">
-                                        <table id="ad_table" class="table gy-7 gx-7">
+                                        <table id="blog_management_table" class="table gy-7 gx-7">
                                             <thead>
                                                 <tr class="fw-bold fs-6 text-gray-800">
                                                     <th class="w-10px">
                                                         <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                                            <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#ad_table .my-input " value="1" />
+                                                            <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#blog_management_table .my-input " value="1" />
                                                         </div>
                                                     </th>
                                                     <th>Reklam Tipi<i class="fa fa-sort ms-3"></i></th>
@@ -132,7 +132,7 @@
             window.location.href = "{{ route('admin.adsense.change_status') }}/" + d;
         }
     // begin: DataTable Scripts
-        $("#ad_table").DataTable({
+        $("#blog_management_table").DataTable({
             "ordering": true,
             "order": [[ 0, "asc" ]],
             "language": {
