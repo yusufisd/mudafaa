@@ -42,7 +42,7 @@
                     <div class="col-lg-8 wow fadeInUp mx-auto" data-wow-delay="300ms" data-wow-duration="800ms">
                         <div class="error-area-style-1 text-center">
                             <div class="item-img">
-                                <img src="media/elements/404.png" alt="404" width="450">
+                                <img src="/media/elements/404.png" alt="404" width="450">
                             </div>
                             <div class="item-content">
                                 <h2 class="title">

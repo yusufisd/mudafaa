@@ -12,6 +12,7 @@ use App\Models\EnPage;
 use App\Models\EnTopbar;
 use App\Models\InterviewComment;
 use App\Models\LogModel;
+use App\Models\MenuModel;
 use App\Models\Page;
 use App\Models\Reklam;
 use App\Models\SocialMedia;
@@ -188,4 +189,13 @@ function Topbar(){
         }
     }
     return $data;
+}
+
+function menuControl($id){
+    if(MenuModel::where('menu_id',$id)->first() != null){
+        $data = MenuModel::where('menu_id',$id)->first();
+        return $data->status;
+    }else{
+        return 1;
+    }
 }

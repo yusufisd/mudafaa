@@ -1128,8 +1128,8 @@
                                                         for="{{ $cevap->id }}"></label>
                                                     <label for="{{ $cevap->id }}">{{ $cevap->answer }}</label>
                                                 </div>
-                                                <div class="percent-box">
-                                                    <span class="vote-percent"
+                                                <div class="percent-box" style="display: {{ $anket->isVoted() != null ? 'block' : 'none' }}" id="yuzde{{ $cevap->id }}">
+                                                    <span class="vote-percent" id="cevap{{ $cevap->id }}"
                                                         data-vote-percent="{{ $cevap->katilim() }}">{{ $cevap->katilim() }}</span>%
                                                 </div>
                                             </div>
@@ -1828,8 +1828,15 @@
                     dataType: "json",
                     success: function(response) {
                         if (response.status == "success") {
-                            console.log(response.true_answer, answer);
-                            console.log(response.true_answer == answer);
+                            console.log(response)
+                            // response'dan gelen rate adındaki katilim oranı dizisini çektim
+                            let rates = response.rate;
+                            // bernzersiz kıldığım elementleri giydirmek içn döngüye alıyorum
+                            for(var i = 0; i < rates.length; i++){
+                                console.log(rates, rates[i], rates[i]["id"])
+                                $(`#cevap${rates[i]["id"]}`).html(rates[i]["rate"]);
+                                $(`#yuzde${rates[i]["id"]}`).show();
+                            }
                             if (response.true_answer == answer) {
                                 $(".box-" + answer).addClass("trueAnswer");
                             } else {

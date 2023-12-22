@@ -34,5 +34,9 @@ class HomeController extends Controller
         return view('backend.index',compact('loginLogs','logs','comments','currentNewsCount','defenseIndustryCount','companyCount','dictionaryCount','videoCount','activityCount'));
     }
 
+    public function unauthorizedPage(){
+        return view('backend.unauthorized');
+    }
+
     
 }

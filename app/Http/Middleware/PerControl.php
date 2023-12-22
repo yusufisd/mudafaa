@@ -23,7 +23,7 @@ class PerControl
             if (in_array($per, $user->Role->permissions)) {
                 return $next($request);
             } else {
-                abort(401, 'YETKİNİZ BULUNMAMAKTADIR');
+                return redirect()->route('admin.unauthorizedPage');
             }
         }else{
             return $next($request);

@@ -278,7 +278,7 @@
                                         <h3 class="author-name"> {{ $data->Author->name }} {{ $data->Author->surname }}
                                         </h3>
                                         <p class="user-desc">
-                                            {{ substr($data->Author->description, 0, 270) }}...
+                                            {!! substr($data->Author->description, 0, 270) !!}
                                         </p>
                                         <ul class="social-style-5">
 

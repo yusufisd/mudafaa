@@ -267,6 +267,8 @@
                                                     href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}"><i
                                                         class="fa fa-home fa-md"></i></a>
                                             </li>
+
+                                            @if(menuControl(1))
                                             <li
                                                 class="main-menu__nav_sub list {{ Route::is('front.currentNewsCategory.list') || Route::is('front.currentNews.detail') ? 'active' : '' }}">
                                                 <a class="animation" href="javascript:void(0)">
@@ -281,6 +283,8 @@
 
                                                 </ul>
                                             </li>
+                                            @endif
+                                            @if(menuControl(2))
                                             <li
                                                 class="main-menu__nav_sub list {{ Route::is('front.defenseIndustryCategory.list') || Route::is('front.defenseIndustryContent.detail') || Route::is('front.defenseIndustrySubCategory.list2') ? 'active' : '' }}">
                                                 <a class="animation" href="javascript:void(0)">
@@ -296,24 +300,32 @@
 
                                                 </ul>
                                             </li>
+                                            @endif
+                                            @if(menuControl(3))
                                             <li
                                                 class="{{ Route::is('front.activity.detail') || Route::is('front.activity.list') || Route::is('front.activity.detail') ? 'active' : '' }}">
                                                 <a class="animation"
                                                     href="{{ \Session::get('applocale') == 'en' ? route('front.activity.list_en') : route('front.activity.list') }}">
                                                     {{ __('message.etkinlikler') }} </a>
                                             </li>
+                                            @endif
+                                            @if(menuControl(4))
                                             <li
                                                 class="{{ Route::is('front.interview.list') || Route::is('front.interview.detail') ? 'active' : '' }}">
                                                 <a class="animation"
                                                     href="{{ \Session::get('applocale') == 'en' ? route('front.interview.list_en') : route('front.interview.list') }}">
                                                     {{ __('message.röportajlar') }} </a>
                                             </li>
+                                            @endif
+                                            @if(menuControl(5))
                                             <li
                                                 class="{{ Route::is('front.company.list') || Route::is('front.company.detail') ? 'active' : '' }}">
                                                 <a class="animation"
                                                     href="{{ \Session::get('applocale') == 'en' ? route('front.company.list_en') : route('front.company.list') }}">
                                                     {{ __('message.firmalar') }} </a>
                                             </li>
+                                            @endif
+                                            @if(menuControl(6))
                                             <li
                                                 class="{{ Route::is('front.dictionary.list') || Route::is('front.dictionary.detail') ? 'active' : '' }}">
                                                 <a class="animation"
@@ -321,11 +333,14 @@
                                                     {{ __('message.ss sözlüğü') }}
                                                 </a>
                                             </li>
+                                            @endif
+                                            @if(menuControl(7))
                                             <li
                                                 class="{{ Route::is('front.video.list') || Route::is('front.video.detail') ? 'active' : '' }}">
                                                 <a class="animation" href="{{ route('front.video.list') }}">
                                                     {{ __('message.videolar') }} </a>
                                             </li>
+                                            @endif
                                         </ul>
                                     </nav>
                                 </div>

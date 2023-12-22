@@ -668,6 +668,19 @@
                                     </div>
                                 @endif
 
+                                <!--begin:Menu item-->
+                                <div class="menu-item">
+                                    <!--begin:Menu link-->
+                                    <a class="menu-link" href="{{ route('admin.menu.edit') }}">
+                                        <span class="menu-icon">
+                                            <i class="fa-solid fa-file"></i>
+                                        </span>
+                                        <span class="menu-title"> Menu
+                                            {{ __('message.yönetimi') }} </span>
+                                    </a>
+                                    <!--end:Menu link-->
+                                </div>
+
                                 <hr>
 
 

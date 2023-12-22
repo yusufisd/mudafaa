@@ -24,6 +24,7 @@ use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\IconController;
 use App\Http\Controllers\Backend\InterviewController;
 use App\Http\Controllers\Backend\KunyeController;
+use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\SocialMediaController;
@@ -678,6 +679,15 @@ Route::middleware('lang')->group(function () {
                     Route::get('/sil/{id?}', 'destroy')->name('destroy');
 
                 });
+
+                Route::get('yetkisiz-deneme',[HomeController::class,'unauthorizedPage'])->name('unauthorizedPage');
+
+                // MENU CONTROLLER
+                Route::controller(MenuController::class)->prefix('menu')->name('menu.')->group(function(){
+                    Route::get('/','edit')->name('edit');
+                    Route::get('/ekle','ekle')->name('ekle');
+                    Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
+                });
         });
 
     Route::prefix('/')
@@ -831,12 +841,6 @@ Route::middleware('lang')->group(function () {
         });
 
         
-});
-
-Route::get('test',function(){
-    $data = "https://www.instagram.com/millimudafaacom/?__a=1";
-    $data = file_get_contents($data);
-    return $data;
 });
 
 Route::get('/view_counter',[FrontendHomeController::class,'view_counter']);
