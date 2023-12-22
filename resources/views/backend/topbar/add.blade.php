@@ -73,7 +73,7 @@
                                                     <div class="col-md-6">
                                                         <div class="row mb-6">
                                                             <!--begin::Label-->
-                                                            <label class="required col-lg-4 col-form-label fw-bold fs-6 ps-5">
+                                                            <label class=" col-lg-4 col-form-label fw-bold fs-6 ps-5">
                                                                 {{ __('message.görsel') }} <br>
                                                                 <span style="font-weight:normal">(50px - 50px)</span>
     
