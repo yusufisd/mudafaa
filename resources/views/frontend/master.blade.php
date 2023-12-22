@@ -467,7 +467,7 @@
                                         <div class="icerik">
                                             <p class="footer-text" style="width:630px"><span class="text-white text-2xl"> www.millimudafaa.com  </span>Sitede yayınlanan yazı, haber, video ve fotoğrafların tüm hakları Dada İst Ajans a aittir. Kaynak gösterilerek dahi olsa izin alınmadan alıntı yapılamaz.</p>
                                         </div>
-                                        <div class="basliklar2 row px-4 mt-5" style="width: 80%">
+                                        <div class="basliklar2 row px-4 mt-5" style="width: 85%">
                                             <div class="col-md-2">
                                                 <a href="{{ \Session::get('applocale') == 'en' ? route('front.about.detail_en') : route('front.about.detail') }}">
                                                     <p style="color: white; font-size:14px">Hakkımızda</p>
@@ -499,7 +499,7 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        <div class="basliklar2 row px-4 mt-5" style="width:80%">
+                                        <div class="basliklar2 row px-4 mt-5" style="width:85%">
                                             @foreach (sayfalar() as $item)
                                                 <div class="col-md-2">
                                                     <a href="{{ \Session::get('applocale') == 'en' ? route('front.page.detail',$item->link) : route('front.page.detail',$item->link) }}">
