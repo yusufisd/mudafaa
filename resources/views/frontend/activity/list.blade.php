@@ -145,7 +145,7 @@
 
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
-                            @if(reklam(17) != null reklam(17)->status ==1)
+                            @if(reklam(17) != null && reklam(17)->status ==1)
                                 <div class="ad-banner-img mt--45 mb--40">
                                     <a href="{{ reklam(17)->adsense_url }}">
                                         @if (reklam(17)->type ?? 0 == 1)
