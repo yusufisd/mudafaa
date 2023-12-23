@@ -72,8 +72,8 @@
         }
         @media only screen and (max-width: 600px) {
             .sutun_mobile {
-                width:50%;
                 display: block;
+                width:50%;
             }
             .sutun_desktop{
                 display: none;
