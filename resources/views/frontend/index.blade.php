@@ -292,8 +292,7 @@
     </section>
     <!-- end main post section style 1 -->
 
-    @if(reklam(3)->status == 1)
-        @if (reklam(3) != null)
+        @if (reklam(3) != null && reklam(3)->status == 1)
             <div class="container" style="margin-top:3%">
                 <div class="row">
                     @if (reklam(3)->type ?? 0 == 1)
@@ -306,7 +305,6 @@
                 </div>
             </div>
         @endif
-    @endif
 
     <!-- start what's new section -->
     <section class="whats-new-style-1 section-padding">
@@ -1164,7 +1162,7 @@
     <!-- start popular post  -->
 
     <!-- start rt ad banner -->
-    @if (reklam(6) && reklam(6)->status == 1)
+    @if (reklam(6) != null && reklam(6)->status == 1)
         <div class="rt-ad-banner rt-ad-banner-style-1 section-padding">
             <div class="container">
                 <div class="row">
@@ -1347,7 +1345,7 @@
     </section>
     <!-- end travel-main-section-style-2 -->
 
-    @if (reklam(7) && reklam(7)->status == 1)
+    @if (reklam(7)!= null && reklam(7)->status == 1)
         <div class="rt-ad-banner rt-ad-banner-style-1 section-padding">
             <div class="container">
                 <div class="row">
