@@ -136,5 +136,6 @@ return [
     "ürün hakkında" => "Product's About",
     "ürün" => "Product",
     "diğer ürünler" => "Other Products",
+    "güncelleme" => "Updated",
 ];
 ?>

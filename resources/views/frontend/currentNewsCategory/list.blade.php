@@ -9,6 +9,12 @@
         .pagination>li>span {
             color: rgb(26, 159, 26); // use your own color here
         }
+        @media screen and (max-width: 992px) {
+            .pag{
+                margin:auto!important;
+                text-align: center!important;
+            }
+        }
     </style>
     <main>
         <!-- theme-switch-box -->
@@ -347,7 +353,7 @@
                     </div>
                 </div>
                 <!-- end col -->
-                    <div style="margin-left: 35%; margin-top:5%">
+                    <div class="pag" style="margin-left: 35%; margin-top:5%">
                         {!! $datas->appends(request()->input())->onEachSide(1)->links(); !!}
                     </div>
                 <!-- end row  -->

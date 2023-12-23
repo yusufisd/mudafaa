@@ -24,17 +24,14 @@
 
         .trueAnswer {
             background-color: #749f43 !important;
-            z-index: 999 !important;
         }
 
         .falseAnswer {
             background-color: #a43939 !important;
-            z-index: 999 !important;
         }
 
         .selectedAnswer {
             background-color: #e17f10 !important;
-            z-index: 999 !important;
         }
 
         @media screen and (max-width: 767px) {

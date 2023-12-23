@@ -1,5 +1,5 @@
 @extends('frontend.master')
-@section('title','Firmalar')
+@section('title', 'Firmalar')
 
 @section('content')
     <!-- Start Main -->
@@ -8,6 +8,13 @@
         .rt-cart-item .item-img::after {
             background-color: rgba(var(--color-white-rgb), 0);
             border-radius: var(--border-radius-xs);
+        }
+
+        @media only screen and (max-width: 600px) {
+            .company-content{
+                width: 50%;
+                padding:3%;
+            }
         }
     </style>
 
@@ -32,7 +39,8 @@
                 <nav class="rt-breadcrumb-wrap" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
+                            <a
+                                href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
@@ -53,13 +61,12 @@
                         <div class="rt-left-sidebar-sapcer-5">
 
                             <div class="ad-banner-img wow fadeInUp mb--40" data-wow-delay="100ms" data-wow-duration="800ms">
-                                @if(reklam(34) != null)
+                                @if (reklam(34) != null)
                                     <div class="sidebar-wrap mb--40">
                                         <div class="ad-banner-img">
                                             <a href="{{ reklam(34)->adsense_url }}">
                                                 @if (reklam(10)->type ?? 0 == 1)
-                                                    <img src="/{{ reklam(34)->image }}" 
-                                                    width="1320px" style="height: 90px">
+                                                    <img src="/{{ reklam(34)->image }}" width="1320px" style="height: 90px">
                                                 @else
                                                     {!! reklam(34)->adsense_url ?? '' !!}
                                                 @endif
@@ -70,42 +77,34 @@
                                 @endif
                             </div>
 
-                            <div class="row gutter-24">
+                            <div class="row ">
 
                                 @foreach ($data as $item)
-                                    <div class="col-md-3 wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
+                                    <div class="col-md-3 company-content wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
                                         <div class="cat-item">
                                             <div class="rt-cart-item" style="background-color: white!important">
                                                 <a
                                                     href="{{ \Session::get('applocale') == 'en' ? route('front.company.detail_en', \Illuminate\Support\Str::slug($item->title)) : route('front.company.detail', \Illuminate\Support\Str::slug($item->title)) }}">
-
-                                                    <div
-                                                        class="author-img">
-                                                        <img style="width:170px; height:170px; opacity:0.9" src="/{{ $item->image }}"
-                                                            alt="{{ $item->title }}">
+                                                    <div class="author-img">
+                                                        <img style="width:170px; height:170px; opacity:0.9"
+                                                            src="/{{ $item->image }}" alt="{{ $item->title }}">
                                                     </div>
-
                                                 </a>
                                             </div>
                                         </div>
-                                        <!-- end cat item -->
                                     </div>
-                                    <!-- end inner col -->
                                 @endforeach
 
-
                             </div>
-                            <!-- end inner row -->
 
                             <div class="ad-banner-img wow fadeInUp mb--40 mt--40" data-wow-delay="100ms"
-                                 data-wow-duration="800ms">
-                                @if(reklam(35) != null)
+                                data-wow-duration="800ms">
+                                @if (reklam(35) != null)
                                     <div class="sidebar-wrap mb--40">
                                         <div class="ad-banner-img">
                                             <a href="{{ reklam(35)->adsense_url }}">
                                                 @if (reklam(35)->type ?? 0 == 1)
-                                                    <img src="/{{ reklam(35)->image }}"
-                                                    width="1320px" style="height: 90px">
+                                                    <img src="/{{ reklam(35)->image }}" width="1320px" style="height: 90px">
                                                 @else
                                                     {!! reklam(35)->adsense_url ?? '' !!}
                                                 @endif
@@ -135,7 +134,8 @@
 
                                     @foreach ($categories as $item)
                                         <li>
-                                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.company.categoryList_en',$item->link) : route('front.company.categoryList',$item->link) }}" data-bg-image="/{{ $item->image }}">
+                                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.company.categoryList_en', $item->link) : route('front.company.categoryList', $item->link) }}"
+                                                data-bg-image="/{{ $item->image }}">
                                                 <span class="cat-name">
                                                     <i class="fas fa-list"
                                                         style="border-right: 2px solid;width: 27px;padding-right: 4px;padding-left: 0px;height: 16px;"></i>
@@ -152,12 +152,13 @@
                             <!-- end slidebar wrap  -->
                             <div class="sidebar-wrap mb--40">
                                 <div class="ad-banner-img">
-                                    @if(reklam(36) != null)
+                                    @if (reklam(36) != null)
                                         <div class="sidebar-wrap mb--40">
                                             <div class="ad-banner-img">
                                                 <a href="{{ reklam(36)->adsense_url }}">
                                                     @if (reklam(36)->type ?? 0 == 1)
-                                                        <img src="/{{ reklam(36)->image }}" alt="" width="300" height="600">
+                                                        <img src="/{{ reklam(36)->image }}" alt="" width="300"
+                                                            height="600">
                                                     @else
                                                         {!! reklam(36)->adsense_url ?? '' !!}
                                                     @endif

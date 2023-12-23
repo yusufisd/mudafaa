@@ -70,6 +70,23 @@
         .galleryitem {
             max-height: 100px;
         }
+        @media only screen and (max-width: 600px) {
+            .sutun {
+                width:50%;
+            }
+
+            .satir {
+                --bs-gutter-x: 1.5rem;
+                --bs-gutter-y: 0;
+                display: flex;
+                flex-wrap: wrap;
+                margin-top: calc(var(--bs-gutter-y) * -1);
+                margin-right: calc(var(--bs-gutter-x)/ -2);
+                margin-left: calc(var(--bs-gutter-x)/ -2);
+            }
+        }
+
+    
     </style>
 
     @yield('css')
@@ -467,46 +484,52 @@
                                         <div class="icerik">
                                             <p class="footer-text" style="width:630px"><span class="text-white text-2xl"> www.millimudafaa.com  </span>Sitede yayınlanan yazı, haber, video ve fotoğrafların tüm hakları Dada İst Ajans a aittir. Kaynak gösterilerek dahi olsa izin alınmadan alıntı yapılamaz.</p>
                                         </div>
-                                        <div class="basliklar2 row px-4 mt-5" style="width: 85%">
-                                            <div class="col-md-2">
-                                                <a href="{{ \Session::get('applocale') == 'en' ? route('front.about.detail_en') : route('front.about.detail') }}">
-                                                    <p style="color: white; font-size:14px">Hakkımızda</p>
-                                                </a>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <a href="{{ \Session::get('applocale') == 'en' ? route('front.kunye_en') : route('front.kunye') }}">
-                                                    <p style="color: white; font-size:14px">Künye</p>
-                                                </a>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <a href="{{ \Session::get('applocale') == 'en' ? route('front.contact_en') : route('front.contact') }}">
-                                                    <p style="color: white; font-size:14px">İletişim</p>
-                                                </a>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <a href="#">
-                                                    <p style="color: white; font-size:14px">Reklam</p>
-                                                </a>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <a href="#">
-                                                    <p style="color: white; font-size:14px">İş Bİrliği</p>
-                                                </a>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <a href="{{ \Session::get('applocale') == 'en' ? route('front.archive.index_en') : route('front.archive.index') }}">
-                                                    <p style="color: white; font-size:14px">Arşiv</p>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="basliklar2 row px-4 mt-5" style="width:85%">
-                                            @foreach (sayfalar() as $item)
-                                                <div class="col-md-2">
-                                                    <a href="{{ \Session::get('applocale') == 'en' ? route('front.page.detail',$item->link) : route('front.page.detail',$item->link) }}">
-                                                        <p style="color: white; font-size:14px"> {{ $item->title }} </p>
-                                                    </a>
+                                        <div class="satir">
+                                            <div class="sutun">
+                                                <div class="basliklar2 row px-4 mt-5" style="width: 85%">
+                                                    <div class="col-md-2">
+                                                        <a href="{{ \Session::get('applocale') == 'en' ? route('front.about.detail_en') : route('front.about.detail') }}">
+                                                            <p style="color: white; font-size:14px">Hakkımızda</p>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <a href="{{ \Session::get('applocale') == 'en' ? route('front.kunye_en') : route('front.kunye') }}">
+                                                            <p style="color: white; font-size:14px">Künye</p>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <a href="{{ \Session::get('applocale') == 'en' ? route('front.contact_en') : route('front.contact') }}">
+                                                            <p style="color: white; font-size:14px">İletişim</p>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <a href="#">
+                                                            <p style="color: white; font-size:14px">Reklam</p>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <a href="#">
+                                                            <p style="color: white; font-size:14px">İş Bİrliği</p>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <a href="{{ \Session::get('applocale') == 'en' ? route('front.archive.index_en') : route('front.archive.index') }}">
+                                                            <p style="color: white; font-size:14px">Arşiv</p>
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                            @endforeach
+                                            </div>
+                                            <div class="sutun">
+                                                <div class="basliklar2 row px-4 mt-5" style="width:85%">
+                                                    @foreach (sayfalar() as $item)
+                                                        <div class="col-md-2">
+                                                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.page.detail',$item->link) : route('front.page.detail',$item->link) }}">
+                                                                <p style="color: white; font-size:14px"> {{ $item->title }} </p>
+                                                            </a>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
                                         </div>
                                         <ul class="footer-social gap-2 mt-3" style="justify-content: center">
                                             @if (SocialMedia())

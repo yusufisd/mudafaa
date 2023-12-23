@@ -288,7 +288,7 @@
                                             @if ($previous_data != null)
                                                 <div class="next-prev-wrap">
                                                     <div class="item-icon">
-                                                        <a href="{{ route('front.interview.detail', $data->id - 1) }}">
+                                                        <a href="{{ route('front.interview.detail', $previous_data->link) }}">
                                                             <i class="fas fa-chevron-left"></i>
                                                             {{ __('message.önceki röportaj') }}
                                                         </a>
@@ -296,13 +296,13 @@
                                                     <div class="content">
                                                         <h4 class="title">
                                                             <a
-                                                                href="{{ route('front.interview.detail', $data->id - 1) }}">
+                                                                href="{{ route('front.interview.detail', $previous_data->link) }}">
                                                                 {{ $previous_data->title }}
                                                             </a>
                                                         </h4>
                                                         <span class="rt-meta">
                                                             <i class="far fa-calendar-alt icon"></i>
-                                                            {{ $previous_data->created_at->translatedFormat('d M Y') }}
+                                                            {{ $previous_data->live_time->translatedFormat('d M Y') }}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -314,7 +314,7 @@
                                             @if ($next_data != null)
                                                 <div class="next-prev-wrap next-wrap">
                                                     <div class="item-icon">
-                                                        <a href="{{ route('front.interview.detail', $data->id + 1) }}">
+                                                        <a href="{{ route('front.interview.detail', $next_data->link) }}">
                                                             {{ __('message.sonraki röportaj') }}
                                                             <i class="fas fa-chevron-right"></i>
                                                         </a>
@@ -322,13 +322,13 @@
                                                     <div class="content">
                                                         <h4 class="title">
                                                             <a
-                                                                href="{{ route('front.interview.detail', $data->id + 1) }}">
+                                                                href="{{ route('front.interview.detail', $next_data->link) }}">
                                                                 {{ $next_data->title }}
                                                             </a>
                                                         </h4>
                                                         <span class="rt-meta">
                                                             <i class="far fa-calendar-alt icon"></i>
-                                                            {{ $next_data->created_at->translatedFormat('d M Y') }}
+                                                            {{ $next_data->live_time->translatedFormat('d M Y') }}
                                                         </span>
                                                     </div>
                                                 </div>
