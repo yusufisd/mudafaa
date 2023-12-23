@@ -139,9 +139,8 @@
                                         {{ $data->title }}
                                     </h2>
                                     <div class="post-meta">
-                                        <div class="meta2">
-                                            <ul class="meta2" style="display: none">
-                                                <div class="row">
+                                        <div class="meta2" style="display: none">
+                                            <ul>
                                                     <li>
                                                         <span class="rt-meta">
                                                             <i class="fa fa-user"></i>
@@ -150,8 +149,6 @@
                                                                 {{ $data->Author->surname }}</a>
                                                         </span>
                                                     </li>
-                                                </div>
-                                                <div class="row">
                                                     <li>
                                                         <span class="rt-meta">
                                                             <i class="far fa-calendar-alt icon"></i>
@@ -162,7 +159,6 @@
                                                             @endif
                                                         </span>
                                                     </li>
-                                                </div>
                                             </ul>
                                             <ul>
                                                 <li>
@@ -289,7 +285,7 @@
                                 <div class="post-body" id="contentToConvert" style="text-align: justify;">
                                     {!! printDesc($data->description) !!}
                                     <br><br>
-                                    @if (reklam(11) != null && reklam(11)->status ==1)
+                                    @if (reklam(11) != null && reklam(11)->status == 1)
                                         <div class="ad-banner-img mt--45 mb--40">
                                             <a href="{{ reklam(11)->adsense_url }}">
                                                 @if (reklam(11)->type ?? 0 == 1)
@@ -728,7 +724,7 @@
                             </div>
                             <!-- end sidebar wrap -->
 
-                            @if (reklam(12) != null && reklam(12)->status ==1)
+                            @if (reklam(12) != null && reklam(12)->status == 1)
                                 <div class="sidebar-wrap mb--40">
                                     <div class="ad-banner-img">
                                         <a href="{{ reklam(12)->adsense_url }}">
@@ -928,8 +924,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                                                                                            // limit by device width
-                                                                                            -------------------------------*/
+                                                                                                // limit by device width
+                                                                                                -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
 
