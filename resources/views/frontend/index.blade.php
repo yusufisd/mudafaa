@@ -1413,16 +1413,21 @@
                                 @if (\Session::get('applocale') == 'en')
                                     @if ($kvkk_en)
                                         <a href="{{ route('front.page.detail', 'pdpl') }}">
-                                            {!! __('message.Kişisel Verilerin Korunması') !!}
+                                            {{ __('message.Kişisel Verilerin Korunması') }}
                                         </a>
+                                        {{ __('message.okudum, onay veriyorum') }}
+
                                     @else
                                         {{ __("message.Kişisel Verilerin İşlenmesi Aydınlatma Metni'ni okudum kabul ediyorum.") }}
                                     @endif
                                 @else
                                     @if ($kvkk_tr)
                                         <a href="{{ route('front.page.detail', 'kvkk') }}">
-                                            {!! __('message.okudum, onay veriyorum') !!}
+                                            {{ __('message.Kişisel Verilerin Korunması') }}
                                         </a>
+                                        {{ __('message.okudum, onay veriyorum') }}
+
+
                                     @else
                                         {{ __('message.Kişisel Verilerin Korunması Hakkında Aydınlatma Metnini okudum, onay veriyorum.') }}
                                     @endif
