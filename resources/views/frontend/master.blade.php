@@ -531,7 +531,7 @@
                                             <center>
                                             <div class="sutun">
                                                 <div class="basliklar2 row px-4 mt-2" style="width:85%">
-                                                    <ul>
+                                                    <ul class="row">
                                                     @foreach (sayfalar() as $item)
                                                         <li>
                                                             <a href="{{ \Session::get('applocale') == 'en' ? route('front.page.detail',$item->link) : route('front.page.detail',$item->link) }}">
