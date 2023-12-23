@@ -492,8 +492,8 @@
                                             <p class="footer-text" style="width:630px"><span class="text-white text-2xl"> www.millimudafaa.com  </span>Sitede yayınlanan yazı, haber, video ve fotoğrafların tüm hakları Dada İst Ajans a aittir. Kaynak gösterilerek dahi olsa izin alınmadan alıntı yapılamaz.</p>
                                         </div>
                                         <div class="satir">
-                                            <center>
                                             <div class="sutun">
+                                                <center>
                                                 <div class="basliklar2 row px-4 mt-5" style="width: 85%">
                                                     <div class="col-md-2">
                                                         <a href="{{ \Session::get('applocale') == 'en' ? route('front.about.detail_en') : route('front.about.detail') }}">
@@ -526,19 +526,19 @@
                                                         </a>
                                                     </div>
                                                 </div>
+                                                </center>
                                             </div>
-                                            </center>
-                                            <center>
                                             <div class="sutun">
-                                                <div class="basliklar2 row px-4 mt-2" style="width:85%">
+                                                <div class="basliklar2 row px-4 mt-5" style="width:85%">
                                                     @foreach (sayfalar() as $item)
+                                                        <div >
                                                             <a href="{{ \Session::get('applocale') == 'en' ? route('front.page.detail',$item->link) : route('front.page.detail',$item->link) }}">
                                                                 <p style="color: white; font-size:14px"> {{ $item->title }} </p>
                                                             </a>
+                                                        </div>
                                                     @endforeach
                                                 </div>
                                             </div>
-                                            </center>
                                         </div>
                                         <ul class="footer-social gap-2 mt-3" style="justify-content: center">
                                             @if (SocialMedia())
