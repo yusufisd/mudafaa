@@ -90,6 +90,9 @@
                 width: 100% !important;
                 padding: 5% !important;
             }
+            .li_2{
+                padding:0px;
+            }
         }
 
         .footer-top {
@@ -543,7 +546,7 @@
                                                 <div class="basliklar2 row mt-5 px-4" style="width:85%">
                                                     <ul style="text-align:center;">
                                                         @foreach (sayfalar() as $item)
-                                                            <li style="display:inline-block;padding:15px;">
+                                                            <li class="li_2" style="display:inline-block;padding:15px;">
                                                                 <a
                                                                     href="{{ \Session::get('applocale') == 'en' ? route('front.page.detail', $item->link) : route('front.page.detail', $item->link) }}">
                                                                     <p style="color: white; font-size:14px">
