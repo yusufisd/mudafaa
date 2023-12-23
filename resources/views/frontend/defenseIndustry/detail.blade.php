@@ -199,7 +199,7 @@
                                 {!! printDesc($data->description) !!}
                                 <br><br>
                                 <!-- ad banner -->
-                                @if (reklam(15) != null)
+                                @if (reklam(15) != null && reklam(15)->status ==1)
                                     <div class="ad-banner-img mt--45 mb--40">
                                         <a href="{{ reklam(15)->adsense_url }}">
                                             @if (reklam(15)->type ?? 0 == 1)
@@ -426,7 +426,7 @@
         <!-- editor-choice-section-style-1 -->
         <section class="editor-choice-section-style-1 section-padding overflow-hidden">
             <div class="container">
-                @if (reklam(16) != null)
+                @if (reklam(16) != null && reklam(16)->status ==1)
                     <div class="ad-banner-img mt--45 mb--40">
                         <a href="{{ reklam(16)->adsense_url }}">
                             @if (reklam(16)->type ?? 0 == 1)

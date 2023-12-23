@@ -1,5 +1,10 @@
 @extends('backend.master')
 @section('content')
+<style>
+    #ad_status_1:hover {
+        cursor: pointer;
+    }
+</style>
     <!--begin::Main-->
     <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
         <!--begin::Content wrapper-->

@@ -75,18 +75,20 @@
 
                                 @foreach ($datas as $key => $item)
                                     @if($key == 3 && reklam(8) != null)
-                                        <div class="ad-banner-img">
-                                            <a href="{{ reklam(8)->adsense_url }}">
-                                                @if (reklam(8)->type ?? 0 == 1)
-                                                    <img src="/{{ reklam(8)->image }}" alt="" width="728" height="91">
-                                                @else
-                                                    {!! reklam(8)->adsense_url ?? '' !!}
-                                                @endif
-                                            </a>
-                                        </div>
+                                        @if(reklam(8)->status ==1)
+                                            <div class="ad-banner-img">
+                                                <a href="{{ reklam(8)->adsense_url }}">
+                                                    @if (reklam(8)->type ?? 0 == 1)
+                                                        <img src="/{{ reklam(8)->image }}" alt="" width="728" height="91">
+                                                    @else
+                                                        {!! reklam(8)->adsense_url ?? '' !!}
+                                                    @endif
+                                                </a>
+                                            </div>
+                                        @endif
                                     @endif
 
-                                    @if($key == 6 && reklam(9) != null)
+                                    @if($key == 6 && reklam(9) != null && reklam(9)->status ==1)
                                         <div class="ad-banner-img">
                                             <a href="{{ reklam(9)->adsense_url }}">
                                                 @if (reklam(9)->type ?? 0 == 1)
@@ -237,7 +239,7 @@
                             </div>
                             <!-- end slidebar wrap  -->
 
-                            @if(reklam(10) != null)
+                            @if(reklam(10) != null && reklam(10)->status ==1)
                             <div class="sidebar-wrap mb--40">
                                 <div class="ad-banner-img">
                                     <a href="{{ reklam(10)->adsense_url }}">

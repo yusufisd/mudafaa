@@ -39,7 +39,7 @@
         <!-- Start rt-sidebar-section-layout-2 -->
         <div class="rt-sidebar-section-layout-2">
             <div class="container">
-                @if(reklam(17) != null)
+                @if(reklam(17) != null && reklam(17)->status ==1)
                     <div class="ad-banner-img mt--45 mb--40">
                         <a href="{{ reklam(17)->adsense_url }}">
                             @if (reklam(17)->type ?? 0 == 1)
@@ -145,20 +145,20 @@
 
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
-                            @if(reklam(175) != null)
+                            @if(reklam(17) != null reklam(17)->status ==1)
                                 <div class="ad-banner-img mt--45 mb--40">
-                                    <a href="{{ reklam(175)->adsense_url }}">
-                                        @if (reklam(175)->type ?? 0 == 1)
-                                            <img src="/{{ reklam(175)->image }}" style="height: 90px">
+                                    <a href="{{ reklam(17)->adsense_url }}">
+                                        @if (reklam(17)->type ?? 0 == 1)
+                                            <img src="/{{ reklam(17)->image }}" style="height: 90px">
                                         @else
-                                            {!! reklam(175)->adsense_url ?? '' !!}
+                                            {!! reklam(17)->adsense_url ?? '' !!}
                                         @endif
                                     </a>
                                 </div>
                             @endif
                         </div>
                         <div class="col-md-6 col-sm-12">
-                            @if(reklam(18) != null)
+                            @if(reklam(18) != null && reklam(18)->status == 1)
                                 <div class="ad-banner-img mt--45 mb--40">
                                     <a href="{{ reklam(18)->adsense_url }}">
                                         @if (reklam(18)->type ?? 0 == 1)
@@ -261,7 +261,7 @@
                 </div>
 
                 @foreach ($activity_category as $key => $data)
-                    @if(reklam($key + 19) != null)
+                    @if(reklam($key + 19) != null && reklam($key + 19)->status == 1)
                         <div class="ad-banner-img mt--45 mb--40">
                             <a href="{{ reklam($key + 19)->adsense_url }}">
                                 @if (reklam($key + 19)->type ?? 0 == 1)

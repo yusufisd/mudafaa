@@ -312,7 +312,7 @@
                             </div>
 
                             <div class="ad-banner-img mb--40">
-                                @if(reklam(25) != null)
+                                @if(reklam(25) != null && reklam(25)->status ==1)
                                     <div class="ad-banner-img mt--45 mb--40">
                                         <a href="{{ reklam(25)->adsense_url }}">
                                             @if (reklam(25)->type ?? 0 == 1)

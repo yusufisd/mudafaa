@@ -91,15 +91,15 @@
                                 @foreach ($data as $key => $item)
                                     @if ($key == 2)
                                         <div class="ad-banner-img mb--40 mt--40">
-                                            @if (reklam(28) != null)
+                                            @if (reklam(28) != null && reklam(28)->status == 1)
                                                 <div class="sidebar-wrap mb--40">
                                                     <div class="ad-banner-img">
-                                                        <a href="{{ reklam(29)->adsense_url }}">
-                                                            @if (reklam(29)->type ?? 0 == 1)
-                                                                <img src="/{{ reklam(29)->image }}" alt=""
+                                                        <a href="{{ reklam(28)->adsense_url }}">
+                                                            @if (reklam(28)->type ?? 0 == 1)
+                                                                <img src="/{{ reklam(28)->image }}" alt=""
                                                                 width="1320px" style="height:90px">
                                                             @else
-                                                                {!! reklam(29)->adsense_url ?? '' !!}
+                                                                {!! reklam(28)->adsense_url ?? '' !!}
                                                             @endif
 
                                                         </a>
@@ -174,7 +174,7 @@
 
                                     @if ($key == 3)
                                         <div class="ad-banner-img mb--40 mt--40">
-                                            @if (reklam(29) != null)
+                                            @if (reklam(29) != null && reklam(29)->status == 1)
                                                 <div class="sidebar-wrap mb--40">
                                                     <div class="ad-banner-img">
                                                         <a href="{{ reklam(29)->adsense_url }}">
@@ -270,7 +270,7 @@
 
                             <div class="sidebar-wrap mb--40">
                                 <div class="ad-banner-img">
-                                    @if (reklam(30) != null)
+                                    @if (reklam(30) != null && reklam(30)->status == 1)
                                         <div class="sidebar-wrap mb--40">
                                             <div class="ad-banner-img">
                                                 <a href="{{ reklam(30)->adsense_url }}">

@@ -198,7 +198,7 @@
 
         <!-- editor-choice-section-style-1 -->
         <section class="editor-choice-section-style-1 mt-sm-3 mt-md-5 rt-sidebar-section-layout-2 overflow-hidden">
-            @if(reklam(41) != null)
+            @if(reklam(41) != null && reklam(41)->status == 1)
                 <div class="ad-banner-img mt--45 mb--40">
                     <a href="{{ reklam(41)->adsense_url }}">
                         @if (reklam(41)->type ?? 0 == 1)

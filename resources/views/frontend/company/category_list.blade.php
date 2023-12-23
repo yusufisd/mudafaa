@@ -57,11 +57,11 @@
                         <div class="rt-left-sidebar-sapcer-5">
 
                             <div class="ad-banner-img wow fadeInUp mb--40" data-wow-delay="100ms" data-wow-duration="800ms">
-                                @if(reklam(34) != null)
+                                @if(reklam(34) != null && reklam(34)->status == 1)
                                     <div class="sidebar-wrap mb--40">
                                         <div class="ad-banner-img">
                                             <a href="{{ reklam(34)->adsense_url }}">
-                                                @if (reklam(10)->type ?? 0 == 1)
+                                                @if (reklam(34)->type ?? 0 == 1)
                                                     <img src="/{{ reklam(34)->image }}" alt="" width="960" height="150">
                                                 @else
                                                     {!! reklam(34)->adsense_url ?? '' !!}
@@ -99,7 +99,7 @@
 
                             <div class="ad-banner-img wow fadeInUp mb--40 mt--40" data-wow-delay="100ms"
                                 data-wow-duration="800ms">
-                                    @if(reklam(35) != null)
+                                    @if(reklam(35) != null && reklam(35)->status == 1)
                                         <div class="sidebar-wrap mb--40">
                                             <div class="ad-banner-img">
                                                 <a href="{{ reklam(35)->adsense_url }}">
@@ -150,7 +150,7 @@
 
                             <div class="sidebar-wrap mb--40">
                                 <div class="ad-banner-img">
-                                    @if(reklam(36) != null)
+                                    @if(reklam(36) != null && reklam(36)->status == 1)
                                         <div class="sidebar-wrap mb--40">
                                             <div class="ad-banner-img">
                                                 <a href="{{ reklam(36)->adsense_url }}">

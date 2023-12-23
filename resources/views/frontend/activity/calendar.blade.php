@@ -75,7 +75,7 @@
                                        href="javascript:void(0);">Tümü</a>
                                 </li>
                         </ul>
-                        @if(reklam(26) != null)
+                        @if(reklam(26) != null && reklam(26)->status == 1)
                             <div class="ad-banner-img mt--45 mb--40">
                                 <a href="{{ reklam(26)->adsense_url }}">
                                     @if (reklam(26)->type ?? 0 == 1)
@@ -94,7 +94,7 @@
                 <div class="row mt-4">
                     <div class="col-md-12 col-sm-12 col-lg-3 mb-5"></div>
                     <div class="col-md-9">
-                        @if(reklam(27) != null)
+                        @if(reklam(27) != null && reklam(26)->status == 1)
                             <div class="ad-banner-img">
                                 <a href="{{ reklam(27)->adsense_url }}">
                                     @if (reklam(27)->type ?? 0 == 1)

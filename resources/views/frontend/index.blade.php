@@ -124,24 +124,28 @@
         @if (reklam(1) != null || reklam(2) != null)
             <div class="row">
                 <div class="col-md-6">
-                    @if (reklam(1)->type ?? 0 == 1)
-                        <a href="{{ reklam(1)->adsense_url }}"
-                            target="{{ reklam(1)->href_tab == 0 ? '_self' : '_blank' }}">
-                            <img src="/{{ reklam(1)->image }}" width="660px" style="height: 90px!important">
-                        </a>
-                    @else
-                        {!! reklam(1)->adsense_url ?? '' !!}
+                    @if(reklam(1)->status == 1)
+                        @if (reklam(1)->type ?? 0 == 1)
+                            <a href="{{ reklam(1)->adsense_url }}"
+                                target="{{ reklam(1)->href_tab == 0 ? '_self' : '_blank' }}">
+                                <img src="/{{ reklam(1)->image }}" width="660px" style="height: 90px!important">
+                            </a>
+                        @else
+                            {!! reklam(1)->adsense_url ?? '' !!}
+                        @endif
                     @endif
                 </div>
 
                 <div id="ikinci_reklam" class="col-md-6">
-                    @if (reklam(2)->type ?? 0 == 1)
-                        <a href="{{ reklam(2)->adsense_url }}"
-                            target="{{ reklam(2)->href_tab == 0 ? '_self' : '_blank' }}">
-                            <img src="/{{ reklam(2)->image }}" width="660px" style="height: 90px!important">
-                        </a>
-                    @else
-                        {!! reklam(2)->adsense_url ?? '' !!}
+                    @if(reklam(2)->status == 1)
+                        @if (reklam(2)->type ?? 0 == 1)
+                            <a href="{{ reklam(2)->adsense_url }}"
+                                target="{{ reklam(2)->href_tab == 0 ? '_self' : '_blank' }}">
+                                <img src="/{{ reklam(2)->image }}" width="660px" style="height: 90px!important">
+                            </a>
+                        @else
+                            {!! reklam(2)->adsense_url ?? '' !!}
+                        @endif
                     @endif
                 </div>
             </div>
@@ -288,18 +292,20 @@
     </section>
     <!-- end main post section style 1 -->
 
-    @if (reklam(3) != null)
-        <div class="container" style="margin-top:3%">
-            <div class="row">
-                @if (reklam(3)->type ?? 0 == 1)
-                    <a href="{{ reklam(3)->adsense_url }}" target="{{ reklam(3)->href_tab == 0 ? '_self' : '_blank' }}">
-                        <img src="/{{ reklam(3)->image }}" style="width: 100%; height:90px!important">
-                    </a>
-                @else
-                    {!! reklam(3)->adsense_url ?? '' !!}
-                @endif
+    @if(reklam(3)->status == 1)
+        @if (reklam(3) != null)
+            <div class="container" style="margin-top:3%">
+                <div class="row">
+                    @if (reklam(3)->type ?? 0 == 1)
+                        <a href="{{ reklam(3)->adsense_url }}" target="{{ reklam(3)->href_tab == 0 ? '_self' : '_blank' }}">
+                            <img src="/{{ reklam(3)->image }}" style="width: 100%; height:90px!important">
+                        </a>
+                    @else
+                        {!! reklam(3)->adsense_url ?? '' !!}
+                    @endif
+                </div>
             </div>
-        </div>
+        @endif
     @endif
 
     <!-- start what's new section -->
@@ -911,23 +917,27 @@
         <div class="container" style="margin-top:3%">
             <div class="row">
                 <div class="col-md-6">
-                    @if (reklam(4)->type ?? 0 == 1)
-                        <a href="{{ reklam(4)->adsense_url }}"
-                            target="{{ reklam(4)->href_tab == 0 ? '_self' : '_blank' }}">
-                            <img src="/{{ reklam(4)->image }}" width="660px" style="height: 90px!important">
-                        </a>
-                    @else
-                        {!! reklam(4)->adsense_url ?? '' !!}
+                    @if(reklam(4)->status == 1)
+                        @if (reklam(4)->type ?? 0 == 1)
+                            <a href="{{ reklam(4)->adsense_url }}"
+                                target="{{ reklam(4)->href_tab == 0 ? '_self' : '_blank' }}">
+                                <img src="/{{ reklam(4)->image }}" width="660px" style="height: 90px!important">
+                            </a>
+                        @else
+                            {!! reklam(4)->adsense_url ?? '' !!}
+                        @endif
                     @endif
                 </div>
                 <div id="ikinci_reklam" class="col-md-6">
-                    @if (reklam(5)->type ?? 0 == 1)
-                        <a href="{{ reklam(5)->adsense_url }}"
-                            target="{{ reklam(5)->href_tab == 0 ? '_self' : '_blank' }}">
-                            <img src="/{{ reklam(5)->image }}" width="660px" style="height: 90px!important">
-                        </a>
-                    @else
-                        {!! reklam(5)->adsense_url ?? '' !!}
+                    @if(reklam(4)->status == 1)
+                        @if (reklam(5)->type ?? 0 == 1)
+                            <a href="{{ reklam(5)->adsense_url }}"
+                                target="{{ reklam(5)->href_tab == 0 ? '_self' : '_blank' }}">
+                                <img src="/{{ reklam(5)->image }}" width="660px" style="height: 90px!important">
+                            </a>
+                        @else
+                            {!! reklam(5)->adsense_url ?? '' !!}
+                        @endif
                     @endif
                 </div>
             </div>
@@ -1154,7 +1164,7 @@
     <!-- start popular post  -->
 
     <!-- start rt ad banner -->
-    @if (reklam(6))
+    @if (reklam(6) && reklam(6)->status == 1)
         <div class="rt-ad-banner rt-ad-banner-style-1 section-padding">
             <div class="container">
                 <div class="row">
@@ -1337,7 +1347,7 @@
     </section>
     <!-- end travel-main-section-style-2 -->
 
-    @if (reklam(7))
+    @if (reklam(7) && reklam(7)->status == 1)
         <div class="rt-ad-banner rt-ad-banner-style-1 section-padding">
             <div class="container">
                 <div class="row">

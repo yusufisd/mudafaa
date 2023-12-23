@@ -83,7 +83,7 @@
 
                                 @foreach ($data as $key => $item)
                                 @if($key==6)
-                                    @if (reklam(39) != null)
+                                    @if (reklam(39) != null && reklam(39)->status == 1)
                                         <div class="sidebar-wrap mb--40">
                                             <div class="ad-banner-img">
                                                 <a href="{{ reklam(39)->adsense_url }}">
@@ -100,7 +100,7 @@
                                 @endif
 
                                 @if($key==12)
-                                    @if (reklam(40) != null)
+                                    @if (reklam(40) != null && reklam(40)->status == 1)
                                         <div class="sidebar-wrap mb--40">
                                             <div class="ad-banner-img">
                                                 <a href="{{ reklam(40)->adsense_url }}">

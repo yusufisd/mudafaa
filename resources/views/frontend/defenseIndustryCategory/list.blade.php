@@ -105,7 +105,7 @@
                                 @foreach ($contents_first as $key => $item)
 
                                     @if ($key == 4)
-                                        @if (reklam(13) != null)
+                                        @if (reklam(13) != null && reklam(13)->status ==1)
                                             <div class="sidebar-wrap mb--40">
                                                 <div class="ad-banner-img">
                                                     <a href="{{ reklam(13)->adsense_url }}">
@@ -253,7 +253,7 @@
                             </div>
                             <!-- end slidebar wrap  -->
 
-                            @if (reklam(14) != null)
+                            @if (reklam(14) != null && reklam(14)->status ==1)
                                 <div class="sidebar-wrap mb--40">
                                     <div class="ad-banner-img">
                                         <a href="{{ reklam(14)->adsense_url }}">

@@ -289,7 +289,7 @@
                                 <div class="post-body" id="contentToConvert" style="text-align: justify;">
                                     {!! printDesc($data->description) !!}
                                     <br><br>
-                                    @if (reklam(11) != null)
+                                    @if (reklam(11) != null && reklam(11)->status ==1)
                                         <div class="ad-banner-img mt--45 mb--40">
                                             <a href="{{ reklam(11)->adsense_url }}">
                                                 @if (reklam(11)->type ?? 0 == 1)
@@ -728,7 +728,7 @@
                             </div>
                             <!-- end sidebar wrap -->
 
-                            @if (reklam(12) != null)
+                            @if (reklam(12) != null && reklam(12)->status ==1)
                                 <div class="sidebar-wrap mb--40">
                                     <div class="ad-banner-img">
                                         <a href="{{ reklam(12)->adsense_url }}">

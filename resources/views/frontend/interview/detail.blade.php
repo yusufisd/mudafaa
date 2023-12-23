@@ -207,7 +207,7 @@
 
                                     <!-- ad banner -->
                                     <div class="ad-banner-img mt--45 mb--40">
-                                        @if (reklam(31) != null)
+                                        @if (reklam(31) != null && reklam(31)->status == 1)
                                             <div class="sidebar-wrap mb--40">
                                                 <div class="ad-banner-img">
                                                     <a href="{{ reklam(31)->adsense_url }}">
@@ -465,16 +465,16 @@
                                 </div>
                                 <!-- end blog-post-comment -->
 
-                                @if (reklam(31) != null)
+                                @if (reklam(32) != null && reklam(32)->status == 1)
                                     <div class="ad-banner-img mt--45 mb--40">
                                         <div class="sidebar-wrap mb--40">
                                             <div class="ad-banner-img">
-                                                <a href="{{ reklam(31)->adsense_url }}">
-                                                    @if (reklam(31)->type ?? 0 == 1)
-                                                        <img src="/{{ reklam(31)->image }}" alt=""
+                                                <a href="{{ reklam(32)->adsense_url }}">
+                                                    @if (reklam(32)->type ?? 0 == 1)
+                                                        <img src="/{{ reklam(32)->image }}" alt=""
                                                             width="1320px" style="height: 90px">
                                                     @else
-                                                        {!! reklam(31)->adsense_url ?? '' !!}
+                                                        {!! reklam(32)->adsense_url ?? '' !!}
                                                     @endif
                                                 </a>
                                             </div>
@@ -614,7 +614,7 @@
 
                             <div class="sidebar-wrap mb--40">
                                 <div class="ad-banner-img">
-                                    @if (reklam(33) != null)
+                                    @if (reklam(33) != null && reklam(33)->status == 1)
                                         <div class="sidebar-wrap mb--40">
                                             <div class="ad-banner-img">
                                                 <a href="{{ reklam(33)->adsense_url }}">
