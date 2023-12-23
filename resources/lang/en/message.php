@@ -81,7 +81,7 @@ return [
     "ad soyad" => "Name Surname",
     "yorum" => "Comment",
     "tümünü gör" => "View All",
-    "Kişisel Verilerin Korunması" => "Protection Of Personal Data",
+    "Kişisel Verilerin Korunması" => "Protection of Personal Data",
     "Hakkında Aydınlatma Metnini okudum, onay veriyorum." => "I have read the Clarification Text and I give my consent.",
     "ilgili haberler" => "Related News",
     "bizi takip edin" => "Follow Us",
@@ -137,5 +137,7 @@ return [
     "ürün" => "Product",
     "diğer ürünler" => "Other Products",
     "güncelleme" => "Updated",
+    "okudum, onay veriyorum" => "I have read and accept",
+
 ];
 ?>

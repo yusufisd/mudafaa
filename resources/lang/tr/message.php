@@ -135,7 +135,8 @@ return [
     "ürün hakkında" => "Ürün Hakkında",
     "ürün" => "Ürün",
     "diğer ürünler" => "Diğer Ürünler",
-    "güncelleme" => "Güncelleme",
+    "güncelleme" =>"Güncelleme",
+    "okudum, onay veriyorum" => "okudum, onay veriyorum",
 
 
 ];

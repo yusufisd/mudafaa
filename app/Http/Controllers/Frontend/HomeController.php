@@ -16,8 +16,10 @@ use App\Models\EnCurrentNewsCategory;
 use App\Models\EnDefenseIndustryContent;
 use App\Models\EnDictionary;
 use App\Models\EnInterview;
+use App\Models\EnPage;
 use App\Models\EnVideo;
 use App\Models\Interview;
+use App\Models\Page;
 use App\Models\Reklam;
 use App\Models\Video;
 use Carbon\Carbon;
@@ -252,7 +254,10 @@ class HomeController extends Controller
 
         }
         $reklamlar = Reklam::all();
-        return view('frontend.index', compact('cats','iki_haber','tek_haber','uc_kategori','ilk_kategori_icerigi','ucuncu_kategori_icerigi','cat1_news1','cat1_news2','cat2_news1','cat2_news2','cat3_news1','cat3_news2','ikinci_kategori_icerigi','activity','populer_haber_first','populer_haber_three','videos','interview','anket','reklamlar'));
+
+        $kvkk_tr = Page::where('link','like','%'.'kvkk'.'%')->first();
+        $kvkk_en = EnPage::where('link','like','%'.'pdpl'.'%')->first();
+        return view('frontend.index', compact('cats','iki_haber','tek_haber','uc_kategori','ilk_kategori_icerigi','ucuncu_kategori_icerigi','cat1_news1','cat1_news2','cat2_news1','cat2_news2','cat3_news1','cat3_news2','ikinci_kategori_icerigi','activity','populer_haber_first','populer_haber_three','videos','interview','anket','reklamlar','kvkk_tr','kvkk_en'));
 
     }
 

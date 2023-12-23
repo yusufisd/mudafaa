@@ -124,7 +124,7 @@
         @if (reklam(1) != null || reklam(2) != null)
             <div class="row">
                 <div class="col-md-6">
-                    @if(reklam(1) != null && reklam(1)->status == 1)
+                    @if (reklam(1) != null && reklam(1)->status == 1)
                         @if (reklam(1)->type ?? 0 == 1)
                             <a href="{{ reklam(1)->adsense_url }}"
                                 target="{{ reklam(1)->href_tab == 0 ? '_self' : '_blank' }}">
@@ -137,7 +137,7 @@
                 </div>
 
                 <div id="ikinci_reklam" class="col-md-6">
-                    @if(reklam(2) != null && reklam(2)->status == 1)
+                    @if (reklam(2) != null && reklam(2)->status == 1)
                         @if (reklam(2)->type ?? 0 == 1)
                             <a href="{{ reklam(2)->adsense_url }}"
                                 target="{{ reklam(2)->href_tab == 0 ? '_self' : '_blank' }}">
@@ -187,7 +187,9 @@
                                 <ul>
                                     <li>
                                         <span class="rt-meta">
-                                            <i class="fa fa-user"></i> <a href="{{ route('front.author.detail',$tek_haber->Author->id) }}" class="name">
+                                            <i class="fa fa-user"></i> <a
+                                                href="{{ route('front.author.detail', $tek_haber->Author->id) }}"
+                                                class="name">
                                                 {{ $tek_haber->Author->name }} {{ $tek_haber->Author->surname }}
                                             </a>
                                         </span>
@@ -292,19 +294,19 @@
     </section>
     <!-- end main post section style 1 -->
 
-        @if (reklam(3) != null && reklam(3)->status == 1)
-            <div class="container" style="margin-top:3%">
-                <div class="row">
-                    @if (reklam(3)->type ?? 0 == 1)
-                        <a href="{{ reklam(3)->adsense_url }}" target="{{ reklam(3)->href_tab == 0 ? '_self' : '_blank' }}">
-                            <img src="/{{ reklam(3)->image }}" style="width: 100%; height:90px!important">
-                        </a>
-                    @else
-                        {!! reklam(3)->adsense_url ?? '' !!}
-                    @endif
-                </div>
+    @if (reklam(3) != null && reklam(3)->status == 1)
+        <div class="container" style="margin-top:3%">
+            <div class="row">
+                @if (reklam(3)->type ?? 0 == 1)
+                    <a href="{{ reklam(3)->adsense_url }}" target="{{ reklam(3)->href_tab == 0 ? '_self' : '_blank' }}">
+                        <img src="/{{ reklam(3)->image }}" style="width: 100%; height:90px!important">
+                    </a>
+                @else
+                    {!! reklam(3)->adsense_url ?? '' !!}
+                @endif
             </div>
-        @endif
+        </div>
+    @endif
 
     <!-- start what's new section -->
     <section class="whats-new-style-1 section-padding">
@@ -915,7 +917,7 @@
         <div class="container" style="margin-top:3%">
             <div class="row">
                 <div class="col-md-6">
-                    @if(reklam(4)->status == 1)
+                    @if (reklam(4)->status == 1)
                         @if (reklam(4)->type ?? 0 == 1)
                             <a href="{{ reklam(4)->adsense_url }}"
                                 target="{{ reklam(4)->href_tab == 0 ? '_self' : '_blank' }}">
@@ -927,7 +929,7 @@
                     @endif
                 </div>
                 <div id="ikinci_reklam" class="col-md-6">
-                    @if(reklam(4)->status == 1)
+                    @if (reklam(4)->status == 1)
                         @if (reklam(5)->type ?? 0 == 1)
                             <a href="{{ reklam(5)->adsense_url }}"
                                 target="{{ reklam(5)->href_tab == 0 ? '_self' : '_blank' }}">
@@ -1133,7 +1135,9 @@
                                                         for="{{ $cevap->id }}"></label>
                                                     <label for="{{ $cevap->id }}">{{ $cevap->answer }}</label>
                                                 </div>
-                                                <div class="percent-box" style="display: {{ $anket->isVoted() != null ? 'block' : 'none' }}" id="yuzde{{ $cevap->id }}">
+                                                <div class="percent-box"
+                                                    style="display: {{ $anket->isVoted() != null ? 'block' : 'none' }}"
+                                                    id="yuzde{{ $cevap->id }}">
                                                     <span class="vote-percent" id="cevap{{ $cevap->id }}"
                                                         data-vote-percent="{{ $cevap->katilim() }}">{{ $cevap->katilim() }}</span>%
                                                 </div>
@@ -1345,7 +1349,7 @@
     </section>
     <!-- end travel-main-section-style-2 -->
 
-    @if (reklam(7)!= null && reklam(7)->status == 1)
+    @if (reklam(7) != null && reklam(7)->status == 1)
         <div class="rt-ad-banner rt-ad-banner-style-1 section-padding">
             <div class="container">
                 <div class="row">
@@ -1403,16 +1407,29 @@
                             </div>
                         </div>
                         <br>
-                        <div>
+                        <div class="">
                             <input type="checkbox" name="" id="check">
-                            <label for="check">
-                                {{ __("message.Kişisel Verilerin İşlenmesi Aydınlatma Metni'ni okudum kabul ediyorum.") }}
-                            </label>
+                            <span for="check">
+                                @if (\Session::get('applocale') == 'en')
+                                    @if ($kvkk_en)
+                                        <a href="{{ route('front.page.detail', 'pdpl') }}">
+                                            {!! __('message.Kişisel Verilerin Korunması') !!}
+                                        </a>
+                                    @else
+                                        {{ __("message.Kişisel Verilerin İşlenmesi Aydınlatma Metni'ni okudum kabul ediyorum.") }}
+                                    @endif
+                                @else
+                                    @if ($kvkk_tr)
+                                        <a href="{{ route('front.page.detail', 'kvkk') }}">
+                                            {!! __('message.okudum, onay veriyorum') !!}
+                                        </a>
+                                    @else
+                                        {{ __('message.Kişisel Verilerin Korunması Hakkında Aydınlatma Metnini okudum, onay veriyorum.') }}
+                                    @endif
+                                @endif
+                            </span>
                         </div>
 
-
-                        <div>
-                        </div>
                     </form>
                 </div>
             </div>
@@ -1837,7 +1854,7 @@
                             // response'dan gelen rate adındaki katilim oranı dizisini çektim
                             let rates = response.rate;
                             // bernzersiz kıldığım elementleri giydirmek içn döngüye alıyorum
-                            for(var i = 0; i < rates.length; i++){
+                            for (var i = 0; i < rates.length; i++) {
                                 console.log(rates, rates[i], rates[i]["id"])
                                 $(`#cevap${rates[i]["id"]}`).html(rates[i]["rate"]);
                                 $(`#yuzde${rates[i]["id"]}`).show();
