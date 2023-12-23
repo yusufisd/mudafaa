@@ -424,7 +424,7 @@
                                         <ul class="main-menu__dropdown sub-menu">
                                             @foreach (currentCats() as $item)
                                                 <li><a
-                                                        href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $item->id) : route('front.currentNewsCategory.list', $item->id) }}">
+                                                        href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $item->link) : route('front.currentNewsCategory.list', $item->link) }}">
                                                         {{ $item->title }} </a></li>
                                             @endforeach
                                         </ul>
