@@ -580,17 +580,17 @@
                                         <ul class="footer-social mt--20" style="justify-content: center">
                                             <li>
                                                 <a href="#" style="width: 5.5rem; margin-right:2px">
-                                                    <img src="https://millimudafaa.com/assets/img/app-store.png">
+                                                    <img src="{{ asset('assets/app-store.webp') }}">
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#" style="width: 5.5rem; margin-right:2px">
-                                                    <img src="https://millimudafaa.com/assets/img/google-play.png">
+                                                    <img src="{{ asset('assets/google-play.webp') }}">
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#" style="width: 5.5rem; margin-right:2px">
-                                                    <img src="https://millimudafaa.com/assets/img/huawei-app.png">
+                                                    <img src="{{ asset('assets/huawei-app.webp') }}">
                                                 </a>
                                             </li>
 
