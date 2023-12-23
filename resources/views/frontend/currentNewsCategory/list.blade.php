@@ -353,7 +353,7 @@
                     </div>
                 </div>
                 <!-- end col -->
-                    <div class="pag" style="margin-left: 35%; margin-top:5%">
+                    <div class="pag" style="margin-left: 35%; margin-top:15%!important">
                         {!! $datas->appends(request()->input())->onEachSide(1)->links(); !!}
                     </div>
                 <!-- end row  -->
