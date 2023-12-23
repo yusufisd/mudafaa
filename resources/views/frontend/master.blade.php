@@ -528,21 +528,21 @@
                                                 </div>
                                             </div>
                                             </center>
-                                            <center>
                                             <div class="sutun">
                                                 <div class="basliklar2 row px-4 mt-2" style="width:85%">
                                                     <ul class="row">
                                                     @foreach (sayfalar() as $item)
+                                                    <center>
                                                         <li>
                                                             <a href="{{ \Session::get('applocale') == 'en' ? route('front.page.detail',$item->link) : route('front.page.detail',$item->link) }}">
                                                                 <p style="color: white; font-size:14px"> {{ $item->title }} </p>
                                                             </a>
                                                         </li>
+                                                    </center>
                                                     @endforeach
                                                     </ul>
                                                 </div>
                                             </div>
-                                            </center>
                                         </div>
                                         <ul class="footer-social gap-2 mt-3" style="justify-content: center">
                                             @if (SocialMedia())
