@@ -89,7 +89,7 @@
                             <div class="wrap post-wrap-style-3">
 
                                 @foreach ($data as $key => $item)
-                                    @if ($key == 2)
+                                    @if ($key % 2 == 0)
                                         <div class="ad-banner-img mb--40 mt--40">
                                             @if (reklam(28) != null && reklam(28)->status == 1)
                                                 <div class="sidebar-wrap mb--40">
@@ -172,7 +172,7 @@
                                         </div>
                                     </div><br>
 
-                                    @if ($key == 3)
+                                    @if ($key % 3 == 1)
                                         <div class="ad-banner-img mb--40 mt--40">
                                             @if (reklam(29) != null && reklam(29)->status == 1)
                                                 <div class="sidebar-wrap mb--40">
