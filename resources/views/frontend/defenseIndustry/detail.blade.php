@@ -26,7 +26,15 @@
             background-color: #749f43;
             color: white;
         }
-        
+        @media only screen and (max-width: 600px) {
+            .meta1 {
+                display: none !important;
+            }
+
+            .meta2 {
+                display: block !important;
+            }
+        }
     </style>
 @endsection
 @section('content')
@@ -106,7 +114,13 @@
                                         </span>
                                     </li>
                                     @if ($data->created_at != $data->updated_at)
-                                        <li>
+                                        <li class="meta2" style="display: none">
+                                            <span class="rt-meta">
+                                                <b> {{ __('message.güncelleme') }} :</b>
+                                                {{ $data->updated_at->translatedFormat('d M Y H:i') }}
+                                            </span>
+                                        </li>
+                                        <li class="meta1">
                                             <span class="rt-meta">
                                                 <b> {{ __('message.son güncelleme') }} :</b>
                                                 {{ $data->updated_at->translatedFormat('d M Y H:i') }}
