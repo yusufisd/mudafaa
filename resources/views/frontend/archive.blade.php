@@ -6,9 +6,24 @@
         .pagination>li>span {
             color: rgb(26, 159, 26); // use your own color here
         }
+
         .tag-link:hover {
             background-color: #749f43;
             color: white;
+        }
+       
+        @media only screen and (max-width: 600px) {
+            .mobile-p-image {
+                display: block !important;
+            }
+
+            .desktop-p-image {
+                display: none !important;
+            }
+            .pag{
+                margin:auto!important;
+                text-align: center!important;
+            }
         }
     </style>
     <main>
@@ -32,7 +47,8 @@
                 <nav class="rt-breadcrumb-wrap" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
+                            <a
+                                href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
@@ -62,23 +78,30 @@
 
                                 <ul class="nav rt-tab-menu" id="myTab" role="tablist">
                                     <li class="menu-item" role="presentation" style="margin-right: 0.25rem;">
-                                        <select class="form-select form-select" aria-label="Default select example" id="time" onchange="select_cat()">
+                                        <select class="form-select form-select" aria-label="Default select example"
+                                            id="time" onchange="select_cat()">
                                             <option value="all" selected>{{ __('message.tarih seçiniz') }}</option>
                                             @foreach ($dates as $date)
                                                 @foreach ($date as $key => $month)
-                                                @if($key == 0) @continue @endif
-                                                <option {{ request()->t ==  $date[0] . "-" . $month ? 'selected' : '' }} value="{{ $date[0] . "-" .  $month }}">{{ (strlen($month) == 1 ? "0". $month : $month)  . "/" . $date[0] }}</option>
-
+                                                    @if ($key == 0)
+                                                        @continue
+                                                    @endif
+                                                    <option {{ request()->t == $date[0] . '-' . $month ? 'selected' : '' }}
+                                                        value="{{ $date[0] . '-' . $month }}">
+                                                        {{ (strlen($month) == 1 ? '0' . $month : $month) . '/' . $date[0] }}
+                                                    </option>
                                                 @endforeach
                                             @endforeach
                                         </select>
                                     </li>
                                     <li class="menu-item" role="presentation">
-                                        <select onchange="select_cat()" class="form-select form-select" id="cat" aria-label="Default select example">
+                                        <select onchange="select_cat()" class="form-select form-select" id="cat"
+                                            aria-label="Default select example">
                                             <option value="all">{{ __('message.kategori seçiniz') }}</option>
 
                                             @foreach ($cats as $cat)
-                                                <option {{ request()->c == $cat->id ? 'selected' : '' }} value="{{ $cat->id }}" > {{ $cat->title }} </option>
+                                                <option {{ request()->c == $cat->id ? 'selected' : '' }}
+                                                    value="{{ $cat->id }}"> {{ $cat->title }} </option>
                                             @endforeach
                                         </select>
                                     </li>
@@ -87,89 +110,128 @@
                             <!-- end titile-wrapper -->
 
                             <div id="news_content">
-                            <div class="post-list-style-4">
+                                <div class="post-list-style-4">
 
-                                @foreach ($data as $item)
-                                    <div class="post-item wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
-                                        <div class="rt-post post-md style-9 grid-meta">
-                                            <div class="post-content">
-                                                @if (isset($item->Category()[0]))
-                                                    <a href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNewsCategory.list_en', $item->Category()[0]->link)) : (route('front.currentNewsCategory.list', $item->Category()[0]->link)) }}"
-                                                        class="rt-cat-primary">{{ $item->Category()[0]->title }}</a>
-                                                @endif
-                                                <h3 class="post-title">
-                                                    <a href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNews.detail_en', $item->link)) : (route('front.currentNews.detail', $item->link)) }}"
-                                                        class="restricted_title">
-                                                        {{ $item->title }}
-                                                    </a>
-                                                </h3>
-                                                <p class="restricted_text">
-                                                    {{ $item->short_description }}
-                                                </p>
-                                                <div class="post-meta">
-                                                    <ul>
-                                                        <li>
-                                                            <span class="rt-meta">
-                                                                <i class="fa fa-user"></i> <a href=""
-                                                                    class="name"> {{ $item->Author->name }} {{ $item->Author->surname }} </a>
-                                                            </span>
-                                                        </li>
-                                                        <li>
-                                                            <span class="rt-meta">
-                                                                <i class="far fa-calendar-alt icon"></i>
-                                                                {{ $item->live_time->translatedFormat('d M Y') }}
-                                                            </span>
-                                                        </li>
-                                                        <li>
-                                                            <span class="rt-meta">
-                                                                <i class="fa-solid fa-eye"></i>
-                                                                {{ $item->view_counter }}
-                                                            </span>
-                                                        </li>
-                                                        
-                                                    </ul>
-                                                </div>
-                                                <div class="btn-wrap mt--25">
-                                                    <a href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNews.detail_en', $item->link)) : (route('front.currentNews.detail', $item->link)) }}"
-                                                        class="rt-read-more qodef-button-animation-out">
-                                                        {{ __('message.daha fazla oku') }}
-                                                        <svg width="34px" height="16px" viewBox="0 0 34.53 16"
-                                                            xml:space="preserve">
-                                                            <rect class="qodef-button-line" y="7.6" width="34"
-                                                                height=".4">
-                                                            </rect>
-                                                            <g class="qodef-button-cap-fake">
-                                                                <path class="qodef-button-cap"
-                                                                    d="M25.83.7l.7-.7,8,8-.7.71Zm0,14.6,8-8,.71.71-8,8Z">
-                                                                </path>
-                                                            </g>
-                                                        </svg>
+                                    @foreach ($data as $key => $item)
+                                        @if ($key == 3 && reklam(8) != null)
+                                            @if (reklam(8)->status == 1)
+                                                <div class="ad-banner-img mt-4 mb-4">
+                                                    <a href="{{ reklam(8)->adsense_url }}">
+                                                        @if (reklam(8)->type ?? 0 == 1)
+                                                            <img src="/{{ reklam(8)->image }}" alt=""
+                                                                width="1320" height="91">
+                                                        @else
+                                                            {!! reklam(8)->adsense_url ?? '' !!}
+                                                        @endif
                                                     </a>
                                                 </div>
-                                            </div>
-                                            <div class="post-img">
-                                                <a href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNews.detail_en', $item->link)) : (route('front.currentNews.detail', $item->link)) }}">
-                                                    <img src="/{{ $item->image != null ? $item->image : 'url (assets/frontend/media/gallery/post-lg_40.jpg)' }}"
-                                                        alt="{{ $item->title }}" width="696" height="491">
+                                            @endif
+                                        @endif
+
+                                        @if ($key == 6 && reklam(9) != null && reklam(9)->status == 1)
+                                            <div class="ad-banner-img mt-4 mb-4">
+                                                <a href="{{ reklam(9)->adsense_url }}">
+                                                    @if (reklam(9)->type ?? 0 == 1)
+                                                        <img src="/{{ reklam(9)->image }}" alt="" width="1320"
+                                                            height="91">
+                                                    @else
+                                                        {!! reklam(9)->adsense_url ?? '' !!}
+                                                    @endif
                                                 </a>
+                                            </div>
+                                        @endif
+                                        <div class="post-item wow fadeInUp" data-wow-delay="100ms"
+                                            data-wow-duration="800ms">
+                                            <div class="rt-post post-md style-9 grid-meta">
 
+                                                <div class="post-img mobile-p-image"  style="display: none">
+                                                    <a href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNews.detail_en', $item->link)) : (route('front.currentNews.detail', $item->link)) }}">
+                                                        <img style="object-fit: cover" src="/{{ $item->image }}"
+                                                            alt="post" width="696" height="491">
+                                                    </a>
+                                                </div>
+
+                                                <div class="post-content">
+                                                    @if (isset($item->Category()[0]))
+                                                        <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $item->Category()[0]->link) : route('front.currentNewsCategory.list', $item->Category()[0]->link) }}"
+                                                            class="rt-cat-primary">{{ $item->Category()[0]->title }}</a>
+                                                    @endif
+                                                    <h3 class="post-title">
+                                                        <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}"
+                                                            class="restricted_title">
+                                                            {{ $item->title }}
+                                                        </a>
+                                                    </h3>
+                                                    <p class="restricted_text">
+                                                        {{ $item->short_description }}
+                                                    </p>
+                                                    <div class="post-meta">
+                                                        <ul>
+                                                            <li>
+                                                                <span class="rt-meta">
+                                                                    <i class="fa fa-user"></i> <a href=""
+                                                                        class="name"> {{ $item->Author->name }}
+                                                                        {{ $item->Author->surname }} </a>
+                                                                </span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="rt-meta">
+                                                                    <i class="far fa-calendar-alt icon"></i>
+                                                                    {{ $item->live_time->translatedFormat('d M Y') }}
+                                                                </span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="rt-meta">
+                                                                    <i class="fa-solid fa-eye"></i>
+                                                                    {{ $item->view_counter }}
+                                                                </span>
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+                                                    <div class="btn-wrap mt--25">
+                                                        <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}"
+                                                            class="rt-read-more qodef-button-animation-out">
+                                                            {{ __('message.daha fazla oku') }}
+                                                            <svg width="34px" height="16px" viewBox="0 0 34.53 16"
+                                                                xml:space="preserve">
+                                                                <rect class="qodef-button-line" y="7.6" width="34"
+                                                                    height=".4">
+                                                                </rect>
+                                                                <g class="qodef-button-cap-fake">
+                                                                    <path class="qodef-button-cap"
+                                                                        d="M25.83.7l.7-.7,8,8-.7.71Zm0,14.6,8-8,.71.71-8,8Z">
+                                                                    </path>
+                                                                </g>
+                                                            </svg>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="post-img desktop-p-image">
+                                                    <a
+                                                        href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}">
+                                                        <img style="object-fit: cover"
+                                                            src="/{{ $item->image != null ? $item->image : 'url (assets/frontend/media/gallery/post-lg_40.jpg)' }}"
+                                                            alt="{{ $item->title }}" width="696" height="491">
+                                                    </a>
+
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- end post-item -->
-                                @endforeach
+                                        <!-- end post-item -->
+                                    @endforeach
 
+
+                                </div>
+                                <!-- end post-list-style-4 -->
+
+                                <div class="pag" style="margin-left: 35%; margin-top:15%!important">
+                                    {!! $data->appends(request()->input())->onEachSide(1)->links(); !!}
+                                </div>
+                                <!-- end rt-pagination-area -->
 
                             </div>
-                            <!-- end post-list-style-4 -->
-
-                            <div style="margin-left: 35%; margin-top:5%">
-                                {{ $data->links() }}
-                            </div>
-                            <!-- end rt-pagination-area -->
-
                         </div>
-                    </div>
                         <!-- end rt-left-sidebar-sapcer-5 -->
                     </div>
                     <!-- end col-->
@@ -206,24 +268,26 @@
                                             <div class="rt-post-grid post-grid-md grid-meta">
                                                 <div class="post-content">
                                                     @if (isset($item->Category()[0]))
-                                                        <a href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNewsCategory.list_en', $item->Category()[0]->link)) : (route('front.currentNewsCategory.list', $item->Category()[0]->link)) }}"
+                                                        <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $item->Category()[0]->link) : route('front.currentNewsCategory.list', $item->Category()[0]->link) }}"
                                                             class="rt-cat-primary sidebar_restricted_category_title">
                                                             {{ $item->Category()[0]->title }} </a>
                                                     @endif
                                                     <div class="post-img mb-2">
                                                         <a href="">
-                                                            <img src="/{{ $item->image }}"
-                                                                alt="post" width="343" height="250">
+                                                            <img src="/{{ $item->image }}" alt="post"
+                                                                width="343" height="250">
                                                         </a>
                                                     </div>
-                                                    <h4 class="post-title">
-                                                        <a href="" class="">
-                                                            {{ (Illuminate\Support\Str::words($item->title,5,'...')) }}
+                                                    <h4 title="{{ $item->title }}" class="post-title"
+                                                        style="font-size:15px">
+                                                        <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}"
+                                                            class="">
+                                                            {{ Illuminate\Support\Str::words($item->title, 5, '...') }}
                                                         </a>
                                                     </h4>
                                                     <span class="rt-meta">
                                                         <i class="far fa-calendar-alt icon"></i>
-                                                            {{ $item->live_time->translatedFormat('d M Y') }}
+                                                        {{ $item->live_time->translatedFormat('d M Y') }}
                                                     </span>
                                                 </div>
                                             </div>
@@ -238,15 +302,21 @@
                             </div>
                             <!-- end slidebar wrap  -->
 
-                            <div class="sidebar-wrap mb--40">
-                                <div class="ad-banner-img">
-                                    <a href="#">
-                                        <img src="media/gallery/ad-post_5.jpg" alt="ad-banner" width="301"
-                                            height="270">
-                                    </a>
+                            @if (reklam(10) != null && reklam(10)->status == 1)
+                                <div class="sidebar-wrap mb--40">
+                                    <div class="ad-banner-img">
+                                        <a href="{{ reklam(10)->adsense_url }}">
+                                            @if (reklam(10)->type ?? 0 == 1)
+                                                <img src="/{{ reklam(10)->image }}" alt="" width="250"
+                                                    height="250">
+                                            @else
+                                                {!! reklam(10)->adsense_url ?? '' !!}
+                                            @endif
+
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- end slidebar wrap  -->
+                            @endif
 
                             <div class="sidebar-wrap mb--40">
                                 <div class="subscribe-box-style-1" data-bg-image="media/elements/elm_3.png">
@@ -281,9 +351,8 @@
                                 <div class="tag-list">
 
                                     @foreach ($etiketler->getKeys() as $item)
-
-                                    <a href="{{ route('front.currentNews.tag_list',$item) }}" class="tag-link"> {{ $item }} </a>
-
+                                        <a href="{{ route('front.currentNews.tag_list', $item) }}" class="tag-link">
+                                            {{ $item }} </a>
                                     @endforeach
 
                                 </div>
@@ -306,13 +375,13 @@
 @endsection
 @section('script')
     <script>
-        function select_cat(){
-            var cat  = document.getElementById("cat").value;
+        function select_cat() {
+            var cat = document.getElementById("cat").value;
             var time = document.getElementById("time").value;
-            if(cat == "all" && time == "all"){
+            if (cat == "all" && time == "all") {
                 return "ok";
             }
-            window.location.replace("{{ route('front.archive.index') }}?c=" + cat + "&t=" + time );
+            window.location.replace("{{ route('front.archive.index') }}?c=" + cat + "&t=" + time);
             /*
             $.ajax({
                 headers : { "X-CSRF-TOKEN" : "{{ csrf_token() }}"},
@@ -325,12 +394,11 @@
             })
             */
         }
-
     </script>
     <script>
         /*--------------------------------
-                        // limit by device width
-                        -------------------------------*/
+                            // limit by device width
+                            -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
 

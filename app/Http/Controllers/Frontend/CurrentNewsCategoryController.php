@@ -7,6 +7,8 @@ use App\Models\CurrentNews;
 use App\Models\CurrentNewsCategory;
 use App\Models\EnCurrentNews;
 use App\Models\EnCurrentNewsCategory;
+use App\Models\EnPage;
+use App\Models\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -51,6 +53,8 @@ class CurrentNewsCategoryController extends Controller
             $other_news = EnCurrentNews::latest()->take(6)->get();
         }
 
-        return view('frontend.currentNewsCategory.list', compact('datas', 'sub_categories', 'other_news','name'));
+        $kvkk_tr = Page::where('link','like','%'.'kvkk'.'%')->first();
+        $kvkk_en = EnPage::where('link','like','%'.'pdpl'.'%')->first();
+        return view('frontend.currentNewsCategory.list', compact('datas', 'sub_categories', 'other_news','name','kvkk_tr','kvkk_en'));
     }
 }

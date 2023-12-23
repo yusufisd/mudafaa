@@ -180,7 +180,8 @@
 
                                                 @foreach ($dialogs as $item)
                                                     <div class="single-content">
-                                                        <h3 class="title report_title"><i class="fas fa-question"
+                                                        <h3 class="title report_title">
+                                                            <i class="fa-solid fa-circle-question"
                                                                 style="vertical-align: text-top; color:#3b4022;"></i><span>
                                                                 {{ $item->soru }} </h3>
                                                         <figure class="rt-blockquote-area">

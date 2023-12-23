@@ -23,6 +23,7 @@
             background-image: linear-gradient(-90deg, #5579ad 0%, #1a6be1 100%);
             background-image: -ms-linear-gradient(-90deg, #f43079 0%, #f7679d 100%);
         }
+
     </style>
     <!-- Start Main -->
     <main>
@@ -74,11 +75,13 @@
                     <div class="col-xl-9 sticky-coloum-item">
                         <div class="rt-left-sidebar-sapcer-5">
                             <div class="author-big-box-style-1 mb--30">
-                                <div style="background-image: url({{ asset('assets/black_fon.jpeg') }});background-opacity:0.7;border-radius:5px"
+                                <center>
+                                <div style="background-image: url({{ asset('assets/black_fon.jpeg') }});background-opacity:0.7;border-radius:5px; width:170px"
                                     class="author-img">
-                                    <img style=" height:170px; opacity:0.9" src="/{{ $data->image }}"
+                                    <img style="opacity:0.9" src="/{{ $data->image }}"
                                         alt="{{ $data->title }}">
                                 </div>
+                            </center>
                                 <div class="w-90">
                                     <h2 class="responsive-title" style="color: #3b4022;"> {{ $data->title }} </h2>
                                     <div class="row">

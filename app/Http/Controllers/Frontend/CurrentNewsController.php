@@ -9,6 +9,8 @@ use App\Models\CurrentNewsCategory;
 use App\Models\EmojiType;
 use App\Models\EnCurrentNews;
 use App\Models\EnCurrentNewsCategory;
+use App\Models\EnPage;
+use App\Models\Page;
 use App\Models\PostType;
 use App\Models\ShareCounter;
 use Illuminate\Http\Request;
@@ -53,19 +55,11 @@ class CurrentNewsController extends Controller
         ];
 
 
-        $share = \Share::page(
-            URL::to('/').'/referral-register?ref='.$data->link,
-            'Paylaş',
-        )
-        ->facebook()
-        ->twitter()
-        ->linkedin()
-        ->facebook()
-        ->whatsapp()->getRawLinks();
-
         
+        $kvkk_tr = Page::where('link','like','%'.'kvkk'.'%')->first();
+        $kvkk_en = EnPage::where('link','like','%'.'pdpl'.'%')->first();
 
-        return view('frontend.currentNews.detail',compact('data','emojies','previous_data','next_data','other_news','four_news','share'));
+        return view('frontend.currentNews.detail',compact('data','emojies','previous_data','next_data','other_news','four_news','kvkk_tr','kvkk_en'));
     }
 
     public function tag_list($title){

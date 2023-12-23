@@ -14,6 +14,9 @@
         .relative {
             position: relative !important;
         }
+        .fc-event-time{
+            display: none;
+        }
     </style>
     <!-- Start Main -->
     <main>

@@ -26,6 +26,7 @@
             background-color: #749f43;
             color: white;
         }
+
         @media only screen and (max-width: 600px) {
             .meta1 {
                 display: none !important;
@@ -33,6 +34,10 @@
 
             .meta2 {
                 display: block !important;
+            }
+
+            .single-post-banner {
+                background-size: 600px 500px
             }
         }
     </style>
@@ -77,7 +82,7 @@
                             <li class="breadcrumb-item" aria-current="page">
                                 <a
                                     href="{{ \Session::get('applocale') == 'en' ? route('front.defenseIndustrySubCategory.list2_en', $data->Category->link) : route('front.defenseIndustrySubCategory.list2', $data->Category->link) }}">
-                                    <span class="rt-text-truncate">
+                                    <span class="">
                                         {{ $data->Category->title }}
                                     </span>
                                 </a>
@@ -85,7 +90,7 @@
                         @endif
 
                         <li class="breadcrumb-item active" aria-current="page">
-                            <span class="rt-text-truncate">
+                            <span class="">
                                 {{ $data->title }}
                             </span>
                         </li>
@@ -199,7 +204,7 @@
                                 {!! printDesc($data->description) !!}
                                 <br><br>
                                 <!-- ad banner -->
-                                @if (reklam(15) != null && reklam(15)->status ==1)
+                                @if (reklam(15) != null && reklam(15)->status == 1)
                                     <div class="ad-banner-img mt--45 mb--40">
                                         <a href="{{ reklam(15)->adsense_url }}">
                                             @if (reklam(15)->type ?? 0 == 1)
@@ -327,7 +332,7 @@
                             <!-- end post body -->
 
                             <!-- start social-share-box-2 -->
-                            <div class="social-share-box-2 mb--20">
+                            <div class="social-share-box-2 mb--40">
                                 <div class="row">
                                     <div class="col-xl-7 col-lg-6">
                                         <div class="conent-block">
@@ -347,9 +352,10 @@
 
 
                             <!-- start post-pagination-box -->
-                            <div class="post-pagination-box mb--20">
+                            <div class="post-pagination-box mb--40">
 
-                                <div class="row">
+                                <div class="row gutter-30">
+
 
                                     <div class="col-lg-6">
 
@@ -426,7 +432,7 @@
         <!-- editor-choice-section-style-1 -->
         <section class="editor-choice-section-style-1 section-padding overflow-hidden">
             <div class="container">
-                @if (reklam(16) != null && reklam(16)->status ==1)
+                @if (reklam(16) != null && reklam(16)->status == 1)
                     <div class="ad-banner-img mt--45 mb--40">
                         <a href="{{ reklam(16)->adsense_url }}">
                             @if (reklam(16)->type ?? 0 == 1)
@@ -518,8 +524,8 @@
 @section('script')
     <script>
         /*--------------------------------
-                                                                       // sidebar title limitation
-                                                                    -------------------------------*/
+                                                                           // sidebar title limitation
+                                                                        -------------------------------*/
         // Select all tags with class .sidebar_restricted_category_title
         $('.sidebar_restricted_category_title').each(function() {
             var content = $(this).text().trim(); // get the content of a tag

@@ -9,6 +9,8 @@ use App\Models\DefenseIndustryContent;
 use App\Models\EnDefenseIndustry;
 use App\Models\EnDefenseIndustryCategory;
 use App\Models\EnDefenseIndustryContent;
+use App\Models\EnPage;
+use App\Models\Page;
 use Illuminate\Http\Request;
 
 class DefenseIndustryCategoryController extends Controller
@@ -27,7 +29,10 @@ class DefenseIndustryCategoryController extends Controller
             $contents_first = EnDefenseIndustryContent::where('defense_id',$defense->id)->where('status', 1)->orderBy('id','asc')->paginate(8);
         }
 
-        return view('frontend.defenseIndustryCategory.list',compact('data','contents_first','defense'));
+        $kvkk_tr = Page::where('link','like','%'.'kvkk'.'%')->first();
+        $kvkk_en = EnPage::where('link','like','%'.'pdpl'.'%')->first();
+
+        return view('frontend.defenseIndustryCategory.list',compact('data','contents_first','defense','kvkk_tr','kvkk_en'));
     }
 
     public function sub_category_index($id = null){
@@ -44,7 +49,10 @@ class DefenseIndustryCategoryController extends Controller
             $contents_first = EnDefenseIndustryContent::where('category_id',$defense->id)->where('status', 1)->orderBy('id','asc')->paginate(8);
         }
 
-        return view('frontend.defenseIndustryCategory.list',compact('data','contents_first','defense'));
+        $kvkk_tr = Page::where('link','like','%'.'kvkk'.'%')->first();
+        $kvkk_en = EnPage::where('link','like','%'.'pdpl'.'%')->first();
+
+        return view('frontend.defenseIndustryCategory.list',compact('data','contents_first','defense','kvkk_tr','kvkk_en'));
 
     }
 
@@ -63,6 +71,9 @@ class DefenseIndustryCategoryController extends Controller
             $data = EnDefenseIndustryCategory::inRandomOrder()->take(6)->get();
         }
 
-        return view('frontend.defenseIndustry.tag_list',compact('datas','data'));
+        $kvkk_tr = Page::where('link','like','%'.'kvkk'.'%')->first();
+        $kvkk_en = EnPage::where('link','like','%'.'pdpl'.'%')->first();
+
+        return view('frontend.defenseIndustry.tag_list',compact('datas','data','kvkk_tr','kvkk_en'));
     }
 }

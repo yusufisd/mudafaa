@@ -8,6 +8,19 @@
         .pagination>li>span {
             color: rgb(26, 159, 26); // use your own color here
         }
+        @media only screen and (max-width: 600px) {
+            .mobile-p-image {
+                display: block !important;
+            }
+
+            .desktop-p-image {
+                display: none !important;
+            }
+            .pag{
+                margin:auto!important;
+                text-align: center!important;
+            }
+        }
     </style>
     <main>
         <!-- theme-switch-box -->
@@ -69,6 +82,14 @@
                                 @foreach ($datas as $item)
                                     <div class="post-item wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
                                         <div class="rt-post post-md style-9 grid-meta">
+
+                                            <div class="post-img mobile-p-image" style="display: none">
+                                                <a href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNews.detail_en', $item->link)) : (route('front.currentNews.detail', $item->link)) }}">
+                                                    <img style="object-fit: cover" src="/{{ $item->image }}"
+                                                        alt="post" width="696" height="491">
+                                                </a>
+
+                                            </div>
                                             <div class="post-content">
                                                 @foreach ($item->Category() as $Category)
                                                     
@@ -133,7 +154,7 @@
                                                     </a>
                                                 </div>
                                             </div>
-                                            <div class="post-img">
+                                            <div class="post-img  desktop-p-image">
                                                 <a href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNews.detail_en', $item->link)) : (route('front.currentNews.detail', $item->link)) }}">
                                                     <img style="object-fit: cover" src="/{{ $item->image }}"
                                                         alt="post" width="696" height="491">

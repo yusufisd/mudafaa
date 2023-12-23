@@ -12,15 +12,10 @@
             color: #464847;
         }
 
-        @media (min-width: 769px) {
-            .li_first {
-                min-width: 400px;
-            }
-        }
-
-        @media (min-width: 992px) {
-            .li_first {
-                min-width: 500px;
+        @media only screen and (max-width: 700) {
+            
+            .single-post-banner{
+                background-size: 600px 500px
             }
         }
 
@@ -76,7 +71,7 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            <span class="rt-text-truncate">
+                            <span class="">
                                 {{ $data->title }}
                             </span>
                         </li>

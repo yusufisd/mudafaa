@@ -336,8 +336,40 @@
                                                 </div>
                                             </div>
                                             <br>
-                                            <button type="submit" class="rt-submit-btn"> {{ __('message.Abone ol') }}
-                                            </button>
+                                            <div class="">
+                                                <input type="checkbox" name="check" id="check">
+                                                @if (\Session::get('applocale') == 'en')
+                                                    @if ($kvkk_en)
+                                                        <a href="{{ route('front.page.detail', 'pdpl') }}">
+                                                            <span style="font-size:14px">
+                                                                {{ __('message.Kişisel Verilerin Korunması') }}
+                                                            </span>
+                                                        </a>
+                                                        <span for="check" style="font-size:14px">
+                                                            {{ __('message.okudum, onay veriyorum') }}
+                                                        </span>
+                                                    @else
+                                                        <span for="check" style="font-size:14px">
+                                                            {{ __("message.Kişisel Verilerin İşlenmesi Aydınlatma Metni'ni okudum kabul ediyorum.") }}
+                                                        </span>
+                                                    @endif
+                                                @else
+                                                    @if ($kvkk_tr)
+                                                        <a href="{{ route('front.page.detail', 'kvkk') }}">
+                                                            <span style="font-size:14px">
+                                                                {{ __('message.Kişisel Verilerin Korunması') }}
+                                                            </span>
+                                                        </a>
+                                                        {{ __('message.okudum, onay veriyorum') }}
+                                                    @else
+                                                        <span for="check" style="font-size:14px">
+                                                            {{ __('message.Kişisel Verilerin Korunması Hakkında Aydınlatma Metnini okudum, onay veriyorum.') }}
+                                                        </span>
+                                                    @endif
+                                                @endif
+                                            </div>
+                                            <button type="submit" class="rt-submit-btn mt-4">
+                                                {{ __('message.şimdi abone ol') }} </button>
                                             <div class="form-response"></div>
                                         </form>
                                     </div>

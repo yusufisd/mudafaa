@@ -104,7 +104,7 @@
                             </li>
                         @endif
                         <li class="breadcrumb-item active" aria-current="page">
-                            <span class="rt-text-truncate">
+                            <span class="">
                                 {{ $data->title }}
                             </span>
                         </li>
@@ -141,24 +141,24 @@
                                     <div class="post-meta">
                                         <div class="meta2" style="display: none">
                                             <ul>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="fa fa-user"></i>
-                                                            <a href="{{ route('front.author.detail', $data->Author->id) }}"
-                                                                class="name">{{ $data->Author->name }}
-                                                                {{ $data->Author->surname }}</a>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="rt-meta">
-                                                            <i class="far fa-calendar-alt icon"></i>
-                                                            {{ $data->live_time->translatedFormat('d M Y') }}
-                                                            @if ($data->created_at != $data->updated_at)
-                                                                | <b> {{ __('message.güncelleme') }} :</b>
-                                                                {{ $data->updated_at->translatedFormat('d M Y H:i') }}
-                                                            @endif
-                                                        </span>
-                                                    </li>
+                                                <li>
+                                                    <span class="rt-meta">
+                                                        <i class="fa fa-user"></i>
+                                                        <a href="{{ route('front.author.detail', $data->Author->id) }}"
+                                                            class="name">{{ $data->Author->name }}
+                                                            {{ $data->Author->surname }}</a>
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <span class="rt-meta">
+                                                        <i class="far fa-calendar-alt icon"></i>
+                                                        {{ $data->live_time->translatedFormat('d M Y') }}
+                                                        @if ($data->created_at != $data->updated_at)
+                                                            | <b> {{ __('message.güncelleme') }} :</b>
+                                                            {{ $data->updated_at->translatedFormat('d M Y H:i') }}
+                                                        @endif
+                                                    </span>
+                                                </li>
                                             </ul>
                                             <ul>
                                                 <li>
@@ -240,20 +240,21 @@
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a class="tw" style="background-color: black" target="_blank"
+                                                        <a class="tw" style="background-color: black"
+                                                            onclick="share_count()" target="_blank"
                                                             href="https://twitter.com/intent/tweet?text={{ $data->title }}&url={{ request()->url() }}">
                                                             <i class="fa-brands fa-square-x-twitter twitter"></i>
                                                         </a>
                                                     </li>
 
                                                     <li>
-                                                        <a class="fb" target="_blank"
+                                                        <a class="fb" target="_blank" onclick="share_count()"
                                                             href="https://linkedin.com/sharing/share-offsite/?url={{ request()->url() }}">
                                                             <i class="social-icon fab fa-linkedin"></i>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a class="wh" target="_blank"
+                                                        <a class="wh" target="_blank" onclick="share_count()"
                                                             href="https://web.whatsapp.com/send?text={{ $data->title }} {{ request()->url() }}">
                                                             <i class="social-icon fab fa-whatsapp"></i>
                                                         </a>
@@ -846,7 +847,39 @@
                                                 </div>
                                             </div>
                                             <br>
-                                            <button type="submit" class="rt-submit-btn">
+
+                                            <div class="">
+                                                <input type="checkbox" name="" id="check">
+                                                <span for="check">
+                                                    @if (\Session::get('applocale') == 'en')
+                                                        @if ($kvkk_en)
+                                                            <a href="{{ route('front.page.detail', 'pdpl') }}">
+                                                                {{ __('message.Kişisel Verilerin Korunması') }}
+                                                            </a>
+                                                            <span for="check">
+                                                                {{ __('message.okudum, onay veriyorum') }}
+                                                            </span>
+                                                        @else
+                                                            <span for="check">
+                                                                {{ __("message.Kişisel Verilerin İşlenmesi Aydınlatma Metni'ni okudum kabul ediyorum.") }}
+                                                            </span>
+                                                        @endif
+                                                    @else
+                                                        @if ($kvkk_tr)
+                                                            <a href="{{ route('front.page.detail', 'kvkk') }}">
+                                                                {{ __('message.Kişisel Verilerin Korunması') }}
+                                                            </a>
+                                                            {{ __('message.okudum, onay veriyorum') }}
+                                                        @else
+                                                            <span for="check">
+
+                                                                {{ __('message.Kişisel Verilerin Korunması Hakkında Aydınlatma Metnini okudum, onay veriyorum.') }}
+                                                            </span>
+                                                        @endif
+                                                    @endif
+                                                </span>
+                                            </div>
+                                            <button type="submit" class="rt-submit-btn mt-4">
                                                 {{ __('message.şimdi abone ol') }} </button>
                                             <div class="form-response"></div>
                                         </form>
@@ -924,8 +957,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                                                                                                // limit by device width
-                                                                                                -------------------------------*/
+                                                                                                            // limit by device width
+                                                                                                            -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
 
