@@ -133,13 +133,13 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-1">
-                                <img src="/{{ Topbar()->image }}" style="width:36px;padding:4px" alt="">
+                                <img src="/{{ Topbar()->image }}" style="width:36px;padding:4px;margin-top:4px" alt="">
                             </div>
                             <div class="col-md-10">
-                                <h6 style="color:white; padding:8px;">{{ Topbar()->title }}</h6>
+                                <h6 style="color:white; padding:8px;margin-top:4px">{{ Topbar()->title }}</h6>
                             </div>
                             <div class="col-md-1">
-                                <img src="/{{ Topbar()->image }}" style="width:36px;padding:4px" alt="">
+                                <img src="/{{ Topbar()->image }}" style="width:36px;padding:4px;margin-top:4px" alt="">
                             </div>
                         </div>
                     </div>
