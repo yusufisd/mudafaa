@@ -124,7 +124,7 @@
         @if (reklam(1) != null || reklam(2) != null)
             <div class="row">
                 <div class="col-md-6">
-                    @if(reklam(1)->status == 1)
+                    @if(reklam(1) != null && reklam(1)->status == 1)
                         @if (reklam(1)->type ?? 0 == 1)
                             <a href="{{ reklam(1)->adsense_url }}"
                                 target="{{ reklam(1)->href_tab == 0 ? '_self' : '_blank' }}">
@@ -137,7 +137,7 @@
                 </div>
 
                 <div id="ikinci_reklam" class="col-md-6">
-                    @if(reklam(2)->status == 1)
+                    @if(reklam(2) != null && reklam(2)->status == 1)
                         @if (reklam(2)->type ?? 0 == 1)
                             <a href="{{ reklam(2)->adsense_url }}"
                                 target="{{ reklam(2)->href_tab == 0 ? '_self' : '_blank' }}">
