@@ -534,7 +534,7 @@
                                                 </div>
                                                 </center>
                                             </div>
-                                            <div class="sutun_mobile" style="display: none">
+                                            <div class="sutun_mobile sutun" style="display: none">
                                                 <div class="basliklar2 row px-4 mt-5" style="width:85%">
                                                     @foreach (sayfalar() as $item)
                                                         <div class="col-md-2">
@@ -545,7 +545,7 @@
                                                     @endforeach
                                                 </div>
                                             </div>
-                                            <div class="sutun_desktop">
+                                            <div class="sutun_desktop sutun">
                                                 <div class="basliklar2 row mt-5 px-4" style="width:85%">
                                                     <ul style="text-align:center;">
                                                         @foreach (sayfalar() as $item)
