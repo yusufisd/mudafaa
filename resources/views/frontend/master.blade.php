@@ -84,6 +84,10 @@
                 margin-right: calc(var(--bs-gutter-x)/ -2);
                 margin-left: calc(var(--bs-gutter-x)/ -2);
             }
+            .footer-text{
+                width: 100%!important;
+                padding: 5%!important;
+            }
         }
 
     
