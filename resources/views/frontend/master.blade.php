@@ -73,7 +73,7 @@
 
         @media only screen and (max-width: 600px) {
             .sutun_mobile {
-                display: block;
+                display: block !important;
             }
 
             .sutun {
@@ -511,7 +511,7 @@
                                         <div class="satir">
                                             <div class="sutun">
                                                 <center>
-                                                    <div class="basliklar2 row mt-3 px-4" style="width: 85%">
+                                                    <div class="basliklar2 row  px-4" style="width: 85%">
                                                         <ul>
                                                             <li class="li_2"
                                                                 style="display:inline-block;padding:15px;">
@@ -566,16 +566,20 @@
                                                 </center>
                                             </div>
                                             <div class="sutun_mobile sutun" style="display: none">
-                                                <div class="basliklar2 row mt-5 px-4" style="width:85%">
-                                                    @foreach (sayfalar() as $item)
-                                                        <div class="col-md-2">
-                                                            <a
-                                                                href="{{ \Session::get('applocale') == 'en' ? route('front.page.detail', $item->link) : route('front.page.detail', $item->link) }}">
-                                                                <p style="color: white; font-size:14px">
-                                                                    {{ $item->title }} </p>
-                                                            </a>
-                                                        </div>
-                                                    @endforeach
+                                                <div class="basliklar2 rowpx-4" style="width:85%">
+                                                    <ul style="text-align:center;">
+                                                        @foreach (sayfalar() as $item)
+                                                            <li class="li_2"
+                                                                style="display:inline-block;padding:15px;">
+                                                                <a
+                                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.page.detail', $item->link) : route('front.page.detail', $item->link) }}">
+                                                                    <p style="color: white; font-size:14px">
+                                                                        {{ $item->title }} </p>
+                                                                </a>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+
                                                 </div>
                                             </div>
                                             <div class="sutun_desktop sutun">
