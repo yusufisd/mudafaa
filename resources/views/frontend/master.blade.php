@@ -70,14 +70,17 @@
         .galleryitem {
             max-height: 100px;
         }
+
         @media only screen and (max-width: 600px) {
             .sutun_mobile {
                 display: block;
             }
+
             .sutun {
                 width: 50%;
             }
-            .sutun_desktop{
+
+            .sutun_desktop {
                 display: none;
             }
 
@@ -90,17 +93,18 @@
                 margin-right: calc(var(--bs-gutter-x)/ -2);
                 margin-left: calc(var(--bs-gutter-x)/ -2);
             }
-            .footer-text{
-                width: 100%!important;
-                padding: 5%!important;
-                
+
+            .footer-text {
+                width: 100% !important;
+                padding: 5% !important;
+
             }
         }
+
         .footer-top {
             padding-top: 52px;
             padding-bottom: 25px;
         }
-    
     </style>
 
     @yield('css')
@@ -128,24 +132,26 @@
                 <div id="sticky-placeholder"></div>
 
 
-                @if(Topbar())
-                 <div class=" " style="background-color:{{ Topbar()->color_code }};height:43px">
-                    <center>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-1">
-                                <img src="/{{ Topbar()->image }}" style="width:36px;padding:4px;margin-top:4px" alt="">
+                @if (Topbar())
+                    <div class="" style="background-color:{{ Topbar()->color_code }};height:43px">
+                        <center>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <img src="/{{ Topbar()->image }}" style="width:36px;padding:4px;margin-top:4px"
+                                            alt="">
+                                    </div>
+                                    <div class="col-md-10">
+                                        <h6 style="color:white; padding:8px;margin-top:4px">{{ Topbar()->title }}</h6>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <img src="/{{ Topbar()->image }}" style="width:36px;padding:4px;margin-top:4px"
+                                            alt="">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-10">
-                                <h6 style="color:white; padding:8px;margin-top:4px">{{ Topbar()->title }}</h6>
-                            </div>
-                            <div class="col-md-1">
-                                <img src="/{{ Topbar()->image }}" style="width:36px;padding:4px;margin-top:4px" alt="">
-                            </div>
-                        </div>
+                        </center>
                     </div>
-                </center>
-                </div>
                 @endif
 
 
@@ -299,78 +305,78 @@
                                                         class="fa fa-home fa-md"></i></a>
                                             </li>
 
-                                            @if(menuControl(1))
-                                            <li
-                                                class="main-menu__nav_sub list {{ Route::is('front.currentNewsCategory.list') || Route::is('front.currentNews.detail') ? 'active' : '' }}">
-                                                <a class="animation" href="javascript:void(0)">
-                                                    {{ __('message.güncel haberler') }} </a>
-                                                <ul class="main-menu__dropdown">
-                                                    @foreach (currentCats() as $item)
-                                                        <li><a
-                                                                href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $item->link) : route('front.currentNewsCategory.list', $item->link) }}">
-                                                                {{ $item->title }} </a></li>
-                                                    @endforeach
+                                            @if (menuControl(1))
+                                                <li
+                                                    class="main-menu__nav_sub list {{ Route::is('front.currentNewsCategory.list') || Route::is('front.currentNews.detail') ? 'active' : '' }}">
+                                                    <a class="animation" href="javascript:void(0)">
+                                                        {{ __('message.güncel haberler') }} </a>
+                                                    <ul class="main-menu__dropdown">
+                                                        @foreach (currentCats() as $item)
+                                                            <li><a
+                                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $item->link) : route('front.currentNewsCategory.list', $item->link) }}">
+                                                                    {{ $item->title }} </a></li>
+                                                        @endforeach
 
 
-                                                </ul>
-                                            </li>
+                                                    </ul>
+                                                </li>
                                             @endif
-                                            @if(menuControl(2))
-                                            <li
-                                                class="main-menu__nav_sub list {{ Route::is('front.defenseIndustryCategory.list') || Route::is('front.defenseIndustryContent.detail') || Route::is('front.defenseIndustrySubCategory.list2') ? 'active' : '' }}">
-                                                <a class="animation" href="javascript:void(0)">
-                                                    {{ __('message.savunma sanayi') }} </a>
-                                                <ul class="main-menu__dropdown">
+                                            @if (menuControl(2))
+                                                <li
+                                                    class="main-menu__nav_sub list {{ Route::is('front.defenseIndustryCategory.list') || Route::is('front.defenseIndustryContent.detail') || Route::is('front.defenseIndustrySubCategory.list2') ? 'active' : '' }}">
+                                                    <a class="animation" href="javascript:void(0)">
+                                                        {{ __('message.savunma sanayi') }} </a>
+                                                    <ul class="main-menu__dropdown">
 
-                                                    @foreach (defenseIndustryCat() as $item)
-                                                        <li><a
-                                                                href="{{ \Session::get('applocale') == 'en' ? route('front.defenseIndustryCategory.list_en', $item->link) : route('front.defenseIndustryCategory.list', $item->link) }}">
-                                                                {{ $item->title }} </a>
-                                                        </li>
-                                                    @endforeach
+                                                        @foreach (defenseIndustryCat() as $item)
+                                                            <li><a
+                                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.defenseIndustryCategory.list_en', $item->link) : route('front.defenseIndustryCategory.list', $item->link) }}">
+                                                                    {{ $item->title }} </a>
+                                                            </li>
+                                                        @endforeach
 
-                                                </ul>
-                                            </li>
+                                                    </ul>
+                                                </li>
                                             @endif
-                                            @if(menuControl(3))
-                                            <li
-                                                class="{{ Route::is('front.activity.detail') || Route::is('front.activity.list') || Route::is('front.activity.detail') ? 'active' : '' }}">
-                                                <a class="animation"
-                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.activity.list_en') : route('front.activity.list') }}">
-                                                    {{ __('message.etkinlikler') }} </a>
-                                            </li>
+                                            @if (menuControl(3))
+                                                <li
+                                                    class="{{ Route::is('front.activity.detail') || Route::is('front.activity.list') || Route::is('front.activity.detail') ? 'active' : '' }}">
+                                                    <a class="animation"
+                                                        href="{{ \Session::get('applocale') == 'en' ? route('front.activity.list_en') : route('front.activity.list') }}">
+                                                        {{ __('message.etkinlikler') }} </a>
+                                                </li>
                                             @endif
-                                            @if(menuControl(4))
-                                            <li
-                                                class="{{ Route::is('front.interview.list') || Route::is('front.interview.detail') ? 'active' : '' }}">
-                                                <a class="animation"
-                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.interview.list_en') : route('front.interview.list') }}">
-                                                    {{ __('message.röportajlar') }} </a>
-                                            </li>
+                                            @if (menuControl(4))
+                                                <li
+                                                    class="{{ Route::is('front.interview.list') || Route::is('front.interview.detail') ? 'active' : '' }}">
+                                                    <a class="animation"
+                                                        href="{{ \Session::get('applocale') == 'en' ? route('front.interview.list_en') : route('front.interview.list') }}">
+                                                        {{ __('message.röportajlar') }} </a>
+                                                </li>
                                             @endif
-                                            @if(menuControl(5))
-                                            <li
-                                                class="{{ Route::is('front.company.list') || Route::is('front.company.detail') ? 'active' : '' }}">
-                                                <a class="animation"
-                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.company.list_en') : route('front.company.list') }}">
-                                                    {{ __('message.firmalar') }} </a>
-                                            </li>
+                                            @if (menuControl(5))
+                                                <li
+                                                    class="{{ Route::is('front.company.list') || Route::is('front.company.detail') ? 'active' : '' }}">
+                                                    <a class="animation"
+                                                        href="{{ \Session::get('applocale') == 'en' ? route('front.company.list_en') : route('front.company.list') }}">
+                                                        {{ __('message.firmalar') }} </a>
+                                                </li>
                                             @endif
-                                            @if(menuControl(6))
-                                            <li
-                                                class="{{ Route::is('front.dictionary.list') || Route::is('front.dictionary.detail') ? 'active' : '' }}">
-                                                <a class="animation"
-                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.dictionary.list_en') : route('front.dictionary.list') }}">
-                                                    {{ __('message.ss sözlüğü') }}
-                                                </a>
-                                            </li>
+                                            @if (menuControl(6))
+                                                <li
+                                                    class="{{ Route::is('front.dictionary.list') || Route::is('front.dictionary.detail') ? 'active' : '' }}">
+                                                    <a class="animation"
+                                                        href="{{ \Session::get('applocale') == 'en' ? route('front.dictionary.list_en') : route('front.dictionary.list') }}">
+                                                        {{ __('message.ss sözlüğü') }}
+                                                    </a>
+                                                </li>
                                             @endif
-                                            @if(menuControl(7))
-                                            <li
-                                                class="{{ Route::is('front.video.list') || Route::is('front.video.detail') ? 'active' : '' }}">
-                                                <a class="animation" href="{{ route('front.video.list') }}">
-                                                    {{ __('message.videolar') }} </a>
-                                            </li>
+                                            @if (menuControl(7))
+                                                <li
+                                                    class="{{ Route::is('front.video.list') || Route::is('front.video.detail') ? 'active' : '' }}">
+                                                    <a class="animation" href="{{ route('front.video.list') }}">
+                                                        {{ __('message.videolar') }} </a>
+                                                </li>
                                             @endif
                                         </ul>
                                     </nav>
@@ -496,51 +502,77 @@
                                             </a>
                                         </div>
                                         <div class="icerik">
-                                            <p class="footer-text" style="width:616px;"><span class="text-white text-2xl"> www.millimudafaa.com  </span>Sitede yayınlanan yazı, haber, video ve fotoğrafların tüm hakları Dada İst Ajans a aittir. Kaynak gösterilerek dahi olsa izin alınmadan alıntı yapılamaz.</p>
+                                            <p class="footer-text" style="width:616px;"><span
+                                                    class="text-2xl text-white"> www.millimudafaa.com </span>Sitede
+                                                yayınlanan yazı, haber, video ve fotoğrafların tüm hakları Dada İst
+                                                Ajans a aittir. Kaynak gösterilerek dahi olsa izin alınmadan alıntı
+                                                yapılamaz.</p>
                                         </div>
                                         <div class="satir">
                                             <div class="sutun">
                                                 <center>
-                                                <div class="basliklar2 row px-4 mt-3" style="width: 85%">
-                                                    <div class="col-md-2">
-                                                        <a href="{{ \Session::get('applocale') == 'en' ? route('front.about.detail_en') : route('front.about.detail') }}">
-                                                            <p style="color: white; font-size:14px">Hakkımızda</p>
-                                                        </a>
+                                                    <div class="basliklar2 row mt-3 px-4" style="width: 85%">
+                                                        <ul>
+                                                            <li class="li_2"
+                                                                style="display:inline-block;padding:15px;">
+                                                                <a
+                                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.about.detail_en', $item->link) : route('front.about.detail', $item->link) }}">
+                                                                    <p style="color: white; font-size:14px">
+                                                                        Hakkımızda </p>
+                                                                </a>
+                                                            </li>
+                                                            <li class="li_2"
+                                                                style="display:inline-block;padding:15px;">
+                                                                <a
+                                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.kunye_en', $item->link) : route('front.kunye', $item->link) }}">
+                                                                    <p style="color: white; font-size:14px">
+                                                                        Künye </p>
+                                                                </a>
+                                                            </li>
+                                                            <li class="li_2"
+                                                                style="display:inline-block;padding:15px;">
+                                                                <a
+                                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.kunye_en', $item->link) : route('front.kunye', $item->link) }}">
+                                                                    <p style="color: white; font-size:14px">
+                                                                        Reklam </p>
+                                                                </a>
+                                                            </li>
+                                                            <li class="li_2"
+                                                                style="display:inline-block;padding:15px;">
+                                                                <a
+                                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.kunye_en', $item->link) : route('front.kunye', $item->link) }}">
+                                                                    <p style="color: white; font-size:14px">
+                                                                        İş Bİrliği </p>
+                                                                </a>
+                                                            </li>
+                                                            <li class="li_2"
+                                                                style="display:inline-block;padding:15px;">
+                                                                <a
+                                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.archive.index_en', $item->link) : route('front.archive.index', $item->link) }}">
+                                                                    <p style="color: white; font-size:14px">
+                                                                        Arşiv </p>
+                                                                </a>
+                                                            </li>
+                                                            <li class="li_2"
+                                                                style="display:inline-block;padding:15px;">
+                                                                <a
+                                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.contact_en', $item->link) : route('front.contact', $item->link) }}">
+                                                                    <p style="color: white; font-size:14px">
+                                                                        İletişim </p>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
                                                     </div>
-                                                    <div class="col-md-2">
-                                                        <a href="{{ \Session::get('applocale') == 'en' ? route('front.kunye_en') : route('front.kunye') }}">
-                                                            <p style="color: white; font-size:14px">Künye</p>
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <a href="#">
-                                                            <p style="color: white; font-size:14px">Reklam</p>
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <a href="#">
-                                                            <p style="color: white; font-size:14px">İş Bİrliği</p>
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <a href="{{ \Session::get('applocale') == 'en' ? route('front.archive.index_en') : route('front.archive.index') }}">
-                                                            <p style="color: white; font-size:14px">Arşiv</p>
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <a href="{{ \Session::get('applocale') == 'en' ? route('front.contact_en') : route('front.contact') }}">
-                                                            <p style="color: white; font-size:14px">İletişim</p>
-                                                        </a>
-                                                    </div>
-                                                </div>
                                                 </center>
                                             </div>
                                             <div class="sutun_mobile sutun" style="display: none">
-                                                <div class="basliklar2 row px-4 mt-5" style="width:85%">
+                                                <div class="basliklar2 row mt-5 px-4" style="width:85%">
                                                     @foreach (sayfalar() as $item)
                                                         <div class="col-md-2">
-                                                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.page.detail',$item->link) : route('front.page.detail',$item->link) }}">
-                                                                <p style="color: white; font-size:14px"> {{ $item->title }} </p>
+                                                            <a
+                                                                href="{{ \Session::get('applocale') == 'en' ? route('front.page.detail', $item->link) : route('front.page.detail', $item->link) }}">
+                                                                <p style="color: white; font-size:14px">
+                                                                    {{ $item->title }} </p>
                                                             </a>
                                                         </div>
                                                     @endforeach
@@ -550,7 +582,8 @@
                                                 <div class="basliklar2 row px-4" style="width:85%">
                                                     <ul style="text-align:center;">
                                                         @foreach (sayfalar() as $item)
-                                                            <li class="li_2" style="display:inline-block;padding:15px;">
+                                                            <li class="li_2"
+                                                                style="display:inline-block;padding:15px;">
                                                                 <a
                                                                     href="{{ \Session::get('applocale') == 'en' ? route('front.page.detail', $item->link) : route('front.page.detail', $item->link) }}">
                                                                     <p style="color: white; font-size:14px">
@@ -562,11 +595,12 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <ul class="footer-social gap-2 " style="justify-content: center">
+                                        <ul class="footer-social gap-2" style="justify-content: center">
                                             @if (SocialMedia())
                                                 <li class="social-item">
                                                     <a href="https://www.facebook.com/{{ SocialMedia()->facebook != null ? SocialMedia()->facebook : '' }}"
-                                                        class="social-link " target="_blank" style="width: 35px;height:35px">
+                                                        class="social-link" target="_blank"
+                                                        style="width: 35px;height:35px">
                                                         <i class="fab fa-x fa-facebook-f"></i>
                                                     </a>
                                                 </li>
@@ -574,7 +608,8 @@
                                             @if (SocialMedia())
                                                 <li class="social-item">
                                                     <a href="https://twitter.com/{{ SocialMedia()->twitter != null ? SocialMedia()->twitter : '' }}"
-                                                        class="social-link " target="_blank"  style="width: 35px;height:35px">
+                                                        class="social-link" target="_blank"
+                                                        style="width: 35px;height:35px">
                                                         <i class="fab fa-x-twitter"></i>
                                                     </a>
                                                 </li>
@@ -582,7 +617,8 @@
                                             @if (SocialMedia())
                                                 <li class="social-item">
                                                     <a href="https://www.instagram.com/{{ SocialMedia()->instagram != null ? SocialMedia()->instagram : '' }}"
-                                                        class="social-link " target="_blank"  style="width: 35px;height:35px">
+                                                        class="social-link" target="_blank"
+                                                        style="width: 35px;height:35px">
                                                         <i class="fab fa-instagram"></i>
                                                     </a>
                                                 </li>
@@ -590,7 +626,8 @@
                                             @if (SocialMedia())
                                                 <li class="social-item">
                                                     <a href="https://www.youtube.com/channel/{{ SocialMedia()->youtube != null ? SocialMedia()->youtube : '' }}"
-                                                        class="social-link " target="_blank"  style="width: 35px;height:35px">
+                                                        class="social-link" target="_blank"
+                                                        style="width: 35px;height:35px">
                                                         <i class="fab fa-youtube youtube"></i>
                                                     </a>
                                                 </li>
@@ -598,7 +635,8 @@
                                             @if (SocialMedia())
                                                 <li class="social-item">
                                                     <a href="https://www.linkedin.com/company/{{ SocialMedia()->linkedin != null ? SocialMedia()->linkedin : '' }}"
-                                                        class="social-link " target="_blank"  style="width: 35px;height:35px">
+                                                        class="social-link" target="_blank"
+                                                        style="width: 35px;height:35px">
                                                         <i class="fab fa-linkedin-in"></i>
                                                     </a>
                                                 </li>
@@ -640,7 +678,7 @@
                         <div class="footer-bottom-area d-flex align-items-center justify-content-center">
                             <p class="copyright-text wow fadeInUp mb-0" data-wow-delay="200ms"
                                 data-wow-duration="800ms">
-                                <span></span> © Copyright 2024 | Milli Müdafaa 
+                                <span></span> © Copyright 2024 | Milli Müdafaa
                             </p>
                         </div>
                     </div>
