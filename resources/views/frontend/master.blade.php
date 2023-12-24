@@ -93,6 +93,7 @@
             .footer-text{
                 width: 100%!important;
                 padding: 5%!important;
+                
             }
         }
         .footer-top {
@@ -495,12 +496,12 @@
                                             </a>
                                         </div>
                                         <div class="icerik">
-                                            <p class="footer-text" style="width:630px"><span class="text-white text-2xl"> www.millimudafaa.com  </span>Sitede yayınlanan yazı, haber, video ve fotoğrafların tüm hakları Dada İst Ajans a aittir. Kaynak gösterilerek dahi olsa izin alınmadan alıntı yapılamaz.</p>
+                                            <p class="footer-text" style="width:616px;"><span class="text-white text-2xl"> www.millimudafaa.com  </span>Sitede yayınlanan yazı, haber, video ve fotoğrafların tüm hakları Dada İst Ajans a aittir. Kaynak gösterilerek dahi olsa izin alınmadan alıntı yapılamaz.</p>
                                         </div>
                                         <div class="satir">
                                             <div class="sutun">
                                                 <center>
-                                                <div class="basliklar2 row px-4 mt-5" style="width: 85%">
+                                                <div class="basliklar2 row px-4 mt-3" style="width: 85%">
                                                     <div class="col-md-2">
                                                         <a href="{{ \Session::get('applocale') == 'en' ? route('front.about.detail_en') : route('front.about.detail') }}">
                                                             <p style="color: white; font-size:14px">Hakkımızda</p>
@@ -546,7 +547,7 @@
                                                 </div>
                                             </div>
                                             <div class="sutun_desktop sutun">
-                                                <div class="basliklar2 row mt-5 px-4" style="width:85%">
+                                                <div class="basliklar2 row px-4" style="width:85%">
                                                     <ul style="text-align:center;">
                                                         @foreach (sayfalar() as $item)
                                                             <li class="li_2" style="display:inline-block;padding:15px;">
@@ -561,7 +562,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <ul class="footer-social gap-2 mt-3" style="justify-content: center">
+                                        <ul class="footer-social gap-2 " style="justify-content: center">
                                             @if (SocialMedia())
                                                 <li class="social-item">
                                                     <a href="https://www.facebook.com/{{ SocialMedia()->facebook != null ? SocialMedia()->facebook : '' }}"

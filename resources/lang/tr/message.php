@@ -79,7 +79,7 @@ return [
     "ad soyad" => "Ad Soyad",
     "yorum" => "Yorum",
     "tümünü gör" => "Tümünü Gör",
-    "Kişisel Verilerin Korunması" => "Kişisel Verilerin Korunması",
+    "Kişisel Verilerin Korunması" => "Kişisel Verilerin Korunması Kanunu",
     "Hakkında Aydınlatma Metnini okudum, onay veriyorum." => "Hakkında Aydınlatma Metnini okudum, onay veriyorum.",
     "ilgili haberler" => "İlgili Haberler",
     "bizi takip edin" => "Bizi Takip Edin",
