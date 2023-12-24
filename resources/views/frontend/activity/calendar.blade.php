@@ -187,7 +187,7 @@
                     end : "{{ $event->finish_time }}".replace('\n',''),
                     backgroundColor : '{{ $event->Category->color_code }}'.replace('\n',''),
                     color: '{{ $event->Category->color_code }}'.replace('\n',''),
-                    url : "#".replace('\n',''),
+                    url : "{{ route('front.activity.detail',$event->link) }}",
                     className : "relative".replace('\n',''),
                 },
                 @endforeach
