@@ -39,7 +39,13 @@
             .single-post-banner {
                 background-size: 600px 500px
             }
+            .urun-gorsel{
+                width:50px!important;
+                height:50px!important;
+            }
         }
+
+        
     </style>
 @endsection
 @section('content')
@@ -141,7 +147,7 @@
                                     <li>
                                         <span class="rt-meta">
                                             <i class="fa-solid fa-eye"></i>
-                                            {{ $data->view_counter }}
+                                            {{ $data->viewCounter->view_counter ?? '0' }}
                                         </span>
                                     </li>
                                 </ul>
@@ -227,18 +233,18 @@
 
                                         <ul class="nav rt-tab-menu" id="myTab" role="tablist">
                                             <li class="menu-item" role="presentation">
-                                                <a class="menu-link active" id="menu-1-tab" data-bs-toggle="tab"
+                                                <a class="menu-link active" style="font-size:13px"  id="menu-1-tab" data-bs-toggle="tab"
                                                     href="#menu-1" role="tab" aria-controls="menu-1"
                                                     aria-selected="true"> {{ __('message.üretici') }}
                                                     {{ __('message.firmalar') }} </a>
                                             </li>
                                             <li class="menu-item" role="presentation">
-                                                <a class="menu-link" id="menu-2-tab" data-bs-toggle="tab" href="#menu-2"
+                                                <a class="menu-link" style="font-size:13px"  id="menu-2-tab" data-bs-toggle="tab" href="#menu-2"
                                                     role="tab" aria-controls="menu-2" aria-selected="false"> Menşei
                                                 </a>
                                             </li>
                                             <li class="menu-item" role="presentation">
-                                                <a class="menu-link" id="menu-3-tab" data-bs-toggle="tab" href="#menu-3"
+                                                <a class="menu-link" style="font-size:13px"  id="menu-3-tab" data-bs-toggle="tab" href="#menu-3"
                                                     role="tab" aria-controls="menu-3" aria-selected="false">
                                                     {{ __('message.kullanılan ülkeler') }} </a>
                                             </li>
@@ -254,9 +260,9 @@
 
 
                                                 @foreach ($data->Companies() as $e)
-                                                    <div class="col-lg-1 grid-adress" style="width: 150px">
+                                                    <div class="col-lg-1 grid-adress " style="width: 150px">
 
-                                                        <img title="{{ $e->title }}" src="/{{ $e->image }}">
+                                                        <img  title="{{ $e->title }}" src="/{{ $e->image }}">
 
                                                     </div>
                                                 @endforeach
@@ -312,7 +318,7 @@
                                         <div class="row">
                                             @foreach ($data->multiple_image as $item)
                                                 <div class="col-md-3">
-                                                    <a data-fancybox="gallery" href="/{{ $item }}">
+                                                    <a data-fancybox="gallery urun-gorsel" href="/{{ $item }}">
                                                         <img src="/{{ $item }}" style="width:100%"
                                                             alt="">
                                                     </a>
@@ -498,7 +504,7 @@
                                                     <li>
                                                         <span class="rt-meta">
                                                             <i class="fa-solid fa-eye"></i>
-                                                            {{ $item->view_counter }}
+                                                            {{ $item->viewCounter->view_counter ?? '0' }}
                                                         </span>
                                                     </li>
                                                 </ul>

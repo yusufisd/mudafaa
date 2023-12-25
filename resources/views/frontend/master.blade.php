@@ -105,6 +105,10 @@
             padding-top: 52px;
             padding-bottom: 25px;
         }
+        .footer-bottom-area {
+            min-height: 50px!important;
+            text-align: center;
+        }
     </style>
 
     @yield('css')
@@ -114,6 +118,7 @@
 
 <body>
 
+    <h1 style="display: none">Milli Müdafaa Savunma Sanayi Bakanlığı</h1>
 
     <!-- Start wrapper -->
     <div id="wrapper" class="wrapper">
@@ -514,7 +519,7 @@
                                                     <div class="basliklar2 row  px-4" style="width: 85%">
                                                         <ul>
                                                             <li class="li_2"
-                                                                style="display:inline-block;padding:15px;">
+                                                                style="display:inline-block;padding:5px 10px;">
                                                                 <a
                                                                     href="{{ \Session::get('applocale') == 'en' ? route('front.about.detail_en', $item->link) : route('front.about.detail', $item->link) }}">
                                                                     <p style="color: white; font-size:14px">
@@ -522,7 +527,7 @@
                                                                 </a>
                                                             </li>
                                                             <li class="li_2"
-                                                                style="display:inline-block;padding:15px;">
+                                                                style="display:inline-block;padding:5px 10px;">
                                                                 <a
                                                                     href="{{ \Session::get('applocale') == 'en' ? route('front.kunye_en', $item->link) : route('front.kunye', $item->link) }}">
                                                                     <p style="color: white; font-size:14px">
@@ -530,23 +535,23 @@
                                                                 </a>
                                                             </li>
                                                             <li class="li_2"
-                                                                style="display:inline-block;padding:15px;">
+                                                                style="display:inline-block;padding:5px 10px;">
                                                                 <a
-                                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.kunye_en', $item->link) : route('front.kunye', $item->link) }}">
+                                                                    href="{{ route('front.adsensePage.index') }}">
                                                                     <p style="color: white; font-size:14px">
                                                                         Reklam </p>
                                                                 </a>
                                                             </li>
                                                             <li class="li_2"
-                                                                style="display:inline-block;padding:15px;">
+                                                                style="display:inline-block;padding:5px 10px;">
                                                                 <a
-                                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.kunye_en', $item->link) : route('front.kunye', $item->link) }}">
+                                                                    href="{{ route('front.cooperationPage.index') }}">
                                                                     <p style="color: white; font-size:14px">
                                                                         İş Bİrliği </p>
                                                                 </a>
                                                             </li>
                                                             <li class="li_2"
-                                                                style="display:inline-block;padding:15px;">
+                                                                style="display:inline-block;padding:5px 10px;">
                                                                 <a
                                                                     href="{{ \Session::get('applocale') == 'en' ? route('front.archive.index_en', $item->link) : route('front.archive.index', $item->link) }}">
                                                                     <p style="color: white; font-size:14px">
@@ -554,7 +559,7 @@
                                                                 </a>
                                                             </li>
                                                             <li class="li_2"
-                                                                style="display:inline-block;padding:15px;">
+                                                                style="display:inline-block;padding:5px 10px;">
                                                                 <a
                                                                     href="{{ \Session::get('applocale') == 'en' ? route('front.contact_en', $item->link) : route('front.contact', $item->link) }}">
                                                                     <p style="color: white; font-size:14px">
@@ -570,7 +575,7 @@
                                                     <ul style="text-align:center;">
                                                         @foreach (sayfalar() as $item)
                                                             <li class="li_2"
-                                                                style="display:inline-block;padding:15px;">
+                                                                style="display:inline-block;padding:5px 10px;">
                                                                 <a
                                                                     href="{{ \Session::get('applocale') == 'en' ? route('front.page.detail', $item->link) : route('front.page.detail', $item->link) }}">
                                                                     <p style="color: white; font-size:14px">
@@ -587,7 +592,7 @@
                                                     <ul style="text-align:center;">
                                                         @foreach (sayfalar() as $item)
                                                             <li class="li_2"
-                                                                style="display:inline-block;padding:15px;">
+                                                                style="display:inline-block;padding:5px 10px;">
                                                                 <a
                                                                     href="{{ \Session::get('applocale') == 'en' ? route('front.page.detail', $item->link) : route('front.page.detail', $item->link) }}">
                                                                     <p style="color: white; font-size:14px">
@@ -677,7 +682,7 @@
                 </div>
                 <!-- End footer top -->
 
-                <div class="footer-bottom">
+                <div class="footer-bottom" >
                     <div class="container">
                         <div class="footer-bottom-area d-flex align-items-center justify-content-center">
                             <p class="copyright-text wow fadeInUp mb-0" data-wow-delay="200ms"

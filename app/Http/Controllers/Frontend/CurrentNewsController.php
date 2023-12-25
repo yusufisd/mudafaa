@@ -10,6 +10,7 @@ use App\Models\EmojiType;
 use App\Models\EnCurrentNews;
 use App\Models\EnCurrentNewsCategory;
 use App\Models\EnPage;
+use App\Models\NewsViewCounter;
 use App\Models\Page;
 use App\Models\PostType;
 use App\Models\ShareCounter;
@@ -39,8 +40,16 @@ class CurrentNewsController extends Controller
         // OKUMA KONTRLÜ
         $readCheck = json_decode(Cookie::get('readed')) ?? [];
         if (!in_array($data->id, $readCheck)){
-            $data->view_counter = $data->view_counter + 1;
-            $data->save();
+            if(NewsViewCounter::where('news_id',$data->id)->first() != null){
+                $news = NewsViewCounter::where('news_id',$data->id)->first();
+                $news->view_counter = $news->view_counter + 1;
+                $news->save();
+            }else{
+                $news = new NewsViewCounter();
+                $news->news_id = $data->id;
+                $news->view_counter = 1;
+                $news->save();
+            }
             $readCheck[] = $data->id;
             Cookie::queue(Cookie::make('readed', json_encode($readCheck), 30));
         }

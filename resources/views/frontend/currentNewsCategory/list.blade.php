@@ -164,7 +164,7 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="fa-solid fa-eye"></i>
-                                                                {{ $item->view_counter }}
+                                                                {{ $item->viewCounter->view_counter ?? '0' }}
                                                             </span>
                                                         </li>
                                                         <li>
@@ -211,9 +211,9 @@
                             </div>
 
                             <!--
-                                <div class="items-center" style="padding:15%">
-                                </div>
-                                -->
+                                    <div class="items-center" style="padding:15%">
+                                    </div>
+                                    -->
 
                         </div>
                         <!-- end rt-left-sidebar-sapcer-5 -->
@@ -429,8 +429,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                            // limit by device width
-                            -------------------------------*/
+                                // limit by device width
+                                -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
 

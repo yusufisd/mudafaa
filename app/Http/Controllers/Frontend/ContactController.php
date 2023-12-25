@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\ContactModel;
 use App\Models\EnContactModel;
+use App\Models\EnPage;
+use App\Models\Page;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -20,6 +22,8 @@ class ContactController extends Controller
         } elseif ($local == 'en') {
             $datas = EnContactModel::latest()->first();
         }
-        return view('frontend.contact',compact('datas'));
+        $kvkk_tr = Page::where('link','like','%'.'kvkk'.'%')->first();
+        $kvkk_en = EnPage::where('link','like','%'.'pdpl'.'%')->first();
+        return view('frontend.contact',compact('datas','kvkk_tr','kvkk_en'));
     }
 }

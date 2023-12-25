@@ -183,7 +183,7 @@
                                                             <li>
                                                                 <span class="rt-meta">
                                                                     <i class="fa-solid fa-eye"></i>
-                                                                    {{ $item->view_counter }}
+                                                                    {{ $item->viewCounter->view_counter ?? '0' }}
                                                                 </span>
                                                             </li>
 

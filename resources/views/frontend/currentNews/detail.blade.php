@@ -84,6 +84,7 @@
             @endforeach
         @endif
 
+
         <!-- Start inner page Banner -->
         <div class="banner inner-banner">
             <div class="container">
@@ -176,7 +177,7 @@
                                                 <li>
                                                     <span class="rt-meta">
                                                         <i class="fa-solid fa-eye"></i>
-                                                        {{ $data->view_counter }}
+                                                        {{ $data->viewCounter->view_counter ?? '0' }}
                                                     </span>
                                                 </li>
                                             </ul>
@@ -215,7 +216,7 @@
                                             <li>
                                                 <span class="rt-meta">
                                                     <i class="fa-solid fa-eye"></i>
-                                                    {{ $data->view_counter }}
+                                                    {{ $data->viewCounter->view_counter ?? '0' }}
                                                 </span>
                                             </li>
                                         </ul>
@@ -270,6 +271,11 @@
                                                         <i class="social-icon fas fa-envelope"></i>
                                                     </a>
                                                 </li>
+                                                <li>
+                                                    <a target="_blank" onclick="window.print();return false;" href="https://twitter.com/">
+                                                       <i class="social-icon fas fa-print"></i>
+                                                    </a>
+                                                 </li>
                                             </ul>
                                         </div>
                                     </div>

@@ -38,7 +38,7 @@
                     </div>
                     <div>
                         <a href="{{ route('admin.activity.disa_aktar') }}">
-                            <button style="position:initial;background-color:#1e1e3f" class="btn-sm btn btn-info"
+                            <button style="position:initial;background-color:#1e1e3f;color:white" class="btn-sm btn"
                                 type="button"> Örnek Excel</button>
                         </a>
                     </div>

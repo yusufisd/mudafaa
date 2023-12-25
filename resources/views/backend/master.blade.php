@@ -637,6 +637,22 @@
                                                 </a>
                                             </div>
                                             <div class="menu-item">
+                                                <a class="menu-link" href="{{ route('admin.adsensePageEdit') }}">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title"> Reklam Sayfası </span>
+                                                </a>
+                                            </div>
+                                            <div class="menu-item">
+                                                <a class="menu-link" href="{{ route('admin.cooperationPageEdit') }}">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title"> İş Birliği Sayfası </span>
+                                                </a>
+                                            </div>
+                                            <div class="menu-item">
                                                 <a class="menu-link" href="{{ route('admin.kunye.list') }}">
                                                     <span class="menu-bullet">
                                                         <span class="bullet bullet-dot"></span>

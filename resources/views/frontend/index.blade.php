@@ -203,7 +203,7 @@
                                     <li>
                                         <span class="rt-meta">
                                             <i class="fa-solid fa-eye"></i>
-                                            {{ $tek_haber->view_counter }}
+                                            {{ $tek_haber->viewCounter->view_counter ?? '0' }}
                                         </span>
                                     </li>
                                     <li>
@@ -267,7 +267,7 @@
                                                 <li>
                                                     <span class="rt-meta">
                                                         <i class="fa-solid fa-eye"></i>
-                                                        {{ $item->view_counter }}
+                                                        {{ $item->viewCounter->view_counter ?? '0' }}
                                                     </span>
                                                 </li>
                                                 <li>
@@ -385,7 +385,7 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="fa-solid fa-eye"></i>
-                                                                {{ $ilk_kategori_icerigi->view_counter }}
+                                                                {{ $ilk_kategori_icerigi->viewCounter->view_counter ?? '0' }}
                                                             </span>
                                                         </li>
                                                         <li>
@@ -434,7 +434,7 @@
                                                             </span>
                                                             <span class="rt-meta ms-2">
                                                                 <i class="fa-solid fa-eye"></i>
-                                                                {{ $item->view_counter }}
+                                                                {{ $item->viewCounter->view_counter ?? '0' }}
                                                             </span>
                                                         </div>
                                                     </div>
@@ -479,7 +479,7 @@
                                                             </span>
                                                             <span class="rt-meta ms-2">
                                                                 <i class="fa-solid fa-eye"></i>
-                                                                {{ $item->view_counter }}
+                                                                {{ $item->viewCounter->view_counter ?? '0' }}
                                                             </span>
                                                         </div>
                                                     </div>
@@ -578,7 +578,7 @@
                                                             </span>
                                                             <span class="rt-meta ms-2">
                                                                 <i class="fa-solid fa-eye"></i>
-                                                                {{ $item->view_counter }}
+                                                                {{ $item->viewCounter->view_counter ?? '0' }}
                                                             </span>
                                                         </div>
                                                     </div>
@@ -621,7 +621,7 @@
                                                             </span>
                                                             <span class="rt-meta ms-2">
                                                                 <i class="fa-solid fa-eye"></i>
-                                                                {{ $item->view_counter }}
+                                                                {{ $item->viewCounter->view_counter ?? '0' }}
                                                             </span>
                                                         </div>
                                                     </div>
@@ -736,7 +736,7 @@
                                                             </span>
                                                             <span class="rt-meta ms-2">
                                                                 <i class="fa-solid fa-eye"></i>
-                                                                {{ $item->view_counter }}
+                                                                {{ $item->viewCounter->view_counter ?? '0' }}
                                                             </span>
                                                         </div>
                                                     </div>
@@ -781,7 +781,7 @@
                                                             </span>
                                                             <span class="rt-meta ms-2">
                                                                 <i class="fa-solid fa-eye"></i>
-                                                                {{ $item->view_counter }}
+                                                                {{ $item->viewCounter->view_counter ?? '0' }}
                                                             </span>
                                                         </div>
                                                     </div>
@@ -892,7 +892,7 @@
                                         <li>
                                             <span class="rt-meta">
                                                 <i class="fa-solid fa-eye"></i>
-                                                {{ $item->view_counter }}
+                                                {{ $item->viewCounter->view_counter ?? '0' }}
                                             </span>
                                         </li>
 
@@ -1002,7 +1002,7 @@
                                             <li>
                                                 <span class="rt-meta">
                                                     <i class="fa-solid fa-eye"></i>
-                                                    {{ $populer_haber_first->view_counter }}
+                                                    {{ $populer_haber_first->viewCounter->view_counter ?? '0' }}
                                                 </span>
                                             </li>
                                             <li>
@@ -1080,7 +1080,7 @@
                                                 </span>
                                                 <span class="rt-meta">
                                                     <i class="fa-solid fa-eye"></i>
-                                                    {{ $item->view_counter }}
+                                                    {{ $item->viewCounter->view_counter ?? '0' }}
                                                 </span>
                                             </div>
                                         </div>

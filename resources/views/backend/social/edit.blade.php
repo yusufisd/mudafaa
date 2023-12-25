@@ -202,7 +202,63 @@
                                                             </div>
                                                             
                                                         </div>
-                                                        
+
+                                                        <h3>Mobil Uygulama Linkleri</h3>
+                                                        <hr>
+                                                        <div class="tab-pane fade show active"
+                                                            id="tab_blog_category_detail_tr" role="tabpanel">
+                                                            <div class="card-body px-0 py-9">
+                                                                <div class="row mb-6">
+                                                                    <label
+                                                                        class="col-lg-2 col-form-label ps-5  fw-bold fs-6">
+                                                                        GOOGLE PLAY STORE </label>
+                                                                    <div class="col-lg-10">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-12 fv-row">
+                                                                                <input  type="text" name="google_play_store" value="{{ $store->google ?? '' }}"
+                                                                                    id="title_tr" id="title_tr" 
+                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                    value="" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row mb-6">
+                                                                    <label
+                                                                        class="col-lg-2 col-form-label ps-5  fw-bold fs-6">
+                                                                        APP STORE </label>
+                                                                    <div class="col-lg-10">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-12 fv-row">
+                                                                                <input  type="text" name="app_store" value="{{ $store->ios ?? '' }}"
+                                                                                    id="title_tr" id="title_tr" 
+                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                    value="" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row mb-6">
+                                                                    <label
+                                                                        class="col-lg-2 col-form-label ps-5  fw-bold fs-6">
+                                                                        HUAWEİ STORE </label>
+                                                                    <div class="col-lg-10">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-12 fv-row">
+                                                                                <input  type="text" name="huawei_store" value="{{ $store->huawei ?? '' }}"
+                                                                                    id="title_tr" id="title_tr" 
+                                                                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                                                    value="" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+
                                                     </div>
                                                 </div>
                                             </div>

@@ -125,7 +125,7 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-eye icon"></i>
-                                                                {{ $item->view_counter }}
+                                                                {{ $item->viewCounter->view_counter ?? '0' }}
                                                             </span>
                                                         </li>
                                                         <li>

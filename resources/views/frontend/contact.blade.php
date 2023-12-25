@@ -141,10 +141,33 @@
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" name="check" id="check_1">
-                                <label class="form-check-label" for="check_1">
-                                    {{ __('message.Kişisel Verilerin Korunması Hakkında Aydınlatma Metnini okudum, onay veriyorum.') }}
-                                </label>
+                                <div class="">
+                                    <input type="checkbox" class="form-check-input required" name="check"  id="check">
+                                    <span for="check">
+                                        @if (\Session::get('applocale') == 'en')
+                                            @if ($kvkk_en)
+                                                <a href="{{ route('front.page.detail', 'pdpl') }}">
+                                                    {{ __('message.Kişisel Verilerin Korunması') }}
+                                                </a>
+                                                {{ __('message.okudum, onay veriyorum') }}
+        
+                                            @else
+                                                {{ __("message.Kişisel Verilerin İşlenmesi Aydınlatma Metni'ni okudum kabul ediyorum.") }}
+                                            @endif
+                                        @else
+                                            @if ($kvkk_tr)
+                                                <a href="{{ route('front.page.detail', 'kvkk') }}">
+                                                    {{ __('message.Kişisel Verilerin Korunması') }}
+                                                </a>
+                                                {{ __('message.okudum, onay veriyorum') }}
+        
+        
+                                            @else
+                                                {{ __('message.Kişisel Verilerin Korunması Hakkında Aydınlatma Metnini okudum, onay veriyorum.') }}
+                                            @endif
+                                        @endif
+                                    </span>
+                                </div>
                             </div>
                             <button type="submit" class="submit-btn">Gönder</button>
                             <div class="form-response"></div>

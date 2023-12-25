@@ -67,5 +67,9 @@ class DefenseIndustryContent extends Model
     public function getKeys(){
         return explode(',', $this->seo_key);
     }
+
+    public function viewCounter(){
+        return $this->hasOne(DefenseViewCounter::class,'defense_id','id');
+    }
    
 }

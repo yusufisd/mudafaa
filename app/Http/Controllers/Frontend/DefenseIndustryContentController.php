@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\DefenseIndustry;
 use App\Models\DefenseIndustryCategory;
 use App\Models\DefenseIndustryContent;
+use App\Models\DefenseViewCounter;
 use App\Models\EnDefenseIndustryCategory;
 use App\Models\EnDefenseIndustryContent;
 use Illuminate\Http\Request;
@@ -30,8 +31,16 @@ class DefenseIndustryContentController extends Controller
         // OKUMA KONTRLÜ
         $readCheck = json_decode(\Illuminate\Support\Facades\Cookie::get('defense')) ?? [];
         if (!in_array($data->id, $readCheck)){
-            $data->view_counter = $data->view_counter + 1;
-            $data->save();
+            if(DefenseViewCounter::where('defense_id',$data->id)->first() != null){
+                $defense = DefenseViewCounter::where('defense_id',$data->id)->first();
+                $defense->view_counter = $defense->view_counter + 1;
+                $defense->save();
+            }else{
+                $defense = new DefenseViewCounter();
+                $defense->defense_id = $data->id;
+                $defense->view_counter = 1;
+                $defense->save();
+            }
             $readCheck[] = $data->id;
             \Illuminate\Support\Facades\Cookie::queue(\Illuminate\Support\Facades\Cookie::make('defense', json_encode($readCheck), 30));
         }

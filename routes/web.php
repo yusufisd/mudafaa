@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\ActivityCategoryController;
 use App\Http\Controllers\Backend\ActivityController;
 use App\Http\Controllers\Backend\AdsenseController;
+use App\Http\Controllers\Backend\AdsensePageController;
 use App\Http\Controllers\Backend\AnketController;
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\CommentController as BackendCommentController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Backend\CompanyController;
 use App\Http\Controllers\Backend\CompanyModelController;
 use App\Http\Controllers\Backend\CompanySubTitle;
 use App\Http\Controllers\Backend\ContactController;
+use App\Http\Controllers\Backend\CooperationPageController;
 use App\Http\Controllers\Backend\CountryController;
 use App\Http\Controllers\Backend\CurrentNewsCategoryController;
 use App\Http\Controllers\Backend\CurrentNewsController;
@@ -34,6 +36,7 @@ use App\Http\Controllers\Backend\VideoCategoryController;
 use App\Http\Controllers\Backend\VideoController;
 use App\Http\Controllers\Frontend\AboutController as FrontendAboutController;
 use App\Http\Controllers\Frontend\ActivityController as FrontendActivityController;
+use App\Http\Controllers\Frontend\AdsensePageController as FrontendAdsensePageController;
 use App\Http\Controllers\Frontend\AnketController as FrontendAnketController;
 use App\Http\Controllers\Frontend\ArchiveController;
 use App\Http\Controllers\Frontend\AuthorController;
@@ -51,11 +54,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\PageController as FrontendPageController;
 use App\Http\Controllers\Frontend\ContactController as FrontendContactController;
+use App\Http\Controllers\Frontend\CooperationPageController as FrontendCooperationPageController;
 use App\Http\Controllers\Frontend\KunyeController as FrontendKunyeController;
 use App\Http\Controllers\TitleIconController;
-use App\Models\CompanyModel;
-use App\Models\EnCompanyModel;
-use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -688,6 +689,15 @@ Route::middleware('lang')->group(function () {
                     Route::get('/ekle','ekle')->name('ekle');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
                 });
+
+
+                // ADSENSE PAGE
+                Route::get('/reklam-sayfasi',[AdsensePageController::class,'edit'])->name('adsensePageEdit');
+                Route::post('/reklam-sayfasi',[AdsensePageController::class,'update'])->name('adsensePageEdit.update');
+
+                // COOPERATİON PAGE
+                Route::get('/is-birligi',[CooperationPageController::class,'edit'])->name('cooperationPageEdit');
+                Route::post('/is-birligi',[CooperationPageController::class,'update'])->name('cooperationPageEdit.update');
         });
 
     Route::prefix('/')
@@ -838,10 +848,20 @@ Route::middleware('lang')->group(function () {
             // yazar detay
             Route::get('yazar/{id?}',[AuthorController::class,'detail'])->name('author.detail');
             Route::get('yazarlar',[AuthorController::class,'list'])->name('author.list');
+
+            // Adsense COntroller 
+            Route::get('reklam-sayfasi',[FrontendAdsensePageController::class,'index'])->name('adsensePage.index');
+
+            // Copperation COntroller 
+            Route::get('is-birligi',[FrontendCooperationPageController::class,'index'])->name('cooperationPage.index');
         });
+
+
 
         
 });
 
 Route::get('/view_counter',[FrontendHomeController::class,'view_counter']);
 Route::get('/manset-on-sinir',[FrontendHomeController::class,'mansetOnSinir']);
+Route::get('/random-editor',[FrontendHomeController::class,'randomEditor']);
+

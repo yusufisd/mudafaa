@@ -42,7 +42,7 @@
                     </div>
                     <div>
                         <a href="{{ route('admin.activityCategory.disa_aktar') }}">
-                            <button style="position:initial;background-color:#1e1e3f" class="btn-sm btn test btn-info"
+                            <button style="position:initial;background-color:#1e1e3f;color:white" class="btn-sm btn test"
                                 type="button"> Örnek Excel</button>
                         </a>
                     </div>

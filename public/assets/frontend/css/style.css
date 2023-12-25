@@ -10740,12 +10740,12 @@ video {
 }
 
 .footer-bottom-area {
-  min-height: 100px;
+  min-height: 50px;
   text-align: center;
 }
 @media (max-width: 991px) {
   .footer-bottom-area {
-    min-height: 80px;
+    min-height: 50px;
   }
 }
 

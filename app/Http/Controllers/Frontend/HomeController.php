@@ -16,11 +16,15 @@ use App\Models\EnCurrentNewsCategory;
 use App\Models\EnDefenseIndustryContent;
 use App\Models\EnDictionary;
 use App\Models\EnInterview;
+use App\Models\EnNewsViewCounter;
 use App\Models\EnPage;
 use App\Models\EnVideo;
 use App\Models\Interview;
+use App\Models\NewsViewCounter;
 use App\Models\Page;
 use App\Models\Reklam;
+use App\Models\Role;
+use App\Models\UserModel;
 use App\Models\Video;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -266,12 +270,28 @@ class HomeController extends Controller
         $data_en = EnCurrentNews::get();
         
         foreach ($data as $item){
-            $item->view_counter = rand(155,555);
-            $item->save();
+            $news = NewsViewCounter::where('news_id',$item->id)->first();
+            if($news != null){
+                $news->view_counter = rand(155,555);
+                $news->save();
+            }else{
+                $news = new NewsViewCounter();
+                $news->news_id = $item->id;
+                $news->view_counter = rand(155,555);
+                $news->save();
+            }
         }
         foreach ($data_en as $item){
-            $item->view_counter = rand(155,555);
-            $item->save();
+            $news_en = EnNewsViewCounter::where('news_id',$item->id)->first();
+            if($news != null){
+                $news_en->view_counter = rand(155,555);
+                $news_en->save();
+            }else{
+                $news_en = new NewsViewCounter();
+                $news_en->news_id = $item->id;
+                $news_en->view_counter = rand(155,555);
+                $news_en->save();
+            }
         }
         return "Başarılı";
     }
@@ -300,5 +320,26 @@ class HomeController extends Controller
             $item->save();
         }
         return "Başarılı";
+    }
+
+    public function randomEditor(){
+        $editor = Role::where('name','like','%'.'editör'.'%')->first();
+        $data = CurrentNews::latest()->get();
+        $data_en = EnCurrentNews::latest()->get();
+        dd($editor);
+        if($editor != null){
+            foreach($data as $item){
+                $random_person = UserModel::where('role',$editor->id)->inRandomOrder()->first();
+                $item->author_id = $random_person->id;
+                $item->save();
+            }
+            foreach($data_en as $item){
+                $random_person = UserModel::where('role',$editor->id)->inRandomOrder()->first();
+                $item->author_id = $random_person->id;
+                $item->save();
+            }
+            return "Yazarlar değiştirildi.";
+        }
+        return "Yazar değiştirmede hata.";
     }
 }

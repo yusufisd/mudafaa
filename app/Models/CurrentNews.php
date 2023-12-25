@@ -56,9 +56,6 @@ class CurrentNews extends Model
     }
 
 
-
-   
-
     public function comments()
     {
         return Comment::where('is_post', 1)
@@ -80,5 +77,10 @@ class CurrentNews extends Model
             return 0;
         }
 
+    }
+
+
+    public function viewCounter(){
+        return $this->hasOne(NewsViewCounter::class,'news_id','id');
     }
 }
