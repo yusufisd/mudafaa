@@ -9,11 +9,13 @@ use App\Models\Answer;
 use App\Models\CurrentNews;
 use App\Models\CurrentNewsCategory;
 use App\Models\DefenseIndustryContent;
+use App\Models\DefenseViewCounter;
 use App\Models\Dictionary;
 use App\Models\EnActivity;
 use App\Models\EnCurrentNews;
 use App\Models\EnCurrentNewsCategory;
 use App\Models\EnDefenseIndustryContent;
+use App\Models\EnDefenseViewCounter;
 use App\Models\EnDictionary;
 use App\Models\EnInterview;
 use App\Models\EnNewsViewCounter;
@@ -287,7 +289,7 @@ class HomeController extends Controller
                 $news_en->view_counter = rand(155,555);
                 $news_en->save();
             }else{
-                $news_en = new NewsViewCounter();
+                $news_en = new EnNewsViewCounter();
                 $news_en->news_id = $item->id;
                 $news_en->view_counter = rand(155,555);
                 $news_en->save();
@@ -340,5 +342,36 @@ class HomeController extends Controller
             return "Yazarlar değiştirildi.";
         }
         return "Yazar değiştirmede hata.";
+    }
+
+    public function defense_view_counter(){
+        $data = DefenseIndustryContent::get();
+        $data_en = EnDefenseIndustryContent::get();
+        
+        foreach ($data as $item){
+            $news = DefenseViewCounter::where('defense_id',$item->id)->first();
+            if($news != null){
+                $news->view_counter = rand(155,555);
+                $news->save();
+            }else{
+                $news = new DefenseViewCounter();
+                $news->news_id = $item->id;
+                $news->view_counter = rand(155,555);
+                $news->save();
+            }
+        }
+        foreach ($data_en as $item){
+            $news_en = EnDefenseViewCounter::where('news_id',$item->id)->first();
+            if($news_en != null){
+                $news_en->view_counter = rand(155,555);
+                $news_en->save();
+            }else{
+                $news_en = new EnDefenseViewCounter();
+                $news_en->news_id = $item->id;
+                $news_en->view_counter = rand(155,555);
+                $news_en->save();
+            }
+        }
+        return "Başarılı";
     }
 }

@@ -863,6 +863,11 @@ Route::middleware('lang')->group(function () {
 });
 
 Route::get('/view_counter',[FrontendHomeController::class,'view_counter']);
-Route::get('/manset-on-sinir',[FrontendHomeController::class,'mansetOnSinir']);
 Route::get('/random-editor',[FrontendHomeController::class,'randomEditor']);
+Route::get('/manset-on-sinir',[FrontendHomeController::class,'mansetOnSinir']);
+
+
+Route::get('/defense_view_counter',[FrontendHomeController::class,'defense_view_counter']);
+Route::get('/defense-random-editor',[FrontendHomeController::class,'defenseRandomEditor']);
+
 
