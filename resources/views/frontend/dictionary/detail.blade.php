@@ -30,11 +30,17 @@
             margin-left: 2%
         }
 
-        @media only screen and (max-width: 600px) {
+        /*
+        @media only screen and (min-width: 600px) {
             .single-post-banner {
                 background-size: 600px 500px
             }
         }
+        */
+        .single-post-banner {
+            background-size: contain;
+        }
+
     </style>
     <!-- Start Main -->
     <main>

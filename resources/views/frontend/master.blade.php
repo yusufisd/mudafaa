@@ -118,7 +118,7 @@
 
 <body>
 
-    <h1 style="display: none">Milli Müdafaa Savunma Sanayi Bakanlığı</h1>
+    <h1 style="display: none">Milli Müdafaa</h1>
 
     <!-- Start wrapper -->
     <div id="wrapper" class="wrapper">

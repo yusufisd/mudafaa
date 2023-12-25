@@ -817,7 +817,7 @@
 
     <!-- start travel-main-section-style-3 -->
     <section class="travel-main-section-style-3 section-padding"
-        style="background-image: url('media/elements/element_9.png');">
+        style="background-image: url({{ asset('assets/element_9.webp') }});">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -1375,7 +1375,7 @@
     @endif
     <!-- start subscribe section -->
     <div class="section subscribe-section-style-1 section-padding"
-        style="background-image: url('media/elements/element_9.png');">
+        style="background-image: url({{ asset('assets/element_9.webp') }});">
         <div class="container">
             <div class="row justify-content-evenly">
 
