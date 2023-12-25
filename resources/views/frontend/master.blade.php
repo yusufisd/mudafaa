@@ -767,7 +767,7 @@
             window.cookieconsent.initialise({
                 "palette": {
                     "popup": {
-                        "background": "#d71621", // şerit arkaplan rengi
+                        "background": "#749f43", // şerit arkaplan rengi
                         "text": "#ffffff" // şerit üzerindeki yazı rengi
                     },
                     "button": {
@@ -783,10 +783,10 @@
                 // "position": "bottom-left", aktif ederseniz uyarı solda görünür
                 //"position": "bottom-right", aktif ederseniz uyarı sağda görünür
                 "content": {
-                    "message": "{{ __('msg.Web sitemizde size en iyi deneyimi sunabilmemiz için çerezleri kullanıyoruz. Bu siteyi kullanmaya devam ederseniz, bunu kabul etmiş sayılıyorsunuz.') }}",
-                    "dismiss": "{{ __('msg.tamam') }}",
-                    "link": "{{ __('msg.Daha fazla bilgi') }}",
-                    "href": "{{ asset('/assets/frontend/img/kvkk.pdf') }}"
+                    "message": "{{ __('message.Web sitemizde size en iyi deneyimi sunabilmemiz için çerezleri kullanıyoruz. Bu siteyi kullanmaya devam ederseniz, bunu kabul etmiş sayılıyorsunuz.') }}",
+                    "dismiss": "{{ __('message.Kabul Et') }}",
+                    "link": "{{ __('message.Daha fazla bilgi') }}",
+                    "href": "{{ route('front.page.detail','kvkk') }}"
                 }
             })
         });

@@ -137,7 +137,9 @@ return [
     "diğer ürünler" => "Diğer Ürünler",
     "güncelleme" =>"Güncelleme",
     "okudum, onay veriyorum" => "okudum, onay veriyorum",
-
+    "Web sitemizde size en iyi deneyimi sunabilmemiz için çerezleri kullanıyoruz. Bu siteyi kullanmaya devam ederseniz, bunu kabul etmiş sayılıyorsunuz." => "Web sitemizde size en iyi deneyimi sunabilmemiz için çerezleri kullanıyoruz. Bu siteyi kullanmaya devam ederseniz, bunu kabul etmiş sayılıyorsunuz.",
+    "Kabul et" => "Kabul Et",
+    "Daha fazla bilgi" => "Daha fazla bilgi",
 
 ];
 ?>
