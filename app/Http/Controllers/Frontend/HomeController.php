@@ -382,12 +382,12 @@ class HomeController extends Controller
         if($editor != null){
             foreach($data as $item){
                 $random_person = UserModel::where('role',$editor->id)->inRandomOrder()->first();
-                $item->author_id = $random_person->id;
+                $item->author = $random_person->id;
                 $item->save();
             }
             foreach($data_en as $item){
                 $random_person = UserModel::where('role',$editor->id)->inRandomOrder()->first();
-                $item->author_id = $random_person->id;
+                $item->author = $random_person->id;
                 $item->save();
             }
             return "Yazarlar değiştirildi.";
