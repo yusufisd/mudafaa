@@ -37,7 +37,7 @@
             }
 
             .single-post-banner {
-                background-size: 600px 500px
+                background-size: 600px 500px!important;
             }
             .urun-gorsel{
                 width:50px!important;

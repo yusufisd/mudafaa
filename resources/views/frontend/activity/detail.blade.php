@@ -15,7 +15,7 @@
         @media only screen and (max-width: 700) {
             
             .single-post-banner{
-                background-size: 600px 500px
+                background-size: 600px 500px!important;
             }
         }
 
