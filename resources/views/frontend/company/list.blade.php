@@ -86,8 +86,10 @@
                                                 <a style="width: 100%"
                                                     href="{{ \Session::get('applocale') == 'en' ? route('front.company.detail_en', \Illuminate\Support\Str::slug($item->title)) : route('front.company.detail', \Illuminate\Support\Str::slug($item->title)) }}">
                                                     <div class="author-img">
-                                                        <img style="width:100%; height:170px; opacity:0.9"
+                                                        <center>
+                                                        <img style="width:170px; height:170px; opacity:0.9;text-align:center!important"
                                                             src="/{{ $item->image }}" alt="{{ $item->title }}">
+                                                        </center>
                                                     </div>
                                                 </a>
                                             </div>
