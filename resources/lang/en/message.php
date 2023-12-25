@@ -139,7 +139,7 @@ return [
     "güncelleme" => "Updated",
     "okudum, onay veriyorum" => "I have read and accept",
     "Web sitemizde size en iyi deneyimi sunabilmemiz için çerezleri kullanıyoruz. Bu siteyi kullanmaya devam ederseniz, bunu kabul etmiş sayılıyorsunuz." => "We use cookies to ensure that we give you the best experience on our website. If you continue to use this site, you agree to this.",
-    "Kabul et" => "Accept",
+    "Kabul Et" => "Accept",
     "Daha fazla bilgi" => "More information",
 ];
 ?>
