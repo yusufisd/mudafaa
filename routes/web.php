@@ -678,6 +678,7 @@ Route::middleware('lang')->group(function () {
                     Route::get('/duzenle/{id?}', 'edit')->name('edit');
                     Route::post('/duzenle/{id?}', 'update')->name('update');
                     Route::get('/sil/{id?}', 'destroy')->name('destroy');
+                    Route::get('/gorsel/sil/{id?}', 'imageDestroy')->name('image.destroy');
 
                 });
 

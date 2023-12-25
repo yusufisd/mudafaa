@@ -175,5 +175,18 @@ class TopbarController extends Controller
         return redirect()->route('admin.topbar.list');
     }
 
-
+    public function imageDestroy($id)
+    {
+        $data = Topbar::findOrFail($id);
+        $data_en = EnTopbar::where('topbar_id', $id)->first();
+        if ($data != null) {
+            $data->image = "";
+            $data->save();
+        }
+        if ($data_en != null) {
+            $data_en->image = "";
+        }
+        Alert::success('Güncelleme Başarılı');
+        return redirect()->route('admin.topbar.list');
+    }
 }

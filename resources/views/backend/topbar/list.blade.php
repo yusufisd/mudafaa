@@ -19,7 +19,7 @@
                     <!--end::Title-->
                 </div>
                 <!--end::Page title-->
-                
+
             </div>
             <!--end::Toolbar container-->
         </div>
@@ -47,8 +47,8 @@
                                             <span class="svg-icon svg-icon-2">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <rect opacity="0.5" x="11.364" y="20.364" width="16"
-                                                        height="2" rx="1" transform="rotate(-90 11.364 20.364)"
+                                                    <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2"
+                                                        rx="1" transform="rotate(-90 11.364 20.364)"
                                                         fill="currentColor" />
                                                     <rect x="4.36396" y="11.364" width="16" height="2"
                                                         rx="1" fill="currentColor" />
@@ -81,10 +81,12 @@
                                                 </th>
                                                 <th> {{ __('message.görsel') }} <i class="fa fa-sort ms-3"></i></th>
                                                 <th> {{ __('message.başlık') }} <i class="fa fa-sort ms-3"></i></th>
-                                                <th style="text-align: center"> Arkaplan <i class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center"> Arkaplan <i class="fa fa-sort ms-3"></i>
+                                                </th>
                                                 <th> Başlangıç Tarihi <i class="fa fa-sort ms-3"></i></th>
                                                 <th> Bitiş Tarihi <i class="fa fa-sort ms-3"></i></th>
-                                                <th> {{ __('message.işlem') }} <i class="fa fa-sort ms-3"></i></th>
+                                                <th style="text-align: center"> {{ __('message.işlem') }} <i
+                                                        class="fa fa-sort ms-3"></i></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -98,20 +100,28 @@
                                                                 value="1" />
                                                         </div>
                                                     </td>
-                                                    <td >
-                                                        <img src="/{{ $item->image }}"
-                                                            style="width:50px; border-radius:5%" alt="">
+                                                    <td>
+                                                        <img src="/{{ $item->image }}" style="width:50px; border-radius:5%"
+                                                            alt="">
                                                     </td>
                                                     <td> {{ $item->title }} </td>
-                                                    <td style="text-align: center"><center><div style="width: 40px;height:40px;background-color:{{ $item->color_code }};border-radius:15px"></div></center></td>
+                                                    <td style="text-align: center">
+                                                        <center>
+                                                            <div
+                                                                style="width: 40px;height:40px;background-color:{{ $item->color_code }};border-radius:15px">
+                                                            </div>
+                                                        </center>
+                                                    </td>
                                                     <td> {{ $item->start_time->translatedFormat('d M Y') }} </td>
                                                     <td> {{ $item->finish_time->translatedFormat('d M Y') }} </td>
-                                                    <td>
-                                                        <a href="#"
-                                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 px-2"
-                                                            title="Görüntüle">
-                                                            <i class="fa-solid fa-eye fs-3"></i>
+                                                    <td style="text-align: center">
+                                                        @if($item->image != null)
+                                                        <a href="{{ route('admin.topbar.image.destroy', $item->id) }}">
+                                                            <button class="btn btn-sm"
+                                                                style="background-color:darkred; color:white">Görseli
+                                                                Kaldır</button>
                                                         </a>
+                                                        @endif
                                                         <a href="{{ route('admin.topbar.edit', $item->id) }}"
                                                             class="btn btn-icon btn-bg-light btn-active-color-secondary btn-sm me-1 px-2"
                                                             title="Düzenle">
@@ -153,7 +163,6 @@
         }
     </script>
     <script>
-
         function destroy(d) {
             Swal.fire({
                 title: 'Emin misiniz?',
