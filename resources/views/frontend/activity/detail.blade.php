@@ -14,8 +14,24 @@
 
         @media only screen and (max-width: 600) {
 
+            /*
             .single-post-banner {
                 background-size: 600px 500px !important;
+            }
+            */
+        }
+
+        .single-post-banner {
+                background-size: cover !important;
+                background-position: center center !important;
+                background-repeat: no-repeat !important;
+            }
+
+        @media screen and (max-width: 600px) {
+            .single-post-banner {
+                background-size: 100% 95% !important;
+                background-position: center center !important;
+                background-repeat: no-repeat !important;
             }
         }
 
@@ -85,7 +101,7 @@
 
         <!-- Start single-post-banner -->
         <div class="single-post-banner rt-gradient-overaly"
-            data-bg-image="/{{ $data->image == null ? 'assets/default_act.jpeg' : $data->image }}">
+            data-bg-image="/{{ $data->image == null ? 'assets/default_act.jpeg' : $data->image }}" style="background: url(/{{ $data->image }})">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-9 col-lg-10 mx-auto">

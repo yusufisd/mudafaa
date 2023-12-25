@@ -36,12 +36,27 @@
                 display: block !important;
             }
 
+            /*
             .single-post-banner {
                 background-size: 600px 500px!important;
             }
+            */
             .urun-gorsel{
                 width:50px!important;
                 height:50px!important;
+            }
+        }
+        .single-post-banner {
+                background-size: cover !important;
+                background-position: center center !important;
+                background-repeat: no-repeat !important;
+            }
+
+        @media screen and (max-width: 600px) {
+            .single-post-banner {
+                background-size: 100% 95% !important;
+                background-position: center center !important;
+                background-repeat: no-repeat !important;
             }
         }
 
@@ -107,7 +122,7 @@
         <!-- End inner page Banner -->
 
         <!-- Start single-post-banner -->
-        <div class="single-post-banner rt-gradient-overaly" data-bg-image="/{{ $data->image }}" >
+        <div class="single-post-banner rt-gradient-overaly" data-bg-image="/{{ $data->image }}" style="background: url(/{{ $data->image }})">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-9 col-lg-10 mx-auto">
