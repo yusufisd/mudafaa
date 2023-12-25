@@ -283,7 +283,7 @@ class HomeController extends Controller
         }
         foreach ($data_en as $item){
             $news_en = EnNewsViewCounter::where('news_id',$item->id)->first();
-            if($news != null){
+            if($news_en != null){
                 $news_en->view_counter = rand(155,555);
                 $news_en->save();
             }else{
