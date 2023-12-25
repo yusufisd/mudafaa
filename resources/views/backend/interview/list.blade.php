@@ -112,7 +112,7 @@
                                                         class="fa fa-sort ms-3"></i></th>
                                                 <th style="text-align: center"> {{ __('message.durum') }} <i
                                                         class="fa fa-sort ms-3"></i></th>
-                                                <th style="text-align: center"> {{ __('message.işlem') }} <i
+                                                <th style="text-align: center; width:150px"> {{ __('message.işlem') }} <i
                                                         class="fa fa-sort ms-3"></i></th>
                                             </tr>
                                         </thead>
