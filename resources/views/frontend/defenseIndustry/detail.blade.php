@@ -107,7 +107,7 @@
         <!-- End inner page Banner -->
 
         <!-- Start single-post-banner -->
-        <div class="single-post-banner rt-gradient-overaly" data-bg-image="/{{ $data->image }}" style="object-fit: cover">
+        <div class="single-post-banner rt-gradient-overaly" data-bg-image="/{{ $data->image }}" >
             <div class="container">
                 <div class="row">
                     <div class="col-xl-9 col-lg-10 mx-auto">
