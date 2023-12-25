@@ -83,10 +83,10 @@
                                     <div class="col-md-3 company-content wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
                                         <div class="cat-item">
                                             <div class="rt-cart-item" style="background-color: white!important">
-                                                <a
+                                                <a style="width: 100%"
                                                     href="{{ \Session::get('applocale') == 'en' ? route('front.company.detail_en', \Illuminate\Support\Str::slug($item->title)) : route('front.company.detail', \Illuminate\Support\Str::slug($item->title)) }}">
                                                     <div class="author-img">
-                                                        <img style="width:170px; height:170px; opacity:0.9"
+                                                        <img style="width:100%; height:170px; opacity:0.9"
                                                             src="/{{ $item->image }}" alt="{{ $item->title }}">
                                                     </div>
                                                 </a>

@@ -180,9 +180,9 @@
 
                                                 @foreach ($dialogs as $item)
                                                     <div class="single-content">
-                                                        <h3 class="title report_title">
-                                                            <i class="fa-solid fa-clipboard-question"
-                                                                style="vertical-align: text-top; color:#3b4022;"></i><span>
+                                                        <h3 class="title report_title" style="padding:3%">
+                                                            <i class="fa-solid fa-xl fa-microphone-lines"
+                                                                style="vertical-align: text-top; color:#black;margin-top:10px!important"></i><span> &nbsp;&nbsp;
                                                                 {{ $item->soru }} </h3>
                                                         <figure class="rt-blockquote-area">
                                                             <blockquote class="rt-blockquote">
@@ -343,16 +343,49 @@
                                 <!-- start commentator box -->
                                 <div class="commentator-box-style-1 mb--30">
                                     <div class="row justify-content-center mb--10">
-                                        @foreach ($emojies as $emoji => $number)
-                                            <div class="col-2 col-md-1">
-                                                <div class="emoji_container">
-                                                    <img id="{{ $emoji }}"
-                                                        src="{{ asset('assets/' . $emoji . '.png') }}"
-                                                        style="cursor: pointer; width:38px;">
-                                                </div>
+                                        <div class="col-2 col-md-1">
+                                            <div class="emoji_container">
+                                                <img id="love" src="{{ asset('assets/reaction/love.webp') }}"
+                                                    style="cursor: pointer; width:38px;">
                                             </div>
-                                        @endforeach
+                                        </div>
+                                        <div class="col-2 col-md-1">
+                                            <div class="emoji_container">
+                                                <img id="dislike"
+                                                    src="{{ asset('assets/reaction/dislike.webp') }}"
+                                                    style="cursor: pointer; width:38px;">
+                                            </div>
+                                        </div>
+                                        <div class="col-2 col-md-1">
+                                            <div class="emoji_container">
+                                                <img id="clap"
+                                                    src="{{ asset('assets/reaction/clap.webp') }}"
+                                                    style="cursor: pointer; width:38px;">
+                                            </div>
+                                        </div>
+                                        <div class="col-2 col-md-1">
+                                            <div class="emoji_container">
+                                                <img id="sad" src="{{ asset('assets/reaction/sad.webp') }}"
+                                                    style="cursor: pointer; width:38px;">
+                                            </div>
+                                        </div>
+                                        <div class="col-2 col-md-1">
+                                            <div class="emoji_container">
+                                                <img id="angry"
+                                                    src="{{ asset('assets/reaction/angry.webp') }}"
+                                                    style="cursor: pointer; width:38px;">
+                                            </div>
+                                        </div>
+                                        <div class="col-2 col-md-1">
+                                            <div class="emoji_container">
+                                                <img id="shocked" src="{{ asset('assets/reaction/shocked.webp') }}"
+                                                    style="cursor: pointer; width:38px;">
+                                            </div>
+                                        </div>
+
+
                                     </div>
+                                    
                                     <div class="row justify-content-center mb--50">
                                         @foreach ($emojies as $emoji => $number)
                                             <div class="col-2 col-md-1">
