@@ -133,7 +133,9 @@
                                                                 <div class="row">
                                                                     <div class="col-lg-12 fv-row">
                                                                         <input type="text" name="source"
+                                                                        @if($data_tr->Source != null && $data_tr->Source->source != null)
                                                                             value="{{ $data_tr->Source->source }}"
+                                                                        @endif
                                                                             id=""
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3">
                                                                     </div>
