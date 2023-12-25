@@ -355,7 +355,7 @@ class HomeController extends Controller
                 $news->save();
             }else{
                 $news = new DefenseViewCounter();
-                $news->news_id = $item->id;
+                $news->defense_id = $item->id;
                 $news->view_counter = rand(155,555);
                 $news->save();
             }
@@ -367,7 +367,7 @@ class HomeController extends Controller
                 $news_en->save();
             }else{
                 $news_en = new EnDefenseViewCounter();
-                $news_en->news_id = $item->id;
+                $news_en->defense_id = $item->id;
                 $news_en->view_counter = rand(155,555);
                 $news_en->save();
             }
