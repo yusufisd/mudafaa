@@ -83,8 +83,8 @@
 
         <!-- Start single-post-banner -->
         <div class="single-post-banner rt-gradient-overaly" 
-        data-bg-image="/{{ $data->image == null ? 'assets/default_act.jpeg' : asset($data->image) }}"
-            style="background-image: url('{{ asset($data->image) }}');">
+        data-bg-image="/{{ $data->image == null ? 'assets/default_act.jpeg' : $data->image }}"
+            style="background-image: url(/{{ $data->image }});">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-9 col-lg-10 mx-auto">
