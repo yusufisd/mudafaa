@@ -18,7 +18,7 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/frontend/media/favicon.png') }}">
-
+    <link rel="stylesheet" type="text/css" media="all" href="{{ asset('/assets/frontend/css/cerez.css') }}" />
     <!-- Dependency Stylesheet -->
     <link rel="stylesheet" type="text/css"
         href="{{ asset('assets/frontend/dependencies/bootstrap/css/bootstrap.min.css') }}">
