@@ -410,6 +410,11 @@ class CurrentNewsController extends Controller
                 $source->news_id = $news->id;
                 $source->source = $request->source;
                 $source->save();
+            }else{
+                $source = NewsSource::where('news_id',$news->id)->first();
+                if($source != null){
+                    $source->delete();
+                }
             }
 
             logKayit(['Haber Yönetimi ', 'Haber düzenlendi']);
