@@ -326,7 +326,6 @@ class HomeController extends Controller
         $editor = Role::where('name','like','%'.'editör'.'%')->first();
         $data = CurrentNews::latest()->get();
         $data_en = EnCurrentNews::latest()->get();
-        dd($editor);
         if($editor != null){
             foreach($data as $item){
                 $random_person = UserModel::where('role',$editor->id)->inRandomOrder()->first();
