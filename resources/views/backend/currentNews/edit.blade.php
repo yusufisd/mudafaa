@@ -120,27 +120,59 @@
 
 
 
+
+
+
+                                                <!--begin::Input group-->
                                                 <div class="row mb-6">
-                                                    <label class="col-lg-1 col-form-label fw-bold fs-6 ps-5">
-                                                        <span class="required">Kategori</span>
-                                                    </label>
-                                                    <div class="col-lg-11 fv-row">
-                                                        <select name="category[]" aria-label="Seçiniz"
-                                                            data-control="select2" data-placeholder="Seçiniz..." multiple
-                                                            class="select2-selection select2-selection--multiple form-select form-select-solid form-select-lg fw-semibold">
-                                                            <option value="">Seçiniz...</option>
-                                                            @foreach ($categories as $cat)
-                                                                <option
-                                                                    {{ in_array($cat->id, $data_tr->category_id) ? 'selected' : '' }}
-                                                                    value="{{ $cat->id }}">
-                                                                    {{ $cat->title }}
-                                                                </option>
-                                                            @endforeach
+                                                    <div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">
+                                                        <div class="row">
+                                                            <label
+                                                                class="col-lg-2 col-form-label fw-bold fs-6">Kaynak</label>
+                                                            <div class="col-lg-10">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12 fv-row">
+                                                                        <input type="text" name="source"
+                                                                            value="{{ $data_tr->Source->source }}"
+                                                                            id=""
+                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">
+                                                        <div class="row ms-10">
+                                                            <label class="col-lg-4 required col-form-label fw-bold fs-6">
+                                                                Kategori
+                                                            </label>
+                                                            <div class="col-lg-8">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12 fv-row">
+                                                                        <select name="category[]" aria-label="Seçiniz"
+                                                                            data-control="select2"
+                                                                            data-placeholder="Seçiniz..." multiple
+                                                                            class="select2-selection select2-selection--multiple form-select form-select-solid form-select-lg fw-semibold">
+                                                                            <option value="">Seçiniz...</option>
+                                                                            @foreach ($categories as $cat)
+                                                                                <option
+                                                                                    {{ in_array($cat->id, $data_tr->category_id) ? 'selected' : '' }}
+                                                                                    value="{{ $cat->id }}">
+                                                                                    {{ $cat->title }}
+                                                                                </option>
+                                                                            @endforeach
 
 
-                                                        </select>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
+
+
                                                 <div class="row mb-6">
 
                                                     <div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">
@@ -162,7 +194,9 @@
                                                                                 class="form-select form-select-solid form-select-lg fw-semibold">
                                                                                 <option value="">Seçiniz...</option>
                                                                                 @foreach ($users as $user)
-                                                                                    <option {{ $data_tr->author_id == $user->id ? 'selected' : '' }} value="{{ $user->id }}">
+                                                                                    <option
+                                                                                        {{ $data_tr->author_id == $user->id ? 'selected' : '' }}
+                                                                                        value="{{ $user->id }}">
                                                                                         {{ $user->name ?? '' }}
                                                                                         {{ $user->surname ?? '' }}</option>
                                                                                 @endforeach
@@ -815,10 +849,14 @@
             return str;
         };
         var input1 = document.querySelector("#activity_seo_keywords_tr");
-        new Tagify(input1,{ maxTags:5});
+        new Tagify(input1, {
+            maxTags: 5
+        });
 
         var input2 = document.querySelector("#activity_seo_keywords_en");
-        new Tagify(input2,{ maxTags:5});
+        new Tagify(input2, {
+            maxTags: 5
+        });
 
 
         $(document).ready(function() {

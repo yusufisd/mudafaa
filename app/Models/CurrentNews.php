@@ -83,4 +83,8 @@ class CurrentNews extends Model
     public function viewCounter(){
         return $this->hasOne(NewsViewCounter::class,'news_id','id');
     }
+
+    public function Source(){
+        return $this->hasOne(NewsSource::class,'news_id','id');
+    }
 }

@@ -74,7 +74,7 @@
                                             <div class="card-body px-3 py-9">
 
                                                 <div class="row mb-6">
-                                                    
+
                                                     <div class="input">
                                                         <div class="row">
                                                             <div class="col-md-6 row">
@@ -85,19 +85,20 @@
                                                                             520px)</span></label>
                                                                 </div>
                                                                 <div class="col-md-8">
-                                                                    <input type="file"  class="form-control col-lg-8"
+                                                                    <input type="file" class="form-control col-lg-8"
                                                                         name="image" id="">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6 row">
                                                                 <div class="col-md-4">
-                                                                    <label class="col-form-label fw-bold fs-6 ps-5">Hikaye Görsel
+                                                                    <label class="col-form-label fw-bold fs-6 ps-5">Hikaye
+                                                                        Görsel
                                                                         <br>
                                                                         <span style="font-weight:normal">( 311px -
                                                                             75px)</span></label>
                                                                 </div>
                                                                 <div class="col-md-8">
-                                                                    <input type="file"  class="form-control col-lg-8"
+                                                                    <input type="file" class="form-control col-lg-8"
                                                                         name="mobil_image" id="">
                                                                 </div>
                                                             </div>
@@ -106,42 +107,63 @@
                                                 </div>
 
 
-                                                
-
-                                                <div class="row mb-6">
-                                                    <label class="col-lg-1 col-form-label fw-bold fs-6 ps-5">
-                                                        <span class="">Kategori</span>
-                                                    </label>
-                                                    <div class="col-lg-11 fv-row">
-                                                        <select name="category[]" aria-label="Seçiniz"
-                                                            data-control="select2" data-placeholder="Seçiniz..." multiple
-                                                            class="select2-selection select2-selection--multiple form-select form-select-solid form-select-lg fw-semibold">
-                                                            <option value="">Seçiniz...</option>
-                                                            @foreach ($categories as $cat)
-                                                                <option value="{{ $cat->id }}"> {{ $cat->title }}
-                                                                </option>
-                                                            @endforeach
 
 
-                                                        </select>
-                                                    </div>
-                                                    <!--end::Col-->
-                                                </div>
+
 
                                                 <!--begin::Input group-->
                                                 <div class="row mb-6">
-
                                                     <div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">
                                                         <div class="row">
-                                                            <!--begin::Label-->
                                                             <label
-                                                                class="col-lg-2 col-form-label fw-bold fs-6">Yazar</label>
-                                                            <!--end::Label-->
-                                                            <!--begin::Col-->
+                                                                class="col-lg-2 col-form-label fw-bold fs-6">Kaynak</label>
                                                             <div class="col-lg-10">
-                                                                <!--begin::Row-->
                                                                 <div class="row">
-                                                                    <!--begin::Col-->
+                                                                    <div class="col-lg-12 fv-row">
+                                                                        <input type="text" name="source"  id=""
+                                                                            class="form-control form-control-lg form-control-solid mb-lg-0 mb-3">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">
+                                                        <div class="row ms-10">
+                                                            <label class="col-lg-4 required col-form-label fw-bold fs-6"> Kategori
+                                                            </label>
+                                                            <div class="col-lg-8">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12 fv-row">
+                                                                        <select name="category[]" aria-label="Seçiniz"
+                                                                            data-control="select2"
+                                                                            data-placeholder="Seçiniz..." multiple
+                                                                            class="select2-selection select2-selection--multiple form-select form-select-solid form-select-lg fw-semibold">
+                                                                            <option value="">Seçiniz...</option>
+                                                                            @foreach ($categories as $cat)
+                                                                                <option value="{{ $cat->id }}">
+                                                                                    {{ $cat->title }}
+                                                                                </option>
+                                                                            @endforeach
+
+
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <!--begin::Input group-->
+                                                <div class="row mb-6">
+                                                    <div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">
+                                                        <div class="row">
+                                                            <label
+                                                                class="col-lg-2 required col-form-label fw-bold fs-6">Yazar</label>
+                                                            <div class="col-lg-10">
+                                                                <div class="row">
                                                                     <div class="col-lg-12 fv-row">
                                                                         @if (Auth::guard('admin')->check())
                                                                             <select name="author" aria-label="Seçiniz"
@@ -157,9 +179,12 @@
                                                                             </select>
                                                                         @endif
                                                                         @if (Auth::guard('user_model')->check())
-                                                                            <input type="hidden" name="author" value="{{ AuthorUser()->id }}" id="">
+                                                                            <input type="hidden" name="author"
+                                                                                value="{{ AuthorUser()->id }}"
+                                                                                id="">
                                                                             <select disabled name="author"
-                                                                                aria-label="Seçiniz" data-control="select2"
+                                                                                aria-label="Seçiniz"
+                                                                                data-control="select2"
                                                                                 data-placeholder="Seçiniz..."
                                                                                 class="form-select form-select-solid form-select-lg fw-semibold">
                                                                                 <option selected
@@ -170,42 +195,31 @@
                                                                         @endif
 
                                                                     </div>
-                                                                    <!--end::Col-->
                                                                 </div>
-                                                                <!--end::Row-->
                                                             </div>
-                                                            <!--end::Col-->
                                                         </div>
-
                                                     </div>
 
                                                     <div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">
                                                         <div class="row ms-10">
-                                                            <!--begin::Label-->
-                                                            <label class="col-lg-4 col-form-label fw-bold fs-6">Yayın
+                                                            <label class="col-lg-4 required col-form-label fw-bold fs-6">Yayın
                                                                 Tarihi</label>
-                                                            <!--end::Label-->
-                                                            <!--begin::Col-->
                                                             <div class="col-lg-8">
-                                                                <!--begin::Row-->
                                                                 <div class="row">
-                                                                    <!--begin::Col-->
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input type="date" name="activity_on_location_tr"
-                                                                            required
+                                                                        <input type="date"
+                                                                            name="activity_on_location_tr" required
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                             value="{{ substr($now, 0, 10) }}" />
                                                                     </div>
-                                                                    <!--end::Col-->
                                                                 </div>
-                                                                <!--end::Row-->
                                                             </div>
-                                                            <!--end::Col-->
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!--end::Input group-->
-                                                <!--end::Input group-->
+
+
+
                                                 <div class="row mb-6">
                                                     <!--begin::Tab-->
                                                     <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x fs-6 mb-5">
@@ -272,7 +286,7 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-11 fv-row">
                                                                         <textarea name="activity_summary_tr" id="ozet_tr" onchange="create_ozet_tr()" required
-                                                                            class="form-control form-control-lg form-control-solid" value="" >{{ old('activity_summary_tr') }}</textarea>
+                                                                            class="form-control form-control-lg form-control-solid" value="">{{ old('activity_summary_tr') }}</textarea>
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -288,7 +302,7 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-11 fv-row mb-5 ps-5">
 
-                                                                        <textarea id="editor"  name="tinymce_activity_detail_tr" class="tox-target ckeditor">{{ old('tinymce_activity_detail_tr') }}</textarea>
+                                                                        <textarea id="editor" name="tinymce_activity_detail_tr" class="tox-target ckeditor">{{ old('tinymce_activity_detail_tr') }}</textarea>
 
                                                                     </div>
                                                                     <!--end::Col-->
@@ -414,7 +428,7 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-11 fv-row">
                                                                         <textarea name="activity_summary_en" id="ozet_en" onchange="create_ozet_en()" required
-                                                                            class="form-control form-control-lg form-control-solid" >{{ old('activity_summary_en') }}</textarea>
+                                                                            class="form-control form-control-lg form-control-solid">{{ old('activity_summary_en') }}</textarea>
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -792,10 +806,14 @@
             return str;
         };
         var input1 = document.querySelector("#activity_seo_keywords_tr");
-        new Tagify(input1,{ maxTags:5});
+        new Tagify(input1, {
+            maxTags: 5
+        });
 
         var input2 = document.querySelector("#activity_seo_keywords_en");
-        new Tagify(input2,{ maxTags:5});
+        new Tagify(input2, {
+            maxTags: 5
+        });
 
         $(document).ready(function() {
             tinymce.init({

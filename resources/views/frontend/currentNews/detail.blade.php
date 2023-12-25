@@ -272,10 +272,11 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a target="_blank" onclick="window.print();return false;" href="https://twitter.com/">
-                                                       <i class="social-icon fas fa-print"></i>
+                                                    <a target="_blank" onclick="window.print();return false;"
+                                                        href="https://twitter.com/">
+                                                        <i class="social-icon fas fa-print"></i>
                                                     </a>
-                                                 </li>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
@@ -291,21 +292,34 @@
                                 <!-- strat psot body -->
                                 <div class="post-body" id="contentToConvert" style="text-align: justify;">
                                     {!! printDesc($data->description) !!}
-                                    <br><br>
-                                    @if (reklam(11) != null && reklam(11)->status == 1)
-                                        <div class="ad-banner-img mt--45 mb--40">
-                                            <a href="{{ reklam(11)->adsense_url }}">
-                                                @if (reklam(11)->type ?? 0 == 1)
-                                                    <img src="/{{ reklam(11)->image }}" alt="" width="1320"
-                                                        style="height: 90px">
-                                                @else
-                                                    {!! reklam(11)->adsense_url ?? '' !!}
-                                                @endif
-                                            </a>
-                                        </div>
-                                    @endif
                                 </div>
                                 <!-- end post body -->
+                                <br><br>
+
+                                @if ($data->Source->source)
+                                    <div class="social-share-box-2 mb--20 mt--40">
+                                        <div class="row gutter-30">
+                                            <div class="col-xl-12 col-lg-12">
+                                                <div class="conent-block">
+                                                    <h6>KAYNAK: {{ $data->Source->source }}</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+
+                                @if (reklam(11) != null && reklam(11)->status == 1)
+                                    <div class="ad-banner-img mt--45 mb--40">
+                                        <a href="{{ reklam(11)->adsense_url }}">
+                                            @if (reklam(11)->type ?? 0 == 1)
+                                                <img src="/{{ reklam(11)->image }}" alt="" width="1320"
+                                                    style="height: 90px">
+                                            @else
+                                                {!! reklam(11)->adsense_url ?? '' !!}
+                                            @endif
+                                        </a>
+                                    </div>
+                                @endif
 
                                 <!-- start social-share-box-2 -->
                                 <div class="social-share-box-2 mb--20">
@@ -445,40 +459,40 @@
                                     <div class="row justify-content-center mb--10">
                                         <div class="col-2 col-md-1">
                                             <div class="emoji_container">
-                                                <img id="love" src="https://millimudafaa.com/assets/img/begendim.png"
+                                                <img id="love" src="{{ asset('assets/reaction/love.webp') }}"
                                                     style="cursor: pointer; width:38px;">
                                             </div>
                                         </div>
                                         <div class="col-2 col-md-1">
                                             <div class="emoji_container">
                                                 <img id="dislike"
-                                                    src="https://millimudafaa.com/assets/img/begenmedim.png"
+                                                    src="{{ asset('assets/reaction/dislike.webp') }}"
                                                     style="cursor: pointer; width:38px;">
                                             </div>
                                         </div>
                                         <div class="col-2 col-md-1">
                                             <div class="emoji_container">
                                                 <img id="clap"
-                                                    src="https://millimudafaa.com/assets/img/alkisladim.png"
+                                                    src="{{ asset('assets/reaction/clap.webp') }}"
                                                     style="cursor: pointer; width:38px;">
                                             </div>
                                         </div>
                                         <div class="col-2 col-md-1">
                                             <div class="emoji_container">
-                                                <img id="sad" src="https://millimudafaa.com/assets/img/uzuldum.png"
+                                                <img id="sad" src="{{ asset('assets/reaction/sad.webp') }}"
                                                     style="cursor: pointer; width:38px;">
                                             </div>
                                         </div>
                                         <div class="col-2 col-md-1">
                                             <div class="emoji_container">
                                                 <img id="angry"
-                                                    src="https://millimudafaa.com/assets/img/sinirlendim.png"
+                                                    src="{{ asset('assets/reaction/angry.webp') }}"
                                                     style="cursor: pointer; width:38px;">
                                             </div>
                                         </div>
                                         <div class="col-2 col-md-1">
                                             <div class="emoji_container">
-                                                <img id="shocked" src="https://millimudafaa.com/assets/img/sasirdim.png"
+                                                <img id="shocked" src="{{ asset('assets/reaction/shocked.webp') }}"
                                                     style="cursor: pointer; width:38px;">
                                             </div>
                                         </div>
@@ -963,8 +977,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                                                                                                            // limit by device width
-                                                                                                            -------------------------------*/
+                                                                                                                // limit by device width
+                                                                                                                -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
 

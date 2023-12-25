@@ -9,6 +9,7 @@ use App\Models\Comment;
 use App\Models\CurrentNews;
 use App\Models\CurrentNewsCategory;
 use App\Models\EnCurrentNews;
+use App\Models\NewsSource;
 use App\Models\UserModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -205,6 +206,13 @@ class CurrentNewsController extends Controller
         }
         $news_en->save();
 
+        if($request->source != null){
+            $source = new NewsSource();
+            $source->news_id = $news->id;
+            $source->source = $request->source;
+            $source->save();
+        }
+
         logKayit(['Haber Yönetimi ', 'Haber eklendi']);
         Alert::success('Haber Başarıyla Eklendi');
         DB::commit();
@@ -393,6 +401,16 @@ class CurrentNewsController extends Controller
                 $news_en->status = 1;
             }
             $news_en->save();
+
+            if($request->source != null){
+                $source = NewsSource::where('news_id',$news->id)->first();
+                if($source == null){
+                    $source = new NewsSource();
+                }
+                $source->news_id = $news->id;
+                $source->source = $request->source;
+                $source->save();
+            }
 
             logKayit(['Haber Yönetimi ', 'Haber düzenlendi']);
             Alert::success('Haber Başarıyla Düzenlendi');
