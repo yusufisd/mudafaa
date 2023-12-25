@@ -30,6 +30,12 @@
             margin-left: 2%
         }
 
+        .single-post-banner {
+                background-size: contain !important;
+                background-position: center !important;
+                background-repeat: no-repeat !important;
+            }
+
         @media screen and (max-width: 600px) {
             .single-post-banner {
                 background-size: 100% 95% !important;
