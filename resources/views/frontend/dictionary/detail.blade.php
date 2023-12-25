@@ -37,9 +37,6 @@
             }
         }
         */
-        .single-post-banner {
-            background-size: contain;
-        }
 
     </style>
     <!-- Start Main -->
@@ -89,7 +86,7 @@
         <!-- Start single-post-banner -->
         <div class="single-post-banner rt-gradient-overaly" 
         data-bg-image="/{{ $data->image == null ? 'assets/default_act.jpeg' : $data->image }}"
-            style="background-image: /{{ $data->image }}">
+            style="background-image: url(/{{ $data->image }});">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-9 col-lg-10 mx-auto">
