@@ -29,8 +29,9 @@
             padding: 2%;
             margin-left: 2%
         }
-        @media screen and (max-width: 992px) {
-            .single-post-banner{
+
+        @media only screen and (max-width: 600px) {
+            .single-post-banner {
                 background-size: 600px 500px
             }
         }
@@ -57,13 +58,15 @@
                 <nav class="rt-breadcrumb-wrap" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
+                            <a
+                                href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.dictionary.list')) : (route('front.dictionary.list_en')) }}">
-                                 {{ __('message.ss sözlüğü') }}
+                            <a
+                                href="{{ \Session::get('applocale') == 'tr' ? route('front.dictionary.list') : route('front.dictionary.list_en') }}">
+                                {{ __('message.ss sözlüğü') }}
                             </a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
@@ -78,7 +81,9 @@
         <!-- End inner page Banner -->
 
         <!-- Start single-post-banner -->
-        <div class="single-post-banner rt-gradient-overaly" data-bg-image="/{{ $data->image }}" style="background-image: /{{ $data->image }}">
+        <div class="single-post-banner rt-gradient-overaly" 
+        data-bg-image="/{{ $data->image == null ? 'assets/default_act.jpeg' : $data->image }}"
+            style="background-image: /{{ $data->image }}">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-9 col-lg-10 mx-auto">
@@ -203,7 +208,7 @@
 
         <!-- editor-choice-section-style-1 -->
         <section class="editor-choice-section-style-1 mt-sm-3 mt-md-5 rt-sidebar-section-layout-2 overflow-hidden">
-            @if(reklam(41) != null && reklam(41)->status == 1)
+            @if (reklam(41) != null && reklam(41)->status == 1)
                 <div class="ad-banner-img mt--45 mb--40">
                     <a href="{{ reklam(41)->adsense_url }}">
                         @if (reklam(41)->type ?? 0 == 1)
@@ -243,7 +248,8 @@
                                 <div class="slide-item">
                                     <div class="rt-post-grid grid-meta">
                                         <div class="post-img">
-                                            <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.dictionary.detail', $item->link)) : (route('front.dictionary.detail_en', $item->link)) }}">
+                                            <a
+                                                href="{{ \Session::get('applocale') == 'tr' ? route('front.dictionary.detail', $item->link) : route('front.dictionary.detail_en', $item->link) }}">
                                                 <img src="/{{ $item->image == null ? 'media/gallery/post-xl_31.jpg' : $item->image }}"
                                                     alt="post" width="551" height="431">
                                             </a>
@@ -251,7 +257,8 @@
                                         <div class="post-content">
 
                                             <h3 class="post-title">
-                                                <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.dictionary.detail', $item->link)) : (route('front.dictionary.detail_en', $item->link)) }}">
+                                                <a
+                                                    href="{{ \Session::get('applocale') == 'tr' ? route('front.dictionary.detail', $item->link) : route('front.dictionary.detail_en', $item->link) }}">
                                                     {{ $item->title }}
                                                 </a>
                                             </h3>
@@ -296,8 +303,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                                   // sidebar title limitation
-                                -------------------------------*/
+                                       // sidebar title limitation
+                                    -------------------------------*/
         // Select all tags with class .sidebar_restricted_category_title
         $('.sidebar_restricted_category_title').each(function() {
             var content = $(this).text().trim(); // get the content of a tag

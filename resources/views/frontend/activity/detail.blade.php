@@ -12,10 +12,10 @@
             color: #464847;
         }
 
-        @media only screen and (max-width: 700) {
-            
-            .single-post-banner{
-                background-size: 600px 500px!important;
+        @media only screen and (max-width: 600) {
+
+            .single-post-banner {
+                background-size: 600px 500px !important;
             }
         }
 
@@ -61,12 +61,14 @@
                 <nav class="rt-breadcrumb-wrap" aria-label="breadcrumb">
                     <ol class="breadcrumb d-inline-flex">
                         <li class="breadcrumb-item">
-                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
+                            <a
+                                href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
                         <li class="breadcrumb-item" aria-label="breadcrumb">
-                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.activity.list_en') : route('front.activity.list') }}">
+                            <a
+                                href="{{ \Session::get('applocale') == 'en' ? route('front.activity.list_en') : route('front.activity.list') }}">
                                 {{ __('message.etkinlikler') }}
                             </a>
                         </li>
@@ -100,11 +102,11 @@
                                                 <i class="far fa-calendar-alt icon"></i>
                                                 {{ $data->start_time->translatedFormat('d M Y') }}
                                             </span>
-                                            @if($data->finish_time != null)
-                                            <span class="rt-meta">
-                                                -
-                                                {{ $data->finish_time->translatedFormat('d M Y') }}
-                                            </span>
+                                            @if ($data->finish_time != null)
+                                                <span class="rt-meta">
+                                                    -
+                                                    {{ $data->finish_time->translatedFormat('d M Y') }}
+                                                </span>
                                             @endif
                                         </li>
                                     @endif
@@ -114,11 +116,11 @@
                                                 <i class="fas fa-clock icon"></i>
                                                 {{ substr($data->start_clock, 0, 5) }}
                                             </span>
-                                            @if($data->finish_clock != null)
-                                            <span class="rt-meta">
-                                                -
-                                                {{ substr($data->finish_clock, 0, 5) }}
-                                            </span>
+                                            @if ($data->finish_clock != null)
+                                                <span class="rt-meta">
+                                                    -
+                                                    {{ substr($data->finish_clock, 0, 5) }}
+                                                </span>
                                             @endif
                                         </li>
                                     @endif
@@ -131,11 +133,11 @@
                                         </li>
                                     @endif
                                     <li>
-                                        @if($data->address != null)
-                                        <span class="rt-meta">
-                                            <i class="fas fa-map-marker-alt icon"></i>
-                                            {{ $data->address }}
-                                        </span>
+                                        @if ($data->address != null)
+                                            <span class="rt-meta">
+                                                <i class="fas fa-map-marker-alt icon"></i>
+                                                {{ $data->address }}
+                                            </span>
                                         @endif
                                     </li>
                                 </ul>
@@ -204,7 +206,8 @@
                                             <div class="tag-list">
 
                                                 @foreach ($data->getKeys() as $item)
-                                                    <a href="{{ \Session::get('applocale') == 'en' ? route('front.activity.tag_list_en', $item) : route('front.activity.tag_list', $item) }}" class="tag-link" style="text-transform: capitalize">
+                                                    <a href="{{ \Session::get('applocale') == 'en' ? route('front.activity.tag_list_en', $item) : route('front.activity.tag_list', $item) }}"
+                                                        class="tag-link" style="text-transform: capitalize">
                                                         {{ $item }} </a>
                                                 @endforeach
 
@@ -223,7 +226,8 @@
                                             <li>
                                                 <h3>
                                                     <a href="{{ $data->ticket_link }}">
-                                                        {{ __('message.Online Bilet') }} <i class="fas fa-angle-double-right"></i>
+                                                        {{ __('message.Online Bilet') }} <i
+                                                            class="fas fa-angle-double-right"></i>
                                                     </a>
                                                 </h3>
                                             </li>
@@ -233,7 +237,8 @@
                                             <li>
                                                 <h3>
                                                     <a href="{{ $data->subscribe_form }}">
-                                                        {{ __('message.Katılımcı Başvuru Formu') }} <i class="fas fa-angle-double-right"></i>
+                                                        {{ __('message.Katılımcı Başvuru Formu') }} <i
+                                                            class="fas fa-angle-double-right"></i>
                                                     </a>
                                                 </h3>
                                             </li>
@@ -241,8 +246,8 @@
                                     </ul>
                                 </div>
                             </div>
-                            @if($data->subscribe_form != null || $data->ticket_link != null)
-                            <div class="border-with-spacer-1"></div>
+                            @if ($data->subscribe_form != null || $data->ticket_link != null)
+                                <div class="border-with-spacer-1"></div>
                             @endif
 
                             <div class="wrap mb--30">
@@ -307,7 +312,7 @@
                             </div>
 
                             <div class="ad-banner-img mb--40">
-                                @if(reklam(25) != null && reklam(25)->status ==1)
+                                @if (reklam(25) != null && reklam(25)->status == 1)
                                     <div class="ad-banner-img mt--45 mb--40">
                                         <a href="{{ reklam(25)->adsense_url }}">
                                             @if (reklam(25)->type ?? 0 == 1)
@@ -361,16 +366,18 @@
                                 <div class="slide-item">
                                     <div class="rt-post-grid grid-meta">
                                         <div class="post-img">
-                                            <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.activity.detail', $item->link)) : (route('front.activity.detail_en', $item->link)) }}">
+                                            <a
+                                                href="{{ \Session::get('applocale') == 'tr' ? route('front.activity.detail', $item->link) : route('front.activity.detail_en', $item->link) }}">
                                                 <img src="/{{ $item->image == null ? 'assets/default_act.jpeg' : $item->image }}"
                                                     alt="post" width="551" height="431">
                                             </a>
                                         </div>
                                         <div class="post-content">
-                                            <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.activity.categoryDetail', $item->Category->link)) : route('front.activity.categoryDetail_en', $item->Category->link) }}"
+                                            <a href="{{ \Session::get('applocale') == 'tr' ? route('front.activity.categoryDetail', $item->Category->link) : route('front.activity.categoryDetail_en', $item->Category->link) }}"
                                                 class="rt-cat-primary sidebar_restricted_category_title">{{ $item->Category->title }}</a>
                                             <h3 class="post-title">
-                                                <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.activity.detail', $item->link)) : (route('front.activity.detail_en', $item->link)) }}">
+                                                <a
+                                                    href="{{ \Session::get('applocale') == 'tr' ? route('front.activity.detail', $item->link) : route('front.activity.detail_en', $item->link) }}">
                                                     {{ $item->title }}
                                                 </a>
                                             </h3>
