@@ -94,7 +94,7 @@
                                                 <!--begin::Input group-->
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
-                                                    <label class="col-lg-2 required col-form-label fw-bold fs-6 ps-5">
+                                                    <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
                                                         {{ __('message.görsel') }} <br> <span style="font-weight:normal">
                                                             (1320px -
                                                             620px) </span></label>
@@ -160,7 +160,7 @@
                                                 <div class="row mb-6">
                                                     <!--begin::Label-->
                                                     <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
-                                                        <span class="required"> Youtube</span>
+                                                        <span class=""> Youtube</span>
                                                     </label>
                                                     <!--end::Label-->
                                                     <!--begin::Col-->
@@ -268,11 +268,11 @@
                                                                         class="col-lg-1 col-form-label required fw-bold fs-6 ps-5">Link</label>
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
-                                                                    <div class="col-lg-10">
+                                                                    <div class="col-lg-11">
                                                                         <!--begin::Row-->
                                                                         <div class="row">
                                                                             <!--begin::Col-->
-                                                                            <div class="col-lg-11 fv-row">
+                                                                            <div class="col-lg-12 fv-row">
                                                                                 <input type="text" name="link_tr"
                                                                                     id="link_tr"
                                                                                     onchange="create_slug_tr()"
@@ -620,185 +620,76 @@
                                         <div class="tab-pane fade" id="rop">
                                             <div class="tab-content">
                                                 <div id="asd" class="tab-pane fade show active">
-                                                        @if(count($dialog_tr) > 0)
-                                                        <div class="container" style=" padding:2%;" role="tabpanel">
-                                                            <!--
-                                                            <div class="row mb-6">
-                                                                <div class="col-md-6">
-                                                                    <span>
-                                                                        <img src="{{ asset('/assets/tr.png') }}" width="28"
-                                                                             height="20" alt="TR" title="TR">
-                                                                    </span>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <span>
-                                                                        <img src="{{ asset('/assets/en.png') }}" width="28"
-                                                                             height="20" alt="EN" title="EN">
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                            -->
-
-
-
-                                                            <div class="row mb-6">
-                                                                <div class="col-md-6">
-                                                                    <div class="row mb-6">
-                                                                        <label
-                                                                            class="col-lg-4 col-form-label fw-bold fs-6 ps-5">
-                                                                            <span class="required"> Soran Kişi</span>
-                                                                        </label>
-                                                                        <div class="col-lg-8 fv-row">
-                                                                            <input type="text" value="{{ $dialog_tr[0]->soran }}"
-                                                                                   class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                   name="soran"
-                                                                                   onkeyup="setToEn('questioner')"
-                                                                                   id="questioner">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <div class="row mb-6">
-                                                                        <label
-                                                                            class="col-lg-4 col-form-label fw-bold fs-6 ps-5">
-                                                                            <span class="required"> Cevaplayan Kişi</span>
-                                                                        </label>
-                                                                        <div class="col-lg-8 fv-row">
-                                                                            <input type="text" value="{{ $dialog_tr[0]->cevaplayan }}"
-                                                                                   class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                   name="cevaplayan"
-                                                                                   onkeyup="setToEn('answered')"
-                                                                                   id="answered">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                <div id="show_item">
-
-                                                    @foreach($dialog_tr as $key => $value)
-                                                        <div class="container" style=" padding:2%;" role="tabpanel">
-                                                            <!--
-                                                            <div class="row mb-6">
-                                                                <div class="col-md-6">
-                                                                    <span>
-                                                                        <img src="{{ asset('/assets/tr.png') }}" width="28"
-                                                                             height="20" alt="TR" title="TR">
-                                                                    </span>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <span>
-                                                                        <img src="{{ asset('/assets/en.png') }}" width="28"
-                                                                             height="20" alt="EN" title="EN">
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                            -->
-                                                            <div class="row mb-6">
-                                                                <div class="col-md-12">
-                                                                    <div class="row">
-                                                                        <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
-                                                                            <span class="required"> Soru TR</span>
-                                                                        </label>
-                                                                        <div class="col-lg-10 fv-row">
-                                                                            <input type="text" value="{{ $value->soru }}"
-                                                                                   class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                   name="soru_tr[]" id="">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row mb-6">
-                                                                <div class="col-md-12">
-                                                                    <div class="row mb-6">
-                                                                        <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
-                                                                            <span class="required"> Soru EN</span>
-                                                                        </label>
-                                                                        <div class="col-lg-10 fv-row">
-                                                                            <input type="text" value="{{ $dialog_en[$key]->soru }}"
-                                                                                   class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                   name="soru_en[]" id="">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="row mb-6">
-                                                                <div class="col-md-12">
-                                                                    <div class="row">
-                                                                        <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
-                                                                            <span class="required"> Cevap TR</span>
-                                                                        </label>
-                                                                        <div class="col-lg-10 fv-row">
-                                                                            <input type="text" value="{{ $value->soru }}"
-                                                                                   class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                   name="cevap_tr[]" id="">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row mb-6">
-                                                                <div class="col-md-12">
-                                                                    <div class="row mb-6">
-                                                                        <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
-                                                                            <span class="required"> Cevap EN</span>
-                                                                        </label>
-                                                                        <div class="col-lg-10 fv-row">
-                                                                            <input type="text" value="{{ $dialog_en[$key]->cevap }}"
-                                                                                   class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                   name="cevap_en[]" id="">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                    @if($key == 0)
-                                                        <button type="button" id="main_add_tr"
-                                                                class="btn btn-primary add_item_buton"
-                                                                style="margin: auto; display: flex">EKLE</button>
-                                                        @elseif($key == count($dialog_tr) - 1)
-                                                        <center>
-                                                            <button type="button" id="main_add_tr"
-                                                                    class="btn btn-sm btn-primary add_item_buton"
-                                                                    style="margin: auto; display: inline-block">EKLE</button>
-                                                            <button type="button" style="margin: auto; display: inline-block" class="btn btn-sm btn-danger delete_item_buton">SİL</button>
-                                                        </center>
-                                                        @else
-                                                        <div>
-                                                            <button type="button" style="margin: auto; display: flex" class="btn btn-sm btn-danger delete_item_buton">SİL</button>
-                                                        </div>
-                                                        @endif
-                                                </div>
-                                                @endforeach
-                                                </div>
-                                                    @else
+                                                    @if (count($dialog_tr) > 0)
                                                         <div id="show_item">
-                                                                <div class="container" style=" padding:2%;" role="tabpanel">
+
+                                                            @foreach ($dialog_tr as $key => $value)
+                                                                <div class="container" style=" padding:2%; border-bottom: 1px solid lightgray"
+                                                                    role="tabpanel">
+                                                                    <div class="row mb-6">
+                                                                        <div class="col-md-6">
+                                                                            <div class="row mb-6">
+                                                                                <label
+                                                                                    class="col-lg-4 col-form-label fw-bold fs-6 ps-5">
+                                                                                    <span class="required"> Soran Kişi</span>
+                                                                                </label>
+                                                                                <div class="col-lg-8 fv-row">
+                                                                                    <input type="text"
+                                                                                        value="{{ $dialog_tr[0]->soran }}"
+                                                                                        class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                        name="soran"
+                                                                                        required
+                                                                                        onkeyup="setToEn('questioner')"
+                                                                                        id="questioner">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="row mb-6">
+                                                                                <label
+                                                                                    class="col-lg-4 col-form-label fw-bold fs-6 ps-5">
+                                                                                    <span class="required"> Cevaplayan Kişi</span>
+                                                                                </label>
+                                                                                <div class="col-lg-8 fv-row">
+                                                                                    <input type="text"
+                                                                                    required
+                                                                                        value="{{ $dialog_tr[0]->cevaplayan ?? '' }}"
+                                                                                        class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                        name="cevaplayan"
+                                                                                        onkeyup="setToEn('answered')"
+                                                                                        id="answered">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                     <!--
-                                                            <div class="row mb-6">
-                                                                <div class="col-md-6">
-                                                                    <span>
-                                                                        <img src="{{ asset('/assets/tr.png') }}" width="28"
-                                                                             height="20" alt="TR" title="TR">
-                                                                    </span>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <span>
-                                                                        <img src="{{ asset('/assets/en.png') }}" width="28"
-                                                                             height="20" alt="EN" title="EN">
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                            -->
+                                                                        <div class="row mb-6">
+                                                                            <div class="col-md-6">
+                                                                                <span>
+                                                                                    <img src="{{ asset('/assets/tr.png') }}" width="28"
+                                                                                         height="20" alt="TR" title="TR">
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <span>
+                                                                                    <img src="{{ asset('/assets/en.png') }}" width="28"
+                                                                                         height="20" alt="EN" title="EN">
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        -->
                                                                     <div class="row mb-6">
                                                                         <div class="col-md-12">
                                                                             <div class="row">
-                                                                                <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
+                                                                                <label
+                                                                                    class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
                                                                                     <span class="required"> Soru TR</span>
                                                                                 </label>
                                                                                 <div class="col-lg-10 fv-row">
                                                                                     <input type="text"
-                                                                                           class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                           name="soru_tr[]" id="">
+                                                                                        value="{{ $value->soru }}"
+                                                                                        class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                        name="soru_tr[]" id="">
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -806,13 +697,15 @@
                                                                     <div class="row mb-6">
                                                                         <div class="col-md-12">
                                                                             <div class="row mb-6">
-                                                                                <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
+                                                                                <label
+                                                                                    class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
                                                                                     <span class="required"> Soru EN</span>
                                                                                 </label>
                                                                                 <div class="col-lg-10 fv-row">
                                                                                     <input type="text"
-                                                                                           class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                           name="soru_en[]" id="">
+                                                                                        value="{{ $dialog_en[$key]->soru }}"
+                                                                                        class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                        name="soru_en[]" id="">
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -821,13 +714,15 @@
                                                                     <div class="row mb-6">
                                                                         <div class="col-md-12">
                                                                             <div class="row">
-                                                                                <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
+                                                                                <label
+                                                                                    class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
                                                                                     <span class="required"> Cevap TR</span>
                                                                                 </label>
                                                                                 <div class="col-lg-10 fv-row">
                                                                                     <input type="text"
-                                                                                           class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                           name="cevap_tr[]" id="">
+                                                                                        value="{{ $value->soru }}"
+                                                                                        class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                        name="cevap_tr[]" id="">
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -835,56 +730,187 @@
                                                                     <div class="row mb-6">
                                                                         <div class="col-md-12">
                                                                             <div class="row mb-6">
-                                                                                <label class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
+                                                                                <label
+                                                                                    class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
                                                                                     <span class="required"> Cevap EN</span>
                                                                                 </label>
                                                                                 <div class="col-lg-10 fv-row">
                                                                                     <input type="text"
-                                                                                           class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
-                                                                                           name="cevap_en[]" id="">
+                                                                                        value="{{ $dialog_en[$key]->cevap }}"
+                                                                                        class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                        name="cevap_en[]" id="">
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                    @if ($key == 0)
                                                                         <button type="button" id="main_add_tr"
-                                                                                class="btn btn-primary add_item_buton"
-                                                                                style="margin: auto; display: flex">EKLE</button>
+                                                                            class="btn btn-sm btn-primary add_item_buton"
+                                                                            style="margin: auto; display: flex">EKLE</button>
+                                                                    @elseif($key == count($dialog_tr) - 1)
+                                                                        <center>
+                                                                            <button type="button" id="main_add_tr"
+                                                                                class="btn btn-sm btn-primary add_item_buton"
+                                                                                style="margin: auto; display: inline-block">EKLE</button>
+                                                                            <button type="button"
+                                                                                style="margin: auto; display: inline-block"
+                                                                                class="btn btn-sm btn-danger delete_item_buton">SİL</button>
+                                                                        </center>
+                                                                    @else
+                                                                        <div>
+                                                                            <button type="button"
+                                                                                style="margin: auto; display: flex"
+                                                                                class="btn btn-sm btn-danger delete_item_buton">SİL</button>
+                                                                        </div>
+                                                                    @endif
                                                                 </div>
+                                                            @endforeach
+                                                        </div>
+                                                    @else
+                                                        <div id="show_item">
+                                                            <div class="container" style=" padding:2%;" role="tabpanel">
+                                                                <!--
+                                                                        <div class="row mb-6">
+                                                                            <div class="col-md-6">
+                                                                                <span>
+                                                                                    <img src="{{ asset('/assets/tr.png') }}" width="28"
+                                                                                         height="20" alt="TR" title="TR">
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <span>
+                                                                                    <img src="{{ asset('/assets/en.png') }}" width="28"
+                                                                                         height="20" alt="EN" title="EN">
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        -->
+                                                                    <div class="row mb-6">
+                                                                        <div class="col-md-6">
+                                                                            <div class="row mb-6">
+                                                                                <label
+                                                                                    class="col-lg-4 col-form-label fw-bold fs-6 ps-5">
+                                                                                    <span class="required"> Soran Kişi</span>
+                                                                                </label>
+                                                                                <div class="col-lg-8 fv-row">
+                                                                                    <input type="text"
+                                                                                        class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                        name="soran"
+                                                                                        required
+                                                                                        onkeyup="setToEn('questioner')"
+                                                                                        id="questioner">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="row mb-6">
+                                                                                <label
+                                                                                    class="col-lg-4 col-form-label fw-bold fs-6 ps-5">
+                                                                                    <span class="required"> Cevaplayan Kişi</span>
+                                                                                </label>
+                                                                                <div class="col-lg-8 fv-row">
+                                                                                    <input type="text"
+                                                                                    required
+                                                                                        class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                        name="cevaplayan"
+                                                                                        onkeyup="setToEn('answered')"
+                                                                                        id="answered">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                <div class="row mb-6">
+                                                                    <div class="col-md-12">
+                                                                        <div class="row">
+                                                                            <label
+                                                                                class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
+                                                                                <span class="required"> Soru TR</span>
+                                                                            </label>
+                                                                            <div class="col-lg-10 fv-row">
+                                                                                <input type="text"
+                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                    name="soru_tr[]" id="">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-6">
+                                                                    <div class="col-md-12">
+                                                                        <div class="row mb-6">
+                                                                            <label
+                                                                                class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
+                                                                                <span class="required"> Soru EN</span>
+                                                                            </label>
+                                                                            <div class="col-lg-10 fv-row">
+                                                                                <input type="text"
+                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                    name="soru_en[]" id="">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row mb-6">
+                                                                    <div class="col-md-12">
+                                                                        <div class="row">
+                                                                            <label
+                                                                                class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
+                                                                                <span class="required"> Cevap TR</span>
+                                                                            </label>
+                                                                            <div class="col-lg-10 fv-row">
+                                                                                <input type="text"
+                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                    name="cevap_tr[]" id="">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-6">
+                                                                    <div class="col-md-12">
+                                                                        <div class="row mb-6">
+                                                                            <label
+                                                                                class="col-lg-2 col-form-label fw-bold fs-6 ps-5">
+                                                                                <span class="required"> Cevap EN</span>
+                                                                            </label>
+                                                                            <div class="col-lg-10 fv-row">
+                                                                                <input type="text"
+                                                                                    class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                                                    name="cevap_en[]" id="">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <button type="button" id="main_add_tr"
+                                                                    class="btn btn-primary add_item_buton"
+                                                                    style="margin: auto; display: flex">EKLE</button>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    @endif
-
-
-                                                    <input type="hidden" id="has_dialog_tr"
-                                                        value="{{ count($dialog_tr) }}">
-                                                </div>
                                             </div>
+                                            @endif
+
+
+                                            <input type="hidden" id="has_dialog_tr" value="{{ count($dialog_tr) }}">
                                         </div>
                                     </div>
                                 </div>
-                                <!--end::Tab-->
                             </div>
-                            <!--begin::Body-->
                         </div>
-                    </div>
-                    <!--end::Col-->
-                    <div class="right" style="text-align: right">
-                        <button class="btn btn-sm btn-primary"> {{ __('message.kaydet') }} </button>
+                        <!--end::Tab-->
                     </div>
                 </div>
-                <!--end::Row-->
-
-
-
+                <!--begin::Body-->
+                <!--end::Col-->
+                <div class="right" style="text-align: right">
+                    <button class="btn btn-sm btn-primary"> {{ __('message.kaydet') }} </button>
+                </div>
             </div>
-            <!--end::Content container-->
     </div>
-    <!--end::Content-->
+    <!--end::Row-->
+
+    </div>
     </form>
 
     </div>
-    <!--end::Content wrapper-->
 @endsection
 @section('script')
     <script>
@@ -1087,11 +1113,45 @@
                 if (this_id != "main_add_tr") {
                     $(this).remove();
                 }
-                let questioner = $("#questioner_en").val();
-                let answered = $("#answered_en").val();
+                let questioner = $("#questioner").val();
+                let answered = $("#answered").val();
                 e.preventDefault();
                 $("#show_item").append(`
-                <div class="container mt-5" style=" padding:2%; border-top: 1px solid black" role="tabpanel">
+                <div class="container mt-5" style=" padding:2%; border-bottom: 1px solid lightgray" role="tabpanel">
+                    <div class="row mb-6">
+                        <div class="col-md-6">
+                            <div class="row mb-6">
+                                <label
+                                    class="col-lg-4 col-form-label fw-bold fs-6 ps-5">
+                                    <span class="required"> Soran Kişi</span>
+                                </label>
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text"
+                                        class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                        name="soran"
+                                        required
+                                        value="${questioner}"
+                                        onkeyup="setToEn('questioner')">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mb-6">
+                                <label
+                                    class="col-lg-4 col-form-label fw-bold fs-6 ps-5">
+                                    <span class="required"> Cevaplayan Kişi</span>
+                                </label>
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text"
+                                    required
+                                        class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                        name="cevaplayan"
+                                        value="${answered}"
+                                        onkeyup="setToEn('answered')">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row mb-6">
                         <div class="col-md-12">
                             <div class="row">
@@ -1164,7 +1224,6 @@
             });
 
         });
-
     </script>
     <script>
         // RÖPORTAJ EN İÇİN GEÇERLİ OLAN KOD BLOĞU

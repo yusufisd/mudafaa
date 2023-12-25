@@ -109,6 +109,9 @@
             min-height: 50px!important;
             text-align: center;
         }
+        .cc-link{
+            margin-top:-2px;
+        }
     </style>
 
     @yield('css')

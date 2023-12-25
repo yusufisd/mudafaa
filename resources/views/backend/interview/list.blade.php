@@ -134,7 +134,7 @@
                                                             style="width:100px; border-radius:5%" alt="">
                                                     </td>
 
-                                                    <td style="text-align: center"> {{ substr($item->title,0,50) }}... </td>
+                                                    <td style="text-align: center"> {{ ($item->title) }} </td>
                                                     <td style="text-align: center; text-transform:capitalize"> {{ $item->Author->name }}
                                                         {{ $item->Author->surname }} </td>
                                                     <td>

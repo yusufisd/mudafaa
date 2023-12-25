@@ -876,6 +876,38 @@
                 $("#show_item").append('<div class="mt-4 container" style=" padding-top:10%; padding-bottom:10%; border-top: 1px solid black; "\
                             role="tabpanel">\
                             <div class="row mb-6">\
+                            <div class="col-md-6">\
+                                    <div class="row mb-6">\
+                                        <label\
+                                            class="col-lg-4 col-form-label fw-bold fs-6 ps-5">\
+                                            <span class="required"> Soran Kişi</span>\
+                                        </label>\
+                                        <div class="col-lg-8 fv-row">\
+                                            <input type="text"\
+                                                class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"\
+                                                name="soran"\
+                                                value="'+ questioner +'"\
+                                                onkeyup="setToEn('questioner')"\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                                <div class="col-md-6">\
+                                    <div class="row mb-6">\
+                                        <label\
+                                            class="col-lg-4 col-form-label fw-bold fs-6 ps-5">\
+                                            <span class="required"> Cevaplayan Kişi</span>\
+                                        </label>\
+                                        <div class="col-lg-8 fv-row">\
+                                            <input type="text"\
+                                                class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"\
+                                                name="cevaplayan"\
+                                                onkeyup="setToEn('answered')"\
+                                                value="'+ answered +'">\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                            </div>\
+                            <div class="row mb-6">\
                                 <div class="col-md-6">\
                                     <div class="row mb-6">\
                                         <label class="col-lg-4 col-form-label ps-5 fw-bold fs-6">\
@@ -945,11 +977,43 @@
                 if (this_id != "main_add_tr") {
                     $(this).remove();
                 }
-                let questioner = $("#questioner_en").val();
-                let answered = $("#answered_en").val();
+                let questioner = $("#questioner").val();
+                let answered = $("#answered").val();
                 e.preventDefault();
                 $("#show_item").append(`
-                <div class="container mt-5" style=" padding:2%; border-top: 1px solid black" role="tabpanel">
+                <div class="container mt-5" style=" padding:2%; border-top: 1px solid lightgray" role="tabpanel">
+                    <div class="row mb-6">
+                            <div class="col-md-6">
+                                    <div class="row mb-6">
+                                        <label
+                                            class="col-lg-4 col-form-label fw-bold fs-6 ps-5">
+                                            <span class="required"> Soran Kişi</span>
+                                        </label>
+                                        <div class="col-lg-8 fv-row">
+                                            <input type="text"
+                                                class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                name="soran"
+                                                value="${questioner}"
+                                                onkeyup="setToEn('questioner')">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row mb-6">
+                                        <label
+                                            class="col-lg-4 col-form-label fw-bold fs-6 ps-5">
+                                            <span class="required"> Cevaplayan Kişi</span>
+                                        </label>
+                                        <div class="col-lg-8 fv-row">
+                                            <input type="text"
+                                                class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
+                                                name="cevaplayan"
+                                                onkeyup="setToEn('answered')"
+                                                value="${answered}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                     <div class="row mb-6">
                         <div class="col-md-12">
                             <div class="row">
@@ -1015,7 +1079,7 @@
                 </div>`);
             });
 
-            $(document).on('click', '.delete_item_buton2', function(e) {
+            $(document).on('click', '.delete_item_buton', function(e) {
                 e.preventDefault();
                 let row_item = $(this).parent().parent();
                 $(row_item).remove();
