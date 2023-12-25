@@ -32,7 +32,8 @@
 
         @media only screen and (max-width: 600px) {
             .single-post-banner {
-                background-size: contain
+                background-size: contain;
+                background-position: center;
             }
         }
 
