@@ -1403,7 +1403,7 @@
                         </div>
                         <br>
                         <div class="center">
-                            <div class="g-recaptcha" data-sitekey="{{ getCaptchaSiteKey() }}" data-callback="onSubmit">
+                            <div class="g-recaptcha" data-sitekey="{{ getCaptchaSiteKey() }}" >
                             </div>
                         </div>
                         <br>
