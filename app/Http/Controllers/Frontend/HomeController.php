@@ -361,7 +361,7 @@ class HomeController extends Controller
             }
         }
         foreach ($data_en as $item){
-            $news_en = EnDefenseViewCounter::where('news_id',$item->id)->first();
+            $news_en = EnDefenseViewCounter::where('defense_id',$item->id)->first();
             if($news_en != null){
                 $news_en->view_counter = rand(155,555);
                 $news_en->save();
@@ -373,5 +373,25 @@ class HomeController extends Controller
             }
         }
         return "Başarılı";
+    }
+
+    public function defenseRandomEditor(){
+        $editor = Role::where('name','like','%'.'editör'.'%')->first();
+        $data = DefenseIndustryContent::get();
+        $data_en = EnDefenseIndustryContent::get();
+        if($editor != null){
+            foreach($data as $item){
+                $random_person = UserModel::where('role',$editor->id)->inRandomOrder()->first();
+                $item->author_id = $random_person->id;
+                $item->save();
+            }
+            foreach($data_en as $item){
+                $random_person = UserModel::where('role',$editor->id)->inRandomOrder()->first();
+                $item->author_id = $random_person->id;
+                $item->save();
+            }
+            return "Yazarlar değiştirildi.";
+        }
+        return "Yazar değiştirmede hata.";
     }
 }
