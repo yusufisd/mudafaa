@@ -296,12 +296,12 @@
                                 <!-- end post body -->
                                 <br><br>
 
-                                @if ($data->Source->source)
+                                @if ($data->Source && $data->Source->source)
                                     <div class="social-share-box-2 mb--20 mt--40">
                                         <div class="row gutter-30">
                                             <div class="col-xl-12 col-lg-12">
                                                 <div class="conent-block">
-                                                    <h6>KAYNAK: {{ $data->Source->source }}</h6>
+                                                    <h6> {{ __('message.kaynak') }} : {{ $data->Source->source }}</h6>
                                                 </div>
                                             </div>
                                         </div>

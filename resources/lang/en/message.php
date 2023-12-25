@@ -141,5 +141,6 @@ return [
     "Web sitemizde size en iyi deneyimi sunabilmemiz için çerezleri kullanıyoruz. Bu siteyi kullanmaya devam ederseniz, bunu kabul etmiş sayılıyorsunuz." => "We use cookies to ensure that we give you the best experience on our website. If you continue to use this site, you agree to this.",
     "Kabul Et" => "Accept",
     "Daha fazla bilgi" => "More information",
+    "kaynak" => "SOURCE",
 ];
 ?>

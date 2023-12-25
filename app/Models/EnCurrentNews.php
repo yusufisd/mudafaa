@@ -75,4 +75,8 @@ class EnCurrentNews extends Model
         }
 
     }
+
+    public function Source(){
+        return $this->hasOne(NewsSource::class,'news_id','currentNews_id');
+    }
 }
