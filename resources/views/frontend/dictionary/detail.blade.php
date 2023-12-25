@@ -32,8 +32,9 @@
 
         @media only screen and (max-width: 600px) {
             .single-post-banner {
-                background-size: cover;
-                background-position: center;
+                background-size: 100% 80% !important;
+                background-position: center !important;
+                background-repeat: no-repeat !important;
             }
         }
 
