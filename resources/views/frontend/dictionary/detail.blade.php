@@ -32,7 +32,7 @@
 
         @media only screen and (max-width: 600px) {
             .single-post-banner {
-                background-size: 100% 80% !important;
+                background-size: 100% 95% !important;
                 background-position: center !important;
                 background-repeat: no-repeat !important;
             }
