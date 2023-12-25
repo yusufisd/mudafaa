@@ -738,6 +738,7 @@
     <!-- End wrapper -->
 
 
+
     <!-- Dependency Scripts -->
     <script src="{{ asset('assets/frontend/dependencies/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/frontend/dependencies/popper.js/popper.min.js') }}"></script>
@@ -751,6 +752,7 @@
     <script src="{{ asset('assets/frontend/dependencies/validator/validator.min.js') }}"></script>
     <script src="{{ asset('assets/frontend/dependencies/tween-max/tween-max.js') }}"></script>
     <script src="{{ asset('assets/frontend/dependencies/wow/js/wow.min.js') }}"></script>
+    <script type='text/javascript' src='{{ asset('/assets/frontend/js/cerez.js') }}'></script>
 
     <!-- custom -->
     <script src="{{ asset('assets/frontend/js/app.js') }}"></script>
@@ -760,6 +762,35 @@
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @include('sweetalert::alert')
+    <script>
+        window.addEventListener("load", function() {
+            window.cookieconsent.initialise({
+                "palette": {
+                    "popup": {
+                        "background": "#d71621", // şerit arkaplan rengi
+                        "text": "#ffffff" // şerit üzerindeki yazı rengi
+                    },
+                    "button": {
+                        "background": "#333", // buton arkaplan rengi - "transparent" kullanıp border açabilirsiniz.
+                        //"border": "#14a7d0", arkaplan rengini transparent yapıp çerçeve kullanabilirsini
+                        "text": "#ffffff" // buton yazı rengi
+                    }
+                },
+                "theme": "classic", // kullanabileceğiniz temalar block, edgeless, classic
+                // "type": "opt-out", gizle uyarısını aktif etmek için
+                // "position": "top", aktif ederseniz uyarı üst kısımda görünür
+                // "position": "top", "static": true, aktif ederseniz uyarı üst kısımda sabit olarak görünür
+                // "position": "bottom-left", aktif ederseniz uyarı solda görünür
+                //"position": "bottom-right", aktif ederseniz uyarı sağda görünür
+                "content": {
+                    "message": "{{ __('msg.Web sitemizde size en iyi deneyimi sunabilmemiz için çerezleri kullanıyoruz. Bu siteyi kullanmaya devam ederseniz, bunu kabul etmiş sayılıyorsunuz.') }}",
+                    "dismiss": "{{ __('msg.tamam') }}",
+                    "link": "{{ __('msg.Daha fazla bilgi') }}",
+                    "href": "{{ asset('/assets/frontend/img/kvkk.pdf') }}"
+                }
+            })
+        });
+    </script>
 
 
 </body>
