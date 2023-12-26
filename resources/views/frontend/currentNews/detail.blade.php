@@ -282,7 +282,7 @@
                                                 <li>
                                                     @if ($google_news)
                                                         <div class="image">
-                                                            <a style="width:100px"
+                                                            <a style="width:100px" target="_blank"
                                                                 href="{{ $google_news->google_news_link }}">
                                                                 <img src="{{ asset('assets/news_google.webp') }}"
                                                                   style="width: 100%;"  alt="">
