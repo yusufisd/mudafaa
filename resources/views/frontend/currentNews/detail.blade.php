@@ -297,8 +297,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a target="_blank" onclick="window.print();return false;"
-                                                        href="https://twitter.com/">
+                                                    <a target="_blank" onclick="window.print();return false;">
                                                         <i class="social-icon fas fa-print"></i>
                                                     </a>
                                                 </li>

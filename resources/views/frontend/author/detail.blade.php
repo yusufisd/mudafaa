@@ -64,9 +64,7 @@
                                 <h2 class="title" style="text-transform: capitalize"> {{ $data->name }}
                                     {{ $data->surname }} </h2>
                                 <!-- <span class="designation">Senior Author</span> -->
-                                <p>
-                                    {!! $data->description !!}
-                                </p>
+                                
                             </div>
                             <div class="author-social-area">
                                 <ul class="author-social-1 footer-social">
@@ -98,14 +96,7 @@
                                         </li>
                                     @endif
 
-                                    @if ($data->phone != null)
-                                        <li class="social-item">
-                                            <a href="https://wa.me/+90{{ $data->phone }}" class="social-link wh"
-                                                target="_blank">
-                                                <i class="fab fa-whatsapp"></i>
-                                            </a>
-                                        </li>
-                                    @endif
+                                    
 
                                 </ul>
                             </div>

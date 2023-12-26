@@ -314,7 +314,7 @@
                                     <div class="separator my-10"></div>
 
                                     <div class="row mb-6">
-                                        <label class="required col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5">
+                                        <label class=" col-lg-12 col-form-label fw-bold fs-6 mb-5 ps-5">
                                             <span>Biyografi</span>
                                         </label>
                                         <div class="col-lg-12 fv-row mb-5 ps-5">

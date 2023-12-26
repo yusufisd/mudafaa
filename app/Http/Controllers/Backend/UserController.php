@@ -42,21 +42,17 @@ class UserController extends Controller
         $request->validate([
             "user_name" => "required",
             "user_surname" => "required",
-            "user_no" => "required",
             "user_email" => "required|email",
             "role" => "required",
-            "description" => "required",
             "user_password" => "required",
             "user_password_again" => "required|same:user_password",
         ],[
             "user_name.required" => "İsim boş bırakılamaz",
             "user_surname.required" => "Soyisim boş bırakılamaz",
-            "user_no.required" => "Telefon boş bırakılamaz",
             "user_email.required" => "Email boş bırakılamaz",
             "user_email.email" => "Email tipi doğru girilmelidir",
             "role.required" => "Kullanıcı grubu boş bırakılamaz",
             "user_password.required" => "Şifre boş bırakılamaz",
-            "description.required" => "Açıklama boş bırakılamaz",
             "user_password_again.required" => "Şifre tekrarı boş bırakılamaz",
             "user_password_again.same" => "Şifreler eşleşmiyor",
         ]);
@@ -107,18 +103,14 @@ class UserController extends Controller
         $request->validate([
             "user_name" => "required",
             "user_surname" => "required",
-            "user_no" => "required",
             "user_email" => "required|email",
             "role" => "required",
-            "description" => "required",
         ],[
             "user_name.required" => "İsim boş bırakılamaz",
             "user_surname.required" => "Soyisim boş bırakılamaz",
-            "user_no.required" => "Telefon boş bırakılamaz",
             "user_email.required" => "Email boş bırakılamaz",
             "user_email.email" => "Email tipi doğru girilmelidir",
             "role.required" => "Kullanıcı grubu boş bırakılamaz",
-            "description.required" => "Açıklama boş bırakılamaz",
         ]);
         try {
             DB::beginTransaction();
