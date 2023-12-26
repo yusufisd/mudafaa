@@ -162,18 +162,6 @@
                                                 </li>
                                                 <li>
                                                     <span class="rt-meta">
-                                                        <i class="far fa-calendar-alt icon"></i>
-                                                        {{ $data->live_time->translatedFormat('d M Y') }}
-                                                        @if ($data->created_at != $data->updated_at)
-                                                            | <b> {{ __('message.güncelleme') }} :</b>
-                                                            {{ $data->updated_at->translatedFormat('d M Y H:i') }}
-                                                        @endif
-                                                    </span>
-                                                </li>
-                                            </ul>
-                                            <ul>
-                                                <li>
-                                                    <span class="rt-meta">
                                                         <i class="fa-solid fa-comments"></i>
                                                         {{ $data->CommentCount() }}
                                                     </span>
@@ -191,6 +179,20 @@
                                                     </span>
                                                 </li>
                                             </ul>
+                                            <ul>
+
+                                                <li>
+                                                    <span class="rt-meta">
+                                                        <i class="far fa-calendar-alt icon"></i>
+                                                        {{ $data->live_time->translatedFormat('d M Y') }}
+                                                        @if ($data->created_at != $data->updated_at)
+                                                            | <b> {{ __('message.güncelleme') }} :</b>
+                                                            {{ $data->updated_at->translatedFormat('d M Y H:i') }}
+                                                        @endif
+                                                    </span>
+                                                </li>
+                                            </ul>
+
                                         </div>
                                         <ul class="meta1">
                                             <li>
@@ -250,8 +252,9 @@
                                                             <i class="social-icon fab fa-facebook-f"></i>
                                                         </a>
                                                     </li>
-                                                    <li >
-                                                        <a class="tw" style="background-color: black;border:solid;border-color:gray"
+                                                    <li>
+                                                        <a class="tw"
+                                                            style="background-color: black;border:solid;border-color:gray"
                                                             onclick="share_count()" target="_blank"
                                                             href="https://twitter.com/intent/tweet?text={{ $data->title }}&url={{ request()->url() }}">
                                                             <i class="fa-brands fa-square-x-twitter twitter"></i>
@@ -279,9 +282,10 @@
                                                 <li>
                                                     @if ($google_news)
                                                         <div class="image">
-                                                            <a style="width: 100px;height:40px" href="{{ $google_news->google_news_link }}">
+                                                            <a style="width:100px"
+                                                                href="{{ $google_news->google_news_link }}">
                                                                 <img src="{{ asset('assets/news_google.webp') }}"
-                                                                    style="width: 100px;height:40px" alt="">
+                                                                  style="width: 100%;"  alt="">
                                                             </a>
                                                         </div>
                                                     @endif
@@ -995,8 +999,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                                                                                                                        // limit by device width
-                                                                                                                        -------------------------------*/
+                                                                                                                            // limit by device width
+                                                                                                                            -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
 

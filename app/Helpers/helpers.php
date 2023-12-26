@@ -13,6 +13,7 @@ use App\Models\EnTopbar;
 use App\Models\InterviewComment;
 use App\Models\LogModel;
 use App\Models\MenuModel;
+use App\Models\MobileApp;
 use App\Models\Page;
 use App\Models\Reklam;
 use App\Models\SocialMedia;
@@ -198,4 +199,9 @@ function menuControl($id){
     }else{
         return 1;
     }
+}
+
+function mobileApp(){
+    $data = MobileApp::latest()->first();
+    return $data;
 }

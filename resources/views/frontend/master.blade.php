@@ -655,21 +655,45 @@
                                             @endif
                                         </ul>
                                         <ul class="footer-social mt--20" style="justify-content: center">
+                                            @if(mobileApp() != null && mobileApp()->ios != null)
+                                            <li>
+                                                <a href="{{ mobileApp()->ios }}" style="width: 5.5rem; margin-right:2px">
+                                                    <img src="{{ asset('assets/app-store.webp') }}">
+                                                </a>
+                                            </li>
+                                            @else
                                             <li>
                                                 <a href="#" style="width: 5.5rem; margin-right:2px">
                                                     <img src="{{ asset('assets/app-store.webp') }}">
                                                 </a>
                                             </li>
+                                            @endif
+                                            @if(mobileApp() != null && mobileApp()->google != null)
+                                            <li>
+                                                <a href="{{ mobileApp()->google }}" style="width: 5.5rem; margin-right:2px">
+                                                    <img src="{{ asset('assets/google-play.webp') }}">
+                                                </a>
+                                            </li>
+                                            @else
                                             <li>
                                                 <a href="#" style="width: 5.5rem; margin-right:2px">
                                                     <img src="{{ asset('assets/google-play.webp') }}">
                                                 </a>
                                             </li>
+                                            @endif
+                                            @if(mobileApp() != null && mobileApp()->huawei != null)
+                                            <li>
+                                                <a href="{{ mobileApp()->huawei }}" style="width: 5.5rem; margin-right:2px">
+                                                    <img src="{{ asset('assets/huawei-app.webp') }}">
+                                                </a>
+                                            </li>
+                                            @else
                                             <li>
                                                 <a href="#" style="width: 5.5rem; margin-right:2px">
                                                     <img src="{{ asset('assets/huawei-app.webp') }}">
                                                 </a>
                                             </li>
+                                            @endif
 
                                         </ul>
                                     </div>
