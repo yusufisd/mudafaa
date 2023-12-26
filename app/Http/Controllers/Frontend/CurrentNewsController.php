@@ -10,6 +10,7 @@ use App\Models\EmojiType;
 use App\Models\EnCurrentNews;
 use App\Models\EnCurrentNewsCategory;
 use App\Models\EnPage;
+use App\Models\GoogleNews;
 use App\Models\NewsViewCounter;
 use App\Models\Page;
 use App\Models\PostType;
@@ -64,11 +65,11 @@ class CurrentNewsController extends Controller
         ];
 
 
-        
+        $google_news = GoogleNews::latest()->first();
         $kvkk_tr = Page::where('link','like','%'.'kvkk'.'%')->first();
         $kvkk_en = EnPage::where('link','like','%'.'pdpl'.'%')->first();
 
-        return view('frontend.currentNews.detail',compact('data','emojies','previous_data','next_data','other_news','four_news','kvkk_tr','kvkk_en'));
+        return view('frontend.currentNews.detail',compact('data','emojies','previous_data','next_data','other_news','four_news','kvkk_tr','kvkk_en','google_news'));
     }
 
     public function tag_list($title){

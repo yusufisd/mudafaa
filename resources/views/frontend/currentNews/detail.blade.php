@@ -1,8 +1,17 @@
 @extends('frontend.master')
 @section('title', $data->title ?? 'Milli Müdafaa')
 @section('meta-title', $data->title ?? 'Milli Müdafaa')
-@section('keywords', $data->seo_key ?? 'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul, TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar, temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika, savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
-@section('description', $data->short_description ?? 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri için tıklayın!')
+@section('keywords',
+    $data->seo_key ??
+    'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya,
+    Teknoloji, İstanbul, TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli
+    teknoloji, milli teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar,
+    haluk bayraktar, temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış
+    politika, savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
+@section('description',
+    $data->short_description ??
+    'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün
+    yer alan son durum bilgileri için tıklayın!')
 @section('simage', asset($data->image))
 @section('stitle', $data->title)
 @section('sdescription', $data->short_description)
@@ -241,8 +250,8 @@
                                                             <i class="social-icon fab fa-facebook-f"></i>
                                                         </a>
                                                     </li>
-                                                    <li>
-                                                        <a class="tw" style="background-color: black"
+                                                    <li >
+                                                        <a class="tw" style="background-color: black;border:solid;border-color:gray"
                                                             onclick="share_count()" target="_blank"
                                                             href="https://twitter.com/intent/tweet?text={{ $data->title }}&url={{ request()->url() }}">
                                                             <i class="fa-brands fa-square-x-twitter twitter"></i>
@@ -265,7 +274,18 @@
                                             </div>
                                         </div>
                                         <div class="right-area">
+
                                             <ul class="social-share-style-1 layout-2 mb--10">
+                                                <li>
+                                                    @if ($google_news)
+                                                        <div class="image">
+                                                            <a style="width: 100px;height:40px" href="{{ $google_news->google_news_link }}">
+                                                                <img src="{{ asset('assets/news_google.webp') }}"
+                                                                    style="width: 100px;height:40px" alt="">
+                                                            </a>
+                                                        </div>
+                                                    @endif
+                                                </li>
                                                 <li>
                                                     <a target="_blank"
                                                         href="mailto:?subject={{ $data->title }}&body={{ $data->title }} {{ request()->url() }}">
@@ -466,15 +486,13 @@
                                         </div>
                                         <div class="col-2 col-md-1">
                                             <div class="emoji_container">
-                                                <img id="dislike"
-                                                    src="{{ asset('assets/reaction/dislike.webp') }}"
+                                                <img id="dislike" src="{{ asset('assets/reaction/dislike.webp') }}"
                                                     style="cursor: pointer; width:38px;">
                                             </div>
                                         </div>
                                         <div class="col-2 col-md-1">
                                             <div class="emoji_container">
-                                                <img id="clap"
-                                                    src="{{ asset('assets/reaction/clap.webp') }}"
+                                                <img id="clap" src="{{ asset('assets/reaction/clap.webp') }}"
                                                     style="cursor: pointer; width:38px;">
                                             </div>
                                         </div>
@@ -486,8 +504,7 @@
                                         </div>
                                         <div class="col-2 col-md-1">
                                             <div class="emoji_container">
-                                                <img id="angry"
-                                                    src="{{ asset('assets/reaction/angry.webp') }}"
+                                                <img id="angry" src="{{ asset('assets/reaction/angry.webp') }}"
                                                     style="cursor: pointer; width:38px;">
                                             </div>
                                         </div>
@@ -978,8 +995,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                                                                                                                // limit by device width
-                                                                                                                -------------------------------*/
+                                                                                                                        // limit by device width
+                                                                                                                        -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\GoogleNews;
 use App\Models\MobileApp;
 use App\Models\SocialMedia;
 use Illuminate\Http\Request;
@@ -14,7 +15,8 @@ class SocialMediaController extends Controller
     {
         $data = SocialMedia::latest()->first();
         $store = MobileApp::latest()->first();
-        return view('backend.social.edit', compact('data','store'));
+        $google_news = GoogleNews::latest()->first();
+        return view('backend.social.edit', compact('data','store','google_news'));
     }
 
     public function update(Request $request)
@@ -42,6 +44,23 @@ class SocialMediaController extends Controller
         $mobile_data->ios = $request->app_store;
         $mobile_data->huawei = $request->huawei_store;
         $mobile_data->save();
+
+        if($request->google_news_link != null){
+            $google_news = GoogleNews::latest()->first();
+            if($google_news){
+                $google_news->google_news_link = $request->google_news_link;
+                $google_news->save();
+            }else{
+                $google_news = new GoogleNews();
+                $google_news->google_news_link = $request->google_news_link;
+                $google_news->save();
+            }
+        }else{
+            $google_news = GoogleNews::latest()->first();
+            if($google_news){
+                $google_news->delete();
+            }
+        }
 
         Alert::success('Ayarlar Başarıyla Düzenlendi');
         return redirect()->back();
