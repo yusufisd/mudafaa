@@ -17,19 +17,12 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class CurrentNewsCategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $data = CurrentNewsCategory::orderBy('queue', 'asc')->get();
-
         return view('backend.currentNewsCategory.list', compact('data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         if (CurrentNewsCategory::latest()->first() == null) {
@@ -41,9 +34,6 @@ class CurrentNewsCategoryController extends Controller
         return view('backend.currentNewsCategory.add', compact('no'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -60,18 +50,18 @@ class CurrentNewsCategoryController extends Controller
             'seo_descriptipn_en' => 'required',
             'seo_key_en' => 'required',
         ],[
-            'queue' => 'Sıralama boş bırakılamaz',
-            'title_tr' => 'Başlık (TR) boş bırakılamaz',
-            'link_tr' => 'Link (TR) boş bırakılamaz',
-            'seo_title_tr' => 'Seo başlık (TR) boş bırakılamaz',
-            'seo_description_tr' => 'Seo açıklama (TR) boş bırakılamaz',
-            'seo_key_tr' => 'Seo anahtarı (TR) boş bırakılamaz',
-            'image' => 'Görsel boş bırakılamaz',
-            'title_en' => 'Başlık (EN) boş bırakılamaz',
-            'link_en' => 'Link (EN) boş bırakılamaz',
-            'seo_title_en' => 'Seo başlık (EN) boş bırakılamaz',
-            'seo_descriptipn_en' => 'Seo açıklama (EN) boş bırakılamaz',
-            'seo_key_en' => 'Seo anahtarı (EN) boş bırakılamaz',
+            'queue.required' => 'Sıralama boş bırakılamaz',
+            'title_tr.required' => 'Başlık (TR) boş bırakılamaz',
+            'link_tr.required' => 'Link (TR) boş bırakılamaz',
+            'seo_title_tr.required' => 'Seo başlık (TR) boş bırakılamaz',
+            'seo_description_tr.required' => 'Seo açıklama (TR) boş bırakılamaz',
+            'seo_key_tr.required' => 'Seo anahtarı (TR) boş bırakılamaz',
+            'image.required' => 'Görsel boş bırakılamaz',
+            'title_en.required' => 'Başlık (EN) boş bırakılamaz',
+            'link_en.required' => 'Link (EN) boş bırakılamaz',
+            'seo_title_en.required' => 'Seo başlık (EN) boş bırakılamaz',
+            'seo_descriptipn_en.required' => 'Seo açıklama (EN) boş bırakılamaz',
+            'seo_key_en.required' => 'Seo anahtarı (EN) boş bırakılamaz',
         ]);
 
         $veri = json_decode(json_decode(json_encode($request->seo_key_tr[0])));
@@ -157,9 +147,6 @@ class CurrentNewsCategoryController extends Controller
         return view('backend.currentNewsCategory.edit', compact('data_tr', 'data_en'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -169,12 +156,23 @@ class CurrentNewsCategoryController extends Controller
             'seo_title_tr' => 'required',
             'seo_description_tr' => 'required',
             'seo_key_tr' => 'required',
-
             'title_en' => 'required',
             'link_en' => 'required',
             'seo_title_en' => 'required',
             'seo_descriptipn_en' => 'required',
             'seo_key_en' => 'required',
+        ],[
+            'queue.required' => 'Sıralama boş bırakılamaz',
+            'title_tr.required' => 'Başlık (TR) boş bırakılamaz',
+            'link_tr.required' => 'Link (TR) boş bırakılamaz',
+            'seo_title_tr.required' => 'Seo başlık (TR) boş bırakılamaz',
+            'seo_description_tr.required' => 'Seo açıklama (TR) boş bırakılamaz',
+            'seo_key_tr.required' => 'Seo anahtarı (TR) boş bırakılamaz',
+            'title_en.required' => 'Başlık (EN) boş bırakılamaz',
+            'link_en.required' => 'Link (EN) boş bırakılamaz',
+            'seo_title_en.required' => 'Seo başlık (EN) boş bırakılamaz',
+            'seo_descriptipn_en.required' => 'Seo açıklama (EN) boş bırakılamaz',
+            'seo_key_en.required' => 'Seo anahtarı (EN) boş bırakılamaz',
         ]);
 
         $veri = json_decode(json_decode(json_encode($request->seo_key_tr[0])));

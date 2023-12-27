@@ -9,10 +9,10 @@ use App\Models\Dialog;
 use App\Models\EnDialog;
 use App\Models\Interview;
 use App\Models\UserModel;
-use Illuminate\Http\Request;
 use App\Models\EnInterview;
 use App\Models\InterviewComment;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use Throwable;
@@ -65,25 +65,24 @@ class InterviewController extends Controller
             "seo_key_en" => "required",
             "image" => "required",
         ],[
-            "author" => "Yazar boş bırakılamaz",
-            "live_time" => "Yayınlama tarihi boş bırakılamaz",
-            "name_tr" => "Başlık (TR) boş bırakılamaz",
-            "short_description_tr" => "Kısa açıklama (TR) boş bırakılamaz",
-            "description_tr" => "İçerik (TR) boş bırakılamaz",
-            "link_tr" => "Link (TR) boş bırakılamaz",
-            "name_en" => "Başlık (EN) boş bırakılamaz",
-            "short_description_en" => "Kısa açıklama (EN) boş bırakılamaz",
-            "description_en" => "Açıklama (EN) boş bırakılamaz",
-            "link_en" => "Link (EN) boş bırakılamaz",
-            "seo_title_tr" => "Seo başlık (TR) boş bırakılamaz",
-            "seo_description_tr" => "Seo açıklama (TR) boş bırakılamaz",
-            "seo_key_tr" => "Seo anahtarı (TR) boş bırakılamaz",
-            "seo_title_en" => "Seo başlık (EN) boş bırakılamaz",
-            "seo_description_en" => "Seo açıklama (EN) boş bırakılamaz",
-            "seo_key_en" => "Seo anahtarı (EN) boş bırakılamaz",
-            "image" => "Görsel boş bırakılamaz",
+            "author.required" => "Yazar boş bırakılamaz",
+            "live_time.required" => "Yayınlama tarihi boş bırakılamaz",
+            "name_tr.required" => "Başlık (TR) boş bırakılamaz",
+            "short_description_tr.required" => "Kısa açıklama (TR) boş bırakılamaz",
+            "description_tr.required" => "İçerik (TR) boş bırakılamaz",
+            "link_tr.required" => "Link (TR) boş bırakılamaz",
+            "name_en.required" => "Başlık (EN) boş bırakılamaz",
+            "short_description_en.required" => "Kısa açıklama (EN) boş bırakılamaz",
+            "description_en.required" => "Açıklama (EN) boş bırakılamaz",
+            "link_en.required" => "Link (EN) boş bırakılamaz",
+            "seo_title_tr.required" => "Seo başlık (TR) boş bırakılamaz",
+            "seo_description_tr.required" => "Seo açıklama (TR) boş bırakılamaz",
+            "seo_key_tr.required" => "Seo anahtarı (TR) boş bırakılamaz",
+            "seo_title_en.required" => "Seo başlık (EN) boş bırakılamaz",
+            "seo_description_en.required" => "Seo açıklama (EN) boş bırakılamaz",
+            "seo_key_en.required" => "Seo anahtarı (EN) boş bırakılamaz",
+            "image.required" => "Görsel boş bırakılamaz",
         ]);
-
 
         $veri = json_decode(json_decode(json_encode($request->seo_key_tr[0])));
         $merge = [];
@@ -185,17 +184,7 @@ class InterviewController extends Controller
         return redirect()->route('admin.interview.list');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function edit( $id)
     {
         $dialog_tr = Dialog::where('interview_id',$id)->get();

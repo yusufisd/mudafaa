@@ -77,7 +77,7 @@ class DefenseIndustryContentController extends Controller
                 'description_tr.required' => 'İçerik (TR) boş bırakılamaz',
                 'link_tr.required' => 'Link (TR) boş bırakılamaz',
                 'name_en.required' => 'Başlık (EN) boş bırakılamaz',
-                'author' => 'Yazar (EN) boş bırakılamaz',
+                'author.required' => 'Yazar (EN) boş bırakılamaz',
                 'short_description_en.required' => 'Kısa açıklama (EN) boş bırakılamaz',
                 'description_en.required' => 'Açıklama (EN) boş bırakılamaz',
                 'link_en.required' => 'Link (EN) boş bırakılamaz',

@@ -197,11 +197,11 @@
                                                                     class="col-lg-1 col-form-label required fw-bold fs-6 ps-5">Başlık</label>
                                                                 <!--end::Label-->
                                                                 <!--begin::Col-->
-                                                                <div class="col-lg-10">
+                                                                <div class="col-lg-11">
                                                                     <!--begin::Row-->
                                                                     <div class="row">
                                                                         <!--begin::Col-->
-                                                                        <div class="col-lg-11 fv-row">
+                                                                        <div class="col-lg-12 fv-row">
                                                                             <input type="text" name="name_tr"
                                                                                 id="name_tr" onchange="create_slug_tr()"
                                                                                 class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"

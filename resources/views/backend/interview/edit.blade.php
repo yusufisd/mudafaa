@@ -720,7 +720,7 @@
                                                                                 </label>
                                                                                 <div class="col-lg-10 fv-row">
                                                                                     <input type="text"
-                                                                                        value="{{ $value->soru }}"
+                                                                                        value="{{ $value->cevap }}"
                                                                                         class="form-control form-control-lg form-control-solid mb-lg-0 mb-3"
                                                                                         name="cevap_tr[]" id="">
                                                                                 </div>
