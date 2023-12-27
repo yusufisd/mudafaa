@@ -189,7 +189,7 @@
                                                             <a class="nav-link active" data-bs-toggle="tab"
                                                                 href="#tab_activity_tr">
                                                                 <span>
-                                                                    <img src="{{asset('/assets/tr.png')}}"
+                                                                    <img src="{{asset('/assets/tr.webp')}}"
                                                                         width="28" height="20" alt="TR"
                                                                         title="TR">
                                                                 </span>
@@ -200,7 +200,7 @@
                                                             <a class="nav-link" data-bs-toggle="tab"
                                                                 href="#tab_activity_en">
                                                                 <span>
-                                                                    <img src="{{asset('/assets/en.png')}}"
+                                                                    <img src="{{asset('/assets/en.webp')}}"
                                                                         width="28" height="20" alt="EN"
                                                                         title="EN">
                                                                 </span>
@@ -451,7 +451,7 @@
                                                 <li class="nav-item">
                                                     <a class="nav-link active" data-bs-toggle="tab" href="#tab_seo_tr">
                                                         <span>
-                                                            <img src="{{asset('/assets/tr.png')}}"
+                                                            <img src="{{asset('/assets/tr.webp')}}"
                                                                 width="28" height="20" alt="TR"
                                                                 title="TR">
                                                         </span>
@@ -461,7 +461,7 @@
                                                 <li class="nav-item">
                                                     <a class="nav-link" data-bs-toggle="tab" href="#tab_seo_en">
                                                         <span>
-                                                            <img src="{{asset('/assets/en.png')}}"
+                                                            <img src="{{asset('/assets/en.webp')}}"
                                                                 width="28" height="20" alt="EN"
                                                                 title="EN">
                                                         </span>

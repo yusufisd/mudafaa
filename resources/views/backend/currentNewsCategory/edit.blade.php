@@ -157,7 +157,7 @@
                                                             <a class="nav-link active" data-bs-toggle="tab"
                                                                 href="#tab_blog_category_detail_tr">
                                                                 <span>
-                                                                    <img src="{{ asset('/assets/tr.png') }}" width="28"
+                                                                    <img src="{{ asset('/assets/tr.webp') }}" width="28"
                                                                         height="20" alt="TR" title="TR">
                                                                 </span>
 
@@ -167,7 +167,7 @@
                                                             <a class="nav-link" data-bs-toggle="tab"
                                                                 href="#tab_blog_category_detail_en">
                                                                 <span>
-                                                                    <img src="{{ asset('/assets/en.png') }}" width="28"
+                                                                    <img src="{{ asset('/assets/en.webp') }}" width="28"
                                                                         height="20" alt="EN" title="EN">
                                                                 </span>
                                                             </a>
@@ -368,7 +368,7 @@
                                                     <a class="nav-link active" data-bs-toggle="tab"
                                                         href="#tab_blog_category_seo_tr">
                                                         <span>
-                                                            <img src="{{ asset('/assets/tr.png') }}" width="28"
+                                                            <img src="{{ asset('/assets/tr.webp') }}" width="28"
                                                                 height="20" alt="TR" title="TR">
                                                         </span>
 
@@ -378,7 +378,7 @@
                                                     <a class="nav-link" data-bs-toggle="tab"
                                                         href="#tab_blog_category_seo_en">
                                                         <span>
-                                                            <img src="{{ asset('/assets/en.png') }}" width="28"
+                                                            <img src="{{ asset('/assets/en.webp') }}" width="28"
                                                                 height="20" alt="EN" title="EN">
                                                         </span>
                                                     </a>

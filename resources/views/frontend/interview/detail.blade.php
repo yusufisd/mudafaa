@@ -410,7 +410,7 @@
                                             <div class="row">
                                                 <div class="d-none d-md-block col-md-3 mb-3">
                                                     <div class="commentator-img">
-                                                        <img src="{{ asset('assets/sabit.png') }}"
+                                                        <img src="{{ asset('assets/sabit.webp') }}"
                                                             alt="commentator-img_1" width="170" height="170">
                                                     </div>
                                                 </div>

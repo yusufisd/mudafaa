@@ -294,7 +294,7 @@
                                         <a href="#" class="menu-link active px-3 py-2" data-kt-element="mode"
                                             data-kt-value="light">
                                             <span class="menu-icon" data-kt-element="icon">
-                                                <img src="{{ asset('/assets/tr.png') }}" width="28"
+                                                <img src="{{ asset('/assets/tr.webp') }}" width="28"
                                                     alt="TR" title="TR">
                                             </span>
                                             <span class="menu-title">Türkçe</span>
@@ -306,7 +306,7 @@
                                         <a href="#" class="menu-link px-3 py-2" data-kt-element="mode"
                                             data-kt-value="dark">
                                             <span class="menu-icon" data-kt-element="icon">
-                                                <img src="{{ asset('/assets/en.png') }}" width="28"
+                                                <img src="{{ asset('/assets/en.webp') }}" width="28"
                                                     alt="EN" title="EN">
                                             </span>
                                             <span class="menu-title">İngilizce</span>

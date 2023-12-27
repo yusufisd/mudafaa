@@ -877,7 +877,7 @@
                                 <a
                                     href="{{ \Session::get('applocale') == 'en' ? route('front.activity.detail_en', $item->link) : route('front.activity.detail', $item->link) }}">
                                     <img title="{{ $item->title }}"
-                                        src="/{{ $item->image == null ? 'assets/default_act.jpeg' : $item->image }}"
+                                        src="/{{ $item->image == null ? 'assets/default_act.webp' : $item->image }}"
                                         alt="post" width="551" height="431">
                                 </a>
                             </div>

@@ -222,7 +222,7 @@
                                                 <li>
                                                     <a href="https://twitter.com/{{ SocialMedia()->twitter != null ? SocialMedia()->twitter : '' }}"
                                                         target="_blank">
-                                                        <img src="/assets/x.png" style="width: 13px" alt="">
+                                                        <img src="{{ asset('assets/x.webp') }}" style="width: 13px" alt="">
                                                     </a>
                                                 </li>
                                             @endif
@@ -258,13 +258,13 @@
                                             @if (langua() == 'tr')
                                                 <a href="{{ route('chaange.lang', ['en']) }}">
                                                     <img alt="image" width="30"
-                                                        src="{{ asset('/assets/en.png') }}">
+                                                        src="{{ asset('/assets/en.webp') }}">
                                                 </a>
                                             @endif
                                             @if (langua() == 'en')
                                                 <a href="{{ route('chaange.lang', 'tr') }}">
                                                     <img alt="image" width="30"
-                                                        src="{{ asset('/assets/tr.png') }}">
+                                                        src="{{ asset('/assets/tr.webp') }}">
                                                 </a>
                                             @endif
                                         </span>
