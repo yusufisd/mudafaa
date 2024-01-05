@@ -413,41 +413,40 @@ class DefenseIndustryContentController extends Controller
         return view('backend.defenseIndustryContent.multipleImage.add', compact('id'));
     }
 
-    public function multipleImage_store(Request $request, $id)
+    public function multipleImage_store(Request $request)
     {
-        $data = DefenseIndustryContent::findOrFail($id);
+        $data = DefenseIndustryContent::findOrFail($request->id);
+
+        if($request->previousData == null){
+            $request->previousData = [];
+        }
+        $old_data = [];
+        
+        foreach($request->previousData as $item){
+            $control = in_array($item,$data->multiple_image);
+            if($control){
+                array_push($old_data,$item);
+            }
+        }
+
         if ($request->file('image') != null) {
-            $image = $request->file('image');
-            $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-            $save_url = 'assets/uploads/defenceIndustryContent/' . $image_name;
-            Image::make($image)
-                ->resize(960, 520)
-                ->save($save_url);
+            foreach($request->file('image') as $image){
+                $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+                $save_url = 'assets/uploads/defenceIndustryContent/' . $image_name;
+                Image::make($image)
+                    ->resize(960, 520)
+                    ->save($save_url);
+            array_push($old_data, $save_url);
+            }
         }
-        $old_images = $data->multiple_image;
-        if ($old_images == null) {
-            $old_images = [];
-        }
-        array_push($old_images, $save_url);
-        $data->multiple_image = $old_images;
+        
+        $data->multiple_image = $old_data;
         $data->save();
         Alert::success('Görsel Başarıyla Eklendi');
         return redirect()->route('admin.defenseIndustryContent.list');
     }
 
-    public function multipleImage_destroy(Request $request, $id)
-    {
-        $data = DefenseIndustryContent::findOrFail($id);
-        $images = $data->multiple_image;
 
-        $ara = array_search($request->path, $images);
-        unset($images[$ara]);
-        $data->multiple_image = $images;
-        $data->save();
-
-        Alert::success('Görsel başarıyla silindi');
-        return redirect()->route('admin.defenseIndustryContent.list');
-    }
 
     public function ice_aktar(Request $request)
     {

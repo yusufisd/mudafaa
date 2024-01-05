@@ -1,7 +1,12 @@
 @extends('frontend.master')
-@section('meta-title',  'Milli Müdafaa')
-@section('keywords',  'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul, TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar, temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika, savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
-@section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri için tıklayın!')
+@section('meta-title', 'Milli Müdafaa')
+@section('keywords', 'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul,
+    TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli
+    teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar,
+    temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika,
+    savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
+@section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri
+    için tıklayın!')
 @section('title', $data->title)
 
 @section('css')
@@ -267,15 +272,16 @@
                                     @if (reklam(37) != null && reklam(37)->status == 1)
                                         <div class="sidebar-wrap mb--40">
                                             <div class="ad-banner-img">
-                                                <a href="{{ reklam(37)->adsense_url }}">
-                                                    @if (reklam(37)->type ?? 0 == 1)
+                                                @if (reklam(37)->type == 1)
+                                                    <a href="{{ reklam(37)->adsense_url }}">
+
                                                         <img src="/{{ reklam(37)->image }}" alt=""
                                                             width="310" height="425">
-                                                    @else
-                                                        {!! reklam(37)->adsense_url ?? '' !!}
-                                                    @endif
+                                                    </a>
+                                                @else
+                                                    {!! reklam(37)->adsense_url ?? '' !!}
+                                                @endif
 
-                                                </a>
                                             </div>
                                         </div>
                                     @endif

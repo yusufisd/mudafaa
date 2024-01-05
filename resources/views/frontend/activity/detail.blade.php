@@ -1,8 +1,13 @@
 @extends('frontend.master')
 @section('title', $data->title ?? 'Milli Müdafaa')
 @section('meta-title', $data->title ?? 'Milli Müdafaa')
-@section('keywords', $data->seo_key ?? 'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul, TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar, temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika, savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
-@section('description', $data->short_description ?? 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri için tıklayın!')
+@section('keywords', $data->seo_key ?? 'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya,
+    Teknoloji, İstanbul, TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli
+    teknoloji, milli teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar,
+    haluk bayraktar, temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış
+    politika, savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
+@section('description', $data->short_description ?? 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün
+    yer alan son durum bilgileri için tıklayın!')
 @section('simage', asset($data->image) ?? asset('assets/default_act.jpeg'))
 @section('stitle', $data->title)
 @section('sdescription', $data->short_description)
@@ -16,17 +21,17 @@
         @media only screen and (max-width: 600) {
 
             /*
-            .single-post-banner {
-                background-size: 600px 500px !important;
-            }
-            */
+                .single-post-banner {
+                    background-size: 600px 500px !important;
+                }
+                */
         }
 
         .single-post-banner {
-                background-size: cover !important;
-                background-position: center center !important;
-                background-repeat: no-repeat !important;
-            }
+            background-size: cover !important;
+            background-position: center center !important;
+            background-repeat: no-repeat !important;
+        }
 
         @media screen and (max-width: 600px) {
             .single-post-banner {
@@ -102,7 +107,8 @@
 
         <!-- Start single-post-banner -->
         <div class="single-post-banner rt-gradient-overaly"
-            data-bg-image="/{{ $data->image == null ? 'assets/default_act.jpeg' : $data->image }}" style="background: url(/{{ $data->image }})">
+            data-bg-image="/{{ $data->image == null ? 'assets/default_act.jpeg' : $data->image }}"
+            style="background: url(/{{ $data->image }})">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-9 col-lg-10 mx-auto">
@@ -331,13 +337,14 @@
                             <div class="ad-banner-img mb--40">
                                 @if (reklam(25) != null && reklam(25)->status == 1)
                                     <div class="ad-banner-img mt--45 mb--40">
-                                        <a href="{{ reklam(25)->adsense_url }}">
-                                            @if (reklam(25)->type ?? 0 == 1)
+                                        @if (reklam(25)->type == 1)
+                                            <a href="{{ reklam(25)->adsense_url }}">
+
                                                 <img src="/{{ reklam(25)->image }}" width="1320px" style="height: 90px">
-                                            @else
-                                                {!! reklam(25)->adsense_url ?? '' !!}
-                                            @endif
-                                        </a>
+                                            </a>
+                                        @else
+                                            {!! reklam(25)->adsense_url ?? '' !!}
+                                        @endif
                                     </div>
                                 @endif
                             </div>

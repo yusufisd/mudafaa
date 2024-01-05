@@ -31,8 +31,62 @@
                 <div class="row g-5 g-xl-8">
                     <!--begin::Col-->
                     <div class="col-xl-12 mb-xl-8 mb-5">
-                        <div class="card card-flush h-xl-100 mb-xl-8 mb-5">
-                            <!--begin::Card header-->
+
+
+                        <form action="{{ route('admin.defenseIndustryContent.multipleImage_store') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+
+                            <input type="hidden" value="{{ $id }}" name="id" id="">
+
+                            <div class="card card-flush h-xl-100 mb-xl-8 mb-5">
+                                @if ($data)
+                                    @foreach ($data as $key => $item)
+                                        <div class="image row" style="text-align: center;margin-top:3%;">
+                                            <div class="col-md-3"></div>
+                                            <div class="col-md-6">
+                                                <img src="/{{ $item }}" style="width:250px; border-radius:5%"
+                                                alt="">
+                                                <input type="hidden" name="previousData[]" value="{{ $item }}" id="">
+                                            </div>
+                                            <div class="buton col-md-3" style="padding:3%">
+                                                <button type="button" class="btn btn-danger btn-sm delete_item_buton"
+                                                    style="width: 150px">SİL</button>
+                                            </div>
+                                            <hr style="margin-top:3%; color:gray">
+                                        </div>
+                                    @endforeach
+                                @endif
+
+
+
+
+
+                                <div class="card-body mt-10 pb-5 pt-0" id="show_item">
+
+                                    <div class="image row" style="text-align: center;margin-top:2%;margin-bottom:2%">
+                                        <div class="col-md-3">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="file" class="form-control" name="image[]" id="">
+                                        </div>
+                                        <div class="buton col-md-3">
+                                            <button type="button" class="btn btn-success btn-sm add_item_buton"
+                                                style="width: 150px">EKLE</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                            <div class="right" style="text-align: right">
+                                <button type="submit" class="btn btn-primary"> {{ __('message.kaydet') }} </button>
+                            </div>
+                        </form>
+
+
+                        {{-- <div class="card card-flush h-xl-100 mb-xl-8 mb-5">
+
                             <div class="card-header border-0 pt-6">
                                 <!--begin::Card toolbar-->
                                 <div class="card-toolbar">
@@ -58,13 +112,11 @@
                                     <!--end::Toolbar-->
                                 </div>
                                 <!--end::Card toolbar-->
-
-
                             </div>
                             <!--end::Card header-->
                             <!--begin::Body-->
                             <div class="card-body pb-5 pt-0">
-                                <!--begin::Table container-->
+                                <!--begin::Table container-
                                 <div class="table-responsive with_search_table">
                                     <table id="blog_categories_table" class="gy-7 gx-7 table">
                                         <thead>
@@ -118,10 +170,10 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <!--end::Table container-->
+                                end::Table container-->
                             </div>
                             <!--begin::Body-->
-                        </div>
+                        </div> --}}
                     </div>
                     <!--end::Col-->
                 </div>
@@ -193,26 +245,33 @@
             },
             dom: 'Qfrtip'
         });
-        // end: DataTable Scripts
-    </script>
-    <!--end:: extra js-->
-@endsection
-@section('script')
-    <script>
-        function destroy(d) {
-            Swal.fire({
-                title: 'Emin misiniz?',
-                text: "Seçtiğiniz içerik silinecek!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Evet, sil!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "{{ route('admin.currentNews.destroy') }}/" + d;
-                }
+
+
+
+        $(document).ready(function() {
+            $(document).on('click', '.add_item_buton', function(e) {
+                e.preventDefault();
+                $("#show_item").prepend(
+                    '<div class="image row" style="text-align: center;margin-top:0%; margin-bottom:0%">' +
+                    '<div class="col-md-3">' +
+                    '</div>' +
+                    '<div class="col-md-6">' +
+                    '<input type="file" class="form-control" name="image[]" id="">' +
+                    '</div>' +
+                    '<div class="buton col-md-3">' +
+                    '<button type="button" id="delete_item_buton" class="btn btn-danger btn-sm delete_item_buton"' +
+                    'style="width: 150px">SİL</button>' +
+                    '</div>' +
+                    '<hr style="color:gray; margin-top:3%">' +
+                    '</div>'
+                );
             })
-        }
+        });
+
+        $(document).on('click', '.delete_item_buton', function(e) {
+            e.preventDefault();
+            let row_item = $(this).parent().parent();
+            $(row_item).remove();
+        });
     </script>
 @endsection

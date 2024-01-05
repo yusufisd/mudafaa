@@ -285,7 +285,7 @@
                                                             <a style="width:100px" target="_blank"
                                                                 href="{{ $google_news->google_news_link }}">
                                                                 <img src="{{ asset('assets/news_google.webp') }}"
-                                                                  style="width: 100%;"  alt="">
+                                                                    style="width: 100%;" alt="">
                                                             </a>
                                                         </div>
                                                     @endif
@@ -335,7 +335,7 @@
                                 @if (reklam(11) != null && reklam(11)->status == 1)
                                     <div class="ad-banner-img mt--45 mb--40">
                                         <a href="{{ reklam(11)->adsense_url }}">
-                                            @if (reklam(11)->type ?? 0 == 1)
+                                            @if (reklam(11)->type == 1)
                                                 <img src="/{{ reklam(11)->image }}" alt="" width="1320"
                                                     style="height: 90px">
                                             @else
@@ -769,14 +769,15 @@
                             @if (reklam(12) != null && reklam(12)->status == 1)
                                 <div class="sidebar-wrap mb--40">
                                     <div class="ad-banner-img">
-                                        <a href="{{ reklam(12)->adsense_url }}">
-                                            @if (reklam(12)->type ?? 0 == 1)
+                                        @if (reklam(12)->type == 1)
+                                            <a href="{{ reklam(12)->adsense_url }}">
+
                                                 <img src="/{{ reklam(12)->image }}" alt="" width="300"
                                                     style="250">
-                                            @else
-                                                {!! reklam(12)->adsense_url ?? '' !!}
-                                            @endif
-                                        </a>
+                                            </a>
+                                        @else
+                                            {!! reklam(12)->adsense_url ?? '' !!}
+                                        @endif
                                     </div>
                                 </div>
                             @endif
@@ -998,8 +999,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                                                                                                                            // limit by device width
-                                                                                                                            -------------------------------*/
+                                                                                                                                // limit by device width
+                                                                                                                                -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
 

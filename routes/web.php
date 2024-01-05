@@ -57,6 +57,7 @@ use App\Http\Controllers\Frontend\ContactController as FrontendContactController
 use App\Http\Controllers\Frontend\CooperationPageController as FrontendCooperationPageController;
 use App\Http\Controllers\Frontend\KunyeController as FrontendKunyeController;
 use App\Http\Controllers\TitleIconController;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,6 +71,11 @@ use App\Http\Controllers\TitleIconController;
 */
 
 // CHANGE LANG
+Route::get('optimize',function(){
+    Artisan::call('optimize:clear');
+    return "Başarılı şekilde optimize edildi.";
+});
+
 Route::get('/change-lang/{lang}', [LanguageController::class, 'change'])->name('chaange.lang');
 
 Route::middleware('lang')->group(function () {
@@ -224,8 +230,7 @@ Route::middleware('lang')->group(function () {
                     
                     Route::get('/coklu-gorsel/{id?}', 'multipleImage')->name('multipleImage');
                     Route::get('/coklu-gorsel-ekle/{id?}', 'multipleImage_add')->name('multipleImage_add');
-                    Route::post('/coklu-gorsel-ekle/{id?}', 'multipleImage_store')->name('multipleImage_store');
-                    Route::get('/coklu-gorsel-sil/{id?}', 'multipleImage_destroy')->name('multipleImage_destroy');
+                    Route::post('/coklu-gorsel-ekle', 'multipleImage_store')->name('multipleImage_store');
                 });
 
             // SAVUNMA SANAYİ  CONTROLLER

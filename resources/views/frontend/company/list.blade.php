@@ -1,7 +1,12 @@
 @extends('frontend.master')
-@section('meta-title',  'Milli Müdafaa')
-@section('keywords',  'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul, TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar, temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika, savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
-@section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri için tıklayın!')
+@section('meta-title', 'Milli Müdafaa')
+@section('keywords', 'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul,
+    TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli
+    teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar,
+    temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika,
+    savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
+@section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri
+    için tıklayın!')
 @section('title', 'Firmalar')
 
 @section('content')
@@ -14,9 +19,9 @@
         }
 
         @media only screen and (max-width: 600px) {
-            .company-content{
+            .company-content {
                 width: 50%;
-                padding:3%;
+                padding: 3%;
             }
         }
     </style>
@@ -67,31 +72,33 @@
                                 @if (reklam(34) != null && reklam(34)->status == 1)
                                     <div class="sidebar-wrap mb--40">
                                         <div class="ad-banner-img">
-                                            <a href="{{ reklam(34)->adsense_url }}">
-                                                @if (reklam(34)->type ?? 0 == 1)
-                                                    <img src="/{{ reklam(34)->image }}" width="1320px" style="height: 90px">
-                                                @else
-                                                    {!! reklam(34)->adsense_url ?? '' !!}
-                                                @endif
+                                            @if (reklam(34)->type == 1)
+                                                <a href="{{ reklam(34)->adsense_url }}">
 
-                                            </a>
+                                                    <img src="/{{ reklam(34)->image }}" width="1320px" style="height: 90px">
+                                                </a>
+                                            @else
+                                                {!! reklam(34)->adsense_url ?? '' !!}
+                                            @endif
+
                                         </div>
                                     </div>
                                 @endif
                             </div>
 
-                            <div class="row ">
+                            <div class="row">
 
                                 @foreach ($data as $item)
-                                    <div class="col-md-3 company-content wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
+                                    <div class="col-md-3 company-content wow fadeInUp" data-wow-delay="100ms"
+                                        data-wow-duration="800ms">
                                         <div class="cat-item">
                                             <div class="rt-cart-item" style="background-color: white!important">
                                                 <a style="width: 100%"
                                                     href="{{ \Session::get('applocale') == 'en' ? route('front.company.detail_en', \Illuminate\Support\Str::slug($item->title)) : route('front.company.detail', \Illuminate\Support\Str::slug($item->title)) }}">
                                                     <div class="author-img">
                                                         <center>
-                                                        <img style="width:170px; height:170px; opacity:0.9;text-align:center!important"
-                                                            src="/{{ $item->image }}" alt="{{ $item->title }}">
+                                                            <img style="width:170px; height:170px; opacity:0.9;text-align:center!important"
+                                                                src="/{{ $item->image }}" alt="{{ $item->title }}">
                                                         </center>
                                                     </div>
                                                 </a>
@@ -107,14 +114,15 @@
                                 @if (reklam(35) != null && reklam(35)->status == 1)
                                     <div class="sidebar-wrap mb--40">
                                         <div class="ad-banner-img">
-                                            <a href="{{ reklam(35)->adsense_url }}">
-                                                @if (reklam(35)->type ?? 0 == 1)
-                                                    <img src="/{{ reklam(35)->image }}" width="1320px" style="height: 90px">
-                                                @else
-                                                    {!! reklam(35)->adsense_url ?? '' !!}
-                                                @endif
+                                            @if (reklam(35)->type == 1)
+                                                <a href="{{ reklam(35)->adsense_url }}">
 
-                                            </a>
+                                                    <img src="/{{ reklam(35)->image }}" width="1320px" style="height: 90px">
+                                                </a>
+                                            @else
+                                                {!! reklam(35)->adsense_url ?? '' !!}
+                                            @endif
+
                                         </div>
                                     </div>
                                 @endif
@@ -160,15 +168,16 @@
                                     @if (reklam(36) != null && reklam(36)->status == 1)
                                         <div class="sidebar-wrap mb--40">
                                             <div class="ad-banner-img">
-                                                <a href="{{ reklam(36)->adsense_url }}">
-                                                    @if (reklam(36)->type ?? 0 == 1)
+                                                @if (reklam(36)->type == 1)
+                                                    <a href="{{ reklam(36)->adsense_url }}">
+
                                                         <img src="/{{ reklam(36)->image }}" alt="" width="300"
                                                             height="600">
-                                                    @else
-                                                        {!! reklam(36)->adsense_url ?? '' !!}
-                                                    @endif
+                                                    </a>
+                                                @else
+                                                    {!! reklam(36)->adsense_url ?? '' !!}
+                                                @endif
 
-                                                </a>
                                             </div>
                                         </div>
                                     @endif

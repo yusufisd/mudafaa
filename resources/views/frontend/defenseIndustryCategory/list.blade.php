@@ -1,7 +1,12 @@
 @extends('frontend.master')
-@section('meta-title',  'Milli Müdafaa')
-@section('keywords',  'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul, TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar, temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika, savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
-@section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri için tıklayın!')
+@section('meta-title', 'Milli Müdafaa')
+@section('keywords', 'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul,
+    TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli
+    teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar,
+    temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika,
+    savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
+@section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri
+    için tıklayın!')
 @section('title', $defense->title)
 
 @section('content')
@@ -61,10 +66,10 @@
                             </a>
                         </li>
 
-                        
+
                         @if ($defense->defense != null)
                             <li class="breadcrumb-item active">
-                                <a 
+                                <a
                                     href="{{ \Session::get('applocale') == 'en' ? route('front.defenseIndustryCategory.list_en', $defense->defense->link) : route('front.defenseIndustryCategory.list', $defense->defense->link) }}">
                                     {{ $defense->defense->title }}
                                 </a>
@@ -86,8 +91,8 @@
                 <div class="search-box">
                     <form action="#" class="form search-form-box">
                         <div class="form-group">
-                            <input type="text" name="sarch" id="search" placeholder="ARA..."
-                                class="form-control rt-search-control">
+                            <input type="text" name="search" id="search" placeholder="ARA..."
+                                value="{{ request()->search }}" class="form-control rt-search-control">
                             <button type="submit" class="search-submit">
                                 <i class="fas fa-search"></i>
                             </button>
@@ -108,16 +113,17 @@
                                 @foreach ($contents_first as $key => $item)
 
                                     @if ($key == 4)
-                                        @if (reklam(13) != null && reklam(13)->status ==1)
+                                        @if (reklam(13) != null && reklam(13)->status == 1)
                                             <div class="sidebar-wrap mb--40">
                                                 <div class="ad-banner-img">
-                                                    <a href="{{ reklam(13)->adsense_url }}">
-                                                        @if (reklam(13)->type ?? 0 == 1)
+                                                    @if (reklam(13)->type == 1)
+                                                        <a href="{{ reklam(13)->adsense_url }}">
+
                                                             <img src="/{{ reklam(13)->image }}" width="938">
-                                                        @else
-                                                            {!! reklam(13)->adsense_url ?? '' !!}
-                                                        @endif
-                                                    </a>
+                                                        </a>
+                                                    @else
+                                                        {!! reklam(13)->adsense_url ?? '' !!}
+                                                    @endif
                                                 </div>
                                             </div>
                                         @endif
@@ -190,7 +196,7 @@
                             <!-- end inner row -->
 
                             <div class="d-flex justify-content-center" style="padding:10%">
-                                {!! $contents_first->appends(request()->input())->onEachSide(1)->links(); !!}
+                                {!! $contents_first->appends(request()->input())->onEachSide(1)->links() !!}
                             </div>
                             <!-- end rt-pagination-area -->
 
@@ -205,7 +211,7 @@
                                 <div class="search-box">
                                     <form action="#" class="form search-form-box">
                                         <div class="form-group">
-                                            <input type="text" name="sarch" id="search" placeholder="ARA..."
+                                            <input type="text" name="search" id="search" placeholder="ARA..."
                                                 class="form-control rt-search-control">
                                             <button type="submit" class="search-submit">
                                                 <i class="fas fa-search"></i>
@@ -256,17 +262,18 @@
                             </div>
                             <!-- end slidebar wrap  -->
 
-                            @if (reklam(14) != null && reklam(14)->status ==1)
+                            @if (reklam(14) != null && reklam(14)->status == 1)
                                 <div class="sidebar-wrap mb--40">
                                     <div class="ad-banner-img">
-                                        <a href="{{ reklam(14)->adsense_url }}">
-                                            @if (reklam(14)->type ?? 0 == 1)
+                                        @if (reklam(14)->type == 1)
+                                            <a href="{{ reklam(14)->adsense_url }}">
+
                                                 <img src="/{{ reklam(14)->image }}" alt="" width="310"
                                                     height="425">
-                                            @else
-                                                {!! reklam(14)->adsense_url ?? '' !!}
-                                            @endif
-                                        </a>
+                                            </a>
+                                        @else
+                                            {!! reklam(14)->adsense_url ?? '' !!}
+                                        @endif
                                     </div>
                                 </div>
                             @endif
@@ -394,4 +401,5 @@
 
     </main>
     <!-- End Main -->
+
 @endsection

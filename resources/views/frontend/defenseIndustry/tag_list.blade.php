@@ -1,7 +1,12 @@
 @extends('frontend.master')
-@section('meta-title',  'Milli Müdafaa')
-@section('keywords',  'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul, TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar, temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika, savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
-@section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri için tıklayın!')
+@section('meta-title', 'Milli Müdafaa')
+@section('keywords', 'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul,
+    TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli
+    teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar,
+    temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika,
+    savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
+@section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri
+    için tıklayın!')
 @section('title', 'Etiket')
 
 @section('content')
@@ -74,7 +79,7 @@
                 <div class="search-box">
                     <form action="#" class="form search-form-box">
                         <div class="form-group">
-                            <input type="text" name="sarch" id="search" placeholder="ARA..."
+                            <input type="text" name="search" id="search" placeholder="ARA..."
                                 class="form-control rt-search-control">
                             <button type="submit" class="search-submit">
                                 <i class="fas fa-search"></i>
@@ -144,7 +149,7 @@
 
                             </div>
                             <div class="d-flex justify-content-center" style="padding:10%">
-                                {!! $datas->appends(request()->input())->onEachSide(1)->links(); !!}
+                                {!! $datas->appends(request()->input())->onEachSide(1)->links() !!}
                             </div>
 
                         </div>
@@ -158,7 +163,7 @@
                                 <div class="search-box">
                                     <form action="#" class="form search-form-box">
                                         <div class="form-group">
-                                            <input type="text" name="sarch" id="search" placeholder="ARA..."
+                                            <input type="text" name="search" id="search" placeholder="ARA..."
                                                 class="form-control rt-search-control">
                                             <button type="submit" class="search-submit">
                                                 <i class="fas fa-search"></i>
@@ -212,14 +217,15 @@
                             @if (reklam(14) != null)
                                 <div class="sidebar-wrap mb--40">
                                     <div class="ad-banner-img">
-                                        <a href="{{ reklam(14)->adsense_url }}">
-                                            @if (reklam(14)->type ?? 0 == 1)
+                                        @if (reklam(14)->type == 1)
+                                            <a href="{{ reklam(14)->adsense_url }}">
+
                                                 <img src="/{{ reklam(14)->image }}" alt="" width="310"
                                                     height="425">
-                                            @else
-                                                {!! reklam(14)->adsense_url ?? '' !!}
-                                            @endif
-                                        </a>
+                                            </a>
+                                        @else
+                                            {!! reklam(14)->adsense_url ?? '' !!}
+                                        @endif
                                     </div>
                                 </div>
                             @endif

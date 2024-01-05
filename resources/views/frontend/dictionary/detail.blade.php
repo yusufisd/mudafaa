@@ -1,6 +1,11 @@
 @extends('frontend.master')
-@section('keywords',  'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul, TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar, temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika, savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
-@section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri için tıklayın!')
+@section('keywords', 'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul,
+    TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli
+    teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar,
+    temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika,
+    savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
+@section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri
+    için tıklayın!')
 @section('title', $data->title)
 @section('meta-title', $data->title)
 @section('simage', asset($data->image))
@@ -32,10 +37,10 @@
         }
 
         .single-post-banner {
-                background-size: cover !important;
-                background-position: center center !important;
-                background-repeat: no-repeat !important;
-            }
+            background-size: cover !important;
+            background-position: center center !important;
+            background-repeat: no-repeat !important;
+        }
 
         @media screen and (max-width: 600px) {
             .single-post-banner {
@@ -44,7 +49,6 @@
                 background-repeat: no-repeat !important;
             }
         }
-
     </style>
     <!-- Start Main -->
     <main>
@@ -91,8 +95,8 @@
         <!-- End inner page Banner -->
 
         <!-- Start single-post-banner -->
-        <div class="single-post-banner rt-gradient-overaly" 
-        data-bg-image="/{{ $data->image == null ? '/assets/default_act.jpeg' : $data->image }}"
+        <div class="single-post-banner rt-gradient-overaly"
+            data-bg-image="/{{ $data->image == null ? '/assets/default_act.jpeg' : $data->image }}"
             style="background: url(/{{ $data->image }});">
             <div class="container">
                 <div class="row">
@@ -220,13 +224,14 @@
         <section class="editor-choice-section-style-1 mt-sm-3 mt-md-5 rt-sidebar-section-layout-2 overflow-hidden">
             @if (reklam(41) != null && reklam(41)->status == 1)
                 <div class="ad-banner-img mt--45 mb--40">
-                    <a href="{{ reklam(41)->adsense_url }}">
-                        @if (reklam(41)->type ?? 0 == 1)
+                    @if (reklam(41)->type == 1)
+                        <a href="{{ reklam(41)->adsense_url }}">
+
                             <img src="/{{ reklam(41)->image }}" alt="" width="1320" style="height: 90px">
-                        @else
-                            {!! reklam(41)->adsense_url ?? '' !!}
-                        @endif
-                    </a>
+                        </a>
+                    @else
+                        {!! reklam(41)->adsense_url ?? '' !!}
+                    @endif
                 </div>
             @endif
             <div class="container">
@@ -313,8 +318,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                                       // sidebar title limitation
-                                    -------------------------------*/
+                                           // sidebar title limitation
+                                        -------------------------------*/
         // Select all tags with class .sidebar_restricted_category_title
         $('.sidebar_restricted_category_title').each(function() {
             var content = $(this).text().trim(); // get the content of a tag

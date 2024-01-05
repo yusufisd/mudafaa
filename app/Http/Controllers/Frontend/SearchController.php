@@ -15,13 +15,11 @@ class SearchController extends Controller
     public function index(Request $request){
         $locale = session('applocale') ?? config('app.fallback_locale');
         if ($locale == "tr") {
-            $news = CurrentNews::where('title', 'like', '%' . $request->s . '%')->get();
-            $defenses = DefenseIndustryContent::where('title', 'like', '%' . $request->s .'%')->paginate(10);
+            $data = CurrentNews::where('title', 'like', '%' . $request->s . '%')->get();
         }else{
-            $news = EnCurrentNews::where('title', 'like', '%' . $request->s . '%')->get();
-            $defenses = EnDefenseIndustryContent::where('title', 'like', '%' . $request->s .'%')->paginate(10);
+            $data = EnCurrentNews::where('title', 'like', '%' . $request->s . '%')->get();
         }
-        $mergedata = $news->concat($defenses);
+        /* $mergedata = $news->concat($defenses);
         $currentPage = request()->get('page', 1); // Aktif sayfa numarasını al, varsayılan olarak 1
         $perPage = 10; // Sayfa başına öğe sayısı
         $data = new LengthAwarePaginator(
@@ -29,7 +27,8 @@ class SearchController extends Controller
             $mergedata->count(),
             $perPage,
             $currentPage
-        );
+        ); */
+
 
         return view('frontend.search', compact('data'));
     }

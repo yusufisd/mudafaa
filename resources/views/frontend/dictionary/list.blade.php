@@ -1,8 +1,13 @@
 @extends('frontend.master')
-@section('meta-title',  'Milli Müdafaa')
-@section('keywords',  'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul, TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar, temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika, savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
-@section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri için tıklayın!')
-@section('title','Sözlük')
+@section('meta-title', 'Milli Müdafaa')
+@section('keywords', 'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul,
+    TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli
+    teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar,
+    temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika,
+    savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
+@section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri
+    için tıklayın!')
+@section('title', 'Sözlük')
 
 @section('content')
     <!-- Start Main -->
@@ -34,7 +39,8 @@
                 <nav class="rt-breadcrumb-wrap" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
+                            <a
+                                href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
@@ -57,8 +63,9 @@
 
                             <div id="ss_container" class="row gutter-24">
                                 <div class="search-box">
-                                    <form action="{{ \Session::get('applocale') == 'tr' ? (route('front.dictionary.list')) : (route('front.dictionary.list_en')) }}" method="GET"
-                                        class="form search-form-box">
+                                    <form
+                                        action="{{ \Session::get('applocale') == 'tr' ? route('front.dictionary.list') : route('front.dictionary.list_en') }}"
+                                        method="GET" class="form search-form-box">
                                         <div class="form-group">
                                             <input type="text" name="search" value="{{ request()->search ?? '' }}"
                                                 id="search" placeholder="Ara..." required
@@ -74,8 +81,9 @@
                                     <ul class="nav nav-pills" id="pills-tab" role="tablist">
                                         @foreach ($alphabets as $alp)
                                             <li class="nav-item">
-                                                <a class="nav-link" style="background-color: {{ $letter == $alp ? 'rgba(23, 34, 43, 0.85); color:white' : '' }}"
-                                                    href="{{ \Session::get('applocale') == 'tr' ? (route('front.dictionary.list', ['id' => $alp])) : (route('front.dictionary.list', ['id' => $alp])) }}">{{ $alp }}</a>
+                                                <a class="nav-link"
+                                                    style="background-color: {{ $letter == $alp ? 'rgba(23, 34, 43, 0.85); color:white' : '' }}"
+                                                    href="{{ \Session::get('applocale') == 'tr' ? route('front.dictionary.list', ['id' => $alp]) : route('front.dictionary.list', ['id' => $alp]) }}">{{ $alp }}</a>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -85,52 +93,56 @@
 
 
                                 @foreach ($data as $key => $item)
-                                @if($key==6)
-                                    @if (reklam(39) != null && reklam(39)->status == 1)
-                                        <div class="sidebar-wrap mb--40">
-                                            <div class="ad-banner-img">
-                                                <a href="{{ reklam(39)->adsense_url }}">
-                                                    @if (reklam(39)->type ?? 0 == 1)
-                                                        <img src="/{{ reklam(39)->image }}"
-                                                            width="1320px" style="height:90px">
+                                    @if ($key == 6)
+                                        @if (reklam(39) != null && reklam(39)->status == 1)
+                                            <div class="sidebar-wrap mb--40">
+                                                <div class="ad-banner-img">
+                                                    @if (reklam(39)->type == 1)
+                                                        <a href="{{ reklam(39)->adsense_url }}">
+
+                                                            <img src="/{{ reklam(39)->image }}" width="1320px"
+                                                                style="height:90px">
+                                                        </a>
                                                     @else
                                                         {!! reklam(39)->adsense_url ?? '' !!}
                                                     @endif
-                                                </a>
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endif
                                     @endif
-                                @endif
 
-                                @if($key==12)
-                                    @if (reklam(40) != null && reklam(40)->status == 1)
-                                        <div class="sidebar-wrap mb--40">
-                                            <div class="ad-banner-img">
-                                                <a href="{{ reklam(40)->adsense_url }}">
-                                                    @if (reklam(40)->type ?? 0 == 1)
-                                                        <img src="/{{ reklam(40)->image }}"
-                                                        width="1320px" style="height:90px">
-                                                    @else
-                                                        {!! reklam(40)->adsense_url ?? '' !!}
-                                                    @endif
-                                                </a>
+                                    @if ($key == 12)
+                                        @if (reklam(40) != null && reklam(40)->status == 1)
+                                            <div class="sidebar-wrap mb--40">
+                                                <div class="ad-banner-img">
+                                                        @if (reklam(40)->type == 1)
+                                                    <a href="{{ reklam(40)->adsense_url }}">
+
+                                                            <img src="/{{ reklam(40)->image }}" width="1320px"
+                                                                style="height:90px">
+                                                    </a>
+
+                                                        @else
+                                                            {!! reklam(40)->adsense_url ?? '' !!}
+                                                        @endif
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endif
                                     @endif
-                                @endif
                                     <div class="col-md-4 wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
                                         <div class="rt-post-overlay rt-post-overlay-md layout-6">
                                             <div class="post-img">
-                                                <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.dictionary.detail', $item->link)) : (route('front.dictionary.detail_en', $item->link)) }}"
+                                                <a href="{{ \Session::get('applocale') == 'tr' ? route('front.dictionary.detail', $item->link) : route('front.dictionary.detail_en', $item->link) }}"
                                                     class="img-link">
-                                                    <img src="/{{ $item->image == null ? 'media/gallery/post-xl_31.jpg' : $item->image }}" alt="{{ $item->title }}" width="900"
-                                                        height="600">
+                                                    <img src="/{{ $item->image == null ? 'media/gallery/post-xl_31.jpg' : $item->image }}"
+                                                        alt="{{ $item->title }}" width="900" height="600">
                                                 </a>
                                             </div>
                                             <div class="post-content">
 
                                                 <h3 class="post-title">
-                                                    <a href="{{ \Session::get('applocale') == 'tr' ? (route('front.dictionary.detail', $item->link)) : (route('front.dictionary.detail_en', $item->link)) }}">
+                                                    <a
+                                                        href="{{ \Session::get('applocale') == 'tr' ? route('front.dictionary.detail', $item->link) : route('front.dictionary.detail_en', $item->link) }}">
                                                         {{ $item->title }}
                                                     </a>
                                                 </h3>
@@ -165,7 +177,7 @@
                             <!-- end inner row -->
 
                             <div style="margin-left: 45%; margin-top:5%">
-                                {!! $data->appends(request()->input())->onEachSide(1)->links(); !!}
+                                {!! $data->appends(request()->input())->onEachSide(1)->links() !!}
                             </div>
 
                             <!-- end rt-pagination-area -->

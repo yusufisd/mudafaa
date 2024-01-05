@@ -16,22 +16,22 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class InterviewController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $locale = session('applocale') ?? config('app.fallback_locale');
 
         if($locale == "tr"){
-            $data = Interview::latest()->paginate(4);
+            $data = Interview::latest()->where('title','like', '%'. $request->search . '%')->paginate(4);
             $populer_interview = Interview::inRandomOrder()
                 ->take(4)
                 ->get();
-            $keys = Interview::select('seo_key', 'view_counter')->orderBy('view_counter', 'desc')->groupBy('id')->pluck('seo_key')->take(5)->toArray();
+            $keys = Interview::select('seo_key', 'view_counter')->orderBy('view_counter', 'desc')->pluck('seo_key')->take(5)->toArray();
         }else{
-            $data = EnInterview::latest()->paginate(4);
+            $data = EnInterview::latest()->where('title','like', '%'. $request->search . '%')->paginate(4);
             $populer_interview = EnInterview::inRandomOrder()
                 ->take(4)
                 ->get();
-            $keys = EnInterview::select('seo_key', 'view_counter')->orderBy('view_counter', 'desc')->groupBy('id')->pluck('seo_key')->take(5)->toArray();
+            $keys = EnInterview::select('seo_key', 'view_counter')->orderBy('view_counter', 'desc')->pluck('seo_key')->take(5)->toArray();
         }
 
         return view('frontend.interview.list', compact('data', 'populer_interview','keys'));

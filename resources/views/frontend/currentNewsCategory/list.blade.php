@@ -1,7 +1,12 @@
 @extends('frontend.master')
-@section('meta-title',  'Milli Müdafaa')
-@section('keywords',  'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul, TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar, temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika, savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
-@section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri için tıklayın!')
+@section('meta-title', 'Milli Müdafaa')
+@section('keywords', 'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul,
+    TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli
+    teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar,
+    temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika,
+    savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
+@section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri
+    için tıklayın!')
 @section('title', $name->title)
 
 @section('content')
@@ -90,28 +95,30 @@
                                     @if ($key == 3 && reklam(8) != null)
                                         @if (reklam(8)->status == 1)
                                             <div class="ad-banner-img">
-                                                <a href="{{ reklam(8)->adsense_url }}">
-                                                    @if (reklam(8)->type ?? 0 == 1)
+                                                @if (reklam(8)->type == 1)
+                                                    <a href="{{ reklam(8)->adsense_url }}">
+
                                                         <img src="/{{ reklam(8)->image }}" alt="" width="728"
                                                             height="91">
-                                                    @else
-                                                        {!! reklam(8)->adsense_url ?? '' !!}
-                                                    @endif
-                                                </a>
+                                                    </a>
+                                                @else
+                                                    {!! reklam(8)->adsense_url ?? '' !!}
+                                                @endif
                                             </div>
                                         @endif
                                     @endif
 
                                     @if ($key == 6 && reklam(9) != null && reklam(9)->status == 1)
                                         <div class="ad-banner-img">
-                                            <a href="{{ reklam(9)->adsense_url }}">
-                                                @if (reklam(9)->type ?? 0 == 1)
+                                            @if (reklam(9)->type == 1)
+                                                <a href="{{ reklam(9)->adsense_url }}">
+
                                                     <img src="/{{ reklam(9)->image }}" alt="" width="728"
                                                         height="91">
-                                                @else
-                                                    {!! reklam(9)->adsense_url ?? '' !!}
-                                                @endif
-                                            </a>
+                                                </a>
+                                            @else
+                                                {!! reklam(9)->adsense_url ?? '' !!}
+                                            @endif
                                         </div>
                                     @endif
                                     <div class="post-item wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
@@ -214,9 +221,9 @@
                             </div>
 
                             <!--
-                                    <div class="items-center" style="padding:15%">
-                                    </div>
-                                    -->
+                                        <div class="items-center" style="padding:15%">
+                                        </div>
+                                        -->
 
                         </div>
                         <!-- end rt-left-sidebar-sapcer-5 -->
@@ -266,15 +273,16 @@
                             @if (reklam(10) != null && reklam(10)->status == 1)
                                 <div class="sidebar-wrap mb--40">
                                     <div class="ad-banner-img">
-                                        <a href="{{ reklam(10)->adsense_url }}">
-                                            @if (reklam(10)->type ?? 0 == 1)
+                                        @if (reklam(10)->type == 1)
+                                            <a href="{{ reklam(10)->adsense_url }}">
+
                                                 <img src="/{{ reklam(10)->image }}" alt="" width="250"
                                                     height="250">
-                                            @else
-                                                {!! reklam(10)->adsense_url ?? '' !!}
-                                            @endif
+                                            </a>
+                                        @else
+                                            {!! reklam(10)->adsense_url ?? '' !!}
+                                        @endif
 
-                                        </a>
                                     </div>
                                 </div>
                             @endif
@@ -432,8 +440,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                                // limit by device width
-                                -------------------------------*/
+                                    // limit by device width
+                                    -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
 

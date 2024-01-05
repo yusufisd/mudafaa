@@ -23,15 +23,14 @@ class ActivityController extends Controller
         }
 
         if ($local == 'tr') {
-            $coming_activity = Activity::where('status',1)->where('start_time', '>',$now)
+            $coming_activity = Activity::where('status',1)->where('start_time','>=',$now->format('Y-m-d'))->orderBy('start_time','asc')
                 ->take(6)
                 ->get();
             $activity_category = ActivityCategory::where('status',1)->orderBy('queue', 'asc')->get();
             $categories = ActivityCategory::where('status',1)->get();
             $countries = CountryList::get();
         } elseif ($local == 'en') {
-            $coming_activity = EnActivity::where('status',1)->where('start_time', '<', $now)
-                ->orderBy('start_time', 'asc')
+            $coming_activity = EnActivity::where('status',1)->where('start_time','>=',$now->format('Y-m-d'))->orderBy('start_time','asc')
                 ->take(6)
                 ->get();
             $activity_category = EnActivityCategory::where('status',1)->orderBy('queue', 'asc')->get();
@@ -69,6 +68,8 @@ class ActivityController extends Controller
 
     public function categoryDetail($id)
     {
+        $now = Carbon::now();
+
         $local = \Session::get('applocale');
         if ($local == null) {
             $local = config('app.fallback_locale');
@@ -76,10 +77,10 @@ class ActivityController extends Controller
 
         if ($local == 'tr') {
             $cat = ActivityCategory::where('link', $id)->first();
-            $data = Activity::where('status',1)->where('category', $cat->id)->get();
+            $data = Activity::where('status',1)->where('category', $cat->id)->orderBy('start_time','desc')->get();
         } elseif ($local == 'en') {
             $cat = EnActivityCategory::where('link', $id)->first();
-            $data = EnActivity::where('status',1)->where('category', $cat->id)->get();
+            $data = EnActivity::where('status',1)->where('category', $cat->id)->orderBy('start_time','desc')->get();
         }
 
         return view('frontend.activity.category.detail', compact('data', 'cat'));

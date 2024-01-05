@@ -524,7 +524,7 @@
                                                             <li class="li_2"
                                                                 style="display:inline-block;padding:5px 10px;">
                                                                 <a
-                                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.about.detail_en', $item->link) : route('front.about.detail', $item->link) }}">
+                                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.about.detail_en') : route('front.about.detail') }}">
                                                                     <p style="color: white; font-size:14px">
                                                                         Hakkımızda </p>
                                                                 </a>
@@ -532,7 +532,7 @@
                                                             <li class="li_2"
                                                                 style="display:inline-block;padding:5px 10px;">
                                                                 <a
-                                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.kunye_en', $item->link) : route('front.kunye', $item->link) }}">
+                                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.kunye_en') : route('front.kunye') }}">
                                                                     <p style="color: white; font-size:14px">
                                                                         Künye </p>
                                                                 </a>
@@ -556,7 +556,7 @@
                                                             <li class="li_2"
                                                                 style="display:inline-block;padding:5px 10px;">
                                                                 <a
-                                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.archive.index_en', $item->link) : route('front.archive.index', $item->link) }}">
+                                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.archive.index_en') : route('front.archive.index') }}">
                                                                     <p style="color: white; font-size:14px">
                                                                         Arşiv </p>
                                                                 </a>
@@ -564,7 +564,7 @@
                                                             <li class="li_2"
                                                                 style="display:inline-block;padding:5px 10px;">
                                                                 <a
-                                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.contact_en', $item->link) : route('front.contact', $item->link) }}">
+                                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.contact_en') : route('front.contact') }}">
                                                                     <p style="color: white; font-size:14px">
                                                                         İletişim </p>
                                                                 </a>

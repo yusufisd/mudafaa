@@ -1,7 +1,14 @@
 @extends('frontend.master')
-@section('meta-title',  'Milli Müdafaa')
-@section('keywords',  'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul, TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar, temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika, savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
-@section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri için tıklayın!')
+@section('meta-title', 'Milli Müdafaa')
+@section('keywords',
+    'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul,
+    TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli
+    teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar,
+    temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika,
+    savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
+@section('description',
+    'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri
+    için tıklayın!')
 @section('title', $data->title)
 
 @section('css')
@@ -40,20 +47,21 @@
             }
 
             /*
-            .single-post-banner {
-                background-size: 600px 500px!important;
-            }
-            */
-            .urun-gorsel{
-                width:50px!important;
-                height:50px!important;
+                    .single-post-banner {
+                        background-size: 600px 500px!important;
+                    }
+                    */
+            .urun-gorsel {
+                width: 50px !important;
+                height: 50px !important;
             }
         }
+
         .single-post-banner {
-                background-size: cover !important;
-                background-position: center center !important;
-                background-repeat: no-repeat !important;
-            }
+            background-size: cover !important;
+            background-position: center center !important;
+            background-repeat: no-repeat !important;
+        }
 
         @media screen and (max-width: 600px) {
             .single-post-banner {
@@ -62,8 +70,6 @@
                 background-repeat: no-repeat !important;
             }
         }
-
-        
     </style>
 @endsection
 @section('content')
@@ -125,7 +131,8 @@
         <!-- End inner page Banner -->
 
         <!-- Start single-post-banner -->
-        <div class="single-post-banner rt-gradient-overaly" data-bg-image="/{{ $data->image }}" style="background: url(/{{ $data->image }})">
+        <div class="single-post-banner rt-gradient-overaly" data-bg-image="/{{ $data->image }}"
+            style="background: url(/{{ $data->image }})">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-9 col-lg-10 mx-auto">
@@ -230,14 +237,15 @@
                                 <!-- ad banner -->
                                 @if (reklam(15) != null && reklam(15)->status == 1)
                                     <div class="ad-banner-img mt--45 mb--40">
-                                        <a href="{{ reklam(15)->adsense_url }}">
-                                            @if (reklam(15)->type ?? 0 == 1)
+                                        @if (reklam(15)->type == 1)
+                                            <a href="{{ reklam(15)->adsense_url }}">
+
                                                 <img src="/{{ reklam(15)->image }}" alt="" width="970"
                                                     height="90">
-                                            @else
-                                                {!! reklam(15)->adsense_url ?? '' !!}
-                                            @endif
-                                        </a>
+                                            </a>
+                                        @else
+                                            {!! reklam(15)->adsense_url ?? '' !!}
+                                        @endif
                                     </div>
                                 @endif
 
@@ -251,19 +259,22 @@
 
                                         <ul class="nav rt-tab-menu" id="myTab" role="tablist">
                                             <li class="menu-item" role="presentation">
-                                                <a class="menu-link active" style="font-size:13px"  id="menu-1-tab" data-bs-toggle="tab"
-                                                    href="#menu-1" role="tab" aria-controls="menu-1"
-                                                    aria-selected="true"> {{ __('message.üretici') }}
+                                                <a class="menu-link active" style="font-size:13px" id="menu-1-tab"
+                                                    data-bs-toggle="tab" href="#menu-1" role="tab"
+                                                    aria-controls="menu-1" aria-selected="true">
+                                                    {{ __('message.üretici') }}
                                                     {{ __('message.firmalar') }} </a>
                                             </li>
                                             <li class="menu-item" role="presentation">
-                                                <a class="menu-link" style="font-size:13px"  id="menu-2-tab" data-bs-toggle="tab" href="#menu-2"
-                                                    role="tab" aria-controls="menu-2" aria-selected="false"> Menşei
+                                                <a class="menu-link" style="font-size:13px" id="menu-2-tab"
+                                                    data-bs-toggle="tab" href="#menu-2" role="tab"
+                                                    aria-controls="menu-2" aria-selected="false"> Menşei
                                                 </a>
                                             </li>
                                             <li class="menu-item" role="presentation">
-                                                <a class="menu-link" style="font-size:13px"  id="menu-3-tab" data-bs-toggle="tab" href="#menu-3"
-                                                    role="tab" aria-controls="menu-3" aria-selected="false">
+                                                <a class="menu-link" style="font-size:13px" id="menu-3-tab"
+                                                    data-bs-toggle="tab" href="#menu-3" role="tab"
+                                                    aria-controls="menu-3" aria-selected="false">
                                                     {{ __('message.kullanılan ülkeler') }} </a>
                                             </li>
                                         </ul><!-- end nav tab -->
@@ -278,9 +289,9 @@
 
 
                                                 @foreach ($data->Companies() as $e)
-                                                    <div class="col-lg-1 grid-adress " style="width: 150px">
+                                                    <div class="col-lg-1 grid-adress" style="width: 150px">
 
-                                                        <img  title="{{ $e->title }}" src="/{{ $e->image }}">
+                                                        <img title="{{ $e->title }}" src="/{{ $e->image }}">
 
                                                     </div>
                                                 @endforeach
@@ -458,13 +469,14 @@
             <div class="container">
                 @if (reklam(16) != null && reklam(16)->status == 1)
                     <div class="ad-banner-img mt--45 mb--40">
-                        <a href="{{ reklam(16)->adsense_url }}">
-                            @if (reklam(16)->type ?? 0 == 1)
+                        @if (reklam(16)->type == 1)
+                            <a href="{{ reklam(16)->adsense_url }}">
+
                                 <img src="/{{ reklam(16)->image }}" alt="" width="970" height="90">
-                            @else
-                                {!! reklam(16)->adsense_url ?? '' !!}
-                            @endif
-                        </a>
+                            </a>
+                        @else
+                            {!! reklam(16)->adsense_url ?? '' !!}
+                        @endif
                     </div>
                 @endif
                 <div class="row">
@@ -548,8 +560,8 @@
 @section('script')
     <script>
         /*--------------------------------
-                                                                           // sidebar title limitation
-                                                                        -------------------------------*/
+                                                                                   // sidebar title limitation
+                                                                                -------------------------------*/
         // Select all tags with class .sidebar_restricted_category_title
         $('.sidebar_restricted_category_title').each(function() {
             var content = $(this).text().trim(); // get the content of a tag

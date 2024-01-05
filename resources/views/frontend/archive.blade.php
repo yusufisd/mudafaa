@@ -1,7 +1,12 @@
 @extends('frontend.master')
-@section('meta-title',  'Milli Müdafaa')
-@section('keywords',  'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul, TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar, temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika, savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
-@section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri için tıklayın!')
+@section('meta-title', 'Milli Müdafaa')
+@section('keywords', 'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul,
+    TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli
+    teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar,
+    temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika,
+    savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
+@section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri
+    için tıklayın!')
 @section('title', 'Arşiv')
 @section('content')
     <style>
@@ -14,7 +19,7 @@
             background-color: #749f43;
             color: white;
         }
-       
+
         @media only screen and (max-width: 600px) {
             .mobile-p-image {
                 display: block !important;
@@ -23,9 +28,10 @@
             .desktop-p-image {
                 display: none !important;
             }
-            .pag{
-                margin:auto!important;
-                text-align: center!important;
+
+            .pag {
+                margin: auto !important;
+                text-align: center !important;
             }
         }
     </style>
@@ -118,37 +124,40 @@
                                     @foreach ($data as $key => $item)
                                         @if ($key == 3 && reklam(8) != null)
                                             @if (reklam(8)->status == 1)
-                                                <div class="ad-banner-img mt-4 mb-4">
-                                                    <a href="{{ reklam(8)->adsense_url }}">
-                                                        @if (reklam(8)->type ?? 0 == 1)
+                                                <div class="ad-banner-img mb-4 mt-4">
+                                                    @if (reklam(8)->type == 1)
+                                                        <a href="{{ reklam(8)->adsense_url }}">
+
                                                             <img src="/{{ reklam(8)->image }}" alt=""
                                                                 width="1320" height="91">
-                                                        @else
-                                                            {!! reklam(8)->adsense_url ?? '' !!}
-                                                        @endif
-                                                    </a>
+                                                        </a>
+                                                    @else
+                                                        {!! reklam(8)->adsense_url ?? '' !!}
+                                                    @endif
                                                 </div>
                                             @endif
                                         @endif
 
                                         @if ($key == 6 && reklam(9) != null && reklam(9)->status == 1)
-                                            <div class="ad-banner-img mt-4 mb-4">
-                                                <a href="{{ reklam(9)->adsense_url }}">
-                                                    @if (reklam(9)->type ?? 0 == 1)
+                                            <div class="ad-banner-img mb-4 mt-4">
+                                                @if (reklam(9)->type == 1)
+                                                    <a href="{{ reklam(9)->adsense_url }}">
+
                                                         <img src="/{{ reklam(9)->image }}" alt="" width="1320"
                                                             height="91">
-                                                    @else
-                                                        {!! reklam(9)->adsense_url ?? '' !!}
-                                                    @endif
-                                                </a>
+                                                    </a>
+                                                @else
+                                                    {!! reklam(9)->adsense_url ?? '' !!}
+                                                @endif
                                             </div>
                                         @endif
                                         <div class="post-item wow fadeInUp" data-wow-delay="100ms"
                                             data-wow-duration="800ms">
                                             <div class="rt-post post-md style-9 grid-meta">
 
-                                                <div class="post-img mobile-p-image"  style="display: none">
-                                                    <a href="{{ \Session::get('applocale') == 'en' ? (route('front.currentNews.detail_en', $item->link)) : (route('front.currentNews.detail', $item->link)) }}">
+                                                <div class="post-img mobile-p-image" style="display: none">
+                                                    <a
+                                                        href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $item->link) : route('front.currentNews.detail', $item->link) }}">
                                                         <img style="object-fit: cover" src="/{{ $item->image }}"
                                                             alt="post" width="696" height="491">
                                                     </a>
@@ -229,7 +238,7 @@
                                 <!-- end post-list-style-4 -->
 
                                 <div class="pag" style="margin-left: 35%; margin-top:15%!important">
-                                    {!! $data->appends(request()->input())->onEachSide(1)->links(); !!}
+                                    {!! $data->appends(request()->input())->onEachSide(1)->links() !!}
                                 </div>
                                 <!-- end rt-pagination-area -->
 
@@ -308,15 +317,15 @@
                             @if (reklam(10) != null && reklam(10)->status == 1)
                                 <div class="sidebar-wrap mb--40">
                                     <div class="ad-banner-img">
-                                        <a href="{{ reklam(10)->adsense_url }}">
-                                            @if (reklam(10)->type ?? 0 == 1)
+                                        @if (reklam(10)->type == 1)
+                                            <a href="{{ reklam(10)->adsense_url }}">
+
                                                 <img src="/{{ reklam(10)->image }}" alt="" width="250"
                                                     height="250">
-                                            @else
-                                                {!! reklam(10)->adsense_url ?? '' !!}
-                                            @endif
-
-                                        </a>
+                                            </a>
+                                        @else
+                                            {!! reklam(10)->adsense_url ?? '' !!}
+                                        @endif
                                     </div>
                                 </div>
                             @endif
@@ -400,8 +409,8 @@
     </script>
     <script>
         /*--------------------------------
-                            // limit by device width
-                            -------------------------------*/
+                                // limit by device width
+                                -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
 

@@ -1,8 +1,13 @@
 @extends('frontend.master')
 @section('title', $data->title)
-@section('keywords', $data->seo_key ?? 'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul, TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar, temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika, savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
+@section('keywords', $data->seo_key ?? 'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya,
+    Teknoloji, İstanbul, TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli
+    teknoloji, milli teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar,
+    haluk bayraktar, temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış
+    politika, savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
 @section('meta-title', $data->title)
-@section('description', $data->short_description ?? 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri için tıklayın')
+@section('description', $data->short_description ?? 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün
+    yer alan son durum bilgileri için tıklayın')
 @section('simage', asset($data->image))
 @section('stitle', $data->title)
 @section('sdescription', $data->short_description)
@@ -183,8 +188,10 @@
                                                     <div class="single-content">
                                                         <h3 class="title report_title" style="padding:3%">
                                                             <i class="fa-solid fa-xl fa-microphone-lines"
-                                                                style="vertical-align: text-top; color:#black;margin-top:10px!important"></i><span> &nbsp;&nbsp;
-                                                                {{ $item->soru }} </h3>
+                                                                style="vertical-align: text-top; color:#black;margin-top:10px!important"></i><span>
+                                                                &nbsp;&nbsp;
+                                                                {{ $item->soru }}
+                                                        </h3>
                                                         <figure class="rt-blockquote-area">
                                                             <blockquote class="rt-blockquote">
                                                                 <h4>
@@ -212,14 +219,15 @@
                                         @if (reklam(31) != null && reklam(31)->status == 1)
                                             <div class="sidebar-wrap mb--40">
                                                 <div class="ad-banner-img">
-                                                    <a href="{{ reklam(31)->adsense_url }}">
-                                                        @if (reklam(31)->type ?? 0 == 1)
+                                                    @if (reklam(31)->type == 1)
+                                                        <a href="{{ reklam(31)->adsense_url }}">
+
                                                             <img src="/{{ reklam(31)->image }}" alt=""
-                                                            width="1320px" style="height: 90px">
-                                                        @else
-                                                            {!! reklam(31)->adsense_url ?? '' !!}
-                                                        @endif
-                                                    </a>
+                                                                width="1320px" style="height: 90px">
+                                                        </a>
+                                                    @else
+                                                        {!! reklam(31)->adsense_url ?? '' !!}
+                                                    @endif
                                                 </div>
                                             </div>
                                         @endif
@@ -290,7 +298,8 @@
                                             @if ($previous_data != null)
                                                 <div class="next-prev-wrap">
                                                     <div class="item-icon">
-                                                        <a href="{{ route('front.interview.detail', $previous_data->link) }}">
+                                                        <a
+                                                            href="{{ route('front.interview.detail', $previous_data->link) }}">
                                                             <i class="fas fa-chevron-left"></i>
                                                             {{ __('message.önceki röportaj') }}
                                                         </a>
@@ -352,15 +361,13 @@
                                         </div>
                                         <div class="col-2 col-md-1">
                                             <div class="emoji_container">
-                                                <img id="dislike"
-                                                    src="{{ asset('assets/reaction/dislike.webp') }}"
+                                                <img id="dislike" src="{{ asset('assets/reaction/dislike.webp') }}"
                                                     style="cursor: pointer; width:38px;">
                                             </div>
                                         </div>
                                         <div class="col-2 col-md-1">
                                             <div class="emoji_container">
-                                                <img id="clap"
-                                                    src="{{ asset('assets/reaction/clap.webp') }}"
+                                                <img id="clap" src="{{ asset('assets/reaction/clap.webp') }}"
                                                     style="cursor: pointer; width:38px;">
                                             </div>
                                         </div>
@@ -372,8 +379,7 @@
                                         </div>
                                         <div class="col-2 col-md-1">
                                             <div class="emoji_container">
-                                                <img id="angry"
-                                                    src="{{ asset('assets/reaction/angry.webp') }}"
+                                                <img id="angry" src="{{ asset('assets/reaction/angry.webp') }}"
                                                     style="cursor: pointer; width:38px;">
                                             </div>
                                         </div>
@@ -386,7 +392,7 @@
 
 
                                     </div>
-                                    
+
                                     <div class="row justify-content-center mb--50">
                                         @foreach ($emojies as $emoji => $number)
                                             <div class="col-2 col-md-1">
@@ -504,14 +510,15 @@
                                     <div class="ad-banner-img mt--45 mb--40">
                                         <div class="sidebar-wrap mb--40">
                                             <div class="ad-banner-img">
-                                                <a href="{{ reklam(32)->adsense_url }}">
-                                                    @if (reklam(32)->type ?? 0 == 1)
+                                                @if (reklam(32)->type == 1)
+                                                    <a href="{{ reklam(32)->adsense_url }}">
+
                                                         <img src="/{{ reklam(32)->image }}" alt=""
                                                             width="1320px" style="height: 90px">
-                                                    @else
-                                                        {!! reklam(32)->adsense_url ?? '' !!}
-                                                    @endif
-                                                </a>
+                                                    </a>
+                                                @else
+                                                    {!! reklam(32)->adsense_url ?? '' !!}
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -552,7 +559,7 @@
 
                                                                 <h4 class="post-title">
                                                                     <ahref="{{ route('front.interview.detail', $item->link) }}">
-                                                                        {{ $item->title }}
+                                                                    {{ $item->title }}
                                                                     </a>
                                                                 </h4>
 
@@ -652,15 +659,16 @@
                                     @if (reklam(33) != null && reklam(33)->status == 1)
                                         <div class="sidebar-wrap mb--40">
                                             <div class="ad-banner-img">
-                                                <a href="{{ reklam(33)->adsense_url }}">
-                                                    @if (reklam(33)->type ?? 0 == 1)
+                                                @if (reklam(33)->type == 1)
+                                                    <a href="{{ reklam(33)->adsense_url }}">
+
                                                         <img src="/{{ reklam(33)->image }}" alt=""
                                                             width="310" height="425">
-                                                    @else
-                                                        {!! reklam(33)->adsense_url ?? '' !!}
-                                                    @endif
+                                                    </a>
+                                                @else
+                                                    {!! reklam(33)->adsense_url ?? '' !!}
+                                                @endif
 
-                                                </a>
                                             </div>
                                         </div>
                                     @endif
@@ -701,8 +709,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                           // sidebar title limitation
-                        -------------------------------*/
+                               // sidebar title limitation
+                            -------------------------------*/
         // Select all tags with class .sidebar_restricted_category_title
         $('.sidebar_restricted_category_title').each(function() {
             var content = $(this).text().trim(); // get the content of a tag

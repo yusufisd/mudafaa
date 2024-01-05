@@ -1,8 +1,13 @@
 @extends('frontend.master')
-@section('meta-title',  'Milli Müdafaa')
-@section('keywords',  'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul, TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar, temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika, savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
-@section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri için tıklayın!')
-@section('title','Firmalar')
+@section('meta-title', 'Milli Müdafaa')
+@section('keywords', 'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul,
+    TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli
+    teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar,
+    temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika,
+    savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
+@section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri
+    için tıklayın!')
+@section('title', 'Firmalar')
 
 @section('content')
     <!-- Start Main -->
@@ -34,12 +39,14 @@
                 <nav class="rt-breadcrumb-wrap" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
+                            <a
+                                href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
-                        <li class="breadcrumb-item " aria-current="page">
-                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.company.list_en') : route('front.company.list') }}">
+                        <li class="breadcrumb-item" aria-current="page">
+                            <a
+                                href="{{ \Session::get('applocale') == 'en' ? route('front.company.list_en') : route('front.company.list') }}">
                                 {{ __('message.firmalar') }}
                             </a>
                         </li>
@@ -60,17 +67,19 @@
                         <div class="rt-left-sidebar-sapcer-5">
 
                             <div class="ad-banner-img wow fadeInUp mb--40" data-wow-delay="100ms" data-wow-duration="800ms">
-                                @if(reklam(34) != null && reklam(34)->status == 1)
+                                @if (reklam(34) != null && reklam(34)->status == 1)
                                     <div class="sidebar-wrap mb--40">
                                         <div class="ad-banner-img">
-                                            <a href="{{ reklam(34)->adsense_url }}">
-                                                @if (reklam(34)->type ?? 0 == 1)
-                                                    <img src="/{{ reklam(34)->image }}" alt="" width="960" height="150">
-                                                @else
-                                                    {!! reklam(34)->adsense_url ?? '' !!}
-                                                @endif
+                                            @if (reklam(34)->type == 1)
+                                                <a href="{{ reklam(34)->adsense_url }}">
 
-                                            </a>
+                                                    <img src="/{{ reklam(34)->image }}" alt="" width="960"
+                                                        height="150">
+                                                </a>
+                                            @else
+                                                {!! reklam(34)->adsense_url ?? '' !!}
+                                            @endif
+
                                         </div>
                                     </div>
                                 @endif
@@ -85,7 +94,8 @@
                                                 <a
                                                     href="{{ \Session::get('applocale') == 'en' ? route('front.company.detail_en', \Illuminate\Support\Str::slug($item->title)) : route('front.company.detail', \Illuminate\Support\Str::slug($item->title)) }}">
                                                     <div class="item-img">
-                                                        <img src="/{{ $item->image }}" style="height: 130px" alt="{{ $item->title }}">
+                                                        <img src="/{{ $item->image }}" style="height: 130px"
+                                                            alt="{{ $item->title }}">
 
                                                     </div>
                                                 </a>
@@ -102,20 +112,22 @@
 
                             <div class="ad-banner-img wow fadeInUp mb--40 mt--40" data-wow-delay="100ms"
                                 data-wow-duration="800ms">
-                                    @if(reklam(35) != null && reklam(35)->status == 1)
-                                        <div class="sidebar-wrap mb--40">
-                                            <div class="ad-banner-img">
+                                @if (reklam(35) != null && reklam(35)->status == 1)
+                                    <div class="sidebar-wrap mb--40">
+                                        <div class="ad-banner-img">
+                                            @if (reklam(35)->type == 1)
                                                 <a href="{{ reklam(35)->adsense_url }}">
-                                                    @if (reklam(35)->type ?? 0 == 1)
-                                                        <img src="/{{ reklam(35)->image }}" alt="" width="960" height="150">
-                                                    @else
-                                                        {!! reklam(35)->adsense_url ?? '' !!}
-                                                    @endif
 
+                                                    <img src="/{{ reklam(35)->image }}" alt="" width="960"
+                                                        height="150">
                                                 </a>
-                                            </div>
+                                            @else
+                                                {!! reklam(35)->adsense_url ?? '' !!}
+                                            @endif
+
                                         </div>
-                                    @endif
+                                    </div>
+                                @endif
                             </div>
                             <!-- end rt-pagination-area -->
 
@@ -137,7 +149,8 @@
 
                                     @foreach ($categories as $item)
                                         <li>
-                                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.company.categoryList_en',$item->link) : route('front.company.categoryList',$item->link) }}" data-bg-image="/{{ $item->image }}">
+                                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.company.categoryList_en', $item->link) : route('front.company.categoryList', $item->link) }}"
+                                                data-bg-image="/{{ $item->image }}">
                                                 <span class="cat-name">
                                                     <i class="fas fa-list"
                                                         style="border-right: 2px solid;width: 27px;padding-right: 4px;padding-left: 0px;height: 16px;"></i>
@@ -153,17 +166,19 @@
 
                             <div class="sidebar-wrap mb--40">
                                 <div class="ad-banner-img">
-                                    @if(reklam(36) != null && reklam(36)->status == 1)
+                                    @if (reklam(36) != null && reklam(36)->status == 1)
                                         <div class="sidebar-wrap mb--40">
                                             <div class="ad-banner-img">
-                                                <a href="{{ reklam(36)->adsense_url }}">
-                                                    @if (reklam(36)->type ?? 0 == 1)
-                                                        <img src="/{{ reklam(36)->image }}" alt="" width="310" height="425">
-                                                    @else
-                                                        {!! reklam(36)->adsense_url ?? '' !!}
-                                                    @endif
+                                                @if (reklam(36)->type == 1)
+                                                    <a href="{{ reklam(36)->adsense_url }}">
 
-                                                </a>
+                                                        <img src="/{{ reklam(36)->image }}" alt="" width="310"
+                                                            height="425">
+                                                    </a>
+                                                @else
+                                                    {!! reklam(36)->adsense_url ?? '' !!}
+                                                @endif
+
                                             </div>
                                         </div>
                                     @endif

@@ -1,7 +1,12 @@
 @extends('frontend.master')
-@section('meta-title',  'Milli Müdafaa')
-@section('keywords',  'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul, TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar, temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika, savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
-@section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri için tıklayın!')
+@section('meta-title', 'Milli Müdafaa')
+@section('keywords', 'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul,
+    TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli
+    teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar,
+    temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika,
+    savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
+@section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri
+    için tıklayın!')
 @section('title', 'Etkinlik')
 @section('content')
     <!-- Start Main -->
@@ -26,7 +31,8 @@
                 <nav class="rt-breadcrumb-wrap" aria-label="breadcrumb">
                     <ol class="breadcrumb d-inline-flex">
                         <li class="breadcrumb-item">
-                            <a href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
+                            <a
+                                href="{{ \Session::get('applocale') == 'en' ? route('front.home_en') : route('front.home') }}">
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
@@ -42,15 +48,16 @@
         <!-- Start rt-sidebar-section-layout-2 -->
         <div class="rt-sidebar-section-layout-2">
             <div class="container">
-                @if(reklam(17) != null && reklam(17)->status ==1)
+                @if (reklam(17) != null && reklam(17)->status == 1)
                     <div class="ad-banner-img mt--45 mb--40">
-                        <a href="{{ reklam(17)->adsense_url }}">
-                            @if (reklam(17)->type ?? 0 == 1)
+                        @if (reklam(17)->type == 1)
+                            <a href="{{ reklam(17)->adsense_url }}">
+
                                 <img src="/{{ reklam(17)->image }}" alt="" width="1320px" style="height:90px">
-                            @else
-                                {!! reklam(17)->adsense_url ?? '' !!}
-                            @endif
-                        </a>
+                            </a>
+                        @else
+                            {!! reklam(17)->adsense_url ?? '' !!}
+                        @endif
                     </div>
                 @endif
                 <div class="row mb--30">
@@ -61,8 +68,11 @@
                                 <form action="{{ route('front.activity.searchActivity') }}" method="POST">
                                     @csrf
                                     <div class="row mb--25">
-                                        <h3 class="activity-title">{{ __('message.Aradığınız etkinliği kolayca bulun.') }}</h3>
-                                        <p class="activity-text">{{__('message.Detaylı arama ile etkinlik yılı, etkinlik ayı ve etkinlik kategorisi gibi kriterleri belirleyerek aradığınız etkinliği kolaylıkla bulabilirsiniz.')}}</p>
+                                        <h3 class="activity-title">{{ __('message.Aradığınız etkinliği kolayca bulun.') }}
+                                        </h3>
+                                        <p class="activity-text">
+                                            {{ __('message.Detaylı arama ile etkinlik yılı, etkinlik ayı ve etkinlik kategorisi gibi kriterleri belirleyerek aradığınız etkinliği kolaylıkla bulabilirsiniz.') }}
+                                        </p>
                                     </div>
                                     <div class="row mb--25">
                                         <div class="col-md-3 mb-3">
@@ -134,8 +144,8 @@
 
                                 <div class="row">
                                     <div class="col-12 col-md-6 col-lg-2 mx-auto">
-                                        <a href="{{ \Session::get('applocale') == 'en' ? route('front.activity.calendar_en') : route('front.activity.calendar') }}" type="button"
-                                            class="rt-submit-btn" style="float: right;">
+                                        <a href="{{ \Session::get('applocale') == 'en' ? route('front.activity.calendar_en') : route('front.activity.calendar') }}"
+                                            type="button" class="rt-submit-btn" style="float: right;">
                                             {{ __('message.etkinlik takvimi') }}
                                         </a>
                                     </div>
@@ -146,34 +156,36 @@
                     </div>
                 </div>
 
-                    <div class="row">
-                        <div class="col-md-6 col-sm-12">
-                            @if(reklam(17) != null && reklam(17)->status ==1)
-                                <div class="ad-banner-img mt--45 mb--40">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        @if (reklam(17) != null && reklam(17)->status == 1)
+                            <div class="ad-banner-img mt--45 mb--40">
+                                @if (reklam(17)->type == 1)
                                     <a href="{{ reklam(17)->adsense_url }}">
-                                        @if (reklam(17)->type ?? 0 == 1)
-                                            <img src="/{{ reklam(17)->image }}" style="height: 90px">
-                                        @else
-                                            {!! reklam(17)->adsense_url ?? '' !!}
-                                        @endif
+
+                                        <img src="/{{ reklam(17)->image }}" style="height: 90px">
                                     </a>
-                                </div>
-                            @endif
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                            @if(reklam(18) != null && reklam(18)->status == 1)
-                                <div class="ad-banner-img mt--45 mb--40">
-                                    <a href="{{ reklam(18)->adsense_url }}">
-                                        @if (reklam(18)->type ?? 0 == 1)
-                                            <img src="/{{ reklam(18)->image }}" style="height: 90px">
-                                        @else
-                                            {!! reklam(18)->adsense_url ?? '' !!}
-                                        @endif
-                                    </a>
-                                </div>
-                            @endif
-                        </div>
+                                @else
+                                    {!! reklam(17)->adsense_url ?? '' !!}
+                                @endif
+                            </div>
+                        @endif
                     </div>
+                    <div class="col-md-6 col-sm-12">
+                        @if (reklam(18) != null && reklam(18)->status == 1)
+                            <div class="ad-banner-img mt--45 mb--40">
+                                @if (reklam(18)->type == 1)
+                                    <a href="{{ reklam(18)->adsense_url }}">
+
+                                        <img src="/{{ reklam(18)->image }}" style="height: 90px">
+                                    </a>
+                                @else
+                                    {!! reklam(18)->adsense_url ?? '' !!}
+                                @endif
+                            </div>
+                        @endif
+                    </div>
+                </div>
 
                 <div class="row mb--50">
                     <!-- start related-post-box -->
@@ -187,7 +199,8 @@
                             </h2>
 
                             <div>
-                                <h6><a href="{{ route('front.activity.close_activity') }}"> {{ __('message.tümünü gör') }}
+                                <h6><a href="{{ route('front.activity.close_activity') }}">
+                                        {{ __('message.tümünü gör') }}
                                     </a></h6>
                             </div>
                         </div>
@@ -200,14 +213,16 @@
                                     <div class="col-md-4">
                                         <div class="rt-post-grid grid-meta">
                                             <div class="post-img">
-                                                <a href="{{ \Session::get('applocale') == 'en' ? (route('front.activity.detail_en', $item->link)) : (route('front.activity.detail', $item->link)) }}">
-                                                    <img style="object-fit: cover" src="/{{ $item->image == null ? 'assets/default_act.jpeg' : $item->image }}"
+                                                <a
+                                                    href="{{ \Session::get('applocale') == 'en' ? route('front.activity.detail_en', $item->link) : route('front.activity.detail', $item->link) }}">
+                                                    <img style="object-fit: cover"
+                                                        src="/{{ $item->image == null ? 'assets/default_act.jpeg' : $item->image }}"
                                                         alt="post" width="551" height="431">
                                                 </a>
                                             </div>
                                             <div class="post-content">
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <a href="{{ \Session::get('applocale') == 'en' ? (route('front.activity.categoryDetail_en', $item->Category->link)) : (route('front.activity.categoryDetail', $item->Category->link)) }}"
+                                                    <a href="{{ \Session::get('applocale') == 'en' ? route('front.activity.categoryDetail_en', $item->Category->link) : route('front.activity.categoryDetail', $item->Category->link) }}"
                                                         class="rt-cat-primary restricted_category_title">
                                                         {{ $item->Category->title }} </a>
                                                     @if ($item->sayac_yil() || $item->sayac_ay() || $item->sayac_gun())
@@ -219,7 +234,8 @@
                                                     @endif
                                                 </div>
                                                 <h4 class="post-title">
-                                                    <a href="{{ \Session::get('applocale') == 'en' ? (route('front.activity.detail_en', $item->link)) : (route('front.activity.detail', $item->link)) }}">
+                                                    <a
+                                                        href="{{ \Session::get('applocale') == 'en' ? route('front.activity.detail_en', $item->link) : route('front.activity.detail', $item->link) }}">
                                                         {{ $item->title }}
                                                     </a>
                                                 </h4>
@@ -228,13 +244,15 @@
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="far fa-calendar-alt icon"></i>
-                                                                {{ $item->start_time->translatedFormat('d M Y') }} / {{ substr($item->start_clock,0,5) }}
+                                                                {{ $item->start_time->translatedFormat('d M Y') }} /
+                                                                {{ substr($item->start_clock, 0, 5) }}
                                                             </span>
                                                         </li>
                                                         <li>
                                                             <span class="rt-meta">
                                                                 <i class="fas fa-map-marker-alt icon"></i>
-                                                                <span style="text-transform:capitalize"> {{ strtoupper($item->city) }} </span>
+                                                                <span style="text-transform:capitalize">
+                                                                    {{ strtoupper($item->city) }} </span>
 
                                                             </span>
                                                         </li>
@@ -264,15 +282,16 @@
                 </div>
 
                 @foreach ($activity_category as $key => $data)
-                    @if(reklam($key + 19) != null && reklam($key + 19)->status == 1)
+                    @if (reklam($key + 19) != null && reklam($key + 19)->status == 1)
                         <div class="ad-banner-img mt--45 mb--40">
-                            <a href="{{ reklam($key + 19)->adsense_url }}">
-                                @if (reklam($key + 19)->type ?? 0 == 1)
+                            @if (reklam($key + 19)->type == 1)
+                                <a href="{{ reklam($key + 19)->adsense_url }}">
+
                                     <img src="/{{ reklam($key + 19)->image }}" width="1320px" style="height: 90px">
-                                @else
-                                    {!! reklam($key + 19)->adsense_url ?? '' !!}
-                                @endif
-                            </a>
+                                </a>
+                            @else
+                                {!! reklam($key + 19)->adsense_url ?? '' !!}
+                            @endif
                         </div>
                     @endif
                     <div class="row mb--50">
@@ -286,7 +305,8 @@
                                 </h2>
 
                                 <div>
-                                    <h6><a href="{{ \Session::get('applocale') == 'en' ? (route('front.activity.categoryDetail_en', $data->link)) : (route('front.activity.categoryDetail', $data->link)) }}">
+                                    <h6><a
+                                            href="{{ \Session::get('applocale') == 'en' ? route('front.activity.categoryDetail_en', $data->link) : route('front.activity.categoryDetail', $data->link) }}">
                                             {{ __('message.tümünü gör') }} </a></h6>
                                 </div>
                             </div>
@@ -299,13 +319,15 @@
                                         <div class="col-md-4">
                                             <div class="rt-post-grid grid-meta">
                                                 <div class="post-img">
-                                                    <a href="{{ \Session::get('applocale') == 'en' ? (route('front.activity.detail_en', $item->link)) : (route('front.activity.detail', $item->link)) }}">
-                                                        <img style="object-fit: cover" src="/{{ $item->image == null ? 'assets/default_act.jpeg' : $item->image }}"
+                                                    <a
+                                                        href="{{ \Session::get('applocale') == 'en' ? route('front.activity.detail_en', $item->link) : route('front.activity.detail', $item->link) }}">
+                                                        <img style="object-fit: cover"
+                                                            src="/{{ $item->image == null ? 'assets/default_act.jpeg' : $item->image }}"
                                                             alt="post" width="551" height="431">
                                                     </a>
                                                 </div>
                                                 <div class="post-content">
-                                                    <a href="{{ \Session::get('applocale') == 'en' ? (route('front.activity.categoryDetail_en', $item->Category->link)) : (route('front.activity.categoryDetail', $item->Category->link)) }}"
+                                                    <a href="{{ \Session::get('applocale') == 'en' ? route('front.activity.categoryDetail_en', $item->Category->link) : route('front.activity.categoryDetail', $item->Category->link) }}"
                                                         class="rt-cat-primary sidebar_restricted_category_title">
                                                         {{ $item->Category->title }} </a>
                                                     @if ($item->sayac_yil() || $item->sayac_ay() || $item->sayac_gun())
@@ -316,7 +338,8 @@
                                                         </h6>
                                                     @endif
                                                     <h4 class="post-title">
-                                                        <a href="{{ \Session::get('applocale') == 'en' ? (route('front.activity.detail_en', $item->link)) : (route('front.activity.detail', $item->link)) }}">
+                                                        <a
+                                                            href="{{ \Session::get('applocale') == 'en' ? route('front.activity.detail_en', $item->link) : route('front.activity.detail', $item->link) }}">
                                                             {{ $item->title }}
                                                         </a>
                                                     </h4>
@@ -325,13 +348,15 @@
                                                             <li>
                                                                 <span class="rt-meta">
                                                                     <i class="far fa-calendar-alt icon"></i>
-                                                                    {{ $item->start_time->translatedFormat('d M Y') }} / {{ substr($item->start_clock,0,5)}}
+                                                                    {{ $item->start_time->translatedFormat('d M Y') }} /
+                                                                    {{ substr($item->start_clock, 0, 5) }}
                                                                 </span>
                                                             </li>
                                                             <li>
                                                                 <span class="rt-meta">
                                                                     <i class="fas fa-map-marker-alt icon"></i>
-                                                                    <span style="text-transform:capitalize"> {{ strtoupper($item->city) }} </span>
+                                                                    <span style="text-transform:capitalize">
+                                                                        {{ strtoupper($item->city) }} </span>
                                                                 </span>
                                                             </li>
                                                             <li>
@@ -377,8 +402,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                            // limit by device width
-                            -------------------------------*/
+                                // limit by device width
+                                -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
 

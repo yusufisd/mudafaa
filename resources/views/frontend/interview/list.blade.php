@@ -1,7 +1,12 @@
 @extends('frontend.master')
-@section('meta-title',  'Milli Müdafaa')
-@section('keywords',  'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul, TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar, temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika, savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
-@section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri için tıklayın!')
+@section('meta-title', 'Milli Müdafaa')
+@section('keywords', 'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul,
+    TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli
+    teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar,
+    temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika,
+    savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
+@section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri
+    için tıklayın!')
 @section('title', 'Röportajlar')
 
 @section('content')
@@ -73,7 +78,7 @@
                 <div class="search-box">
                     <form action="#" class="form search-form-box">
                         <div class="form-group">
-                            <input type="text" name="sarch" id="search" placeholder="ARA..."
+                            <input type="text" name="search" id="search" placeholder="ARA..."
                                 class="form-control rt-search-control">
                             <button type="submit" class="search-submit">
                                 <i class="fas fa-search"></i>
@@ -97,22 +102,23 @@
                                             @if (reklam(28) != null && reklam(28)->status == 1)
                                                 <div class="sidebar-wrap mb--40">
                                                     <div class="ad-banner-img">
-                                                        <a href="{{ reklam(28)->adsense_url }}">
-                                                            @if (reklam(28)->type ?? 0 == 1)
-                                                                <img src="/{{ reklam(28)->image }}" alt=""
-                                                                width="1320px" style="height:90px">
-                                                            @else
-                                                                {!! reklam(28)->adsense_url ?? '' !!}
-                                                            @endif
+                                                        @if (reklam(28)->type == 1)
+                                                            <a href="{{ reklam(28)->adsense_url }}">
 
-                                                        </a>
+                                                                <img src="/{{ reklam(28)->image }}" alt=""
+                                                                    width="1320px" style="height:90px">
+                                                            </a>
+                                                        @else
+                                                            {!! reklam(28)->adsense_url ?? '' !!}
+                                                        @endif
+
                                                     </div>
                                                 </div>
                                             @endif
                                         </div>
                                     @endif
 
-                                    
+
                                     <div class="post-item wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
                                         <div class="rt-post post-md style-2 style-4 grid-meta">
                                             <div class="post-img">
@@ -180,15 +186,16 @@
                                             @if (reklam(29) != null && reklam(29)->status == 1)
                                                 <div class="sidebar-wrap mb--40">
                                                     <div class="ad-banner-img">
-                                                        <a href="{{ reklam(29)->adsense_url }}">
-                                                            @if (reklam(29)->type ?? 0 == 1)
+                                                        @if (reklam(29)->type == 1)
+                                                            <a href="{{ reklam(29)->adsense_url }}">
+
                                                                 <img src="/{{ reklam(29)->image }}" alt=""
                                                                     width="1320px" style="height:90px">
-                                                            @else
-                                                                {!! reklam(29)->adsense_url ?? '' !!}
-                                                            @endif
+                                                            </a>
+                                                        @else
+                                                            {!! reklam(29)->adsense_url ?? '' !!}
+                                                        @endif
 
-                                                        </a>
                                                     </div>
                                                 </div>
                                             @endif
@@ -205,7 +212,7 @@
 
 
                             <div class="d-flex justify-content-center" style="padding:10%">
-                                {!! $data->appends(request()->input())->onEachSide(1)->links(); !!}
+                                {!! $data->appends(request()->input())->onEachSide(1)->links() !!}
                             </div>
 
                             <!-- end rt-pagination-area -->
@@ -222,7 +229,7 @@
                                 <div class="search-box">
                                     <form action="#" class="form search-form-box">
                                         <div class="form-group">
-                                            <input type="text" name="sarch" id="search" placeholder="ARA..."
+                                            <input type="text" name="search" id="search" placeholder="ARA..."
                                                 class="form-control rt-search-control">
                                             <button type="submit" class="search-submit">
                                                 <i class="fas fa-search"></i>
@@ -254,7 +261,7 @@
 
                                                     <h4 class="post-title" style="font-size:15px">
                                                         <a href="" class="">
-                                                            {{ (Illuminate\Support\Str::words($item->title,8,'...')) }}
+                                                            {{ Illuminate\Support\Str::words($item->title, 8, '...') }}
                                                         </a>
                                                     </h4>
                                                     <span class="rt-meta">
@@ -276,14 +283,15 @@
                                     @if (reklam(30) != null && reklam(30)->status == 1)
                                         <div class="sidebar-wrap mb--40">
                                             <div class="ad-banner-img">
-                                                <a href="{{ reklam(30)->adsense_url }}">
-                                                    @if (reklam(30)->type ?? 0 == 1)
+                                                @if (reklam(30)->type == 1)
+                                                    <a href="{{ reklam(30)->adsense_url }}">
+
                                                         <img src="/{{ reklam(30)->image }}" alt=""
                                                             width="315" height="270">
-                                                    @else
-                                                        {!! reklam(30)->adsense_url ?? '' !!}
-                                                    @endif
-                                                </a>
+                                                    </a>
+                                                @else
+                                                    {!! reklam(30)->adsense_url ?? '' !!}
+                                                @endif
                                             </div>
                                         </div>
                                     @endif
@@ -369,8 +377,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                    // limit by device width
-                    -------------------------------*/
+                        // limit by device width
+                        -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
 

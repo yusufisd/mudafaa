@@ -1,7 +1,12 @@
 @extends('frontend.master')
-@section('meta-title',  'Milli Müdafaa')
-@section('keywords',  'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul, TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar, temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika, savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
-@section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri için tıklayın!')
+@section('meta-title', 'Milli Müdafaa')
+@section('keywords', 'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul,
+    TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli
+    teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar,
+    temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika,
+    savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
+@section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri
+    için tıklayın!')
 @section('title', 'Anasayfa')
 @section('css')
     <style>
@@ -51,30 +56,30 @@
     <!-- theme-switch-box -->
     <div class="theme-switch-box-mobile-wrap">
         <div class="theme-switch-box-mobile">
-           <span class="theme-switch-box-mobile__theme-status"><i class="fas fa-cog"></i></span>
-           <label class="theme-switch-box-mobile__label" for="themeSwitchCheckboxMobile">
-              <input class="theme-switch-box-mobile__input" type="checkbox" name="themeSwitchCheckboxMobile"
-                 id="themeSwitchCheckboxMobile">
-              <span class="theme-switch-box-mobile__main"></span>
-           </label>
-           <span class="theme-switch-box-mobile__theme-status"><i class="fas fa-moon"></i></span>
+            <span class="theme-switch-box-mobile__theme-status"><i class="fas fa-cog"></i></span>
+            <label class="theme-switch-box-mobile__label" for="themeSwitchCheckboxMobile">
+                <input class="theme-switch-box-mobile__input" type="checkbox" name="themeSwitchCheckboxMobile"
+                    id="themeSwitchCheckboxMobile">
+                <span class="theme-switch-box-mobile__main"></span>
+            </label>
+            <span class="theme-switch-box-mobile__theme-status"><i class="fas fa-moon"></i></span>
         </div>
-     </div>
-     <!-- end theme-switch-box-mobile -->
+    </div>
+    <!-- end theme-switch-box-mobile -->
 
-     <!-- theme-switch-box -->
-     <div class="theme-switch-box-mobile-wrap">
+    <!-- theme-switch-box -->
+    <div class="theme-switch-box-mobile-wrap">
         <div class="theme-switch-box-mobile">
-           <span class="theme-switch-box-mobile__theme-status"><i class="fas fa-cog"></i></span>
-           <label class="theme-switch-box-mobile__label" for="themeSwitchCheckboxMobile">
-              <input class="theme-switch-box-mobile__input" type="checkbox" name="themeSwitchCheckboxMobile"
-                 id="themeSwitchCheckboxMobile">
-              <span class="theme-switch-box-mobile__main"></span>
-           </label>
-           <span class="theme-switch-box-mobile__theme-status"><i class="fas fa-moon"></i></span>
+            <span class="theme-switch-box-mobile__theme-status"><i class="fas fa-cog"></i></span>
+            <label class="theme-switch-box-mobile__label" for="themeSwitchCheckboxMobile">
+                <input class="theme-switch-box-mobile__input" type="checkbox" name="themeSwitchCheckboxMobile"
+                    id="themeSwitchCheckboxMobile">
+                <span class="theme-switch-box-mobile__main"></span>
+            </label>
+            <span class="theme-switch-box-mobile__theme-status"><i class="fas fa-moon"></i></span>
         </div>
-     </div>
-     <!-- end theme-switch-box-mobile -->
+    </div>
+    <!-- end theme-switch-box-mobile -->
     <div class="d-block d-md-none mt--30" data-bg-image="media/elements/element_1.png">
         <div id="story_container" class="container">
             <div class="swiper-container">
@@ -155,7 +160,7 @@
             <div class="row">
                 <div class="col-md-6">
                     @if (reklam(1) != null && reklam(1)->status == 1)
-                        @if (reklam(1)->type ?? 0 == 1)
+                        @if (reklam(1)->type == 1)
                             <a href="{{ reklam(1)->adsense_url }}"
                                 target="{{ reklam(1)->href_tab == 0 ? '_self' : '_blank' }}">
                                 <img src="/{{ reklam(1)->image }}" width="660px" style="height: 90px!important">
@@ -168,7 +173,7 @@
 
                 <div id="ikinci_reklam" class="col-md-6">
                     @if (reklam(2) != null && reklam(2)->status == 1)
-                        @if (reklam(2)->type ?? 0 == 1)
+                        @if (reklam(2)->type == 1)
                             <a href="{{ reklam(2)->adsense_url }}"
                                 target="{{ reklam(2)->href_tab == 0 ? '_self' : '_blank' }}">
                                 <img src="/{{ reklam(2)->image }}" width="660px" style="height: 90px!important">
@@ -259,7 +264,8 @@
                                     <div class="post-img">
                                         <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail', $item->link) : route('front.currentNews.detail_en', $item->link) }}"
                                             class="img-link">
-                                            <img src="{{ $item->image }}" alt="travel-xl_2" width="900" height="600">
+                                            <img src="{{ $item->image }}" alt="travel-xl_2" width="900"
+                                                height="600">
                                         </a>
                                     </div>
                                     <div class="post-content">
@@ -327,7 +333,7 @@
     @if (reklam(3) != null && reklam(3)->status == 1)
         <div class="container" style="margin-top:3%">
             <div class="row">
-                @if (reklam(3)->type ?? 0 == 1)
+                @if (reklam(3)->type == 1)
                     <a href="{{ reklam(3)->adsense_url }}" target="{{ reklam(3)->href_tab == 0 ? '_self' : '_blank' }}">
                         <img src="/{{ reklam(3)->image }}" style="width: 100%; height:90px!important">
                     </a>
@@ -948,7 +954,7 @@
             <div class="row">
                 <div class="col-md-6">
                     @if (reklam(4)->status == 1)
-                        @if (reklam(4)->type ?? 0 == 1)
+                        @if (reklam(4)->type == 1)
                             <a href="{{ reklam(4)->adsense_url }}"
                                 target="{{ reklam(4)->href_tab == 0 ? '_self' : '_blank' }}">
                                 <img src="/{{ reklam(4)->image }}" width="660px" style="height: 90px!important">
@@ -959,8 +965,8 @@
                     @endif
                 </div>
                 <div id="ikinci_reklam" class="col-md-6">
-                    @if (reklam(4)->status == 1)
-                        @if (reklam(5)->type ?? 0 == 1)
+                    @if (reklam(5)->status == 1)
+                        @if (reklam(5)->type == 1)
                             <a href="{{ reklam(5)->adsense_url }}"
                                 target="{{ reklam(5)->href_tab == 0 ? '_self' : '_blank' }}">
                                 <img src="/{{ reklam(5)->image }}" width="660px" style="height: 90px!important">
@@ -1202,14 +1208,15 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="ad-banner-img">
-                            <a href="{{ reklam(6)->adsense_url }}"
-                                target="{{ reklam(6)->href_tab == 0 ? '_self' : '_blank' }}">
-                                @if (reklam(6)->type ?? 0 == 1)
+
+                            @if (reklam(6)->type == 1)
+                                <a href="{{ reklam(6)->adsense_url }}"
+                                    target="{{ reklam(6)->href_tab == 0 ? '_self' : '_blank' }}">
                                     <img src="/{{ reklam(6)->image }}" width="1320px" style="height: 90px!important">
-                                @else
-                                    {!! reklam(6)->adsense_url ?? '' !!}
-                                @endif
-                            </a>
+                                </a>
+                            @else
+                                {!! reklam(6)->adsense_url !!}
+                            @endif
                         </div>
                     </div>
                     <!-- end col -->
@@ -1385,14 +1392,16 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="ad-banner-img">
-                            <a href="{{ reklam(7)->adsense_url }}"
-                                target="{{ reklam(7)->href_tab == 0 ? '_self' : '_blank' }}">
-                                @if (reklam(7)->type ?? 0 == 1)
+
+                            @if (reklam(7)->type == 1)
+                                <a href="{{ reklam(7)->adsense_url }}"
+                                    target="{{ reklam(7)->href_tab == 0 ? '_self' : '_blank' }}">
                                     <img src="/{{ reklam(7)->image }}" width="1320px" style="height: 90px!important">
-                                @else
-                                    {!! reklam(7)->adsense_url ?? '' !!}
-                                @endif
-                            </a>
+                                </a>
+                            @else
+                                {!! reklam(7)->adsense_url !!}
+                            @endif
+
                         </div>
                     </div>
                     <!-- end col -->
@@ -1433,7 +1442,7 @@
                         </div>
                         <br>
                         <div class="center">
-                            <div class="g-recaptcha" data-sitekey="{{ getCaptchaSiteKey() }}" >
+                            <div class="g-recaptcha" data-sitekey="{{ getCaptchaSiteKey() }}">
                             </div>
                         </div>
                         <br>
@@ -1446,7 +1455,6 @@
                                             {{ __('message.Kişisel Verilerin Korunması') }}
                                         </a>
                                         {{ __('message.okudum, onay veriyorum') }}
-
                                     @else
                                         {{ __("message.Kişisel Verilerin İşlenmesi Aydınlatma Metni'ni okudum kabul ediyorum.") }}
                                     @endif
@@ -1456,8 +1464,6 @@
                                             {{ __('message.Kişisel Verilerin Korunması') }}
                                         </a>
                                         {{ __('message.okudum, onay veriyorum') }}
-
-
                                     @else
                                         {{ __('message.Kişisel Verilerin Korunması Hakkında Aydınlatma Metnini okudum, onay veriyorum.') }}
                                     @endif
