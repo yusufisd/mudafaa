@@ -187,26 +187,7 @@
     <!--end::Content wrapper-->
 @endsection
 @section('script')
-    <script>
-        function destroy(d) {
-            Swal.fire({
-                title: 'Emin misiniz?',
-                text: "Seçtiğiniz içerik silinecek!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Evet, sil!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href =
-                        "{{ route('admin.defenseIndustryContent.multipleImage_destroy') }}/{{ $id }}?path=" +
-                        d;
-                }
-            })
-        }
-    </script>
-    <!--begin:: extra js-->
+    
     <script>
         // begin: DataTable Scripts
         $("#blog_categories_table").DataTable({
