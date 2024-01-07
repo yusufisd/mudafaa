@@ -240,8 +240,9 @@
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10 fv-row">
-                                                                        <textarea  name="description_tr" id="editor"
-                                                                            class="form-control form-control-lg form-control-solid" value="">{{ old('description_tr') }}</textarea>
+
+                                                                        <textarea id="tinymce_activity_detail_tr" name="description_tr" class="tox-target">{{ old('description_tr') }}</textarea>
+
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -380,8 +381,9 @@
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10 fv-row">
-                                                                        <textarea  name="description_en" id="editor2"
-                                                                            class="form-control form-control-lg form-control-solid" value="">{{ old('description_en') }}</textarea>
+
+                                                                        <textarea id="tinymce_activity_detail_en" name="description_en" class="tox-target">{{ old('description_en') }}</textarea>
+
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -709,10 +711,10 @@
                 console.error(error);
             });
     </script>
-    <!--begin:: extra js-->
-    <script src="../assets/plugins/global/plugins.bundle.js"></script>
-    <script src="../assets/plugins/custom/tinymce/tinymce.bundle.js"></script>
-    <script src="../assets/plugins/custom/tinymce/langs/tr.js"></script>
+    
+    <script src="{{ asset('assets/backend/plugins/global/plugins.bundle.js') }}"></script>
+    <script src="{{ asset('assets/backend/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
+    <script src="{{ asset('assets/backend/plugins/custom/tinymce/langs/tr.js') }}"></script>
 
     <script>
         function create_slug_tr() {

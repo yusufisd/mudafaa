@@ -225,7 +225,7 @@
                                                                 <!--begin::Col-->
                                                                 <div class="col-lg-11 fv-row mb-5 ps-5">
 
-                                                                    <textarea id="editor" name="short_description_tr" class="tox-target ckeditor">{{ old('short_description_tr') }}</textarea>
+                                                                    <textarea id="tinymce_activity_detail_tr" name="short_description_tr" class="tox-target">{{ old('short_description_tr') }}</textarea>
 
                                                                 </div>
                                                             </div>
@@ -614,9 +614,9 @@
             });
     </script>
     <!--begin:: extra js-->
-    <script src="../assets/plugins/global/plugins.bundle.js"></script>
-    <script src="../assets/plugins/custom/tinymce/tinymce.bundle.js"></script>
-    <script src="../assets/plugins/custom/tinymce/langs/tr.js"></script>
+    <script src="{{ asset('assets/backend/plugins/global/plugins.bundle.js') }}"></script>
+    <script src="{{ asset('assets/backend/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
+    <script src="{{ asset('assets/backend/plugins/custom/tinymce/langs/tr.js') }}"></script>
 
     <script>
         function create_slug_tr() {

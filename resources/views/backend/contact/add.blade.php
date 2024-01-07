@@ -133,10 +133,8 @@
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <div class="row">
                                                                                     <div class="col-lg-12">
-                                                                                        <textarea name="description_tr" class="form-control form-control-solid mb-3 mb-lg-0" id="editor" cols="30" rows="5"> {{ $data->description ?? '' }} </textarea>
+                                                                                        <textarea id="tinymce_activity_detail_tr" name="description_tr" class="tox-target">{{ $data->description ?? '' }}</textarea>
                                                                                     </div>
-                                                                                    
-
                                                                                 </div>
                                                                             </div>
                                                                             <!--end::Col-->
@@ -304,28 +302,18 @@
                                                                     <!--begin::Label-->
                                                                     <label
                                                                         class="col-lg-2 col-form-label ps-5  fw-bold fs-6">Açıklama</label>
-                                                                    <!--end::Label-->
-                                                                    <!--begin::Col-->
                                                                     <div class="col-lg-10">
-                                                                        <!--begin::Row-->
                                                                         <div class="row">
-                                                                            <!--begin::Col-->
                                                                             <div class="col-lg-12 fv-row">
                                                                                 <div class="row">
                                                                                     <div class="col-lg-12">
-                                                                                        <textarea name="description_en" class="form-control form-control-solid mb-3 mb-lg-0" id="editor2" cols="30" rows="5">{{ $data_en->description ?? '' }}</textarea>
+                                                                                        <textarea id="tinymce_activity_detail_en" name="description_en" class="tox-target">{{ $data_en->description ?? '' }}</textarea>
                                                                                     </div>
-                                                                                    
-
                                                                                 </div>
                                                                             </div>
-                                                                            <!--end::Col-->
                                                                         </div>
-                                                                        <!--end::Row-->
                                                                     </div>
-                                                                    <!--end::Col-->
                                                                 </div>
-                                                                <!--end::Input group-->
 
                                                                 <div class="row mb-6">
                                                                     <!--begin::Label-->
@@ -480,6 +468,9 @@
     </div>
 @endsection
 @section('script')
+    <script src="{{ asset('assets/backend/plugins/global/plugins.bundle.js') }}"></script>
+    <script src="{{ asset('assets/backend/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
+    <script src="{{ asset('assets/backend/plugins/custom/tinymce/langs/tr.js') }}"></script>
     <script>
         function create_slug_tr() {
             var Text = $("#title_tr").val();
@@ -525,6 +516,37 @@
 
             return str;
         };
+
+            
+        
+
+        $(document).ready(function() {
+            tinymce.init({
+                selector: "#tinymce_activity_detail_tr",
+                height: "480",
+                language: 'tr',
+                menubar: false,
+                toolbar: ["styleselect fontselect fontsizeselect",
+                    "undo redo | cut copy paste | bold italic | link image | alignleft aligncenter alignright alignjustify",
+                    "bullist numlist | outdent indent | blockquote subscript superscript | advlist | autolink | lists charmap | print preview |  code"
+                ],
+                plugins: "advlist autolink link image lists charmap print preview code"
+            });
+
+            tinymce.init({
+                selector: "#tinymce_activity_detail_en",
+                height: "480",
+                language: 'tr',
+                menubar: false,
+                toolbar: ["styleselect fontselect fontsizeselect",
+                    "undo redo | cut copy paste | bold italic | link image | alignleft aligncenter alignright alignjustify",
+                    "bullist numlist | outdent indent | blockquote subscript superscript | advlist | autolink | lists charmap | print preview |  code"
+                ],
+                plugins: "advlist autolink link image lists charmap print preview code"
+            });
+
+        });
+
         ClassicEditor
             .create(document.querySelector('#editor'))
             .then(editor => {

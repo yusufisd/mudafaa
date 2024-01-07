@@ -246,8 +246,7 @@
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10 fv-row">
-                                                                        <textarea name="description_tr" id="editor" onchange="create_ozet_tr()"
-                                                                            class="form-control form-control-lg form-control-solid" >{{$data_tr->description}}</textarea>
+                                                                        <textarea id="tinymce_activity_detail_tr" name="description_tr" class="tox-target">{{$data_tr->description}}</textarea>
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -361,8 +360,7 @@
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10 fv-row">
-                                                                        <textarea name="description_en" id="editor2" onchange="create_ozet_en()"
-                                                                            class="form-control form-control-lg form-control-solid">{{$data_en->description}}</textarea>
+                                                                        <textarea id="tinymce_activity_detail_en" name="description_en" class="tox-target">{{$data_en->description}}</textarea>
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -658,10 +656,10 @@
                 console.error(error);
             });
     </script>
-    <!--begin:: extra js-->
-    <script src="../assets/plugins/global/plugins.bundle.js"></script>
-    <script src="../assets/plugins/custom/tinymce/tinymce.bundle.js"></script>
-    <script src="../assets/plugins/custom/tinymce/langs/tr.js"></script>
+
+    <script src="{{ asset('assets/backend/plugins/global/plugins.bundle.js') }}"></script>
+    <script src="{{ asset('assets/backend/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
+    <script src="{{ asset('assets/backend/plugins/custom/tinymce/langs/tr.js') }}"></script>
 
     <script>
         function create_slug_tr() {

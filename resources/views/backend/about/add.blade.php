@@ -187,13 +187,7 @@
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-11 fv-row mb-5 ps-5">
-
-                                                                        <textarea id="editor" name="tinymce_activity_detail_tr" class="tox-target ckeditor"> {{ $data_tr->description ?? '' }} </textarea>
-
-
-
-
-
+                                                                        <textarea id="tinymce_activity_detail_tr" name="tinymce_activity_detail_tr" class="tox-target">{{ $data_tr->description ?? '' }}</textarea>
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -288,7 +282,8 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-11 fv-row mb-5 ps-5">
 
-                                                                        <textarea id="editor2" name="tinymce_activity_detail_en" class="tox-target ckeditor"> {{ $data_en->description ?? '' }} </textarea>
+                                                                        <textarea id="tinymce_activity_detail_en" name="tinymce_activity_detail_en" class="tox-target">{{ $data_en->description ?? '' }}</textarea>
+
                                                                     </div>
                                                                     <!--end::Col-->
                                                                 </div>
@@ -566,10 +561,10 @@
                 console.error(error);
             });
     </script>
-    <!--begin:: extra js-->
-    <script src="../assets/plugins/global/plugins.bundle.js"></script>
-    <script src="../assets/plugins/custom/tinymce/tinymce.bundle.js"></script>
-    <script src="../assets/plugins/custom/tinymce/langs/tr.js"></script>
+    
+    <script src="{{ asset('assets/backend/plugins/global/plugins.bundle.js') }}"></script>
+    <script src="{{ asset('assets/backend/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
+    <script src="{{ asset('assets/backend/plugins/custom/tinymce/langs/tr.js') }}"></script>
 
     <script>
         function create_slug_tr() {

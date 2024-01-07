@@ -198,8 +198,7 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-11 fv-row mb-5 ps-5">
 
-                                                                        <textarea id="editor" name="description_tr" class="tox-target ckeditor">{{ old('description_tr') }}</textarea>
-
+                                                                        <textarea id="tinymce_activity_detail_tr" name="description_tr" class="tox-target">{{ old('description_tr') }}</textarea>
 
                                                                     </div>
                                                                     <!--end::Col-->
@@ -298,8 +297,7 @@
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-11 fv-row mb-5 ps-5">
 
-                                                                        <textarea id="editor2" name="description_en" class="tox-target ckeditor">{{ old('description_en') }}</textarea>
-
+                                                                        <textarea id="tinymce_activity_detail_en" name="description_en" class="tox-target">{{ old('description_en') }}</textarea>
 
                                                                     </div>
                                                                     <!--end::Col-->
@@ -974,6 +972,9 @@
                 console.error(error);
             });
     </script>
+    <script src="{{ asset('assets/backend/plugins/global/plugins.bundle.js') }}"></script>
+    <script src="{{ asset('assets/backend/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
+    <script src="{{ asset('assets/backend/plugins/custom/tinymce/langs/tr.js') }}"></script>
     <script>
         function create_slug_tr() {
             var Text = $("#title_tr").val();
@@ -1019,6 +1020,33 @@
 
             return str;
         };
+
+        $(document).ready(function() {
+            tinymce.init({
+                selector: "#tinymce_activity_detail_tr",
+                height: "480",
+                language: 'tr',
+                menubar: false,
+                toolbar: ["styleselect fontselect fontsizeselect",
+                    "undo redo | cut copy paste | bold italic | link image | alignleft aligncenter alignright alignjustify",
+                    "bullist numlist | outdent indent | blockquote subscript superscript | advlist | autolink | lists charmap | print preview |  code"
+                ],
+                plugins: "advlist autolink link image lists charmap print preview code"
+            });
+
+            tinymce.init({
+                selector: "#tinymce_activity_detail_en",
+                height: "480",
+                language: 'tr',
+                menubar: false,
+                toolbar: ["styleselect fontselect fontsizeselect",
+                    "undo redo | cut copy paste | bold italic | link image | alignleft aligncenter alignright alignjustify",
+                    "bullist numlist | outdent indent | blockquote subscript superscript | advlist | autolink | lists charmap | print preview |  code"
+                ],
+                plugins: "advlist autolink link image lists charmap print preview code"
+            });
+
+        });
     </script>
     <script>
         var input1 = document.querySelector("#seo_key_tr");

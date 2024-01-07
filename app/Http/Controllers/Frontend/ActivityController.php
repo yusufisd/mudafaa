@@ -154,9 +154,7 @@ class ActivityController extends Controller
             $local = config('app.fallback_locale');
         }
         if ($local == 'tr') {
-            $data = Activity::where('status',1)->where('start_time', '>=', $now)
-                ->orderBy('start_time', 'asc')
-                ->get();
+            $data = Activity::where('status',1)->where('start_time','>=',$now->format('Y-m-d'))->orderBy('start_time','asc')->get();
         } elseif ($local == 'en') {
             $data = EnActivity::where('status',1)->where('start_time', '>=', $now)
                 ->orderBy('start_time', 'asc')

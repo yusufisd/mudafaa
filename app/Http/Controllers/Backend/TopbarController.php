@@ -185,6 +185,7 @@ class TopbarController extends Controller
         }
         if ($data_en != null) {
             $data_en->image = "";
+            $data_en->save();
         }
         Alert::success('Güncelleme Başarılı');
         return redirect()->route('admin.topbar.list');

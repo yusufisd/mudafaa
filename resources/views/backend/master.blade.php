@@ -24,9 +24,9 @@
 
     <!--end::Vendor Stylesheets-->
     <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
-    <link href="/assets/backend/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/backend/css/style.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/backend/css/gavia_style.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/backend/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/backend/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/backend/css/gavia_style.css') }}" rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.11.0/css/flag-icons.min.css" />
 
@@ -827,27 +827,16 @@
                     fill="currentColor" />
             </svg>
         </span>
-        <!--end::Svg Icon-->
     </div>
-    <!--end::Scrolltop-->
-    <!--begin::Javascript-->
     <script>
         var hostUrl = "/assets/backend/";
     </script>
-    <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-    <script src="/assets/backend/plugins/global/plugins.bundle.js"></script>
-    <script src="/assets/backend/js/scripts.bundle.js"></script>
-    <!--end::Global Javascript Bundle-->
-    <!--begin::Vendors Javascript(used for this page only)-->
-    <script src="/assets/backend/plugins/custom/datatables/datatables.bundle.js"></script>
-    <!--end::Vendors Javascript-->
-    <!--begin::Custom Javascript(used for this page only)-->
-    <script src="/assets/backend/js/widgets.bundle.js"></script>
-    <script src="/assets/backend/js/custom/widgets.js"></script>
-    <script src="/assets/backend/js/custom/apps/chat/chat.js"></script>
-    <!--end::Custom Javascript-->
-    <!--end::Javascript-->
-    <!--begin:: extra js-->
+    <script src="{{ asset('assets/backend/plugins/global/plugins.bundle.js') }}"></script>
+    <script src="{{ asset('assets/backend/js/scripts.bundle.js') }}"></script>
+    <script src="{{ asset('assets/backend/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+    <script src="{{ asset('assets/backend/js/widgets.bundle.js') }}"></script>
+    <script src="{{ asset('assets/backend/js/custom/widgets.js') }}"></script>
+    <script src="{{ asset('assets/backend/js/custom/apps/chat/chat.js') }}"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 
     <script>
@@ -928,17 +917,8 @@
             },
             dom: 'Qfrtip'
         });
-
-
-        // end: DataTable Scripts
     </script>
-
-    <!--end:: extra js-->
-
     @yield('script')
     @include('sweetalert::alert')
-
 </body>
-<!--end::Body-->
-
 </html>
