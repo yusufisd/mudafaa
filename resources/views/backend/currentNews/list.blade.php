@@ -24,7 +24,7 @@
                         <form action="{{ route('admin.currentNews.ice_aktar') }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
-                            <div class="row" >
+                            <div class="row">
                                 <div class="col-md-8">
                                     <input type="file" class="form-control" name="ice_aktar" id="">
                                 </div>
@@ -80,6 +80,119 @@
                                         </a>
 
 
+                                        <!-- FİLTRELEME SEÇENEKLERİ:BAŞLANGIÇ-->
+                                        <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
+
+                                            <!--begin::Menu toggle-->
+                                            <a href="#"
+                                                class="btn btn-sm btn-flex bg-body btn-outline btn-outline-success fw-bold ms-5"
+                                                data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                                <!--begin::Svg Icon | path: icons/duotune/general/gen031.svg-->
+                                                <span class="svg-icon svg-icon-6 svg-icon-muted me-1">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z"
+                                                            fill="currentColor" />
+                                                    </svg>
+                                                </span>
+                                                <!--end::Svg Icon-->Filtrele</a>
+                                            <!--end::Menu toggle-->
+
+                                            <!--begin::Menu 1-->
+                                            <div class="menu menu-sub menu-sub-dropdown w-350px w-md-400px"
+                                                data-kt-menu="true" id="kt_menu_63de8b3bde02f">
+                                                <!--begin::Header-->
+                                                <div class="px-7 py-5">
+                                                    <div class="fs-5 text-dark fw-bold">Filtre Seçenekleri</div>
+                                                </div>
+                                                <!--end::Header-->
+                                                <!--begin::Menu separator-->
+                                                <div class="separator border-gray-200"></div>
+                                                <!--end::Menu separator-->
+                                                <!--begin::Form-->
+
+
+
+                                                <form action="{{ route('admin.currentNews.filterPost') }}" method="POST">
+                                                    @csrf
+                                                    <div class="px-7 py-5">
+                                                        <!--begin::Input group-->
+                                                        <div class="mb-10">
+                                                            <!--begin::Label-->
+                                                            <label class="form-label fw-semibold">Kategori:</label>
+                                                            <!--end::Label-->
+                                                            <!--begin::Input-->
+                                                            <div>
+                                                                <select required name="category" class="form-select form-select-solid"
+                                                                    data-kt-select2="true" data-placeholder="Seçiniz.."
+                                                                    data-dropdown-parent="#kt_menu_63de8b3bde02f"
+                                                                    data-allow-clear="true">
+                                                                    <option></option>
+                                                                    @foreach ($categories as $cat)
+                                                                        <option value="{{ $cat->id }}">{{ $cat->title }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <!--end::Input-->
+                                                        </div>
+                                                        <!--end::Input group-->
+                                                        <!--begin::Input group-->
+                                                        <div class="mb-10">
+                                                            <!--begin::Label-->
+                                                            <label class="form-label fw-semibold">İşlem:</label>
+                                                            <!--end::Label-->
+                                                            <!--begin::Options-->
+                                                            <div class="d-flex">
+                                                                <!--begin::Options-->
+                                                                <label
+                                                                    class="form-check form-check-sm form-check-custom form-check-solid me-5">
+                                                                    <input class="form-check-input" name="process"
+                                                                        type="radio" required value="1" />
+                                                                    <span class="form-check-label">Toplu Sil</span>
+                                                                </label>
+                                                                <!--end::Options-->
+                                                                <!--begin::Options-->
+                                                                <label
+                                                                    class="form-check form-check-sm form-check-custom form-check-solid me-5">
+                                                                    <input class="form-check-input" name="process"
+                                                                        type="radio" required value="2"  />
+                                                                    <span class="form-check-label">Pasif Yap</span>
+                                                                </label>
+                                                                <!--end::Options-->
+                                                                <!--begin::Options-->
+                                                                <label
+                                                                    class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input" name="process"
+                                                                        type="radio" required value="3" />
+                                                                    <span class="form-check-label">Aktif Yap</span>
+                                                                </label>
+                                                                <!--end::Options-->
+                                                            </div>
+                                                            <!--end::Options-->
+                                                        </div>
+                                                        <!--end::Input group-->
+                                                        <!--begin::Actions-->
+                                                        <div class="d-flex justify-content-end">
+                                                            <button type="reset"
+                                                                class="btn btn-sm btn-outline btn-outline-success me-2"
+                                                                data-kt-menu-dismiss="true">Sıfırla</button>
+                                                            <button type="submit" class="btn btn-sm btn-primary"
+                                                                data-kt-menu-dismiss="true">Uygula</button>
+                                                        </div>
+                                                        <!--end::Actions-->
+                                                    </div>
+                                                </form>
+                                                <!--end::Form-->
+
+
+                                            </div>
+                                            <!--end::Menu 1-->
+
+                                        </div>
+                                        <!-- FİLTRELEME SEÇENEKLERİ:BİTİŞ-->
+
+
 
                                     </div>
                                     <!--end::Toolbar-->
@@ -98,7 +211,8 @@
                                                 <th class="w-10px">
                                                     <div
                                                         class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                                        <input class="form-check-input" type="checkbox" data-kt-check="true"
+                                                        <input class="form-check-input" type="checkbox"
+                                                            data-kt-check="true"
                                                             data-kt-check-target="#blog_management_table .my-input "
                                                             value="1" />
                                                     </div>
@@ -138,8 +252,8 @@
                                                             class="form-check form-check-solid form-switch form-check-custom fv-row justify-content-center">
                                                             <input class="form-check-input w-50px h-25px"
                                                                 onchange="change_headline({{ $item->id }})"
-                                                                {{ $item->headline == 1 ? 'checked' : '' }} type="checkbox"
-                                                                id="headline">
+                                                                {{ $item->headline == 1 ? 'checked' : '' }}
+                                                                type="checkbox" id="headline">
                                                             <label class="form-check-label" for="headline"></label>
                                                         </div>
                                                     </td>

@@ -9,6 +9,7 @@ use App\Models\Comment;
 use App\Models\CurrentNews;
 use App\Models\CurrentNewsCategory;
 use App\Models\EnCurrentNews;
+use App\Models\EnCurrentNewsCategory;
 use App\Models\NewsSource;
 use App\Models\UserModel;
 use Carbon\Carbon;
@@ -28,7 +29,8 @@ class CurrentNewsController extends Controller
     public function index()
     {
         $data = CurrentNews::latest()->get();
-        return view('backend.currentNews.list', compact('data'));
+        $categories = CurrentNewsCategory::latest()->get();
+        return view('backend.currentNews.list', compact('data','categories'));
     }
 
     /**
@@ -234,6 +236,7 @@ class CurrentNewsController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $request->validate(
             [
                 'activity_name_en' => 'required',
@@ -292,13 +295,15 @@ class CurrentNewsController extends Controller
             }
             $merge_en = implode(',', $merge_en);
 
+            $category_integer = array_map('intval', $request->category);
+
 
             $read_time_tr = (int) round(str_word_count($request->tinymce_activity_detail_tr) / 200);
             $read_time_en = (int) round(str_word_count($request->tinymce_activity_detail_en) / 200);
 
             $news = CurrentNews::findOrFail($id);
 
-            $news->category_id = $request->category;
+            $news->category_id = $category_integer;
             $news->author_id = $request->author;
             $news->live_time = $request->activity_on_location_tr;
             $news->title = $request->activity_name_tr;
@@ -352,7 +357,7 @@ class CurrentNewsController extends Controller
 
             $news_en = EnCurrentNews::where('currentNews_id', $id)->first();
             $news_en->author_id = $request->author;
-            $news_en->category_id = $request->category;
+            $news_en->category_id = $category_integer;
             $news_en->title = $request->activity_name_en;
             $news_en->short_description = $request->activity_summary_en;
             $news_en->description = $request->tinymce_activity_detail_en;
@@ -576,5 +581,43 @@ class CurrentNewsController extends Controller
         return Excel::download(new CurrentNewsExport, 'currentNews.xlsx');
     }
 
- 
+    public function filter(Request $request){
+
+        $cat = CurrentNewsCategory::find($request->category);
+        $cat_en = EnCurrentNewsCategory::where('category_id',$request->category)->first();
+
+        if($request->process == 1){
+            dd('toplu sil');
+        }
+        elseif($request->process == 2){
+            $datas = CurrentNews::whereJsonContains('category_id',$cat->id)->get();
+            $datas_en = EnCurrentNews::whereJsonContains('category_id',$cat->id)->get();
+            foreach($datas as $key){
+                $key->status = 0;
+                $key->save();
+            }
+
+            foreach($datas_en as $key){
+                $key->status = 0;
+                $key->save();
+
+            }
+        }
+        elseif($request->process == 3 ){
+            $datas = CurrentNews::whereJsonContains('category_id',$cat->id)->get();
+            $datas_en = EnCurrentNews::whereJsonContains('category_id',$cat->id)->get();
+            foreach($datas as $key){
+                $key->status = 1;
+                $key->save();
+            }
+
+            foreach($datas_en as $key){
+                $key->status = 1;
+                $key->save();
+            }
+        }
+
+        Alert::success('Başaurlu');
+        return redirect()->route('admin.currentNews.list');
+    }
 }

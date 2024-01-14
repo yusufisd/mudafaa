@@ -142,5 +142,9 @@ return [
     "Kabul Et" => "Accept",
     "Daha fazla bilgi" => "More information",
     "kaynak" => "SOURCE",
+    "Telefon alanı zorunludur" => "Phone is required",
+    "E-mail alanı zorunludur" => "E-mail is required",
+    "İsim alanı zorunludur" => "Name is required",
+    "Mesaj alanı zorunludur" => "Message is required",
 ];
 ?>

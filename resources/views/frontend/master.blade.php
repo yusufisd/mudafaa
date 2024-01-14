@@ -526,7 +526,8 @@
                                                                 <a
                                                                     href="{{ \Session::get('applocale') == 'en' ? route('front.about.detail_en') : route('front.about.detail') }}">
                                                                     <p style="color: white; font-size:14px">
-                                                                        Hakkımızda </p>
+                                                                        {{ __('message.hakkımızda') }}
+                                                                    </p>
                                                                 </a>
                                                             </li>
                                                             <li class="li_2"
@@ -534,7 +535,7 @@
                                                                 <a
                                                                     href="{{ \Session::get('applocale') == 'en' ? route('front.kunye_en') : route('front.kunye') }}">
                                                                     <p style="color: white; font-size:14px">
-                                                                        Künye </p>
+                                                                        {{ __('message.künye') }} </p>
                                                                 </a>
                                                             </li>
                                                             <li class="li_2"
@@ -542,7 +543,7 @@
                                                                 <a
                                                                     href="{{ route('front.adsensePage.index') }}">
                                                                     <p style="color: white; font-size:14px">
-                                                                        Reklam </p>
+                                                                        {{ __('message.reklam') }} </p>
                                                                 </a>
                                                             </li>
                                                             <li class="li_2"
@@ -550,7 +551,7 @@
                                                                 <a
                                                                     href="{{ route('front.cooperationPage.index') }}">
                                                                     <p style="color: white; font-size:14px">
-                                                                        İş Bİrliği </p>
+                                                                        {{ __('message.iş birliği') }} </p>
                                                                 </a>
                                                             </li>
                                                             <li class="li_2"
@@ -558,7 +559,7 @@
                                                                 <a
                                                                     href="{{ \Session::get('applocale') == 'en' ? route('front.archive.index_en') : route('front.archive.index') }}">
                                                                     <p style="color: white; font-size:14px">
-                                                                        Arşiv </p>
+                                                                        {{ __('message.iş birliği') }} </p>
                                                                 </a>
                                                             </li>
                                                             <li class="li_2"
@@ -566,7 +567,7 @@
                                                                 <a
                                                                     href="{{ \Session::get('applocale') == 'en' ? route('front.contact_en') : route('front.contact') }}">
                                                                     <p style="color: white; font-size:14px">
-                                                                        İletişim </p>
+                                                                        {{ __('message.iletişim') }} </p>
                                                                 </a>
                                                             </li>
                                                         </ul>

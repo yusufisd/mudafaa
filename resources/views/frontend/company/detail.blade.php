@@ -158,7 +158,7 @@
                                         @foreach ($images as $item)
                                             <div class="col-md-4">
                                                 <a data-fancybox="gallery" href="/{{ $item->image }}">
-                                                    <img src="/{{ $item->image }}" style="width: 100%;" alt="Resim 3">
+                                                    <img src="/{{ $item->image }}" style="width: 100%; object-fit:cover!important" alt="Resim 3">
                                                 </a>
                                             </div>
                                         @endforeach

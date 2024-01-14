@@ -348,7 +348,7 @@
                                             @foreach ($data->multiple_image as $item)
                                                 <div class="col-md-3">
                                                     <a data-fancybox="gallery urun-gorsel" href="/{{ $item }}">
-                                                        <img src="/{{ $item }}" style="width:100%"
+                                                        <img src="/{{ $item }}" style="width:100%; object-fit:cover!important"
                                                             alt="">
                                                     </a>
                                                 </div>

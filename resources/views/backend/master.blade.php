@@ -589,6 +589,38 @@
                                     </div>
                                 </div>
 
+                                <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+                                    data-kt-menu-placement="right-start"
+                                    class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention">
+                                    <span class="menu-link">
+                                        <span class="menu-icon">
+                                            <i class="fa-solid fa-file"></i>
+                                        </span>
+                                        <span class="menu-title">Form Yönetimi</span>
+                                        <span class="menu-arrow"></span>
+                                    </span>
+                                    <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown w-200px mh-75 overflow-auto px-2 py-4"
+                                        style="">
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="{{ route('admin.subscriber.list') }}">
+                                                <span class="menu-bullet">
+                                                    <span class="bullet bullet-dot"></span>
+                                                </span>
+                                                <span class="menu-title">Aboneler</span>
+                                            </a>
+                                        </div>
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="{{ route('admin.comments.interviews') }}">
+                                                <span class="menu-bullet">
+                                                    <span class="bullet bullet-dot"></span>
+                                                </span>
+                                                <span class="menu-title">İletişim Formu</span>
+                                            </a>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+
                                 @if (auth()->guard('admin')->user() != null)
                                     <!--begin:Menu item-->
                                     <div class="menu-item">

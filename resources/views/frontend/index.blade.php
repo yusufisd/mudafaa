@@ -1426,11 +1426,12 @@
                 </div>
                 <!-- end col -->
                 <div class="col-lg-6 align-self-center wow fadeInRight" data-wow-delay="600ms" data-wow-duration="800ms">
-                    <h4 style="font-size:20px">
+                    <h4 style="font-size:22px">
                         {{ __("message.Milli Müdafa'nın güncel haberlerini takip etmek için E-posta adresiniz ile bültenimize kayıt olun.") }}
                     </h4>
                     <br>
-                    <form action="#" id="demo-form" class="rt-contact-form subscribe-form-style-2">
+                    <form action="{{ route('front.subscribePost') }}" method="POST" id="demo-form" class=" subscribe-form-style-2">
+                        @csrf
                         <div class="rt-subs-group">
                             <input type="email" name="email" id="email_2" class="subscribe-form"
                                 placeholder="E-posta" data-error="E-posta alanı zorunludur" required>
@@ -1439,6 +1440,13 @@
                                 type="submit"> {{ __('message.Abone ol') }}
                             </button>
                             <div class="form-response"></div>
+                            @if($errors->any())
+                                @foreach ($errors->all() as $e)
+                                    <div class="alert alert-danger mt-5">
+                                        {{ $e }}
+                                    </div>
+                                @endforeach
+                            @endif
                         </div>
                         <br>
                         <div class="center">
@@ -1447,28 +1455,34 @@
                         </div>
                         <br>
                         <div class="">
-                            <input type="checkbox" name="" id="check">
-                            <span for="check">
+                            <input type="checkbox" name="accept" required id="check">
                                 @if (\Session::get('applocale') == 'en')
                                     @if ($kvkk_en)
                                         <a href="{{ route('front.page.detail', 'pdpl') }}">
                                             {{ __('message.Kişisel Verilerin Korunması') }}
                                         </a>
+                                        <label for="check">
                                         {{ __('message.okudum, onay veriyorum') }}
+                                        </label>
                                     @else
+                                    <label for="check">
                                         {{ __("message.Kişisel Verilerin İşlenmesi Aydınlatma Metni'ni okudum kabul ediyorum.") }}
+                                    </label>
                                     @endif
                                 @else
                                     @if ($kvkk_tr)
                                         <a href="{{ route('front.page.detail', 'kvkk') }}">
                                             {{ __('message.Kişisel Verilerin Korunması') }}
                                         </a>
+                                        <label for="check">
                                         {{ __('message.okudum, onay veriyorum') }}
+                                        </label>
                                     @else
+                                    <label for="check"> 
                                         {{ __('message.Kişisel Verilerin Korunması Hakkında Aydınlatma Metnini okudum, onay veriyorum.') }}
+                                    </label>
                                     @endif
                                 @endif
-                            </span>
                         </div>
 
                     </form>

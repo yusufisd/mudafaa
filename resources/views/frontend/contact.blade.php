@@ -9,6 +9,7 @@
             width: 1600px;
             height: 500px;
         }
+
     </style>
     <main>
         <!-- theme-switch-box -->
@@ -123,25 +124,25 @@
                         <form action="#" class="contact-form-style-1 rt-contact-form">
                             <h4 class="form-title">{{ __('message.Mesaj Bırakın') }}</h4>
                             <div class="form-group">
-                                <input type="text" class="form-control rt-form-control" placeholder="İsim *"
-                                    name="name" id="name" data-error="İsim alanı zorunludur" required>
-                                <div class="help-block with-errors"></div>
+                                <input type="text" class="form-control rt-form-control" placeholder="{{ __('message.isim') }} *"
+                                    name="name" id="name" data-error="{{ __('message.İsim alanı zorunludur') }}" required>
+                                <div class="help-block with-errors" style="color:red; font-size:14px"></div>
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control rt-form-control" placeholder="E-posta *"
-                                    name="email" id="email" data-error="E-posta alanı zorunludur" required>
-                                <div class="help-block with-errors"></div>
+                                <input type="email" class="form-control rt-form-control" placeholder="E-mail *"
+                                    name="email" id="email" data-error="{{ __('message.E-mail alanı zorunludur') }}" required>
+                                <div class="help-block with-errors" style="color:red; font-size:14px"></div>
                             </div>
                             <div class="form-group">
-                                <input type="tel" class="form-control rt-form-control" placeholder="Telefon *"
-                                    name="phone" id="phone" data-error="Telefon alanı zorunludur" required>
-                                <div class="help-block with-errors"></div>
+                                <input type="tel" class="form-control rt-form-control" placeholder="{{ __('message.telefon') }} *"
+                                    name="phone" id="phone" data-error="{{ __('message.Telefon alanı zorunludur') }}" required>
+                                <div class="help-block with-errors" style="color:red; font-size:14px"></div>
                             </div>
 
                             <div class="form-group">
-                                <textarea name="message" id="message" class="form-control rt-form-control rt-textarea" placeholder="Mesaj *"
-                                    data-error="Mesaj alanı zorunludur" required></textarea>
-                                <div class="help-block with-errors"></div>
+                                <textarea name="message" id="message" class="form-control rt-form-control rt-textarea" placeholder="{{ __('message.mesaj') }} *"
+                                    data-error="{{ __('message.Mesaj alanı zorunludur') }}" required></textarea>
+                                <div class="help-block with-errors" style="color:red; font-size:14px"></div>
                             </div>
                             <div class="form-check mb-3">
                                 <div class="">
@@ -172,7 +173,7 @@
                                     </span>
                                 </div>
                             </div>
-                            <button type="submit" class="submit-btn">Gönder</button>
+                            <button type="submit" class="submit-btn"> {{ __('message.kaydet') }} </button>
                             <div class="form-response"></div>
                         </form>
                     </div>

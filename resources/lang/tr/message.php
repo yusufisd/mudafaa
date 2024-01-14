@@ -141,6 +141,9 @@ return [
     "Kabul Et" => "Kabul Et",
     "Daha fazla bilgi" => "Daha fazla bilgi",
     "kaynak" => "KAYNAK",
-
-];
+    "Telefon alanı zorunludur" => "Telefon alanı zorunludur",
+    "E-mail alanı zorunludur" => "E-mail alanı zorunludur",
+    "İsim alanı zorunludur" => "İsim alanı zorunludur",
+    "Mesaj alanı zorunludur" => "Mesaj alanı zorunludur",
+];  
 ?>

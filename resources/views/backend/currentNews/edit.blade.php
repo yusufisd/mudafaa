@@ -160,7 +160,7 @@
                                                                             @foreach ($categories as $cat)
                                                                                 <option
                                                                                     {{ in_array($cat->id, $data_tr->category_id) ? 'selected' : '' }}
-                                                                                    value="{{ $cat->id }}">
+                                                                                    value="{{ intval($cat->id) }}">
                                                                                     {{ $cat->title }}
                                                                                 </option>
                                                                             @endforeach
