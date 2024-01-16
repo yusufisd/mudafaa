@@ -1175,7 +1175,7 @@
                                                     style="display: {{ $anket->isVoted() != null ? 'block' : 'none' }}"
                                                     id="yuzde{{ $cevap->id }}">
                                                     <span class="vote-percent" id="cevap{{ $cevap->id }}"
-                                                        data-vote-percent="{{ $cevap->katilim() }}">{{ $cevap->katilim() }}</span>%
+                                                        data-vote-percent="{{ $cevap->katilim() }}">{{ intval($cevap->katilim()) }}</span>%
                                                 </div>
                                             </div>
                                         @endforeach

@@ -100,7 +100,6 @@ class HomeController extends Controller
 
             }
             $now = Carbon::now();
-            $now_plus = $now->addMonth(2);
 
 
             $cat1_news1 = CurrentNews::orderBy('live_time','desc')->whereJsonContains('category_id',$first_cat->id)->where('status',1)->whereNotIn('id',$cats_idler)->take(3);
