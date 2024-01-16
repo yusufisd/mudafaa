@@ -1,11 +1,13 @@
 @extends('frontend.master')
 @section('meta-title', 'Milli Müdafaa')
-@section('keywords', 'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul,
+@section('keywords',
+    'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul,
     TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli
     teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar,
     temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika,
     savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
-@section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri
+@section('description',
+    'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri
     için tıklayın!')
 @section('title', 'Röportajlar')
 
@@ -96,27 +98,28 @@
 
                             <div class="wrap post-wrap-style-3">
 
-                                @foreach ($data as $key => $item)
-                                    @if ($key % 2 == 0)
-                                        <div class="ad-banner-img mb--40 mt--40">
-                                            @if (reklam(28) != null && reklam(28)->status == 1)
-                                                <div class="sidebar-wrap mb--40">
-                                                    <div class="ad-banner-img">
-                                                        @if (reklam(28)->type == 1)
-                                                            <a href="{{ reklam(28)->adsense_url }}">
+                                @if (reklam(28) != null && reklam(28)->status == 1)
+                                    <div class="ad-banner-img mb--40 mt--40">
+                                        <div class="sidebar-wrap mb--40">
+                                            <div class="ad-banner-img">
+                                                @if (reklam(28)->type == 1)
+                                                    <a href="{{ reklam(28)->adsense_url }}">
 
-                                                                <img src="/{{ reklam(28)->image }}" alt=""
-                                                                    width="1320px" style="height:90px">
-                                                            </a>
-                                                        @else
-                                                            {!! reklam(28)->adsense_url ?? '' !!}
-                                                        @endif
+                                                        <img src="/{{ reklam(28)->image }}" alt="" width="1320px"
+                                                            style="height:150px">
+                                                    </a>
+                                                @else
+                                                    {!! reklam(28)->adsense_url ?? '' !!}
+                                                @endif
 
-                                                    </div>
-                                                </div>
-                                            @endif
+                                            </div>
                                         </div>
-                                    @endif
+                                    </div>
+
+                                @endif
+
+                                @foreach ($data as $key => $item)
+
 
 
                                     <div class="post-item wow fadeInUp" data-wow-delay="100ms" data-wow-duration="800ms">
@@ -190,7 +193,7 @@
                                                             <a href="{{ reklam(29)->adsense_url }}">
 
                                                                 <img src="/{{ reklam(29)->image }}" alt=""
-                                                                    width="1320px" style="height:90px">
+                                                                    width="1320px" style="height:150px">
                                                             </a>
                                                         @else
                                                             {!! reklam(29)->adsense_url ?? '' !!}
@@ -377,8 +380,8 @@
     <!-- EXTRA JS -->
     <script>
         /*--------------------------------
-                        // limit by device width
-                        -------------------------------*/
+                            // limit by device width
+                            -------------------------------*/
         // get device width
         var windowWidth = $(window).width();
 

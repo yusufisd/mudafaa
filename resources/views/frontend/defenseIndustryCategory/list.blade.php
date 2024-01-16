@@ -114,7 +114,7 @@
 
                                     @if ($key == 4)
                                         @if (reklam(13) != null && reklam(13)->status == 1)
-                                            <div class="sidebar-wrap mb--40">
+                                            <div class="sidebar-wrap mb--20 mt--20">
                                                 <div class="ad-banner-img">
                                                     @if (reklam(13)->type == 1)
                                                         <a href="{{ reklam(13)->adsense_url }}">
@@ -333,7 +333,8 @@
                                         <p>
                                             {{ __('message.Ulusal ve global savunma ile ilgili gündemden daha hızlı haberdar olmak istiyorsanız, Milli Müdafaa e-posta listesine kayıt olun!') }}
                                         </p>
-                                        <form action="#" class="rt-contact-form subscribe-form rt-form">
+                                        <form action="{{ route('front.subscribePost') }}" method="POST" class="subscribe-form rt-form">
+                                            @csrf
                                             <div class="rt-form-group">
                                                 <input type="email" class="form-control rt-form-control"
                                                     placeholder="E-posta *" name="email" id="email_1"
@@ -347,7 +348,7 @@
                                             </div>
                                             <br>
                                             <div class="">
-                                                <input type="checkbox" name="check" id="check">
+                                                <input type="checkbox" required name="accept" id="checked">
                                                 @if (\Session::get('applocale') == 'en')
                                                     @if ($kvkk_en)
                                                         <a href="{{ route('front.page.detail', 'pdpl') }}">
@@ -355,13 +356,13 @@
                                                                 {{ __('message.Kişisel Verilerin Korunması') }}
                                                             </span>
                                                         </a>
-                                                        <span for="check" style="font-size:14px">
+                                                        <label for="checked" style="font-size:14px">
                                                             {{ __('message.okudum, onay veriyorum') }}
-                                                        </span>
+                                                        </label>
                                                     @else
-                                                        <span for="check" style="font-size:14px">
+                                                        <label for="checked" style="font-size:14px">
                                                             {{ __("message.Kişisel Verilerin İşlenmesi Aydınlatma Metni'ni okudum kabul ediyorum.") }}
-                                                        </span>
+                                                        </label>
                                                     @endif
                                                 @else
                                                     @if ($kvkk_tr)
@@ -370,11 +371,13 @@
                                                                 {{ __('message.Kişisel Verilerin Korunması') }}
                                                             </span>
                                                         </a>
+                                                        <label for="checked">
                                                         {{ __('message.okudum, onay veriyorum') }}
+                                                    </label>
                                                     @else
-                                                        <span for="check" style="font-size:14px">
+                                                        <label for="checked" style="font-size:14px">
                                                             {{ __('message.Kişisel Verilerin Korunması Hakkında Aydınlatma Metnini okudum, onay veriyorum.') }}
-                                                        </span>
+                                                        </label>
                                                     @endif
                                                 @endif
                                             </div>

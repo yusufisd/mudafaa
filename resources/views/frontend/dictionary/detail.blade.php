@@ -223,11 +223,11 @@
         <!-- editor-choice-section-style-1 -->
         <section class="editor-choice-section-style-1 mt-sm-3 mt-md-5 rt-sidebar-section-layout-2 overflow-hidden">
             @if (reklam(41) != null && reklam(41)->status == 1)
-                <div class="ad-banner-img mt--45 mb--40">
+                <div class="ad-banner-img mb--40">
                     @if (reklam(41)->type == 1)
                         <a href="{{ reklam(41)->adsense_url }}">
 
-                            <img src="/{{ reklam(41)->image }}" alt="" width="1320" style="height: 90px">
+                            <img src="/{{ reklam(41)->image }}" alt="" width="1320" style="height: 150px">
                         </a>
                     @else
                         {!! reklam(41)->adsense_url ?? '' !!}

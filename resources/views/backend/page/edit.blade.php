@@ -167,7 +167,7 @@
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10 fv-row">
-                                                                        <textarea name="description_tr" id="editor"
+                                                                        <textarea name="description_tr" id="tinymce_activity_detail_tr"
                                                                             class="form-control form-control-lg form-control-solid" > {{$data_tr->description}} </textarea>
                                                                     </div>
                                                                     <!--end::Col-->
@@ -283,7 +283,7 @@
                                                                     <!--end::Label-->
                                                                     <!--begin::Col-->
                                                                     <div class="col-lg-10 fv-row">
-                                                                        <textarea name="description_en" id="editor2"
+                                                                        <textarea name="description_en" id="tinymce_activity_detail_en"
                                                                             class="form-control form-control-lg form-control-solid">{{$data_en->description}}</textarea>
                                                                     </div>
                                                                     <!--end::Col-->
@@ -393,9 +393,9 @@
             });
     </script>
     <!--begin:: extra js-->
-    <script src="../assets/plugins/global/plugins.bundle.js"></script>
-    <script src="../assets/plugins/custom/tinymce/tinymce.bundle.js"></script>
-    <script src="../assets/plugins/custom/tinymce/langs/tr.js"></script>
+    <script src="/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="/assets/plugins/custom/tinymce/tinymce.bundle.js"></script>
+    <script src="/assets/plugins/custom/tinymce/langs/tr.js"></script>
 
     <script>
         function create_slug_tr() {
@@ -452,9 +452,11 @@
                 menubar: false,
                 toolbar: ["styleselect fontselect fontsizeselect",
                     "undo redo | cut copy paste | bold italic | link image | alignleft aligncenter alignright alignjustify",
-                    "bullist numlist | outdent indent | blockquote subscript superscript | advlist | autolink | lists charmap | print preview |  code"
+                    "bullist numlist | outdent indent | blockquote subscript superscript | advlist | autolink | lists charmap | print preview |  code",
+                    "table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol"
+
                 ],
-                plugins: "advlist autolink link image lists charmap print preview code"
+                plugins: "advlist autolink link image lists charmap print preview code table"
             });
 
             tinymce.init({
@@ -464,9 +466,11 @@
                 menubar: false,
                 toolbar: ["styleselect fontselect fontsizeselect",
                     "undo redo | cut copy paste | bold italic | link image | alignleft aligncenter alignright alignjustify",
-                    "bullist numlist | outdent indent | blockquote subscript superscript | advlist | autolink | lists charmap | print preview |  code"
+                    "bullist numlist | outdent indent | blockquote subscript superscript | advlist | autolink | lists charmap | print preview |  code",
+                    "table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol"
+
                 ],
-                plugins: "advlist autolink link image lists charmap print preview code"
+                plugins: "advlist autolink link image lists charmap print preview code table"
             });
 
         });

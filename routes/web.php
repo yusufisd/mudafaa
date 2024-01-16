@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\CompanyController;
 use App\Http\Controllers\Backend\CompanyModelController;
 use App\Http\Controllers\Backend\CompanySubTitle;
 use App\Http\Controllers\Backend\ContactController;
+use App\Http\Controllers\Backend\ContactFormController;
 use App\Http\Controllers\Backend\CooperationPageController;
 use App\Http\Controllers\Backend\CountryController;
 use App\Http\Controllers\Backend\CurrentNewsCategoryController;
@@ -55,6 +56,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\PageController as FrontendPageController;
 use App\Http\Controllers\Frontend\ContactController as FrontendContactController;
+use App\Http\Controllers\Frontend\ContactFormController as FrontendContactFormController;
 use App\Http\Controllers\Frontend\CooperationPageController as FrontendCooperationPageController;
 use App\Http\Controllers\Frontend\KunyeController as FrontendKunyeController;
 use App\Http\Controllers\Frontend\SubscribersController;
@@ -732,6 +734,12 @@ Route::middleware('lang')->group(function () {
                 Route::get('/liste','index')->name('list');
                 Route::get('/statu-degistir/{id?}','change_status')->name('change_status');
             });
+
+            // İletşim formu
+            Route::prefix('iletisim-formu')->name('contactForm.')->controller(ContactFormController::class)->group(function(){
+                Route::get('/liste','index')->name('index');
+                Route::get('/sil/{id?}','delete')->name('delete');
+            });
         });
 
 
@@ -905,7 +913,11 @@ Route::middleware('lang')->group(function () {
 
             // SUBSCRİBE CONTROLLER
             Route::post('abone-ol',[SubscribersController::class,'subscribe'])->name('subscribePost');
+
+            // İletişim Formu
+            Route::post('iletisim-formu-post',[FrontendContactFormController::class,'formPost'])->name('contactFormPost');
         });
+
 });
 
 Route::get('/view_counter', [FrontendHomeController::class, 'view_counter']);

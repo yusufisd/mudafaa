@@ -610,7 +610,7 @@
                                             </a>
                                         </div>
                                         <div class="menu-item">
-                                            <a class="menu-link" href="{{ route('admin.comments.interviews') }}">
+                                            <a class="menu-link" href="{{ route('admin.contactForm.index') }}">
                                                 <span class="menu-bullet">
                                                     <span class="bullet bullet-dot"></span>
                                                 </span>

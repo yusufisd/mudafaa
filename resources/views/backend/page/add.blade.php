@@ -455,9 +455,11 @@
                 menubar: false,
                 toolbar: ["styleselect fontselect fontsizeselect",
                     "undo redo | cut copy paste | bold italic | link image | alignleft aligncenter alignright alignjustify",
-                    "bullist numlist | outdent indent | blockquote subscript superscript | advlist | autolink | lists charmap | print preview |  code"
+                    "bullist numlist | outdent indent | blockquote subscript superscript | advlist | autolink | lists charmap | print preview |  code",
+                    "table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol"
+
                 ],
-                plugins: "advlist autolink link image lists charmap print preview code"
+                plugins: "advlist autolink link image lists charmap print preview code table"
             });
 
             tinymce.init({
@@ -467,9 +469,11 @@
                 menubar: false,
                 toolbar: ["styleselect fontselect fontsizeselect",
                     "undo redo | cut copy paste | bold italic | link image | alignleft aligncenter alignright alignjustify",
-                    "bullist numlist | outdent indent | blockquote subscript superscript | advlist | autolink | lists charmap | print preview |  code"
+                    "bullist numlist | outdent indent | blockquote subscript superscript | advlist | autolink | lists charmap | print preview |  code",
+                    "table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol"
+
                 ],
-                plugins: "advlist autolink link image lists charmap print preview code"
+                plugins: "advlist autolink link image lists charmap print preview code table"
             });
 
         });

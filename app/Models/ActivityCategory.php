@@ -26,10 +26,10 @@ class ActivityCategory extends Model
         }
 
         if ($local == 'tr') {
-            $data = Activity::where('category',$this->id)->where('status',1)->where('start_time','>=',$now->format('Y-m-d'))->orderBy('start_time','asc')->take(6)->get();
+            $data = Activity::where('category',$this->id)->where('status',1)->orderBy('start_time','desc')->take(6)->get();
 
         } elseif ($local == 'en') {
-            $data = EnActivity::where('category',$this->id)->where('status',1)->where('start_time','>=',$now->format('Y-m-d'))->orderBy('start_time','asc')->take(6)->get();
+            $data = EnActivity::where('category',$this->id)->where('status',1)->orderBy('start_time','desc')->take(6)->get();
 
         }
         return $data;

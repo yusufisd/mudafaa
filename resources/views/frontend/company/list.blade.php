@@ -70,12 +70,12 @@
 
                             <div class="ad-banner-img wow fadeInUp mb--40" data-wow-delay="100ms" data-wow-duration="800ms">
                                 @if (reklam(34) != null && reklam(34)->status == 1)
-                                    <div class="sidebar-wrap mb--40">
+                                    <div class="sidebar-wrap mb--40 mt--40">
                                         <div class="ad-banner-img">
                                             @if (reklam(34)->type == 1)
                                                 <a href="{{ reklam(34)->adsense_url }}">
 
-                                                    <img src="/{{ reklam(34)->image }}" width="1320px" style="height: 90px">
+                                                    <img src="/{{ reklam(34)->image }}" width="1320px" style="height:150px">
                                                 </a>
                                             @else
                                                 {!! reklam(34)->adsense_url ?? '' !!}
@@ -117,7 +117,7 @@
                                             @if (reklam(35)->type == 1)
                                                 <a href="{{ reklam(35)->adsense_url }}">
 
-                                                    <img src="/{{ reklam(35)->image }}" width="1320px" style="height: 90px">
+                                                    <img src="/{{ reklam(35)->image }}" width="1320px" style="height:150px">
                                                 </a>
                                             @else
                                                 {!! reklam(35)->adsense_url ?? '' !!}

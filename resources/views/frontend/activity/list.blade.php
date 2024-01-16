@@ -53,7 +53,7 @@
                         @if (reklam(17)->type == 1)
                             <a href="{{ reklam(17)->adsense_url }}">
 
-                                <img src="/{{ reklam(17)->image }}" alt="" width="1320px" style="height:90px">
+                                <img src="/{{ reklam(17)->image }}" alt="" width="1320px" style="height:150px">
                             </a>
                         @else
                             {!! reklam(17)->adsense_url ?? '' !!}
@@ -159,11 +159,11 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         @if (reklam(17) != null && reklam(17)->status == 1)
-                            <div class="ad-banner-img mt--45 mb--40">
+                            <div class="ad-banner-img mt--40 mb--40">
                                 @if (reklam(17)->type == 1)
                                     <a href="{{ reklam(17)->adsense_url }}">
 
-                                        <img src="/{{ reklam(17)->image }}" style="height: 90px">
+                                        <img src="/{{ reklam(17)->image }}" style="width:100%;">
                                     </a>
                                 @else
                                     {!! reklam(17)->adsense_url ?? '' !!}
@@ -173,11 +173,11 @@
                     </div>
                     <div class="col-md-6 col-sm-12">
                         @if (reklam(18) != null && reklam(18)->status == 1)
-                            <div class="ad-banner-img mt--45 mb--40">
+                            <div class="ad-banner-img mt--40 mb--40">
                                 @if (reklam(18)->type == 1)
                                     <a href="{{ reklam(18)->adsense_url }}">
 
-                                        <img src="/{{ reklam(18)->image }}" style="height: 90px">
+                                        <img src="/{{ reklam(18)->image }}" style="width:100%">
                                     </a>
                                 @else
                                     {!! reklam(18)->adsense_url ?? '' !!}
@@ -287,7 +287,7 @@
                             @if (reklam($key + 19)->type == 1)
                                 <a href="{{ reklam($key + 19)->adsense_url }}">
 
-                                    <img src="/{{ reklam($key + 19)->image }}" width="1320px" style="height: 90px">
+                                    <img src="/{{ reklam($key + 19)->image }}" width="1320px" style="height: 150px">
                                 </a>
                             @else
                                 {!! reklam($key + 19)->adsense_url ?? '' !!}
@@ -348,7 +348,7 @@
                                                             <li>
                                                                 <span class="rt-meta">
                                                                     <i class="far fa-calendar-alt icon"></i>
-                                                                    {{ $item->start_time->translatedFormat('d M Y') }} /
+                                                                    {{ $item->start_time != null ? $item->start_time->translatedFormat('d M Y') : '' }} /
                                                                     {{ substr($item->start_clock, 0, 5) }}
                                                                 </span>
                                                             </li>

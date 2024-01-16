@@ -1,12 +1,16 @@
 @extends('frontend.master')
 @section('title', $data->title ?? 'Milli Müdafaa')
 @section('meta-title', $data->title ?? 'Milli Müdafaa')
-@section('keywords', $data->seo_key ?? 'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya,
+@section('keywords',
+    $data->seo_key ??
+    'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya,
     Teknoloji, İstanbul, TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli
     teknoloji, milli teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar,
     haluk bayraktar, temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış
     politika, savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
-@section('description', $data->short_description ?? 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün
+@section('description',
+    $data->short_description ??
+    'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün
     yer alan son durum bilgileri için tıklayın!')
 @section('simage', asset($data->image) ?? asset('assets/default_act.jpeg'))
 @section('stitle', $data->title)
@@ -21,10 +25,10 @@
         @media only screen and (max-width: 600) {
 
             /*
-                .single-post-banner {
-                    background-size: 600px 500px !important;
-                }
-                */
+                    .single-post-banner {
+                        background-size: 600px 500px !important;
+                    }
+                    */
         }
 
         .single-post-banner {
@@ -331,27 +335,26 @@
                                     </div>
 
                                 </div>
-
                             </div>
-
-                            <div class="ad-banner-img mb--40">
-                                @if (reklam(25) != null && reklam(25)->status == 1)
-                                    <div class="ad-banner-img mt--45 mb--40">
-                                        @if (reklam(25)->type == 1)
-                                            <a href="{{ reklam(25)->adsense_url }}">
-
-                                                <img src="/{{ reklam(25)->image }}" width="1320px" style="height: 90px">
-                                            </a>
-                                        @else
-                                            {!! reklam(25)->adsense_url ?? '' !!}
-                                        @endif
-                                    </div>
-                                @endif
-                            </div>
-
-
                         </div>
                     </div>
+
+                        <div class="ad-banner-img mt--40">
+                            @if (reklam(25) != null && reklam(25)->status == 1)
+                                <div class="ad-banner-img">
+                                    @if (reklam(25)->type == 1)
+                                        <a href="{{ reklam(25)->adsense_url }}">
+
+                                            <img src="/{{ reklam(25)->image }}" width="1320px" style="height: 150px">
+                                        </a>
+                                    @else
+                                        {!! reklam(25)->adsense_url ?? '' !!}
+                                    @endif
+                                </div>
+                            @endif
+                        </div>
+
+
                     <!-- end col-->
                 </div>
                 <!-- end row  -->

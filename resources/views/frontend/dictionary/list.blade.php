@@ -95,13 +95,13 @@
                                 @foreach ($data as $key => $item)
                                     @if ($key == 6)
                                         @if (reklam(39) != null && reklam(39)->status == 1)
-                                            <div class="sidebar-wrap mb--40">
+                                            <div class="sidebar-wrap mb--40 mt--40">
                                                 <div class="ad-banner-img">
                                                     @if (reklam(39)->type == 1)
                                                         <a href="{{ reklam(39)->adsense_url }}">
 
                                                             <img src="/{{ reklam(39)->image }}" width="1320px"
-                                                                style="height:90px">
+                                                                style="height:150px">
                                                         </a>
                                                     @else
                                                         {!! reklam(39)->adsense_url ?? '' !!}
@@ -113,13 +113,13 @@
 
                                     @if ($key == 12)
                                         @if (reklam(40) != null && reklam(40)->status == 1)
-                                            <div class="sidebar-wrap mb--40">
+                                            <div class="sidebar-wrap mb--40 mt--40">
                                                 <div class="ad-banner-img">
                                                         @if (reklam(40)->type == 1)
                                                     <a href="{{ reklam(40)->adsense_url }}">
 
                                                             <img src="/{{ reklam(40)->image }}" width="1320px"
-                                                                style="height:90px">
+                                                                style="height:150px">
                                                     </a>
 
                                                         @else

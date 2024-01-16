@@ -337,7 +337,7 @@
                                         <a href="{{ reklam(11)->adsense_url }}">
                                             @if (reklam(11)->type == 1)
                                                 <img src="/{{ reklam(11)->image }}" alt="" width="1320"
-                                                    style="height: 90px">
+                                                    style="height: 150px">
                                             @else
                                                 {!! reklam(11)->adsense_url ?? '' !!}
                                             @endif
@@ -876,7 +876,8 @@
                                         <p>
                                             {{ __('message.Ulusal ve küresel savunma gündeminden daha hızlı haberdar olmak istiyorsanız Milli Müdafaa mail listesine kaydolun!') }}
                                         </p>
-                                        <form action="#" class="rt-contact-form subscribe-form rt-form">
+                                        <form action="{{ route('front.subscribePost') }}" method="POST" class=" subscribe-form rt-form">
+                                            @csrf
                                             <div class="rt-form-group">
                                                 <input type="email" class="form-control rt-form-control"
                                                     placeholder="E-posta *" name="email" id="email_1"
@@ -891,35 +892,38 @@
                                             <br>
 
                                             <div class="">
-                                                <input type="checkbox" name="" id="check">
-                                                <span for="check">
-                                                    @if (\Session::get('applocale') == 'en')
-                                                        @if ($kvkk_en)
-                                                            <a href="{{ route('front.page.detail', 'pdpl') }}">
+                                                <input required type="checkbox" name="accept" id="checked">
+                                                @if (\Session::get('applocale') == 'en')
+                                                    @if ($kvkk_en)
+                                                        <a href="{{ route('front.page.detail', 'pdpl') }}">
+                                                            <span style="font-size:14px">
                                                                 {{ __('message.Kişisel Verilerin Korunması') }}
-                                                            </a>
-                                                            <span for="check">
-                                                                {{ __('message.okudum, onay veriyorum') }}
                                                             </span>
-                                                        @else
-                                                            <span for="check">
-                                                                {{ __("message.Kişisel Verilerin İşlenmesi Aydınlatma Metni'ni okudum kabul ediyorum.") }}
-                                                            </span>
-                                                        @endif
-                                                    @else
-                                                        @if ($kvkk_tr)
-                                                            <a href="{{ route('front.page.detail', 'kvkk') }}">
-                                                                {{ __('message.Kişisel Verilerin Korunması') }}
-                                                            </a>
+                                                        </a>
+                                                        <label for="checked" style="font-size:14px">
                                                             {{ __('message.okudum, onay veriyorum') }}
-                                                        @else
-                                                            <span for="check">
-
-                                                                {{ __('message.Kişisel Verilerin Korunması Hakkında Aydınlatma Metnini okudum, onay veriyorum.') }}
-                                                            </span>
-                                                        @endif
+                                                        </label>
+                                                    @else
+                                                        <label for="checked" style="font-size:14px">
+                                                            {{ __("message.Kişisel Verilerin İşlenmesi Aydınlatma Metni'ni okudum kabul ediyorum.") }}
+                                                        </label>
                                                     @endif
-                                                </span>
+                                                @else
+                                                    @if ($kvkk_tr)
+                                                        <a href="{{ route('front.page.detail', 'kvkk') }}">
+                                                            <span style="font-size:14px">
+                                                                {{ __('message.Kişisel Verilerin Korunması') }}
+                                                            </span>
+                                                        </a>
+                                                        <label for="checked">
+                                                        {{ __('message.okudum, onay veriyorum') }}
+                                                    </label>
+                                                    @else
+                                                        <label for="checked" style="font-size:14px">
+                                                            {{ __('message.Kişisel Verilerin Korunması Hakkında Aydınlatma Metnini okudum, onay veriyorum.') }}
+                                                        </label>
+                                                    @endif
+                                                @endif
                                             </div>
                                             <button type="submit" class="rt-submit-btn mt-4">
                                                 {{ __('message.şimdi abone ol') }} </button>

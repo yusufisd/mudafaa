@@ -206,10 +206,6 @@
                                                         </figure>
                                                     </div>
                                                 @endforeach
-
-
-
-
                                             </div>
                                         </div>
                                     </div>
@@ -223,7 +219,7 @@
                                                         <a href="{{ reklam(31)->adsense_url }}">
 
                                                             <img src="/{{ reklam(31)->image }}" alt=""
-                                                                width="1320px" style="height: 90px">
+                                                                width="1320px" style="height: 150px">
                                                         </a>
                                                     @else
                                                         {!! reklam(31)->adsense_url ?? '' !!}
@@ -508,13 +504,13 @@
 
                                 @if (reklam(32) != null && reklam(32)->status == 1)
                                     <div class="ad-banner-img mt--45 mb--40">
-                                        <div class="sidebar-wrap mb--40">
+                                        <div class="sidebar-wrap mb--40 mt--40">
                                             <div class="ad-banner-img">
                                                 @if (reklam(32)->type == 1)
                                                     <a href="{{ reklam(32)->adsense_url }}">
 
                                                         <img src="/{{ reklam(32)->image }}" alt=""
-                                                            width="1320px" style="height: 90px">
+                                                            width="1320px" style="height: 150px">
                                                     </a>
                                                 @else
                                                     {!! reklam(32)->adsense_url ?? '' !!}

@@ -70,6 +70,9 @@
                 background-repeat: no-repeat !important;
             }
         }
+        .fancybox-image{
+            height: 600px!important;
+        }
     </style>
 @endsection
 @section('content')
@@ -240,8 +243,7 @@
                                         @if (reklam(15)->type == 1)
                                             <a href="{{ reklam(15)->adsense_url }}">
 
-                                                <img src="/{{ reklam(15)->image }}" alt="" width="970"
-                                                    height="90">
+                                                <img src="/{{ reklam(15)->image }}" width="1320" style="height: 150px">
                                             </a>
                                         @else
                                             {!! reklam(15)->adsense_url ?? '' !!}
@@ -468,11 +470,11 @@
         <section class="editor-choice-section-style-1 section-padding overflow-hidden">
             <div class="container">
                 @if (reklam(16) != null && reklam(16)->status == 1)
-                    <div class="ad-banner-img mt--45 mb--40">
+                    <div class="ad-banner-img mb--40">
                         @if (reklam(16)->type == 1)
                             <a href="{{ reklam(16)->adsense_url }}">
 
-                                <img src="/{{ reklam(16)->image }}" alt="" width="970" height="90">
+                                <img src="/{{ reklam(16)->image }}" alt="" width="1320" style="height:150px">
                             </a>
                         @else
                             {!! reklam(16)->adsense_url ?? '' !!}
@@ -584,6 +586,13 @@
                     'gallery'); // This line makes the gallery share the same group
                 image.click();
             });
+            $(document).ready(function(){ 
+                $(".fancybox").fancybox({
+                    'width'  : 600,           // set the width
+                    'height' : 600,           // set the height
+                    'type'   : 'iframe'       // tell the script to create an iframe
+                });
+                }); 
         });
     </script>
 @endsection

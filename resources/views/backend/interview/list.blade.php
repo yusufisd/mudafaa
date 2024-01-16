@@ -106,7 +106,7 @@
                                                 </th>
                                                 <th style="text-align: center"> {{ __('message.görsel') }} <i
                                                         class="fa fa-sort ms-3"></i></th>
-                                                <th style="text-align: center"> {{ __('message.başlık') }} <i
+                                                <th > {{ __('message.başlık') }} <i
                                                         class="fa fa-sort ms-3"></i></th>
                                                 <th style="text-align: center"> {{ __('message.yazar') }} <i
                                                         class="fa fa-sort ms-3"></i></th>
@@ -134,7 +134,7 @@
                                                             style="width:100px; border-radius:5%" alt="">
                                                     </td>
 
-                                                    <td style="text-align: center"> {{ ($item->title) }} </td>
+                                                    <td > {{ ($item->title) }} </td>
                                                     <td style="text-align: center; text-transform:capitalize"> {{ $item->Author->name }}
                                                         {{ $item->Author->surname }} </td>
                                                     <td>
