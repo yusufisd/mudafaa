@@ -78,7 +78,7 @@
                         <div class="rt-post-overlay rt-post-overlay-xl single-post-overlay">
                             <div class="post-img">
                                 <a href="{{ $data->youtube }}" class="img-link">
-                                    <img src="/{{ $data->image }}" alt="post-ex_7" width="1320" height="620">
+                                    <img src="/{{ $data->image }}" alt="post-ex_7" width="100%" style="height: 500px">
                                 </a>
                                 <a href="{{ $data->youtube }}" class="play-btn play-btn-white_xl rt-play-over md-right">
                                     <i class="fas fa-play"></i>
@@ -242,7 +242,7 @@
                                                 <div class="next-prev-wrap next-wrap">
                                                     <div class="item-icon">
                                                         <a href="{{ route('front.video.detail', $sonraki->link) }}">
-                                                            {{ __('message.Sonraki') }} Vİdeo
+                                                            {{ __('message.Sonraki') }} Video
                                                             <i class="fas fa-chevron-right"></i>
                                                         </a>
                                                     </div>
@@ -272,40 +272,37 @@
                                     <div class="row justify-content-center mb--10">
                                         <div class="col-2 col-md-1">
                                             <div class="emoji_container">
-                                                <img id="love" src="https://millimudafaa.com/assets/img/begendim.png"
+                                                <img id="love" src="{{ asset('assets/reaction/love.webp') }}"
                                                     style="cursor: pointer; width:38px;">
                                             </div>
                                         </div>
                                         <div class="col-2 col-md-1">
                                             <div class="emoji_container">
-                                                <img id="dislike"
-                                                    src="https://millimudafaa.com/assets/img/begenmedim.png"
+                                                <img id="dislike" src="{{ asset('assets/reaction/dislike.webp') }}"
                                                     style="cursor: pointer; width:38px;">
                                             </div>
                                         </div>
                                         <div class="col-2 col-md-1">
                                             <div class="emoji_container">
-                                                <img id="clap"
-                                                    src="https://millimudafaa.com/assets/img/alkisladim.png"
+                                                <img id="clap" src="{{ asset('assets/reaction/clap.webp') }}"
                                                     style="cursor: pointer; width:38px;">
                                             </div>
                                         </div>
                                         <div class="col-2 col-md-1">
                                             <div class="emoji_container">
-                                                <img id="sad" src="https://millimudafaa.com/assets/img/uzuldum.png"
+                                                <img id="sad" src="{{ asset('assets/reaction/sad.webp') }}"
                                                     style="cursor: pointer; width:38px;">
                                             </div>
                                         </div>
                                         <div class="col-2 col-md-1">
                                             <div class="emoji_container">
-                                                <img id="angry"
-                                                    src="https://millimudafaa.com/assets/img/sinirlendim.png"
+                                                <img id="angry" src="{{ asset('assets/reaction/angry.webp') }}"
                                                     style="cursor: pointer; width:38px;">
                                             </div>
                                         </div>
                                         <div class="col-2 col-md-1">
                                             <div class="emoji_container">
-                                                <img id="shocked" src="https://millimudafaa.com/assets/img/sasirdim.png"
+                                                <img id="shocked" src="{{ asset('assets/reaction/shocked.webp') }}"
                                                     style="cursor: pointer; width:38px;">
                                             </div>
                                         </div>
@@ -511,10 +508,11 @@
 
                             <div class="d-none d-md-block sidebar-wrap mb--40">
                                 <div class="search-box">
-                                    <form action="#" class="form search-form-box">
+                                    <form action="{{ route('front.video.list') }}" class="form search-form-box">
+                                        @csrf
                                         <div class="form-group">
-                                            <input type="text" name="sarch" id="search" placeholder="ARA..."
-                                                class="form-control rt-search-control">
+                                            <input type="text" name="search" id="search" placeholder="ARA..."
+                                                value="{{ request()->search }}"  class="form-control rt-search-control">
                                             <button type="submit" class="search-submit">
                                                 <i class="fas fa-search"></i>
                                             </button>

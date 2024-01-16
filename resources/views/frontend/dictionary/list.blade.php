@@ -100,8 +100,8 @@
                                                     @if (reklam(39)->type == 1)
                                                         <a href="{{ reklam(39)->adsense_url }}">
 
-                                                            <img src="/{{ reklam(39)->image }}" width="1320px"
-                                                                style="height:150px">
+                                                            <img src="/{{ reklam(39)->image }}"
+                                                                style="height:150px;width:100%">
                                                         </a>
                                                     @else
                                                         {!! reklam(39)->adsense_url ?? '' !!}
@@ -118,8 +118,8 @@
                                                         @if (reklam(40)->type == 1)
                                                     <a href="{{ reklam(40)->adsense_url }}">
 
-                                                            <img src="/{{ reklam(40)->image }}" width="1320px"
-                                                                style="height:150px">
+                                                            <img src="/{{ reklam(40)->image }}" 
+                                                                style="height:150px;width:100%">
                                                     </a>
 
                                                         @else

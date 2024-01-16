@@ -64,6 +64,8 @@ use App\Http\Controllers\TitleIconController;
 use App\Models\CurrentNews;
 use App\Models\EnCurrentNews;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,6 +82,29 @@ use Illuminate\Support\Facades\Artisan;
 Route::get('optimize', function () {
     Artisan::call('optimize:clear');
     return 'Başarılı şekilde optimize edildi.';
+});
+
+Route::get('migrate-edildi',function(){
+    if(!Schema::hasTable('subscribers')){
+        Schema::create('subscribers', function (Blueprint $table) {
+            $table->id();
+            $table->string('email');
+            $table->integer('status')->default(1);
+            $table->timestamps();
+        });
+    }
+    if(!Schema::hasTable('contact_forms')){
+            Schema::create('contact_forms', function (Blueprint $table) {
+            $table->id();
+            $table->string('fullname');
+            $table->string('email');
+            $table->string('phone');
+            $table->string('message')->nullable();
+            $table->integer('status')->default(1);
+            $table->timestamps();
+        });
+    }
+    return "migrate edildi";
 });
 
 Route::get('/change-lang/{lang}', [LanguageController::class, 'change'])->name('chaange.lang');
@@ -945,7 +970,4 @@ Route::get('random/kategori/integer', function () {
     return 'başarılı';
 });
 
-Route::get('migrate-edildi',function(){
-    Artisan::call('migrate');
-    return "migrate edildi";
-});
+
