@@ -127,7 +127,7 @@
                                         <li>
                                             <span class="rt-meta">
                                                 <i class="far fa-calendar-alt icon"></i>
-                                                {{ $data->created_at->translatedFormat('d M Y') }}
+                                                {{ $data->live_time->translatedFormat('d M Y') }}
                                             </span>
                                         </li>
                                         <li>
@@ -291,11 +291,11 @@
                                     <div class="row gutter-30">
                                         <div class="col-lg-6">
 
-                                            @if ($previous_data != null)
+                                            @if ($data->previousData() != null)
                                                 <div class="next-prev-wrap">
                                                     <div class="item-icon">
                                                         <a
-                                                            href="{{ route('front.interview.detail', $previous_data->link) }}">
+                                                            href="{{ route('front.interview.detail', $data->previousData()->link) }}">
                                                             <i class="fas fa-chevron-left"></i>
                                                             {{ __('message.önceki röportaj') }}
                                                         </a>
@@ -303,13 +303,13 @@
                                                     <div class="content">
                                                         <h4 class="title">
                                                             <a
-                                                                href="{{ route('front.interview.detail', $previous_data->link) }}">
-                                                                {{ $previous_data->title }}
+                                                                href="{{ route('front.interview.detail', $data->previousData()->link) }}">
+                                                                {{ $data->previousData()->title }}
                                                             </a>
                                                         </h4>
                                                         <span class="rt-meta">
                                                             <i class="far fa-calendar-alt icon"></i>
-                                                            {{ $previous_data->live_time->translatedFormat('d M Y') }}
+                                                            {{ $data->previousData()->live_time->translatedFormat('d M Y') }}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -318,10 +318,10 @@
 
                                         <div class="col-lg-6">
 
-                                            @if ($next_data != null)
+                                            @if ($data->nextData() != null)
                                                 <div class="next-prev-wrap next-wrap">
                                                     <div class="item-icon">
-                                                        <a href="{{ route('front.interview.detail', $next_data->link) }}">
+                                                        <a href="{{ route('front.interview.detail', $data->nextData()->link) }}">
                                                             {{ __('message.sonraki röportaj') }}
                                                             <i class="fas fa-chevron-right"></i>
                                                         </a>
@@ -329,13 +329,13 @@
                                                     <div class="content">
                                                         <h4 class="title">
                                                             <a
-                                                                href="{{ route('front.interview.detail', $next_data->link) }}">
-                                                                {{ $next_data->title }}
+                                                                href="{{ route('front.interview.detail', $data->nextData()->link) }}">
+                                                                {{ $data->nextData()->title }}
                                                             </a>
                                                         </h4>
                                                         <span class="rt-meta">
                                                             <i class="far fa-calendar-alt icon"></i>
-                                                            {{ $next_data->live_time->translatedFormat('d M Y') }}
+                                                            {{ $data->nextData()->live_time->translatedFormat('d M Y') }}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -390,18 +390,60 @@
                                     </div>
 
                                     <div class="row justify-content-center mb--50">
-                                        @foreach ($emojies as $emoji => $number)
-                                            <div class="col-2 col-md-1">
-                                                <div class="emoji_container">
-                                                    <div class="progress" role="progressbar" aria-label="Basic example"
-                                                        aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                                        <div id="{{ $emoji }}_bar" class="progress-bar"
-                                                            style="width: {{ $number }}%"></div>
-                                                    </div>
+                                        <div class="col-2 col-md-1">
+                                            <div class="emoji_container">
+                                                <div class="progress" role="progressbar" aria-label="Basic example"
+                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                                    <div id="love_bar" class="progress-bar"
+                                                        style="width: {{ $data->emojiData(0) }}%"></div>
                                                 </div>
                                             </div>
-                                        @endforeach
-
+                                        </div>
+                                        <div class="col-2 col-md-1">
+                                            <div class="emoji_container">
+                                                <div class="progress" role="progressbar" aria-label="Basic example"
+                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                                    <div id="dislike_bar" class="progress-bar"
+                                                        style="width: {{ $data->emojiData(1) }}%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 col-md-1">
+                                            <div class="emoji_container">
+                                                <div class="progress" role="progressbar" aria-label="Basic example"
+                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                                    <div id="clap_bar" class="progress-bar"
+                                                        style="width: {{ $data->emojiData(2) }}%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 col-md-1">
+                                            <div class="emoji_container">
+                                                <div class="progress" role="progressbar" aria-label="Basic example"
+                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                                    <div id="sad_bar" class="progress-bar"
+                                                        style="width: {{ $data->emojiData(3) }}%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 col-md-1">
+                                            <div class="emoji_container">
+                                                <div class="progress" role="progressbar" aria-label="Basic example"
+                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                                    <div id="angry_bar" class="progress-bar"
+                                                        style="width: {{ $data->emojiData(4) }}%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 col-md-1">
+                                            <div class="emoji_container">
+                                                <div class="progress" role="progressbar" aria-label="Basic example"
+                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                                    <div id="shocked_bar" class="progress-bar"
+                                                        style="width: {{ $data->emojiData(5) }}%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="row mb--20">
                                         <h5> {{ __('message.yorumlar') }} ({{ $data->commentCount() }}) </h5>
@@ -554,14 +596,14 @@
                                                             <div class="post-content">
 
                                                                 <h4 class="post-title">
-                                                                    <ahref="{{ route('front.interview.detail', $item->link) }}">
+                                                                    <a href="{{ route('front.interview.detail', $item->link) }}">
                                                                     {{ $item->title }}
                                                                     </a>
                                                                 </h4>
 
                                                                 <span class="rt-meta">
                                                                     <i class="far fa-calendar-alt icon"></i>
-                                                                    {{ $item->created_at->translatedFormat('d M Y') }}
+                                                                    {{ $item->live_time->translatedFormat('d M Y') }}
                                                                 </span>
 
                                                             </div>

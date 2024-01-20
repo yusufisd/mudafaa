@@ -10,6 +10,7 @@ use App\Models\EnActivity;
 use App\Models\EnActivityCategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ActivityController extends Controller
 {
@@ -17,15 +18,13 @@ class ActivityController extends Controller
     {
         $now = Carbon::now();
 
-        $local = \Session::get('applocale');
+        $local = Session::get('applocale');
         if ($local == null) {
             $local = config('app.fallback_locale');
         }
-
-        if ($local == 'tr') {
-            $coming_activity = Activity::where('status',1)->where('start_time','>=',$now->format('Y-m-d'))->orderBy('start_time','asc')
-                ->take(6)
-                ->get();
+        if ($local == 'tr')
+        {
+            $coming_activity = Activity::where('status',1)->where('start_time','>=',$now->format('Y-m-d'))->orderBy('start_time','asc')->take(6)->get();
             $activity_category = ActivityCategory::where('status',1)->orderBy('queue', 'asc')->get();
             $categories = ActivityCategory::where('status',1)->get();
             $countries = CountryList::get();
@@ -43,16 +42,18 @@ class ActivityController extends Controller
 
     public function detail($id)
     {
-        $local = \Session::get('applocale');
+        $local = Session::get('applocale');
         if ($local == null) {
             $local = config('app.fallback_locale');
         }
 
         if ($local == 'tr') {
             $data = Activity::where('link', $id)->first();
+            if (!$data) return abort(404);
             $other_activity = Activity::where('status',1)->inRandomOrder()->get();
         } elseif ($local == 'en') {
             $data = EnActivity::where('link', $id)->first();
+            if (!$data) return abort(404);
             $other_activity = EnActivity::where('status',1)->inRandomOrder()->get();
         }
         // OKUMA KONTRLÜ
@@ -70,16 +71,18 @@ class ActivityController extends Controller
     {
         $now = Carbon::now();
 
-        $local = \Session::get('applocale');
+        $local = Session::get('applocale');
         if ($local == null) {
             $local = config('app.fallback_locale');
         }
 
         if ($local == 'tr') {
             $cat = ActivityCategory::where('link', $id)->first();
+            if (!$cat) return abort(404);
             $data = Activity::where('status',1)->where('category', $cat->id)->orderBy('start_time','desc')->get();
         } elseif ($local == 'en') {
             $cat = EnActivityCategory::where('link', $id)->first();
+            if (!$cat) return abort(404);
             $data = EnActivity::where('status',1)->where('category', $cat->id)->orderBy('start_time','desc')->get();
         }
 
@@ -115,7 +118,7 @@ class ActivityController extends Controller
     
     public function calendar(Request $request)
     {
-        $local = \Session::get('applocale');
+        $local = Session::get('applocale');
         if ($local == null) {
             $local = config('app.fallback_locale');
         }
@@ -149,7 +152,7 @@ class ActivityController extends Controller
     {
         $now = Carbon::now();
 
-        $local = \Session::get('applocale');
+        $local = Session::get('applocale');
         if ($local == null) {
             $local = config('app.fallback_locale');
         }
@@ -164,7 +167,7 @@ class ActivityController extends Controller
     }
 
     public function tag_list($title){
-        $local = \Session::get('applocale');
+        $local = Session::get('applocale');
         if ($local == null) {
             $local = config('app.fallback_locale');
         }

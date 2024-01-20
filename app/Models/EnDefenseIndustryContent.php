@@ -54,4 +54,17 @@ class EnDefenseIndustryContent extends Model
         return explode(',', $this->seo_key);
     }
 
+
+    public function previousData()
+    {
+        $data = EnDefenseIndustryContent::select('title','live_time')->where('status', 1)->where('id', '<',$this->id)->latest()->first();
+        return $data;
+    }
+
+    public function nextData()
+    {
+        $data = EnDefenseIndustryContent::select('title','live_time')->where('status', 1)->where('id', '>', $this->id)->latest()->first();
+        return $data;
+    }
+   
 }

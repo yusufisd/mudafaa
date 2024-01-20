@@ -419,12 +419,11 @@
 
                                     <div class="row gutter-30">
                                         <div class="col-lg-6">
-
-                                            @if ($previous_data != null)
+                                            @if ($data->previousData() != null)
                                                 <div class="next-prev-wrap" style="height: 100%">
                                                     <div class="item-icon">
                                                         <a
-                                                            href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $previous_data->link) : route('front.currentNews.detail', $previous_data->link) }}">
+                                                            href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $data->previousData()->link) : route('front.currentNews.detail', $data->previousData()->link) }}">
                                                             <i class="fas fa-chevron-left"></i>
                                                             {{ __('message.önceki haber') }}
                                                         </a>
@@ -432,13 +431,13 @@
                                                     <div class="content">
                                                         <h4 class="title">
                                                             <a
-                                                                href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $previous_data->link) : route('front.currentNews.detail', $previous_data->link) }}">
-                                                                {{ $previous_data->title }}
+                                                                href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $data->previousData()->link) : route('front.currentNews.detail', $data->previousData()->link) }}">
+                                                                {{ $data->previousData()->title }}
                                                             </a>
                                                         </h4>
                                                         <span class="rt-meta">
                                                             <i class="far fa-calendar-alt icon"></i>
-                                                            {{ $previous_data->live_time->translatedFormat('d M Y') }}
+                                                            {{ $data->previousData()->live_time->translatedFormat('d M Y') }}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -448,11 +447,11 @@
 
                                         <div class="col-lg-6">
 
-                                            @if ($next_data != null)
+                                            @if ($data->nextData() != null)
                                                 <div class="next-prev-wrap next-wrap" style="height: 100%">
                                                     <div class="item-icon">
                                                         <a
-                                                            href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $next_data->link) : route('front.currentNews.detail', $next_data->link) }}">
+                                                            href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $data->nextData()->link) : route('front.currentNews.detail', $data->nextData()->link) }}">
                                                             {{ __('message.sonraki haber') }}
                                                             <i class="fas fa-chevron-right"></i>
                                                         </a>
@@ -460,13 +459,13 @@
                                                     <div class="content">
                                                         <h4 class="title">
                                                             <a
-                                                                href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $next_data->link) : route('front.currentNews.detail', $next_data->link) }}">
-                                                                {{ $next_data->title }}
+                                                                href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $data->nextData()->link) : route('front.currentNews.detail', $data->nextData()->link) }}">
+                                                                {{ $data->nextData()->title }}
                                                             </a>
                                                         </h4>
                                                         <span class="rt-meta">
                                                             <i class="far fa-calendar-alt icon"></i>
-                                                            {{ $next_data->live_time->translatedFormat('d M Y') }}
+                                                            {{ $data->nextData()->live_time->translatedFormat('d M Y') }}
 
                                                         </span>
                                                     </div>
@@ -521,17 +520,60 @@
 
                                     </div>
                                     <div class="row justify-content-center mb--50">
-                                        @foreach ($emojies as $emoji => $number)
-                                            <div class="col-2 col-md-1">
-                                                <div class="emoji_container">
-                                                    <div class="progress" role="progressbar" aria-label="Basic example"
-                                                        aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                                        <div id="{{ $emoji }}_bar" class="progress-bar"
-                                                            style="width: {{ $number }}%"></div>
-                                                    </div>
+                                        <div class="col-2 col-md-1">
+                                            <div class="emoji_container">
+                                                <div class="progress" role="progressbar" aria-label="Basic example"
+                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                                    <div id="love_bar" class="progress-bar"
+                                                        style="width: {{ $data->emojiData(0) }}%"></div>
                                                 </div>
                                             </div>
-                                        @endforeach
+                                        </div>
+                                        <div class="col-2 col-md-1">
+                                            <div class="emoji_container">
+                                                <div class="progress" role="progressbar" aria-label="Basic example"
+                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                                    <div id="dislike_bar" class="progress-bar"
+                                                        style="width: {{ $data->emojiData(1) }}%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 col-md-1">
+                                            <div class="emoji_container">
+                                                <div class="progress" role="progressbar" aria-label="Basic example"
+                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                                    <div id="clap_bar" class="progress-bar"
+                                                        style="width: {{ $data->emojiData(2) }}%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 col-md-1">
+                                            <div class="emoji_container">
+                                                <div class="progress" role="progressbar" aria-label="Basic example"
+                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                                    <div id="sad_bar" class="progress-bar"
+                                                        style="width: {{ $data->emojiData(3) }}%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 col-md-1">
+                                            <div class="emoji_container">
+                                                <div class="progress" role="progressbar" aria-label="Basic example"
+                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                                    <div id="angry_bar" class="progress-bar"
+                                                        style="width: {{ $data->emojiData(4) }}%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 col-md-1">
+                                            <div class="emoji_container">
+                                                <div class="progress" role="progressbar" aria-label="Basic example"
+                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                                    <div id="shocked_bar" class="progress-bar"
+                                                        style="width: {{ $data->emojiData(5) }}%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="row mb--20">
                                         <h5> {{ __('message.yorumlar') }} ({{ $data->CommentCount() }}) </h5>
@@ -868,7 +910,7 @@
                             <!-- end slidebar wrap  -->
 
                             <div class="d-none d-md-block sidebar-wrap mb--40">
-                                <div class="subscribe-box-style-1" data-bg-image="media/elements/elm_3.png">
+                                <div class="subscribe-box-style-1" data-bg-image="{{ asset('assets/frontend/media/elements/elm_3.webp') }}">
                                     <div class="subscribe-content">
                                         <h3 class="title">
                                             {{ __('message.Haber Bültenimize Abone Ol') }}

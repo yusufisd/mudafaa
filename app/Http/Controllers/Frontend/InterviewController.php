@@ -12,6 +12,7 @@ use App\Models\Interview;
 use App\Models\InterviewComment;
 use App\Models\PostType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class InterviewController extends Controller
@@ -22,15 +23,11 @@ class InterviewController extends Controller
 
         if($locale == "tr"){
             $data = Interview::latest()->where('title','like', '%'. $request->search . '%')->paginate(4);
-            $populer_interview = Interview::inRandomOrder()
-                ->take(4)
-                ->get();
+            $populer_interview = Interview::inRandomOrder()->take(4)->get();
             $keys = Interview::select('seo_key', 'view_counter')->orderBy('view_counter', 'desc')->pluck('seo_key')->take(5)->toArray();
         }else{
             $data = EnInterview::latest()->where('title','like', '%'. $request->search . '%')->paginate(4);
-            $populer_interview = EnInterview::inRandomOrder()
-                ->take(4)
-                ->get();
+            $populer_interview = EnInterview::inRandomOrder()->take(4)->get();
             $keys = EnInterview::select('seo_key', 'view_counter')->orderBy('view_counter', 'desc')->pluck('seo_key')->take(5)->toArray();
         }
 
@@ -42,37 +39,26 @@ class InterviewController extends Controller
         $locale = session('applocale') ?? config('app.fallback_locale');
         if ($locale  == "tr") {
             $data = Interview::where('link', $id)->first();
+            if (!$data) return abort(404);
             $dialogs = Dialog::where('interview_id', $data->id)->get();
-            $next_data = Interview::where('id', '>' , $data->id)->first();
-            $previous_data = Interview::where('id', '<' , $data->id)->first();
-            $other_interview = Interview::inRandomOrder()->get();
+            $other_interview = Interview::select('id','link','image','live_time','title')->where('status',1)->inRandomOrder()->get();
         }else{
             $data = EnInterview::where('link', $id)->first();
+            if (!$data) return abort(404);
             $dialogs = EnDialog::where('interview_id', $id)->get();
-            $next_data = EnInterview::where('id', '>' , $data->id)->first();
-            $previous_data = EnInterview::where('id', '<' , $data->id)->first();
-            $other_interview = EnInterview::inRandomOrder()->get();
+            $other_interview = EnInterview::select('id','link','image','live_time','title')->where('status',1)->inRandomOrder()->take(8)->get();
         }
 
         // OKUMA KONTRLÜ
-        $readCheck = json_decode(\Illuminate\Support\Facades\Cookie::get('interview')) ?? [];
+        $readCheck = json_decode(Cookie::get('interview')) ?? [];
         if (!in_array($data->id, $readCheck)){
             $data->view_counter = $data->view_counter + 1;
             $data->save();
             $readCheck[] = $data->id;
-            \Illuminate\Support\Facades\Cookie::queue(\Illuminate\Support\Facades\Cookie::make('interview', json_encode($readCheck), 30));
+            Cookie::queue(Cookie::make('interview', json_encode($readCheck), 30));
         }
 
-        $emojies = [
-            "love" => ContentEmojiModel::where('post_id', $data->id)->where('post_type', PostType::INTERVIEWS)->where('emoji_type', EmojiType::LOVE)->count(),
-            "dislike" => ContentEmojiModel::where('post_id', $data->id)->where('post_type', PostType::INTERVIEWS)->where('emoji_type', EmojiType::DISLIKE)->count(),
-            "clap" => ContentEmojiModel::where('post_id', $data->id)->where('post_type', PostType::INTERVIEWS)->where('emoji_type', EmojiType::CLAP)->count(),
-            "sad" => ContentEmojiModel::where('post_id', $data->id)->where('post_type', PostType::INTERVIEWS)->where('emoji_type', EmojiType::SAD)->count(),
-            "angry" => ContentEmojiModel::where('post_id', $data->id)->where('post_type', PostType::INTERVIEWS)->where('emoji_type', EmojiType::ANGRY)->count(),
-            "shocked" => ContentEmojiModel::where('post_id', $data->id)->where('post_type', PostType::INTERVIEWS)->where('emoji_type', EmojiType::SHOCKED)->count(),
-        ];
-
-        return view('frontend.interview.detail', compact('data', 'dialogs', 'emojies', 'next_data', 'previous_data', 'other_interview'));
+        return view('frontend.interview.detail', compact('data', 'dialogs','other_interview'));
     }
 
     public function addComment(Request $request, $id)

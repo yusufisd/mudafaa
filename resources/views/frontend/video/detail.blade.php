@@ -110,19 +110,19 @@
                                         </li>
                                         <li>
                                             <span class="rt-meta">
-                                                <i class="far fa-comments icon"></i>
+                                                <i class="fa-solid fa-comments"></i>
                                                 {{ $data->commentCount() }}
                                             </span>
                                         </li>
                                         <li>
                                             <span class="rt-meta">
-                                                <i class="far fa-clock icon"></i>
+                                                <i class="fa-solid fa-clock"></i>
                                                 {{ $data->read_time }}
                                             </span>
                                         </li>
                                         <li>
                                             <span class="rt-meta">
-                                                <i class="far fa-eye icon"></i>
+                                                <i class="fa-solid fa-eye"></i>
                                                 {{ $data->view_counter }}
                                             </span>
                                         </li>
@@ -565,14 +565,21 @@
                             </div>
                             <!-- end slidebar wrap  -->
 
-                            <div class="sidebar-wrap mb--40">
-                                <div class="ad-banner-img">
-                                    <a href="#">
-                                        <img src="/media/gallery/sports-ad_3.jpg" alt="ad-banner" width="310"
-                                            height="425">
-                                    </a>
+                            @if (reklam(44) != null && reklam(44)->status == 1)
+                                <div class="sidebar-wrap mb--40">
+                                    <div class="ad-banner-img">
+                                        @if (reklam(44)->type == 1)
+                                            <a href="{{ reklam(44)->adsense_url }}">
+
+                                                <img src="/{{ reklam(44)->image }}" alt="" width="300"
+                                                    style="250">
+                                            </a>
+                                        @else
+                                            {!! reklam(44)->adsense_url ?? '' !!}
+                                        @endif
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                             <!-- end slidebar wrap  -->
 
                             <div class="sidebar-wrap">

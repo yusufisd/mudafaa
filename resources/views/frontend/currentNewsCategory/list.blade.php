@@ -334,7 +334,7 @@
                             <!-- end slidebar wrap  -->
 
                             <div class="d-none d-md-block sidebar-wrap mb--40">
-                                <div class="subscribe-box-style-1" data-bg-image="media/elements/elm_3.png">
+                                <div class="subscribe-box-style-1" data-bg-image="{{ asset('assets/frontend/media/elements/elm_3.webp') }}">
                                     <div class="subscribe-content">
                                         <h3 class="title">
                                             {{ __('message.Haber Bültenimize Abone Ol') }}

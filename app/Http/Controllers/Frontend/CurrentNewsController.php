@@ -3,40 +3,34 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Models\ContentEmojiModel;
 use App\Models\CurrentNews;
 use App\Models\CurrentNewsCategory;
-use App\Models\EmojiType;
 use App\Models\EnCurrentNews;
 use App\Models\EnCurrentNewsCategory;
 use App\Models\EnPage;
 use App\Models\GoogleNews;
 use App\Models\NewsViewCounter;
 use App\Models\Page;
-use App\Models\PostType;
 use App\Models\ShareCounter;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
-use Jorenvh\Share\Share;
-use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Session;
 
 class CurrentNewsController extends Controller
 {
     public function detail($id = null){
         if ($id == null) return redirect('/');
+
         $lang = session('applocale') ?? config('app.fallback_locale');
         if ($lang == "tr"){
-            $data = CurrentNews::where('link',$id)->first();;
-            $previous_data = CurrentNews::where('id', '<',$data->id)->where('status', 1)->latest()->first();
-            $next_data = CurrentNews::where('id', '>', $data->id)->where('status', 1)->first();
-            $other_news = CurrentNews::inRandomOrder()->where('status', 1)->get();
-            $four_news = CurrentNews::orderBy('view_counter', 'desc')->where('status', 1)->take(4)->get();
+            $data = CurrentNews::where('link',$id)->first();
+            if (!$data) return abort(404);
+            $other_news = CurrentNews::select('title','live_time','category_id','image','link')->inRandomOrder()->where('status', 1)->whereNot('id',$data->id)->take(10)->get();
+            $four_news = CurrentNews::select('title','live_time','image','link')->orderBy('view_counter', 'desc')->where('status', 1)->take(4)->get();
         }else{
-            $data = EnCurrentNews::where('link',$id)->first();;
-            $previous_data = EnCurrentNews::where('id', '<',$data->id)->where('status', 1)->latest()->first();
-            $next_data = EnCurrentNews::where('id', '>', $data->id)->where('status', 1)->first();
-            $other_news = EnCurrentNews::inRandomOrder()->where('status', 1)->get();
-            $four_news = EnCurrentNews::orderBy('view_counter', 'desc')->where('status', 1)->take(4)->get();
+            $data = EnCurrentNews::where('link',$id)->first();
+            if (!$data) return abort(404);
+            $other_news = EnCurrentNews::select('title','live_time','category_id','image','link')->where('status', 1)->inRandomOrder()->whereNot('id',$data->id)->take(10)->get();
+            $four_news = EnCurrentNews::select('title','live_time','image','link')->where('status', 1)->orderBy('view_counter', 'desc')->where('status', 1)->take(4)->get();
         }
         // OKUMA KONTRLÜ
         $readCheck = json_decode(Cookie::get('readed')) ?? [];
@@ -55,26 +49,16 @@ class CurrentNewsController extends Controller
             Cookie::queue(Cookie::make('readed', json_encode($readCheck), 30));
         }
 
-        $emojies = [
-            "love" => ContentEmojiModel::where('post_id', $data->id)->where('post_type', PostType::NEWS)->where('emoji_type', EmojiType::LOVE)->count(),
-            "dislike" => ContentEmojiModel::where('post_id', $data->id)->where('post_type', PostType::NEWS)->where('emoji_type', EmojiType::DISLIKE)->count(),
-            "clap" => ContentEmojiModel::where('post_id', $data->id)->where('post_type', PostType::NEWS)->where('emoji_type', EmojiType::CLAP)->count(),
-            "sad" => ContentEmojiModel::where('post_id', $data->id)->where('post_type', PostType::NEWS)->where('emoji_type', EmojiType::SAD)->count(),
-            "angry" => ContentEmojiModel::where('post_id', $data->id)->where('post_type', PostType::NEWS)->where('emoji_type', EmojiType::ANGRY)->count(),
-            "shocked" => ContentEmojiModel::where('post_id', $data->id)->where('post_type', PostType::NEWS)->where('emoji_type', EmojiType::SHOCKED)->count(),
-        ];
-
-
         $google_news = GoogleNews::latest()->first();
         $kvkk_tr = Page::where('link','like','%'.'kvkk'.'%')->first();
         $kvkk_en = EnPage::where('link','like','%'.'pdpl'.'%')->first();
 
-        return view('frontend.currentNews.detail',compact('data','emojies','previous_data','next_data','other_news','four_news','kvkk_tr','kvkk_en','google_news'));
+        return view('frontend.currentNews.detail',compact('data','other_news','four_news','kvkk_tr','kvkk_en','google_news'));
     }
 
     public function tag_list($title){
 
-        $local = \Session::get('applocale');
+        $local = Session::get('applocale');
         if ($local == null) {
             $local = config('app.fallback_locale');
         }

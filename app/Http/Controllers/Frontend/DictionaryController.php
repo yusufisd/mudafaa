@@ -6,13 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Dictionary;
 use App\Models\EnDictionary;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class DictionaryController extends Controller
 {
     public function index(Request $request)
     {
         $letter = $request->id;
-        $local = \Session::get('applocale') ?? config('app.fallback_locale');
+        $local = Session::get('applocale') ?? config('app.fallback_locale');
 
         $alphabets = [
             "A",
@@ -41,7 +42,7 @@ class DictionaryController extends Controller
         ];
 
         if (isset($request->search)){
-            $local = \Session::get('applocale');
+            $local = Session::get('applocale');
             if ($local == null) {
                 $local = config('app.fallback_locale');
             }
@@ -72,14 +73,18 @@ class DictionaryController extends Controller
     public function detail($id)
     {
         if (!$id) return abort(404);
-        $local = \Session::get('applocale') ?? config('app.fallback_locale');
+        $local = Session::get('applocale') ?? config('app.fallback_locale');
+
         if ($local == "tr"){
-            $other = Dictionary::where('status',1)->inRandomOrder()->paginate(6);
+
             $data = Dictionary::where('status',1)->where('link', $id)->first();
+            if (!$data) return abort(404);
+            $other = Dictionary::select('title','image','author','live_date','link')->where('status',1)->inRandomOrder()->take(8)->get();
             if (!$data) abort(404);
         }else{
-            $other = EnDictionary::where('status',1)->inRandomOrder()->paginate(6);
             $data = EnDictionary::where('status',1)->where('link', $id)->first();
+            if (!$data) return abort(404);
+            $other = EnDictionary::select('title','image','author','live_date','link')->where('status',1)->inRandomOrder()->take(8)->get();
             if (!$data) abort(404);
         }
 
@@ -94,7 +99,7 @@ class DictionaryController extends Controller
     }
 
     public function tag_list($title){
-        $local = \Session::get('applocale');
+        $local = Session::get('applocale');
         if ($local == null) {
             $local = config('app.fallback_locale');
         }

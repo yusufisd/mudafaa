@@ -362,6 +362,35 @@
 										</div>
 									</div><br>
 								</div><br>
+
+								<div class="header">
+									<h5>Video</h5>
+								</div>
+								<div class="container" style="border: solid; padding:15px; border-radius:5px;border-color:lightgray">
+									<p><b> Kategori Liste Sayfası </b></p><hr>
+									<div class="row">
+										<div class="col-md-4">
+											<input type="checkbox" value="42" name="reklam[]" id="42">&nbsp;&nbsp;
+											<label for="42">Üst Kısım (728x90)</label>
+										</div>
+										<div class="col-md-4">
+											<input type="checkbox" value="43" name="reklam[]" id="43">&nbsp;&nbsp;
+											<label for="43">Ara Kısım (728x90)</label>
+										</div>
+									</div><br>
+
+									<p><b> İçerik Detay Sayfası </b></p><hr>
+									<div class="row">
+										<div class="col-md-4">
+											<input type="checkbox" value="44" name="reklam[]" id="44">&nbsp;&nbsp;
+											<label for="44">Alt Kısım (1320x90)</label>
+										</div>
+										<div class="col-md-4">
+											<input type="checkbox" value="45" name="reklam[]" id="45">&nbsp;&nbsp;
+											<label for="45">Sağ Kısım (300x250)</label>
+										</div>
+									</div><br>
+								</div><br>
 								<div style="text-align: right">
 									<button type="submit" class="btn btn-outline btn-outline-success" id="btn_submit_add_ad"><i class="fa-solid fa-check ps-1"></i> KAYDET</button>
 								</div>

@@ -155,7 +155,7 @@
     </section>
 
 
-    <div class="container" style="margin-top:3%">
+    <div class="container">
         @if (reklam(1) != null || reklam(2) != null)
             <div class="row">
                 <div class="col-md-6">

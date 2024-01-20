@@ -35,11 +35,13 @@ class CompanyController extends Controller
         $lang = session('applocale') ?? config('app.fallback_locale');
         if ($lang == 'tr') {
             $data = CompanyModel::where('link',$id)->first();
+            if (!$data) return abort(404);
             $ekstra = CompanyTitle::where('company_id', $data->id)->get();
             $images = CompanyImage::where('company_id', $data->id)->get();
             $address = CompanyAddress::where('company_id', $data->id)->get();
         } else {
             $data = EnCompanyModel::where('link',$id)->first();
+            if (!$data) return abort(404);
             $ekstra = EnCompanyTitle::where('company_id', $data->id)->get();
             $images = CompanyImage::where('company_id', $data->id)->get();
             $address = EnCompanyAddress::where('company_id', $data->id)->get();

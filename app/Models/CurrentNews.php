@@ -79,12 +79,38 @@ class CurrentNews extends Model
 
     }
 
-
-    public function viewCounter(){
+    public function viewCounter()
+    {
         return $this->hasOne(NewsViewCounter::class,'news_id','id');
     }
 
     public function Source(){
         return $this->hasOne(NewsSource::class,'news_id','id');
+    }
+
+
+    public function previousData()
+    {
+        $data = CurrentNews::select('title','live_time','link')->where('status', 1)->where('id', '<',$this->id)->latest()->first();
+        return $data;
+    }
+
+    public function nextData()
+    {
+        $data = CurrentNews::select('title','live_time','link')->where('status', 1)->where('id', '>', $this->id)->latest()->first();
+        return $data;
+    }
+
+    public function emojiData($id)
+    {
+        $data = ContentEmojiModel::where('post_id',$this->id)->where('post_type',0)->where('emoji_type',$id)->count();
+
+        if($data > 0)
+        {
+            return $data;
+        }else
+        {
+            return 0;
+        }
     }
 }

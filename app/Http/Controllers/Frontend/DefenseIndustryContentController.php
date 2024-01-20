@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Models\DefenseIndustry;
-use App\Models\DefenseIndustryCategory;
 use App\Models\DefenseIndustryContent;
 use App\Models\DefenseViewCounter;
-use App\Models\EnDefenseIndustryCategory;
 use App\Models\EnDefenseIndustryContent;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class DefenseIndustryContentController extends Controller
 {
@@ -18,18 +15,16 @@ class DefenseIndustryContentController extends Controller
         $lang = session('applocale') ?? config('app.fallback_locale');
         if ($lang == "tr"){
             $data = DefenseIndustryContent::where('link',$id)->first();
-            $previous_product = DefenseIndustryContent::where('id',$data->id-1)->first();
-            $next_product = DefenseIndustryContent::where('id',$data->id+1)->first();
-            $other_product = DefenseIndustryContent::inRandomOrder()->get();
+            if (!$data) return abort(404);
+            $other_product = DefenseIndustryContent::select('title','image','live_time','link')->where('status',1)->inRandomOrder()->take(8)->get();
         }else{
             $data = EnDefenseIndustryContent::where('link',$id)->first();
-            $previous_product = EnDefenseIndustryContent::where('id',$data->id-1)->first();
-            $next_product = EnDefenseIndustryContent::where('id',$data->id+1)->first();
-            $other_product = EnDefenseIndustryContent::inRandomOrder()->get();
+            if (!$data) return abort(404);
+            $other_product = EnDefenseIndustryContent::select('title','image','live_time','link')->where('status',1)->inRandomOrder()->take(8)->get();
         }
 
         // OKUMA KONTRLÜ
-        $readCheck = json_decode(\Illuminate\Support\Facades\Cookie::get('defense')) ?? [];
+        $readCheck = json_decode(Cookie::get('defense')) ?? [];
         if (!in_array($data->id, $readCheck)){
             if(DefenseViewCounter::where('defense_id',$data->id)->first() != null){
                 $defense = DefenseViewCounter::where('defense_id',$data->id)->first();
@@ -42,10 +37,10 @@ class DefenseIndustryContentController extends Controller
                 $defense->save();
             }
             $readCheck[] = $data->id;
-            \Illuminate\Support\Facades\Cookie::queue(\Illuminate\Support\Facades\Cookie::make('defense', json_encode($readCheck), 30));
+            Cookie::queue(Cookie::make('defense', json_encode($readCheck), 30));
         }
 
-        return view('frontend.defenseIndustry.detail',compact('data','previous_product','next_product','other_product'));
+        return view('frontend.defenseIndustry.detail',compact('data','other_product'));
     }
 
     

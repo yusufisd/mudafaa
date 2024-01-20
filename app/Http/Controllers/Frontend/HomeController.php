@@ -30,31 +30,31 @@ use App\Models\UserModel;
 use App\Models\Video;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        
-        $local = \Session::get('applocale');
+        $local = Session::get('applocale');
         if ($local == null) {
             $local = config('app.fallback_locale');
 
-            \Session::get('applocale') == 'tr';
+            Session::get('applocale') == 'tr';
         }
         if ($local == 'tr') {
-            $cats = CurrentNews::orderBy('live_time','desc')->where('headline',1)->where('status',1)
-                ->take(4);
+
+            $cats = CurrentNews::select('id','title','category_id','live_time','image','link')->where('status',1)->orderBy('live_time','desc')->where('headline',1)->take(4);
             $cats_idler = $cats->pluck('id')->toArray();
             $cats = $cats->get();
-            $tek_haber = CurrentNews::where('status',1)->orderBy('live_time','desc')->whereNotIn('id',$cats_idler)->first();
+            $tek_haber = CurrentNews::select('id','title','category_id','live_time','author_id','link')->where('status',1)->orderBy('live_time','desc')->whereNotIn('id',$cats_idler)->first();
             array_push($cats_idler,$tek_haber->id);
-            $iki_haber = CurrentNews::where('status',1)->orderBy('live_time','desc')->whereNotIn('id',$cats_idler)->take(2)->get();
+            $iki_haber = CurrentNews::select('id','title','category_id','live_time','author_id','link')->where('status',1)->orderBy('live_time','desc')->whereNotIn('id',$cats_idler)->take(2)->get();
             foreach($iki_haber as $haber){
                 array_push($cats_idler,$haber->id);
             }
 
-            $uc_kategori = CurrentNewsCategory::where('status',1)->orderBy('id','asc')->take(3)->get();
+            $uc_kategori = CurrentNewsCategory::select('id','title')->where('status',1)->orderBy('id','asc')->take(3)->get();
 
             
             if($tek_haber->Category() == null){
@@ -64,12 +64,12 @@ class HomeController extends Controller
             }
 
 
-            $first_cat = CurrentNewsCategory::where('status',1)->orderBy('id','asc')->first();
-            $second_cat = CurrentNewsCategory::where('status',1)->whereNot('id',$first_cat->id)->orderBy('id','asc')->first();
-            $third_cat = CurrentNewsCategory::where('status',1)->whereNot('id',$first_cat->id)->whereNot('id',$second_cat->id)->first();
+            $first_cat = CurrentNewsCategory::select('id')->where('status',1)->orderBy('id','asc')->first();
+            $second_cat = CurrentNewsCategory::select('id')->where('status',1)->whereNot('id',$first_cat->id)->orderBy('id','asc')->first();
+            $third_cat = CurrentNewsCategory::select('id')->where('status',1)->whereNot('id',$first_cat->id)->whereNot('id',$second_cat->id)->first();
 
 
-            $data = CurrentNews::where('status',1)->orderBy('live_time','desc')->get();
+            $data = CurrentNews::select('id','title','live_time','image','category_id','author_id','link')->where('status',1)->orderBy('live_time','desc')->get();
             foreach($data as $item){
 
                 if(in_array($first_cat->id,$item->category_id)){
@@ -101,33 +101,32 @@ class HomeController extends Controller
             }
             $now = Carbon::now();
 
-
-            $cat1_news1 = CurrentNews::orderBy('live_time','desc')->whereJsonContains('category_id',$first_cat->id)->where('status',1)->whereNotIn('id',$cats_idler)->take(3);
+            $cat1_news1 = CurrentNews::select('id','title','live_time','image','category_id','link')->orderBy('live_time','desc')->whereJsonContains('category_id',$first_cat->id)->where('status',1)->whereNotIn('id',$cats_idler)->take(3);
             $cat1_news_ids = $cat1_news1->pluck('id')->all();
             $cats_idler = array_merge($cats_idler,$cat1_news_ids);
             $cat1_news1 = $cat1_news1->get();
-            $cat1_news2 = CurrentNews::orderBy('live_time','desc')->whereJsonContains('category_id',$first_cat->id)->where('status',1)->whereNotIn('id',$cats_idler)->take(3);
+            $cat1_news2 = CurrentNews::select('id','title','live_time','image','category_id','link')->orderBy('live_time','desc')->whereJsonContains('category_id',$first_cat->id)->where('status',1)->whereNotIn('id',$cats_idler)->take(3);
             $cat1_news2_ids = $cat1_news2->pluck('id')->all();
             $cats_idler = array_merge($cats_idler,$cat1_news2_ids);
             $cat1_news2 = $cat1_news2->get();
 
 
-            $cat2_news1 = CurrentNews::orderBy('live_time','desc')->whereJsonContains('category_id',$second_cat->id)->where('status',1)->whereNotIn('id',$cats_idler)->take(3);
+            $cat2_news1 = CurrentNews::select('id','title','live_time','image','category_id','link')->orderBy('live_time','desc')->whereJsonContains('category_id',$second_cat->id)->where('status',1)->whereNotIn('id',$cats_idler)->take(3);
             $cat2_news_ids = $cat2_news1->pluck('id')->all();
             $cats_idler = array_merge($cats_idler,$cat2_news_ids);
             $cat2_news1 = $cat2_news1->get();
-            $cat2_news2 = CurrentNews::orderBy('live_time','desc')->whereJsonContains('category_id',$second_cat->id)->where('status',1)->whereNotIn('id',$cats_idler)->take(3);
+            $cat2_news2 = CurrentNews::select('id','title','live_time','image','category_id','link')->orderBy('live_time','desc')->whereJsonContains('category_id',$second_cat->id)->where('status',1)->whereNotIn('id',$cats_idler)->take(3);
             $cat2_news2_ids = $cat2_news2->pluck('id')->all();
             $cats_idler = array_merge($cats_idler,$cat2_news2_ids);
             $cat2_news2 = $cat2_news2->get();
 
 
             
-            $cat3_news1 = CurrentNews::orderBy('live_time','desc')->whereJsonContains('category_id',$third_cat->id)->where('status',1)->whereNotIn('id',$cats_idler)->take(3);
+            $cat3_news1 = CurrentNews::select('id','title','live_time','image','category_id','link')->orderBy('live_time','desc')->whereJsonContains('category_id',$third_cat->id)->where('status',1)->whereNotIn('id',$cats_idler)->take(3);
             $cat3_news_ids = $cat3_news1->pluck('id')->all();
             $cats_idler = array_merge($cats_idler,$cat3_news_ids);
             $cat3_news1 = $cat3_news1->get();
-            $cat3_news2 = CurrentNews::orderBy('live_time','desc')->whereJsonContains('category_id',$third_cat->id)->where('status',1)->whereNotIn('id',$cats_idler)->take(3);
+            $cat3_news2 = CurrentNews::select('id','title','live_time','image','category_id','link')->orderBy('live_time','desc')->whereJsonContains('category_id',$third_cat->id)->where('status',1)->whereNotIn('id',$cats_idler)->take(3);
             $cat3_news2_ids = $cat3_news2->pluck('id')->all();
             $cats_idler = array_merge($cats_idler,$cat3_news2_ids);
             $cat3_news2 = $cat3_news2->get();
@@ -146,26 +145,25 @@ class HomeController extends Controller
                 }
             }
 
-            $videos = Video::orderBy('live_date','desc')->take(4)->get();
+            $videos = Video::where('status',1)->orderBy('live_date','desc')->take(4)->get();
 
-            $interview = Interview::latest()->take(4)->get();
+            $interview = Interview::where('status',1)->latest()->take(4)->get();
 
 
             $anket = Anket::inRandomOrder()->first();
 
 
         } elseif ($local == 'en') {
-            $cats = EnCurrentNews::orderBy('live_time','desc')->where('headline',1)->where('status',1)
-                ->take(4);
+            $cats = EnCurrentNews::select('id','title','category_id','live_time','image','link')->orderBy('live_time','desc')->where('headline',1)->where('status',1)->take(4);
             $cats_idler = $cats->pluck('id')->toArray();
             $cats = $cats->get();
-            $tek_haber = EnCurrentNews::where('status',1)->orderBy('live_time','desc')->whereNotIn('id',$cats_idler)->first();
+            $tek_haber = EnCurrentNews::select('id','title','category_id','live_time','author_id','link')->where('status',1)->orderBy('live_time','desc')->whereNotIn('id',$cats_idler)->first();
             array_push($cats_idler,$tek_haber->id);
-            $iki_haber = EnCurrentNews::where('status',1)->orderBy('live_time','desc')->whereNotIn('id',$cats_idler)->take(2)->get();
+            $iki_haber = EnCurrentNews::select('id','title','category_id','live_time','author_id','link')->where('status',1)->orderBy('live_time','desc')->whereNotIn('id',$cats_idler)->take(2)->get();
             foreach($iki_haber as $haber){
                 array_push($cats_idler,$haber->id);
             }
-            $uc_kategori = EnCurrentNewsCategory::where('status',1)->orderBy('id','asc')->take(3)->get();
+            $uc_kategori = EnCurrentNewsCategory::select('id','title')->where('status',1)->orderBy('id','asc')->take(3)->get();
 
             if($tek_haber->Category() == null){
                 while($tek_haber->Category() == null){
@@ -173,12 +171,12 @@ class HomeController extends Controller
                 }
             }
 
-            $first_cat = EnCurrentNewsCategory::where('status',1)->orderBy('id','asc')->first();
-            $second_cat = EnCurrentNewsCategory::where('status',1)->whereNot('id',$first_cat->id)->orderBy('id','asc')->first();
-            $third_cat = EnCurrentNewsCategory::where('status',1)->whereNot('id',$first_cat->id)->whereNot('id',$second_cat->id)->first();
+            $first_cat = EnCurrentNewsCategory::select('id')->where('status',1)->orderBy('id','asc')->first();
+            $second_cat = EnCurrentNewsCategory::select('id')->where('status',1)->whereNot('id',$first_cat->id)->orderBy('id','asc')->first();
+            $third_cat = EnCurrentNewsCategory::select('id')->where('status',1)->whereNot('id',$first_cat->id)->whereNot('id',$second_cat->id)->first();
 
 
-            $data = EnCurrentNews::where('status',1)->orderBy('live_time','desc')->get();
+            $data = EnCurrentNews::select('id','title','live_time','image','category_id','author_id')->where('status',1)->orderBy('live_time','desc')->get();
             foreach($data as $item){
                 if(in_array($first_cat->id,$item->category_id)){
                     $ilk_kategori_icerigi = $item;
@@ -208,33 +206,32 @@ class HomeController extends Controller
 
             }
             $now = Carbon::now();
-            $now_plus = $now->addMonth(2);
 
-            $cat1_news1 = EnCurrentNews::orderBy('live_time','desc')->whereJsonContains('category_id',$first_cat->id)->where('status',1)->whereNotIn('id',$cats_idler)->take(3);
+            $cat1_news1 = EnCurrentNews::select('id','title','live_time','image','category_id','link')->orderBy('live_time','desc')->whereJsonContains('category_id',$first_cat->id)->where('status',1)->whereNotIn('id',$cats_idler)->take(3);
             $cat1_news_ids = $cat1_news1->pluck('id')->all();
             $cats_idler = array_merge($cats_idler,$cat1_news_ids);
             $cat1_news1 = $cat1_news1->get();
-            $cat1_news2 = EnCurrentNews::orderBy('live_time','desc')->whereJsonContains('category_id',$first_cat->id)->where('status',1)->whereNotIn('id',$cats_idler)->take(3);
+            $cat1_news2 = EnCurrentNews::select('id','title','live_time','image','category_id','link')->orderBy('live_time','desc')->whereJsonContains('category_id',$first_cat->id)->where('status',1)->whereNotIn('id',$cats_idler)->take(3);
             $cat1_news2_ids = $cat1_news2->pluck('id')->all();
             $cats_idler = array_merge($cats_idler,$cat1_news2_ids);
             $cat1_news2 = $cat1_news2->get();
 
 
-            $cat2_news1 = EnCurrentNews::orderBy('live_time','desc')->whereJsonContains('category_id',$second_cat->id)->where('status',1)->whereNotIn('id',$cats_idler)->take(3);
+            $cat2_news1 = EnCurrentNews::select('id','title','live_time','image','category_id','link')->orderBy('live_time','desc')->whereJsonContains('category_id',$second_cat->id)->where('status',1)->whereNotIn('id',$cats_idler)->take(3);
             $cat2_news_ids = $cat2_news1->pluck('id')->all();
             $cats_idler = array_merge($cats_idler,$cat2_news_ids);
             $cat2_news1 = $cat2_news1->get();
-            $cat2_news2 = EnCurrentNews::orderBy('live_time','desc')->whereJsonContains('category_id',$second_cat->id)->where('status',1)->whereNotIn('id',$cats_idler)->take(3);
+            $cat2_news2 = EnCurrentNews::select('id','title','live_time','image','category_id','link')->orderBy('live_time','desc')->whereJsonContains('category_id',$second_cat->id)->where('status',1)->whereNotIn('id',$cats_idler)->take(3);
             $cat2_news2_ids = $cat2_news2->pluck('id')->all();
             $cats_idler = array_merge($cats_idler,$cat2_news2_ids);
             $cat2_news2 = $cat2_news2->get();
 
             
-            $cat3_news1 = EnCurrentNews::orderBy('live_time','desc')->whereJsonContains('category_id',$third_cat->id)->where('status',1)->whereNotIn('id',$cats_idler)->take(3);
+            $cat3_news1 = EnCurrentNews::select('id','title','live_time','image','category_id','link')->orderBy('live_time','desc')->whereJsonContains('category_id',$third_cat->id)->where('status',1)->whereNotIn('id',$cats_idler)->take(3);
             $cat3_news_ids = $cat3_news1->pluck('id')->all();
             $cats_idler = array_merge($cats_idler,$cat3_news_ids);
             $cat3_news1 = $cat3_news1->get();
-            $cat3_news2 = EnCurrentNews::orderBy('live_time','desc')->whereJsonContains('category_id',$third_cat->id)->where('status',1)->whereNotIn('id',$cats_idler)->take(3);
+            $cat3_news2 = EnCurrentNews::select('id','title','live_time','image','category_id','link')->orderBy('live_time','desc')->whereJsonContains('category_id',$third_cat->id)->where('status',1)->whereNotIn('id',$cats_idler)->take(3);
             $cat3_news2_ids = $cat3_news2->pluck('id')->all();
             $cats_idler = array_merge($cats_idler,$cat3_news2_ids);
             $cat3_news2 = $cat3_news2->get();
@@ -251,9 +248,9 @@ class HomeController extends Controller
                 }
             }
 
-            $videos = EnVideo::orderBy('live_date','desc')->take(4)->get();
+            $videos = EnVideo::where('status',1)->orderBy('live_date','desc')->take(4)->get();
 
-            $interview = EnInterview::latest()->take(4)->get();
+            $interview = EnInterview::where('status',1)->latest()->take(4)->get();
 
             $anket = Anket::inRandomOrder()->first();
 

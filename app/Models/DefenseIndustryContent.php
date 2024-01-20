@@ -71,5 +71,17 @@ class DefenseIndustryContent extends Model
     public function viewCounter(){
         return $this->hasOne(DefenseViewCounter::class,'defense_id','id');
     }
+
+    public function previousData()
+    {
+        $data = DefenseIndustryContent::select('title','live_time','link')->where('status', 1)->where('id', '<',$this->id)->latest()->first();
+        return $data;
+    }
+
+    public function nextData()
+    {
+        $data = DefenseIndustryContent::select('title','live_time','link')->where('status', 1)->where('id', '>', $this->id)->latest()->first();
+        return $data;
+    }
    
 }

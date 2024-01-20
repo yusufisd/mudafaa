@@ -396,11 +396,11 @@
 
                                     <div class="col-lg-6">
 
-                                        @if ($previous_product != null)
+                                        @if ($data->previousData() != null)
                                             <div class="next-prev-wrap" style="height: 100%">
                                                 <div class="item-icon">
                                                     <a
-                                                        href="{{ \Session::get('applocale') == 'en' ? route('front.defenseIndustryContent.detail_en', $previous_product->link) : route('front.defenseIndustryContent.detail', $previous_product->link) }}">
+                                                        href="{{ \Session::get('applocale') == 'en' ? route('front.defenseIndustryContent.detail_en', $data->previousData()->link) : route('front.defenseIndustryContent.detail', $data->previousData()->link) }}">
                                                         <i class="fas fa-chevron-left"></i>
                                                         {{ __('message.Önceki') }} {{ __('message.ürün') }}
                                                     </a>
@@ -408,13 +408,13 @@
                                                 <div class="content">
                                                     <h4 class="title">
                                                         <a
-                                                            href="{{ \Session::get('applocale') == 'en' ? route('front.defenseIndustryContent.detail_en', $previous_product->link) : route('front.defenseIndustryContent.detail', $previous_product->link) }}">
-                                                            {{ $previous_product->title }}
+                                                            href="{{ \Session::get('applocale') == 'en' ? route('front.defenseIndustryContent.detail_en', $data->previousData()->link) : route('front.defenseIndustryContent.detail', $data->previousData()->link) }}">
+                                                            {{ $data->previousData()->title }}
                                                         </a>
                                                     </h4>
                                                     <span class="rt-meta">
                                                         <i class="far fa-calendar-alt icon"></i>
-                                                        {{ $previous_product->live_time->translatedFormat('d M Y') }}
+                                                        {{ $data->previousData()->live_time->translatedFormat('d M Y') }}
 
                                                     </span>
                                                 </div>
@@ -425,11 +425,11 @@
 
                                     <div class="col-lg-6">
 
-                                        @if ($next_product != null)
+                                        @if ($data->nextData() != null)
                                             <div class="next-prev-wrap next-wrap" style="height: 100%">
                                                 <div class="item-icon">
                                                     <a
-                                                        href="{{ \Session::get('applocale') == 'en' ? route('front.defenseIndustryContent.detail_en', $next_product->link) : route('front.defenseIndustryContent.detail', $next_product->link) }}">
+                                                        href="{{ \Session::get('applocale') == 'en' ? route('front.defenseIndustryContent.detail_en', $data->nextData()->link) : route('front.defenseIndustryContent.detail', $data->nextData()->link) }}">
                                                         {{ __('message.Sonraki') }} {{ __('message.ürün') }}
                                                         <i class="fas fa-chevron-right"></i>
                                                     </a>
@@ -437,12 +437,12 @@
                                                 <div class="content">
                                                     <h4 class="title">
                                                         <a
-                                                            href="{{ \Session::get('applocale') == 'en' ? route('front.defenseIndustryContent.detail_en', $next_product->link) : route('front.defenseIndustryContent.detail', $next_product->link) }}">
-                                                            {{ $next_product->title }} </a>
+                                                            href="{{ \Session::get('applocale') == 'en' ? route('front.defenseIndustryContent.detail_en', $data->nextData()->link) : route('front.defenseIndustryContent.detail', $data->nextData()->link) }}">
+                                                            {{ $data->nextData()->title }} </a>
                                                     </h4>
                                                     <span class="rt-meta">
                                                         <i class="far fa-calendar-alt icon"></i>
-                                                        {{ $next_product->live_time->translatedFormat('d M Y') }}
+                                                        {{ $data->nextData()->live_time->translatedFormat('d M Y') }}
                                                     </span>
                                                 </div>
                                             </div>

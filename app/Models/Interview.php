@@ -45,4 +45,29 @@ class Interview extends Model
         return InterviewComment::where('is_post',0)->where('post_id',$this->id)->get();
     }
 
+    public function previousData()
+    {
+        $data = Interview::select('id','title','live_time','link')->where('status', 1)->where('id', '<',$this->id)->latest()->first();
+        return $data;
+    }
+
+    public function nextData()
+    {
+        $data = Interview::select('id','title','live_time','link')->where('status', 1)->where('id', '>', $this->id)->latest()->first();
+        return $data;
+    }
+
+    public function emojiData($id)
+    {
+        $data = ContentEmojiModel::where('post_id',$this->id)->where('post_type',2)->where('emoji_type',$id)->count();
+
+        if($data > 0)
+        {
+            return $data;
+        }else
+        {
+            return 0;
+        }
+    }
+
 }

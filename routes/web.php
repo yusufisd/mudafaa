@@ -11,7 +11,6 @@ use App\Http\Controllers\Backend\CommentController as BackendCommentController;
 use App\Http\Controllers\Backend\CompanyCategoryController;
 use App\Http\Controllers\Backend\CompanyController;
 use App\Http\Controllers\Backend\CompanyModelController;
-use App\Http\Controllers\Backend\CompanySubTitle;
 use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\ContactFormController;
 use App\Http\Controllers\Backend\CooperationPageController;
@@ -24,7 +23,6 @@ use App\Http\Controllers\Backend\DefenseIndustryController;
 use App\Http\Controllers\Backend\DictionaryController;
 use App\Http\Controllers\Backend\GoogleCodeController;
 use App\Http\Controllers\Backend\HomeController;
-use App\Http\Controllers\Backend\IconController;
 use App\Http\Controllers\Backend\InterviewController;
 use App\Http\Controllers\Backend\KunyeController;
 use App\Http\Controllers\Backend\MenuController;
@@ -82,29 +80,6 @@ use Illuminate\Database\Schema\Blueprint;
 Route::get('optimize', function () {
     Artisan::call('optimize:clear');
     return 'Başarılı şekilde optimize edildi.';
-});
-
-Route::get('migrate-edildi',function(){
-    if(!Schema::hasTable('subscribers')){
-        Schema::create('subscribers', function (Blueprint $table) {
-            $table->id();
-            $table->string('email');
-            $table->integer('status')->default(1);
-            $table->timestamps();
-        });
-    }
-    if(!Schema::hasTable('contact_forms')){
-            Schema::create('contact_forms', function (Blueprint $table) {
-            $table->id();
-            $table->string('fullname');
-            $table->string('email');
-            $table->string('phone');
-            $table->string('message')->nullable();
-            $table->integer('status')->default(1);
-            $table->timestamps();
-        });
-    }
-    return "migrate edildi";
 });
 
 Route::get('/change-lang/{lang}', [LanguageController::class, 'change'])->name('chaange.lang');
@@ -753,20 +728,24 @@ Route::middleware('lang')->group(function () {
             Route::get('/is-birligi', [CooperationPageController::class, 'edit'])->name('cooperationPageEdit');
             Route::post('/is-birligi', [CooperationPageController::class, 'update'])->name('cooperationPageEdit.update');
 
-
             // subsribe controller
-            Route::prefix('aboneler')->name('subscriber.')->controller(SubscribeController::class)->group(function(){
-                Route::get('/liste','index')->name('list');
-                Route::get('/statu-degistir/{id?}','change_status')->name('change_status');
-            });
+            Route::prefix('aboneler')
+                ->name('subscriber.')
+                ->controller(SubscribeController::class)
+                ->group(function () {
+                    Route::get('/liste', 'index')->name('list');
+                    Route::get('/statu-degistir/{id?}', 'change_status')->name('change_status');
+                });
 
             // İletşim formu
-            Route::prefix('iletisim-formu')->name('contactForm.')->controller(ContactFormController::class)->group(function(){
-                Route::get('/liste','index')->name('index');
-                Route::get('/sil/{id?}','delete')->name('delete');
-            });
+            Route::prefix('iletisim-formu')
+                ->name('contactForm.')
+                ->controller(ContactFormController::class)
+                ->group(function () {
+                    Route::get('/liste', 'index')->name('index');
+                    Route::get('/sil/{id?}', 'delete')->name('delete');
+                });
         });
-
 
     Route::prefix('/')
         ->name('front.')
@@ -937,12 +916,11 @@ Route::middleware('lang')->group(function () {
             Route::get('is-birligi', [FrontendCooperationPageController::class, 'index'])->name('cooperationPage.index');
 
             // SUBSCRİBE CONTROLLER
-            Route::post('abone-ol',[SubscribersController::class,'subscribe'])->name('subscribePost');
+            Route::post('abone-ol', [SubscribersController::class, 'subscribe'])->name('subscribePost');
 
             // İletişim Formu
-            Route::post('iletisim-formu-post',[FrontendContactFormController::class,'formPost'])->name('contactFormPost');
+            Route::post('iletisim-formu-post', [FrontendContactFormController::class, 'formPost'])->name('contactFormPost');
         });
-
 });
 
 Route::get('/view_counter', [FrontendHomeController::class, 'view_counter']);
@@ -969,5 +947,3 @@ Route::get('random/kategori/integer', function () {
     }
     return 'başarılı';
 });
-
-

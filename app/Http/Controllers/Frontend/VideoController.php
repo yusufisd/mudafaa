@@ -33,7 +33,7 @@ class VideoController extends Controller
         $lang = session('applocale') ?? config('app.fallback_locale');
         if ($lang == 'tr') {
             $data = Video::where('link', $link)->first();
-            if(!$data) return redirect("/");
+            if (!$data) return abort(404);
             $onceki = Video::where('status',1)->where('id','<',$data->id)->first();
             $sonraki = Video::where('status',1)->where('id','>',$data->id)->first();
             $other = Video::whereNot('link',$link)->get();
@@ -41,6 +41,7 @@ class VideoController extends Controller
                 
         } else {
             $data = EnVideo::where('status',1)->where('link', $link)->first();
+            if (!$data) return abort(404);
             $onceki = EnVideo::where('status',1)->where('id','<',$data->id)->first();
             $sonraki = EnVideo::where('id','>',$data->id)->first();
             $other = EnVideo::whereNot('link',$link)->get();

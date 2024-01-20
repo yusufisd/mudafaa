@@ -31,6 +31,9 @@
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
+                        <li class="breadcrumb-item " aria-current="page">
+                            Video
+                        </li>
                         <li class="breadcrumb-item active" aria-current="page">
                             {{ $cat->title }}
                         </li>
