@@ -47,9 +47,9 @@ class HomeController extends Controller
             $cats = CurrentNews::select('id','title','category_id','live_time','image','link')->where('status',1)->orderBy('live_time','desc')->where('headline',1)->take(4);
             $cats_idler = $cats->pluck('id')->toArray();
             $cats = $cats->get();
-            $tek_haber = CurrentNews::select('id','title','category_id','live_time','author_id','link')->where('status',1)->orderBy('live_time','desc')->whereNotIn('id',$cats_idler)->first();
+            $tek_haber = CurrentNews::select('id','title','category_id','image','live_time','author_id','link')->where('status',1)->orderBy('live_time','desc')->whereNotIn('id',$cats_idler)->first();
             array_push($cats_idler,$tek_haber->id);
-            $iki_haber = CurrentNews::select('id','title','category_id','live_time','author_id','link')->where('status',1)->orderBy('live_time','desc')->whereNotIn('id',$cats_idler)->take(2)->get();
+            $iki_haber = CurrentNews::select('id','title','category_id','image','live_time','author_id','link')->where('status',1)->orderBy('live_time','desc')->whereNotIn('id',$cats_idler)->take(2)->get();
             foreach($iki_haber as $haber){
                 array_push($cats_idler,$haber->id);
             }
@@ -157,9 +157,9 @@ class HomeController extends Controller
             $cats = EnCurrentNews::select('id','title','category_id','live_time','image','link')->orderBy('live_time','desc')->where('headline',1)->where('status',1)->take(4);
             $cats_idler = $cats->pluck('id')->toArray();
             $cats = $cats->get();
-            $tek_haber = EnCurrentNews::select('id','title','category_id','live_time','author_id','link')->where('status',1)->orderBy('live_time','desc')->whereNotIn('id',$cats_idler)->first();
+            $tek_haber = EnCurrentNews::select('id','title','category_id','image','live_time','author_id','link')->where('status',1)->orderBy('live_time','desc')->whereNotIn('id',$cats_idler)->first();
             array_push($cats_idler,$tek_haber->id);
-            $iki_haber = EnCurrentNews::select('id','title','category_id','live_time','author_id','link')->where('status',1)->orderBy('live_time','desc')->whereNotIn('id',$cats_idler)->take(2)->get();
+            $iki_haber = EnCurrentNews::select('id','title','category_id','image','live_time','author_id','link')->where('status',1)->orderBy('live_time','desc')->whereNotIn('id',$cats_idler)->take(2)->get();
             foreach($iki_haber as $haber){
                 array_push($cats_idler,$haber->id);
             }
