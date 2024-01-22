@@ -86,8 +86,8 @@
         <div id="story_container" class="container">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    @if (count($cats))
 
+                    {{-- @if (count($cats))
                         @foreach ($cats as $variable)
                             <div class="swiper-slide">
                                 <img src="/{{ $variable->mobil_image }}"
@@ -102,7 +102,7 @@
                                 </div>
                             </div>
                         @endforeach
-                    @endif
+                    @endif --}}
 
                 </div>
             </div>
@@ -258,7 +258,7 @@
 
 
     <!-- start what's new section -->
-    <section class="whats-new-style-1 section-padding">
+    <section class="whats-new-style-1 i">
         <div class="container">
             <div class="row">
                 <div class="col-12">

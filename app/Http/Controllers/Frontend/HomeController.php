@@ -44,10 +44,11 @@ class HomeController extends Controller
         }
         if ($local == 'tr') {
 
-            $cats = CurrentNews::select('id','title','category_id','live_time','image','link','mobil_image')->where('status',1)->orderBy('live_time','desc')->where('headline',1)->take(4);
+            $cats_idler = [];
+/*             $cats = CurrentNews::select('id','title','category_id','live_time','image','link','mobil_image')->where('status',1)->orderBy('live_time','desc')->where('headline',1)->take(4);
             $cats_idler = $cats->pluck('id')->toArray();
-            $cats = $cats->get();
-            $tek_haber = CurrentNews::select('id','title','category_id','image','live_time','author_id','link')->where('status',1)->orderBy('live_time','desc')->whereNotIn('id',$cats_idler)->first();
+            $cats = $cats->get(); */
+            $tek_haber = CurrentNews::select('id','title','category_id','image','live_time','author_id','link')->where('status',1)->orderBy('live_time','desc')->first();
             array_push($cats_idler,$tek_haber->id);
             $iki_haber = CurrentNews::select('id','title','category_id','image','live_time','author_id','link')->where('status',1)->orderBy('live_time','desc')->whereNotIn('id',$cats_idler)->take(2)->get();
             foreach($iki_haber as $haber){
@@ -154,10 +155,12 @@ class HomeController extends Controller
 
 
         } elseif ($local == 'en') {
-            $cats = EnCurrentNews::select('id','title','category_id','live_time','image','link','mobil_image')->orderBy('live_time','desc')->where('headline',1)->where('status',1)->take(4);
+            $cats_idler = [];
+
+/*             $cats = EnCurrentNews::select('id','title','category_id','live_time','image','link','mobil_image')->orderBy('live_time','desc')->where('headline',1)->where('status',1)->take(4);
             $cats_idler = $cats->pluck('id')->toArray();
-            $cats = $cats->get();
-            $tek_haber = EnCurrentNews::select('id','title','category_id','image','live_time','author_id','link')->where('status',1)->orderBy('live_time','desc')->whereNotIn('id',$cats_idler)->first();
+            $cats = $cats->get(); */
+            $tek_haber = EnCurrentNews::select('id','title','category_id','image','live_time','author_id','link')->where('status',1)->orderBy('live_time','desc')->first();
             array_push($cats_idler,$tek_haber->id);
             $iki_haber = EnCurrentNews::select('id','title','category_id','image','live_time','author_id','link')->where('status',1)->orderBy('live_time','desc')->whereNotIn('id',$cats_idler)->take(2)->get();
             foreach($iki_haber as $haber){
@@ -259,7 +262,7 @@ class HomeController extends Controller
 
         $kvkk_tr = Page::where('link','like','%'.'kvkk'.'%')->first();
         $kvkk_en = EnPage::where('link','like','%'.'pdpl'.'%')->first();
-        return view('frontend.index', compact('cats','iki_haber','tek_haber','uc_kategori','ilk_kategori_icerigi','ucuncu_kategori_icerigi','cat1_news1','cat1_news2','cat2_news1','cat2_news2','cat3_news1','cat3_news2','ikinci_kategori_icerigi','activity','populer_haber_first','populer_haber_three','videos','interview','anket','reklamlar','kvkk_tr','kvkk_en'));
+        return view('frontend.index', compact('iki_haber','tek_haber','uc_kategori','ilk_kategori_icerigi','ucuncu_kategori_icerigi','cat1_news1','cat1_news2','cat2_news1','cat2_news2','cat3_news1','cat3_news2','ikinci_kategori_icerigi','activity','populer_haber_first','populer_haber_three','videos','interview','anket','reklamlar','kvkk_tr','kvkk_en'));
 
     }
 

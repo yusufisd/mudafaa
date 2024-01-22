@@ -28,7 +28,7 @@ class CurrentNewsController extends Controller
      */
     public function index()
     {
-        $data = CurrentNews::latest()->get();
+        $data = CurrentNews::orderBy('live_time','desc')->get();
         $categories = CurrentNewsCategory::latest()->get();
         return view('backend.currentNews.list', compact('data','categories'));
     }
