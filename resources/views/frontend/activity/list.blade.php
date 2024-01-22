@@ -330,13 +330,7 @@
                                                     <a href="{{ \Session::get('applocale') == 'en' ? route('front.activity.categoryDetail_en', $item->Category->link) : route('front.activity.categoryDetail', $item->Category->link) }}"
                                                         class="rt-cat-primary sidebar_restricted_category_title">
                                                         {{ $item->Category->title }} </a>
-                                                    @if ($item->sayac_yil() || $item->sayac_ay() || $item->sayac_gun())
-                                                        <h6 class="rt-news-cat-normal text-danger mx-2">
-                                                            <i class="far fa-clock icon"></i>
-                                                            {{ $item->sayac_yil() ?? ' ' }} {{ $item->sayac_ay() ?? ' ' }}
-                                                            {{ $item->sayac_gun() ?? ' ' }}
-                                                        </h6>
-                                                    @endif
+                                                    
                                                     <h4 class="post-title">
                                                         <a
                                                             href="{{ \Session::get('applocale') == 'en' ? route('front.activity.detail_en', $item->link) : route('front.activity.detail', $item->link) }}">

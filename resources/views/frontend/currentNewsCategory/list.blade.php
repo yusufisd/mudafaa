@@ -156,7 +156,9 @@
                                                     <ul>
                                                         <li>
                                                             <span class="rt-meta">
-                                                                <i class="fa fa-user"></i> <a href="" class="name">
+                                                                <i class="fa fa-user"></i> 
+                                                                <a href="{{ route('front.author.detail', $item->Author->link) }}"
+                                                                class="name">
                                                                     {{ $item->Author->name }} {{ $item->Author->surname }}
                                                                 </a>
                                                             </span>
@@ -429,7 +431,7 @@
                     </div>
                 </div>
                 <!-- end col -->
-                <div class="pag" style="margin-left: 35%; margin-top:15%!important">
+                <div class="pag" style="margin-left: 35%; margin-top:7%!important">
                     {!! $datas->appends(request()->input())->onEachSide(1)->links() !!}
                 </div>
                 <!-- end row  -->

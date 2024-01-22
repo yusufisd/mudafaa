@@ -12,8 +12,10 @@ class AuthorController extends Controller
 {
     public function detail($id)
     {
-        $data = UserModel::findOrFail($id);
-
+        $data = UserModel::where('link',$id)->first();
+        if(!$data){
+            abort(404);
+        }
         $lang = session('applocale') ?? config('app.fallback_locale');
         if ($lang == 'tr') {
             $news = CurrentNews::where('author_id', $id)->paginate(10);

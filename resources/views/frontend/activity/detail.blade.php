@@ -25,10 +25,10 @@
         @media only screen and (max-width: 600) {
 
             /*
-                    .single-post-banner {
-                        background-size: 600px 500px !important;
-                    }
-                    */
+                        .single-post-banner {
+                            background-size: 600px 500px !important;
+                        }
+                        */
         }
 
         .single-post-banner {
@@ -215,13 +215,19 @@
                                                 <i class="social-icon fab fa-whatsapp"></i>
                                             </a>
                                         </li>
+                                        <li>
+                                            <a class="tw" target="_blank"
+                                                href="https://t.me/share/url?url={{ request()->url() }}&text={{ $data->title }}">
+                                                <i class="social-icon fab fa-telegram"></i>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
                             <!-- strat post body -->
                             <div class="post-body mb--40" style="text-align: justify;">
                                 {!! printDesc($data->description) !!}
-                            </div><br><br><br><br>
+                            </div>
                             <!-- end post body -->
                             <!-- start social-share-box-2 -->
                             <div class="social-share-box-2 mb--40">
@@ -319,10 +325,12 @@
                                             @if ($data->website != null)
                                                 <li>
                                                     <h6>Website</h6>
-                                                    <p class="rt-teta">
-                                                        <i class="fas fa-globe icon"></i>
-                                                        {{ $data->website }}
-                                                    </p>
+                                                    <a href="https://www.{!! $data->website !!}" target="_blank">
+                                                        <p class="rt-teta">
+                                                            <i class="fas fa-globe icon"></i>
+                                                            {{ $data->website }}
+                                                        </p>
+                                                    </a>
                                                 </li>
                                             @endif
                                         </ul>
@@ -339,20 +347,20 @@
                         </div>
                     </div>
 
-                        <div class="ad-banner-img mt--40">
-                            @if (reklam(25) != null && reklam(25)->status == 1)
-                                <div class="ad-banner-img">
-                                    @if (reklam(25)->type == 1)
-                                        <a href="{{ reklam(25)->adsense_url }}">
+                    <div class="ad-banner-img mt--40">
+                        @if (reklam(25) != null && reklam(25)->status == 1)
+                            <div class="ad-banner-img">
+                                @if (reklam(25)->type == 1)
+                                    <a href="{{ reklam(25)->adsense_url }}">
 
-                                            <img src="/{{ reklam(25)->image }}" width="100%" style="height: 150px">
-                                        </a>
-                                    @else
-                                        {!! reklam(25)->adsense_url ?? '' !!}
-                                    @endif
-                                </div>
-                            @endif
-                        </div>
+                                        <img src="/{{ reklam(25)->image }}" width="100%" style="height: 150px">
+                                    </a>
+                                @else
+                                    {!! reklam(25)->adsense_url ?? '' !!}
+                                @endif
+                            </div>
+                        @endif
+                    </div>
 
 
                     <!-- end col-->

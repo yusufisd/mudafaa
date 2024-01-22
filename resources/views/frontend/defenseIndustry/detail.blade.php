@@ -15,6 +15,11 @@
     <!-- Fancybox CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
     <style>
+
+        .rt-sidebar-section-layout-2 {
+            padding-top: 60px;
+            padding-bottom: 20px!important;
+        }
         .post-body {
             color: #464847;
         }
@@ -228,7 +233,13 @@
                                                 <i class="social-icon fab fa-whatsapp"></i>
                                             </a>
                                         </li>
-
+                                        <li>
+                                            <a class="tw" target="_blank"
+                                                href="https://t.me/share/url?url={{ request()->url() }}&text={{ $data->title }}">
+                                                <i class="social-icon fab fa-telegram"></i>
+                                            </a>
+                                        </li>
+                                       
                                     </ul>
                                 </div>
                             </div>
@@ -239,7 +250,7 @@
                                 <br><br>
                                 <!-- ad banner -->
                                 @if (reklam(15) != null && reklam(15)->status == 1)
-                                    <div class="ad-banner-img mt--45 mb--40">
+                                    <div class="ad-banner-img mb--40">
                                         @if (reklam(15)->type == 1)
                                             <a href="{{ reklam(15)->adsense_url }}">
 
@@ -251,7 +262,7 @@
                                     </div>
                                 @endif
 
-                                <div class="wrap mb--30">
+                                <div class="wrap ">
                                     <div class="featured-tab-title">
                                         <h2 class="rt-section-heading">
                                             <span class="rt-section-text"> {{ __('message.ürün hakkında') }} </span>
@@ -371,7 +382,7 @@
                             <!-- start social-share-box-2 -->
                             <div class="social-share-box-2 mb--40">
                                 <div class="row">
-                                    <div class="col-xl-7 col-lg-6">
+                                    <div class="col-xl-12 col-lg-12">
                                         <div class="conent-block">
                                             <h4 class="block-tile mb--20"> {{ __('message.popüler etiketler') }} :</h4>
                                             <div class="tag-list">
@@ -467,7 +478,7 @@
         <!-- end rt-sidebar-section-layout-2 -->
 
         <!-- editor-choice-section-style-1 -->
-        <section class="editor-choice-section-style-1 section-padding overflow-hidden">
+        <section class="editor-choice-section-style-1  overflow-hidden">
             <div class="container">
                 @if (reklam(16) != null && reklam(16)->status == 1)
                     <div class="ad-banner-img mb--40">
@@ -560,11 +571,9 @@
     </main>
 @endsection
 @section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
     <script>
-        /*--------------------------------
-                                                                                   // sidebar title limitation
-                                                                                -------------------------------*/
-        // Select all tags with class .sidebar_restricted_category_title
+    $(document).ready(function(){
         $('.sidebar_restricted_category_title').each(function() {
             var content = $(this).text().trim(); // get the content of a tag
             if (content.length > 14) { // If the content is longer than 14 characters
@@ -572,12 +581,6 @@
                 $(this).text(content); // Restore modified content
             }
         });
-    </script>
-
-
-    <!-- Fancybox CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
-    <script>
         // Open slider on clicking pictures
         var galleryImages = document.querySelectorAll('.gallery a');
         galleryImages.forEach(function(image, index) {
@@ -594,5 +597,7 @@
                 });
                 }); 
         });
+    })
     </script>
+
 @endsection

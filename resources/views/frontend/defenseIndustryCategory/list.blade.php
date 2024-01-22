@@ -162,7 +162,7 @@
                                                             <span class="rt-meta">
                                                                 <i class="fa fa-user"></i>
                                                                 @if (isset($item->Author))
-                                                                    <a href="#"
+                                                                <a href="{{ route('front.author.detail', $item->Author->link) }}"
                                                                         class="name">{{ $item->Author->name }}
                                                                         {{ $item->Author->surname }}</a>
                                                                 @endif
@@ -195,7 +195,7 @@
                             </div>
                             <!-- end inner row -->
 
-                            <div class="d-flex justify-content-center" style="padding:10%">
+                            <div class="d-flex justify-content-center" style="padding-top:10%">
                                 {!! $contents_first->appends(request()->input())->onEachSide(1)->links() !!}
                             </div>
                             <!-- end rt-pagination-area -->

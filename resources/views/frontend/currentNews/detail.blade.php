@@ -126,7 +126,6 @@
         <!-- End inner page Banner -->
 
 
-
         <!-- start rt-sidebar-section-layout-2 -->
         <section class="rt-sidebar-section-layout-2">
             <div class="container">
@@ -155,7 +154,7 @@
                                                 <li>
                                                     <span class="rt-meta">
                                                         <i class="fa fa-user"></i>
-                                                        <a href="{{ route('front.author.detail', $data->Author->id) }}"
+                                                        <a href="{{ route('front.author.detail', $data->Author->link) }}"
                                                             class="name">{{ $data->Author->name }}
                                                             {{ $data->Author->surname }}</a>
                                                     </span>
@@ -198,7 +197,7 @@
                                             <li>
                                                 <span class="rt-meta">
                                                     <i class="fa fa-user"></i>
-                                                    <a href="{{ route('front.author.detail', $data->Author->id) }}"
+                                                    <a href="{{ route('front.author.detail', $data->Author->link) }}"
                                                         class="name">{{ $data->Author->name }}
                                                         {{ $data->Author->surname }}</a>
                                                 </span>
@@ -273,6 +272,12 @@
                                                             <i class="social-icon fab fa-whatsapp"></i>
                                                         </a>
                                                     </li>
+                                                    <li>
+                                                        <a class="tw" target="_blank" onclick="share_count()"
+                                                            href="https://t.me/share/url?url={{ request()->url() }}&text={{ $data->title }}">
+                                                            <i class="social-icon fab fa-telegram"></i>
+                                                        </a>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -318,10 +323,9 @@
                                     {!! printDesc($data->description) !!}
                                 </div>
                                 <!-- end post body -->
-                                <br><br>
 
                                 @if ($data->Source && $data->Source->source)
-                                    <div class="social-share-box-2 mb--20 mt--40">
+                                    <div class="social-share-box-2 mb--20 mt--20">
                                         <div class="row gutter-30">
                                             <div class="col-xl-12 col-lg-12">
                                                 <div class="conent-block">
@@ -333,10 +337,10 @@
                                 @endif
 
                                 @if (reklam(11) != null && reklam(11)->status == 1)
-                                    <div class="ad-banner-img mt--45 mb--40">
+                                    <div class="ad-banner-img mt--40 mb--40">
                                         <a href="{{ reklam(11)->adsense_url }}">
                                             @if (reklam(11)->type == 1)
-                                                <img src="/{{ reklam(11)->image }}" 
+                                                <img src="/{{ reklam(11)->image }}"
                                                     style="height: 150px; width:100%!important">
                                             @else
                                                 {!! reklam(11)->adsense_url ?? '' !!}
@@ -368,51 +372,6 @@
                                 </div>
                                 <!-- end social-share-box-2 -->
 
-                                <!-- start author box -->
-                                <div class="author-box-style-1 mb--35">
-                                    <div class="author-img">
-                                        <img src="/assets/author-img_1.jpg" alt="author-img_1" width="170"
-                                            height="170">
-                                    </div>
-                                    <div class="author-content">
-                                        <h3 class="author-name"> {{ $data->Author->name }} {{ $data->Author->surname }}
-                                        </h3>
-                                        <p class="user-desc">
-                                            {!! substr($data->Author->description, 0, 270) !!}
-                                        </p>
-                                        <ul class="social-style-5">
-
-                                            @if ($data->Author->facebook != null)
-                                                <li>
-                                                    <a target="_blank"
-                                                        href="https://www.facebook.com/{{ $data->Author->facebook }}">
-                                                        <i class="social-icon fab fa-facebook-f"></i>
-                                                    </a>
-                                                </li>
-                                            @endif
-
-                                            @if ($data->Author->twitter != null)
-                                                <li>
-                                                    <a target="_blank"
-                                                        href="https://twitter.com/{{ $data->Author->twitter }}">
-                                                        <i class="social-icon fab fa-twitter"></i>
-                                                    </a>
-                                                </li>
-                                            @endif
-
-                                            @if ($data->Author->instagram != null)
-                                                <li>
-                                                    <a target="_blank"
-                                                        href="https://www.instagram.com/{{ $data->Author->instagram }}">
-                                                        <i class="fab fa-instagram"></i>
-                                                    </a>
-                                                </li>
-                                            @endif
-
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- end author box -->
 
                                 <!-- start post-pagination-box -->
                                 <div class="post-pagination-box mb--40">
@@ -910,7 +869,8 @@
                             <!-- end slidebar wrap  -->
 
                             <div class="d-none d-md-block sidebar-wrap mb--40">
-                                <div class="subscribe-box-style-1" data-bg-image="{{ asset('assets/frontend/media/elements/elm_3.webp') }}">
+                                <div class="subscribe-box-style-1"
+                                    data-bg-image="{{ asset('assets/frontend/media/elements/elm_3.webp') }}">
                                     <div class="subscribe-content">
                                         <h3 class="title">
                                             {{ __('message.Haber Bültenimize Abone Ol') }}
@@ -918,7 +878,8 @@
                                         <p>
                                             {{ __('message.Ulusal ve küresel savunma gündeminden daha hızlı haberdar olmak istiyorsanız Milli Müdafaa mail listesine kaydolun!') }}
                                         </p>
-                                        <form action="{{ route('front.subscribePost') }}" method="POST" class=" subscribe-form rt-form">
+                                        <form action="{{ route('front.subscribePost') }}" method="POST"
+                                            class="subscribe-form rt-form">
                                             @csrf
                                             <div class="rt-form-group">
                                                 <input type="email" class="form-control rt-form-control"
@@ -958,8 +919,8 @@
                                                             </span>
                                                         </a>
                                                         <label for="checked">
-                                                        {{ __('message.okudum, onay veriyorum') }}
-                                                    </label>
+                                                            {{ __('message.okudum, onay veriyorum') }}
+                                                        </label>
                                                     @else
                                                         <label for="checked" style="font-size:14px">
                                                             {{ __('message.Kişisel Verilerin Korunması Hakkında Aydınlatma Metnini okudum, onay veriyorum.') }}
@@ -1041,66 +1002,49 @@
             // PDF'i indir
             pdf.save('converted.pdf');
         }
-    </script>
-    <!-- EXTRA JS -->
-    <script>
-        /*--------------------------------
-                                                                                                                                // limit by device width
-                                                                                                                                -------------------------------*/
-        // get device width
-        var windowWidth = $(window).width();
+        
+        $(document).ready(function() {
 
-        // Set limits for different device widths
-        var limit_sidebar_restricted_title = 31;
-        var limit_restricted_title_2 = 50;
-        if (windowWidth <= 768) {
-            limit_sidebar_restricted_title = 25;
-        } else if (windowWidth <= 1200) {
-            limit_sidebar_restricted_title = 50;
-        }
-
-
-        /*--------------------------------
-           // sidebar title limitation
-        -------------------------------*/
-        // Select all tags with class .sidebar_restricted_title
-        $('.sidebar_restricted_title').each(function() {
-            var content = $(this).text().trim(); // get the content of a tag
-            if (content.length > limit_sidebar_restricted_title) {
-                // If the content is longer thanlimit_sidebar_restricted_title characters
-                content = content.slice(0, limit_sidebar_restricted_title) + '...';
-                // Select limit_sidebar_restricted_title characters and add ellipses
-                $(this).text(content); // Restore modified content
+            var windowWidth = $(window).width();
+            // Set limits for different device widths
+            var limit_sidebar_restricted_title = 31;
+            var limit_restricted_title_2 = 50;
+            if (windowWidth <= 768) {
+                limit_sidebar_restricted_title = 25;
+            } else if (windowWidth <= 1200) {
+                limit_sidebar_restricted_title = 50;
             }
+
+
+            $('.sidebar_restricted_title').each(function() {
+                var content = $(this).text().trim(); // get the content of a tag
+                if (content.length > limit_sidebar_restricted_title) {
+                    // If the content is longer thanlimit_sidebar_restricted_title characters
+                    content = content.slice(0, limit_sidebar_restricted_title) + '...';
+                    // Select limit_sidebar_restricted_title characters and add ellipses
+                    $(this).text(content); // Restore modified content
+                }
+            });
+
+            $('.sidebar_restricted_category_title').each(function() {
+                var content = $(this).text().trim(); // get the content of a tag
+                if (content.length > 14) { // If the content is longer than 14 characters
+                    content = content.slice(0, 14) + '...'; // Select 14 characters and add ellipses
+                    $(this).text(content); // Restore modified content
+                }
+            });
+
+
+            $('.restricted_title_2').each(function() {
+                var content = $(this).text().trim(); // get the content of a tag
+                if (content.length > limit_restricted_title_2) {
+                    // If the content is longer than limit_restricted_title_2 characters
+                    content = content.slice(0, limit_restricted_title_2) + '...';
+                    // Select limit_restricted_title_2 characters and add ellipses
+                    $(this).text(content); // Restore modified content
+                }
+            });
         });
-
-        /*--------------------------------
-           // sidebar title limitation
-        -------------------------------*/
-        // Select all tags with class .sidebar_restricted_category_title
-        $('.sidebar_restricted_category_title').each(function() {
-            var content = $(this).text().trim(); // get the content of a tag
-            if (content.length > 14) { // If the content is longer than 14 characters
-                content = content.slice(0, 14) + '...'; // Select 14 characters and add ellipses
-                $(this).text(content); // Restore modified content
-            }
-        });
-
-
-        /*--------------------------------
-           // restricted_title_2 limitation
-        -------------------------------*/
-        // Select all tags with class .restricted_title_2
-        $('.restricted_title_2').each(function() {
-            var content = $(this).text().trim(); // get the content of a tag
-            if (content.length > limit_restricted_title_2) {
-                // If the content is longer than limit_restricted_title_2 characters
-                content = content.slice(0, limit_restricted_title_2) + '...';
-                // Select limit_restricted_title_2 characters and add ellipses
-                $(this).text(content); // Restore modified content
-            }
-        });
-
 
         /*--------------------------------
            // clicking the reply button

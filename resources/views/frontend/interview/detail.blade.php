@@ -277,6 +277,12 @@
                                                             <i class="social-icon fab fa-whatsapp"></i>
                                                         </a>
                                                     </li>
+                                                    <li>
+                                                        <a class="tw" target="_blank" 
+                                                            href="https://t.me/share/url?url={{ request()->url() }}&text={{ $data->title }}">
+                                                            <i class="social-icon fab fa-telegram"></i>
+                                                        </a>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>

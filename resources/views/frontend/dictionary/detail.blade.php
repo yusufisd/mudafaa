@@ -49,6 +49,11 @@
                 background-repeat: no-repeat !important;
             }
         }
+
+        .rt-sidebar-section-layout-2 {
+            padding-top: 0px!important;
+            padding-bottom: 40px!important;
+        }
     </style>
     <!-- Start Main -->
     <main>
@@ -177,7 +182,12 @@
                                                 <i class="social-icon fab fa-whatsapp"></i>
                                             </a>
                                         </li>
-
+                                        <li>
+                                            <a class="tw" target="_blank"
+                                                href="https://t.me/share/url?url={{ request()->url() }}&text={{ $data->title }}">
+                                                <i class="social-icon fab fa-telegram"></i>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -265,8 +275,7 @@
                                         <div class="post-img">
                                             <a
                                                 href="{{ \Session::get('applocale') == 'tr' ? route('front.dictionary.detail', $item->link) : route('front.dictionary.detail_en', $item->link) }}">
-                                                <img src="/{{ $item->image == null ? 'media/gallery/post-xl_31.jpg' : $item->image }}"
-                                                    alt="post" width="551" height="431">
+                                                <img src="/{{ $item->image == null ? 'media/gallery/post-xl_31.jpg' : $item->image }}" style="height: 208px!important">
                                             </a>
                                         </div>
                                         <div class="post-content">

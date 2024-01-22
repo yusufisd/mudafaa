@@ -1,11 +1,13 @@
 @extends('frontend.master')
 @section('meta-title', 'Milli Müdafaa')
-@section('keywords', 'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul,
+@section('keywords',
+    'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul,
     TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli
     teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar,
     temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika,
     savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
-@section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri
+@section('description',
+    'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri
     için tıklayın!')
 @section('title', 'Anasayfa')
 @section('css')
@@ -88,11 +90,9 @@
 
                         @foreach ($cats as $variable)
                             <div class="swiper-slide">
-                                <a
-                                    href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $variable->link) : route('front.currentNews.detail', $variable->link) }}">
-                                    <img src="{{ $variable->mobil_image != null ? $variable->mobil_image : $variable->image }}"
-                                        alt="slide-1">
-                                </a>
+                                <img src="/{{ $variable->mobil_image }}"
+                                    style="width: 97px; height:163px!important; border-radius:3px; object-fit:cover"
+                                    alt="{{ $variable->title }}" id="myImage" data-toggle="modal" data-target="#myModal">
                                 <div class="swiper-content">
                                     @if ($variable->Category()[0] != null)
                                         <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $variable->Category()[0]->link) : route('front.currentNewsCategory.list', $variable->Category()[0]->link) }}"
@@ -110,82 +110,8 @@
     </div>
 
 
-    <!-- start feature-section-style-1  -->
-    <section class="d-none d-md-block rt-feature-section feature-section-style-1 overflow-hidden"
-        data-bg-image="media/elements/element_1.png">
-        <div class="container">
-            <div class="row gutter-24">
-
-                @foreach ($cats as $variable)
-                    <div class="col-xl-3 col-md-6 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="800ms">
-                        <div class="rt-post post-sm style-1">
-                            <div class="post-img">
-                                <a
-                                    href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $variable->link) : route('front.currentNews.detail', $variable->link) }}">
-                                    <img style="object-fit:cover!important"
-                                        src="{{ $variable->mobil_image != null ? $variable->mobil_image : $variable->image }}"
-                                        alt="post" width="100" height="100">
-                                </a>
-                            </div>
-                            <div class="post-content ms-4">
-                                <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNewsCategory.list_en', $variable->Category()[0]->link) : route('front.currentNewsCategory.list', $variable->Category()[0]->link) }}"
-                                    style="background-color: {{ $variable->Category()[0]->color_code != null ? $variable->Category()[0]->color_code : '#749f43' }}"
-                                    class="rt-cat-primary restricted_category_title">
-                                    {{ $variable->Category()[0]->title }}
-                                </a>
-                                <h3 class="post-title">
-                                    <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $variable->link) : route('front.currentNews.detail', $variable->link) }}"
-                                        style="font-size: 14px">
-                                        {{ strlen(Illuminate\Support\Str::words($variable->title, 8, '...')) < 55 ? Illuminate\Support\Str::words($variable->title, 8, '...') : (strlen(Illuminate\Support\Str::words($variable->title, 7, '...')) < 55 ? Illuminate\Support\Str::words($variable->title, 7, '...') : Illuminate\Support\Str::words($variable->title, 6, '...')) }}
-                                    </a>
-                                </h3>
-                                <span class="rt-meta">
-                                    <i class="far fa-calendar-alt icon"></i>
-                                    {{ $variable->live_time->translatedFormat('d M Y') }}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
-                @endforeach
-            </div>
-            <!-- end row -->
-        </div>
-        <!-- end container -->
-    </section>
 
 
-    <div class="container">
-        @if (reklam(1) != null || reklam(2) != null)
-            <div class="row">
-                <div class="col-md-6">
-                    @if (reklam(1) != null && reklam(1)->status == 1)
-                        @if (reklam(1)->type == 1)
-                            <a href="{{ reklam(1)->adsense_url }}"
-                                target="{{ reklam(1)->href_tab == 0 ? '_self' : '_blank' }}">
-                                <img src="/{{ reklam(1)->image }}" width="660px" style="height: 90px!important">
-                            </a>
-                        @else
-                            {!! reklam(1)->adsense_url ?? '' !!}
-                        @endif
-                    @endif
-                </div>
-
-                <div id="ikinci_reklam" class="col-md-6">
-                    @if (reklam(2) != null && reklam(2)->status == 1)
-                        @if (reklam(2)->type == 1)
-                            <a href="{{ reklam(2)->adsense_url }}"
-                                target="{{ reklam(2)->href_tab == 0 ? '_self' : '_blank' }}">
-                                <img src="/{{ reklam(2)->image }}" width="660px" style="height: 90px!important">
-                            </a>
-                        @else
-                            {!! reklam(2)->adsense_url ?? '' !!}
-                        @endif
-                    @endif
-                </div>
-            </div>
-        @endif
-    </div>
 
     <!-- end feature-section-style-1  -->
     <!-- start main post section style 1 -->
@@ -199,7 +125,7 @@
                         <div class="post-img">
                             <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail_en', $tek_haber->link) : route('front.currentNews.detail', $tek_haber->link) }}"
                                 class="img-link">
-                                <img src="/{{ $tek_haber->image }}" alt="travel-xl_1" width="900" height="600">
+                                <img src="/{{ $tek_haber->image }}" alt="{{ $tek_haber->title }}" width="900" height="600">
                             </a>
                         </div>
                         <div class="post-content">
@@ -264,8 +190,7 @@
                                     <div class="post-img">
                                         <a href="{{ \Session::get('applocale') == 'en' ? route('front.currentNews.detail', $item->link) : route('front.currentNews.detail_en', $item->link) }}"
                                             class="img-link">
-                                            <img src="{{ $item->image }}" alt="travel-xl_2" width="900"
-                                                height="600">
+                                            <img src="{{ $item->image }}" alt="{{ $item->title }}" width="900" height="600">
                                         </a>
                                     </div>
                                     <div class="post-content">
@@ -330,19 +255,7 @@
     </section>
     <!-- end main post section style 1 -->
 
-    @if (reklam(3) != null && reklam(3)->status == 1)
-        <div class="container" style="margin-top:3%">
-            <div class="row">
-                @if (reklam(3)->type == 1)
-                    <a href="{{ reklam(3)->adsense_url }}" target="{{ reklam(3)->href_tab == 0 ? '_self' : '_blank' }}">
-                        <img src="/{{ reklam(3)->image }}" style="width: 100%; height:90px!important">
-                    </a>
-                @else
-                    {!! reklam(3)->adsense_url ?? '' !!}
-                @endif
-            </div>
-        </div>
-    @endif
+
 
     <!-- start what's new section -->
     <section class="whats-new-style-1 section-padding">
@@ -1430,7 +1343,8 @@
                         {{ __("message.Milli Müdafa'nın güncel haberlerini takip etmek için E-posta adresiniz ile bültenimize kayıt olun.") }}
                     </h4>
                     <br>
-                    <form action="{{ route('front.subscribePost') }}" method="POST" id="demo-form" class=" subscribe-form-style-2">
+                    <form action="{{ route('front.subscribePost') }}" method="POST" id="demo-form"
+                        class="subscribe-form-style-2">
                         @csrf
                         <div class="rt-subs-group">
                             <input type="email" name="email" id="email_2" class="subscribe-form"
@@ -1440,7 +1354,7 @@
                                 type="submit"> {{ __('message.Abone ol') }}
                             </button>
                             <div class="form-response"></div>
-                            @if($errors->any())
+                            @if ($errors->any())
                                 @foreach ($errors->all() as $e)
                                     <div class="alert alert-danger mt-5">
                                         {{ $e }}
@@ -1456,33 +1370,33 @@
                         <br>
                         <div class="">
                             <input type="checkbox" name="accept" required id="check">
-                                @if (\Session::get('applocale') == 'en')
-                                    @if ($kvkk_en)
-                                        <a href="{{ route('front.page.detail', 'pdpl') }}">
-                                            {{ __('message.Kişisel Verilerin Korunması') }}
-                                        </a>
-                                        <label for="check">
+                            @if (\Session::get('applocale') == 'en')
+                                @if ($kvkk_en)
+                                    <a href="{{ route('front.page.detail', 'pdpl') }}">
+                                        {{ __('message.Kişisel Verilerin Korunması') }}
+                                    </a>
+                                    <label for="check">
                                         {{ __('message.okudum, onay veriyorum') }}
-                                        </label>
-                                    @else
+                                    </label>
+                                @else
                                     <label for="check">
                                         {{ __("message.Kişisel Verilerin İşlenmesi Aydınlatma Metni'ni okudum kabul ediyorum.") }}
                                     </label>
-                                    @endif
-                                @else
-                                    @if ($kvkk_tr)
-                                        <a href="{{ route('front.page.detail', 'kvkk') }}">
-                                            {{ __('message.Kişisel Verilerin Korunması') }}
-                                        </a>
-                                        <label for="check">
+                                @endif
+                            @else
+                                @if ($kvkk_tr)
+                                    <a href="{{ route('front.page.detail', 'kvkk') }}">
+                                        {{ __('message.Kişisel Verilerin Korunması') }}
+                                    </a>
+                                    <label for="check">
                                         {{ __('message.okudum, onay veriyorum') }}
-                                        </label>
-                                    @else
-                                    <label for="check"> 
+                                    </label>
+                                @else
+                                    <label for="check">
                                         {{ __('message.Kişisel Verilerin Korunması Hakkında Aydınlatma Metnini okudum, onay veriyorum.') }}
                                     </label>
-                                    @endif
                                 @endif
+                            @endif
                         </div>
 
                     </form>
@@ -1499,8 +1413,35 @@
 
     </main>
     <!-- End Main -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" style="margin-top:50%"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- Kapatma ikonu -->
+                    <button style="text-align: right" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        test
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Resim buraya eklenebilir -->
+                    <img src="{{ asset('assets/404.webp') }}" alt="Image">
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('script')
+    <script>
+        // JavaScript ile modal açma
+        document.getElementById('myImage').addEventListener('click', function() {
+            $('#myModal').modal('show');
+            // 3 saniye sonra modalı otomatik kapatma
+            setTimeout(function() {
+                $('#myModal').modal('hide');
+            }, 5000);
+        });
+    </script>
 
     <script>
         function onSubmit(token) {
@@ -1508,371 +1449,375 @@
         }
     </script>
     <script>
-        var windowWidth = $(window).width();
+        $(document).ready(function() {
+            var windowWidth = $(window).width();
 
-        // Set limits for different device widths
-        var limit_restricted_title = 110;
-        var limit_restricted_category_title = 14;
-        var limit_top_restricted_title = 30;
-        var limit_section_2_title_style_1 = 85;
-        var limit_section_2_title_style_2 = 62;
-        var limit_restricted_text = 261;
-        var limit_title_style_2 = 47;
-        var limit_section_4_title_style_1 = 59;
-        var limit_section_4_title_style_2 = 39;
-        var limit_section_6_restricted_title = 69;
-        var limit_restricted_section_title = 25;
-        var limit_restricted_story_title = 10;
-        if (windowWidth <= 280) {
-            limit_restricted_title = 82;
-            limit_restricted_category_title = 14;
-            limit_section_2_title_style_1 = 85;
-            limit_section_2_title_style_2 = 62;
-            limit_top_restricted_title = 14;
-            limit_restricted_text = 261;
-            limit_title_style_2 = 50;
-            limit_section_4_title_style_1 = 59;
-            limit_section_4_title_style_2 = 39;
-            limit_section_6_restricted_title = 87;
-            limit_restricted_section_title = 14;
-        } else if (windowWidth <= 360) {
-            limit_restricted_title = 82;
-            limit_restricted_category_title = 14;
-            limit_section_2_title_style_1 = 85;
-            limit_section_2_title_style_2 = 62;
-            limit_top_restricted_title = 14;
-            limit_restricted_text = 261;
-            limit_title_style_2 = 55;
-            limit_section_4_title_style_1 = 40;
-            limit_section_4_title_style_2 = 27;
-            limit_section_6_restricted_title = 75;
-            limit_restricted_section_title = 11;
-        } else if (windowWidth <= 375) {
-            limit_restricted_title = 87;
-            limit_restricted_category_title = 30;
-            limit_section_2_title_style_1 = 85;
-            limit_section_2_title_style_2 = 62;
-            limit_top_restricted_title = 55;
-            limit_restricted_text = 261;
-            limit_title_style_2 = 69;
-            limit_section_4_title_style_1 = 50;
-            limit_section_4_title_style_2 = 30;
-            limit_section_6_restricted_title = 80;
-            limit_restricted_section_title = 13;
-        } else if (windowWidth <= 390) {
-            limit_restricted_title = 87;
-            limit_restricted_category_title = 30;
-            limit_section_2_title_style_1 = 85;
-            limit_section_2_title_style_2 = 62;
-            limit_top_restricted_title = 50;
-            limit_restricted_text = 261;
-            limit_title_style_2 = 55;
-            limit_section_4_title_style_1 = 50;
-            limit_section_4_title_style_2 = 30;
-            limit_section_6_restricted_title = 80;
-            limit_restricted_section_title = 13;
-        } else if (windowWidth <= 393) {
-            limit_restricted_title = 87;
-            limit_restricted_category_title = 30;
-            limit_section_2_title_style_1 = 85;
-            limit_section_2_title_style_2 = 62;
-            limit_top_restricted_title = 55;
-            limit_restricted_text = 261;
-            limit_title_style_2 = 60;
-            limit_section_4_title_style_1 = 50;
-            limit_section_4_title_style_2 = 30;
-            limit_section_6_restricted_title = 80;
-            limit_restricted_section_title = 13;
-        } else if (windowWidth <= 412) {
-            limit_restricted_title = 100;
-            limit_restricted_category_title = 30;
-            limit_section_2_title_style_1 = 85;
-            limit_section_2_title_style_2 = 62;
-            limit_top_restricted_title = 60;
-            limit_restricted_text = 261;
-            limit_title_style_2 = 65;
-            limit_section_4_title_style_1 = 50;
-            limit_section_4_title_style_2 = 30;
-            limit_section_6_restricted_title = 85;
-            limit_restricted_section_title = 13;
-        } else if (windowWidth <= 414) {
-            limit_restricted_title = 100;
-            limit_restricted_category_title = 30;
-            limit_section_2_title_style_1 = 85;
-            limit_section_2_title_style_2 = 62;
-            limit_top_restricted_title = 60;
-            limit_restricted_text = 261;
-            limit_title_style_2 = 75;
-            limit_section_4_title_style_1 = 50;
-            limit_section_4_title_style_2 = 30;
-            limit_section_6_restricted_title = 85;
-            limit_restricted_section_title = 13;
-        } else if (windowWidth <= 540) {
-            limit_restricted_title = 87;
-            limit_restricted_category_title = 30;
-            limit_section_2_title_style_1 = 85;
-            limit_section_2_title_style_2 = 62;
-            limit_top_restricted_title = 55;
-            limit_restricted_text = 261;
-            limit_title_style_2 = 69;
-            limit_section_4_title_style_1 = 50;
-            limit_section_4_title_style_2 = 30;
-            limit_section_6_restricted_title = 80;
-            limit_restricted_section_title = 13;
-        } else if (windowWidth <= 768) {
-            limit_restricted_title = 90;
-            limit_restricted_category_title = 14;
-            limit_section_2_title_style_1 = 70;
-            limit_section_2_title_style_2 = 100;
-            limit_top_restricted_title = 35;
-            limit_restricted_text = 261;
-            limit_title_style_2 = 50;
-            limit_section_4_title_style_1 = 90;
-            limit_section_4_title_style_2 = 65;
-            limit_section_6_restricted_title = 70;
-            limit_restricted_section_title = 30;
-        } else if (windowWidth <= 820) {
-            limit_restricted_title = 90;
-            limit_restricted_category_title = 14;
-            limit_section_2_title_style_1 = 70;
-            limit_section_2_title_style_2 = 100;
-            limit_top_restricted_title = 35;
-            limit_restricted_text = 261;
-            limit_title_style_2 = 50;
-            limit_section_4_title_style_1 = 90;
-            limit_section_4_title_style_2 = 65;
-            limit_section_6_restricted_title = 70;
-            limit_restricted_section_title = 30;
-        } else if (windowWidth <= 912) {
-            limit_restricted_title = 82;
-            limit_restricted_category_title = 14;
-            limit_section_2_title_style_1 = 85;
-            limit_section_2_title_style_2 = 62;
-            limit_top_restricted_title = 14;
-            limit_restricted_text = 261;
-            limit_title_style_2 = 50;
-            limit_section_4_title_style_1 = 59;
-            limit_section_4_title_style_2 = 39;
-            limit_section_6_restricted_title = 87;
-            limit_restricted_section_title = 14;
-        } else if (windowWidth <= 1024) {
-            limit_restricted_title = 82;
-            limit_restricted_category_title = 14;
-            limit_section_2_title_style_1 = 85;
-            limit_section_2_title_style_2 = 62;
-            limit_top_restricted_title = 14;
-            limit_restricted_text = 261;
-            limit_title_style_2 = 50;
-            limit_section_4_title_style_1 = 59;
-            limit_section_4_title_style_2 = 39;
-            limit_section_6_restricted_title = 87;
-            limit_restricted_section_title = 14;
-        } else if (windowWidth <= 1280) {
-            limit_restricted_title = 82;
-            limit_restricted_category_title = 14;
-            limit_top_restricted_title = 14;
-            limit_section_2_title_style_1 = 85;
-            limit_section_2_title_style_2 = 62;
-            limit_restricted_text = 261;
-            limit_title_style_2 = 50;
-            limit_section_4_title_style_1 = 59;
-            limit_section_4_title_style_2 = 39;
-            limit_section_6_restricted_title = 87;
-            limit_restricted_section_title = 25;
-        }
-
-        /*--------------------------------
-           // top category title limitation
-        -------------------------------*/
-        // Select all tags with class .restricted_category_title
-        $('.restricted_category_title').each(function() {
-            var content = $(this).text().trim(); // get the content of a tag
-            if (content.length > limit_restricted_category_title) {
-                // If the content is longer than limit_restricted_category_title characters
-                content = content.slice(0, limit_restricted_category_title) + '...';
-                // Select limit_restricted_category_title characters and add ellipses
-                $(this).text(content); // Restore modified content
+            // Set limits for different device widths
+            var limit_restricted_title = 110;
+            var limit_restricted_category_title = 14;
+            var limit_top_restricted_title = 30;
+            var limit_section_2_title_style_1 = 85;
+            var limit_section_2_title_style_2 = 62;
+            var limit_restricted_text = 261;
+            var limit_title_style_2 = 47;
+            var limit_section_4_title_style_1 = 59;
+            var limit_section_4_title_style_2 = 39;
+            var limit_section_6_restricted_title = 69;
+            var limit_restricted_section_title = 25;
+            var limit_restricted_story_title = 10;
+            if (windowWidth <= 280) {
+                limit_restricted_title = 82;
+                limit_restricted_category_title = 14;
+                limit_section_2_title_style_1 = 85;
+                limit_section_2_title_style_2 = 62;
+                limit_top_restricted_title = 14;
+                limit_restricted_text = 261;
+                limit_title_style_2 = 50;
+                limit_section_4_title_style_1 = 59;
+                limit_section_4_title_style_2 = 39;
+                limit_section_6_restricted_title = 87;
+                limit_restricted_section_title = 14;
+            } else if (windowWidth <= 360) {
+                limit_restricted_title = 82;
+                limit_restricted_category_title = 14;
+                limit_section_2_title_style_1 = 85;
+                limit_section_2_title_style_2 = 62;
+                limit_top_restricted_title = 14;
+                limit_restricted_text = 261;
+                limit_title_style_2 = 55;
+                limit_section_4_title_style_1 = 40;
+                limit_section_4_title_style_2 = 27;
+                limit_section_6_restricted_title = 75;
+                limit_restricted_section_title = 11;
+            } else if (windowWidth <= 375) {
+                limit_restricted_title = 87;
+                limit_restricted_category_title = 30;
+                limit_section_2_title_style_1 = 85;
+                limit_section_2_title_style_2 = 62;
+                limit_top_restricted_title = 55;
+                limit_restricted_text = 261;
+                limit_title_style_2 = 69;
+                limit_section_4_title_style_1 = 50;
+                limit_section_4_title_style_2 = 30;
+                limit_section_6_restricted_title = 80;
+                limit_restricted_section_title = 13;
+            } else if (windowWidth <= 390) {
+                limit_restricted_title = 87;
+                limit_restricted_category_title = 30;
+                limit_section_2_title_style_1 = 85;
+                limit_section_2_title_style_2 = 62;
+                limit_top_restricted_title = 50;
+                limit_restricted_text = 261;
+                limit_title_style_2 = 55;
+                limit_section_4_title_style_1 = 50;
+                limit_section_4_title_style_2 = 30;
+                limit_section_6_restricted_title = 80;
+                limit_restricted_section_title = 13;
+            } else if (windowWidth <= 393) {
+                limit_restricted_title = 87;
+                limit_restricted_category_title = 30;
+                limit_section_2_title_style_1 = 85;
+                limit_section_2_title_style_2 = 62;
+                limit_top_restricted_title = 55;
+                limit_restricted_text = 261;
+                limit_title_style_2 = 60;
+                limit_section_4_title_style_1 = 50;
+                limit_section_4_title_style_2 = 30;
+                limit_section_6_restricted_title = 80;
+                limit_restricted_section_title = 13;
+            } else if (windowWidth <= 412) {
+                limit_restricted_title = 100;
+                limit_restricted_category_title = 30;
+                limit_section_2_title_style_1 = 85;
+                limit_section_2_title_style_2 = 62;
+                limit_top_restricted_title = 60;
+                limit_restricted_text = 261;
+                limit_title_style_2 = 65;
+                limit_section_4_title_style_1 = 50;
+                limit_section_4_title_style_2 = 30;
+                limit_section_6_restricted_title = 85;
+                limit_restricted_section_title = 13;
+            } else if (windowWidth <= 414) {
+                limit_restricted_title = 100;
+                limit_restricted_category_title = 30;
+                limit_section_2_title_style_1 = 85;
+                limit_section_2_title_style_2 = 62;
+                limit_top_restricted_title = 60;
+                limit_restricted_text = 261;
+                limit_title_style_2 = 75;
+                limit_section_4_title_style_1 = 50;
+                limit_section_4_title_style_2 = 30;
+                limit_section_6_restricted_title = 85;
+                limit_restricted_section_title = 13;
+            } else if (windowWidth <= 540) {
+                limit_restricted_title = 87;
+                limit_restricted_category_title = 30;
+                limit_section_2_title_style_1 = 85;
+                limit_section_2_title_style_2 = 62;
+                limit_top_restricted_title = 55;
+                limit_restricted_text = 261;
+                limit_title_style_2 = 69;
+                limit_section_4_title_style_1 = 50;
+                limit_section_4_title_style_2 = 30;
+                limit_section_6_restricted_title = 80;
+                limit_restricted_section_title = 13;
+            } else if (windowWidth <= 768) {
+                limit_restricted_title = 90;
+                limit_restricted_category_title = 14;
+                limit_section_2_title_style_1 = 70;
+                limit_section_2_title_style_2 = 100;
+                limit_top_restricted_title = 35;
+                limit_restricted_text = 261;
+                limit_title_style_2 = 50;
+                limit_section_4_title_style_1 = 90;
+                limit_section_4_title_style_2 = 65;
+                limit_section_6_restricted_title = 70;
+                limit_restricted_section_title = 30;
+            } else if (windowWidth <= 820) {
+                limit_restricted_title = 90;
+                limit_restricted_category_title = 14;
+                limit_section_2_title_style_1 = 70;
+                limit_section_2_title_style_2 = 100;
+                limit_top_restricted_title = 35;
+                limit_restricted_text = 261;
+                limit_title_style_2 = 50;
+                limit_section_4_title_style_1 = 90;
+                limit_section_4_title_style_2 = 65;
+                limit_section_6_restricted_title = 70;
+                limit_restricted_section_title = 30;
+            } else if (windowWidth <= 912) {
+                limit_restricted_title = 82;
+                limit_restricted_category_title = 14;
+                limit_section_2_title_style_1 = 85;
+                limit_section_2_title_style_2 = 62;
+                limit_top_restricted_title = 14;
+                limit_restricted_text = 261;
+                limit_title_style_2 = 50;
+                limit_section_4_title_style_1 = 59;
+                limit_section_4_title_style_2 = 39;
+                limit_section_6_restricted_title = 87;
+                limit_restricted_section_title = 14;
+            } else if (windowWidth <= 1024) {
+                limit_restricted_title = 82;
+                limit_restricted_category_title = 14;
+                limit_section_2_title_style_1 = 85;
+                limit_section_2_title_style_2 = 62;
+                limit_top_restricted_title = 14;
+                limit_restricted_text = 261;
+                limit_title_style_2 = 50;
+                limit_section_4_title_style_1 = 59;
+                limit_section_4_title_style_2 = 39;
+                limit_section_6_restricted_title = 87;
+                limit_restricted_section_title = 14;
+            } else if (windowWidth <= 1280) {
+                limit_restricted_title = 82;
+                limit_restricted_category_title = 14;
+                limit_top_restricted_title = 14;
+                limit_section_2_title_style_1 = 85;
+                limit_section_2_title_style_2 = 62;
+                limit_restricted_text = 261;
+                limit_title_style_2 = 50;
+                limit_section_4_title_style_1 = 59;
+                limit_section_4_title_style_2 = 39;
+                limit_section_6_restricted_title = 87;
+                limit_restricted_section_title = 25;
             }
-        });
 
-        /*--------------------------------
-           // top story title limitation
-        -------------------------------*/
-        // Select all tags with class .restricted_story_title
-        $('.restricted_story_title').each(function() {
-            var content = $(this).text().trim(); // get the content of a tag
-            if (content.length > limit_restricted_story_title) {
-                // If the content is longer than limit_restricted_story_title characters
-                content = content.slice(0, limit_restricted_story_title) + '...';
-                // Select limit_restricted_story_title characters and add ellipses
-                $(this).text(content); // Restore modified content
-            }
-        });
-
-        /*--------------------------------
-           // top title limitation
-        -------------------------------*/
-        // Select all tags with class .top_restricted_title
-        $('.top_restricted_title').each(function() {
-            var content = $(this).text().trim(); // get the content of a tag
-            if (content.length > limit_top_restricted_title) {
-                // If the content is longer than limit_top_restricted_title characters
-                content = content.slice(0, limit_top_restricted_title) + '...';
-                // Select limit_top_restricted_title characters and add ellipses
-                $(this).text(content); // Restore modified content
-            }
-        });
-
-        /*--------------------------------
-           // section title limitation
-        -------------------------------*/
-        // Select all tags with class .restricted_section_title
-        $('.restricted_section_title').each(function() {
-            var content = $(this).text().trim(); // get the content of a tag
-            if (content.length > limit_restricted_section_title) {
-                // If the content is longer than limit_restricted_section_title characters
-                content = content.slice(0, limit_restricted_section_title) + '...';
-                // Select limit_restricted_section_title characters and add ellipses
-                $(this).text(content); // Restore modified content
-            }
-        });
-
-        /*--------------------------------
-           // section_2_title_style_1 limitation
-        -------------------------------*/
-        // Select all tags with class .section_2_title_style_1
-        $('.section_2_title_style_1').each(function() {
-            var content = $(this).text().trim(); // get the content of a tag
-            if (content.length > limit_section_2_title_style_1) {
-                // If the content is longer than limit_section_2_title_style_1 characters
-                content = content.slice(0, limit_section_2_title_style_1) + '...';
-                // Select limit_section_2_title_style_1 characters and add ellipses
-                $(this).text(content); // Restore modified content
-            }
-        });
-
-        /*--------------------------------
-           // section_2_title_style_2 limitation
-        -------------------------------*/
-        // Select all tags with class .section_2_title_style_2
-        $('.section_2_title_style_2').each(function() {
-            var content = $(this).text().trim(); // get the content of a tag
-            if (content.length > limit_section_2_title_style_2) {
-                // If the content is longer than limit_section_2_title_style_2 characters
-                content = content.slice(0, limit_section_2_title_style_2) + '...';
-                // Select limit_section_2_title_style_2 characters and add ellipses
-                $(this).text(content); // Restore modified content
-            }
-        });
-
-        /*--------------------------------
-           // section 3 title limitation
-        -------------------------------*/
-        // Select all tags with class .restricted_title
-        $('.restricted_title').each(function() {
-            var content = $(this).text().trim(); // get the content of a tag
-            if (content.length >
-                limit_restricted_title) { // If the content is longer than limit_restricted_title characters
-                content = content.slice(0, limit_restricted_title) +
-                    '...'; // Select limit_restricted_title characters and add ellipses
-                $(this).text(content); // Restore modified content
-            }
-        });
-
-        /*--------------------------------
-           // section 3 text limitation
-        -------------------------------*/
-        // Select all tags with class .restricted_text
-        $('.restricted_text').each(function() {
-            var content = $(this).text().trim(); // get the content of a tag
-            if (content.length >
-                limit_restricted_text) { // If the content is longer than limit_restricted_text characters
-                content = content.slice(0, limit_restricted_text) +
-                    '...'; // Select limit_restricted_text characters and add ellipses
-                $(this).text(content); // Restore modified content
-            }
-        });
-
-        /*--------------------------------
-           // style_2 title limitation
-        -------------------------------*/
-        // Select all tags with class .title_style_2
-        $('.title_style_2').each(function() {
-            var content = $(this).text().trim(); // get the content of a tag
-            if (content.length >
-                limit_title_style_2) { // If the content is longer than limit_title_style_2 characters
-                content = content.slice(0, limit_title_style_2) +
-                    '...'; // Select limit_title_style_2 characters and add ellipses
-                $(this).text(content); // Restore modified content
-            }
-        });
-
-        /*--------------------------------
-           // section_4_title_style_1 limitation
-        -------------------------------*/
-        // Select all tags with class .section_4_title_style_1
-        $('.section_4_title_style_1').each(function() {
-            var content = $(this).text().trim(); // get the content of a tag
-            if (content.length > limit_section_4_title_style_1) {
-                // If the content is longer than limit_section_4_title_style_1 characters
-                content = content.slice(0, limit_section_4_title_style_1) + '...';
-                // Select limit_section_4_title_style_1 characters and add ellipses
-                $(this).text(content); // Restore modified content
-            }
-        });
-
-        /*--------------------------------
-           // section_4_title_style_2 limitation
-        -------------------------------*/
-        // Select all tags with class .section_4_title_style_2
-        $('.section_4_title_style_2').each(function() {
-            var content = $(this).text().trim(); // get the content of a tag
-            if (content.length > limit_section_4_title_style_2) {
-                // If the content is longer than limit_section_4_title_style_2 characters
-                content = content.slice(0, limit_section_4_title_style_2) + '...';
-                // Select limit_section_4_title_style_2 characters and add ellipses
-                $(this).text(content); // Restore modified content
-            }
-        });
-
-        /*--------------------------------
-           // section 6 title limitation
-        -------------------------------*/
-        // Select all tags with class .section_6_restricted_title
-        $('.section_6_restricted_title').each(function() {
-            var content = $(this).text().trim(); // get the content of a tag
-            if (content.length > limit_section_6_restricted_title) {
-                // If the content is longer than limit_section_6_restricted_title characters
-                content = content.slice(0, limit_section_6_restricted_title) + '...';
-                // Select limit_section_6_restricted_title characters and add ellipses
-                $(this).text(content); // Restore modified content
-            }
-        });
-
-
-        function anket() {
-            var soru_id = document.getElementById('question_id').value;
-            var cevap = document.getElementByClassname('vote').value;
-            console.log(soru_id);
-
-        }
-
-
-        var swiper = new Swiper('#story_container .swiper-container', {
-            slidesPerView: 'auto', // Resimleri otomatik olarak sığdır
-            spaceBetween: 10, // Resimler arasındaki boşluk
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        });
-
-        function selectOpt(id) {
-            $(".aknetOpts").each(() => {
-                $(this).prop('checked', false);
+            /*--------------------------------
+               // top category title limitation
+            -------------------------------*/
+            // Select all tags with class .restricted_category_title
+            $('.restricted_category_title').each(function() {
+                var content = $(this).text().trim(); // get the content of a tag
+                if (content.length > limit_restricted_category_title) {
+                    // If the content is longer than limit_restricted_category_title characters
+                    content = content.slice(0, limit_restricted_category_title) + '...';
+                    // Select limit_restricted_category_title characters and add ellipses
+                    $(this).text(content); // Restore modified content
+                }
             });
-            $("#" + id).prop('checked', true);
-        }
+
+            /*--------------------------------
+               // top story title limitation
+            -------------------------------*/
+            // Select all tags with class .restricted_story_title
+            $('.restricted_story_title').each(function() {
+                var content = $(this).text().trim(); // get the content of a tag
+                if (content.length > limit_restricted_story_title) {
+                    // If the content is longer than limit_restricted_story_title characters
+                    content = content.slice(0, limit_restricted_story_title) + '...';
+                    // Select limit_restricted_story_title characters and add ellipses
+                    $(this).text(content); // Restore modified content
+                }
+            });
+
+            /*--------------------------------
+               // top title limitation
+            -------------------------------*/
+            // Select all tags with class .top_restricted_title
+            $('.top_restricted_title').each(function() {
+                var content = $(this).text().trim(); // get the content of a tag
+                if (content.length > limit_top_restricted_title) {
+                    // If the content is longer than limit_top_restricted_title characters
+                    content = content.slice(0, limit_top_restricted_title) + '...';
+                    // Select limit_top_restricted_title characters and add ellipses
+                    $(this).text(content); // Restore modified content
+                }
+            });
+
+            /*--------------------------------
+               // section title limitation
+            -------------------------------*/
+            // Select all tags with class .restricted_section_title
+            $('.restricted_section_title').each(function() {
+                var content = $(this).text().trim(); // get the content of a tag
+                if (content.length > limit_restricted_section_title) {
+                    // If the content is longer than limit_restricted_section_title characters
+                    content = content.slice(0, limit_restricted_section_title) + '...';
+                    // Select limit_restricted_section_title characters and add ellipses
+                    $(this).text(content); // Restore modified content
+                }
+            });
+
+            /*--------------------------------
+               // section_2_title_style_1 limitation
+            -------------------------------*/
+            // Select all tags with class .section_2_title_style_1
+            $('.section_2_title_style_1').each(function() {
+                var content = $(this).text().trim(); // get the content of a tag
+                if (content.length > limit_section_2_title_style_1) {
+                    // If the content is longer than limit_section_2_title_style_1 characters
+                    content = content.slice(0, limit_section_2_title_style_1) + '...';
+                    // Select limit_section_2_title_style_1 characters and add ellipses
+                    $(this).text(content); // Restore modified content
+                }
+            });
+
+            /*--------------------------------
+               // section_2_title_style_2 limitation
+            -------------------------------*/
+            // Select all tags with class .section_2_title_style_2
+            $('.section_2_title_style_2').each(function() {
+                var content = $(this).text().trim(); // get the content of a tag
+                if (content.length > limit_section_2_title_style_2) {
+                    // If the content is longer than limit_section_2_title_style_2 characters
+                    content = content.slice(0, limit_section_2_title_style_2) + '...';
+                    // Select limit_section_2_title_style_2 characters and add ellipses
+                    $(this).text(content); // Restore modified content
+                }
+            });
+
+            /*--------------------------------
+               // section 3 title limitation
+            -------------------------------*/
+            // Select all tags with class .restricted_title
+            $('.restricted_title').each(function() {
+                var content = $(this).text().trim(); // get the content of a tag
+                if (content.length >
+                    limit_restricted_title
+                ) { // If the content is longer than limit_restricted_title characters
+                    content = content.slice(0, limit_restricted_title) +
+                        '...'; // Select limit_restricted_title characters and add ellipses
+                    $(this).text(content); // Restore modified content
+                }
+            });
+
+            /*--------------------------------
+               // section 3 text limitation
+            -------------------------------*/
+            // Select all tags with class .restricted_text
+            $('.restricted_text').each(function() {
+                var content = $(this).text().trim(); // get the content of a tag
+                if (content.length >
+                    limit_restricted_text
+                ) { // If the content is longer than limit_restricted_text characters
+                    content = content.slice(0, limit_restricted_text) +
+                        '...'; // Select limit_restricted_text characters and add ellipses
+                    $(this).text(content); // Restore modified content
+                }
+            });
+
+            /*--------------------------------
+               // style_2 title limitation
+            -------------------------------*/
+            // Select all tags with class .title_style_2
+            $('.title_style_2').each(function() {
+                var content = $(this).text().trim(); // get the content of a tag
+                if (content.length >
+                    limit_title_style_2) { // If the content is longer than limit_title_style_2 characters
+                    content = content.slice(0, limit_title_style_2) +
+                        '...'; // Select limit_title_style_2 characters and add ellipses
+                    $(this).text(content); // Restore modified content
+                }
+            });
+
+            /*--------------------------------
+               // section_4_title_style_1 limitation
+            -------------------------------*/
+            // Select all tags with class .section_4_title_style_1
+            $('.section_4_title_style_1').each(function() {
+                var content = $(this).text().trim(); // get the content of a tag
+                if (content.length > limit_section_4_title_style_1) {
+                    // If the content is longer than limit_section_4_title_style_1 characters
+                    content = content.slice(0, limit_section_4_title_style_1) + '...';
+                    // Select limit_section_4_title_style_1 characters and add ellipses
+                    $(this).text(content); // Restore modified content
+                }
+            });
+
+            /*--------------------------------
+               // section_4_title_style_2 limitation
+            -------------------------------*/
+            // Select all tags with class .section_4_title_style_2
+            $('.section_4_title_style_2').each(function() {
+                var content = $(this).text().trim(); // get the content of a tag
+                if (content.length > limit_section_4_title_style_2) {
+                    // If the content is longer than limit_section_4_title_style_2 characters
+                    content = content.slice(0, limit_section_4_title_style_2) + '...';
+                    // Select limit_section_4_title_style_2 characters and add ellipses
+                    $(this).text(content); // Restore modified content
+                }
+            });
+
+            /*--------------------------------
+               // section 6 title limitation
+            -------------------------------*/
+            // Select all tags with class .section_6_restricted_title
+            $('.section_6_restricted_title').each(function() {
+                var content = $(this).text().trim(); // get the content of a tag
+                if (content.length > limit_section_6_restricted_title) {
+                    // If the content is longer than limit_section_6_restricted_title characters
+                    content = content.slice(0, limit_section_6_restricted_title) + '...';
+                    // Select limit_section_6_restricted_title characters and add ellipses
+                    $(this).text(content); // Restore modified content
+                }
+            });
+
+
+            function anket() {
+                var soru_id = document.getElementById('question_id').value;
+                var cevap = document.getElementByClassname('vote').value;
+                console.log(soru_id);
+
+            }
+
+
+            var swiper = new Swiper('#story_container .swiper-container', {
+                slidesPerView: 'auto', // Resimleri otomatik olarak sığdır
+                spaceBetween: 10, // Resimler arasındaki boşluk
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
+
+            function selectOpt(id) {
+                $(".aknetOpts").each(() => {
+                    $(this).prop('checked', false);
+                });
+                $("#" + id).prop('checked', true);
+            }
+        });
     </script>
     <script>
         // submit_survey_btn

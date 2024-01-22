@@ -16,11 +16,11 @@ class DefenseIndustryContentController extends Controller
         if ($lang == "tr"){
             $data = DefenseIndustryContent::where('link',$id)->first();
             if (!$data) return abort(404);
-            $other_product = DefenseIndustryContent::select('title','image','live_time','link')->where('status',1)->inRandomOrder()->take(8)->get();
+            $other_product = DefenseIndustryContent::select('title','image','live_time','link','view_counter','id')->where('status',1)->inRandomOrder()->take(8)->get();
         }else{
             $data = EnDefenseIndustryContent::where('link',$id)->first();
             if (!$data) return abort(404);
-            $other_product = EnDefenseIndustryContent::select('title','image','live_time','link')->where('status',1)->inRandomOrder()->take(8)->get();
+            $other_product = EnDefenseIndustryContent::select('title','image','live_time','link','view_counter','id')->where('status',1)->inRandomOrder()->take(8)->get();
         }
 
         // OKUMA KONTRLÜ
