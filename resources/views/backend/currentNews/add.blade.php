@@ -120,7 +120,7 @@
                                                             <div class="col-lg-10">
                                                                 <div class="row">
                                                                     <div class="col-lg-12 fv-row">
-                                                                        <input type="text" name="source"  id=""
+                                                                        <input type="text" name="source" id=""
                                                                             class="form-control form-control-lg form-control-solid mb-lg-0 mb-3">
                                                                     </div>
                                                                 </div>
@@ -130,7 +130,8 @@
 
                                                     <div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">
                                                         <div class="row ms-10">
-                                                            <label class="col-lg-4 required col-form-label fw-bold fs-6"> Kategori
+                                                            <label class="col-lg-4 required col-form-label fw-bold fs-6">
+                                                                Kategori
                                                             </label>
                                                             <div class="col-lg-8">
                                                                 <div class="row">
@@ -202,7 +203,8 @@
 
                                                     <div class="col-lg-6 fv-row fv-plugins-icon-container ps-5">
                                                         <div class="row ms-10">
-                                                            <label class="col-lg-4 required col-form-label fw-bold fs-6">Yayın
+                                                            <label
+                                                                class="col-lg-4 required col-form-label fw-bold fs-6">Yayın
                                                                 Tarihi</label>
                                                             <div class="col-lg-8">
                                                                 <div class="row">
@@ -347,64 +349,68 @@
                                                                 class="card-footer row d-flex justify-content-between px-0 py-6">
 
 
-                                                                    <div class="col-md-4">
-                                                                        <div class="row mb-0">
-                                                                            <label
-                                                                                class="col-lg-3 col-form-label fw-bold fs-6 ps-5">Durum</label>
-                                                                            <div class="col-lg-4 d-flex align-items-center">
-                                                                                <div
-                                                                                    class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                                    <input class="form-check-input w-50px h-25px"
-                                                                                        type="checkbox" name="status_tr"
-                                                                                        id="allowactivity_detail_tr"
-                                                                                        checked="checked" />
-                                                                                    <label class="form-check-label"
-                                                                                        for="allowactivity_detail_tr"></label>
-                                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="row mb-0">
+                                                                        <label
+                                                                            class="col-lg-3 col-form-label fw-bold fs-6 ps-5">Durum</label>
+                                                                        <div class="col-lg-4 d-flex align-items-center">
+                                                                            <div
+                                                                                class="form-check form-check-solid form-switch form-check-custom fv-row">
+                                                                                <input
+                                                                                    class="form-check-input w-50px h-25px"
+                                                                                    type="checkbox" name="status_tr"
+                                                                                    id="allowactivity_detail_tr"
+                                                                                    checked="checked" />
+                                                                                <label class="form-check-label"
+                                                                                    for="allowactivity_detail_tr"></label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                </div>
 
-                                                                    <div class="col-md-4">
-                                                                        <div class="row mb-0">
-                                                                            <label
-                                                                                class="col-lg-3 col-form-label fw-bold fs-6 ps-5">Manşet</label>
-                                                                            <div class="col-lg-4 d-flex align-items-center">
-                                                                                <div
-                                                                                    class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                                    <input class="form-check-input w-50px h-25px"
-                                                                                        type="checkbox" name="manset_tr"
-                                                                                        id="allowactivity_detail_tr"/>
-                                                                                    <label class="form-check-label"
-                                                                                        for="allowactivity_detail_tr"></label>
-                                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="row mb-0">
+                                                                        <label
+                                                                            class="col-lg-3 col-form-label fw-bold fs-6 ps-5">Manşet</label>
+                                                                        <div class="col-lg-4 d-flex align-items-center">
+                                                                            <div
+                                                                                class="form-check form-check-solid form-switch form-check-custom fv-row">
+                                                                                <input
+                                                                                    class="form-check-input w-50px h-25px"
+                                                                                    type="checkbox" name="manset_tr"
+                                                                                    id="allowactivity_detail_tr" />
+                                                                                <label class="form-check-label"
+                                                                                    for="allowactivity_detail_tr"></label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                </div>
 
-                                                                    
 
-                                                                    <div class="col-md-4">
-                                                                        <div class="row mb-0">
-                                                                            <label
-                                                                                class="col-lg-4 col-form-label fw-bold fs-6 ps-5">E-mail gönder</label>
-                                                                            <div class="col-lg-4 d-flex align-items-center">
-                                                                                <div
-                                                                                    class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                                    <input class="form-check-input w-50px h-25px"
-                                                                                        type="checkbox" name="status_tr"
-                                                                                        id="allowactivity_detail_tr" />
-                                                                                    <label class="form-check-label"
-                                                                                        for="allowactivity_detail_tr"></label>
-                                                                                </div>
+
+                                                                <div class="col-md-4">
+                                                                    <div class="row mb-0">
+                                                                        <label
+                                                                            class="col-lg-4 col-form-label fw-bold fs-6 ps-5">E-mail
+                                                                            gönder</label>
+                                                                        <div class="col-lg-4 d-flex align-items-center">
+                                                                            <div
+                                                                                class="form-check form-check-solid form-switch form-check-custom fv-row">
+                                                                                <input
+                                                                                    class="form-check-input w-50px h-25px"
+                                                                                    type="checkbox" name="send_email"
+                                                                                    id="send_email" />
+                                                                                <label class="form-check-label"
+                                                                                    for="send_email"></label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                </div>
                                                             </div>
-                                                            
+
                                                         </div>
 
-                                                        
+
                                                         <div class="tab-pane fade" id="tab_activity_en" role="tabpanel">
                                                             <!--begin::Form-->
                                                             <!--begin::Card body-->
@@ -498,53 +504,57 @@
                                                                 <!--end::Input group-->
 
                                                             </div>
-                                                            <!--end::Card body-->
-                                                            <!--begin::Actions-->
-                                                            <div
-                                                                class="card-footer d-flex justify-content-between px-0 py-6">
 
-                                                                <!--begin::Input group-->
-                                                                <div class="row mb-0">
-                                                                    <label
-                                                                        class="col-lg-8 col-form-label fw-bold fs-6 ps-5">Manşet</label>
-                                                                    <div class="col-lg-4 d-flex align-items-center">
-                                                                        <div
-                                                                            class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                            <input class="form-check-input w-50px h-25px"
-                                                                                type="checkbox" name="manset_en"
-                                                                                id="allowactivity_detail_tr"
-                                                                                checked="checked" />
-                                                                            <label class="form-check-label"
-                                                                                for="allowactivity_detail_tr"></label>
+
+                                                            <div
+                                                                class="card-footer row d-flex justify-content-between px-0 py-6">
+
+
+                                                                <div class="col-md-4">
+                                                                    <div class="row mb-0">
+                                                                        <label
+                                                                            class="col-lg-3 col-form-label fw-bold fs-6 ps-5">Durum</label>
+                                                                        <div class="col-lg-4 d-flex align-items-center">
+                                                                            <div
+                                                                                class="form-check form-check-solid form-switch form-check-custom fv-row">
+                                                                                <input
+                                                                                    class="form-check-input w-50px h-25px"
+                                                                                    type="checkbox" name="status_en"
+                                                                                    id="allowactivity_detail_tr"
+                                                                                    checked="checked" />
+                                                                                <label class="form-check-label"
+                                                                                    for="allowactivity_detail_tr"></label>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
 
-                                                            </div>
-
-                                                            <div
-                                                                class="card-footer d-flex justify-content-between px-0 py-6">
-
-                                                                <!--begin::Input group-->
-                                                                <div class="row mb-0">
-                                                                    <label
-                                                                        class="col-lg-8 col-form-label fw-bold fs-6 ps-5">Durum</label>
-                                                                    <div class="col-lg-4 d-flex align-items-center">
-                                                                        <div
-                                                                            class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                                            <input class="form-check-input w-50px h-25px"
-                                                                                type="checkbox" name="status_en"
-                                                                                id="allowactivity_detail_tr"
-                                                                                checked="checked" />
-                                                                            <label class="form-check-label"
-                                                                                for="allowactivity_detail_tr"></label>
+                                                                <div class="col-md-4">
+                                                                    <div class="row mb-0">
+                                                                        <label
+                                                                            class="col-lg-3 col-form-label fw-bold fs-6 ps-5">Manşet</label>
+                                                                        <div class="col-lg-4 d-flex align-items-center">
+                                                                            <div
+                                                                                class="form-check form-check-solid form-switch form-check-custom fv-row">
+                                                                                <input
+                                                                                    class="form-check-input w-50px h-25px"
+                                                                                    type="checkbox" name="manset_en"
+                                                                                    id="allowactivity_detail_tr"
+                                                                                    checked="checked" />
+                                                                                <label class="form-check-label"
+                                                                                    for="allowactivity_detail_tr"></label>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
 
+
+
+                                                                <div class="col-md-4">
+
+                                                                </div>
                                                             </div>
-                                                            <!--end::Actions-->
-                                                            <!--end::Form-->
+
                                                         </div>
                                                     </div>
                                                 </div>

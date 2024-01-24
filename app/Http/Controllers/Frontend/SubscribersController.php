@@ -13,13 +13,11 @@ class SubscribersController extends Controller
         $request->validate([
             "email" => "required|max:30",
             "accept" => "required",
-            'g-recaptcha-response' => 'required',
 
         ],[
             "email.required" => "E-mail boş bırakılamaz",
             "email.max" => "E-mail maksimum 30 karakter olmalıdır",
             "accept.required" => "Kullanım koşulları onaylanmalıdır",
-            'g-recaptcha-response.required' => 'Robot olmadığınızı onaylayın',         
 
         ]);
 

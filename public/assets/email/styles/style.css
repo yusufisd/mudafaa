@@ -1,0 +1,282 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&family=Mukta&family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+:root {
+  --primary: #251f20;
+  --dark-green: #303b1f;
+  --bg-gray: #edeeed;
+  --body: #ffffff;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(241, 241, 241);
+}
+
+.box {
+  padding: 50px 50px;
+  max-width: 650px;
+  background-color: white;
+  position: relative; /* Pozisyonu relative yapar */
+  z-index: 2;
+  background-image: url("../img/bg.png"); /* Resim dosyanızın yolunu belirtin */
+  background-size: cover; /* Resmi kutunun boyutuna sığacak şekilde ölçeklendirir */
+  background-position: center; /* Resmi kutunun ortasına hizalar */
+  background-repeat: no-repeat;
+  background-size: 80%; /* Örnek: Genişliği %80 olarak ayarladık, ihtiyaca göre değiştirin */
+  background-position: top -90px right -100px; /* Resmi üst sağa 50px kadar kaydırır */
+}
+
+.logo {
+  width: 220px;
+  margin-bottom: 10px;
+}
+
+.content {
+  background-color: #edeeed;
+  border-radius: 20px;
+  padding: 40px 40px;
+  text-align: center;
+}
+
+.title {
+  font-size: 18px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.desc {
+  color: #3e3e3f;
+  font-size: 12px;
+  padding: 0 20px;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.main-image {
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.tiny-text {
+  color: #3e3e3f;
+  font-size: 12px;
+  font-weight: 300;
+  padding: 0 20px;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50px;
+  background-color: #303b1f;
+  margin-bottom: 30px;
+}
+
+.button {
+  padding: 15px 30px;
+  background-color: #303b1f;
+  color: white;
+  margin-top: 50px;
+  font-size: 16px;
+  border-radius: 50px;
+  font-weight: 300;
+}
+
+.footer {
+  text-align: center;
+  padding: 10px 40px;
+}
+
+.social-meadi-icons {
+  display: inline-block;
+  background-color: white;
+  border-radius: 50px;
+  margin-bottom: 30px;
+  padding: 5px 10px;
+  margin-top: 10px;
+}
+
+.social-meadi-icons a {
+  background-color: #4c513f;
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+  position: relative;
+  border-radius: 50px;
+}
+
+.social-meadi-icons img {
+  width: 12px;
+  color: white;
+  margin-right: 5px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.footer-text {
+  color: #3e3e3f;
+  margin-bottom: 10px;
+  font-size: 12px;
+  padding: 0 20px;
+}
+
+.footer-text-eng {
+  color: #939598;
+  margin-bottom: 30px;
+  font-size: 12px;
+  padding: 0 20px;
+}
+
+.footer-bottom-links a,
+.footer-bottom-links {
+  font-size: 14px;
+  color: #939598;
+  font-weight: 300;
+}
+
+.footer-bottom-links a {
+  text-decoration: underline;
+}
+
+@media (max-width: 622px) {
+  .box {
+    padding: 50px 20px;
+    padding-bottom: 20px !important;
+    background-size: 100%; /* Örnek: Genişliği %80 olarak ayarladık, ihtiyaca göre değiştirin */
+    background-position: top -50px right -100px; /* Resmi üst sağa 50px kadar kaydırır */
+  }
+
+  .logo {
+    width: 180px;
+    margin-bottom: 10px;
+  }
+
+  .content {
+    border-radius: 10px;
+    padding: 30px 20px;
+  }
+
+  .title {
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+  }
+
+  .desc {
+    font-size: 10px;
+  }
+
+  .main-image {
+    border-radius: 5px;
+  }
+
+  .tiny-text {
+    font-size: 10px;
+    font-weight: 300;
+    padding: 0 20px;
+    margin-bottom: 15px;
+    text-align: left;
+  }
+
+  .dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+
+  .dots span {
+    width: 5px;
+    height: 5px;
+    border-radius: 50px;
+    background-color: #303b1f;
+    margin-bottom: 30px;
+  }
+
+  .button {
+    padding: 10px 15px;
+    background-color: #303b1f;
+    color: white;
+    margin-top: 50px;
+    font-size: 14px;
+    border-radius: 50px;
+    font-weight: 300;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 5px;
+  }
+
+  .social-meadi-icons {
+    display: inline-block;
+    background-color: white;
+    border-radius: 50px;
+    margin-bottom: 30px;
+    padding: 5px 10px;
+    margin-top: 10px;
+  }
+
+  .social-meadi-icons a {
+    background-color: #4c513f;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    position: relative;
+    border-radius: 50px;
+  }
+
+  .social-meadi-icons img {
+    width: 10px;
+    color: white;
+    margin-right: 5px;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+  }
+
+  .footer-text {
+    margin-bottom: 10px;
+    font-size: 10px;
+  }
+
+  .footer-text-eng {
+    margin-bottom: 30px;
+    font-size: 10px;
+  }
+
+  .footer-bottom-links a,
+  .footer-bottom-links {
+    font-size: 14px;
+    color: #939598;
+    font-weight: 300;
+  }
+
+  .footer-bottom-links a {
+    text-decoration: underline;
+  }
+}

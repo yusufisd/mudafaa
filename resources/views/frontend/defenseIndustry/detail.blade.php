@@ -56,10 +56,7 @@
                         background-size: 600px 500px!important;
                     }
                     */
-            .urun-gorsel {
-                width: 50px !important;
-                height: 50px !important;
-            }
+            
         }
 
         .single-post-banner {
@@ -75,9 +72,44 @@
                 background-repeat: no-repeat !important;
             }
         }
+
         .fancybox-image{
-            height: 600px!important;
+            height: 700px;
+            width: 850px;
+            margin-top: -10%;
+            margin-left:4%;
         }
+
+        .urun-gorsel{
+            height: 200px;
+            width: 200px;
+            margin-bottom:15%;
+            object-fit: cover;
+
+        }
+
+        @media screen and (max-width: 600px) {
+            .fancybox-image{
+                height: 400px;
+                margin-top: -20%;
+                width: 100%;
+                margin-left:0;
+                padding-left: 10%;
+                padding-right: 10%;
+
+            }
+            .urun-gorsel{
+                height: 200px;
+                width: 200px;
+                margin-bottom:5%;
+                margin-left:50%;
+                border-radius:15px;
+                object-fit: cover;
+            }
+        }
+
+    
+        
     </style>
 @endsection
 @section('content')
@@ -360,9 +392,8 @@
                                         <div class="row">
                                             @foreach ($data->multiple_image as $item)
                                                 <div class="col-md-3">
-                                                    <a data-fancybox="gallery urun-gorsel" href="/{{ $item }}">
-                                                        <img src="/{{ $item }}" style="width:100%; object-fit:cover!important"
-                                                            alt="">
+                                                    <a data-fancybox="gallery" style="text-align:center!important" href="/{{ $item }}">
+                                                        <img src="/{{ $item }}" class="urun-gorsel">
                                                     </a>
                                                 </div>
                                             @endforeach
@@ -591,7 +622,7 @@
             });
             $(document).ready(function(){ 
                 $(".fancybox").fancybox({
-                    'width'  : 600,           // set the width
+                    'width'  : 100,           // set the width
                     'height' : 600,           // set the height
                     'type'   : 'iframe'       // tell the script to create an iframe
                 });

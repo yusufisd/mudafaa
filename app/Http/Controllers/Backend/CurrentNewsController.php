@@ -5,18 +5,22 @@ namespace App\Http\Controllers\Backend;
 use App\Exports\CurrentNewsExport;
 use App\Http\Controllers\Controller;
 use App\Imports\CurrentNewsImport;
+use App\Mail\CurrentNewsMail;
 use App\Models\Comment;
 use App\Models\CurrentNews;
 use App\Models\CurrentNewsCategory;
 use App\Models\EnCurrentNews;
 use App\Models\EnCurrentNewsCategory;
 use App\Models\NewsSource;
+use App\Models\SocialMedia;
+use App\Models\Subscriber;
 use App\Models\UserModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Throwable;
 use Illuminate\Validation\ValidationException;
 use Maatwebsite\Excel\Facades\Excel;
@@ -155,8 +159,17 @@ class CurrentNewsController extends Controller
         if (!isset($request->status_tr)) {
             $news->status = 0;
         }
-
         $news->save();
+
+        $social = SocialMedia::latest()->first();
+
+        if($request->send_email){
+            $subscribers = Subscriber::where('status',1)->get();
+            foreach($subscribers as $subscriber){
+                Mail::to($subscriber->email)->send(new CurrentNewsMail($news,$social));
+            }
+
+        }
 
         $news_en = new EnCurrentNews();
         $news_en->author_id = $request->author;
