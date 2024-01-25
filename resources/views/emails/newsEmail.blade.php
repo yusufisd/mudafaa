@@ -67,7 +67,7 @@
                     e-posta adresiyle
                     kaydolduğunuz
                     için alıyorsunuz. <strong>Milli Müdafaa</strong>
-                    pazarlama e-postalarını almayı durdurmak için <a href="#"
+                    pazarlama e-postalarını almayı durdurmak için <a href="{{ route('front.abonelikten-cik',$email) }}"
                         style="text-decoration: underline; color: #3e3e3f;">buradan</a>
                     aboneliğinizi iptal edin.
                 </p>

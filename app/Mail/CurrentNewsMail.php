@@ -15,10 +15,12 @@ class CurrentNewsMail extends Mailable
 
     public $data;
     public $social;
-    public function __construct($data,$social)
+    public $email;
+    public function __construct($data,$social,$email)
     {
         $this->data = $data;
         $this->social = $social;
+        $this->email = $email;
     }
 
     /**
@@ -41,6 +43,7 @@ class CurrentNewsMail extends Mailable
             with: [
                 'data' => $this->data,
                 'social' => $this->social,
+                'email' => $this->email,
             ],
         );
     }

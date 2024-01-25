@@ -28,4 +28,17 @@ class SubscribersController extends Controller
         Alert::success('Abone Olundu');
         return back();
     }
+
+    public function inActiveSubscribe($email)
+    {
+        $data = Subscriber::where('email',$email)->first();
+
+        if($data != null)
+        {
+            $data->status = 0;
+            $data->save();
+        }
+        Alert::success('Abonelik İptal Edildi');
+        return redirect()->route('front.home');
+    }
 }

@@ -73,31 +73,15 @@
             }
         }
 
-        .fancybox-image{
-            height: 700px;
-            width: 850px;
-            margin-top: -10%;
-            margin-left:4%;
-        }
 
         .urun-gorsel{
-            height: 200px;
-            width: 200px;
             margin-bottom:15%;
             object-fit: cover;
 
         }
 
         @media screen and (max-width: 600px) {
-            .fancybox-image{
-                height: 400px;
-                margin-top: -20%;
-                width: 100%;
-                margin-left:0;
-                padding-left: 10%;
-                padding-right: 10%;
-
-            }
+            
             .urun-gorsel{
                 height: 200px;
                 width: 200px;
@@ -381,7 +365,7 @@
                                 </div>
                                 @if ($data->multiple_image != null)
 
-                                    <div class="wrap post-wrap mb--30">
+                                    <div class="wrap post-wrap" style="margin-top:-8%">
                                         <h2 class="rt-section-heading">
                                             <span class="rt-section-text"> {{ __('message.Ürün Görselleri') }} </span>
                                             <span class="rt-section-dot"></span>
@@ -389,7 +373,7 @@
                                         </h2>
 
                                         <!-- Galeri Resimleri -->
-                                        <div class="row">
+                                        <div class="row" style="margin-top:-2%">
                                             @foreach ($data->multiple_image as $item)
                                                 <div class="col-md-3">
                                                     <a data-fancybox="gallery" style="text-align:center!important" href="/{{ $item }}">

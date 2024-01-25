@@ -920,6 +920,8 @@ Route::middleware('lang')->group(function () {
 
             // İletişim Formu
             Route::post('iletisim-formu-post', [FrontendContactFormController::class, 'formPost'])->name('contactFormPost');
+
+            Route::get('abonelikten-cik/{email?}',[SubscribersController::class,'inActiveSubscribe'])->name('abonelikten-cik');
         });
 });
 

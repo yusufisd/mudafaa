@@ -166,7 +166,8 @@ class CurrentNewsController extends Controller
         if($request->send_email){
             $subscribers = Subscriber::where('status',1)->get();
             foreach($subscribers as $subscriber){
-                Mail::to($subscriber->email)->send(new CurrentNewsMail($news,$social));
+                $email = $subscriber->email;
+                Mail::to($email)->send(new CurrentNewsMail($news,$social,$email));
             }
 
         }

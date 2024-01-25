@@ -434,7 +434,7 @@ class DefenseIndustryContentController extends Controller
                 $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
                 $save_url = 'assets/uploads/defenceIndustryContent/' . $image_name;
                 Image::make($image)
-                    ->resize(960, 520)
+                    ->resize(1600, 1200)
                     ->save($save_url);
             array_push($old_data, $save_url);
             }

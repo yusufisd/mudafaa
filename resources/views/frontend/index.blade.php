@@ -258,7 +258,7 @@
 
 
     <!-- start what's new section -->
-    <section class="whats-new-style-1 i">
+    <section class="whats-new-style-1 mb--30">
         <div class="container">
             <div class="row">
                 <div class="col-12">
