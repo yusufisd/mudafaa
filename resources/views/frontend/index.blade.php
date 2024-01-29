@@ -49,6 +49,9 @@
                 display: none;
             }
         }
+        .theme-switch-box-mobile-wrap{
+            bottom: 615px;
+        }
     </style>
 
 
@@ -69,18 +72,6 @@
     </div>
     <!-- end theme-switch-box-mobile -->
 
-    <!-- theme-switch-box -->
-    <div class="theme-switch-box-mobile-wrap">
-        <div class="theme-switch-box-mobile">
-            <span class="theme-switch-box-mobile__theme-status"><i class="fas fa-cog"></i></span>
-            <label class="theme-switch-box-mobile__label" for="themeSwitchCheckboxMobile">
-                <input class="theme-switch-box-mobile__input" type="checkbox" name="themeSwitchCheckboxMobile"
-                    id="themeSwitchCheckboxMobile">
-                <span class="theme-switch-box-mobile__main"></span>
-            </label>
-            <span class="theme-switch-box-mobile__theme-status"><i class="fas fa-moon"></i></span>
-        </div>
-    </div>
     <!-- end theme-switch-box-mobile -->
     <div class="d-block d-md-none mt--30" data-bg-image="media/elements/element_1.png">
         <div id="story_container" class="container">
@@ -1348,7 +1339,7 @@
                         @csrf
                         <div class="rt-subs-group">
                             <input type="email" name="email" id="email_2" class="subscribe-form"
-                                placeholder="E-posta" data-error="E-posta alanı zorunludur" required>
+                                placeholder="E-posta" data-error="E-posta alanı zorunludur" required minlength="10" maxlength="30">
 
                             <button class="subscribe-btn" data-sitekey="{{ config('services.recaptcha.site_key') }}"
                                 type="submit"> {{ __('message.Abone ol') }}
@@ -1366,6 +1357,13 @@
                         <div class="center">
                             <div class="g-recaptcha" data-sitekey="{{ getCaptchaSiteKey() }}">
                             </div>
+                            @if($errors->any())
+                                @foreach ($errors->all as $e)
+                                    <div class="alert alert-danger">
+                                        {{ $e }}
+                                    </div>
+                                @endforeach
+                            @endif
                         </div>
                         <br>
                         <div class="">

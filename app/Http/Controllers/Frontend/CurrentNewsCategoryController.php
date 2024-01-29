@@ -33,9 +33,7 @@ class CurrentNewsCategoryController extends Controller
             }
 
         
-            $sub_categories = CurrentNewsCategory::latest()
-                ->take(7)
-                ->get();
+            $sub_categories = CurrentNewsCategory::latest()->get();
             $other_news = CurrentNews::where('status', 1)->latest()->take(6)->get();
         } elseif ($local == 'en') {
             $name = EnCurrentNewsCategory::where('link',$id)->first();
@@ -47,9 +45,7 @@ class CurrentNewsCategoryController extends Controller
                 $datas = EnCurrentNews::where('status', 1)->whereJsonContains('category_id', $name->id)->orderBy('live_time','desc')->paginate(9);
             }
 
-            $sub_categories = EnCurrentNewsCategory::latest()
-                ->take(7)
-                ->get();
+            $sub_categories = EnCurrentNewsCategory::latest()->get();
             $other_news = EnCurrentNews::latest()->take(6)->get();
         }
 

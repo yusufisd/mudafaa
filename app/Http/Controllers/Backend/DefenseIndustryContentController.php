@@ -28,7 +28,7 @@ class DefenseIndustryContentController extends Controller
      */
     public function index()
     {
-        $data = DefenseIndustryContent::latest()->get();
+        $data = DefenseIndustryContent::latest()->select('id','image','title','category_id','status','defense_id')->get();
         return view('backend.defenseIndustryContent.list', compact('data'));
     }
 
@@ -38,7 +38,7 @@ class DefenseIndustryContentController extends Controller
     public function create()
     {
         $users = UserModel::latest()->get();
-        $categories = DefenseIndustryCategory::latest()->get();
+        $categories = DefenseIndustryCategory::latest()->selet('id','title','defense_id')->get();
         $countries = CountryList::orderBy('name', 'asc')->get();
         $companies = Company::orderBy('title', 'asc')->get();
         $no = 1;

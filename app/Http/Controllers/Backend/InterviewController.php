@@ -27,7 +27,7 @@ class InterviewController extends Controller
      */
     public function index()
     {
-        $data = Interview::latest()->get();
+        $data = Interview::latest()->select('id','title','author','status')->get();
         return view('backend.interview.list', compact('data'));
     }
 

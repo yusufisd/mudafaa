@@ -20,7 +20,7 @@ class DefenseIndustryCategoryController extends Controller
      */
     public function index()
     {
-        $data = DefenseIndustryCategory::orderBy('queue', 'asc')->get();
+        $data = DefenseIndustryCategory::orderBy('queue', 'asc')->select('id','title','image','queue','defense_id','status')->get();
         return view('backend.defenseIndustryCategory.list', compact('data'));
     }
 

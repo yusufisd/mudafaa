@@ -32,8 +32,8 @@ class CurrentNewsController extends Controller
      */
     public function index()
     {
-        $data = CurrentNews::orderBy('live_time','desc')->get();
-        $categories = CurrentNewsCategory::latest()->get();
+        $data = CurrentNews::orderBy('live_time','desc')->select('title','image','category_id','headline','status','live_time','id')->get();
+        $categories = CurrentNewsCategory::latest()->select('id','title')->get();
         return view('backend.currentNews.list', compact('data','categories'));
     }
 
@@ -43,7 +43,7 @@ class CurrentNewsController extends Controller
     public function create()
     {
         $now = Carbon::now();
-        $categories = CurrentNewsCategory::where('status', 1)->orderBy('queue', 'asc')->get();
+        $categories = CurrentNewsCategory::where('status', 1)->orderBy('queue', 'asc')->select('id','title')->get();
         $users = UserModel::latest()->get();
         return view('backend.currentNews.add', compact('now', 'categories', 'users'));
     }
@@ -96,6 +96,7 @@ class CurrentNewsController extends Controller
             ],
         );
 
+        $category_integer = array_map('intval', $request->category);
         $veri = json_decode(json_decode(json_encode($request->activity_seo_keywords_tr[0])));
         $merge = [];
         foreach ($veri as $v) {
@@ -114,7 +115,7 @@ class CurrentNewsController extends Controller
         $read_time_en = (int) round(str_word_count($request->tinymce_activity_detail_en) / 200);
 
         $news = new CurrentNews();
-        $news->category_id = $request->category;
+        $news->category_id = $category_integer;
         $news->author_id = $request->author;
         $news->live_time = $request->activity_on_location_tr;
         $news->title = $request->activity_name_tr;
@@ -174,7 +175,7 @@ class CurrentNewsController extends Controller
 
         $news_en = new EnCurrentNews();
         $news_en->author_id = $request->author;
-        $news_en->category_id = $request->category;
+        $news_en->category_id = $category_integer;
         $news_en->title = $request->activity_name_en;
         $news_en->short_description = $request->activity_summary_en;
         $news_en->description = $request->tinymce_activity_detail_en;

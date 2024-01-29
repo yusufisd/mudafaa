@@ -23,7 +23,7 @@ class ActivityController extends Controller
 {
     public function index()
     {
-        $data = Activity::latest()->get();
+        $data = Activity::latest()->select('id','image','title','category','country_id','city','status')->get();
         return view('backend.activity.list', compact('data'));
     }
 
