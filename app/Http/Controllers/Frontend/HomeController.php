@@ -70,7 +70,7 @@ class HomeController extends Controller
             $third_cat = CurrentNewsCategory::select('id')->where('status',1)->whereNot('id',$first_cat->id)->whereNot('id',$second_cat->id)->first();
 
 
-            $data = CurrentNews::select('id','title','live_time','image','category_id','author_id','link')->where('status',1)->orderBy('live_time','desc')->get();
+            $data = CurrentNews::select('id','title','live_time','image','category_id','author_id','link')->where('status',1)->whereNotIn('id',$cats_idler)->orderBy('live_time','desc')->get();
             foreach($data as $item){
 
                 if(in_array($first_cat->id,$item->category_id)){
@@ -179,7 +179,7 @@ class HomeController extends Controller
             $third_cat = EnCurrentNewsCategory::select('id')->where('status',1)->whereNot('id',$first_cat->id)->whereNot('id',$second_cat->id)->first();
 
 
-            $data = EnCurrentNews::select('id','title','live_time','image','category_id','author_id')->where('status',1)->orderBy('live_time','desc')->get();
+            $data = EnCurrentNews::select('id','title','live_time','image','category_id','author_id')->where('status',1)->whereNotIn('id',$cats_idler)->orderBy('live_time','desc')->get();
             foreach($data as $item){
                 if(in_array($first_cat->id,$item->category_id)){
                     $ilk_kategori_icerigi = $item;
