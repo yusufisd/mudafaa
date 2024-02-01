@@ -7,7 +7,7 @@
     savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
 @section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri
     için tıklayın!')
-@section('title', 'Etiket')
+@section('title', $title)
 
 @section('content')
     <!-- Start Main -->
@@ -65,7 +65,11 @@
 
 
                         <li class="breadcrumb-item active" aria-current="page">
-                            Etiket
+                            @if($title != null)
+                                {{ $title }}
+                            @else
+                                Etiket
+                            @endif
                         </li>
                     </ol>
                 </nav>

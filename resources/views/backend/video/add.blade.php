@@ -782,7 +782,26 @@
                     "table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol"
 
                 ],
-                plugins: "advlist autolink link image lists charmap print preview code table"
+                plugins: "advlist autolink link image lists charmap print preview code table",
+                images_upload_handler: function(blobInfo, success, failure) {
+                    var formData = new FormData();
+                    formData.append('file', blobInfo.blob(), blobInfo.filename());
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '{{ route('admin.video.content_image') }}',
+                        data: formData,
+                        headers : { "X-CSRF-TOKEN" : "{{ csrf_token() }}"},
+                        processData: false,
+                        contentType: false,
+                        success: function(response) {
+                            success(response.location);
+                        },
+                        error: function(error) {
+                            failure('Görsel yüklemede hata. Daha sonra tekrar deneyin.');
+                        }
+                    });
+                }
             });
 
             tinymce.init({
@@ -796,7 +815,26 @@
                     "table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol"
 
                 ],
-                plugins: "advlist autolink link image lists charmap print preview code table"
+                plugins: "advlist autolink link image lists charmap print preview code table",
+                images_upload_handler: function(blobInfo, success, failure) {
+                    var formData = new FormData();
+                    formData.append('file', blobInfo.blob(), blobInfo.filename());
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '{{ route('admin.video.content_image') }}',
+                        data: formData,
+                        headers : { "X-CSRF-TOKEN" : "{{ csrf_token() }}"},
+                        processData: false,
+                        contentType: false,
+                        success: function(response) {
+                            success(response.location);
+                        },
+                        error: function(error) {
+                            failure('Görsel yüklemede hata. Daha sonra tekrar deneyin.');
+                        }
+                    });
+                }
             });
 
         });

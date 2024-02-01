@@ -416,4 +416,19 @@ class InterviewController extends Controller
     public function disa_aktar(){
         return Excel::download(new InterviewExport, 'interview.xlsx');
     }
+
+    public function uploadContentImage(Request $request)
+    {
+        if ($request->file('file') != null) {
+            $image = $request->file('file');
+            $image_name = hexdec(uniqid()) . '.'. $image->getClientOriginalExtension();
+            $save_url = public_path('assets/uploads/interview').'/'. $image_name;
+            Image::make($image)
+                ->resize(960, 520)
+                ->save($save_url);
+                
+            $save_url = asset('assets/uploads/interview').'/'. $image_name;
+            return response()->json(['location' => $save_url]);
+        }
+    }
 }

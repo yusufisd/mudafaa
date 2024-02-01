@@ -559,7 +559,7 @@
                                                                 <a
                                                                     href="{{ \Session::get('applocale') == 'en' ? route('front.archive.index_en') : route('front.archive.index') }}">
                                                                     <p style="color: white; font-size:14px">
-                                                                        {{ __('message.iş birliği') }} </p>
+                                                                        {{ __('message.arşiv') }} </p>
                                                                 </a>
                                                             </li>
                                                             <li class="li_2"

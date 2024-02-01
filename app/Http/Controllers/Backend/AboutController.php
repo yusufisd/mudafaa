@@ -233,4 +233,19 @@ class AboutController extends Controller
         FacadesAlert::success('Hakkımızda Düzenlendi');
         return redirect()->route('admin.about.add');
     }
+
+    public function uploadContentImage(Request $request)
+    {
+        if ($request->file('file') != null) {
+            $image = $request->file('file');
+            $image_name = hexdec(uniqid()) . '.'. $image->getClientOriginalExtension();
+            $save_url = public_path('assets/uploads/about').'/'. $image_name;
+            Image::make($image)
+                ->resize(960, 520)
+                ->save($save_url);
+                
+            $save_url = asset('assets/uploads/about').'/'. $image_name;
+            return response()->json(['location' => $save_url]);
+        }
+    }
 }

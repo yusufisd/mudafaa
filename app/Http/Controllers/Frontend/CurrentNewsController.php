@@ -75,8 +75,11 @@ class CurrentNewsController extends Controller
                 ->get();
             $other_news = EnCurrentNews::latest()->take(6)->get();
         }
+        if($title != null){
+            $title = ucwords($title);
+        }
 
-        return view('frontend.currentNews.tag_list',compact('datas','sub_categories','other_news'));
+        return view('frontend.currentNews.tag_list',compact('datas','sub_categories','other_news','title'));
     }
 
     public function share_counter(){

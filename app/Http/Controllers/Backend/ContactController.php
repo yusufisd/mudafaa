@@ -7,6 +7,7 @@ use App\Models\ContactModel;
 use App\Models\EnContactModel;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Intervention\Image\Facades\Image;
 
 class ContactController extends Controller
 {
@@ -59,5 +60,20 @@ class ContactController extends Controller
 
         Alert::success('İletişim Ayarları Düzenlendi');
         return redirect()->back();
+    }
+
+    public function uploadContentImage(Request $request)
+    {
+        if ($request->file('file') != null) {
+            $image = $request->file('file');
+            $image_name = hexdec(uniqid()) . '.'. $image->getClientOriginalExtension();
+            $save_url = public_path('assets/uploads/contact').'/'. $image_name;
+            Image::make($image)
+                ->resize(960, 520)
+                ->save($save_url);
+                
+            $save_url = asset('assets/uploads/contact').'/'. $image_name;
+            return response()->json(['location' => $save_url]);
+        }
     }
 }

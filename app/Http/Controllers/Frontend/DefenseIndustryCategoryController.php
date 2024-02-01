@@ -75,7 +75,7 @@ class DefenseIndustryCategoryController extends Controller
 
     public function tag_list($title, Request $request){
 
-        $local = \Session::get('applocale');
+        $local = session('applocale');
         if ($local == null) {
             $local = config('app.fallback_locale');
         }
@@ -98,7 +98,10 @@ class DefenseIndustryCategoryController extends Controller
 
         $kvkk_tr = Page::where('link','like','%'.'kvkk'.'%')->first();
         $kvkk_en = EnPage::where('link','like','%'.'pdpl'.'%')->first();
+        if($title != null){
+            $title = ucwords($title);
+        }
 
-        return view('frontend.defenseIndustry.tag_list',compact('datas','data','kvkk_tr','kvkk_en'));
+        return view('frontend.defenseIndustry.tag_list',compact('datas','data','kvkk_tr','kvkk_en','title'));
     }
 }

@@ -2,7 +2,7 @@
 @section('meta-title',  'Milli Müdafaa')
 @section('keywords',  'Milli Müdafaa, Haber, Güncel Haberler, Son Dakika Haberleri, Türkiye, Dünya, Teknoloji, İstanbul, TV, savunma, savunma sanayi, savunma sanayii, teknoloji, siber, güvenlik, siber güvenlik, milli teknoloji, milli teknoloji hamlesi, aselsan, baykar, havelsan, tai, tusaş, hulusi akar, haluk görgün, selçuk bayraktar, haluk bayraktar, temel kotil, mustafa varank, teknopark, turksat, telekom, haberlesme, istihbarat, milli istihbarat, dış politika, savunma sanayi haberleri, savunma sanayii haberleri, yerli, milli.')
 @section('description', 'Savunma Sanayii haberleri, güncel son dakika gelişmeleri ve bugün yer alan son durum bilgileri için tıklayın!')
-@section('title','Etiket')
+@section('title',$title)
 
 @section('content')
     <!-- Start Main -->
@@ -51,7 +51,11 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            Etiket
+                            @if($title != null)
+                                {{ $title }}
+                            @else
+                                Etiket
+                            @endif
                         </li>
                     </ol>
                 </nav>
@@ -127,7 +131,7 @@
                                                         </li>
                                                         <li>
                                                             <span class="rt-meta">
-                                                                <i class="far fa-eye icon"></i>
+                                                                <i class="fa-solid fa-eye"></i>
                                                                 {{ $item->viewCounter->view_counter ?? '0' }}
                                                             </span>
                                                         </li>

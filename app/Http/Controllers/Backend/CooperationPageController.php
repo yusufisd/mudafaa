@@ -53,4 +53,19 @@ class CooperationPageController extends Controller
         Alert::success('İş Birliği Sayfası Başarıyla Düzenlendi');
         return redirect()->route('admin.cooperationPageEdit');
     }
+
+    public function uploadContentImage(Request $request)
+    {
+        if ($request->file('file') != null) {
+            $image = $request->file('file');
+            $image_name = hexdec(uniqid()) . '.'. $image->getClientOriginalExtension();
+            $save_url = public_path('assets/uploads/cooperationPage').'/'. $image_name;
+            Image::make($image)
+                ->resize(960, 520)
+                ->save($save_url);
+                
+            $save_url = asset('assets/uploads/cooperationPage').'/'. $image_name;
+            return response()->json(['location' => $save_url]);
+        }
+    }
 }

@@ -543,25 +543,6 @@
     <!--end::Content wrapper-->
 @endsection
 @section('script')
-    <script>
-        ClassicEditor
-            .create(document.querySelector('#editor'))
-            .then(editor => {
-                console.log(editor);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-        ClassicEditor
-            .create(document.querySelector('#editor2'))
-            .then(editor => {
-                console.log(editor);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    </script>
-    
     <script src="{{ asset('assets/backend/plugins/global/plugins.bundle.js') }}"></script>
     <script src="{{ asset('assets/backend/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
     <script src="{{ asset('assets/backend/plugins/custom/tinymce/langs/tr.js') }}"></script>
@@ -628,7 +609,26 @@
                     "undo redo | cut copy paste | bold italic | link image | alignleft aligncenter alignright alignjustify",
                     "bullist numlist | outdent indent | blockquote subscript superscript | advlist | autolink | lists charmap | print preview |  code"
                 ],
-                plugins: "advlist autolink link image lists charmap print preview code"
+                plugins: "advlist autolink link image lists charmap print preview code",
+                images_upload_handler: function(blobInfo, success, failure) {
+                    var formData = new FormData();
+                    formData.append('file', blobInfo.blob(), blobInfo.filename());
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '{{ route('admin.about.content_image') }}',
+                        data: formData,
+                        headers : { "X-CSRF-TOKEN" : "{{ csrf_token() }}"},
+                        processData: false,
+                        contentType: false,
+                        success: function(response) {
+                            success(response.location);
+                        },
+                        error: function(error) {
+                            failure('Görsel yüklemede hata. Daha sonra tekrar deneyin.');
+                        }
+                    });
+                }
             });
 
             tinymce.init({
@@ -640,7 +640,26 @@
                     "undo redo | cut copy paste | bold italic | link image | alignleft aligncenter alignright alignjustify",
                     "bullist numlist | outdent indent | blockquote subscript superscript | advlist | autolink | lists charmap | print preview |  code"
                 ],
-                plugins: "advlist autolink link image lists charmap print preview code"
+                plugins: "advlist autolink link image lists charmap print preview code",
+                images_upload_handler: function(blobInfo, success, failure) {
+                    var formData = new FormData();
+                    formData.append('file', blobInfo.blob(), blobInfo.filename());
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '{{ route('admin.about.content_image') }}',
+                        data: formData,
+                        headers : { "X-CSRF-TOKEN" : "{{ csrf_token() }}"},
+                        processData: false,
+                        contentType: false,
+                        success: function(response) {
+                            success(response.location);
+                        },
+                        error: function(error) {
+                            failure('Görsel yüklemede hata. Daha sonra tekrar deneyin.');
+                        }
+                    });
+                }
             });
 
         });

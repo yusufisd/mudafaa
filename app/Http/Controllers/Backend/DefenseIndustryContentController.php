@@ -13,6 +13,7 @@ use App\Models\DefenseIndustryCategory;
 use App\Models\DefenseIndustryContent;
 use App\Models\EnDefenseIndustryContent;
 use App\Models\UserModel;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -38,7 +39,7 @@ class DefenseIndustryContentController extends Controller
     public function create()
     {
         $users = UserModel::latest()->get();
-        $categories = DefenseIndustryCategory::latest()->selet('id','title','defense_id')->get();
+        $categories = DefenseIndustryCategory::latest()->select('id','title','defense_id')->get();
         $countries = CountryList::orderBy('name', 'asc')->get();
         $companies = Company::orderBy('title', 'asc')->get();
         $no = 1;
@@ -90,6 +91,7 @@ class DefenseIndustryContentController extends Controller
                 'image.required' => 'Görsel boş bırakılamaz',
             ],
         );
+        $now = Carbon::now();
         $genel_id = DefenseIndustryCategory::where('id', $request->category)->first();
         $new = new DefenseIndustryContent();
 
@@ -113,6 +115,7 @@ class DefenseIndustryContentController extends Controller
         $new->category_id = $request->category;
         $new->defense_id = $genel_id->defense_id;
         $new->title = $request->name_tr;
+        $new->live_time = $now;
         $new->short_description = $request->short_description_tr;
         $new->description = $request->description_tr;
         $new->read_time = $read_time_tr;
@@ -160,6 +163,7 @@ class DefenseIndustryContentController extends Controller
         $new_en->category_id = $request->category;
         $new_en->title = $request->name_en;
         $new_en->read_time = $read_time_en;
+        $new->live_time = $now;
         $new_en->countries = $request->countries;
         $new_en->companies = $request->company;
         $new_en->origin = $request->origin;
@@ -248,6 +252,7 @@ class DefenseIndustryContentController extends Controller
                 'seo_key_en.required' => 'Seo anahtar (EN) boş bırakılamaz',
             ],
         );
+        $now = Carbon::now();
         $read_time_tr = (int) round(str_word_count($request->description_tr) / 200);
         $read_time_en = (int) round(str_word_count($request->description_en) / 200);
 
@@ -271,6 +276,7 @@ class DefenseIndustryContentController extends Controller
         $new->category_id = $request->category;
         $new->defense_id = $genel_id->defense_id;
         $new->title = $request->name_tr;
+        $new->live_time = $now;
         $new->short_description = $request->short_description_tr;
         $new->description = $request->description_tr;
         $new->read_time = $read_time_tr;
@@ -321,6 +327,7 @@ class DefenseIndustryContentController extends Controller
         $new_en->defense_id = $genel_id->defense_id;
         $new_en->category_id = $request->category;
         $new_en->title = $request->name_en;
+        $new->live_time = $now;
         $new_en->read_time = $read_time_en;
         $new_en->short_description = $request->short_description_en;
         $new_en->description = $request->description_en;
@@ -459,5 +466,20 @@ class DefenseIndustryContentController extends Controller
     public function disa_aktar()
     {
         return Excel::download(new DefenseIndustryContentExport(), 'defenseIndustryContent.xlsx');
+    }
+
+    public function uploadContentImage(Request $request)
+    {
+        if ($request->file('file') != null) {
+            $image = $request->file('file');
+            $image_name = hexdec(uniqid()) . '.'. $image->getClientOriginalExtension();
+            $save_url = public_path('assets/uploads/defenceIndustryContent').'/'. $image_name;
+            Image::make($image)
+                ->resize(960, 520)
+                ->save($save_url);
+                
+            $save_url = asset('assets/uploads/defenceIndustryContent').'/'. $image_name;
+            return response()->json(['location' => $save_url]);
+        }
     }
 }

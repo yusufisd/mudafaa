@@ -32,9 +32,13 @@ class CurrentNewsController extends Controller
      */
     public function index()
     {
-        $data = CurrentNews::orderBy('live_time','desc')->select('title','image','category_id','headline','status','live_time','id')->get();
-        $categories = CurrentNewsCategory::latest()->select('id','title')->get();
-        return view('backend.currentNews.list', compact('data','categories'));
+        $data = CurrentNews::orderBy('live_time', 'desc')
+            ->select('title', 'image', 'category_id', 'headline', 'status', 'live_time', 'id')
+            ->get();
+        $categories = CurrentNewsCategory::latest()
+            ->select('id', 'title')
+            ->get();
+        return view('backend.currentNews.list', compact('data', 'categories'));
     }
 
     /**
@@ -43,7 +47,10 @@ class CurrentNewsController extends Controller
     public function create()
     {
         $now = Carbon::now();
-        $categories = CurrentNewsCategory::where('status', 1)->orderBy('queue', 'asc')->select('id','title')->get();
+        $categories = CurrentNewsCategory::where('status', 1)
+            ->orderBy('queue', 'asc')
+            ->select('id', 'title')
+            ->get();
         $users = UserModel::latest()->get();
         return view('backend.currentNews.add', compact('now', 'categories', 'users'));
     }
@@ -146,12 +153,12 @@ class CurrentNewsController extends Controller
         }
         if (!isset($request->manset_tr)) {
             $news->headline = 0;
-        }else{
-            $manset_say = CurrentNews::where('headline',1)->count();
-            if($manset_say <10){
+        } else {
+            $manset_say = CurrentNews::where('headline', 1)->count();
+            if ($manset_say < 10) {
                 $news->headline = 1;
-            }else{
-                $son_manset = CurrentNews::orderBy('live_time','asc')->first();
+            } else {
+                $son_manset = CurrentNews::orderBy('live_time', 'asc')->first();
                 $son_manset->headline = 0;
                 $son_manset->save();
                 $news->headline = 1;
@@ -164,13 +171,12 @@ class CurrentNewsController extends Controller
 
         $social = SocialMedia::latest()->first();
 
-        if($request->send_email){
-            $subscribers = Subscriber::where('status',1)->get();
-            foreach($subscribers as $subscriber){
+        if ($request->send_email) {
+            $subscribers = Subscriber::where('status', 1)->get();
+            foreach ($subscribers as $subscriber) {
                 $email = $subscriber->email;
-                Mail::to($email)->send(new CurrentNewsMail($news,$social,$email));
+                Mail::to($email)->send(new CurrentNewsMail($news, $social, $email));
             }
-
         }
 
         $news_en = new EnCurrentNews();
@@ -206,13 +212,12 @@ class CurrentNewsController extends Controller
         }
         if (!isset($request->manset_en)) {
             $news_en->headline = 0;
-        
-        }else{
-            $manset_say = CurrentNews::where('headline',1)->count();
-            if($manset_say <10){
+        } else {
+            $manset_say = CurrentNews::where('headline', 1)->count();
+            if ($manset_say < 10) {
                 $news_en->headline = 1;
-            }else{
-                $son_manset = CurrentNews::orderBy('live_time','asc')->first();
+            } else {
+                $son_manset = CurrentNews::orderBy('live_time', 'asc')->first();
                 $son_manset->headline = 0;
                 $son_manset->save();
                 $news_en->headline = 1;
@@ -223,7 +228,7 @@ class CurrentNewsController extends Controller
         }
         $news_en->save();
 
-        if($request->source != null){
+        if ($request->source != null) {
             $source = new NewsSource();
             $source->news_id = $news->id;
             $source->source = $request->source;
@@ -239,7 +244,9 @@ class CurrentNewsController extends Controller
 
     public function edit($id)
     {
-        $categories = CurrentNewsCategory::where('status', 1)->latest()->get();
+        $categories = CurrentNewsCategory::where('status', 1)
+            ->latest()
+            ->get();
         $users = UserModel::latest()->get();
         $data_tr = CurrentNews::findOrFail($id);
         $data_en = EnCurrentNews::where('currentNews_id', $id)->first();
@@ -251,7 +258,6 @@ class CurrentNewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $request->validate(
             [
                 'activity_name_en' => 'required',
@@ -302,7 +308,6 @@ class CurrentNewsController extends Controller
             }
             $merge = implode(',', $merge);
 
-
             $veri_en = json_decode(json_decode(json_encode($request->activity_seo_keywords_en[0])));
             $merge_en = [];
             foreach ($veri_en as $v) {
@@ -311,7 +316,6 @@ class CurrentNewsController extends Controller
             $merge_en = implode(',', $merge_en);
 
             $category_integer = array_map('intval', $request->category);
-
 
             $read_time_tr = (int) round(str_word_count($request->tinymce_activity_detail_tr) / 200);
             $read_time_en = (int) round(str_word_count($request->tinymce_activity_detail_en) / 200);
@@ -349,26 +353,24 @@ class CurrentNewsController extends Controller
             }
             if (!isset($request->manset_tr)) {
                 $news->headline = 0;
-            }else{
-                $manset_say = CurrentNews::where('headline',1)->count();
-                if($manset_say < 10){
+            } else {
+                $manset_say = CurrentNews::where('headline', 1)->count();
+                if ($manset_say < 10) {
                     $news->headline = 1;
-                }else{
-                    $son_manset = CurrentNews::orderBy('live_time','asc')->first();
+                } else {
+                    $son_manset = CurrentNews::orderBy('live_time', 'asc')->first();
                     $son_manset->headline = 0;
                     $son_manset->save();
                     $news->headline = 1;
                 }
-                
             }
             if (!isset($request->status_tr)) {
                 $news->status = 0;
-            }else{
+            } else {
                 $news->status = 1;
             }
 
             $news->save();
-
 
             $news_en = EnCurrentNews::where('currentNews_id', $id)->first();
             $news_en->author_id = $request->author;
@@ -403,36 +405,35 @@ class CurrentNewsController extends Controller
             }
             if (!isset($request->manset_en)) {
                 $news->headline = 0;
-            }else{
-                $manset_say = EnCurrentNews::where('headline',1)->count();
-                if($manset_say < 10){
+            } else {
+                $manset_say = EnCurrentNews::where('headline', 1)->count();
+                if ($manset_say < 10) {
                     $news_en->headline = 1;
-                }else{
-                    $son_manset = EnCurrentNews::orderBy('live_time','asc')->first();
+                } else {
+                    $son_manset = EnCurrentNews::orderBy('live_time', 'asc')->first();
                     $son_manset->headline = 0;
                     $son_manset->save();
                     $news_en->headline = 1;
                 }
-                
             }
             if (!isset($request->status_en)) {
                 $news_en->status = 0;
-            }else{
+            } else {
                 $news_en->status = 1;
             }
             $news_en->save();
 
-            if($request->source != null){
-                $source = NewsSource::where('news_id',$news->id)->first();
-                if($source == null){
+            if ($request->source != null) {
+                $source = NewsSource::where('news_id', $news->id)->first();
+                if ($source == null) {
                     $source = new NewsSource();
                 }
                 $source->news_id = $news->id;
                 $source->source = $request->source;
                 $source->save();
-            }else{
-                $source = NewsSource::where('news_id',$news->id)->first();
-                if($source != null){
+            } else {
+                $source = NewsSource::where('news_id', $news->id)->first();
+                if ($source != null) {
                     $source->delete();
                 }
             }
@@ -481,16 +482,18 @@ class CurrentNewsController extends Controller
             DB::beginTransaction();
 
             $data = CurrentNews::findOrFail($id);
-            if($data->headline == 1){
+            if ($data->headline == 1) {
                 $data->headline = 0;
                 $data->save();
-            }else{
-                $manset_say = CurrentNews::where('headline',1)->count();
-                if($manset_say < 10){
+            } else {
+                $manset_say = CurrentNews::where('headline', 1)->count();
+                if ($manset_say < 10) {
                     $data->headline = 1;
                     $data->save();
-                }else{
-                    $son_manset = CurrentNews::where('headline',1)->orderBy('live_time','asc')->first();
+                } else {
+                    $son_manset = CurrentNews::where('headline', 1)
+                        ->orderBy('live_time', 'asc')
+                        ->first();
                     $son_manset->headline = 0;
                     $son_manset->save();
                     $data->headline = 1;
@@ -498,17 +501,19 @@ class CurrentNewsController extends Controller
                 }
             }
 
-            $data_en = EnCurrentNews::where('currentNews_id',$id)->first();
-            if($data_en->headline == 1){
+            $data_en = EnCurrentNews::where('currentNews_id', $id)->first();
+            if ($data_en->headline == 1) {
                 $data_en->headline = 0;
                 $data_en->save();
-            }else{
-                $manset_say = EnCurrentNews::where('headline',1)->count();
-                if($manset_say < 10){
+            } else {
+                $manset_say = EnCurrentNews::where('headline', 1)->count();
+                if ($manset_say < 10) {
                     $data_en->headline = 1;
                     $data_en->save();
-                }else{
-                    $son_manset = EnCurrentNews::where('headline',1)->orderBy('live_time','asc')->first();
+                } else {
+                    $son_manset = EnCurrentNews::where('headline', 1)
+                        ->orderBy('live_time', 'asc')
+                        ->first();
                     $son_manset->headline = 0;
                     $son_manset->save();
                     $data_en->headline = 1;
@@ -556,13 +561,17 @@ class CurrentNewsController extends Controller
 
     public function commentList($id)
     {
-        $data = Comment::where('is_post',1)->where('post_id', $id)->get();
+        $data = Comment::where('is_post', 1)
+            ->where('post_id', $id)
+            ->get();
         return view('backend.currentNews.comments.list', compact('data'));
     }
 
     public function comment_commentList($id)
     {
-        $data = Comment::where('is_post',0)->where('post_id', $id)->get();
+        $data = Comment::where('is_post', 0)
+            ->where('post_id', $id)
+            ->get();
         return view('backend.currentNews.comments.comments.list', compact('data'));
     }
 
@@ -592,41 +601,39 @@ class CurrentNewsController extends Controller
         return back();
     }
 
-    public function disa_aktar(){
-        return Excel::download(new CurrentNewsExport, 'currentNews.xlsx');
+    public function disa_aktar()
+    {
+        return Excel::download(new CurrentNewsExport(), 'currentNews.xlsx');
     }
 
-    public function filter(Request $request){
-
+    public function filter(Request $request)
+    {
         $cat = CurrentNewsCategory::find($request->category);
-        $cat_en = EnCurrentNewsCategory::where('category_id',$request->category)->first();
+        $cat_en = EnCurrentNewsCategory::where('category_id', $request->category)->first();
 
-        if($request->process == 1){
+        if ($request->process == 1) {
             dd('toplu sil');
-        }
-        elseif($request->process == 2){
-            $datas = CurrentNews::whereJsonContains('category_id',$cat->id)->get();
-            $datas_en = EnCurrentNews::whereJsonContains('category_id',$cat->id)->get();
-            foreach($datas as $key){
+        } elseif ($request->process == 2) {
+            $datas = CurrentNews::whereJsonContains('category_id', $cat->id)->get();
+            $datas_en = EnCurrentNews::whereJsonContains('category_id', $cat->id)->get();
+            foreach ($datas as $key) {
                 $key->status = 0;
                 $key->save();
             }
 
-            foreach($datas_en as $key){
+            foreach ($datas_en as $key) {
                 $key->status = 0;
                 $key->save();
-
             }
-        }
-        elseif($request->process == 3 ){
-            $datas = CurrentNews::whereJsonContains('category_id',$cat->id)->get();
-            $datas_en = EnCurrentNews::whereJsonContains('category_id',$cat->id)->get();
-            foreach($datas as $key){
+        } elseif ($request->process == 3) {
+            $datas = CurrentNews::whereJsonContains('category_id', $cat->id)->get();
+            $datas_en = EnCurrentNews::whereJsonContains('category_id', $cat->id)->get();
+            foreach ($datas as $key) {
                 $key->status = 1;
                 $key->save();
             }
 
-            foreach($datas_en as $key){
+            foreach ($datas_en as $key) {
                 $key->status = 1;
                 $key->save();
             }
@@ -634,5 +641,20 @@ class CurrentNewsController extends Controller
 
         Alert::success('Başaurlu');
         return redirect()->route('admin.currentNews.list');
+    }
+
+    public function uploadContentImage(Request $request)
+    {
+        if ($request->file('file') != null) {
+            $image = $request->file('file');
+            $image_name = hexdec(uniqid()) . '.'. $image->getClientOriginalExtension();
+            $save_url = public_path('assets/uploads/currentNews').'/'. $image_name;
+            Image::make($image)
+                ->resize(960, 520)
+                ->save($save_url);
+                
+            $save_url = asset('assets/uploads/currentNews').'/'. $image_name;
+            return response()->json(['location' => $save_url]);
+        }
     }
 }

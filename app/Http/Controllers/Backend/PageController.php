@@ -193,4 +193,19 @@ class PageController extends Controller
         }
         return redirect()->route('admin.page.list');
     }
+
+    public function uploadContentImage(Request $request)
+    {
+        if ($request->file('file') != null) {
+            $image = $request->file('file');
+            $image_name = hexdec(uniqid()) . '.'. $image->getClientOriginalExtension();
+            $save_url = public_path('assets/uploads/pages').'/'. $image_name;
+            Image::make($image)
+                ->resize(960, 520)
+                ->save($save_url);
+                
+            $save_url = asset('assets/uploads/pages').'/'. $image_name;
+            return response()->json(['location' => $save_url]);
+        }
+    }
 }

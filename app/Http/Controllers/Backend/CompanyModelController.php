@@ -459,4 +459,19 @@ class CompanyModelController extends Controller
     public function disa_aktar(){
         return Excel::download(new CompanyExport, 'company.xlsx');
     }
+
+    public function uploadContentImage(Request $request)
+    {
+        if ($request->file('file') != null) {
+            $image = $request->file('file');
+            $image_name = hexdec(uniqid()) . '.'. $image->getClientOriginalExtension();
+            $save_url = public_path('assets/uploads/companyModel').'/'. $image_name;
+            Image::make($image)
+                ->resize(960, 520)
+                ->save($save_url);
+                
+            $save_url = asset('assets/uploads/companyModel').'/'. $image_name;
+            return response()->json(['location' => $save_url]);
+        }
+    }
 }

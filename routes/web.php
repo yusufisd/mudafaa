@@ -162,6 +162,7 @@ Route::middleware('lang')->group(function () {
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
                     Route::get('disa-aktar', 'disa_aktar')->name('disa_aktar');
                     Route::post('filter-post', 'filter')->name('filterPost');
+                    Route::post('icerik-resmi-yukleme','uploadContentImage')->name('content_image');
                 });
 
             // RÖPORTAJ  CONTROLLER
@@ -194,6 +195,8 @@ Route::middleware('lang')->group(function () {
                     Route::get('yorum-sil/{id?}', 'commentDestroy')->name('commentDestroy');
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
                     Route::get('disa-aktar', 'disa_aktar')->name('disa_aktar');
+                    Route::post('icerik-resmi-yukleme','uploadContentImage')->name('content_image');
+
                 });
 
             // USER CONTROLLER
@@ -235,6 +238,8 @@ Route::middleware('lang')->group(function () {
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
                     Route::get('disa-aktar', 'disa_aktar')->name('disa_aktar');
+                    Route::post('icerik-resmi-yukleme','uploadContentImage')->name('content_image');
+
 
                     Route::get('/coklu-gorsel/{id?}', 'multipleImage')->name('multipleImage');
                     Route::get('/coklu-gorsel-ekle/{id?}', 'multipleImage_add')->name('multipleImage_add');
@@ -398,6 +403,8 @@ Route::middleware('lang')->group(function () {
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
                     Route::get('disa-aktar', 'disa_aktar')->name('disa_aktar');
+                    Route::post('icerik-resmi-yukleme','uploadContentImage')->name('content_image');
+
                 });
 
             // SÖZLÜK  CONTROLLER
@@ -426,6 +433,8 @@ Route::middleware('lang')->group(function () {
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
                     Route::get('disa-aktar', 'disa_aktar')->name('disa_aktar');
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
+                    Route::post('icerik-resmi-yukleme','uploadContentImage')->name('content_image');
+
                 });
 
             // VİDEO KATEGORİ  CONTROLLER
@@ -483,6 +492,8 @@ Route::middleware('lang')->group(function () {
                     Route::get('yorumlar/ek/{id?}', 'comment_commentList')->name('comment_commentList');
                     Route::get('yorum-statu/{id?}', 'changeCommentStatus')->name('changeCommentStatus');
                     Route::get('yorum-sil/{id?}', 'commentDestroy')->name('commentDestroy');
+                    Route::post('icerik-resmi-yukleme','uploadContentImage')->name('content_image');
+
                 });
 
             // FİRMA  CONTROLLER
@@ -511,6 +522,8 @@ Route::middleware('lang')->group(function () {
                     Route::get('durum-degistir/{id?}', 'change_status')->name('change_status');
                     Route::post('ice-aktar', 'ice_aktar')->name('ice_aktar');
                     Route::get('disa-aktar', 'disa_aktar')->name('disa_aktar');
+                    Route::post('icerik-resmi-yukleme','uploadContentImage')->name('content_image');
+
                 });
 
             // FİRMA KATEGORİ CONTROLLER
@@ -549,6 +562,8 @@ Route::middleware('lang')->group(function () {
                 ->group(function () {
                     Route::get('ekle', 'add')->name('add');
                     Route::post('ekle', 'store')->name('store');
+                    Route::post('icerik-resmi-yukleme','uploadContentImage')->name('content_image');
+
                 });
 
             // PAGE CONTROLLER
@@ -574,6 +589,8 @@ Route::middleware('lang')->group(function () {
                     Route::middleware('per:page_delete')
                         ->get('sil/{id?}', 'destroy')
                         ->name('destroy');
+                    Route::post('icerik-resmi-yukleme','uploadContentImage')->name('content_image');
+                    
                 });
 
             // ROLE CONTROLLER
@@ -621,6 +638,8 @@ Route::middleware('lang')->group(function () {
                 ->group(function () {
                     Route::get('/duzenle', 'edit')->name('edit');
                     Route::post('/duzenle', 'update')->name('update');
+                    Route::post('icerik-resmi-yukleme','uploadContentImage')->name('content_image');
+
                 });
 
             // SOSYAL MEDYA
@@ -723,10 +742,14 @@ Route::middleware('lang')->group(function () {
             // ADSENSE PAGE
             Route::get('/reklam-sayfasi', [AdsensePageController::class, 'edit'])->name('adsensePageEdit');
             Route::post('/reklam-sayfasi', [AdsensePageController::class, 'update'])->name('adsensePageEdit.update');
+            Route::post('/reklam-sayfasi/icerik-resmi-yukleme',[AdsensePageController::class, 'uploadContentImage'])->name('adsensePageEdit.content_image');
+
 
             // COOPERATİON PAGE
             Route::get('/is-birligi', [CooperationPageController::class, 'edit'])->name('cooperationPageEdit');
             Route::post('/is-birligi', [CooperationPageController::class, 'update'])->name('cooperationPageEdit.update');
+            Route::post('/is-birligi/icerik-resmi-yukleme',[CooperationPageController::class, 'uploadContentImage'])->name('cooperationPageEdit.content_image');
+
 
             // subsribe controller
             Route::prefix('aboneler')
